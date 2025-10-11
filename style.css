@@ -128,6 +128,9 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .tool-card:hover {
@@ -140,7 +143,82 @@ body {
   margin-bottom: 0.8rem;
 }
 
+.tool-card p {
+    flex-grow: 1; /* Fa in modo che il testo occupi lo spazio disponibile */
+}
+
+.tool-image {
+  width: 100%;
+  height: 200px; /* AUMENTATO LO SPAZIO IMMAGINE */
+  object-fit: contain;
+  margin-bottom: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* NUOVO STILE per il pulsante link strumenti */
+.btn-strumento {
+  display: inline-block;
+  background-color: var(--orange);
+  color: white;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 1rem auto 0;
+}
+
+.btn-strumento:hover {
+  background-color: var(--orange-dark);
+  transform: scale(1.1);
+}
+
+
+/* NUOVA SEZIONE per le collaborazioni */
+.collaborazioni-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.collaborazione-card {
+  text-align: center;
+}
+
+.collaborazione-logo {
+  height: 80px;
+  max-width: 180px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.collaborazione-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.collaborazione-card p {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
 /* Contatti */
+#contatti.section {
+    background-color: var(--gray-bg);
+}
+
 .contact-info {
   text-align: center;
   max-width: 600px;
@@ -211,7 +289,14 @@ body {
 
   .nav {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 1.2rem;
+    margin-left: 0;
+  }
+  
+  .nav a {
+      margin-left: 0;
   }
 
   .hero h2 {
@@ -229,5 +314,9 @@ body {
   .qr-code {
     width: 160px;
     height: 160px;
+  }
+  
+  .tool-image {
+    height: 150px; /* AUMENTATO ANCHE PER MOBILE */
   }
 }
