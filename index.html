@@ -4,294 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bit - Corsi Robotica Educativa </title>
- <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* Reset e base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #fff;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* Colori */
-    :root {
-      --orange: #FF6B35;
-      --orange-light: #FFA77A;
-      --orange-dark: #E05A2B;
-      --gray-bg: #f9f9f9;
-      --text-dark: #2c3e50;
-    }
-
-    /* Header */
-    .header {
-      background-color: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo-img {
-      height: 50px;
-      width: auto;
-      object-fit: contain;
-      background-color: #eee;
-      border-radius: 8px;
-      padding: 4px;
-    }
-
-    .logo-text {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--orange);
-      margin: 0;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--text-dark);
-      margin-left: 1.5rem;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    .nav a:hover {
-      color: var(--orange);
-    }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-      color: white;
-      padding: 5rem 0;
-      text-align: center;
-    }
-
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Sezioni */
-    .section {
-      padding: 4rem 0;
-    }
-
-    .section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--text-dark);
-    }
-
-    .bg-light {
-      background-color: var(--gray-bg);
-    }
-
-    /* Tools Grid */
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .tool-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-align: center;
-    }
-
-    .tool-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-    }
-
-    .tool-card h3 {
-      color: var(--orange);
-      margin-bottom: 0.8rem;
-    }
-
-    .tool-image {
-      width: 100%;
-      height: 150px;
-      object-fit: contain;
-      margin-bottom: 1rem;
-      background-color: #f5f5f5;
-      border-radius: 8px;
-      padding: 10px;
-    }
-
-    /* Contatti */
-    .contact-info {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .phone-link {
-      color: var(--orange);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .phone-link:hover {
-      text-decoration: underline;
-    }
-
-    .qr-container {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: white;
-      display: inline-block;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .qr-code {
-      width: 200px;
-      height: 200px;
-      object-fit: contain;
-      border: 1px solid #eee;
-      border-radius: 8px;
-    }
-
-    /* Pulsanti */
-    .btn {
-      display: inline-block;
-      background-color: var(--orange);
-      color: white;
-      padding: 0.8rem 2rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background-color 0.3s, transform 0.2s;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .btn:hover {
-      background-color: var(--orange-dark);
-      transform: scale(1.05);
-    }
-
-    /* Footer */
-    .footer {
-      background-color: var(--text-dark);
-      color: white;
-      text-align: center;
-      padding: 1.5rem 0;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .header .container {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .nav {
-        display: flex;
-        gap: 1.2rem;
-      }
-
-      .hero h2 {
-        font-size: 2rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .logo-img {
-        height: 40px;
-      }
-
-      .qr-code {
-        width: 160px;
-        height: 160px;
-      }
-      
-      .tool-image {
-        height: 120px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="container">
       <div class="logo-container">
         <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
-        <h1 class="logo-text">Bit </h1>
+        <h1 class="logo-text">Bit</h1>
       </div>
       <nav class="nav">
         <a href="#chi-siamo">Chi siamo</a>
         <a href="#strumenti">Strumenti</a>
+        <a href="#collaborazioni">Collaborazioni</a>
         <a href="#contatti">Contatti</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
       <h2>Scopri il mondo della robotica educativa!</h2>
@@ -300,7 +50,6 @@
     </div>
   </section>
 
-  <!-- Chi Siamo -->
   <section id="chi-siamo" class="section">
     <div class="container">
       <h2>Chi siamo</h2>
@@ -308,7 +57,6 @@
     </div>
   </section>
 
-  <!-- Strumenti -->
   <section id="strumenti" class="section bg-light">
     <div class="container">
       <h2>I nostri strumenti</h2>
@@ -317,28 +65,51 @@
          <img src="images/lego-spike-prime.png" alt="Lego Spike Prime" class="tool-image">
           <h3>Lego Spike Prime</h3>
           <p>Costruisci robot intelligenti con mattoncini LEGO e programmali con un linguaggio intuitivo.</p>
+          <a href="https://www.lego.com/it-it/product/lego-education-spike-prime-set-45678" target="_blank" class="btn-strumento">→</a>
         </div>
         <div class="tool-card">
           <img src="images/open-roberta.png" alt="Open Roberta" class="tool-image">
           <h3>Open Roberta</h3>
           <p>Piattaforma online gratuita per programmare robot in modo semplice e sicuro, senza installazioni.</p>
+          <a href="https://lab.open-roberta.org/" target="_blank" class="btn-strumento">→</a>
         </div>
         <div class="tool-card">
            <img src="images/arduino.png" alt="Arduino" class="tool-image">
           <h3>Arduino</h3>
           <p>Esplora l’elettronica e la programmazione con schede open-source per progetti creativi.</p>
+          <a href="https://www.arduino.cc/" target="_blank" class="btn-strumento">→</a>
         </div>
         <div class="tool-card">
           <img src="images/microbit.png" alt="micro:bit BBC" class="tool-image">
           <h3>micro:bit BBC</h3>
           <p>Un piccolo computer tascabile per imparare a programmare giochi, sensori e molto altro.</p>
+          <a href="https://microbit.org/" target="_blank" class="btn-strumento">→</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contatti -->
-  <section id="contatti" class="section">
+  <section id="collaborazioni" class="section">
+    <div class="container">
+      <h2>Le nostre Collaborazioni</h2>
+      <div class="collaborazioni-grid">
+        <div class="collaborazione-card">
+          <img src="images/logo-placeholder-1.png" alt="Logo Collaboratore 1" class="collaborazione-logo">
+          <p>Nome Collaboratore 1</p>
+        </div>
+        <div class="collaborazione-card">
+          <img src="images/logo-placeholder-2.png" alt="Logo Collaboratore 2" class="collaborazione-logo">
+          <p>Nome Collaboratore 2</p>
+        </div>
+        <div class="collaborazione-card">
+          <img src="images/logo-placeholder-3.png" alt="Logo Collaboratore 3" class="collaborazione-logo">
+          <p>Nome Collaboratore 3</p>
+        </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="contatti" class="section bg-light">
     <div class="container">
       <h2>Contattaci</h2>
       <div class="contact-info">
@@ -351,30 +122,12 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 bit di Kedir Lavezzari - P. IVA 04701410989 - Tutti i diritti riservati.</p>
     </div>
   </footer>
 
-  <script>
-    // Smooth scroll per i link di navigazione
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-
-        const target = document.querySelector(targetId);
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 70,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
