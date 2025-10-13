@@ -24,15 +24,14 @@ document.querySelectorAll('.tool-card').forEach((card, index) => {
   }
 });
 
-// Chiudi popup al clic sulla X
-// Chiudi popup al clic sulla X
-document.querySelectorAll('.close-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const modal = this.closest('.modal');
+// Chiudi QUALSIASI popup quando si clicca sulla X
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('close-btn')) {
+    const modal = e.target.closest('.modal');
     if (modal) {
       modal.style.display = 'none';
     }
-  });
+  }
 });
 
 // Chiudi popup se si clicca fuori dal contenuto
