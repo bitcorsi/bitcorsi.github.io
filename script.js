@@ -14,3 +14,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+// Apri popup al clic su una card
+document.querySelectorAll('.tool-card').forEach((card, index) => {
+  const popups = ['popup-spike', 'popup-roberta', 'popup-arduino', 'popup-microbit'];
+  if (popups[index]) {
+    card.addEventListener('click', () => {
+      document.getElementById(popups[index]).style.display = 'block';
+    });
+  }
+});
+
+// Chiudi popup al clic sulla X
+document.querySelectorAll('.close-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.getAttribute('data-target');
+    document.getElementById(target).style.display = 'none';
+  });
+});
+
+// Chiudi popup se si clicca fuori dal contenuto
+window.addEventListener('click', (e) => {
+  if (e.target.classList.contains('modal')) {
+    e.target.style.display = 'none';
+  }
+});
