@@ -65,16 +65,52 @@ body {
   margin: 0;
 }
 
+/* Nuovo: contenitore per nav + icone */
+.header .header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .nav a {
   text-decoration: none;
   color: var(--text-dark);
-  margin-left: 1.5rem;
   font-weight: 600;
   transition: color 0.3s;
 }
 
 .nav a:hover {
   color: var(--orange);
+}
+
+/* Nuovo: icone social nell'header */
+.social-icons-header {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.social-icons-header a {
+  color: var(--text-dark);
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.social-icons-header a:hover {
+  color: var(--orange);
+  transform: scale(1.1);
+}
+
+.social-icons-header svg {
+  width: 22px;
+  height: 22px;
+  display: block;
 }
 
 /* Hero */
@@ -277,30 +313,6 @@ body {
   padding: 1.5rem 0;
 }
 
-/* Stile per le icone social nel footer */
-.footer .social-links {
-  margin-bottom: 1rem;
-}
-
-.footer .social-links a {
-  display: inline-block;
-  margin: 0 8px;
-  color: white;
-  text-decoration: none;
-  transition: transform 0.2s, opacity 0.2s;
-}
-
-.footer .social-links a:hover {
-  opacity: 0.8;
-  transform: scale(1.1);
-}
-
-.footer .social-links svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .header .container {
@@ -308,16 +320,14 @@ body {
     gap: 1rem;
   }
 
-  .nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.2rem;
-    margin-left: 0;
+  .header .header-right {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
   }
-  
-  .nav a {
-    margin-left: 0;
+
+  .nav {
+    gap: 1.2rem;
   }
 
   .hero h2 {
@@ -341,8 +351,8 @@ body {
     height: 150px;
   }
 
-  .footer .social-links svg {
-    width: 22px;
-    height: 22px;
+  .social-icons-header svg {
+    width: 24px;
+    height: 24px;
   }
 }
