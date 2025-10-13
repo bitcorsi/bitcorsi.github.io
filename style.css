@@ -368,6 +368,7 @@ body {
     height: 24px;
   }
 }/* === Modal Popup === */
+/* === Modal Popup === */
 .modal {
   display: none;
   position: fixed;
@@ -389,7 +390,7 @@ body {
   max-width: 600px;
   position: relative;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  text-align: center;
+  text-align: left;
 }
 
 .close-btn {
@@ -415,31 +416,38 @@ body {
   background-color: #f9f9f9;
   padding: 12px;
   border-radius: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .modal-content h3 {
   color: var(--orange);
   margin-bottom: 1rem;
   font-size: 1.6rem;
+  text-align: center;
 }
 
 .modal-content p {
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
+  margin-bottom: 0.9rem;
+  line-height: 1.6;
 }
 
-/* Responsive modal */
+.modal-content p strong {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+/* Responsive */
 @media (max-width: 600px) {
   .modal-content {
     padding: 1.5rem;
     margin: 10% auto;
   }
-
   .modal-img {
     width: 100px;
     height: 100px;
   }
-
   .close-btn {
     top: 10px;
     right: 15px;
