@@ -323,13 +323,23 @@ body {
   }
 
   .header .header-right {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
     gap: 1rem;
-    align-items: center;
   }
 
   .nav {
-    gap: 1.2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-left: 0;
+  }
+
+  .nav a {
+    margin-left: 0;
+    font-size: 0.95rem;
   }
 
   .hero h2 {
