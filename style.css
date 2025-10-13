@@ -108,9 +108,11 @@ body {
 }
 
 .social-icons-header svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   display: block;
+  stroke: currentColor; /* fondamentale per le icone outline */
+  stroke-width: 1.8;
 }
 
 /* Hero */
