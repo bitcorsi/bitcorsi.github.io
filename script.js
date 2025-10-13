@@ -25,10 +25,13 @@ document.querySelectorAll('.tool-card').forEach((card, index) => {
 });
 
 // Chiudi popup al clic sulla X
+// Chiudi popup al clic sulla X
 document.querySelectorAll('.close-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const target = btn.getAttribute('data-target');
-    document.getElementById(target).style.display = 'none';
+  btn.addEventListener('click', function() {
+    const modal = this.closest('.modal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
   });
 });
 
