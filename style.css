@@ -432,6 +432,15 @@ body {
   margin-bottom: 0.9rem;
   line-height: 1.6;
 }
+/* Centra il pulsante nei popup */
+.modal-content .btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
 
 .modal-content p strong {
   color: var(--orange);
