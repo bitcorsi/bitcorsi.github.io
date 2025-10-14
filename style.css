@@ -499,3 +499,95 @@ body {
     font-size: 0.95rem;
   }
 }
+/* === Bottone tema scuro === */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text-dark);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover {
+  background-color: #f0f0f0;
+}
+
+/* === Tema scuro === */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --card-bg: #ffffff;
+  --footer-bg: var(--text-dark);
+  --footer-text: #ffffff;
+  --section-bg: var(--gray-bg);
+}
+
+body.dark-theme {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --card-bg: #1e1e1e;
+  --footer-bg: #0d0d0d;
+  --footer-text: #f0f0f0;
+  --section-bg: #1a1a1a;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Applica il tema scuro agli elementi */
+.dark-theme .header,
+.dark-theme .hero,
+.dark-theme .section,
+.dark-theme .footer,
+.dark-theme .tool-card,
+.dark-theme .collaborazione-card,
+.dark-theme .contact-info {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.dark-theme .tool-card,
+.dark-theme .collaborazione-card {
+  background-color: var(--card-bg);
+}
+
+.dark-theme .section.bg-light {
+  background-color: var(--section-bg);
+}
+
+.dark-theme .footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+}
+
+.dark-theme .nav a,
+.dark-theme .logo-text,
+.dark-theme .social-icons-header a,
+.dark-theme .theme-toggle {
+  color: var(--text-color);
+}
+
+.dark-theme .phone-link {
+  color: var(--orange-light);
+}
+
+/* Assicura che il testo nei popup sia leggibile */
+.dark-theme .modal-content {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.dark-theme .modal-content h3,
+.dark-theme .modal-content p strong {
+  color: var(--orange-light);
+}
