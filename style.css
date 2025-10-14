@@ -1,4 +1,4 @@
-/* Reset e base */
+/*/* Reset e base */
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +8,8 @@
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  color: var(--text-color); /* era #333 */
-  background-color: var(--bg-color);
+  color: #333;
+  background-color: #fff;
 }
 
 .container {
@@ -18,29 +18,15 @@ body {
   margin: 0 auto;
 }
 
+/* Colori */
 :root {
-  /* Colore brand (mantenuto!) */
   --orange: #FF6B35;
   --orange-light: #FFA77A;
   --orange-dark: #E05A2B;
-
-  /* Scala di grigi (nuova) */
-  --white: #ffffff;
-  --gray-50: #f9f9f9;   /* sfondo sezioni chiare */
-  --gray-100: #f0f0f0;  /* sfondo card, hover leggero */
-  --gray-200: #e0e0e0;  /* bordi, separatori */
-  --gray-600: #4a4a4a;  /* testo secondario */
-  --gray-800: #2d2d2d;  /* testo principale */
-  --black: #1a1a1a;     /* testo scuro, footer */
-
-  /* Colori derivati */
-  --bg-color: var(--white);
-  --text-color: var(--gray-800);
-  --card-bg: var(--white);
-  --section-bg: var(--gray-50);
-  --footer-bg: var(--black);
-  --footer-text: var(--white);
+  --gray-bg: #f9f9f9;
+  --text-dark: #2c3e50;
 }
+
 /* Header */
 .header {
   background-color: white;
@@ -72,11 +58,11 @@ body {
   padding: 4px;
 }
 
-.logo-text,
-.section h2,
-.tool-card h3,
-.modal-content h3 {
-  color: var(--orange); /* ✅ mantenuto! */
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--orange);
+  margin: 0;
 }
 
 /* Nuovo: contenitore per nav + icone */
@@ -155,10 +141,6 @@ body {
   padding: 4rem 0;
 }
 
-.bg-light {
-  background-color: var(--section-bg); /* grigio chiaro invece di --gray-bg */
-}
-
 .section h2 {
   text-align: center;
   font-size: 2rem;
@@ -179,13 +161,14 @@ body {
 }
 
 .tool-card {
-  background: var(--card-bg);
-  color: var(--text-color);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* ombra più neutra */
-}
-
-.tool-card p {
-  color: var(--gray-600);
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .tool-card:hover {
@@ -213,16 +196,27 @@ body {
 }
 
 /* NUOVO STILE per il pulsante link strumenti */
-.btn,
 .btn-strumento {
+  display: inline-block;
   background-color: var(--orange);
   color: white;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 1rem auto 0;
 }
 
-.btn:hover,
 .btn-strumento:hover {
   background-color: var(--orange-dark);
+  transform: scale(1.1);
 }
+
 /* NUOVA SEZIONE per le collaborazioni */
 .collaborazioni-grid {
   display: flex;
@@ -266,10 +260,14 @@ body {
   margin: 0 auto;
 }
 
-.phone-link,
-.nav a:hover,
-.social-icons-header a:hover {
-  color: var(--orange); /* ✅ accento arancione */
+.phone-link {
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.phone-link:hover {
+  text-decoration: underline;
 }
 
 .qr-container {
@@ -311,8 +309,10 @@ body {
 
 /* Footer */
 .footer {
-  background-color: var(--footer-bg);
-  color: var(--footer-text);
+  background-color: var(--text-dark);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 0;
 }
 
 /* Responsive */
@@ -383,13 +383,16 @@ body {
 }
 
 .modal-content {
-  background-color: var(--card-bg);
-  color: var(--text-color);
+  background-color: white;
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  text-align: left;
 }
 
-.modal-content p strong {
-  color: var(--orange); /* per "Età:", "Codice:", ecc. */
-}
 .close-btn {
   position: absolute;
   top: 15px;
