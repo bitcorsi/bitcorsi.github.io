@@ -40,30 +40,3 @@ window.addEventListener('click', (e) => {
     e.target.style.display = 'none';
   }
 });
-// Tema scuro
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-
-// Controlla se l'utente ha già scelto un tema
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark') {
-  body.classList.add('dark-theme');
-  themeToggle.textContent = '☀️'; // Sole = tema chiaro attivo
-  themeToggle.setAttribute('aria-label', 'Attiva tema chiaro');
-}
-
-// Cambia tema al clic
-themeToggle?.addEventListener('click', () => {
-  body.classList.toggle('dark-theme');
-  const isDark = body.classList.contains('dark-theme');
-  
-  if (isDark) {
-    themeToggle.textContent = '☀️';
-    themeToggle.setAttribute('aria-label', 'Attiva tema chiaro');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    themeToggle.textContent = '🌙';
-    themeToggle.setAttribute('aria-label', 'Attiva tema scuro');
-    localStorage.setItem('theme', 'light');
-  }
-});
