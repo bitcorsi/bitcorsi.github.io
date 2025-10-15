@@ -229,6 +229,14 @@ body {
 
 .collaborazione-card {
   text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+  display: block; /* necessario perché è un <a> */
+}
+
+.collaborazione-card:hover {
+  opacity: 0.9;
 }
 
 .collaborazione-logo {
