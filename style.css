@@ -362,8 +362,8 @@ body {
 }
 
 .modal-img {
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   margin-bottom: 1.2rem;
   background-color: #f9f9f9;
