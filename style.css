@@ -499,3 +499,23 @@ body {
     font-size: 0.95rem;
   }
 }
+/* Stile per i link di contatto */
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.contact-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.contact-link svg {
+  flex-shrink: 0;
+  stroke: currentColor;
+}
