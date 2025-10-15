@@ -232,11 +232,11 @@ body {
   text-decoration: none;
   color: inherit;
   transition: opacity 0.2s;
-  display: block; /* necessario perché è un <a> */
+  display: block; 
 }
 
 .collaborazione-card:hover {
-  opacity: 0.9;
+  opacity: 0.5;
 }
 
 .collaborazione-logo {
