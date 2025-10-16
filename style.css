@@ -530,7 +530,7 @@ body {
   stroke: currentColor;
 }
 /* Titoli strumenti con colori personalizzati */
-.tool-title.lego      { color: #E4002B; } /* Rosso LEGO */
-.tool-title.roberta   { color: #2A5DB0; } /* Blu Open Roberta */
-.tool-title.arduino   { color: #4682B4; } /* Verde Arduino */
-.tool-title.microbit  { color: #00AEEF; } /* Blu micro:bit */
+.tool-title.lego      { color: #E4002B; } /* LEGO */
+.tool-title.roberta   { color: #FFA500; } /* Open Roberta */
+.tool-title.arduino   { color: #4682B4; } /* Arduino */
+.tool-title.microbit  { color: #DAA520; } /* micro:bit */
