@@ -50,7 +50,7 @@ body {
 }
 
 .logo-img {
-  height: 70px;
+  height: 70px; 
   width: auto;
   object-fit: contain;
   background-color: transparent;
@@ -59,13 +59,13 @@ body {
 }
 
 .logo-text {
-  font-size: 2.2rem; /* Ottimizzazione spazio */
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--orange);
   margin: 0;
 }
 
-/* Nuovo: contenitore per nav + icone */
+/* Contenitore nav + icone */
 .header .header-right {
   display: flex;
   align-items: center;
@@ -79,7 +79,7 @@ body {
 }
 
 .nav a,
-.nav .current { /* Stile armonizzato */
+.nav .current {
   text-decoration: none;
   color: var(--text-dark);
   font-weight: 600;
@@ -92,7 +92,7 @@ body {
   color: var(--orange);
 }
 
-/* Nuovo: icone social nell'header */
+/* Icone social nell'header */
 .social-icons-header {
   display: flex;
   gap: 1.2rem;
@@ -163,7 +163,7 @@ body {
     gap: 12px;
     flex-wrap: wrap;
     margin: 2rem 0;
-    justify-content: center; /* Centra i filtri */
+    justify-content: center;
 }
 .filters button {
     background: #eee;
@@ -187,14 +187,14 @@ body {
 /* Griglia e Card Corsi (gestione spazio) */
 .courses-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Rende le card più grandi e adatte */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
 
 .course-card {
     display: flex;
-    flex-direction: column; /* Importante per spingere il pulsante in basso */
+    flex-direction: column; 
     background: white;
     border-radius: 12px;
     padding: 1.5rem;
@@ -203,18 +203,18 @@ body {
     text-align: left;
 }
 .course-card:hover {
-    transform: translateY(-3px); /* Effetto hover sottile */
+    transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
 .course-card h3 {
-    color: var(--text-dark); /* Colore scuro per un titolo più autorevole */
+    color: var(--text-dark);
     text-align: center;
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--orange-light); /* Separatore visivo */
+    border-bottom: 2px solid var(--orange-light);
 }
 
 /* Dettagli Info (uniformità) */
@@ -238,20 +238,19 @@ body {
     stroke-width: 2;
 }
 .course-description {
-    flex-grow: 1; /* Spinge il pulsante in basso */
+    flex-grow: 1; 
     margin-bottom: 1.5rem;
 }
 
-/* Pulsanti Uniformi (armonia) */
+/* Pulsanti Uniformi */
 .course-card .btn {
-    display: block; /* Full width */
+    display: block; 
     width: 100%;
     text-align: center;
     padding: 0.8rem 1rem;
     font-size: 1rem;
-    border-radius: 6px; /* Bordo meno arrotondato per un look più professionale */
-    margin-top: auto; /* Allinea in basso */
-    /* Nessun trasform: scale(1.05) di default qui, usa solo l'hover standard */
+    border-radius: 6px; 
+    margin-top: auto; 
 }
 
 
@@ -278,19 +277,6 @@ body {
     border-left: 3px solid var(--orange);
 }
 
-/* --- Contatti (esistente) --- */
-#contatti.section {
-  background-color: var(--gray-bg);
-}
-
-.contact-info {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-/* ... resto degli stili di Contatti ... */
-
-
 /* Pulsanti CTA (generico, non in card) */
 .btn {
   display: inline-block;
@@ -308,7 +294,7 @@ body {
 
 .btn:hover {
   background-color: var(--orange-dark);
-  transform: scale(1.03); /* Lieve zoom solo sul CTA principale */
+  transform: scale(1.03); 
 }
 
 /* Footer */
@@ -319,8 +305,124 @@ body {
   padding: 1.5rem 0;
 }
 
-/* ... Media queries (mantenute) ... */
+/* Stili Chi Siamo (Pagina index) */
+.about-grid {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
 
+.about-text {
+  text-align: left; 
+}
+
+.about-text h2 {
+  margin-top: 0;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+/* Stili Strumenti (Pagina index) */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.tool-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.tool-card h3 {
+  color: var(--orange);
+  margin-bottom: 0.8rem;
+}
+
+.tool-image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Collaborazioni (Pagina index) */
+.collaborazioni-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.collaborazione-card {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+  display: block; 
+}
+
+.collaborazione-logo {
+  height: 80px;
+  max-width: 180px;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.collaborazione-logo:hover {
+  opacity: 1;
+}
+
+.collaborazione-card p {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Contatti */
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.contact-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.contact-link svg {
+  flex-shrink: 0;
+  stroke: currentColor;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .header .container {
     padding: 0.6rem 0; 
@@ -357,7 +459,7 @@ body {
   }
 
   .logo-img {
-    height: 50px; /* Logo più compatto su mobile */
+    height: 50px; 
   }
 
   .social-icons-header svg {
@@ -368,5 +470,52 @@ body {
   .courses-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  
+  .about-grid {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text p {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* Popup più compatto su cellulare */
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 1.2rem;
+    margin: 15% auto;
+    max-width: 95%;
+  }
+
+  .modal-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .modal-content p {
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+    line-height: 1.5;
+  }
+
+  .modal-img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 1rem;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 12px;
+    font-size: 24px;
+  }
+
+  .modal-content .btn {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.95rem;
   }
 }
