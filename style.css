@@ -441,7 +441,46 @@ body {
   flex-shrink: 0;
   stroke: currentColor;
 }
+.contact-content {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
 
+.contact-info {
+  flex: 1;
+}
+
+.contact-image {
+  flex: 0 0 auto;
+  max-width: 300px;
+}
+
+.contact-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: block;
+}
+
+/* Mobile: immagine sopra il testo */
+@media (max-width: 768px) {
+  .contact-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-image {
+    max-width: 100%;
+  }
+
+  .contact-image img {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
 /* --- STILI POPUP (MODAL) (Aggiunti per Fix) --- */
 
 /* Contenitore Modal: invisibile di default, a schermo intero */
