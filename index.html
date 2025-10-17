@@ -6,7 +6,6 @@
   <title>Bit - Corsi di Robotica Educativa per Bambini e Ragazzi</title>
   <meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dai 7 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta. Divertimento, creatività e coding!">
 
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -17,35 +16,26 @@
   }
   </script>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#FF6B35">
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .nav .current {
-      color: #FF6B35;
-      font-weight: 600;
-    }
-  </style>
-</head>
+  </head>
 <body>
-<header class="header">
-  <div class="container">
+<header id="main-header" class="header"> <div class="container">
     <div class="logo-container">
       <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
       <h1 class="logo-text">Bit Corsi</h1>
     </div>
     <div class="header-right">
       <nav class="nav">
-        <span class="current">Home</span>
+        <a href="#" class="current" aria-current="page">Home</a>
         <a href="corsi.html">Corsi</a>
         <a href="#strumenti">Strumenti</a>
         <a href="#contatti">Contatti</a>
@@ -156,7 +146,6 @@
   </footer>
   <script src="script.js"></script>
 
-<!-- Popup per Lego Spike Prime -->
 <div id="popup-spike" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
@@ -164,13 +153,12 @@
     <h3>Lego Spike Prime</h3>
     <p><strong>Età:</strong> 7–16 anni</p>
     <p><strong>Codice:</strong> Programmazione a blocchi (simile a Scratch), intuitiva e visuale.</p>
-    <p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p>
+    <p><strong>Ideale per:</strong> Costruire robot intelligenti con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p>
     <p><strong>Perché piace ai ragazzi:</strong> Unisce gioco, costruzione fisica e logica di programmazione. È collaborativo, creativo e dà risultati tangibili in pochi minuti.</p>
     <a href="https://education.lego.com/it-it/products/lego-education-spike-prime-set/45678" target="_blank" class="btn">Scopri su LEGO Education</a>
   </div>
 </div>
 
-<!-- Popup per Open Roberta -->
 <div id="popup-roberta" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
@@ -184,7 +172,6 @@
   </div>
 </div>
 
-<!-- Popup per Arduino -->
 <div id="popup-arduino" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
@@ -198,7 +185,6 @@
   </div>
 </div>
 
-<!-- Popup per micro:bit BBC -->
 <div id="popup-microbit" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
