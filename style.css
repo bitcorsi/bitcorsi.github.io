@@ -107,7 +107,6 @@ body {
 
 .social-icons-header a:hover {
   color: var(--orange);
-  /* RIMOSSO: transform: scale(1.1); */
 }
 
 .social-icons-header svg {
@@ -343,6 +342,8 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
+  /* Rende la card cliccabile */
+  cursor: pointer;
 }
 
 .tool-card:hover {
@@ -422,8 +423,92 @@ body {
   stroke: currentColor;
 }
 
+/* --- STILI POPUP (MODAL) (Aggiunti per Fix) --- */
+
+/* Contenitore Modal: invisibile di default, a schermo intero */
+.modal {
+  display: none; /* NASCONDE il popup di default */
+  position: fixed;
+  z-index: 1000; /* Assicura che sia sopra tutto */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6); /* Sfondo semi-trasparente */
+  backdrop-filter: blur(3px);
+  padding: 20px;
+}
+
+/* Contenuto del Modal: il box bianco */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* Centra il box verticalmente e orizzontalmente */
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Immagine nel Modal */
+.modal-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: var(--gray-bg);
+}
+
+/* Testo nel Modal */
+.modal-content h3 {
+  color: var(--orange-dark);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.modal-content p {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+.modal-content strong {
+  color: var(--text-dark);
+}
+
+/* Bottone di chiusura */
+.close-btn {
+  color: #aaa;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: var(--orange);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Animazione per l'apertura del popup */
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.95);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
+  /* ... (Resto del codice responsive per header e grid) ... */
   .header .container {
     padding: 0.6rem 0; 
     flex-direction: column; 
