@@ -81,7 +81,6 @@ body {
 .nav a {
   text-decoration: none;
   color: var(--text-dark);
-  font-weight: 600;
   transition: color 0.3s;
 }
 
@@ -290,23 +289,6 @@ body {
   text-decoration: underline;
 }
 
-.qr-container {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background: white;
-  display: inline-block;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.qr-code {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  border: 1px solid #eee;
-  border-radius: 8px;
-}
-
 /* Pulsanti */
 .btn {
   display: inline-block;
@@ -458,11 +440,6 @@ body {
     height: 60px;
   }
 
-  .qr-code {
-    width: 120px;
-    height: 120px;
-  }
-  
   .tool-image {
     height: 150px;
   }
