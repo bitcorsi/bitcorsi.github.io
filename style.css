@@ -81,9 +81,16 @@ body {
 .nav a {
   text-decoration: none;
   color: var(--text-dark);
+   font-weight: 600;
   transition: color 0.3s;
 }
-
+/* Stile uniforme per voce attiva: solo colore cambia */
+.nav .current {
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 600; /* ← deve coincidere con .nav a */
+  /* Nessun font-size, nessuna trasformazione, nessun effetto aggiuntivo */
+}
 .nav a:hover {
   color: var(--orange);
 }
