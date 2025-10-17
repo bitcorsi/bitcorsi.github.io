@@ -77,18 +77,20 @@ body {
   gap: 1.5rem;
 }
 
-.nav a,
-.nav .current {
+.nav a {
   text-decoration: none;
   color: var(--text-dark);
   font-weight: 600;
   transition: color 0.3s;
 }
-.nav .current {
-  color: var(--orange);
-}
+
 .nav a:hover {
   color: var(--orange);
+}
+
+.nav a.current {
+  color: var(--orange);
+  pointer-events: none; /* opzionale: disabilita hover su "Home" */
 }
 
 /* Icone social nell'header */
