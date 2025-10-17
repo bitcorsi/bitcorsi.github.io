@@ -615,3 +615,11 @@ body {
     font-size: 0.95rem;
   }
 }
+.hero-corsi {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero-corsi h2 {
+  margin-bottom: 0.8rem;
+}
