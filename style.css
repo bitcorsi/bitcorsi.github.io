@@ -403,9 +403,19 @@ body {
 }
 
 /* Contatti */
+/* Nuovo stile per centrare i contatti */
+.contact-info {
+  display: flex; /* Abilita flexbox */
+  flex-direction: column; /* Impila verticalmente */
+  align-items: center; /* Centra gli elementi orizzontalmente */
+  gap: 15px; /* Spazio tra gli elementi */
+  margin-top: 1.5rem; /* Spazio dal titolo */
+}
+
 .contact-link {
   display: flex;
   align-items: center;
+  /* NON serve justify-content: center qui perché sono già centrati dal parent */
   gap: 8px;
   color: var(--orange);
   text-decoration: none;
