@@ -40,13 +40,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.6rem 0; /* Ridotto il padding per uno spazio più compatto */
+  padding: 0.80rem 0;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 10px; /* Leggermente ridotto per ottimizzare lo spazio */
+  gap: 12px;
 }
 
 .logo-img {
@@ -59,60 +59,58 @@ body {
 }
 
 .logo-text {
-  font-size: 2.6rem;
+  font-size: 2.2rem; /* RIDOTTO: Migliora il bilanciamento visivo */
   font-weight: 700;
   color: var(--orange);
   margin: 0;
 }
 
-/* Contenitore per nav + icone */
+/* Nuovo: contenitore per nav + icone */
 .header .header-right {
   display: flex;
   align-items: center;
-  gap: 1.2rem; /* Ridotto il gap per un layout più compatto */
+  gap: 1.5rem;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.2rem; /* Ridotto il gap per ottimizzare lo spazio */
+  gap: 1.5rem;
 }
 
 .nav a {
   text-decoration: none;
   color: var(--text-dark);
-  font-weight: 600;
-  transition: color 0.4s ease, opacity 0.4s ease; /* Transizione più fluida */
+   font-weight: 600;
+  transition: color 0.3s;
 }
-
 /* Stile uniforme per voce attiva: solo colore cambia */
 .nav .current {
   color: var(--orange);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 600; 
+  /* Nessun font-size, nessuna trasformazione, nessun effetto aggiuntivo */
 }
-
 .nav a:hover {
   color: var(--orange);
-  opacity: 0.9; /* Aggiunto effetto opacità al posto di scale */
 }
 
-/* Icone social nell'header */
+/* Nuovo: icone social nell'header */
 .social-icons-header {
   display: flex;
-  gap: 1rem; /* Ridotto il gap */
+  gap: 1.2rem;
 }
 
 .social-icons-header a {
   color: var(--text-dark);
   text-decoration: none;
   display: inline-block;
-  transition: color 0.4s ease, opacity 0.4s ease; /* Transizione più fluida */
+  transition: color 0.3s, transform 0.2s;
 }
 
 .social-icons-header a:hover {
   color: var(--orange);
-  opacity: 0.9; /* Rimosso transform: scale */
+  /* RIMOSSO: transform: scale(1.1); */
 }
 
 .social-icons-header svg {
@@ -127,7 +125,7 @@ body {
 .hero {
   background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
   color: white;
-  padding: 3rem 0; /* Leggermente ridotto il padding */
+  padding: 3.5rem 0;
   text-align: center;
 }
 
@@ -138,7 +136,7 @@ body {
 
 .hero p {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem; /* Ridotto per ottimizzare lo spazio */
+  margin-bottom: 2rem;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -146,16 +144,15 @@ body {
 
 /* Sezioni */
 .section {
-  padding: 3.5rem 0; /* Ridotto il padding per un layout più compatto */
+  padding: 4rem 0;
 }
 
 .section h2 {
   text-align: center;
-  font-size: 2.2rem; /* Leggermente aumentato per impatto visivo */
-  margin-bottom: 1.5rem;
-  color: #222; /* Maggiore contrasto */
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
 }
-
 #chi-siamo p {
   text-align: center;
   max-width: 700px;
@@ -171,23 +168,24 @@ body {
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem; /* Ridotto il gap per un layout più compatto */
-  margin-top: 1.5rem;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .tool-card {
   background: white;
-  padding: 1.2rem; /* Ridotto il padding */
-  border-radius: 12px; /* Uniformato per coerenza */
+  padding: 1.5rem;
+  border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: box-shadow 0.3s; /* Rimosso transform per evitare ingrandimenti */
+  transition: transform 0.3s, box-shadow 0.3s;
   text-align: center;
   display: flex;
   flex-direction: column;
 }
 
 .tool-card:hover {
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12); /* Effetto ombra invece di translateY */
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
 .tool-card h3 {
@@ -209,11 +207,11 @@ body {
   padding: 10px;
 }
 
-/* Pulsante link strumenti */
+/* NUOVO STILE per il pulsante link strumenti */
 .btn-strumento {
   display: inline-block;
   background-color: var(--orange);
-  color:σοφία white;
+  color: white;
   width: 45px;
   height: 45px;
   line-height: 45px;
@@ -222,31 +220,31 @@ body {
   font-weight: bold;
   font-size: 1.8rem;
   text-align: center;
-  transition: background-color 0.4s ease, opacity 0.4s ease; /* Rimosso transform */
+  transition: background-color 0.3s, transform 0.2s;
   margin: 1rem auto 0;
 }
 
 .btn-strumento:hover {
   background-color: var(--orange-dark);
-  opacity: 0.9; /* Aggiunto effetto opacità */
+  transform: scale(1.1);
 }
 
-/* Collaborazioni */
+/* NUOVA SEZIONE per le collaborazioni */
 .collaborazioni-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem; /* Leggermente ridotto */
-  margin-top: 1.5rem;
+  gap: 3rem;
+  margin-top: 2rem;
 }
 
 .collaborazione-card {
   text-align: center;
   text-decoration: none;
   color: inherit;
-  transition: opacity 0.3s;
-  display: block;
+  transition: opacity 0.2s;
+  display: block; 
 }
 
 .collaborazione-card:hover {
@@ -258,7 +256,7 @@ body {
   max-width: 180px;
   object-fit: contain;
   opacity: 0.7;
-  transition: opacity 0.3s ease;
+  transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
 .collaborazione-logo:hover {
@@ -307,7 +305,7 @@ body {
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.4s ease, opacity 0.4s ease; /* Rimosso transform */
+  transition: background-color 0.3s, transform 0.2s;
   border: none;
   cursor: pointer;
   font-size: 1rem;
@@ -315,7 +313,7 @@ body {
 
 .btn:hover {
   background-color: var(--orange-dark);
-  opacity: 0.9; /* Aggiunto effetto opacità */
+  transform: scale(1.05);
 }
 
 /* Footer */
@@ -326,7 +324,7 @@ body {
   padding: 1.5rem 0;
 }
 
-/* Modal Popup */
+/* === Modal Popup === */
 .modal {
   display: none;
   position: fixed;
@@ -343,8 +341,8 @@ body {
 .modal-content {
   background-color: white;
   margin: 5% auto;
-  padding: 1.5rem; /* Ridotto il padding */
-  border-radius: 12px; /* Uniformato */
+  padding: 2rem;
+  border-radius: 16px;
   max-width: 600px;
   position: relative;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -359,7 +357,7 @@ body {
   font-weight: bold;
   color: #888;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color 0.2s;
 }
 
 .close-btn:hover {
@@ -412,8 +410,8 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .header .container {
-    padding: 0.5rem 0; /* Ulteriore riduzione per mobile */
-    flex-direction: column;
+    padding: 0.6rem 0; 
+    flex-direction: column; 
     gap: 0.5rem;
   }
 
@@ -421,14 +419,14 @@ body {
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    gap: 0.8rem; /* Ridotto per mobile */
+    gap: 1rem;
   }
 
   .nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.8rem; /* Ridotto per mobile */
+    gap: 1rem;
     margin-left: 0;
   }
 
@@ -446,7 +444,7 @@ body {
   }
 
   .logo-img {
-    height: 60px;
+    height: 50px; /* ANCORA PIÙ COMPATTO */
   }
 
   .tool-image {
@@ -462,7 +460,7 @@ body {
 /* Popup più compatto su cellulare */
 @media (max-width: 600px) {
   .modal-content {
-    padding: 1rem;
+    padding: 1.2rem;
     margin: 15% auto;
     max-width: 95%;
   }
@@ -504,7 +502,7 @@ body {
   color: var(--orange);
   text-decoration: none;
   font-weight: 600;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 
 .contact-link:hover {
@@ -516,17 +514,20 @@ body {
   flex-shrink: 0;
   stroke: currentColor;
 }
-
 /* Titoli strumenti con colori personalizzati */
 .tool-title.lego      { color: #E4002B; } /* LEGO */
 .tool-title.roberta   { color: #FFA500; } /* Open Roberta */
 .tool-title.arduino   { color: #4682B4; } /* Arduino */
 .tool-title.microbit  { color: #DAA520; } /* micro:bit */
-
 .about-grid {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Ridotto per ottimizzare lo spazio */
+  gap: 2rem;
+}
+
+.about-text {
+  /* AGGIUNTO: Allineamento testo Chi Siamo a sinistra */
+  text-align: left; 
 }
 
 .about-text h2 {
