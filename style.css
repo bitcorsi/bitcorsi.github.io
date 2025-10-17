@@ -20,9 +20,9 @@ body {
 
 /* Colori */
 :root {
-  --orange: #FF6B35;
-  --orange-light: #FFA77A;
-  --orange-dark: #E05A2B;
+  --blue: #00bcd4;           /* Nuovo colore primario (Ciano) */
+  --blue-light: #48E8FF;     /* Versione più chiara */
+  --blue-dark: #008AA3;      /* Versione più scura (hover) */
   --gray-bg: #f9f9f9;
   --text-dark: #2c3e50;
 }
