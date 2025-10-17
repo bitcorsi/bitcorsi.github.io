@@ -1,4 +1,4 @@
-// Smooth scroll per i link di navigazione (FIXED OFFSET)
+// Smooth scroll per i link di navigazione (FIXED OFFSET per header sticky)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -16,7 +16,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// LOGICA FILTRI CORSI (Spostata da corsi.html)
+// LOGICA FILTRI CORSI (Usata nella pagina corsi.html)
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.filters button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Apri popup al clic su una card (Logica esistente, mantenuta)
+// Apri popup al clic su una card (Usata nella pagina index.html)
 document.querySelectorAll('.tool-card').forEach((card, index) => {
   const popups = ['popup-spike', 'popup-roberta', 'popup-arduino', 'popup-microbit'];
   if (popups[index]) {
@@ -47,7 +47,7 @@ document.querySelectorAll('.tool-card').forEach((card, index) => {
   }
 });
 
-// Chiudi QUALSIASI popup quando si clicca sulla X (Logica esistente, mantenuta)
+// Chiudi QUALSIASI popup quando si clicca sulla X
 document.addEventListener('click', function(e) {
   if (e.target.classList.contains('close-btn')) {
     const modal = e.target.closest('.modal');
@@ -57,7 +57,7 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Chiudi popup se si clicca fuori dal contenuto (Logica esistente, mantenuta)
+// Chiudi popup se si clicca fuori dal contenuto
 window.addEventListener('click', (e) => {
   if (e.target.classList.contains('modal')) {
     e.target.style.display = 'none';
