@@ -29,6 +29,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav .current {
+      color: #FF6B35;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
 <header class="header">
@@ -39,9 +45,10 @@
     </div>
     <div class="header-right">
       <nav class="nav">
-        <a href="#chi-siamo">Chi siamo</a>
-        <a href="#strumenti">Strumenti</a>
+        <!-- Homepage: "Home" è attiva -->
+        <span class="current">Home</span>
         <a href="corsi.html">Corsi</a>
+        <a href="#strumenti">Strumenti</a>
         <a href="#contatti">Contatti</a>
       </nav>
       <div class="social-icons-header">
@@ -52,7 +59,7 @@
             <line x1="17.5" x2="17.5" y1="6.5" y2="6.5"/>
           </svg>
         </a>
-        </div>
+      </div>
    </div>
   </div>
 </header>
@@ -111,11 +118,11 @@
     </div>
   </div>
 </section>
+
   <section id="contatti" class="section bg-light">
   <div class="container">
     <h2>Contattaci</h2>
     <div class="contact-info">
-      <!-- Opzione 1: Chiamata -->
       <p>
         <a href="tel:+393703069215" class="contact-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -124,8 +131,6 @@
           Chiama: <strong>+39 370 306 9215</strong>
         </a>
       </p>
-
-      <!-- Opzione 2: WhatsApp -->
       <p>
         <a href="https://wa.me/393703069215" class="contact-link" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -134,8 +139,6 @@
           Scrivici su WhatsApp
         </a>
       </p>
-
-      <!-- QR Code (opzionale) -->
       <p>Oppure scansiona il QR code per aprire WhatsApp:</p>
       <div class="qr-container">
         <img src="images/whatsapp-qr.png" alt="QR Code WhatsApp - Bit Corsi" class="qr-code">
@@ -150,6 +153,7 @@
     </div>
   </footer>
   <script src="script.js"></script>
+
 <!-- Popup per Lego Spike Prime -->
 <div id="popup-spike" class="modal">
   <div class="modal-content">
@@ -163,6 +167,7 @@
     <a href="https://education.lego.com/it-it/products/lego-education-spike-prime-set/45678" target="_blank" class="btn">Scopri su LEGO Education</a>
   </div>
 </div>
+
 <!-- Popup per Open Roberta -->
 <div id="popup-roberta" class="modal">
   <div class="modal-content">
@@ -176,6 +181,7 @@
     <a href="https://www.open-roberta.org/" target="_blank" class="btn">Vai alla piattaforma</a>
   </div>
 </div>
+
 <!-- Popup per Arduino -->
 <div id="popup-arduino" class="modal">
   <div class="modal-content">
@@ -189,6 +195,7 @@
     <a href="https://www.arduino.cc/" target="_blank" class="btn">Sito ufficiale</a>
   </div>
 </div>
+
 <!-- Popup per micro:bit BBC -->
 <div id="popup-microbit" class="modal">
   <div class="modal-content">
@@ -202,5 +209,6 @@
     <a href="https://microbit.org/it/" target="_blank" class="btn">Scopri micro:bit</a>
   </div>
 </div>
+
 </body>
 </html>
