@@ -6,7 +6,6 @@
   <title>Corsi e Laboratori – Bit Robotica Educativa</title>
   <meta name="description" content="Scopri i prossimi corsi di robotica educativa a Brescia per bambini e ragazzi: LEGO Spike Prime, Arduino, micro:bit e Open Roberta. Posti limitati!">
 
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -17,81 +16,21 @@
   }
   </script>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#FF6B35">
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .nav .current {
-      color: #FF6B35;
-      font-weight: 600;
-    }
-    .filters {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-    }
-    .filters button {
-      background: #f5f5f5;
-      border: 1px solid #ddd;
-      padding: 6px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.9rem;
-    }
-    .filters button.active,
-    .filters button:hover {
-      background: #FF6B35;
-      color: white;
-      border-color: #FF6B35;
-    }
-    .course-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .course-card h3 {
-      color: #FF6B35;
-      margin-top: 0;
-    }
-    .faq details {
-      margin: 1rem 0;
-      padding: 1rem;
-      border: 1px solid #eee;
-      border-radius: 8px;
-    }
-    .faq summary {
-      font-weight: 600;
-      cursor: pointer;
-    }
-    @media (min-width: 768px) {
-      .courses-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-      }
-      .course-card {
-        margin-bottom: 0;
-      }
-    }
-  </style>
-</head>
+  </head>
 <body>
 
-<header class="header">
+<header id="main-header" class="header">
   <div class="container">
     <div class="logo-container">
       <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
@@ -136,43 +75,82 @@
   <div class="courses-grid">
     <article class="course-card" data-age="7-10" data-tool="spike">
       <h3>Robotica con LEGO Spike Prime</h3>
-      <p><strong>Età:</strong> 8–12 anni</p>
-      <p><strong>Date:</strong> 4, 11, 18, 25 novembre 2025</p>
-      <p><strong>Orario:</strong> 17:00 – 18:30</p>
-      <p><strong>Dove:</strong> Sede Bit – Brescia</p>
-      <p><strong>Costo:</strong> €120 (4 incontri)</p>
-      <p><strong>Cosa serve:</strong> Solo tanta curiosità! Forniamo tutto il materiale.</p>
-      <a href="#contatti" class="btn">Prenota il posto</a>
+      <div class="course-details">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Età: 8–12 anni
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Date: 4, 11, 18, 25 novembre 2025
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><path d="M17 3l3 4M7 3l-3 4"></path></svg>
+          Costo: €120 (4 incontri)
+        </p>
+      </div>
+      <p class="course-description">Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education.</p>
+      <a href="#contatti" class="btn">Iscriviti / Dettagli</a>
     </article>
 
     <article class="course-card" data-age="11-16" data-tool="arduino">
       <h3>Introduzione ad Arduino</h3>
-      <p><strong>Età:</strong> 12–16 anni</p>
-      <p><strong>Date:</strong> Weekend del 8–9 e 15–16 novembre 2025</p>
-      <p><strong>Orario:</strong> 10:00 – 12:30</p>
-      <p><strong>Costo:</strong> €150 (4 sessioni)</p>
-      <p><strong>Prerequisiti:</strong> Nessuno! Partiamo da zero.</p>
-      <a href="#contatti" class="btn">Chiedi info</a>
+      <div class="course-details">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Età: 12–16 anni
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Date: Weekend del 8–9 e 15–16 novembre 2025
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><path d="M17 3l3 4M7 3l-3 4"></path></rect></svg>
+          Costo: €150 (4 sessioni)
+        </p>
+      </div>
+      <p class="course-description">Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.</p>
+      <a href="#contatti" class="btn">Iscriviti / Dettagli</a>
     </article>
 
     <article class="course-card" data-age="7-10" data-tool="microbit">
-      <h3>Giochi con micro:bit</h3>
-      <p><strong>Età:</strong> 7–11 anni</p>
-      <p><strong>Date:</strong> Ogni mercoledì da ottobre a dicembre</p>
-      <p><strong>Orario:</strong> 16:30 – 18:00</p>
-      <p><strong>Costo:</strong> €180 (10 incontri)</p>
-      <p><strong>Porta a casa:</strong> Il tuo micro:bit incluso nel prezzo!</p>
-      <a href="#contatti" class="btn">Iscriviti</a>
+      <h3>Giochi e Sensori con micro:bit</h3>
+      <div class="course-details">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Età: 7–11 anni
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Date: Ogni mercoledì da ottobre a dicembre
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><path d="M17 3l3 4M7 3l-3 4"></path></rect></svg>
+          Costo: €180 (10 incontri, micro:bit incluso)
+        </p>
+      </div>
+      <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi e misurare la temperatura e i movimenti.</p>
+      <a href="#contatti" class="btn">Iscriviti / Dettagli</a>
     </article>
 
     <article class="course-card" data-age="11-16" data-tool="roberta">
       <h3>Open Roberta Lab</h3>
-      <p><strong>Età:</strong> 9–14 anni</p>
-      <p><strong>Formato:</strong> Online + 2 incontri in sede</p>
-      <p><strong>Durata:</strong> 6 settimane (2h/settimana)</p>
-      <p><strong>Costo:</strong> €90</p>
-      <p><strong>Perfetto per:</strong> Chi vuole sperimentare da casa con supporto live.</p>
-      <a href="#contatti" class="btn">Scopri di più</a>
+      <div class="course-details">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Età: 9–14 anni
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Formato: Online + 2 incontri in sede (6 settimane)
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><path d="M17 3l3 4M7 3l-3 4"></path></rect></svg>
+          Costo: €90 (Perfetto per chi sperimenta da casa)
+        </p>
+      </div>
+      <p class="course-description">Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab.</p>
+      <a href="#contatti" class="btn">Iscriviti / Dettagli</a>
     </article>
   </div>
 
@@ -197,7 +175,6 @@
   </section>
 </div>
 
-<!-- Sezione Contatti SENZA QR code -->
 <section id="contatti" class="section bg-light">
   <div class="container">
     <h2>Contattaci</h2>
@@ -228,42 +205,7 @@
   </div>
 </footer>
 
-<script>
-  // Filtro corsi
-  document.querySelectorAll('.filters button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.course-card').forEach(card => {
-        if (filter === 'all' || 
-            card.dataset.age === filter || 
-            card.dataset.tool === filter) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      const target = document.querySelector(targetId);
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 70,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
