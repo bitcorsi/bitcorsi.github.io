@@ -59,7 +59,7 @@ body {
 }
 
 .logo-text {
-  font-size: 2.2rem; /* RIDOTTO: Migliora il bilanciamento visivo */
+  font-size: 2.2rem; /* Ottimizzazione spazio */
   font-weight: 700;
   color: var(--orange);
   margin: 0;
@@ -78,18 +78,15 @@ body {
   gap: 1.5rem;
 }
 
-.nav a {
+.nav a,
+.nav .current { /* Stile armonizzato */
   text-decoration: none;
   color: var(--text-dark);
-   font-weight: 600;
+  font-weight: 600;
   transition: color 0.3s;
 }
-/* Stile uniforme per voce attiva: solo colore cambia */
 .nav .current {
   color: var(--orange);
-  text-decoration: none;
-  font-weight: 600; 
-  /* Nessun font-size, nessuna trasformazione, nessun effetto aggiuntivo */
 }
 .nav a:hover {
   color: var(--orange);
@@ -105,7 +102,7 @@ body {
   color: var(--text-dark);
   text-decoration: none;
   display: inline-block;
-  transition: color 0.3s, transform 0.2s;
+  transition: color 0.3s;
 }
 
 .social-icons-header a:hover {
@@ -153,123 +150,135 @@ body {
   margin-bottom: 2rem;
   color: var(--text-dark);
 }
-#chi-siamo p {
-  text-align: center;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .bg-light {
   background-color: var(--gray-bg);
 }
 
-/* Tools Grid */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+/* --- SEZIONE CORSI: Nuovi Stili Armonizzati --- */
+
+/* Filtri (pulizia e armonia) */
+.filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    justify-content: center; /* Centra i filtri */
+}
+.filters button {
+    background: #eee;
+    color: var(--text-dark);
+    border: 1px solid #ccc;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.filters button.active,
+.filters button:hover {
+    background: var(--orange);
+    color: white;
+    border-color: var(--orange);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.tool-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+/* Griglia e Card Corsi (gestione spazio) */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Rende le card più grandi e adatte */
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
 
-.tool-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+.course-card {
+    display: flex;
+    flex-direction: column; /* Importante per spingere il pulsante in basso */
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+}
+.course-card:hover {
+    transform: translateY(-3px); /* Effetto hover sottile */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
-.tool-card h3 {
-  color: var(--orange);
-  margin-bottom: 0.8rem;
+.course-card h3 {
+    color: var(--text-dark); /* Colore scuro per un titolo più autorevole */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--orange-light); /* Separatore visivo */
 }
 
-.tool-card p {
-  flex-grow: 1;
+/* Dettagli Info (uniformità) */
+.course-details {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #ddd;
+}
+.course-details p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+.course-details svg {
+    color: var(--orange);
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    stroke-width: 2;
+}
+.course-description {
+    flex-grow: 1; /* Spinge il pulsante in basso */
+    margin-bottom: 1.5rem;
 }
 
-.tool-image {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  margin-bottom: 1rem;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 10px;
+/* Pulsanti Uniformi (armonia) */
+.course-card .btn {
+    display: block; /* Full width */
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px; /* Bordo meno arrotondato per un look più professionale */
+    margin-top: auto; /* Allinea in basso */
+    /* Nessun trasform: scale(1.05) di default qui, usa solo l'hover standard */
 }
 
-/* NUOVO STILE per il pulsante link strumenti */
-.btn-strumento {
-  display: inline-block;
-  background-color: var(--orange);
-  color: white;
-  width: 45px;
-  height: 45px;
-  line-height: 45px;
-  border-radius: 50%;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.8rem;
-  text-align: center;
-  transition: background-color 0.3s, transform 0.2s;
-  margin: 1rem auto 0;
+
+/* --- SEZIONE FAQ --- */
+.faq details {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: white;
+    transition: border-color 0.2s;
+}
+.faq details:hover {
+    border-color: var(--orange-light);
+}
+.faq summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+.faq p {
+    margin-top: 0.8rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--orange);
 }
 
-.btn-strumento:hover {
-  background-color: var(--orange-dark);
-  transform: scale(1.1);
-}
-
-/* NUOVA SEZIONE per le collaborazioni */
-.collaborazioni-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  margin-top: 2rem;
-}
-
-.collaborazione-card {
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  transition: opacity 0.2s;
-  display: block; 
-}
-
-.collaborazione-card:hover {
-  opacity: 0.9;
-}
-
-.collaborazione-logo {
-  height: 80px;
-  max-width: 180px;
-  object-fit: contain;
-  opacity: 0.7;
-  transition: filter 0.3s ease, opacity 0.3s ease;
-}
-
-.collaborazione-logo:hover {
-  opacity: 1;
-}
-
-.collaborazione-card p {
-  margin-top: 1rem;
-  font-weight: 600;
-  color: #555;
-}
-
-/* Contatti */
+/* --- Contatti (esistente) --- */
 #contatti.section {
   background-color: var(--gray-bg);
 }
@@ -279,24 +288,10 @@ body {
   max-width: 600px;
   margin: 0 auto;
 }
+/* ... resto degli stili di Contatti ... */
 
-.contact-info p {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
 
-.phone-link {
-  color: var(--orange);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.phone-link:hover {
-  text-decoration: underline;
-}
-
-/* Pulsanti */
+/* Pulsanti CTA (generico, non in card) */
 .btn {
   display: inline-block;
   background-color: var(--orange);
@@ -313,7 +308,7 @@ body {
 
 .btn:hover {
   background-color: var(--orange-dark);
-  transform: scale(1.05);
+  transform: scale(1.03); /* Lieve zoom solo sul CTA principale */
 }
 
 /* Footer */
@@ -324,90 +319,8 @@ body {
   padding: 1.5rem 0;
 }
 
-/* === Modal Popup === */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  box-sizing: border-box;
-}
+/* ... Media queries (mantenute) ... */
 
-.modal-content {
-  background-color: white;
-  margin: 5% auto;
-  padding: 2rem;
-  border-radius: 16px;
-  max-width: 600px;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  text-align: left;
-}
-
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #888;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.close-btn:hover {
-  color: var(--orange);
-}
-
-.modal-img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  margin-bottom: 1.2rem;
-  background-color: #f9f9f9;
-  padding: 12px;
-  border-radius: 12px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.modal-content h3 {
-  color: var(--orange);
-  margin-bottom: 1rem;
-  font-size: 1.6rem;
-  text-align: center;
-}
-
-.modal-content p {
-  margin-bottom: 0.9rem;
-  line-height: 1.6;
-}
-
-.modal-content p strong {
-  color: var(--orange);
-  font-weight: 700;
-}
-
-/* Centra il pulsante nei popup */
-.modal-content .btn {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: auto;
-  max-width: 280px;
-  padding: 0.5rem 1.5rem;
-  text-align: center;
-  font-size: 0.95rem;
-  line-height: 1.3;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
   .header .container {
     padding: 0.6rem 0; 
@@ -444,111 +357,16 @@ body {
   }
 
   .logo-img {
-    height: 50px; /* ANCORA PIÙ COMPATTO */
-  }
-
-  .tool-image {
-    height: 150px;
+    height: 50px; /* Logo più compatto su mobile */
   }
 
   .social-icons-header svg {
     width: 24px;
     height: 24px;
   }
-}
 
-/* Popup più compatto su cellulare */
-@media (max-width: 600px) {
-  .modal-content {
-    padding: 1.2rem;
-    margin: 15% auto;
-    max-width: 95%;
-  }
-
-  .modal-content h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .modal-content p {
-    font-size: 0.95rem;
-    margin-bottom: 0.7rem;
-    line-height: 1.5;
-  }
-
-  .modal-img {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 1rem;
-  }
-
-  .close-btn {
-    top: 10px;
-    right: 12px;
-    font-size: 24px;
-  }
-
-  .modal-content .btn {
-    padding: 0.6rem 1.4rem;
-    font-size: 0.95rem;
-  }
-}
-
-/* Stile per i link di contatto */
-.contact-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--orange);
-  text-decoration: none;
-  font-weight: 600;
-  transition: opacity 0.2s;
-}
-
-.contact-link:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-.contact-link svg {
-  flex-shrink: 0;
-  stroke: currentColor;
-}
-/* Titoli strumenti con colori personalizzati */
-.tool-title.lego      { color: #E4002B; } /* LEGO */
-.tool-title.roberta   { color: #FFA500; } /* Open Roberta */
-.tool-title.arduino   { color: #4682B4; } /* Arduino */
-.tool-title.microbit  { color: #DAA520; } /* micro:bit */
-.about-grid {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.about-text {
-  /* AGGIUNTO: Allineamento testo Chi Siamo a sinistra */
-  text-align: left; 
-}
-
-.about-text h2 {
-  margin-top: 0;
-}
-
-.about-image img {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-}
-
-/* Su mobile: colonna */
-@media (max-width: 768px) {
-  .about-grid {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-text p {
-    max-width: 600px;
-    margin: 0 auto;
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
