@@ -679,7 +679,7 @@ body {
 /* Riduci l'immagine in "Chi siamo" su mobile */
 @media (max-width: 768px) {
   .about-image img {
-    max-width: 250px; /* o 80% se preferisci */
+    max-width: 100px; /* o 80% se preferisci */
     height: auto;
   }
 }
