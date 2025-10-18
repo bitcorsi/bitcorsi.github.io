@@ -669,3 +669,17 @@ body {
 .hero-corsi h2 {
   margin-bottom: 0.8rem;
 }
+/* Riduci l'immagine nei contatti su mobile */
+@media (max-width: 768px) {
+  .contact-image img {
+    max-width: 250px; /* o una percentuale, es. 80% */
+    height: auto;
+  }
+}
+/* Riduci l'immagine in "Chi siamo" su mobile */
+@media (max-width: 768px) {
+  .about-image img {
+    max-width: 250px; /* o 80% se preferisci */
+    height: auto;
+  }
+}
