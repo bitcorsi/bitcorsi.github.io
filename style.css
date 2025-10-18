@@ -672,14 +672,14 @@ body {
 /* Riduci l'immagine nei contatti su mobile */
 @media (max-width: 768px) {
   .contact-image img {
-    max-width: 250px; /* o una percentuale, es. 80% */
+    max-width: 120px; /* o una percentuale, es. 80% */
     height: auto;
   }
 }
 /* Riduci l'immagine in "Chi siamo" su mobile */
 @media (max-width: 768px) {
   .about-image img {
-    max-width: 100px; /* o 80% se preferisci */
+    max-width: 120px; /* o 80% se preferisci */
     height: auto;
   }
 }
