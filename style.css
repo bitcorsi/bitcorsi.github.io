@@ -21,9 +21,9 @@ body {
 
 /* Colori e variabili moderne */
 :root {
-  --primary: #2A5DB0;          /* BLU TECNOLOGICO */
-  --primary-light: #4A7DC9;
-  --primary-dark: #1E4A8A;
+  --primary: #FF6B35;          /* ARANCIONE ORIGINALE */
+  --primary-light: #FFA77A;
+  --primary-dark: #E05A2B;
   --white: #ffffff;
   --gray-50: #fafafa;
   --gray-100: #f5f5f5;
