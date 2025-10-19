@@ -768,6 +768,6 @@ width: 100%;
 }
 @media (max-width: 768px) {
   .about-image img {
-    max-width: 1400px; /* o la dimensione che preferisci */
+    max-width: 140px; /* o la dimensione che preferisci */
   }
 }
