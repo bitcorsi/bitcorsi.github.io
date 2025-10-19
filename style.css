@@ -766,3 +766,8 @@ body {
     max-width: 140px;
   }
 }
+@media (max-width: 768px) {
+  .about-image img {
+    max-width: 1400px; /* o la dimensione che preferisci */
+  }
+}
