@@ -155,7 +155,7 @@ body {
 .hero {
   background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
   color: white;
-  padding: 4rem 0;
+  padding: 2.5rem 0;
   text-align: center;
   border-radius: 0 0 var(--radius) var(--radius);
   margin-bottom: 2rem;
