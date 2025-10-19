@@ -582,7 +582,7 @@ body {
 
 .contact-image {
   flex: 0 0 auto;
-  max-width: 120px;
+  max-width: 300px;
 }
 
 .contact-image img {
@@ -672,7 +672,7 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .header .container {
-    padding: 0.35rem 0;
+    padding: 0.3rem 0;
     flex-direction: column;
     gap: 0.5rem;
   }
@@ -766,9 +766,6 @@ body {
 /* Riduzione immagini su mobile */
 @media (max-width: 768px) {
   .contact-image img {
-    max-width: 250px;
-  }
-  .about-image img {
-    max-width: 250px;
+    max-width: 140px;
   }
 }
