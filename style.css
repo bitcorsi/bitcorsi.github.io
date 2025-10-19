@@ -599,7 +599,7 @@ body {
   height: 100%;
   background: rgba(0,0,0,0.65);
   backdrop-filter: blur(6px);
-  padding: 20px;
+  padding: 10px;
   animation: fadeIn 0.3s ease;
 }
 
