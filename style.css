@@ -500,9 +500,6 @@ body {
   height: 200px;
   object-fit: contain;
   margin-bottom: 1rem;
-  background-color: var(--gray-100);
-  border-radius: 8px;
-  padding: 10px;
 }
 
 /* Collaborazioni */
