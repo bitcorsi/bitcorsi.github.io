@@ -434,7 +434,8 @@ body {
 }
 
 .about-text {
-  text-align: left;
+  text-align: center;
+  margin-top: 0;
 }
 
 .about-text h2 {
