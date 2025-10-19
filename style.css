@@ -582,14 +582,12 @@ body {
 
 .contact-image {
   flex: 0 0 auto;
-  max-width: 300px;
+  max-width: 120px;
 }
 
 .contact-image img {
   width: 100%;
   height: auto;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
   display: block;
 }
 
