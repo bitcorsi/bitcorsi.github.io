@@ -63,3 +63,17 @@ window.addEventListener('click', (e) => {
     e.target.style.display = 'none';
   }
 });
+// Animazione al caricamento e scroll
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section').forEach(section => {
+    observer.observe(section);
+  });
+});
