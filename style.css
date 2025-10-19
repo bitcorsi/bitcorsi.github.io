@@ -428,6 +428,7 @@ body {
 .about-grid {
   display: flex;
   align-items: center;
+  margin-top: 0;
   gap: 2.5rem;
 }
 
@@ -451,7 +452,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .tool-card {
