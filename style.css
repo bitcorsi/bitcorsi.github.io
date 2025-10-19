@@ -589,7 +589,6 @@ body {
 }
 
 /* Popup */
-/* Contenitore del popup: occupa tutto lo schermo e centra il contenuto */
 /* Contenitore Modal: invisibile di default, a schermo intero */
 .modal {
   display: none; /* NASCONDE il popup di default */
@@ -602,7 +601,7 @@ body {
   overflow: auto;
   background-color: rgba(0,0,0,0.6); /* Sfondo semi-trasparente */
   backdrop-filter: blur(3px);
-  padding: 20px;
+  padding: 5px;
 }
 
 /* Contenuto del Modal: il box bianco */
@@ -769,5 +768,6 @@ width: 100%;
 @media (max-width: 768px) {
   .about-image img {
     max-width: 140px; /* o la dimensione che preferisci */
+   margin: 0;
   }
 }
