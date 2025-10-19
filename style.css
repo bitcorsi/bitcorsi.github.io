@@ -590,38 +590,35 @@ body {
 
 /* Popup */
 /* Contenitore del popup: occupa tutto lo schermo e centra il contenuto */
+/* Contenitore Modal: invisibile di default, a schermo intero */
 .modal {
-  display: none;
+  display: none; /* NASCONDE il popup di default */
   position: fixed;
-  top: 0;
+  z-index: 1000; /* Assicura che sia sopra tutto */
   left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(6px);
-  z-index: 2000;
-  padding: 16px; /* spazio minimo ai bordi */
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6); /* Sfondo semi-trasparente */
+  backdrop-filter: blur(3px);
+  padding: 20px;
 }
 
-/* Contenuto del popup: massima visibilità, nessun scroll */
+/* Contenuto del Modal: il box bianco */
 .modal-content {
-  background: white;
-  width: 100%;
-  max-width: 620px;
-  max-height: 90vh; /* non supera il 90% dell'altezza */
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  background-color: #fefefe;
+  margin: 10% auto; /* Centra il box verticalmente e orizzontalmente */
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   position: relative;
-  animation: popIn 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-  overflow: hidden; /* evita scroll interno */
-  box-sizing: border-box;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
 }
-
 .modal-img {
 width: 100%;
   height: 200px;
