@@ -1,4 +1,4 @@
-// Smooth scroll per i link di navigazione (FIXED OFFSET per header sticky)
+// Smooth scroll per i link di navigazione
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -8,7 +8,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(targetId);
     if (target) {
       window.scrollTo({
-        // Offset aumentato a 95px per compensare l'altezza dell'header sticky
         top: target.offsetTop - 95,
         behavior: 'smooth'
       });
@@ -16,7 +15,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// LOGICA FILTRI CORSI (Usata nella pagina corsi.html)
+// LOGICA FILTRI CORSI
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.filters button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -37,12 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Apri popup al clic su una card (Usata nella pagina index.html)
-document.querySelectorAll('.tool-card').forEach((card, index) => {
-  const popups = ['popup-spike', 'popup-roberta', 'popup-arduino', 'popup-microbit'];
-  if (popups[index]) {
+// Apri popup al clic su una card
+document.querySelectorAll('.tool-card').forEach(card => {
+  const popupId = card.dataset.popup;
+  if (popupId) {
+    card.setAttribute('tabindex', '0');
     card.addEventListener('click', () => {
-      document.getElementById(popups[index]).style.display = 'block';
+      const modal = document.getElementById(popupId);
+      modal.style.display = 'flex';
+      setTimeout(() => modal.classList.add('active'), 10);
+      modal.querySelector('.close-btn').focus();
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
     });
   }
 });
@@ -52,7 +61,8 @@ document.addEventListener('click', function(e) {
   if (e.target.classList.contains('close-btn')) {
     const modal = e.target.closest('.modal');
     if (modal) {
-      modal.style.display = 'none';
+      modal.classList.remove('active');
+      setTimeout(() => modal.style.display = 'none', 300);
     }
   }
 });
@@ -60,9 +70,21 @@ document.addEventListener('click', function(e) {
 // Chiudi popup se si clicca fuori dal contenuto
 window.addEventListener('click', (e) => {
   if (e.target.classList.contains('modal')) {
-    e.target.style.display = 'none';
+    e.target.classList.remove('active');
+    setTimeout(() => e.target.style.display = 'none', 300);
   }
 });
+
+// Chiudi popup con il tasto Esc
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal.active').forEach(modal => {
+      modal.classList.remove('active');
+      setTimeout(() => modal.style.display = 'none', 300);
+    });
+  }
+});
+
 // Animazione al caricamento e scroll
 document.addEventListener('DOMContentLoaded', () => {
   const observer = new IntersectionObserver((entries) => {
