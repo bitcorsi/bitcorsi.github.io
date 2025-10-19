@@ -441,10 +441,9 @@ body {
 
 .about-image img {
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   height: auto;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+
 }
 
 /* Strumenti */
