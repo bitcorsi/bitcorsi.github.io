@@ -21,9 +21,9 @@ body {
 
 /* Colori e variabili moderne */
 :root {
-  --orange: #FF6B35;
-  --orange-light: #FF8C5A;
-  --orange-dark: #E05A2B;
+  --primary: #2A5DB0;          /* BLU TECNOLOGICO */
+  --primary-light: #4A7DC9;
+  --primary-dark: #1E4A8A;
   --white: #ffffff;
   --gray-50: #fafafa;
   --gray-100: #f5f5f5;
@@ -73,7 +73,7 @@ body {
 .logo-text {
   font-size: 2.00rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -108,14 +108,14 @@ body {
   left: 0;
   width: 0;
   height: 3px;
-  background: var(--orange);
+  background: var(--primary);
   border-radius: 3px;
   transition: width 0.3s ease;
 }
 
 .nav a:hover,
 .nav a.current {
-  color: var(--orange);
+  color: var(--primary);
 }
 
 .nav a:hover::after,
@@ -141,7 +141,7 @@ body {
 }
 
 .social-icons-header a:hover {
-  color: var(--orange);
+  color: var(--primary);
 }
 
 .social-icons-header svg {
@@ -154,7 +154,7 @@ body {
 
 /* Hero */
 .hero {
-  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
   padding: 2.5rem 0;
   text-align: center;
@@ -220,7 +220,7 @@ body {
   left: 0;
   width: 50px;
   height: 4px;
-  background: var(--orange);
+  background: var(--primary);
   border-radius: 2px;
 }
 
@@ -241,7 +241,7 @@ body {
 .corsi-avviso {
   text-align: center;
   font-weight: 700;
-  color: var(--orange);
+  color: var(--primary);
   margin: 0 auto 1.5rem;
   max-width: 700px;
   font-size: 1.1rem;
@@ -270,9 +270,9 @@ body {
 
 .filters button.active,
 .filters button:hover {
-  background: var(--orange);
+  background: var(--primary);
   color: white;
-  border-color: var(--orange);
+  border-color: var(--primary);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -306,7 +306,7 @@ body {
   margin-bottom: 1rem;
   font-size: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--orange-light);
+  border-bottom: 2px solid var(--primary-light);
 }
 
 .course-details {
@@ -324,7 +324,7 @@ body {
 }
 
 .course-details svg {
-  color: var(--orange);
+  color: var(--primary);
   width: 20px;
   height: 20px;
   flex-shrink: 0;
@@ -357,7 +357,7 @@ body {
 }
 
 .faq details:hover {
-  border-color: var(--orange-light);
+  border-color: var(--primary-light);
 }
 
 .faq summary {
@@ -369,13 +369,13 @@ body {
 .faq p {
   margin-top: 0.8rem;
   padding-left: 1rem;
-  border-left: 3px solid var(--orange);
+  border-left: 3px solid var(--primary);
 }
 
 /* Pulsanti */
 .btn {
   display: inline-block;
-  background-color: var(--orange);
+  background-color: var(--primary);
   color: white;
   padding: 0.8rem 2rem;
   border-radius: 30px;
@@ -388,14 +388,14 @@ body {
 }
 
 .btn:hover {
-  background-color: var(--orange-dark);
+  background-color: var(--primary-dark);
   transform: scale(1.03);
 }
 
 /* Hero pulsante speciale */
 .hero .btn {
   background: white;
-  color: var(--orange-dark);
+  color: var(--primary-dark);
   font-weight: 700;
   box-shadow: 0 4px 15px rgba(255,255,255,0.3);
   position: relative;
@@ -476,7 +476,7 @@ body {
   left: 0;
   width: 100%;
   height: 4px;
-  background: var(--orange);
+  background: var(--primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
@@ -492,7 +492,7 @@ body {
 }
 
 .tool-card h3 {
-  color: var(--orange);
+  color: var(--primary);
   margin-bottom: 0.8rem;
 }
 
@@ -561,7 +561,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--orange);
+  color: var(--primary);
   text-decoration: none;
   font-weight: 600;
   transition: opacity 0.2s;
@@ -592,50 +592,68 @@ body {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.6);
-  backdrop-filter: blur(3px);
-  padding: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Contenuto del Modal */
 .modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid #888;
-  width: 90%;
+  background: white;
+  width: 100%;
   max-width: 600px;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  padding: 2.2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   position: relative;
   text-align: center;
   animation: fadeIn 0.3s ease-out;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .modal-img {
-  width: 100%;
-  max-height: 200px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
-  margin-bottom: 1rem;
+  margin: 0 auto 1.2rem;
+  background-color: var(--gray-100);
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 26px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--primary);
 }
 
 .modal-content h3 {
-  color: var(--orange-dark);
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  text-align: center;
+  color: var(--primary);
+  font-size: 1.6rem;
+  margin-bottom: 16px;
 }
 
 .modal-content p {
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
   text-align: left;
 }
 
@@ -643,28 +661,16 @@ body {
   color: var(--gray-800);
 }
 
-.close-btn {
-  color: #aaa;
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.close-btn:hover {
-  color: var(--orange);
+.modal-content .btn {
+  display: block;
+  margin: 18px auto 0;
+  padding: 0.65rem 1.6rem;
+  font-size: 1rem;
+  width: auto;
 }
 
 @keyframes fadeIn {
   to { opacity: 1; }
-}
-
-@keyframes popIn {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
 }
 
 /* Responsive */
@@ -752,15 +758,28 @@ body {
   }
 
   .modal-content {
-    padding: 1.5rem;
-    max-height: 85vh;
-    margin: 10% auto;
-    width: 95%;
+    padding: 1.8rem;
+    max-width: 95%;
   }
 
   .modal-img {
-    max-width: 120px;
-    max-height: 120px;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1rem;
+  }
+
+  .modal-content h3 {
+    font-size: 1.45rem;
+  }
+
+  .modal-content p {
+    font-size: 0.95rem;
+    margin-bottom: 9px;
+  }
+
+  .modal-content .btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
   }
 }
 
