@@ -52,8 +52,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.3rem 0; /* era 0.8rem */
+  padding: 0.3rem 0;
 }
+
 .logo-container {
   display: flex;
   align-items: center;
@@ -444,7 +445,6 @@ body {
   width: 100%;
   max-width: 300px;
   height: auto;
-
 }
 
 /* Strumenti */
@@ -589,38 +589,40 @@ body {
 }
 
 /* Popup */
-/* Contenitore Modal: invisibile di default, a schermo intero */
 .modal {
-  display: none; /* NASCONDE il popup di default */
+  display: none;
   position: fixed;
-  z-index: 1000; /* Assicura che sia sopra tutto */
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.6); /* Sfondo semi-trasparente */
+  background-color: rgba(0,0,0,0.6);
   backdrop-filter: blur(3px);
-  padding: 5px;
+  padding: 15px;
 }
 
-/* Contenuto del Modal: il box bianco */
+/* Contenuto del Modal */
 .modal-content {
   background-color: #fefefe;
-  margin: 10% auto; /* Centra il box verticalmente e orizzontalmente */
-  padding: 2.5rem;
+  margin: 5% auto;
+  padding: 2rem;
   border-radius: 12px;
   border: 1px solid #888;
   width: 90%;
   max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   position: relative;
   text-align: center;
   animation: fadeIn 0.3s ease-out;
 }
+
 .modal-img {
-width: 100%;
-  height: 200px;
+  width: 100%;
+  max-height: 200px;
   object-fit: contain;
   margin-bottom: 1rem;
 }
@@ -750,12 +752,15 @@ width: 100%;
   }
 
   .modal-content {
-    padding: 2rem;
+    padding: 1.5rem;
+    max-height: 85vh;
+    margin: 10% auto;
+    width: 95%;
   }
 
   .modal-img {
-    width: 120px;
-    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
   }
 }
 
@@ -765,9 +770,10 @@ width: 100%;
     max-width: 140px;
   }
 }
+
 @media (max-width: 768px) {
   .about-image img {
-    max-width: 140px; /* o la dimensione che preferisci */
-   margin: 0;
+    max-width: 140px;
+    margin: 0;
   }
 }
