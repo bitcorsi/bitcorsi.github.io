@@ -435,10 +435,11 @@ body {
 
 .about-text {
   text-align: center;
-  margin-top: 0;
+  
 }
 
 .about-text h2 {
+  text-align: left;
   margin-top: 0;
 }
 
