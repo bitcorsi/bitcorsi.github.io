@@ -345,6 +345,9 @@ body {
   border-radius: 6px;
   margin-top: auto;
 }
+.section h2.no-underline::after {
+  display: none;
+}
 
 /* --- SEZIONE FAQ --- */
 .faq details {
