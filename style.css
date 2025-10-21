@@ -805,3 +805,37 @@ body {
     margin: 0;
   }
 }
+/* --- NUOVO STILE PER CHI SIAMO A DUE BLOCCHI --- */
+
+/* Immagine a tutta larghezza, a filo con la sezione Hero */
+.chi-siamo-hero-image {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.chi-siamo-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
+}
+
+/* Testo sotto l'immagine */
+.chi-siamo-text {
+  text-align: center;
+  padding-top: 2.5rem;
+}
+
+.chi-siamo-text h2 {
+  margin-top: 0;
+}
+
+/* Rimuovi il padding superiore della sezione per evitare spazio vuoto */
+#chi-siamo.section {
+  padding-top: 0;
+  padding-bottom: 4rem;
+}
