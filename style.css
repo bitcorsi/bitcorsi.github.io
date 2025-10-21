@@ -158,10 +158,10 @@ body {
   color: white;
   padding: 2.5rem 0;
   text-align: center;
-  border-radius: 0 0 var(--radius) var(--radius);
-  margin-bottom: 2rem;
+  border-radius: 0; /* ← rimuovi il bordo inferiore arrotondato */
   position: relative;
   overflow: hidden;
+  margin-bottom: 0; /* ← fondamentale: nessun margine sotto */
 }
 
 .hero::before {
