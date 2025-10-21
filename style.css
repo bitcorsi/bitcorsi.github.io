@@ -770,8 +770,8 @@ body {
   }
 
   .modal-img {
-    width: 60px;
-    height: 60px;
+    width: 70%;
+    height: auto;
     margin-bottom: 0.8rem;
   }
 
