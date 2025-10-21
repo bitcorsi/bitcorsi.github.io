@@ -633,12 +633,10 @@ body {
 }
 
 .modal-img {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   margin: 0 auto 1.2rem;
-  background-color: var(--gray-100);
-  border-radius: 10px;
   padding: 6px;
 }
 
