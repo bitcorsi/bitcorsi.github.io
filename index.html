@@ -386,6 +386,48 @@
     <a href="https://microbit.org/" target="_blank" class="btn">Sito ufficiale</a>
   </div>
 </div>
+<script>
+document.getElementById('form-iscrizione').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const formData = {
+    nome: document.getElementById('nome').value,
+    email: document.getElementById('email').value,
+    telefono: document.getElementById('telefono').value,
+    corso: document.getElementById('corso').value,
+    note: document.getElementById('note').value
+  };
 
+  const messageEl = document.getElementById('form-message');
+  const submitBtn = this.querySelector('button[type="submit"]');
+
+  try {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Invio in corso...';
+
+    // Usa mode: 'no-cors' per Google Apps Script
+    await fetch('https://script.google.com/macros/s/IL_TUO_URL/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    // Con no-cors, non leggiamo la risposta, ma se non c'è errore, è andato
+    messageEl.style.color = 'var(--primary)';
+    messageEl.textContent = '✅ Richiesta inviata! Ti contatteremo a breve.';
+    messageEl.style.display = 'block';
+    this.reset();
+
+  } catch (error) {
+    messageEl.style.color = 'red';
+    messageEl.textContent = '❌ Errore. Per favore, scrivici su WhatsApp.';
+    messageEl.style.display = 'block';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Invia richiesta';
+  }
+});
+</script>
 </body>
 </html>
