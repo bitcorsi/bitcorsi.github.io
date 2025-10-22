@@ -352,37 +352,65 @@ body {
 .contact-iscrizione-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin-top: 2rem;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
 }
 
 .contact-info-box,
 .iscrizione-form-box {
-  padding: 1.5rem;
-}
-
-.contact-info-box {
   background-color: white;
   border-radius: 16px;
   box-shadow: var(--shadow);
+  padding: 1.2rem; /* ridotto del ~30% */
 }
 
-.iscrizione-form-box {
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 2rem;
+.contact-info-box h3,
+.iscrizione-form-box h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 1.6rem;
 }
 
-/* Mobile: uno sopra l'altro */
+/* Immagine più piccola sotto i contatti */
+.contact-image-small {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.contact-image-small img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* Stile campi form compatti */
+.contact-info-box input,
+.contact-info-box select,
+.contact-info-box textarea,
+.iscrizione-form-box input,
+.iscrizione-form-box select,
+.iscrizione-form-box textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .contact-iscrizione-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
+  .contact-info-box,
   .iscrizione-form-box {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
 }
 /* --- SEZIONE FAQ --- */
