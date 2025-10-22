@@ -348,7 +348,43 @@ body {
 .section h2.no-underline::after {
   display: none;
 }
+/* Layout affiancato: Contatti + Iscrizione */
+.contact-iscrizione-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
 
+.contact-info-box,
+.iscrizione-form-box {
+  padding: 1.5rem;
+}
+
+.contact-info-box {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.iscrizione-form-box {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+/* Mobile: uno sopra l'altro */
+@media (max-width: 768px) {
+  .contact-iscrizione-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .iscrizione-form-box {
+    padding: 1.5rem;
+  }
+}
 /* --- SEZIONE FAQ --- */
 .faq details {
   margin: 1rem 0;
