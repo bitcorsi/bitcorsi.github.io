@@ -227,6 +227,41 @@
   </section>
 
   <section id="contatti" class="section bg-light">
+    <div class="iscrizione-form-box">
+          <h3>Iscriviti</h3>
+          <form id="form-iscrizione" aria-label="Modulo di iscrizione ai corsi">
+            <div style="margin-bottom: 0.8rem;">
+              <label for="nome" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Nome e Cognome *</label>
+              <input type="text" id="nome" name="nome" required aria-required="true">
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+              <label for="email" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Email *</label>
+              <input type="email" id="email" name="email" required aria-required="true">
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+              <label for="telefono" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Telefono *</label>
+              <input type="tel" id="telefono" name="telefono" required aria-required="true">
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+              <label for="corso" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Corso di interesse *</label>
+              <select id="corso" name="corso" required aria-required="true">
+                <option value="">Seleziona un corso</option>
+                <option value="Lego Spike Prime">Lego Spike Prime</option>
+                <option value="micro:bit">Micro:bit</option>
+                <option value="Arduino">Arduino</option>
+                <option value="Open Roberta">Open Roberta Lab</option>
+              </select>
+            </div>
+            <div style="margin-bottom: 1rem;">
+              <label for="note" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Note (età, disponibilità, ecc.)</label>
+              <textarea id="note" name="note" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Invia richiesta</button>
+            <p id="form-message" style="margin-top: 0.8rem; text-align: center; display: none; font-weight: 600;"></p>
+          </form>
+        </div>
+      </div>
+  </div>
     <div class="container">
       <div class="contact-iscrizione-grid">
         <div class="contact-info-box">
@@ -267,41 +302,6 @@
             <img src="images/contatti.png" alt="Laboratorio Bit a Brescia" loading="lazy">
           </div>
         </div>
-        <div class="iscrizione-form-box">
-          <h3>Iscriviti</h3>
-          <form id="form-iscrizione" aria-label="Modulo di iscrizione ai corsi">
-            <div style="margin-bottom: 0.8rem;">
-              <label for="nome" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Nome e Cognome *</label>
-              <input type="text" id="nome" name="nome" required aria-required="true">
-            </div>
-            <div style="margin-bottom: 0.8rem;">
-              <label for="email" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Email *</label>
-              <input type="email" id="email" name="email" required aria-required="true">
-            </div>
-            <div style="margin-bottom: 0.8rem;">
-              <label for="telefono" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Telefono *</label>
-              <input type="tel" id="telefono" name="telefono" required aria-required="true">
-            </div>
-            <div style="margin-bottom: 0.8rem;">
-              <label for="corso" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Corso di interesse *</label>
-              <select id="corso" name="corso" required aria-required="true">
-                <option value="">Seleziona un corso</option>
-                <option value="Lego Spike Prime">Lego Spike Prime</option>
-                <option value="micro:bit">Micro:bit</option>
-                <option value="Arduino">Arduino</option>
-                <option value="Open Roberta">Open Roberta Lab</option>
-              </select>
-            </div>
-            <div style="margin-bottom: 1rem;">
-              <label for="note" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Note (età, disponibilità, ecc.)</label>
-              <textarea id="note" name="note" rows="2"></textarea>
-            </div>
-            <button type="submit" class="btn" style="width: 100%;">Invia richiesta</button>
-            <p id="form-message" style="margin-top: 0.8rem; text-align: center; display: none; font-weight: 600;"></p>
-          </form>
-        </div>
-      </div>
-    </div>
   </section>
 
   <footer class="footer">
