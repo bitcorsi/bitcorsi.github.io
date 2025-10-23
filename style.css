@@ -19,10 +19,9 @@ body {
   margin: 0 auto;
 }
 
-/* Variabili */
+/* Colori e variabili moderne */
 :root {
-  /* Colors */
-  --primary: #FF6B35;
+  --primary: #FF6B35;          /* ARANCIONE ORIGINALE */
   --primary-light: #FFA77A;
   --primary-dark: #E05A2B;
   --white: #ffffff;
@@ -32,12 +31,9 @@ body {
   --gray-600: #555555;
   --gray-800: #333333;
   --black: #1a1a1a;
-  /* Spacing */
   --radius: 16px;
-  /* Shadows */
   --shadow: 0 6px 20px rgba(0,0,0,0.08);
   --shadow-hover: 0 10px 25px rgba(0,0,0,0.12);
-  /* Transitions */
   --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -49,33 +45,33 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 0.35rem 0; /* Reduced by 50% from 0.7rem */
+  padding: 0.7rem 0;
 }
 
 .header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.15rem 0; /* Adjusted for smaller header */
+  padding: 0.3rem 0;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 8px; /* Reduced from 12px */
+  gap: 12px;
 }
 
 .logo-img {
-  height: 40px; /* Reduced from 60px */
+  height: 60px;
   width: auto;
   object-fit: contain;
   background-color: transparent;
   border-radius: 8px;
-  padding: 2px; /* Reduced from 3px */
+  padding: 3px;
 }
 
 .logo-text {
-  font-size: 1.5rem; /* Reduced from 2rem */
+  font-size: 2.00rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
@@ -84,16 +80,17 @@ body {
   margin: 0;
 }
 
+/* Contenitore nav + icone */
 .header .header-right {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Reduced from 1.5rem */
+  gap: 1.5rem;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Reduced from 1.5rem */
+  gap: 1.5rem;
 }
 
 .nav a {
@@ -101,30 +98,28 @@ body {
   color: var(--gray-800);
   font-weight: 600;
   position: relative;
-  transition: color var(--transition);
+  transition: color 0.3s;
 }
 
 .nav a::after {
   content: '';
   position: absolute;
-  bottom: -4px; /* Adjusted from -6px */
+  bottom: -6px;
   left: 0;
   width: 0;
-  height: 2px; /* Reduced from 3px */
+  height: 3px;
   background: var(--primary);
-  border-radius: 2px;
-  transition: width var(--transition);
+  border-radius: 3px;
+  transition: width 0.3s ease;
 }
 
 .nav a:hover,
-.nav a.current,
-.nav a:focus {
+.nav a.current {
   color: var(--primary);
 }
 
 .nav a:hover::after,
-.nav a.current::after,
-.nav a:focus::after {
+.nav a.current::after {
   width: 100%;
 }
 
@@ -132,25 +127,26 @@ body {
   pointer-events: none;
 }
 
+/* Icone social nell'header */
 .social-icons-header {
   display: flex;
-  gap: 0.8rem; /* Reduced from 1.2rem */
+  gap: 1.2rem;
 }
 
 .social-icons-header a {
   color: var(--gray-800);
   text-decoration: none;
-  transition: color var(--transition);
+  display: inline-block;
+  transition: color 0.3s;
 }
 
-.social-icons-header a:hover,
-.social-icons-header a:focus {
+.social-icons-header a:hover {
   color: var(--primary);
 }
 
 .social-icons-header svg {
-  width: 20px; /* Reduced from 24px */
-  height: 20px;
+  width: 24px;
+  height: 24px;
   display: block;
   stroke: currentColor;
   stroke-width: 1.8;
@@ -159,12 +155,19 @@ body {
 /* Hero */
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: var(--white);
+  color: white;
   padding: 2.5rem 0;
   text-align: center;
+  border-radius: 0;
   position: relative;
   overflow: hidden;
   margin-bottom: 0;
+}
+
+.hero h2,
+.hero p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero::before {
@@ -189,8 +192,6 @@ body {
   font-size: 1.25rem;
   margin-bottom: 2rem;
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
   opacity: 0.95;
 }
 
@@ -203,8 +204,8 @@ body {
 }
 
 .section.animate-in {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .section h2 {
@@ -235,89 +236,7 @@ body {
   background-color: var(--gray-50);
 }
 
-/* Chi Siamo */
-.chi-siamo-hero-image {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-
-.chi-siamo-hero-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-.chi-siamo-text {
-  text-align: center;
-  padding-top: 2.5rem;
-}
-
-#chi-siamo.section {
-  padding-top: 0;
-  padding-bottom: 4rem;
-}
-
-/* Strumenti */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.tool-card {
-  background: var(--white);
-  padding: 1.4rem 1.2rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.tool-card:hover,
-.tool-card:focus {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
-}
-
-.tool-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.tool-card:hover::before,
-.tool-card:focus::before {
-  transform: scaleX(1);
-}
-
-.tool-card h3 {
-  color: var(--primary);
-  margin-bottom: 0.8rem;
-}
-
-.tool-image {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  margin-bottom: 1rem;
-}
-
-/* Corsi */
+/* --- SEZIONE CORSI --- */
 .hero-corsi {
   text-align: center;
   margin-bottom: 2rem;
@@ -346,22 +265,21 @@ body {
 }
 
 .filters button {
-  background: var(--gray-200);
+  background: #eee;
   color: var(--gray-800);
-  border: 1px solid var(--gray-200);
+  border: 1px solid #ccc;
   padding: 0.5rem 1.2rem;
   border-radius: 20px;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
-  transition: var(--transition);
+  transition: all 0.2s;
 }
 
 .filters button.active,
-.filters button:hover,
-.filters button:focus {
+.filters button:hover {
   background: var(--primary);
-  color: var(--white);
+  color: white;
   border-color: var(--primary);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -376,7 +294,7 @@ body {
 .course-card {
   display: flex;
   flex-direction: column;
-  background: var(--white);
+  background: white;
   border-radius: var(--radius);
   padding: 1.5rem;
   box-shadow: var(--shadow);
@@ -384,8 +302,7 @@ body {
   text-align: left;
 }
 
-.course-card:hover,
-.course-card:focus {
+.course-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-hover);
 }
@@ -403,7 +320,7 @@ body {
 .course-details {
   margin-bottom: 1rem;
   padding: 0.5rem 0;
-  border-bottom: 1px dashed var(--gray-200);
+  border-bottom: 1px dashed #ddd;
 }
 
 .course-details p {
@@ -427,18 +344,27 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* FAQ */
+.course-card .btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  margin-top: auto;
+}
+
+/* --- SEZIONE FAQ --- */
 .faq details {
   margin: 1rem 0;
   padding: 1rem;
-  border: 1px solid var(--gray-200);
+  border: 1px solid #eee;
   border-radius: 8px;
-  background-color: var(--white);
-  transition: border-color var(--transition);
+  background-color: white;
+  transition: border-color 0.2s;
 }
 
-.faq details:hover,
-.faq details[open] {
+.faq details:hover {
   border-color: var(--primary-light);
 }
 
@@ -452,6 +378,146 @@ body {
   margin-top: 0.8rem;
   padding-left: 1rem;
   border-left: 3px solid var(--primary);
+}
+
+/* Pulsanti */
+.btn {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.03);
+}
+
+/* Hero pulsante speciale */
+.hero .btn {
+  background: white;
+  color: var(--primary-dark);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.8s;
+}
+
+.hero .btn:hover::after {
+  left: 100%;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--black);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* --- NUOVO STILE PER CHI SIAMO A DUE BLOCCHI --- */
+.chi-siamo-hero-image {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.chi-siamo-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
+}
+
+.chi-siamo-text {
+  text-align: center;
+  padding-top: 2.5rem;
+}
+
+.chi-siamo-text h2 {
+  margin-top: 0;
+}
+
+#chi-siamo.section {
+  padding-top: 0;
+  padding-bottom: 4rem;
+}
+
+/* Strumenti */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 0rem;
+}
+
+.tool-card {
+  background: white;
+  padding: 1.4rem 1.2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.tool-card:hover::before {
+  transform: scaleX(1);
+}
+
+.tool-card h3 {
+  color: var(--primary);
+  margin-bottom: 0.8rem;
+}
+
+.tool-image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
 }
 
 /* Collaborazioni */
@@ -468,12 +534,8 @@ body {
   text-align: center;
   text-decoration: none;
   color: inherit;
-  transition: opacity var(--transition);
-}
-
-.collaborazione-card:hover,
-.collaborazione-card:focus {
-  opacity: 0.8;
+  transition: opacity 0.2s;
+  display: block;
 }
 
 .collaborazione-logo {
@@ -481,11 +543,10 @@ body {
   max-width: 180px;
   object-fit: contain;
   opacity: 0.7;
-  transition: opacity var(--transition);
+  transition: opacity 0.3s ease;
 }
 
-.collaborazione-card:hover .collaborazione-logo,
-.collaborazione-card:focus .collaborazione-logo {
+.collaborazione-logo:hover {
   opacity: 1;
 }
 
@@ -495,7 +556,7 @@ body {
   color: var(--gray-600);
 }
 
-/* Contatti */
+/* --- SEZIONE CONTATTI + ISCRIZIONE AFFIANCATI --- */
 .contact-iscrizione-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -505,8 +566,8 @@ body {
 
 .contact-info-box,
 .iscrizione-form-box {
-  background-color: var(--white);
-  border-radius: var(--radius);
+  background-color: white;
+  border-radius: 16px;
   box-shadow: var(--shadow);
   padding: 1.2rem;
 }
@@ -540,70 +601,13 @@ body {
 .iscrizione-form-box textarea {
   width: 100%;
   padding: 0.6rem;
-  border: 1px solid var(--gray-200);
+  border: 1px solid #ccc;
   border-radius: 8px;
   font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
 }
 
-.contact-info-box input:focus,
-.contact-info-box select:focus,
-.contact-info-box textarea:focus,
-.iscrizione-form-box input:focus,
-.iscrizione-form-box select:focus,
-.iscrizione-form-box textarea:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.2);
-}
-
-/* Pulsanti */
-.btn {
-  display: inline-block;
-  background-color: var(--primary);
-  color: var(--white);
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: var(--transition);
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.btn:hover,
-.btn:focus {
-  background-color: var(--primary-dark);
-  transform: scale(1.03);
-}
-
-.hero .btn {
-  background: var(--white);
-  color: var(--primary-dark);
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(255,255,255,0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero .btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  transition: left 0.8s;
-}
-
-.hero .btn:hover::after,
-.hero .btn:focus::after {
-  left: 100%;
-}
-
-/* Modal */
+/* Popup */
 .modal {
   display: none;
   position: fixed;
@@ -618,32 +622,17 @@ body {
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-
-.modal.active {
-  display: flex;
-  opacity: 1;
 }
 
 .modal-content {
-  background: var(--white);
+  background: white;
   width: 100%;
   max-width: 600px;
   padding: 2.2rem;
-  border-radius: var(--radius);
+  border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   position: relative;
   text-align: center;
-  transform: scale(0.8);
-  opacity: 0;
-  transition: transform var(--transition), opacity var(--transition);
-}
-
-.modal.active .modal-content {
-  transform: scale(1);
-  opacity: 1;
 }
 
 .modal-img {
@@ -652,27 +641,6 @@ body {
   object-fit: contain;
   margin: 0 auto 1.2rem;
   padding: 6px;
-}
-
-.modal-content .btn {
-  width: auto;
-  max-width: 220px;
-  padding: 0.8rem 1.6rem;
-}
-
-.close-btn {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  font-size: 26px;
-  color: var(--gray-600);
-  cursor: pointer;
-  transition: color var(--transition);
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: var(--primary);
 }
 
 .modal-content h3 {
@@ -692,12 +660,27 @@ body {
   color: var(--gray-800);
 }
 
-/* Footer */
-.footer {
-  background-color: var(--black);
-  color: var(--white);
-  text-align: center;
-  padding: 1.5rem 0;
+.modal-content .btn {
+  display: block;
+  margin: 18px auto 0;
+  padding: 0.65rem 1.6rem;
+  font-size: 1rem;
+  width: auto;
+  max-width: 220px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 26px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--primary);
 }
 
 /* Responsive */
@@ -716,6 +699,7 @@ body {
   }
 
   .nav {
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
@@ -747,11 +731,6 @@ body {
     gap: 2rem;
   }
 
-  .contact-info-box,
-  .iscrizione-form-box {
-    padding: 1.2rem;
-  }
-
   .tools-grid,
   .courses-grid {
     grid-template-columns: 1fr;
@@ -776,7 +755,6 @@ body {
   .modal-content {
     padding: 1.5rem;
     max-width: 90%;
-    margin-top: 80px;
   }
 
   .modal-img {
@@ -799,8 +777,13 @@ body {
     font-size: 0.9rem;
   }
 
-  .contact-image-small img,
   .chi-siamo-hero-image img {
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  .contact-image-small img,
+  .about-image img {
     max-width: 140px;
     margin: 0 auto;
   }
