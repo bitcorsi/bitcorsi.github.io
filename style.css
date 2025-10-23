@@ -62,7 +62,7 @@ body {
 }
 
 .logo-img {
-  height: auto;
+  height: 70px;
   width: auto;
   object-fit: contain;
   background-color: transparent;
