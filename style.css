@@ -143,8 +143,6 @@ body {
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: var(--radius);
-  background: var(--gray-100);
   color: var(--gray-600);
   transition: var(--transition);
   text-decoration: none;
@@ -358,7 +356,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 .tool-card {
