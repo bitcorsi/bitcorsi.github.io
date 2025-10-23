@@ -6,7 +6,7 @@
   <title>Bit - Corsi di Robotica Educativa per Bambini e Ragazzi</title>
   <meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dai 7 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta. Divertimento, creatività e coding!">
 
-  <!-- Schema.org -->
+  <!-- Schema.org corretto -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -29,23 +29,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .nav .current {
-      color: #FF6B35;
-      font-weight: 600;
-    }
-  </style>
 </head>
 <body>
+
 <header class="header">
   <div class="container">
     <div class="logo-container">     
       <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img"> 
       <h1 class="logo-text">Bit corsi</h1>
-      </div>
+    </div>
     <div class="header-right">
       <nav class="nav">
-        <a href="#home">Home</a>
+        <a href="#home" class="current">Home</a>
         <a href="#strumenti">Strumenti</a>
         <a href="#corsi">Corsi</a>
         <a href="#contatti">Contatti</a>
@@ -59,7 +54,7 @@
           </svg>
         </a>
       </div>
-   </div>
+    </div>
   </div>
 </header>
 
@@ -71,13 +66,10 @@
   </div>
 </section>
 
-<!-- Sezione Chi Siamo - Nuovo layout -->
 <section id="chi-siamo" class="section">
-  <!-- Immagine a tutta larghezza, senza padding/margin -->
   <div class="chi-siamo-hero-image">
     <img src="images/chi-siamo-hero.png" alt="Laboratorio di robotica educativa Bit a Brescia">
   </div>
-  <!-- Testo sotto l'immagine -->
   <div class="container">
     <div class="chi-siamo-text">
       <h2>Chi siamo</h2>
@@ -232,7 +224,8 @@
     </section>
   </div>
 </section>
-  <section id="collaborazioni" class="section">
+
+<section id="collaborazioni" class="section">
   <div class="container">
     <h2>Collaborazioni</h2>
     <div class="collaborazioni-grid">
@@ -243,10 +236,10 @@
     </div>
   </div>
 </section>
+
 <section id="contatti" class="section bg-light">
   <div class="container">
     <div class="contact-iscrizione-grid">
-      <!-- Colonna sinistra: Contattaci -->
       <div class="contact-info-box">
         <h3>Contattaci</h3>
         <p>Scrivici per informazioni sui corsi, disponibilità, lezioni di prova o collaborazioni!</p>
@@ -286,7 +279,6 @@
         </div>
       </div>
 
-      <!-- Colonna destra: Iscriviti -->
       <div class="iscrizione-form-box">
         <h3>Iscriviti</h3>
         <form id="form-iscrizione">
@@ -326,13 +318,11 @@
 
 <footer class="footer">
   <div class="container">
-    <p>
-      &copy; 2025 Bit di K. L. - P. IVA 04701410989 - 
-      <a href="/cookie-policy.html" style="color: white; text-decoration: underline;"> Cookie Policy</a>
-    </p>
+    <p>&copy; 2025 Bit di K. L. - P. IVA 04701410989 - Tutti i diritti riservati.</p>
   </div>
 </footer>
-<!-- Popup per Lego Spike Prime -->
+
+<!-- Popup -->
 <div id="popup-spike" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
@@ -346,7 +336,6 @@
   </div>
 </div>
 
-<!-- Popup per Open Roberta -->
 <div id="popup-roberta" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
@@ -360,7 +349,6 @@
   </div>
 </div>
 
-<!-- Popup per Arduino -->
 <div id="popup-arduino" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
@@ -374,7 +362,6 @@
   </div>
 </div>
 
-<!-- Popup per micro:bit BBC -->
 <div id="popup-microbit" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
@@ -387,10 +374,11 @@
     <a href="https://microbit.org/" target="_blank" class="btn">Sito ufficiale</a>
   </div>
 </div>
+
 <script>
+// Form Google Sheets
 document.getElementById('form-iscrizione').addEventListener('submit', async function(e) {
   e.preventDefault();
-  
   const formData = {
     nome: document.getElementById('nome').value,
     email: document.getElementById('email').value,
@@ -398,37 +386,64 @@ document.getElementById('form-iscrizione').addEventListener('submit', async func
     corso: document.getElementById('corso').value,
     note: document.getElementById('note').value
   };
-
   const messageEl = document.getElementById('form-message');
   const submitBtn = this.querySelector('button[type="submit"]');
-
   try {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Invio in corso...';
-
-    // Usa mode: 'no-cors' per Google Apps Script
     await fetch('https://script.google.com/macros/s/AKfycby7zd1Kjhnm80gyKtVB60EO-g9Y833cpAzLh8epnd2r0SZtSZqYQtWL6wXNfVIV8EZH/exec', {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     });
-
-    // Con no-cors, non leggiamo la risposta, ma se non c'è errore, è andato
-    messageEl.style.color = 'var(--primary)';
+    messageEl.style.color = '#FF6B35';
     messageEl.textContent = '✅ Richiesta inviata! Ti contatteremo a breve.';
     messageEl.style.display = 'block';
     this.reset();
-
   } catch (error) {
     messageEl.style.color = 'red';
-    messageEl.textContent = '❌ Errore. Per favore, scrivici su WhatsApp.';
+    messageEl.textContent = '❌ Errore. Scrivici su WhatsApp.';
     messageEl.style.display = 'block';
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Invia richiesta';
   }
 });
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    const target = document.querySelector(targetId);
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop - 95,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Popup
+document.querySelectorAll('.tool-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const popupName = card.getAttribute('data-popup');
+    document.getElementById('popup-' + popupName).style.display = 'flex';
+  });
+});
+
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('close-btn')) {
+    e.target.closest('.modal').style.display = 'none';
+  }
+  if (e.target.classList.contains('modal')) {
+    e.target.style.display = 'none';
+  }
+});
 </script>
+
 </body>
 </html>
