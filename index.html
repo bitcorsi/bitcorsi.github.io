@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bit - Corsi di Robotica Educativa per Bambini e Ragazzi</title>
   <meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dai 7 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta. Divertimento, creatività e coding!">
+
+  <!-- Schema.org corretto -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -14,353 +16,294 @@
     "logo": "https://www.bitcorsi.it/logo-600x600.png"
   }
   </script>
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#FF6B35">
+
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="logo-container">     
-        <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img" loading="lazy"> 
-        <h1 class="logo-text">Bit corsi</h1>
-      </div>
-      <div class="header-right">
-        <nav class="nav">
-          <a href="#home" class="current">Home</a>
-          <a href="#strumenti">Strumenti</a>
-          <a href="#corsi">Corsi</a>
-          <a href="#contatti">Contatti</a>
-        </nav>
-        <div class="social-icons-header">
-          <a href="https://www.instagram.com/bit_corsi/" target="_blank" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-              <line x1="17.5" x2="17.5" y1="6.5" y2="6.5"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <section id="home" class="hero">
-    <div class="container">
-      <h2>Scopri il mondo della robotica educativa!</h2>
-      <p>Corsi divertenti e coinvolgenti per bambini e ragazzi dai 7 ai 16 anni.</p>
-      <a href="#contatti" class="btn">Contattaci subito</a>
+<header class="header">
+  <div class="container">
+    <div class="logo-container">     
+      <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img"> 
+      <h1 class="logo-text">Bit corsi</h1>
     </div>
-  </section>
-
-  <section id="chi-siamo" class="section">
-    <div class="chi-siamo-hero-image">
-      <img src="images/chi-siamo-hero.png" alt="Laboratorio di robotica educativa Bit a Brescia" loading="lazy">
-    </div>
-    <div class="container">
-      <div class="chi-siamo-text">
-        <h2>Chi siamo</h2>
-        <p>Bit è un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente. I nostri corsi sono pensati per stimolare la curiosità, il pensiero logico e la collaborazione tra pari.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="strumenti" class="section bg-light">
-    <div class="container">
-      <h2>I nostri strumenti</h2>
-      <div class="tools-grid">
-        <div class="tool-card" data-popup="popup-spike">
-          <img src="images/lego-spike-prime.svg" alt="Lego Spike Prime" class="tool-image" loading="lazy">
-          <h3 class="tool-title lego">Lego Spike Prime</h3>
-          <p>Costruisci robot intelligenti con mattoncini LEGO e programmali con un linguaggio intuitivo.</p>
-        </div>
-        <div class="tool-card" data-popup="popup-roberta">
-          <img src="images/open-roberta.svg" alt="Open Roberta" class="tool-image" loading="lazy">
-          <h3 class="tool-title roberta">Open Roberta</h3>
-          <p>Piattaforma online gratuita per programmare robot in modo semplice e sicuro, senza installazioni.</p>
-        </div>
-        <div class="tool-card" data-popup="popup-arduino">
-          <img src="images/arduino.svg" alt="Arduino" class="tool-image" loading="lazy">
-          <h3 class="tool-title arduino">Arduino</h3>
-          <p>Esplora l’elettronica e la programmazione con schede open-source per progetti creativi.</p>
-        </div>
-        <div class="tool-card" data-popup="popup-microbit">
-          <img src="images/microbit.svg" alt="micro:bit BBC" class="tool-image" loading="lazy">
-          <h3 class="tool-title microbit">micro:bit BBC</h3>
-          <p>Un piccolo computer tascabile per imparare a programmare giochi, sensori e molto altro.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="corsi" class="section bg-light">
-    <div class="container">
-      <div class="hero-corsi">
-        <h2 class="no-underline">Corsi e Laboratori</h2>
-        <p class="corsi-avviso">Iscriviti in anticipo: i posti sono limitati a 8–10 partecipanti per gruppo!</p>
-      </div>
-      <div class="filters">
-        <button data-filter="all" class="active">Tutti</button>
-        <button data-filter="7-10">7–10 anni</button>
-        <button data-filter="11-16">11–16 anni</button>
-        <button data-filter="spike">LEGO Spike</button>
-        <button data-filter="microbit">micro:bit</button>
-        <button data-filter="arduino">Arduino</button>
-        <button data-filter="roberta">Open Roberta</button>
-      </div>
-      <div class="courses-grid">
-        <article class="course-card" data-age="7-10" data-tool="spike">
-          <h3>Robotica con LEGO Spike Prime</h3>
-          <div class="course-details">
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              Età: 7–12 anni
-            </p>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              Date: da SABATO 15 novembre 2025 - h 10:00 - 11:30
-            </p>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><path d="M17 3l3 4M7 3l-3 4"></path></svg>
-              Costo: €120 (6 incontri)
-            </p>
-          </div>
-          <p class="course-description">Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education.</p>
-          <a href="#contatti" class="btn">Per informazioni</a>
-        </article>
-        <article class="course-card" data-age="11-16" data-tool="arduino">
-          <h3>Introduzione ad Arduino</h3>
-          <div class="course-details">
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              Età: 12–16 anni
-            </p>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              Date: Weekend del 8–9 e 15–16 novembre 2025
-            </p>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><path d="M17 3l3 4M7 3l-3 4"></path></svg>
-              Costo: €120 (6 sessioni)
-            </p>
-          </div>
-          <p class="course-description">Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.</p>
-          <a href="#contatti" class="btn">Iscrizioni Chiuse</a>
-        </article>
-        <article class="course-card" data-age="7-10" data-tool="microbit">
-          <h3>Giochi e Sensori con micro:bit</h3>
-          <div class="course-details">
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              Età: 7–11 anni
-            </p>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              Date: Ogni mercoledì da ottobre a dicembre
-            </p>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><path d="M17 3l3 4M7 3l-3 4"></path></svg>
-              Costo: €120 (10 incontri)
-            </p>
-          </div>
-          <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi e misurare la temperatura e i movimenti.</p>
-          <a href="#contatti" class="btn">Iscrizioni Chiuse</a>
-        </article>
-        <article class="course-card" data-age="11-16" data-tool="roberta">
-          <h3>Open Roberta Lab</h3>
-          <div class="course-details">
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              Età: 9–14 anni
-            </p>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              Formato: 4 Online + 2 incontri in sede (6 settimane)
-            </p>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><path d="M17 3l3 4M7 3l-3 4"></path></svg>
-              Costo: €90 (Perfetto per chi sperimenta da casa)
-            </p>
-          </div>
-          <p class="course-description">Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab.</p>
-          <a href="#contatti" class="btn">Per informazioni</a>
-        </article>
-      </div>
-      <section class="faq">
-        <h2>Domande frequenti</h2>
-        <details>
-          <summary>Serve portare il proprio kit?</summary>
-          <p>No! Forniamo tutti i materiali necessari durante i laboratori in sede.</p>
-        </details>
-        <details>
-          <summary>È possibile fare una lezione di prova?</summary>
-          <p>Sì, verifica se ci sono posti disponibili. Scrivici su WhatsApp!</p>
-        </details>
-        <details>
-          <summary>Cosa succede se manca un incontro?</summary>
-          <p>Possiamo fornire il materiale e un breve video di recupero, ma non sono previste lezioni di recupero individuali.</p>
-        </details>
-        <details>
-          <summary>Posso iscrivere mio figlio a più corsi?</summary>
-          <p>Certo, è possibile partecipare a più percorsi durante l’anno.</p>
-        </details>
-      </section>
-    </div>
-  </section>
-
-  <section id="collaborazioni" class="section">
-    <div class="container">
-      <h2>Collaborazioni</h2>
-      <div class="collaborazioni-grid">
-        <a href="https://www.club28bs.it" target="_blank" rel="noopener" class="collaborazione-card">
-          <img src="images/logo-placeholder-1.png" alt="Club 28 SSD s.r.l." class="collaborazione-logo" loading="lazy">
-          <p>Club 28 SSD s.r.l.</p>
+    <div class="header-right">
+      <nav class="nav">
+        <a href="#home" class="current">Home</a>
+        <a href="#strumenti">Strumenti</a>
+        <a href="#corsi">Corsi</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+      <div class="social-icons-header">
+        <a href="https://www.instagram.com/bit_corsi/" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" x2="17.5" y1="6.5" y2="6.5"/>
+          </svg>
         </a>
       </div>
     </div>
-  </section>
+  </div>
+</header>
 
-  <section id="contatti" class="section bg-light">
-    <div class="iscrizione-form-box">
-          <h3>Iscriviti</h3>
-          <form id="form-iscrizione" aria-label="Modulo di iscrizione ai corsi">
-            <div style="margin-bottom: 0.8rem;">
-              <label for="nome" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Nome e Cognome *</label>
-              <input type="text" id="nome" name="nome" required aria-required="true">
-            </div>
-            <div style="margin-bottom: 0.8rem;">
-              <label for="email" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Email *</label>
-              <input type="email" id="email" name="email" required aria-required="true">
-            </div>
-            <div style="margin-bottom: 0.8rem;">
-              <label for="telefono" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Telefono *</label>
-              <input type="tel" id="telefono" name="telefono" required aria-required="true">
-            </div>
-            <div style="margin-bottom: 0.8rem;">
-              <label for="corso" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Corso di interesse *</label>
-              <select id="corso" name="corso" required aria-required="true">
-                <option value="">Seleziona un corso</option>
-                <option value="Lego Spike Prime">Lego Spike Prime</option>
-                <option value="micro:bit">Micro:bit</option>
-                <option value="Arduino">Arduino</option>
-                <option value="Open Roberta">Open Roberta Lab</option>
-              </select>
-            </div>
-            <div style="margin-bottom: 1rem;">
-              <label for="note" style="display: block; margin-bottom: 0.3rem; font-weight: 600;">Note (età, disponibilità, ecc.)</label>
-              <textarea id="note" name="note" rows="2"></textarea>
-            </div>
-            <button type="submit" class="btn" style="width: 100%;">Invia richiesta</button>
-            <p id="form-message" style="margin-top: 0.8rem; text-align: center; display: none; font-weight: 600;"></p>
-          </form>
-        </div>
+<section id="home" class="hero">
+  <div class="container">
+    <h2>Scopri il mondo della robotica educativa!</h2>
+    <p>Corsi divertenti e coinvolgenti per bambini e ragazzi dai 7 ai 16 anni.</p>
+    <a href="#contatti" class="btn">Contattaci subito</a>
+  </div>
+</section>
+
+<section id="chi-siamo" class="section">
+  <div class="chi-siamo-hero-image">
+    <img src="images/chi-siamo-hero.png" alt="Laboratorio di robotica educativa Bit a Brescia">
+  </div>
+  <div class="container">
+    <div class="chi-siamo-text">
+      <h2>Chi siamo</h2>
+      <p>Bit è un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente. I nostri corsi sono pensati per stimolare la curiosità, il pensiero logico e la collaborazione tra pari.</p>
+    </div>
+  </div>
+</section>
+
+<section id="strumenti" class="section bg-light">
+  <div class="container">
+    <h2>I nostri strumenti</h2>
+    <div class="tools-grid">
+      <div class="tool-card" data-popup="popup-spike">
+        <img src="images/lego-spike-prime.svg" alt="Lego Spike Prime" class="tool-image">
+        <h3 class="tool-title lego">Lego Spike Prime</h3>
+        <p>Costruisci robot intelligenti con mattoncini LEGO e programmali con un linguaggio intuitivo.</p>
       </div>
-  </div>
-    <div class="container">
-      <div class="contact-iscrizione-grid">
-        <div class="contact-info-box">
-          <h3>Contattaci</h3>
-          <p>Scrivici per informazioni sui corsi, disponibilità, lezioni di prova o collaborazioni!</p>
-          <p>
-            <a href="tel:+393703069215" class="contact-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              Chiamaci: <strong>+39 370 306 9215</strong>
-            </a>
-          </p>
-          <p>
-            <a href="https://wa.me/393703069215" class="contact-link" target="_blank">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-              </svg>
-              Scrivici: WhatsApp
-            </a>
-          </p>
-          <p>
-            <a href="mailto:bitcorsi@gmail.com" class="contact-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Email: <strong>bitcorsi@gmail.com</strong>
-            </a>
-          </p>
-          <p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Sede: <strong>Brescia</strong>
-          </p>
-          <div class="contact-image-small">
-            <img src="images/contatti.png" alt="Laboratorio Bit a Brescia" loading="lazy">
-          </div>
-        </div>
+      <div class="tool-card" data-popup="popup-roberta">
+        <img src="images/open-roberta.svg" alt="Open Roberta" class="tool-image">
+        <h3 class="tool-title roberta">Open Roberta</h3>
+        <p>Piattaforma online gratuita per programmare robot in modo semplice e sicuro, senza installazioni.</p>
       </div>
-        
-  </section>
+      <div class="tool-card" data-popup="popup-arduino">
+        <img src="images/arduino.svg" alt="Arduino" class="tool-image">
+        <h3 class="tool-title arduino">Arduino</h3>
+        <p>Esplora l’elettronica e la programmazione con schede open-source per progetti creativi.</p>
+      </div>
+      <div class="tool-card" data-popup="popup-microbit">
+        <img src="images/microbit.svg" alt="micro:bit BBC" class="tool-image">
+        <h3 class="tool-title microbit">micro:bit BBC</h3>
+        <p>Un piccolo computer tascabile per imparare a programmare giochi, sensori e molto altro.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 Bit di K. L. - P. IVA 04701410989 - Tutti i diritti riservati.</p>
+<section id="corsi" class="section bg-light">
+  <div class="container">
+    <div class="hero-corsi">
+      <h2 class="no-underline">Corsi e Laboratori</h2>
+      <p class="corsi-avviso">Iscriviti in anticipo: i posti sono limitati a 8–10 partecipanti per gruppo!</p>
     </div>
-  </footer>
 
-  <div id="popup-spike" class="modal" role="dialog" aria-modal="true" aria-labelledby="popup-spike-title">
-    <div class="modal-content">
-      <span class="close-btn" aria-label="Chiudi finestra modale">&times;</span>
-      <img src="images/lego-spike-prime.svg" alt="Lego Spike Prime" class="modal-img" loading="lazy">
-      <h3 id="popup-spike-title">Lego Spike Prime</h3>
-      <p><strong>Età:</strong> 7–16 anni</p>
-      <p><strong>Codice:</strong> Programmazione a blocchi simile a Scratch, intuitiva e visuale.</p>
-      <p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p>
-      <p><strong>Perché piace ai ragazzi:</strong> Unisce gioco, costruzione fisica e logica di programmazione. È collaborativo, creativo e dà risultati tangibili in pochi minuti.</p>
-      <a href="https://education.lego.com/it-it/products/lego-education-spike-prime-set/45678" target="_blank" class="btn">Sito ufficiale</a>
+    <div class="filters">
+      <button data-filter="all" class="active">Tutti</button>
+      <button data-filter="7-10">7–10 anni</button>
+      <button data-filter="11-16">11–16 anni</button>
+      <button data-filter="spike">LEGO Spike</button>
+      <button data-filter="arduino">Arduino</button>
     </div>
-  </div>
-  <div id="popup-roberta" class="modal" role="dialog" aria-modal="true" aria-labelledby="popup-roberta-title">
-    <div class="modal-content">
-      <span class="close-btn" aria-label="Chiudi finestra modale">&times;</span>
-      <img src="images/open-roberta.svg" alt="Open Roberta" class="modal-img" loading="lazy">
-      <h3 id="popup-roberta-title">Open Roberta</h3>
-      <p><strong>Età:</strong> 7–16 anni</p>
-      <p><strong>Codice:</strong> Blocchi colorati nel browser (nessuna installazione). Supporta logica avanzata: cicli, condizioni, variabili.</p>
-      <p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa.</p>
-      <p><strong>Perché piace ai ragazzi:</strong> È gratuito, sicuro, funziona subito e permette di sperimentare con tanti robot diversi senza dover comprare hardware.</p>
-      <a href="https://www.open-roberta.org/" target="_blank" class="btn">Sito ufficiale</a>
-    </div>
-  </div>
-  <div id="popup-arduino" class="modal" role="dialog" aria-modal="true" aria-labelledby="popup-arduino-title">
-    <div class="modal-content">
-      <span class="close-btn" aria-label="Chiudi finestra modale">&times;</span>
-      <img src="images/arduino.svg" alt="Arduino" class="modal-img" loading="lazy">
-      <h3 id="popup-arduino-title">Arduino</h3>
-      <p><strong>Età:</strong> 12–16+ anni</p>
-      <p><strong>Codice:</strong> Linguaggio testuale semplice (basato su C++), adatto a chi ha già esperienza con la logica di programmazione.</p>
-      <p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali.</p>
-      <p><strong>Perché piace ai ragazzi:</strong> Permette di “dare vita” a oggetti reali. È lo strumento perfetto per chi vuole passare dal gioco al coding vero e all’elettronica creativa.</p>
-      <a href="https://www.arduino.cc/" target="_blank" class="btn">Sito ufficiale</a>
-    </div>
-  </div>
-  <div id="popup-microbit" class="modal" role="dialog" aria-modal="true" aria-labelledby="popup-microbit-title">
-    <div class="modal-content">
-      <span class="close-btn" aria-label="Chiudi finestra modale">&times;</span>
-      <img src="images/microbit.svg" alt="micro:bit BBC" class="modal-img" loading="lazy">
-      <h3 id="popup-microbit-title">micro:bit BBC</h3>
-      <p><strong>Età:</strong> 7–12 anni</p>
-      <p><strong>Codice:</strong> Tre modalità: blocchi visivi per principianti, JavaScript o Python per i più esperti.</p>
-      <p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori.</p>
-      <p><strong>Perché piace ai ragazzi:</strong> È piccolo, robusto, ha led e sensori integrati, e si programma in pochi click. Si può usare anche senza computer (es. con smartphone via Bluetooth)!</p>
-      <a href="https://microbit.org/" target="_blank" class="btn">Sito ufficiale</a>
-    </div>
-  </div>
 
-  <script src="script.js"></script>
+    <div class="courses-grid">
+      <article class="course-card" data-age="7-10" data-tool="spike">
+        <h3>Robotica con LEGO Spike Prime</h3>
+        <div class="course-details">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"/><circle cx="12" cy="7" r="4"/></svg> Età: 7–12 anni</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Date: da SABATO 15 novembre 2025 - h 10:00 - 11:30</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 3l3 4M7 3l-3 4"/></svg> Costo: €120 (6 incontri)</p>
+        </div>
+        <p class="course-description">Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education.</p>
+        <a href="#contatti" class="btn">Per informazioni</a>
+      </article>
+
+      <article class="course-card" data-age="11-16" data-tool="arduino">
+        <h3>Introduzione ad Arduino</h3>
+        <div class="course-details">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"/><circle cx="12" cy="7" r="4"/></svg> Età: 12–16 anni</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Date: Weekend del 8–9 e 15–16 novembre 2025</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 3l3 4M7 3l-3 4"/></svg> Costo: €120 (6 sessioni)</p>
+        </div>
+        <p class="course-description">Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.</p>
+        <a href="#contatti" class="btn">Iscrizioni Chiuse</a>
+      </article>
+
+      <article class="course-card" data-age="7-10" data-tool="microbit">
+        <h3>Giochi e Sensori con micro:bit</h3>
+        <div class="course-details">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"/><circle cx="12" cy="7" r="4"/></svg> Età: 7–11 anni</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Date: Ogni mercoledì da ottobre a dicembre</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 3l3 4M7 3l-3 4"/></svg> Costo: €120 (10 incontri)</p>
+        </div>
+        <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi e misurare la temperatura e i movimenti.</p>
+        <a href="#contatti" class="btn">Iscrizioni Chiuse</a>
+      </article>
+
+      <article class="course-card" data-age="11-16" data-tool="roberta">
+        <h3>Open Roberta Lab</h3>
+        <div class="course-details">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21v-1a4 4 0 014-4h6a4 4 0 014 4v1"/><circle cx="12" cy="7" r="4"/></svg> Età: 9–14 anni</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Formato: 4 Online + 2 incontri in sede (6 settimane)</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M17 3l3 4M7 3l-3 4"/></svg> Costo: €90 (Perfetto per chi sperimenta da casa)</p>
+        </div>
+        <p class="course-description">Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab.</p>
+        <a href="#contatti" class="btn">Per informazioni</a>
+      </article>
+    </div>
+
+    <section class="faq">
+      <h2>Domande frequenti</h2>
+      <details>
+        <summary>Serve portare il proprio kit?</summary>
+        <p>No! Forniamo tutti i materiali necessari durante i laboratori in sede.</p>
+      </details>
+      <details>
+        <summary>È possibile fare una lezione di prova?</summary>
+        <p>Sì, verifica se ci sono posti disponibili. Scrivici su WhatsApp!</p>
+      </details>
+      <details>
+        <summary>Cosa succede se manca un incontro?</summary>
+        <p>Possiamo fornire il materiale e un breve video di recupero, ma non sono previste lezioni di recupero individuali.</p>
+      </details>
+      <details>
+        <summary>Posso iscrivere mio figlio a più corsi?</summary>
+        <p>Certo, è possibile partecipare a più percorsi durante l’anno.</p>
+      </details>
+    </section>
+  </div>
+</section>
+
+<section id="collaborazioni" class="section">
+  <div class="container">
+    <h2>Collaborazioni</h2>
+    <div class="collaborazioni-grid">
+      <a href="https://www.club28bs.it" target="_blank" rel="noopener" class="collaborazione-card">
+        <img src="images/logo-placeholder-1.png" alt="Club 28 SSD s.r.l." class="collaborazione-logo">
+        <p>Club 28 SSD s.r.l.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contatti" class="section bg-light">
+  <div class="container">
+    <h2>Contattaci</h2>
+    <div class="contact-info-box">
+      <p>Scrivici per informazioni sui corsi, disponibilità, lezioni di prova o collaborazioni!</p>
+      <p>
+        <a href="tel:+393703069215" class="contact-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          Chiamaci: <strong>+39 370 306 9215</strong>
+        </a>
+      </p>
+      <p>
+        <a href="https://wa.me/393703069215" class="contact-link" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>
+          Scrivici: WhatsApp
+        </a>
+      </p>
+      <p>
+        <a href="mailto:bitcorsi@gmail.com" class="contact-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Email: <strong>bitcorsi@gmail.com</strong>
+        </a>
+      </p>
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Sede: <strong>Brescia</strong>
+      </p>
+      <div class="contact-image-small">
+        <img src="images/contatti.png" alt="Laboratorio Bit a Brescia">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 Bit di K. L. - P. IVA 04701410989 - Tutti i diritti riservati.</p>
+  </div>
+</footer>
+
+<!-- Popup -->
+<div id="popup-spike" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <img src="images/lego-spike-prime.svg" alt="Lego Spike Prime" class="modal-img">
+    <h3>Lego Spike Prime</h3>
+    <p><strong>Età:</strong> 7–16 anni</p>
+    <p><strong>Codice:</strong> Programmazione a blocchi simile a Scratch, intuitiva e visuale.</p>
+    <p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p>
+    <p><strong>Perché piace ai ragazzi:</strong> Unisce gioco, costruzione fisica e logica di programmazione. È collaborativo, creativo e dà risultati tangibili in pochi minuti.</p>
+    <a href="https://education.lego.com/it-it/products/lego-education-spike-prime-set/45678" target="_blank" class="btn">Sito ufficiale</a>
+  </div>
+</div>
+
+<div id="popup-roberta" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <img src="images/open-roberta.svg" alt="Open Roberta" class="modal-img">
+    <h3>Open Roberta</h3>
+    <p><strong>Età:</strong> 7–16 anni</p>
+    <p><strong>Codice:</strong> Blocchi colorati nel browser (nessuna installazione). Supporta logica avanzata: cicli, condizioni, variabili.</p>
+    <p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa.</p>
+    <p><strong>Perché piace ai ragazzi:</strong> È gratuito, sicuro, funziona subito e permette di sperimentare con tanti robot diversi senza dover comprare hardware.</p>
+    <a href="https://www.open-roberta.org/" target="_blank" class="btn">Sito ufficiale</a>
+  </div>
+</div>
+
+<div id="popup-arduino" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <img src="images/arduino.svg" alt="Arduino" class="modal-img">
+    <h3>Arduino</h3>
+    <p><strong>Età:</strong> 12–16+ anni</p>
+    <p><strong>Codice:</strong> Linguaggio testuale semplice (basato su C++), adatto a chi ha già esperienza con la logica di programmazione.</p>
+    <p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali.</p>
+    <p><strong>Perché piace ai ragazzi:</strong> Permette di “dare vita” a oggetti reali. È lo strumento perfetto per chi vuole passare dal gioco al coding vero e all’elettronica creativa.</p>
+    <a href="https://www.arduino.cc/" target="_blank" class="btn">Sito ufficiale</a>
+  </div>
+</div>
+
+<div id="popup-microbit" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <img src="images/microbit.svg" alt="micro:bit BBC" class="modal-img">
+    <h3>micro:bit BBC</h3>
+    <p><strong>Età:</strong> 7–12 anni</p>
+    <p><strong>Codice:</strong> Tre modalità: blocchi visivi per principianti, JavaScript o Python per i più esperti.</p>
+    <p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori.</p>
+    <p><strong>Perché piace ai ragazzi:</strong> È piccolo, robusto, ha led e sensori integrati, e si programma in pochi click. Si può usare anche senza computer (es. con smartphone via Bluetooth)!</p>
+    <a href="https://microbit.org/" target="_blank" class="btn">Sito ufficiale</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
