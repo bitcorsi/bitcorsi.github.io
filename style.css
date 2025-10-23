@@ -396,8 +396,8 @@ body {
 }
 
 .tool-image {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: auto;
   margin: 0 auto 1.5rem;
   object-fit: contain;
   transition: var(--transition);
