@@ -430,27 +430,5 @@ document.getElementById('form-iscrizione').addEventListener('submit', async func
   }
 });
 </script>
-<!-- Banner Cookie -->
-<div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.9); color: white; padding: 1rem; text-align: center; z-index: 9999; font-size: 0.95rem; line-height: 1.5;">
-  <p>
-    Questo sito utilizza cookie tecnici per il corretto funzionamento e cookie di terze parti (Google Analytics, Google Fonts) per migliorare la tua esperienza. 
-    <a href="/cookie-policy.html" target="_blank" style="color: #FF6B35; text-decoration: underline; margin: 0 8px;">Maggiori informazioni</a>
-  </p>
-  <button id="accept-cookies" style="background: #FF6B35; color: white; border: none; padding: 0.4rem 1rem; border-radius: 4px; margin-top: 0.6rem; cursor: pointer; font-weight: 600;">
-    Accetto
-  </button>
-</div>
-
-<script>
-  // Mostra il banner solo se non è stato accettato
-  if (!localStorage.getItem('cookiesAccepted')) {
-    document.getElementById('cookie-banner').style.display = 'block';
-  }
-
-  document.getElementById('accept-cookies').addEventListener('click', () => {
-    localStorage.setItem('cookiesAccepted', 'true');
-    document.getElementById('cookie-banner').style.display = 'none';
-  });
-</script>
 </body>
 </html>
