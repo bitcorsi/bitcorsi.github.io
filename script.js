@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Smooth scroll (funziona anche senza DOMContentLoaded, ma lo teniamo qui per ordine)
+  // Smooth scroll migliorato (sottrae altezza header sticky)
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (targetId === '#') return;
       const target = document.querySelector(targetId);
       if (target) {
+        // -95px è stato calcolato per compensare l'altezza dell'header sticky
         window.scrollTo({
-          top: target.offsetTop - 95,
+          top: target.offsetTop - 95, 
           behavior: 'smooth'
         });
       }
@@ -29,11 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(section);
   });
 
-  // Apri popup
+  // Apri popup (CORREZIONE DEL BUG)
   document.querySelectorAll('.tool-card').forEach(card => {
     card.addEventListener('click', () => {
-      const popupName = card.getAttribute('data-popup');
-      const modal = document.getElementById('popup-' + popupName);
+      // Prendo direttamente l'ID corretto (es. 'spike')
+      const popupId = card.getAttribute('data-popup'); 
+      const modal = document.getElementById(popupId);
       if (modal) {
         modal.style.display = 'flex';
       }
@@ -42,9 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Chiudi popup
   document.addEventListener('click', e => {
+    // Chiudi se clicchi sulla "X"
     if (e.target.classList.contains('close-btn')) {
       e.target.closest('.modal').style.display = 'none';
     }
+    // Chiudi se clicchi all'esterno (sullo sfondo del modal)
     if (e.target.classList.contains('modal')) {
       e.target.style.display = 'none';
     }
@@ -58,9 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const filter = btn.dataset.filter;
       document.querySelectorAll('.course-card').forEach(card => {
-        if (filter === 'all' || 
-            card.dataset.age === filter || 
-            card.dataset.tool === filter) {
+        // Logica migliorata: mostra se il filtro è 'all' O se l'età/strumento corrisponde
+        const isAgeMatch = card.dataset.age.includes(filter);
+        const isToolMatch = card.dataset.tool === filter;
+
+        if (filter === 'all' || isAgeMatch || isToolMatch) {
           card.style.display = '';
         } else {
           card.style.display = 'none';
