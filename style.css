@@ -21,7 +21,7 @@ body {
 
 /* Colori e variabili moderne */
 :root {
-  --primary: #FF6B35;          /* ARANCIONE ORIGINALE */
+  --primary: #FF6B35;
   --primary-light: #FFA77A;
   --primary-dark: #E05A2B;
   --white: #ffffff;
@@ -62,7 +62,7 @@ body {
 }
 
 .logo-img {
-  height:45px;
+  height: 45px;
   width: auto;
   object-fit: contain;
   background-color: transparent;
@@ -71,7 +71,7 @@ body {
 }
 
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
@@ -80,11 +80,10 @@ body {
   margin: 0;
 }
 
-/* Contenitore nav + icone */
 .header .header-right {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .nav {
@@ -127,7 +126,6 @@ body {
   pointer-events: none;
 }
 
-/* Icone social nell'header */
 .social-icons-header {
   display: flex;
   gap: 1.2rem;
@@ -333,8 +331,8 @@ body {
 
 .course-details svg {
   color: var(--primary);
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
   stroke-width: 2;
 }
@@ -556,36 +554,45 @@ body {
   color: var(--gray-600);
 }
 
-/* Layout centrato: Contatti + Iscrizione */
-.contact-iscrizione-grid {
+/* --- SEZIONE CONTATTI --- */
+#contatti .container {
   display: flex;
-  justify-content: center; /* ← centra il contenuto */
-  gap: 2.5rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-info-box {
+  text-align: center;
+  max-width: 600px;
   margin-top: 1.5rem;
-  flex-wrap: wrap;
 }
 
-.contact-info-box,
-.iscrizione-form-box {
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 1.2rem;
-  max-width: 480px; /* ← limita la larghezza per evitare che si allarghino troppo */
-  width: 100%;
-  box-sizing: border-box;
+.contact-info-box p {
+  margin-bottom: 15px;
 }
 
-.contact-info-box h3,
-.iscrizione-form-box h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   color: var(--primary);
-  font-size: 1.6rem;
-  text-align: center; /* ← titoli centrati */
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
 }
 
-/* Immagine più piccola sotto i contatti */
+.contact-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.contact-link svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .contact-image-small {
   margin-top: 1.5rem;
   text-align: center;
@@ -597,36 +604,6 @@ body {
   height: auto;
   border-radius: 12px;
   display: inline-block;
-}
-
-/* Stile campi form compatti */
-.contact-info-box input,
-.contact-info-box select,
-.contact-info-box textarea,
-.iscrizione-form-box input,
-.iscrizione-form-box select,
-.iscrizione-form-box textarea {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-}
-
-/* Mobile: una colonna */
-@media (max-width: 768px) {
-  .contact-iscrizione-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .contact-info-box,
-  .iscrizione-form-box {
-    max-width: 100%;
-    padding: 1.2rem;
-  }
 }
 
 /* Popup */
@@ -708,7 +685,7 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .header .container {
-    padding: 0.3rem 0;
+    padding: 0.15rem 0;
     flex-direction: column;
     gap: 0.5rem;
   }
@@ -746,11 +723,6 @@ body {
 
   .section {
     padding: 3.5rem 0;
-  }
-
-  .contact-iscrizione-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
   }
 
   .tools-grid,
@@ -804,16 +776,14 @@ body {
     object-fit: cover;
   }
 
-  .contact-image-small img,
-  .about-image img {
+  .contact-image-small img {
     max-width: 140px;
     margin: 0 auto;
   }
-}
-/* Riduci le icone nei contatti */
-.contact-info-box svg,
-.contact-link svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
+
+  .course-details svg,
+  .contact-link svg {
+    width: 16px;
+    height: 16px;
+  }
 }
