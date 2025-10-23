@@ -19,9 +19,10 @@ body {
   margin: 0 auto;
 }
 
-/* Colori e variabili moderne */
+/* Variabili */
 :root {
-  --primary: #FF6B35;          /* ARANCIONE ORIGINALE */
+  /* Colors */
+  --primary: #FF6B35;
   --primary-light: #FFA77A;
   --primary-dark: #E05A2B;
   --white: #ffffff;
@@ -31,9 +32,12 @@ body {
   --gray-600: #555555;
   --gray-800: #333333;
   --black: #1a1a1a;
+  /* Spacing */
   --radius: 16px;
+  /* Shadows */
   --shadow: 0 6px 20px rgba(0,0,0,0.08);
   --shadow-hover: 0 10px 25px rgba(0,0,0,0.12);
+  /* Transitions */
   --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -45,33 +49,33 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 0.7rem 0;
+  padding: 0.35rem 0; /* Reduced by 50% from 0.7rem */
 }
 
 .header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.3rem 0;
+  padding: 0.15rem 0; /* Adjusted for smaller header */
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px; /* Reduced from 12px */
 }
 
 .logo-img {
-  height: 60px;
+  height: 40px; /* Reduced from 60px */
   width: auto;
   object-fit: contain;
   background-color: transparent;
   border-radius: 8px;
-  padding: 3px;
+  padding: 2px; /* Reduced from 3px */
 }
 
 .logo-text {
-  font-size: 2.00rem;
+  font-size: 1.5rem; /* Reduced from 2rem */
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
@@ -80,17 +84,16 @@ body {
   margin: 0;
 }
 
-/* Contenitore nav + icone */
 .header .header-right {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem; /* Reduced from 1.5rem */
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem; /* Reduced from 1.5rem */
 }
 
 .nav a {
@@ -98,28 +101,30 @@ body {
   color: var(--gray-800);
   font-weight: 600;
   position: relative;
-  transition: color 0.3s;
+  transition: color var(--transition);
 }
 
 .nav a::after {
   content: '';
   position: absolute;
-  bottom: -6px;
+  bottom: -4px; /* Adjusted from -6px */
   left: 0;
   width: 0;
-  height: 3px;
+  height: 2px; /* Reduced from 3px */
   background: var(--primary);
-  border-radius: 3px;
-  transition: width 0.3s ease;
+  border-radius: 2px;
+  transition: width var(--transition);
 }
 
 .nav a:hover,
-.nav a.current {
+.nav a.current,
+.nav a:focus {
   color: var(--primary);
 }
 
 .nav a:hover::after,
-.nav a.current::after {
+.nav a.current::after,
+.nav a:focus::after {
   width: 100%;
 }
 
@@ -127,26 +132,25 @@ body {
   pointer-events: none;
 }
 
-/* Icone social nell'header */
 .social-icons-header {
   display: flex;
-  gap: 1.2rem;
+  gap: 0.8rem; /* Reduced from 1.2rem */
 }
 
 .social-icons-header a {
   color: var(--gray-800);
   text-decoration: none;
-  display: inline-block;
-  transition: color 0.3s;
+  transition: color var(--transition);
 }
 
-.social-icons-header a:hover {
+.social-icons-header a:hover,
+.social-icons-header a:focus {
   color: var(--primary);
 }
 
 .social-icons-header svg {
-  width: 24px;
-  height: 24px;
+  width: 20px; /* Reduced from 24px */
+  height: 20px;
   display: block;
   stroke: currentColor;
   stroke-width: 1.8;
@@ -155,13 +159,12 @@ body {
 /* Hero */
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: white;
+  color: var(--white);
   padding: 2.5rem 0;
   text-align: center;
-  border-radius: 0; /* ← rimuovi il bordo inferiore arrotondato */
   position: relative;
   overflow: hidden;
-  margin-bottom: 0; /* ← fondamentale: nessun margine sotto */
+  margin-bottom: 0;
 }
 
 .hero::before {
@@ -200,8 +203,8 @@ body {
 }
 
 .section.animate-in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section h2 {
@@ -224,11 +227,97 @@ body {
   border-radius: 2px;
 }
 
+.section h2.no-underline::after {
+  display: none;
+}
+
 .bg-light {
   background-color: var(--gray-50);
 }
 
-/* --- SEZIONE CORSI --- */
+/* Chi Siamo */
+.chi-siamo-hero-image {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.chi-siamo-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.chi-siamo-text {
+  text-align: center;
+  padding-top: 2.5rem;
+}
+
+#chi-siamo.section {
+  padding-top: 0;
+  padding-bottom: 4rem;
+}
+
+/* Strumenti */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.tool-card {
+  background: var(--white);
+  padding: 1.4rem 1.2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card:hover,
+.tool-card:focus {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.tool-card:hover::before,
+.tool-card:focus::before {
+  transform: scaleX(1);
+}
+
+.tool-card h3 {
+  color: var(--primary);
+  margin-bottom: 0.8rem;
+}
+
+.tool-image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+/* Corsi */
 .hero-corsi {
   text-align: center;
   margin-bottom: 2rem;
@@ -257,21 +346,22 @@ body {
 }
 
 .filters button {
-  background: #eee;
+  background: var(--gray-200);
   color: var(--gray-800);
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-200);
   padding: 0.5rem 1.2rem;
   border-radius: 20px;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
-  transition: all 0.2s;
+  transition: var(--transition);
 }
 
 .filters button.active,
-.filters button:hover {
+.filters button:hover,
+.filters button:focus {
   background: var(--primary);
-  color: white;
+  color: var(--white);
   border-color: var(--primary);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -286,7 +376,7 @@ body {
 .course-card {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: var(--white);
   border-radius: var(--radius);
   padding: 1.5rem;
   box-shadow: var(--shadow);
@@ -294,7 +384,8 @@ body {
   text-align: left;
 }
 
-.course-card:hover {
+.course-card:hover,
+.course-card:focus {
   transform: translateY(-8px);
   box-shadow: var(--shadow-hover);
 }
@@ -312,7 +403,7 @@ body {
 .course-details {
   margin-bottom: 1rem;
   padding: 0.5rem 0;
-  border-bottom: 1px dashed #ddd;
+  border-bottom: 1px dashed var(--gray-200);
 }
 
 .course-details p {
@@ -336,94 +427,18 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.course-card .btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 0.8rem 1rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  margin-top: auto;
-}
-.section h2.no-underline::after {
-  display: none;
-}
-/* Layout affiancato: Contatti + Iscrizione */
-.contact-iscrizione-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  margin-top: 1.5rem;
-}
-
-.contact-info-box,
-.iscrizione-form-box {
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 1.2rem; /* ridotto del ~30% */
-}
-
-.contact-info-box h3,
-.iscrizione-form-box h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: var(--primary);
-  font-size: 1.6rem;
-}
-
-/* Immagine più piccola sotto i contatti */
-.contact-image-small {
-  margin-top: 1.5rem;
-  text-align: center;
-}
-
-.contact-image-small img {
-  width: 100%;
-  max-width: 220px;
-  height: auto;
-  border-radius: 12px;
-  display: inline-block;
-}
-
-/* Stile campi form compatti */
-.contact-info-box input,
-.contact-info-box select,
-.contact-info-box textarea,
-.iscrizione-form-box input,
-.iscrizione-form-box select,
-.iscrizione-form-box textarea {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .contact-iscrizione-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .contact-info-box,
-  .iscrizione-form-box {
-    padding: 1.2rem;
-  }
-}
-/* --- SEZIONE FAQ --- */
+/* FAQ */
 .faq details {
   margin: 1rem 0;
   padding: 1rem;
-  border: 1px solid #eee;
+  border: 1px solid var(--gray-200);
   border-radius: 8px;
-  background-color: white;
-  transition: border-color 0.2s;
+  background-color: var(--white);
+  transition: border-color var(--transition);
 }
 
-.faq details:hover {
+.faq details:hover,
+.faq details[open] {
   border-color: var(--primary-light);
 }
 
@@ -439,29 +454,132 @@ body {
   border-left: 3px solid var(--primary);
 }
 
+/* Collaborazioni */
+.collaborazioni-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.collaborazione-card {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--transition);
+}
+
+.collaborazione-card:hover,
+.collaborazione-card:focus {
+  opacity: 0.8;
+}
+
+.collaborazione-logo {
+  height: 80px;
+  max-width: 180px;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity var(--transition);
+}
+
+.collaborazione-card:hover .collaborazione-logo,
+.collaborazione-card:focus .collaborazione-logo {
+  opacity: 1;
+}
+
+.collaborazione-card p {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+/* Contatti */
+.contact-iscrizione-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.contact-info-box,
+.iscrizione-form-box {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+}
+
+.contact-info-box h3,
+.iscrizione-form-box h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 1.6rem;
+}
+
+.contact-image-small {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.contact-image-small img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.contact-info-box input,
+.contact-info-box select,
+.contact-info-box textarea,
+.iscrizione-form-box input,
+.iscrizione-form-box select,
+.iscrizione-form-box textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+}
+
+.contact-info-box input:focus,
+.contact-info-box select:focus,
+.contact-info-box textarea:focus,
+.iscrizione-form-box input:focus,
+.iscrizione-form-box select:focus,
+.iscrizione-form-box textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.2);
+}
+
 /* Pulsanti */
 .btn {
   display: inline-block;
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
   padding: 0.8rem 2rem;
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: var(--transition);
   border: none;
   cursor: pointer;
   font-size: 1rem;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
   background-color: var(--primary-dark);
   transform: scale(1.03);
 }
 
-/* Hero pulsante speciale */
 .hero .btn {
-  background: white;
+  background: var(--white);
   color: var(--primary-dark);
   font-weight: 700;
   box-shadow: 0 4px 15px rgba(255,255,255,0.3);
@@ -480,183 +598,12 @@ body {
   transition: left 0.8s;
 }
 
-.hero .btn:hover::after {
+.hero .btn:hover::after,
+.hero .btn:focus::after {
   left: 100%;
 }
 
-/* Footer */
-.footer {
-  background-color: var(--black);
-  color: white;
-  text-align: center;
-  padding: 1.5rem 0;
-}
-
-/* Chi siamo */
-.about-grid {
-  display: flex;
-  align-items: center;
-  margin-top: 0;
-  gap: 2.5rem;
-}
-
-.about-text {
-  text-align: left;
-  
-}
-
-.about-text h2 {
-  margin-top: 0;
-}
-
-.about-image img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-}
-
-/* Strumenti */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 0rem;
-}
-
-.tool-card {
-  background: white;
-  padding: 1.4rem 1.2rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.tool-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.tool-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
-}
-
-.tool-card:hover::before {
-  transform: scaleX(1);
-}
-
-.tool-card h3 {
-  color: var(--primary);
-  margin-bottom: 0.8rem;
-}
-
-.tool-image {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  margin-bottom: 1rem;
-}
-
-/* Collaborazioni */
-.collaborazioni-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  margin-top: 2rem;
-}
-
-.collaborazione-card {
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  transition: opacity 0.2s;
-  display: block;
-}
-
-.collaborazione-logo {
-  height: 80px;
-  max-width: 180px;
-  object-fit: contain;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-.collaborazione-logo:hover {
-  opacity: 1;
-}
-
-.collaborazione-card p {
-  margin-top: 1rem;
-  font-weight: 600;
-  color: var(--gray-600);
-}
-
-/* Contatti */
-.contact-content {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  margin-top: 2rem;
-}
-
-.contact-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 15px;
-  margin-top: 0;
-  text-align: left;
-}
-
-.contact-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-  transition: opacity 0.2s;
-}
-
-.contact-link:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-.contact-link svg {
-  flex-shrink: 0;
-  stroke: currentColor;
-}
-
-.contact-image {
-  flex: 0 0 auto;
-  max-width: 300px;
-}
-
-.contact-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Popup */
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -672,7 +619,7 @@ body {
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: opacity 0.3s ease-out;
+  transition: opacity var(--transition);
 }
 
 .modal.active {
@@ -681,17 +628,17 @@ body {
 }
 
 .modal-content {
-  background: white;
+  background: var(--white);
   width: 100%;
   max-width: 600px;
   padding: 2.2rem;
-  border-radius: 16px;
+  border-radius: var(--radius);
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   position: relative;
   text-align: center;
   transform: scale(0.8);
   opacity: 0;
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transition: transform var(--transition), opacity var(--transition);
 }
 
 .modal.active .modal-content {
@@ -706,22 +653,25 @@ body {
   margin: 0 auto 1.2rem;
   padding: 6px;
 }
+
 .modal-content .btn {
   width: auto;
-  max-width: 220px; /* ← larghezza massima controllata */
-  padding: 0.8rem 1.6rem; /* leggermente ridotto lateralmente */
+  max-width: 220px;
+  padding: 0.8rem 1.6rem;
 }
+
 .close-btn {
   position: absolute;
   top: 18px;
   right: 18px;
   font-size: 26px;
-  color: #999;
+  color: var(--gray-600);
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color var(--transition);
 }
 
-.close-btn:hover {
+.close-btn:hover,
+.close-btn:focus {
   color: var(--primary);
 }
 
@@ -742,12 +692,12 @@ body {
   color: var(--gray-800);
 }
 
-.modal-content .btn {
-  display: block;
-  margin: 18px auto 0;
-  padding: 0.65rem 1.6rem;
-  font-size: 1rem;
-  width: auto;
+/* Footer */
+.footer {
+  background-color: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 0;
 }
 
 /* Responsive */
@@ -766,7 +716,6 @@ body {
   }
 
   .nav {
-    display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
@@ -779,7 +728,6 @@ body {
 
   .hero {
     padding: 3rem 0 3.5rem;
-    border-radius: 0;
   }
 
   .hero h2 {
@@ -794,23 +742,14 @@ body {
     padding: 3.5rem 0;
   }
 
-  .about-grid,
-  .contact-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.8rem;
+  .contact-iscrizione-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  .about-text,
-  .contact-info {
-    text-align: center;
-    align-items: center;
-  }
-
-  .about-image img,
-  .contact-image img {
-    max-width: 280px;
-    margin: 0 auto;
+  .contact-info-box,
+  .iscrizione-form-box {
+    padding: 1.2rem;
   }
 
   .tools-grid,
@@ -859,52 +798,10 @@ body {
     padding: 0.5rem 1.3rem;
     font-size: 0.9rem;
   }
-}
 
-/* Riduzione immagini su mobile */
-@media (max-width: 768px) {
-  .contact-image img {
+  .contact-image-small img,
+  .chi-siamo-hero-image img {
     max-width: 140px;
+    margin: 0 auto;
   }
-}
-
-@media (max-width: 768px) {
-  .about-image img {
-    max-width: 140px;
-    margin: 0;
-  }
-}
-/* --- NUOVO STILE PER CHI SIAMO A DUE BLOCCHI --- */
-
-/* Immagine a tutta larghezza, a filo con la sezione Hero */
-.chi-siamo-hero-image {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-
-.chi-siamo-hero-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0;
-  padding: 0;
-  object-fit: cover;
-}
-
-/* Testo sotto l'immagine */
-.chi-siamo-text {
-  text-align: center;
-  padding-top: 2.5rem;
-}
-
-.chi-siamo-text h2 {
-  margin-top: 0;
-}
-
-/* Rimuovi il padding superiore della sezione per evitare spazio vuoto */
-#chi-siamo.section {
-  padding-top: 0;
-  padding-bottom: 4rem;
 }
