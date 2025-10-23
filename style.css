@@ -788,3 +788,10 @@ body {
     margin: 0 auto;
   }
 }
+/* Riduci le icone nei contatti */
+.contact-info-box svg,
+.contact-link svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
