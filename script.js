@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
-// SMOOTH SCROLL MIGLIORATO CON FIX COMPLETO (Miglioramento UX/Fluidità)
+// SMOOTH SCROLL MIGLIORATO CON FIX COMPLETO
 // ========================================
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -88,13 +88,21 @@ function scrollToTarget(target) {
     behavior: 'smooth'
   });
 
-  // MODIFICA: Unico timeout ridotto per maggiore reattività (UX)
+  // Focus per accessibilità
   setTimeout(() => {
     if (target.tabIndex < 0) target.tabIndex = -1;
     target.focus({ preventScroll: true });
-  }, 400); 
+  }, 800);
 
-  /* Rimosso l'ulteriore timeout di 1000ms che causava problemi di focus multipli */
+
+  // Focus per accessibilità
+  setTimeout(() => {
+    target.focus();
+    if (document.activeElement !== target) {
+      target.setAttribute('tabindex', '-1');
+      target.focus();
+    }
+  }, 1000);
 }
 
 function closeModalForScroll(modal) {
@@ -104,12 +112,12 @@ function closeModalForScroll(modal) {
 }
 
 // ========================================
-// INTERSECTION OBSERVER PER ANIMAZIONI FLUIDE (Semplificazione)
+// INTERSECTION OBSERVER PER ANIMAZIONI FLUIDE
 // ========================================
 function initIntersectionObserver() {
   const observerOptions = {
     threshold: 0.05,
-    rootMargin: '0px 0px -80px 0px' 
+    rootMargin: '0px 0px -80px 0px' // margine più ampio per anticipare le animazioni
   };
   
   const observer = new IntersectionObserver((entries) => {
@@ -121,10 +129,15 @@ function initIntersectionObserver() {
     });
   }, observerOptions);
   
-  /* MODIFICA: Rimosso il delay progressivo JS. L'animazione è ora gestita unicamente dal CSS 'animate-in' in modo uniforme e più veloce. */
-  document.querySelectorAll('.section, .tool-card, .course-card, .highlight-item').forEach(element => {
-    /* element.style.transitionDelay = `${index * 0.05}s`; <- Rimosso */
-    observer.observe(element);
+  // Osserva sezioni principali
+  document.querySelectorAll('.section').forEach(section => {
+    observer.observe(section);
+  });
+  
+  // Osserva card con delay progressivo
+  document.querySelectorAll('.tool-card, .course-card, .highlight-item').forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.05}s`;
+    observer.observe(card);
   });
 }
 
@@ -240,46 +253,56 @@ function initModals() {
 }
 
 // ========================================
-// FILTRI CORSI (Semplificazione animazioni per maggiore fluidità)
+// FILTRI CORSI
 // ========================================
 function initCourseFilters() {
   const filterButtons = document.querySelectorAll('.filters button');
   const courseCards = document.querySelectorAll('.course-card');
+  
   if (filterButtons.length === 0 || courseCards.length === 0) return;
-
-  // Assicurati che al caricamento tutte le card siano visibili
-  courseCards.forEach(card => {
-    // Rimuove eventuali classi di nascondimento da caricamenti precedenti
-    card.classList.remove('is-hidden'); 
-    card.style.display = ''; // Assicura che sia visibile
-  });
-
+  
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       filterButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      
       const filter = btn.dataset.filter;
       
-      let visibleCount = 0;
-      courseCards.forEach((card) => {
+      courseCards.forEach((card, index) => {
         const age = card.dataset.age;
         const tool = card.dataset.tool;
-        const shouldShow = filter === 'all' || age === filter || age.includes(filter) || tool === filter;
-
-        /* MODIFICA: Semplificata la logica. Tutto è gestito dalla classe CSS 'is-hidden' per animazioni veloci. */
+        
+        const shouldShow = 
+          filter === 'all' || 
+          age === filter || 
+          age.includes(filter) || 
+          tool === filter;
+        
         if (shouldShow) {
-          card.classList.remove('is-hidden');
-          card.style.display = ''; // Ripristina il display dopo l'animazione
-          visibleCount++;
+          setTimeout(() => {
+            card.style.display = '';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(15px)';
+            
+            requestAnimationFrame(() => {
+              card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          }, index * 40);
         } else {
-          card.classList.add('is-hidden');
-          // Rimosso il setTimeout di 300ms che nascondeva 'display: none' in JS,
-          // l'animazione `max-height: 0` e `opacity: 0` in CSS è più pulita.
+          card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(-10px)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
         }
       });
       
-      // Funzione per l'accessibilità
-      setTimeout(() => { announceFilterChange(filter, courseCards); }, 500); 
+      setTimeout(() => {
+        announceFilterChange(filter, courseCards);
+      }, 500);
     });
   });
 }
@@ -297,199 +320,313 @@ function initAccessibility() {
 function addSkipLink() {
   const skipLink = document.createElement('a');
   skipLink.href = '#home';
-  skipLink.className = 'skip-link';
+  skipLink.className = 'skip-link sr-only';
   skipLink.textContent = 'Vai al contenuto principale';
-  skipLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector('#home');
-    if (target) scrollToTarget(target);
+  skipLink.style.cssText = `
+    position: fixed;
+    top: -40px;
+    left: 10px;
+    background: var(--primary);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: top 0.3s ease;
+  `;
+  
+  skipLink.addEventListener('focus', () => {
+    skipLink.style.top = '10px';
   });
+  
+  skipLink.addEventListener('blur', () => {
+    skipLink.style.top = '-40px';
+  });
+  
   document.body.insertBefore(skipLink, document.body.firstChild);
 }
 
 function enhanceKeyboardNavigation() {
-  document.querySelectorAll('.tool-card').forEach(card => {
-    if (!card.hasAttribute('tabindex')) {
-      card.setAttribute('tabindex', '0');
+  const style = document.createElement('style');
+  style.textContent = `
+    *:focus-visible {
+      outline: 3px solid var(--primary) !important;
+      outline-offset: 2px !important;
     }
-  });
+  `;
+  document.head.appendChild(style);
 }
 
 function createLiveRegion() {
   const liveRegion = document.createElement('div');
   liveRegion.setAttribute('aria-live', 'polite');
   liveRegion.setAttribute('aria-atomic', 'true');
+  liveRegion.className = 'sr-only';
   liveRegion.id = 'live-region';
-  liveRegion.style.cssText = 'position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap;';
+  liveRegion.style.cssText = `
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  `;
   document.body.appendChild(liveRegion);
 }
 
 function announceToScreenReader(message) {
   const liveRegion = document.getElementById('live-region');
-  if (liveRegion) {
+  if (!liveRegion) return;
+  
+  liveRegion.textContent = '';
+  setTimeout(() => {
     liveRegion.textContent = message;
-    setTimeout(() => { liveRegion.textContent = ''; }, 1000);
-  }
+  }, 100);
 }
 
 function announceFilterChange(filter, cards) {
-  const visibleCards = Array.from(cards).filter(card => !card.classList.contains('is-hidden'));
-  const count = visibleCards.length;
-  let message;
+  const visibleCount = Array.from(cards).filter(
+    card => card.style.display !== 'none'
+  ).length;
   
-  if (filter === 'all') {
-    message = `${count} corsi totali visualizzati.`;
-  } else {
-    message = `${count} corsi filtrati per ${filter} visualizzati.`;
-  }
-  announceToScreenReader(message);
+  const filterName = filter === 'all' ? 'tutti i corsi' : filter;
+  announceToScreenReader(`Filtro applicato: ${filterName}. ${visibleCount} corsi visualizzati.`);
 }
 
 function addDynamicAriaLabels() {
-  document.querySelectorAll('.btn-header').forEach(btn => {
-    btn.setAttribute('aria-label', 'Iscriviti ai corsi');
+  const fabButtons = document.querySelectorAll('.fab');
+  fabButtons.forEach(fab => {
+    if (!fab.getAttribute('aria-label')) {
+      const tooltip = fab.querySelector('.fab-tooltip');
+      if (tooltip) {
+        fab.setAttribute('aria-label', tooltip.textContent);
+      }
+    }
   });
 }
 
 // ========================================
-// HEADER SCROLL E VISIBILITÀ
+// GESTIONE SCROLL HEADER
 // ========================================
 function initHeaderScroll() {
+  let lastScroll = 0;
   const header = document.querySelector('.header');
+  
   if (!header) return;
-
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
+  
+  const handleScroll = throttle(() => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 10) {
+      header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
     } else {
-      header.classList.remove('scrolled');
+      header.style.boxShadow = 'var(--shadow)';
     }
-  };
-
-  window.addEventListener('scroll', throttle(handleScroll));
-  handleScroll(); 
+    
+    lastScroll = currentScroll;
+  }, 16);
+  
+  window.addEventListener('scroll', handleScroll, { passive: true });
 }
 
 // ========================================
 // FAQ ACCORDION
 // ========================================
 function initFAQAccordion() {
-  const faqs = document.querySelectorAll('.faq-item');
-  faqs.forEach(faq => {
-    const header = faq.querySelector('.faq-header');
-    const content = faq.querySelector('.faq-content');
-    const icon = faq.querySelector('.faq-icon');
-    
-    header.addEventListener('click', () => {
-      const isExpanded = header.getAttribute('aria-expanded') === 'true';
-      
-      if (isExpanded) {
-        content.style.maxHeight = '0';
-        header.setAttribute('aria-expanded', 'false');
-        icon.style.transform = 'rotate(0deg)';
-      } else {
-        // Chiudi tutti gli altri
-        faqs.forEach(otherFaq => {
-          const otherHeader = otherFaq.querySelector('.faq-header');
-          const otherContent = otherFaq.querySelector('.faq-content');
-          const otherIcon = otherFaq.querySelector('.faq-icon');
-          if (otherHeader !== header && otherHeader.getAttribute('aria-expanded') === 'true') {
-            otherContent.style.maxHeight = '0';
-            otherHeader.setAttribute('aria-expanded', 'false');
-            otherIcon.style.transform = 'rotate(0deg)';
+  const faqDetails = document.querySelectorAll('.faq details');
+  
+  faqDetails.forEach(detail => {
+    detail.addEventListener('toggle', function() {
+      if (this.open) {
+        faqDetails.forEach(otherDetail => {
+          if (otherDetail !== this && otherDetail.open) {
+            otherDetail.open = false;
           }
         });
-        
-        content.style.maxHeight = content.scrollHeight + 'px';
-        header.setAttribute('aria-expanded', 'true');
-        icon.style.transform = 'rotate(45deg)';
+        const summary = this.querySelector('summary');
+        if (summary) {
+          announceToScreenReader(`Domanda espansa: ${summary.textContent}`);
+        }
       }
     });
   });
 }
 
 // ========================================
-// VALIDAZIONE FORM (Placeholder)
+// VALIDAZIONE FORM
 // ========================================
 function initFormValidation() {
-  const form = document.querySelector('#contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let isValid = true;
-    
-    form.querySelectorAll('[required]').forEach(input => {
-      if (!input.value.trim()) {
-        input.classList.add('is-invalid');
-        isValid = false;
-      } else {
-        input.classList.remove('is-invalid');
-      }
-    });
-    
-    if (isValid) {
-      alert('Modulo inviato con successo! (Simulazione)');
-      form.reset();
-    } else {
-      alert('Per favore, compila tutti i campi richiesti.');
-    }
-  });
-
-  form.querySelectorAll('[required]').forEach(input => {
-    input.addEventListener('input', () => {
-      if (input.value.trim()) {
-        input.classList.remove('is-invalid');
+  const forms = document.querySelectorAll('form');
+  
+  forms.forEach(form => {
+    form.addEventListener('submit', (e) => {
+      const inputs = form.querySelectorAll('input[required], textarea[required]');
+      let isValid = true;
+      
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          isValid = false;
+          input.classList.add('error');
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          input.classList.remove('error');
+          input.removeAttribute('aria-invalid');
+        }
+      });
+      
+      if (!isValid) {
+        e.preventDefault();
+        announceToScreenReader('Alcuni campi richiesti non sono stati compilati');
       }
     });
   });
 }
 
 // ========================================
-// SCROLL TO TOP
+// SCROLL TO TOP BUTTON
 // ========================================
 function initScrollToTop() {
-  const scrollToTopButton = document.querySelector('.scroll-to-top');
-  if (!scrollToTopButton) return;
+  const scrollBtn = document.createElement('button');
+  scrollBtn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  `;
+  scrollBtn.className = 'scroll-to-top';
+  scrollBtn.setAttribute('aria-label', 'Torna su');
+  scrollBtn.style.cssText = `
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gray-800);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-xl);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+    opacity: 0;
+    transform: scale(0.8);
+  `;
   
-  const handleScroll = () => {
-    if (window.scrollY > 300) {
-      scrollToTopButton.classList.add('show');
+  document.body.appendChild(scrollBtn);
+  
+  window.addEventListener('scroll', debounce(() => {
+    if (window.pageYOffset > 500) {
+      scrollBtn.style.display = 'flex';
+      requestAnimationFrame(() => {
+        scrollBtn.style.opacity = '1';
+        scrollBtn.style.transform = 'scale(1)';
+      });
     } else {
-      scrollToTopButton.classList.remove('show');
+      scrollBtn.style.opacity = '0';
+      scrollBtn.style.transform = 'scale(0.8)';
+      setTimeout(() => {
+        scrollBtn.style.display = 'none';
+      }, 300);
     }
-  };
+  }, 150), { passive: true });
   
-  scrollToTopButton.addEventListener('click', () => {
+  scrollBtn.addEventListener('click', () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   });
   
-  window.addEventListener('scroll', throttle(handleScroll));
+  scrollBtn.addEventListener('mouseenter', () => {
+    scrollBtn.style.background = 'var(--primary)';
+    scrollBtn.style.transform = 'scale(1.1)';
+  });
+  
+  scrollBtn.addEventListener('mouseleave', () => {
+    scrollBtn.style.background = 'var(--gray-800)';
+    scrollBtn.style.transform = 'scale(1)';
+  });
 }
 
 // ========================================
-// FUNZIONI DI OTTIMIZZAZIONE
+// ANIMAZIONI AGGIUNTIVE
 // ========================================
-
 function initAnimations() {
-  const animations = document.querySelectorAll('.animate');
-  animations.forEach(el => {
-    el.style.opacity = '1';
-    el.style.transform = 'none';
+  const cards = document.querySelectorAll('.tool-card, .course-card, .contact-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transition = 'transform 0.35s ease, box-shadow 0.35s ease';
+    });
+  });
+  
+  animateCounters();
+}
+
+function animateCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  
+  counters.forEach(counter => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = parseInt(counter.getAttribute('data-count'));
+          const duration = 1500;
+          const increment = target / (duration / 16);
+          let current = 0;
+          
+          const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+              counter.textContent = Math.floor(current);
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target;
+            }
+          };
+          
+          updateCounter();
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+    
+    observer.observe(counter);
+  });
+}
+
+// ========================================
+// OTTIMIZZAZIONI PERFORMANCE
+// ========================================
+if ('IntersectionObserver' in window) {
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+          img.classList.add('loaded');
+        }
+        observer.unobserve(img);
+      }
+    });
+  }, {
+    rootMargin: '50px'
+  });
+  
+  document.querySelectorAll('img[data-src]').forEach(img => {
+    imageObserver.observe(img);
   });
 }
 
 function preloadCriticalImages() {
   const criticalImages = [
     'images/logo.png',
-    'images/chi-siamo-hero.png',
-    'images/lego-spike-prime.svg',
-    'images/open-roberta.svg',
-    'images/arduino.svg',
-    'images/microbit.svg'
+    'images/chi-siamo-hero.png'
   ];
   
   criticalImages.forEach(src => {
@@ -526,4 +663,15 @@ if (isMobile || isTouch) {
 // LOG VERSIONE
 // ========================================
 console.log('%c🤖 Bit Corsi - Website Ottimizzato v2.1', 
-  'color: #FF6B35; font-size: 1.2em; font-weight: bold; padding: 5px 10px; border-radius: 5px; background: #FFF3E0;');
+  'color: #FF6B35; font-size: 16px; font-weight: bold; padding: 8px;');
+console.log('%cPrestazioni ✓ | Accessibilità ✓ | UX Fluida ✓', 
+  'color: #10B981; font-size: 12px; padding: 4px;');
+
+// ========================================
+// EXPORT PER TESTING
+// ========================================
+window.BitCorsi = {
+  scrollToTarget,
+  announceToScreenReader,
+  version: '2.1.0'
+};
