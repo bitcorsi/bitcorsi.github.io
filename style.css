@@ -1434,7 +1434,6 @@ img {
   gap: 1rem;
   padding: 0.8rem 0;
 }
-/* ... (codice precedente) ... */
 
 /* ========================================
    MEDIA QUERIES
@@ -1484,7 +1483,7 @@ img {
 }
 
 .nav a {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   white-space: nowrap;
 }
 
@@ -1493,6 +1492,25 @@ img {
   font-size: 0.95rem;
 }
 }
+/* ... (regole esistenti nella media query) ... */
+
+/* MODIFICA PER ALLINEARE HERO E CHI SIAMO SU MOBILE */
+.hero {
+  /* Riduci il padding inferiore su mobile per avvicinare la sezione successiva */
+  padding-bottom: 4rem; /* Era 6rem */ 
+}
+
+.section-chi-siamo {
+  /* Rimuovi il padding-top: 0; aggiunto precedentemente 
+     e lascia che la regola mobile lo rimuova completamente */
+  padding-top: 0; 
+}
+
+.chi-siamo-hero-image {
+  /* Riduci lo spazio sotto l'immagine per farla apparire più coesa */
+  margin-bottom: 2rem; /* Era 4rem */
+}
+
 
 /* Small Mobile */
 @media (max-width: 480px) {
