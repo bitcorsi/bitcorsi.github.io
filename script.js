@@ -216,7 +216,7 @@ function initModals() {
     modal.classList.remove('show');
     setTimeout(() => {
       modal.style.display = 'none';
-    }, 300);
+    }, 400);
     body.style.overflow = '';
     announceToScreenReader('Finestra modale chiusa');
     
