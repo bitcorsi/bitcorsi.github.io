@@ -485,8 +485,8 @@ img {
 .microbit-color { background: #00ED00; color: var(--gray-900); }
 
 .tool-image {
-  width: 120px;
-  height: 120px;
+  width: 70%;
+  height: auto;
   margin: 0 auto 1.5rem;
   object-fit: contain;
 }
