@@ -1147,7 +1147,8 @@ img {
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.4s ease-in-out;
+  /* FIX 1A: Aumentato a 0.5s per una chiusura più fluida */
+  transition: opacity 0.5s ease-in-out;
 }
 
 .modal.show {
@@ -1161,15 +1162,19 @@ img {
 .modal-content {
   background: white;
   border-radius: var(--radius-lg);
-  padding: 6rem;
-  max-width: 600px;
+  /* FIX 1B: Ridotto il padding da 6rem a 3rem (più corto) */
+  padding: 3rem; 
+  /* FIX 2: Aumentata la larghezza massima (meno sottile) */
+  max-width: 750px;
+  min-width: 400px; /* Aggiunto per le risoluzioni intermedie */
   width: 90%;
   position: relative;
   box-shadow: var(--shadow-xl);
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* FIX 3: Aumentato a 0.5s per sincronizzazione e fluidità */
+  transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .modal.show .modal-content {
