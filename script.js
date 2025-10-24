@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // SMOOTH SCROLL MIGLIORATO
 // ========================================
 function initSmoothScroll() {
-  const headerHeight = document.querySelector('.header').offsetHeight;
-  
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
@@ -47,9 +45,13 @@ function initSmoothScroll() {
       if (target) {
         e.preventDefault();
         
+        // Calcola dinamicamente l'altezza dell'header al momento del click
+        const header = document.querySelector('.header');
+        const headerHeight = header ? header.offsetHeight : 0;
+        
         // Calcola posizione tenendo conto dell'header sticky
         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = targetPosition - headerHeight - 20;
+        const offsetPosition = targetPosition - headerHeight - 10;
         
         window.scrollTo({
           top: offsetPosition,
