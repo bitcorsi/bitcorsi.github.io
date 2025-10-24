@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
-// SMOOTH SCROLL MIGLIORATO
+// SMOOTH SCROLL MIGLIORATO CON FIX COMPLETO
 // ========================================
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -45,28 +45,52 @@ function initSmoothScroll() {
       if (target) {
         e.preventDefault();
         
-        // Calcola dinamicamente l'altezza dell'header al momento del click
-        const header = document.querySelector('.header');
-        const headerHeight = header ? header.offsetHeight : 0;
-        
-        // Calcola posizione tenendo conto dell'header sticky
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = targetPosition - headerHeight - 10;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        // Focus management per accessibilità
-        target.focus();
-        if (document.activeElement !== target) {
-          target.setAttribute('tabindex', '-1');
-          target.focus();
+        // Chiudi eventuali modali aperti prima dello scroll
+        const openModal = document.querySelector('.modal[style*="flex"]');
+        if (openModal) {
+          closeModalForScroll(openModal);
         }
+        
+        // Aspetta che il modal si chiuda, poi scrolla
+        setTimeout(() => {
+          scrollToTarget(target);
+        }, openModal ? 100 : 0);
       }
     });
   });
+}
+
+function scrollToTarget(target) {
+  // Calcola dinamicamente l'altezza dell'header
+  const header = document.querySelector('.header');
+  const headerHeight = header ? header.offsetHeight : 0;
+  
+  // Aggiunge 20px di padding extra per sicurezza
+  const extraPadding = 20;
+  
+  // Calcola la posizione finale
+  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+  const offsetPosition = targetPosition - headerHeight - extraPadding;
+  
+  // Scrolla smooth
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
+  
+  // Focus management per accessibilità
+  setTimeout(() => {
+    target.focus();
+    if (document.activeElement !== target) {
+      target.setAttribute('tabindex', '-1');
+      target.focus();
+    }
+  }, 500);
+}
+
+function closeModalForScroll(modal) {
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
 }
 
 // ========================================
