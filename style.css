@@ -112,7 +112,8 @@ img {
 .fab-tooltip {
   position: absolute;
   right: 75px;
-  background: var(--gray-900);
+  background: rgba(31, 41, 55, 0.95);
+  backdrop-filter: blur(10px);
   color: white;
   padding: 8px 16px;
   border-radius: 8px;
@@ -236,7 +237,7 @@ img {
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
-  padding: 5rem 0 6rem;
+  padding: 6rem 0 7rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -286,7 +287,7 @@ img {
   font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.2;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
 }
 
 .hero p {
@@ -346,15 +347,17 @@ img {
 .hero-features {
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
 .hero-feature {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 0.8rem;
   font-size: 0.95rem;
+  text-align: center;
 }
 
 .hero-feature svg {
@@ -372,7 +375,7 @@ img {
    SEZIONI GENERALI
    ======================================== */
 .section {
-  padding: 5rem 0;
+  padding: 6rem 0;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -390,7 +393,7 @@ img {
 /* Section Headers */
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .section-label {
@@ -442,6 +445,7 @@ img {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: var(--radius);
 }
 
 .chi-siamo-content {
@@ -532,6 +536,9 @@ img {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .tool-card::before {
@@ -563,13 +570,14 @@ img {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 0.9rem;
   border-radius: 50px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .lego-color { background: #FFCB05; color: #CE0037; }
@@ -598,6 +606,7 @@ img {
   line-height: 1.6;
   margin-bottom: 1.5rem;
   text-align: center;
+  flex-grow: 1;
 }
 
 .tool-cta {
@@ -671,7 +680,8 @@ img {
   background: var(--primary);
   border-color: var(--primary);
   color: white;
-  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+  transform: translateY(-1px);
 }
 
 /* Courses Grid */
@@ -691,6 +701,7 @@ img {
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%;
 }
 
 .course-card:hover {
@@ -708,16 +719,19 @@ img {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  align-self: flex-start;
+  margin-bottom: 1rem;
 }
 
 .badge-available {
-  background: #D1FAE5;
-  color: #065F46;
+  background: #10B981;
+  color: white;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
 }
 
 .badge-closed {
-  background: var(--gray-200);
-  color: var(--gray-600);
+  background: #6B7280;
+  color: white;
 }
 
 .course-card h3 {
@@ -759,6 +773,7 @@ img {
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1.5rem;
+  margin-top: auto;
 }
 
 .detail-row {
@@ -882,6 +897,10 @@ img {
   border-bottom: 1px solid var(--gray-200);
 }
 
+.faq details[open] {
+  background: var(--gray-50);
+}
+
 .faq details p {
   padding: 1.5rem;
   font-size: 1rem;
@@ -924,7 +943,7 @@ img {
 
 .contact-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
   padding: 1.5rem;
   background: white;
@@ -1059,6 +1078,7 @@ img {
 .contact-image img {
   width: 100%;
   height: auto;
+  border-radius: var(--radius);
 }
 
 .social-section {
@@ -1075,6 +1095,7 @@ img {
   margin-bottom: 1rem;
   text-align: center;
 }
+
 .social-link {
   display: flex;
   align-items: center;
@@ -1132,11 +1153,13 @@ img {
   text-decoration: none;
   transition: var(--transition);
   min-width: 200px;
+  border: 1px solid var(--gray-200);
 }
 
 .collaborazione-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow);
+  border-color: var(--primary);
 }
 
 .collaborazione-logo {
@@ -1173,6 +1196,7 @@ img {
   grid-template-columns: 1.5fr 1fr;
   gap: 3rem;
   margin-bottom: 2rem;
+  align-items: flex-start;
 }
 
 .footer-brand {
@@ -1283,6 +1307,7 @@ img {
   position: relative;
   box-shadow: var(--shadow-xl);
   animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
 }
 
 @keyframes slideUp {
@@ -1366,9 +1391,10 @@ img {
 
 .modal-actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
 .modal-actions .btn-primary {
@@ -1384,6 +1410,8 @@ img {
   cursor: pointer;
   transition: var(--transition);
   font-family: inherit;
+  flex: 1;
+  min-width: 200px;
 }
 
 .modal-actions .btn-primary:hover {
@@ -1406,6 +1434,8 @@ img {
   font-weight: 600;
   text-decoration: none;
   transition: var(--transition);
+  flex: 1;
+  min-width: 200px;
 }
 
 .btn-link:hover {
@@ -1463,6 +1493,19 @@ img {
 
   .footer-content {
     grid-template-columns: 1fr;
+  }
+
+  /* Layout migliorato per tablet */
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero-features {
+    justify-content: space-around;
   }
 }
 
@@ -1526,8 +1569,13 @@ img {
   }
 
   .hero-features {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1.5rem;
+  }
+
+  .hero-feature {
+    flex-direction: row;
+    text-align: left;
   }
 
   .section {
@@ -1603,6 +1651,7 @@ img {
   .contact-card {
     flex-direction: column;
     text-align: center;
+    align-items: center;
   }
 
   .contact-card-arrow {
@@ -1616,6 +1665,15 @@ img {
   .modal-content {
     padding: 2rem;
     margin: 1rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .modal-actions .btn-primary,
+  .modal-actions .btn-link {
+    min-width: 100%;
   }
 
   .fab-container {
@@ -1747,3 +1805,14 @@ img {
   }
 }
 
+/* ========================================
+   EFFETTI HOVER MIGLIORATI
+   ======================================== */
+.btn:hover, 
+.fab:hover,
+.tool-card:hover,
+.course-card:hover,
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
