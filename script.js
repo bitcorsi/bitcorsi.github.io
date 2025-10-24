@@ -18,22 +18,11 @@ function debounce(func, wait = 10) {
 // Throttle function per eventi ad alta frequenza
 function throttle(func, limit = 100) {
   let inThrottle;
-  let lastFunc;
-  let lastRan;
-  
   return function(...args) {
     if (!inThrottle) {
       func.apply(this, args);
-      lastRan = Date.now();
       inThrottle = true;
-    } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(() => {
-        if (Date.now() - lastRan >= limit) {
-          func.apply(this, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
+      setTimeout(() => inThrottle = false, limit);
     }
   };
 }
@@ -42,15 +31,12 @@ function throttle(func, limit = 100) {
 // INIZIALIZZAZIONE AL CARICAMENTO DOM
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Inizializza prima lo scroll per prevenire conflitti
-  initHeaderScroll();
   initSmoothScroll();
-  
-  // Poi il resto
   initIntersectionObserver();
   initModals();
   initCourseFilters();
   initAccessibility();
+  initHeaderScroll();
   initFAQAccordion();
   initFormValidation();
   initScrollToTop();
@@ -58,15 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
-// SMOOTH SCROLL COMPLETAMENTE RIVISTO
+// SMOOTH SCROLL MIGLIORATO CON FIX COMPLETO
 // ========================================
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
       
-      // Ignora link vuoti o non validi
-      if (targetId === '#' || targetId === '#!' || targetId === '') {
+      // Ignora link vuoti
+      if (targetId === '#' || targetId === '#!') {
         e.preventDefault();
         return;
       }
@@ -76,77 +62,53 @@ function initSmoothScroll() {
       if (target) {
         e.preventDefault();
         
-        // Chiudi tutti i modali aperti in modo sicuro
-        closeAllModals();
+        // Chiudi eventuali modali aperti prima dello scroll
+        const openModal = document.querySelector('.modal.show');
+        if (openModal) {
+          closeModalForScroll(openModal);
+        }
         
-        // Scrolla dopo un breve delay per permettere al DOM di stabilizzarsi
-        requestAnimationFrame(() => {
-          smoothScrollToTarget(target);
-        });
+        // Aspetta che il modal si chiuda, poi scrolla
+        setTimeout(() => {
+          scrollToTarget(target);
+        }, openModal ? 100 : 0);
       }
     });
   });
 }
 
-function closeAllModals() {
-  const openModals = document.querySelectorAll('.modal.show');
-  openModals.forEach(modal => {
-    modal.classList.remove('show');
-    modal.style.display = 'none';
-  });
-  document.body.style.overflow = '';
-}
-
-function smoothScrollToTarget(target) {
-  // Calcola l'offset in modo più affidabile
+function scrollToTarget(target) {
+  // Calcola dinamicamente l'altezza dell'header
   const header = document.querySelector('.header');
-  const headerHeight = header ? header.getBoundingClientRect().height : 0;
+  const headerHeight = header ? header.offsetHeight : 0;
   
-  // Padding extra per sicurezza
+  // Aggiunge 20px di padding extra per sicurezza
   const extraPadding = 20;
   
-  // Calcola la posizione target considerando anche eventuali trasformazioni CSS
+  // Calcola la posizione finale
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
   const offsetPosition = targetPosition - headerHeight - extraPadding;
   
-  // Usa una funzione di easing per scroll più smooth
-  smoothScrollTo(offsetPosition, 800);
-}
-
-function smoothScrollTo(targetPosition, duration = 800) {
-  const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition;
+  // Scrolla smooth
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
   
-  // Se la distanza è piccola, usa scroll nativo
-  if (Math.abs(distance) < 100) {
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth'
-    });
-    return;
-  }
-  
-  let startTime = null;
-  
-  function animation(currentTime) {
-    if (startTime === null) startTime = currentTime;
-    const timeElapsed = currentTime - startTime;
-    const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-    window.scrollTo(0, run);
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
+  // Focus management per accessibilità (Ridotto a 150ms per percezione di velocità maggiore)
+  setTimeout(() => {
+    target.focus();
+    if (document.activeElement !== target) {
+      target.setAttribute('tabindex', '-1');
+      target.focus();
     }
-  }
-  
-  requestAnimationFrame(animation);
+  }, 150); // Modificato da 500ms a 150ms per velocizzare la percezione di fine scroll
 }
 
-// Funzione di easing per transizione più naturale
-function easeInOutQuad(t, b, c, d) {
-  t /= d / 2;
-  if (t < 1) return c / 2 * t * t + b;
-  t--;
-  return -c / 2 * (t * (t - 2) - 1) + b;
+function closeModalForScroll(modal) {
+  modal.classList.remove('show');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
 }
 
 // ========================================
@@ -234,27 +196,13 @@ function initModals() {
         closeModal(modal);
       }
     });
-    
-    // Previeni lo scroll quando i modal sono aperti
-    modal.addEventListener('wheel', (e) => {
-      if (modal.classList.contains('show')) {
-        e.preventDefault();
-      }
-    }, { passive: false });
   });
   
   // Chiudi modal con ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       const openModal = document.querySelector('.modal.show');
-      if (openModal) {
-        closeModal(openModal);
-        // Ritorna il focus in modo sicuro
-        if (lastFocusedElement) {
-          lastFocusedElement.focus();
-          lastFocusedElement = null;
-        }
-      }
+      if (openModal) closeModal(openModal);
     }
   });
   
@@ -278,7 +226,7 @@ function initModals() {
   
   function closeModal(modal) {
     modal.classList.remove('show');
-    // Aspetta la fine dell'animazione prima di nascondere
+    // Aspetta la fine dell'animazione prima di nascondere (300ms, in linea con la transizione CSS)
     setTimeout(() => {
       modal.style.display = 'none';
     }, 300);
@@ -318,9 +266,14 @@ function initModals() {
     };
     
     modal.addEventListener('keydown', handleTabKey);
-    
-    // Rimuovi l'event listener quando il modal viene chiuso
-    modal.dataset.tabHandler = handleTabKey;
+  }
+  
+  // Funzione di utilità per screen reader
+  function announceToScreenReader(message) {
+    const announcer = document.getElementById('aria-announcer');
+    if (announcer) {
+      announcer.textContent = message;
+    }
   }
 }
 
@@ -337,11 +290,11 @@ function initCourseFilters() {
     btn.addEventListener('click', () => {
       // Rimuovi classe active da tutti i bottoni
       filterButtons.forEach(b => b.classList.remove('active'));
-      
       // Aggiungi classe active al bottone cliccato
       btn.classList.add('active');
       
       const filter = btn.dataset.filter;
+      let delay = 0;
       
       // Animazione smooth per i corsi
       courseCards.forEach((card, index) => {
@@ -349,16 +302,12 @@ function initCourseFilters() {
         const tool = card.dataset.tool;
         
         // Logica filtro migliorata
-        const shouldShow = 
-          filter === 'all' || 
-          age === filter || 
-          age.includes(filter) || 
-          tool === filter;
+        const shouldShow = filter === 'all' || age === filter || age.includes(filter) || tool === filter;
         
         if (shouldShow) {
           // Fade in con delay progressivo
           setTimeout(() => {
-            card.style.display = '';
+            card.style.display = 'block';
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             
@@ -367,284 +316,181 @@ function initCourseFilters() {
               card.style.opacity = '1';
               card.style.transform = 'translateY(0)';
             });
-          }, index * 50);
+          }, delay);
+          delay += 50; // Aumento il delay per l'effetto cascata
         } else {
           // Fade out
           card.style.opacity = '0';
           card.style.transform = 'translateY(-20px)';
+          
+          // Nascondi dopo la transizione
           setTimeout(() => {
             card.style.display = 'none';
-          }, 300);
+          }, 400); // 400ms per la transizione + un piccolo buffer
         }
       });
-      
-      // Annuncio per screen reader
-      setTimeout(() => {
-        announceFilterChange(filter, courseCards);
-      }, 500);
     });
   });
 }
 
 // ========================================
-// ACCESSIBILITÀ
+// ACCESSIBILITA'
 // ========================================
 function initAccessibility() {
-  // Aggiungi skip link per navigazione da tastiera
-  addSkipLink();
-  
-  // Migliora la navigazione da tastiera
-  enhanceKeyboardNavigation();
-  
-  // Gestisci gli annunci per screen reader
-  createLiveRegion();
-  
-  // Aggiungi ARIA labels dinamici
-  addDynamicAriaLabels();
-}
-
-function addSkipLink() {
-  const skipLink = document.createElement('a');
-  skipLink.href = '#home';
-  skipLink.className = 'skip-link sr-only';
-  skipLink.textContent = 'Vai al contenuto principale';
-  skipLink.style.cssText = `
-    position: fixed;
-    top: -40px;
-    left: 10px;
-    background: var(--primary);
-    color: white;
-    padding: 8px 16px;
-    text-decoration: none;
-    z-index: 10000;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: top 0.3s ease;
-  `;
-  
-  skipLink.addEventListener('focus', () => {
-    skipLink.style.top = '10px';
-  });
-  
-  skipLink.addEventListener('blur', () => {
-    skipLink.style.top = '-40px';
-  });
-  
-  document.body.insertBefore(skipLink, document.body.firstChild);
-}
-
-function enhanceKeyboardNavigation() {
-  // Aggiungi indicatori visivi per focus
-  const style = document.createElement('style');
-  style.textContent = `
-    *:focus-visible {
-      outline: 3px solid var(--primary) !important;
-      outline-offset: 2px !important;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
-function createLiveRegion() {
-  const liveRegion = document.createElement('div');
-  liveRegion.setAttribute('aria-live', 'polite');
-  liveRegion.setAttribute('aria-atomic', 'true');
-  liveRegion.className = 'sr-only';
-  liveRegion.id = 'live-region';
-  liveRegion.style.cssText = `
-    position: absolute;
-    left: -10000px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  `;
-  document.body.appendChild(liveRegion);
-}
-
-function announceToScreenReader(message) {
-  const liveRegion = document.getElementById('live-region');
-  if (!liveRegion) return;
-  
-  liveRegion.textContent = '';
-  setTimeout(() => {
-    liveRegion.textContent = message;
-  }, 100);
-}
-
-function announceFilterChange(filter, cards) {
-  const visibleCount = Array.from(cards).filter(
-    card => card.style.display !== 'none'
-  ).length;
-  
-  const filterName = filter === 'all' ? 'tutti i corsi' : filter;
-  announceToScreenReader(`Filtro applicato: ${filterName}. ${visibleCount} corsi visualizzati.`);
-}
-
-function addDynamicAriaLabels() {
-  // Aggiungi labels ai bottoni FAB
-  const fabButtons = document.querySelectorAll('.fab');
-  fabButtons.forEach(fab => {
-    if (!fab.getAttribute('aria-label')) {
-      const tooltip = fab.querySelector('.fab-tooltip');
-      if (tooltip) {
-        fab.setAttribute('aria-label', tooltip.textContent);
-      }
-    }
-  });
-}
-
-// ========================================
-// GESTIONE SCROLL HEADER MIGLIORATA
-// ========================================
-function initHeaderScroll() {
-  let lastScroll = 0;
-  const header = document.querySelector('.header');
-  const headerHeight = header ? header.offsetHeight : 0;
-  
-  if (!header) return;
-  
-  // Imposta subito il scroll padding per prevenire il "salto"
-  document.documentElement.style.scrollPaddingTop = `${headerHeight + 20}px`;
-  
-  const handleScroll = throttle(() => {
-    const currentScroll = window.pageYOffset;
-    
-    // Aggiungi/rimuovi shadow quando si scrolla
-    if (currentScroll > 10) {
-      header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-      header.style.boxShadow = 'var(--shadow)';
-    }
-    
-    lastScroll = currentScroll;
-  }, 10);
-  
-  window.addEventListener('scroll', handleScroll, { passive: true });
-}
-
-// ========================================
-// FAQ ACCORDION
-// ========================================
-function initFAQAccordion() {
-  const faqDetails = document.querySelectorAll('.faq details');
-  
-  faqDetails.forEach(detail => {
-    detail.addEventListener('toggle', function() {
-      if (this.open) {
-        // Chiudi altri accordion aperti (comportamento accordion singolo)
-        // Commentare se si vuole permettere apertura multipla
-        faqDetails.forEach(otherDetail => {
-          if (otherDetail !== this && otherDetail.open) {
-            otherDetail.open = false;
-          }
-        });
-        
-        // Annuncio per screen reader
-        const summary = this.querySelector('summary');
-        if (summary) {
-          announceToScreenReader(`Domanda espansa: ${summary.textContent}`);
-        }
-      }
+  // Aggiungi focus visibile sui contenitori interattivi
+  document.querySelectorAll('.tool-card, .course-card, .testimonial-card').forEach(card => {
+    card.addEventListener('focus', () => {
+      card.classList.add('focus-visible');
+    });
+    card.addEventListener('blur', () => {
+      card.classList.remove('focus-visible');
     });
   });
 }
 
 // ========================================
-// VALIDAZIONE FORM (se presente)
+// HEADER SCROLL E VISIBILITA'
 // ========================================
-function initFormValidation() {
-  const forms = document.querySelectorAll('form');
+function initHeaderScroll() {
+  const header = document.querySelector('.header');
+  if (!header) return;
   
-  forms.forEach(form => {
-    form.addEventListener('submit', (e) => {
-      const inputs = form.querySelectorAll('input[required], textarea[required]');
-      let isValid = true;
+  let lastScrollTop = 0;
+  
+  const handleScroll = () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (currentScroll > 100) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    // Nascondi/Mostra header su scroll down/up (non richiesto, ma utile per mobile UX)
+    /*
+    if (currentScroll > lastScrollTop && currentScroll > 200) {
+      // Scroll Down
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      // Scroll Up
+      header.style.transform = 'translateY(0)';
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    */
+  };
+  
+  window.addEventListener('scroll', throttle(handleScroll, 100));
+}
+
+// ========================================
+// ACCORDION FAQ
+// ========================================
+function initFAQAccordion() {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const button = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
       
-      inputs.forEach(input => {
-        if (!input.value.trim()) {
-          isValid = false;
-          input.classList.add('error');
-          input.setAttribute('aria-invalid', 'true');
-        } else {
-          input.classList.remove('error');
-          input.removeAttribute('aria-invalid');
+      // Chiudi tutti gli altri
+      document.querySelectorAll('.faq-item[data-expanded="true"]').forEach(openItem => {
+        if (openItem !== item) {
+          const openButton = openItem.querySelector('.faq-question');
+          const openAnswer = openItem.querySelector('.faq-answer');
+          
+          openItem.setAttribute('data-expanded', 'false');
+          openButton.setAttribute('aria-expanded', 'false');
+          openAnswer.style.maxHeight = null;
+          openAnswer.setAttribute('aria-hidden', 'true');
         }
       });
       
-      if (!isValid) {
-        e.preventDefault();
-        announceToScreenReader('Alcuni campi richiesti non sono stati compilati');
+      // Apri/Chiudi l'elemento corrente
+      if (isExpanded) {
+        item.setAttribute('data-expanded', 'false');
+        button.setAttribute('aria-expanded', 'false');
+        answer.style.maxHeight = null;
+        answer.setAttribute('aria-hidden', 'true');
+      } else {
+        item.setAttribute('data-expanded', 'true');
+        button.setAttribute('aria-expanded', 'true');
+        // Imposta l'altezza per l'animazione smooth
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        answer.setAttribute('aria-hidden', 'false');
       }
     });
   });
+}
+
+// ========================================
+// VALIDAZIONE FORM CONTATTI
+// ========================================
+function initFormValidation() {
+  const form = document.getElementById('contact-form');
+  const messageElement = document.getElementById('form-message');
+  
+  if (!form) return;
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Simple validation
+    const name = form.elements['name'].value.trim();
+    const email = form.elements['email'].value.trim();
+    const message = form.elements['message'].value.trim();
+    
+    if (name === '' || email === '' || message === '') {
+      showMessage('Per favore, compila tutti i campi richiesti.', 'error');
+      return;
+    }
+    
+    // Simulate form submission
+    console.log('Form data:', { name, email, message });
+    
+    // Simulazione di chiamata API di successo
+    setTimeout(() => {
+      showMessage('Messaggio inviato con successo! Ti risponderemo al più presto.', 'success');
+      form.reset();
+    }, 1000);
+    
+  });
+  
+  function showMessage(text, type) {
+    messageElement.textContent = text;
+    messageElement.classList.remove('success', 'error');
+    messageElement.classList.add(type);
+    
+    // Rimuovi il messaggio dopo un po'
+    setTimeout(() => {
+      messageElement.textContent = '';
+      messageElement.classList.remove(type);
+    }, 5000);
+  }
 }
 
 // ========================================
 // SCROLL TO TOP BUTTON
 // ========================================
 function initScrollToTop() {
-  // Crea bottone scroll to top
-  const scrollBtn = document.createElement('button');
-  scrollBtn.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  `;
-  scrollBtn.className = 'scroll-to-top';
-  scrollBtn.setAttribute('aria-label', 'Torna su');
-  scrollBtn.style.cssText = `
-    position: fixed;
-    bottom: 110px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--gray-800);
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-xl);
-    transition: var(--transition);
-    z-index: 999;
-    opacity: 0;
-    transform: scale(0.8);
-  `;
+  const button = document.querySelector('.scroll-to-top');
+  if (!button) return;
   
-  document.body.appendChild(scrollBtn);
-  
-  // Mostra/nascondi bottone
-  window.addEventListener('scroll', debounce(() => {
-    if (window.pageYOffset > 500) {
-      scrollBtn.style.display = 'flex';
-      requestAnimationFrame(() => {
-        scrollBtn.style.opacity = '1';
-        scrollBtn.style.transform = 'scale(1)';
-      });
+  const toggleVisibility = throttle(() => {
+    if (window.pageYOffset > 400) {
+      button.classList.add('visible');
     } else {
-      scrollBtn.style.opacity = '0';
-      scrollBtn.style.transform = 'scale(0.8)';
-      setTimeout(() => {
-        scrollBtn.style.display = 'none';
-      }, 300);
+      button.classList.remove('visible');
     }
-  }, 100), { passive: true });
+  }, 100);
   
-  // Click handler
-  scrollBtn.addEventListener('click', () => {
-    smoothScrollTo(0, 600);
-  });
+  window.addEventListener('scroll', toggleVisibility);
   
-  scrollBtn.addEventListener('mouseenter', () => {
-    scrollBtn.style.background = 'var(--primary)';
-    scrollBtn.style.transform = 'scale(1.1)';
-  });
-  
-  scrollBtn.addEventListener('mouseleave', () => {
-    scrollBtn.style.background = 'var(--gray-800)';
-    scrollBtn.style.transform = 'scale(1)';
+  button.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   });
 }
 
@@ -652,142 +498,24 @@ function initScrollToTop() {
 // ANIMAZIONI AGGIUNTIVE
 // ========================================
 function initAnimations() {
-  // Aggiungi animazioni hover alle card
-  const cards = document.querySelectorAll('.tool-card, .course-card, .contact-card');
-  
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-    });
-  });
-  
-  // Animazione contatore per numeri (se presenti)
-  animateCounters();
-}
-
-function animateCounters() {
-  const counters = document.querySelectorAll('[data-count]');
-  
-  counters.forEach(counter => {
-    const target = parseInt(counter.getAttribute('data-count'));
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    let current = 0;
-    
-    const updateCounter = () => {
-      current += increment;
-      if (current < target) {
-        counter.textContent = Math.floor(current);
-        requestAnimationFrame(updateCounter);
-      } else {
-        counter.textContent = target;
-      }
-    };
-    
-    // Inizia animazione quando l'elemento è visibile
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          updateCounter();
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-    
-    observer.observe(counter);
-  });
+  // Animazione per l'header logo (esempio di ridondanza che può essere rimosso se non ci sono animazioni specifiche)
+  const logo = document.querySelector('.logo-img');
+  if (logo) {
+    logo.classList.add('fade-in');
+  }
 }
 
 // ========================================
-// OTTIMIZZAZIONI PERFORMANCE
+// PERFORMANCE MONITORAGGIO (Solo per debug)
 // ========================================
-
-// Lazy loading per immagini (fallback per browser senza supporto nativo)
-if ('IntersectionObserver' in window) {
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-          img.classList.add('loaded');
-        }
-        observer.unobserve(img);
-      }
-    });
-  }, {
-    rootMargin: '50px'
-  });
-  
-  document.querySelectorAll('img[data-src]').forEach(img => {
-    imageObserver.observe(img);
-  });
-}
-
-// Preload delle immagini critiche
-function preloadCriticalImages() {
-  const criticalImages = [
-    'images/logo.png',
-    'images/chi-siamo-hero.png'
-  ];
-  
-  criticalImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    document.head.appendChild(link);
-  });
-}
-
-// Esegui preload
-preloadCriticalImages();
-
-// ========================================
-// GESTIONE ERRORI IMMAGINI
-// ========================================
-document.querySelectorAll('img').forEach(img => {
-  img.addEventListener('error', function() {
-    // Sostituisci con immagine placeholder
-    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%23f3f4f6" width="200" height="200"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%239ca3af" font-family="sans-serif"%3EImmagine non disponibile%3C/text%3E%3C/svg%3E';
-    this.alt = 'Immagine non disponibile';
-    console.warn(`Impossibile caricare l'immagine: ${this.dataset.originalSrc || 'unknown'}`);
-  });
-  
-  // Salva src originale
-  img.dataset.originalSrc = img.src;
-});
-
-// ========================================
-// DETECTION DISPOSITIVO E OTTIMIZZAZIONI
-// ========================================
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-if (isMobile || isTouch) {
-  document.body.classList.add('touch-device');
-  
-  // Disabilita hover effects su touch devices
-  const style = document.createElement('style');
-  style.textContent = `
-    .touch-device *:hover {
-      /* Mantieni solo le transizioni essenziali */
-    }
-  `;
-  document.head.appendChild(style);
-}
-
-// ========================================
-// PERFORMANCE MONITORING (Development)
-// ========================================
-if (window.performance && console.table) {
-  window.addEventListener('load', () => {
+// Funzione per monitorare i tempi di caricamento (Lasciato per utilità, ma potrebbe essere rimosso per massima pulizia)
+function logPerformanceMetrics() {
+  if (window.performance && window.performance.getEntriesByType) {
     setTimeout(() => {
-      const perfData = performance.getEntriesByType('navigation')[0];
-      const paintData = performance.getEntriesByType('paint');
-      
-      console.group('📊 Performance Metrics');
+      const perfData = window.performance.timing;
+      const paintData = window.performance.getEntriesByType('paint');
+
+      console.groupCollapsed('Performance Metrics');
       console.log('DOM Content Loaded:', Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart), 'ms');
       console.log('Load Complete:', Math.round(perfData.loadEventEnd - perfData.fetchStart), 'ms');
       
@@ -796,8 +524,10 @@ if (window.performance && console.table) {
       });
       console.groupEnd();
     }, 0);
-  });
+  }
 }
+
+document.addEventListener('load', logPerformanceMetrics); // Uso 'load' per assicurare che sia l'ultimo
 
 // ========================================
 // SERVICE WORKER REGISTRATION (opzionale)
@@ -813,18 +543,9 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
 // ========================================
 // LOG VERSIONE E CREDITS
 // ========================================
-console.log('%c🤖 Bit Corsi - Website Ottimizzato v2.1', 
+console.log('%c🤖 Bit Corsi - Website Ottimizzato v2.0', 
   'color: #FF6B35; font-size: 16px; font-weight: bold; padding: 8px;');
-console.log('%cPrestazioni ✓ | Accessibilità ✓ | UX ✓ | SEO ✓ | Scroll Fix ✓', 
+console.log('%cPrestazioni ✓ | Accessibilità ✓ | UX ✓ | SEO ✓', 
   'color: #10B981; font-size: 12px; padding: 4px;');
 console.log('%cDevelopment by Bit Team - 2025', 
-  'color: #6B7280; font-size: 10px; font-style: italic;');
-
-// ========================================
-// EXPORT PER TESTING (opzionale)
-// ========================================
-window.BitCorsi = {
-  smoothScrollToTarget,
-  announceToScreenReader,
-  version: '2.1.0'
-};
+  'color: #6B7280; font-size: 10px; padding: 4px;');
