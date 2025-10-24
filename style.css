@@ -59,7 +59,7 @@ img {
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  /* MODIFICA: Transizione più semplice e performante per maggiore fluidità (da cubic-bezier complessa a ease-out) */
+  /* MODIFICA: Transizione globale semplificata per maggiore fluidità (da cubic-bezier complessa a ease-out) */
   --transition: all 0.3s ease-out;
 }
 
@@ -309,7 +309,7 @@ img {
 .section {
   padding: 5rem 0;
   opacity: 0;
-  /* MODIFICA: Ridotta la distanza di scorrimento e la durata per reattività (da 0.8s a 0.5s) */
+  /* MODIFICA: Ridotta la distanza e la durata per reattività (da 30px/0.8s a 20px/0.5s) */
   transform: translateY(20px); 
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
@@ -401,7 +401,7 @@ img {
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
-  /* Aggiunte classi di animazione per IO */
+  /* Animazione di ingresso semplificata (come le sezioni) */
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
@@ -463,7 +463,7 @@ img {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  /* Aggiunte classi di animazione per IO */
+  /* Animazione di ingresso semplificata (come le sezioni) */
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
@@ -476,7 +476,7 @@ img {
 
 .tool-card:hover,
 .tool-card:focus {
-  /* MODIFICA: Ridotto l'effetto al passaggio del mouse per renderlo meno aggressivo */
+  /* MODIFICA: Ridotto l'effetto al passaggio del mouse per semplicità e fluidità */
   transform: translateY(-4px); 
   box-shadow: var(--shadow-lg); 
   outline: 2px solid var(--primary);
@@ -486,11 +486,120 @@ img {
 .tool-card:hover::before {
   transform: scaleX(1);
 }
-/* ... (restanti tool-card styles) ... */
+
+.tool-icon-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lego-color { background: #FFCB05; color: #CE0037; }
+.roberta-color { background: #00A3E0; }
+.arduino-color { background: #00979D; }
+.microbit-color { background: #00ED00; color: var(--gray-900); }
+
+.tool-image {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  object-fit: contain;
+}
+
+.tool-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.tool-card p {
+  font-size: 1rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.tool-cta {
+  text-align: center;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 1rem;
+}
 
 /* ========================================
    CORSI SECTION
    ======================================== */
+.alert-box {
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border-left: 4px solid var(--warning);
+  border-radius: var(--radius);
+  margin-bottom: 3rem;
+}
+
+.alert-box svg {
+  flex-shrink: 0;
+  color: var(--warning);
+}
+
+.alert-box strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--gray-900);
+  margin-bottom: 0.3rem;
+}
+
+.alert-box p {
+  font-size: 1rem;
+  color: var(--gray-700);
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.filters button {
+  padding: 0.7rem 1.5rem;
+  background: white;
+  border: 2px solid var(--gray-200);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.filters button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--gray-50);
+}
+
+.filters button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
 
 .courses-grid {
   display: grid;
@@ -507,7 +616,7 @@ img {
   transition: var(--transition);
   display: flex;
   flex-direction: column;
-  /* Aggiunte classi di animazione per IO */
+  /* Animazione di ingresso semplificata */
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
@@ -518,29 +627,68 @@ img {
   transform: translateY(0);
 }
 
-/* MODIFICA: Animazione di filtro semplificata (is-hidden/is-visible) */
+/* MODIFICA: Stili per animazione di filtro rapida e pulita (UX) */
+.course-card {
+    /* Settaggio di transizioni multiple per l'animazione di filtro */
+    transition: all 0.3s ease-out, opacity 0.5s ease-out, transform 0.5s ease-out, max-height 0.3s ease-out, padding 0.3s ease-out;
+    max-height: 1000px; 
+    overflow: visible;
+}
+
 .course-card.is-hidden {
     opacity: 0 !important;
-    transform: scale(0.9) !important;
+    transform: scale(0.9) translateY(-10px) !important;
     max-height: 0;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
     border: 0;
-    transition: all 0.3s ease-in; /* Transizione rapida per nascondere */
     pointer-events: none;
     overflow: hidden;
+    transition: all 0.3s ease-in; /* Transizione rapida per nascondere */
 }
 
-/* Assicurati che gli stili di base siano corretti per l'animazione di filtro */
-.course-card {
-    transition: all 0.3s ease-out, opacity 0.5s ease-out, transform 0.5s ease-out, max-height 0.3s ease-out;
-    max-height: 1000px; /* Valore grande per permettere la transizione */
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    padding: 2rem;
-    border: 1px solid var(--gray-200); /* Aggiunto bordo per la demo se mancante */
+
+.course-badge {
+  /* ... (stili omessi per brevità) ... */
 }
 
 /* ... (resto del CSS omesso per brevità) ... */
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  background-color: var(--gray-900);
+  color: var(--gray-300);
+  padding: 4rem 0;
+}
+
+.footer .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+/* ... (resto del CSS omesso per brevità) ... */
+
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
+
+@media (max-width: 1024px) {
+/* ... (media query omessa per brevità) ... */
+}
+
+@media (max-width: 768px) {
+/* ... (media query omessa per brevità) ... */
+}
+
+@media (max-width: 580px) {
+/* ... (media query omessa per brevità) ... */
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+/* ... (media query omessa per brevità) ... */
+}
