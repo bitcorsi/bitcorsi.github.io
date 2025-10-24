@@ -78,23 +78,22 @@ function scrollToTarget(target) {
   const header = document.querySelector('.header');
   const headerHeight = header ? header.offsetHeight : 0;
   const extraPadding = 20;
-  
+
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
   const offsetPosition = targetPosition - headerHeight - extraPadding;
-  
-  // Usa scrollIntoView per transizioni più fluide e native
-  target.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
+
+  // Usa SOLO window.scrollTo (niente scrollIntoView)
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
   });
 
-  // Correggi offset dopo lo scroll
+  // Focus per accessibilità
   setTimeout(() => {
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'auto'
-    });
+    if (target.tabIndex < 0) target.tabIndex = -1;
+    target.focus({ preventScroll: true });
   }, 800);
+}
 
   // Focus per accessibilità
   setTimeout(() => {
