@@ -1160,9 +1160,9 @@ img {
 .modal-content {
   background: white;
   border-radius: var(--radius-lg);
-  padding: 3rem;
-  max-width: 600px;
-  width: 100%;
+  padding: 6rem;
+  max-width: 650px;
+  width: 90%;
   position: relative;
   box-shadow: var(--shadow-xl);
   opacity: 0;
