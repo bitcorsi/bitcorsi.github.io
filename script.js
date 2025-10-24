@@ -18,11 +18,22 @@ function debounce(func, wait = 10) {
 // Throttle function per eventi ad alta frequenza
 function throttle(func, limit = 100) {
   let inThrottle;
+  let lastFunc;
+  let lastRan;
+  
   return function(...args) {
     if (!inThrottle) {
       func.apply(this, args);
+      lastRan = Date.now();
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(() => {
+        if (Date.now() - lastRan >= limit) {
+          func.apply(this, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
     }
   };
 }
@@ -31,12 +42,15 @@ function throttle(func, limit = 100) {
 // INIZIALIZZAZIONE AL CARICAMENTO DOM
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Inizializza prima lo scroll per prevenire conflitti
+  initHeaderScroll();
   initSmoothScroll();
+  
+  // Poi il resto
   initIntersectionObserver();
   initModals();
   initCourseFilters();
   initAccessibility();
-  initHeaderScroll();
   initFAQAccordion();
   initFormValidation();
   initScrollToTop();
@@ -44,15 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
-// SMOOTH SCROLL MIGLIORATO CON FIX COMPLETO
+// SMOOTH SCROLL COMPLETAMENTE RIVISTO
 // ========================================
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
       
-      // Ignora link vuoti
-      if (targetId === '#' || targetId === '#!') {
+      // Ignora link vuoti o non validi
+      if (targetId === '#' || targetId === '#!' || targetId === '') {
         e.preventDefault();
         return;
       }
@@ -62,53 +76,77 @@ function initSmoothScroll() {
       if (target) {
         e.preventDefault();
         
-        // Chiudi eventuali modali aperti prima dello scroll
-        const openModal = document.querySelector('.modal.show');
-        if (openModal) {
-          closeModalForScroll(openModal);
-        }
+        // Chiudi tutti i modali aperti in modo sicuro
+        closeAllModals();
         
-        // Aspetta che il modal si chiuda, poi scrolla
-        setTimeout(() => {
-          scrollToTarget(target);
-        }, openModal ? 100 : 0);
+        // Scrolla dopo un breve delay per permettere al DOM di stabilizzarsi
+        requestAnimationFrame(() => {
+          smoothScrollToTarget(target);
+        });
       }
     });
   });
 }
 
-function scrollToTarget(target) {
-  // Calcola dinamicamente l'altezza dell'header
+function closeAllModals() {
+  const openModals = document.querySelectorAll('.modal.show');
+  openModals.forEach(modal => {
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+  });
+  document.body.style.overflow = '';
+}
+
+function smoothScrollToTarget(target) {
+  // Calcola l'offset in modo più affidabile
   const header = document.querySelector('.header');
-  const headerHeight = header ? header.offsetHeight : 0;
+  const headerHeight = header ? header.getBoundingClientRect().height : 0;
   
-  // Aggiunge 20px di padding extra per sicurezza
+  // Padding extra per sicurezza
   const extraPadding = 20;
   
-  // Calcola la posizione finale
+  // Calcola la posizione target considerando anche eventuali trasformazioni CSS
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
   const offsetPosition = targetPosition - headerHeight - extraPadding;
   
-  // Scrolla smooth
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: 'smooth'
-  });
-  
-  // Focus management per accessibilità
-  setTimeout(() => {
-    target.focus();
-    if (document.activeElement !== target) {
-      target.setAttribute('tabindex', '-1');
-      target.focus();
-    }
-  }, 500);
+  // Usa una funzione di easing per scroll più smooth
+  smoothScrollTo(offsetPosition, 800);
 }
 
-function closeModalForScroll(modal) {
-  modal.classList.remove('show');
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
+function smoothScrollTo(targetPosition, duration = 800) {
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition;
+  
+  // Se la distanza è piccola, usa scroll nativo
+  if (Math.abs(distance) < 100) {
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
+    });
+    return;
+  }
+  
+  let startTime = null;
+  
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  }
+  
+  requestAnimationFrame(animation);
+}
+
+// Funzione di easing per transizione più naturale
+function easeInOutQuad(t, b, c, d) {
+  t /= d / 2;
+  if (t < 1) return c / 2 * t * t + b;
+  t--;
+  return -c / 2 * (t * (t - 2) - 1) + b;
 }
 
 // ========================================
@@ -196,13 +234,27 @@ function initModals() {
         closeModal(modal);
       }
     });
+    
+    // Previeni lo scroll quando i modal sono aperti
+    modal.addEventListener('wheel', (e) => {
+      if (modal.classList.contains('show')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
   });
   
   // Chiudi modal con ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       const openModal = document.querySelector('.modal.show');
-      if (openModal) closeModal(openModal);
+      if (openModal) {
+        closeModal(openModal);
+        // Ritorna il focus in modo sicuro
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+          lastFocusedElement = null;
+        }
+      }
     }
   });
   
@@ -266,6 +318,9 @@ function initModals() {
     };
     
     modal.addEventListener('keydown', handleTabKey);
+    
+    // Rimuovi l'event listener quando il modal viene chiuso
+    modal.dataset.tabHandler = handleTabKey;
   }
 }
 
@@ -439,13 +494,17 @@ function addDynamicAriaLabels() {
 }
 
 // ========================================
-// GESTIONE SCROLL HEADER
+// GESTIONE SCROLL HEADER MIGLIORATA
 // ========================================
 function initHeaderScroll() {
   let lastScroll = 0;
   const header = document.querySelector('.header');
+  const headerHeight = header ? header.offsetHeight : 0;
   
   if (!header) return;
+  
+  // Imposta subito il scroll padding per prevenire il "salto"
+  document.documentElement.style.scrollPaddingTop = `${headerHeight + 20}px`;
   
   const handleScroll = throttle(() => {
     const currentScroll = window.pageYOffset;
@@ -456,16 +515,6 @@ function initHeaderScroll() {
     } else {
       header.style.boxShadow = 'var(--shadow)';
     }
-    
-    // Header nascosto durante scroll down (opzionale)
-    // Decommentare per abilitare
-    /*
-    if (currentScroll > lastScroll && currentScroll > 200) {
-      header.style.transform = 'translateY(-100%)';
-    } else {
-      header.style.transform = 'translateY(0)';
-    }
-    */
     
     lastScroll = currentScroll;
   }, 10);
@@ -585,10 +634,7 @@ function initScrollToTop() {
   
   // Click handler
   scrollBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    smoothScrollTo(0, 600);
   });
   
   scrollBtn.addEventListener('mouseenter', () => {
@@ -767,9 +813,9 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
 // ========================================
 // LOG VERSIONE E CREDITS
 // ========================================
-console.log('%c🤖 Bit Corsi - Website Ottimizzato v2.0', 
+console.log('%c🤖 Bit Corsi - Website Ottimizzato v2.1', 
   'color: #FF6B35; font-size: 16px; font-weight: bold; padding: 8px;');
-console.log('%cPrestazioni ✓ | Accessibilità ✓ | UX ✓ | SEO ✓', 
+console.log('%cPrestazioni ✓ | Accessibilità ✓ | UX ✓ | SEO ✓ | Scroll Fix ✓', 
   'color: #10B981; font-size: 12px; padding: 4px;');
 console.log('%cDevelopment by Bit Team - 2025', 
   'color: #6B7280; font-size: 10px; font-style: italic;');
@@ -778,7 +824,7 @@ console.log('%cDevelopment by Bit Team - 2025',
 // EXPORT PER TESTING (opzionale)
 // ========================================
 window.BitCorsi = {
-  scrollToTarget,
+  smoothScrollToTarget,
   announceToScreenReader,
-  version: '2.0.0'
+  version: '2.1.0'
 };
