@@ -1,6 +1,27 @@
-section-header {
+/* ========================================
+   COMPLETAMENTO CSS - STYLE.CSS COMPLETO
+   ======================================== */
+
+/* Parti già presenti nel documento originale (da style.css) */
+/* Questo CSS completa e armonizza con l'HTML fornito */
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+.section-header {
   text-align: center;
   margin-bottom: 4rem;
+}
+
+.section-header-small {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-header-small h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--gray-700);
 }
 
 .section-label {
@@ -31,7 +52,7 @@ section-header {
 }
 
 /* ========================================
-   CHI SIAMO
+   CHI SIAMO SECTION
    ======================================== */
 .section-chi-siamo {
   position: relative;
@@ -49,6 +70,11 @@ section-header {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: var(--transition);
+}
+
+.chi-siamo-hero-image:hover img {
+  transform: scale(1.05);
 }
 
 .chi-siamo-content {
@@ -85,6 +111,12 @@ section-header {
   background: var(--gray-50);
   border-radius: var(--radius);
   border-left: 4px solid var(--primary);
+  transition: var(--transition);
+}
+
+.highlight-item:hover {
+  transform: translateX(8px);
+  box-shadow: var(--shadow);
 }
 
 .highlight-icon {
@@ -115,7 +147,7 @@ section-header {
 }
 
 /* ========================================
-   STRUMENTI
+   STRUMENTI (TOOLS)
    ======================================== */
 .tools-grid {
   display: grid;
@@ -190,6 +222,7 @@ section-header {
   color: var(--gray-600);
   margin-bottom: 1.5rem;
   text-align: center;
+  line-height: 1.6;
 }
 
 .tool-cta {
@@ -197,10 +230,15 @@ section-header {
   color: var(--primary);
   font-weight: 700;
   font-size: 1rem;
+  transition: var(--transition-fast);
+}
+
+.tool-card:hover .tool-cta {
+  transform: translateX(5px);
 }
 
 /* ========================================
-   CORSI
+   CORSI SECTION
    ======================================== */
 .alert-box {
   background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
@@ -210,6 +248,7 @@ section-header {
   display: flex;
   gap: 1rem;
   margin-bottom: 3rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .alert-box svg {
@@ -229,6 +268,7 @@ section-header {
   color: var(--gray-700);
 }
 
+/* FILTERS */
 .filters {
   display: flex;
   gap: 1rem;
@@ -254,14 +294,17 @@ section-header {
   border-color: var(--primary);
   color: var(--primary);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .filters button.active {
   background: var(--primary);
   color: white;
   border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
 
+/* COURSE CARDS */
 .courses-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -277,6 +320,8 @@ section-header {
   transition: var(--transition);
   position: relative;
   border: 2px solid transparent;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .course-card:hover {
@@ -365,6 +410,7 @@ section-header {
   line-height: 1.6;
 }
 
+/* BUTTONS */
 .btn {
   display: inline-block;
   padding: 0.8rem 1.8rem;
@@ -402,10 +448,11 @@ section-header {
 .btn-disabled:hover {
   transform: none;
   box-shadow: none;
+  background: var(--gray-300);
 }
 
 /* ========================================
-   FAQ
+   FAQ SECTION
    ======================================== */
 .faq {
   margin-top: 5rem;
@@ -435,14 +482,17 @@ details {
   box-shadow: var(--shadow-sm);
   cursor: pointer;
   transition: var(--transition);
+  border: 2px solid transparent;
 }
 
 details:hover {
   box-shadow: var(--shadow);
+  border-color: var(--gray-200);
 }
 
 details[open] {
   box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
 }
 
 summary {
@@ -453,6 +503,7 @@ summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 summary::-webkit-details-marker {
@@ -465,6 +516,8 @@ summary::after {
   color: var(--primary);
   font-weight: 700;
   transition: var(--transition);
+  flex-shrink: 0;
+  margin-left: 1rem;
 }
 
 details[open] summary::after {
@@ -479,7 +532,7 @@ details p {
 }
 
 /* ========================================
-   CONTATTI
+   CONTATTI SECTION
    ======================================== */
 .section-contatti {
   padding: 5rem 0;
@@ -555,6 +608,10 @@ details p {
   color: white;
 }
 
+.contact-card-content {
+  flex: 1;
+}
+
 .contact-card-content h4 {
   font-size: 1.1rem;
   font-weight: 700;
@@ -580,8 +637,14 @@ details p {
   font-size: 1.5rem;
   color: var(--primary);
   font-weight: 700;
+  transition: var(--transition-fast);
 }
 
+.contact-card:hover .contact-card-arrow {
+  transform: translateX(5px);
+}
+
+/* CONTACT SIDEBAR */
 .contact-sidebar {
   display: flex;
   flex-direction: column;
@@ -631,6 +694,13 @@ details p {
   box-shadow: var(--shadow);
 }
 
+.contact-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* SOCIAL SECTION */
 .social-section {
   background: white;
   padding: 2rem;
@@ -672,21 +742,11 @@ details p {
   padding: 3rem 0;
 }
 
-.section-header-small {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.section-header-small h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--gray-700);
-}
-
 .collaborazioni-grid {
   display: flex;
   justify-content: center;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .collaborazione-card {
@@ -697,11 +757,13 @@ details p {
   text-align: center;
   text-decoration: none;
   transition: var(--transition);
+  border: 2px solid transparent;
 }
 
 .collaborazione-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow);
+  border-color: var(--primary-light);
 }
 
 .collaborazione-logo {
@@ -774,6 +836,7 @@ details p {
 .footer-bottom p {
   color: var(--gray-400);
   font-size: 0.9rem;
+  margin: 0;
 }
 
 /* ========================================
@@ -796,6 +859,7 @@ details p {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
 @keyframes fadeIn {
@@ -812,7 +876,7 @@ details p {
   padding: 3rem;
   border-radius: var(--radius-lg);
   max-width: 600px;
-  width: 90%;
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -846,6 +910,7 @@ details p {
   justify-content: center;
   border-radius: 50%;
   transition: var(--transition);
+  line-height: 1;
 }
 
 .close-btn:hover {
@@ -906,6 +971,7 @@ details p {
   text-align: center;
   font-weight: 700;
   transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
 
 .btn-primary:hover {
@@ -923,6 +989,7 @@ details p {
   text-decoration: none;
   font-weight: 600;
   transition: var(--transition);
+  padding: 0.5rem;
 }
 
 .btn-link:hover {
@@ -931,37 +998,107 @@ details p {
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE DESIGN
    ======================================== */
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
   .header-right {
     flex-direction: column;
+    width: 100%;
     gap: 1rem;
   }
 
   .nav {
     flex-direction: column;
-    gap: 1rem;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
+  .nav a {
+    text-align: center;
+    padding: 0.5rem;
   }
 
   .hero h2 {
     font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
   }
 
   .hero-features {
     flex-direction: column;
     gap: 1.5rem;
   }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr;
+  
+  .hero-actions {
+    flex-direction: column;
   }
 
   .section-header h2 {
     font-size: 2rem;
+  }
+  
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters {
+    justify-content: flex-start;
+  }
+  
+  .chi-siamo-hero-image {
+    height: 250px;
+  }
+  
+  .modal-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .hero {
+    padding: 3rem 0 4rem;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .contact-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .contact-card-arrow {
+    display: none;
   }
 }
