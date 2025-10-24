@@ -1165,7 +1165,7 @@ img {
   /* FIX 1B: Ridotto il padding da 6rem a 3rem (più corto) */
   padding: 3rem; 
   /* FIX 2: Aumentata la larghezza massima (meno sottile) */
-  max-width: 750px;
+  max-width: 600px;
   min-width: 400px; /* Aggiunto per le risoluzioni intermedie */
   width: 90%;
   position: relative;
