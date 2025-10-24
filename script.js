@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initFAQAccordion();
   initFormValidation();
-  initScrollToTop();
   initAnimations();
 });
 
@@ -481,76 +480,6 @@ function initFormValidation() {
     });
   });
 }
-
-// ========================================
-// SCROLL TO TOP BUTTON
-// ========================================
-function initScrollToTop() {
-  const scrollBtn = document.createElement('button');
-  scrollBtn.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  `;
-  scrollBtn.className = 'scroll-to-top';
-  scrollBtn.setAttribute('aria-label', 'Torna su');
-  scrollBtn.style.cssText = `
-    position: fixed;
-    bottom: 110px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--gray-800);
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-xl);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 999;
-    opacity: 0;
-    transform: scale(0.8);
-  `;
-  
-  document.body.appendChild(scrollBtn);
-  
-  window.addEventListener('scroll', debounce(() => {
-    if (window.pageYOffset > 500) {
-      scrollBtn.style.display = 'flex';
-      requestAnimationFrame(() => {
-        scrollBtn.style.opacity = '1';
-        scrollBtn.style.transform = 'scale(1)';
-      });
-    } else {
-      scrollBtn.style.opacity = '0';
-      scrollBtn.style.transform = 'scale(0.8)';
-      setTimeout(() => {
-        scrollBtn.style.display = 'none';
-      }, 300);
-    }
-  }, 150), { passive: true });
-  
-  scrollBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-  
-  scrollBtn.addEventListener('mouseenter', () => {
-    scrollBtn.style.background = 'var(--primary)';
-    scrollBtn.style.transform = 'scale(1.1)';
-  });
-  
-  scrollBtn.addEventListener('mouseleave', () => {
-    scrollBtn.style.background = 'var(--gray-800)';
-    scrollBtn.style.transform = 'scale(1)';
-  });
-}
-
 // ========================================
 // ANIMAZIONI AGGIUNTIVE
 // ========================================
