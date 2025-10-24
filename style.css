@@ -1435,6 +1435,35 @@ img {
   gap: 1rem;
   padding: 0.8rem 0;
 }
+/* ... (codice precedente) ... */
+
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
+
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* MODIFICA PER CENTRARE ELEMENTI HERO SU MOBILE */
+  .hero-features {
+    justify-content: center; /* Assicura che il contenitore sia centrato */
+    gap: 2rem; /* Spazio ridotto per mobile */
+  }
+  
+  .hero-feature {
+    /* Rimuove l'allineamento start e forza il centro per il testo */
+    align-items: center; 
+    flex-direction: column; /* Impila icona sopra il testo */
+    text-align: center; /* Allinea il testo all'interno del blocco */
+  }
+  
+  .hero-feature svg {
+    margin-bottom: 0.5rem; /* Aggiunge spazio sotto l'icona */
+ 
+}
 
 .logo-container {
   justify-content: center; /* logo centrato */
