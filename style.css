@@ -454,19 +454,6 @@ img {
   overflow: hidden;
 }
 
-.tool-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-light));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: var(--transition);
-}
-
 .tool-card:hover,
 .tool-card:focus {
   transform: translateY(-8px);
