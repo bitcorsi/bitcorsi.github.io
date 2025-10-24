@@ -1452,7 +1452,6 @@ img {
   }
   
   .hero-feature {
-    /* Rimuove l'allineamento start e forza il centro per il testo */
     align-items: center; 
     flex-direction: column; /* Impila icona sopra il testo */
     text-align: center; /* Allinea il testo all'interno del blocco */
@@ -1483,7 +1482,7 @@ img {
 }
 
 .nav a {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   white-space: nowrap;
 }
 
