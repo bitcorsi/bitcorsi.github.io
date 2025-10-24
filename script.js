@@ -93,7 +93,7 @@ function scrollToTarget(target) {
     if (target.tabIndex < 0) target.tabIndex = -1;
     target.focus({ preventScroll: true });
   }, 800);
-}
+
 
   // Focus per accessibilità
   setTimeout(() => {
