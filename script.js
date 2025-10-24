@@ -3,7 +3,7 @@
 // ========================================
 
 // Debounce function per ottimizzare eventi scroll/resize
-function debounce(func, wait = 10) {
+function debounce(func, wait = 16) {
   let timeout;
   return function executedFunction(...args) {
     const later = () => {
@@ -51,7 +51,6 @@ function initSmoothScroll() {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
       
-      // Ignora link vuoti
       if (targetId === '#' || targetId === '#!') {
         e.preventDefault();
         return;
@@ -62,13 +61,11 @@ function initSmoothScroll() {
       if (target) {
         e.preventDefault();
         
-        // Chiudi eventuali modali aperti prima dello scroll
         const openModal = document.querySelector('.modal.show');
         if (openModal) {
           closeModalForScroll(openModal);
         }
         
-        // Aspetta che il modal si chiuda, poi scrolla
         setTimeout(() => {
           scrollToTarget(target);
         }, openModal ? 100 : 0);
@@ -78,31 +75,35 @@ function initSmoothScroll() {
 }
 
 function scrollToTarget(target) {
-  // Calcola dinamicamente l'altezza dell'header
   const header = document.querySelector('.header');
   const headerHeight = header ? header.offsetHeight : 0;
-  
-  // Aggiunge 20px di padding extra per sicurezza
   const extraPadding = 20;
   
-  // Calcola la posizione finale
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
   const offsetPosition = targetPosition - headerHeight - extraPadding;
   
-  // Scrolla smooth
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: 'smooth'
+  // Usa scrollIntoView per transizioni più fluide e native
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
   });
-  
-  // Focus management per accessibilità
+
+  // Correggi offset dopo lo scroll
+  setTimeout(() => {
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'auto'
+    });
+  }, 800);
+
+  // Focus per accessibilità
   setTimeout(() => {
     target.focus();
     if (document.activeElement !== target) {
       target.setAttribute('tabindex', '-1');
       target.focus();
     }
-  }, 500);
+  }, 1000);
 }
 
 function closeModalForScroll(modal) {
@@ -112,50 +113,45 @@ function closeModalForScroll(modal) {
 }
 
 // ========================================
-// INTERSECTION OBSERVER PER ANIMAZIONI
+// INTERSECTION OBSERVER PER ANIMAZIONI FLUIDE
 // ========================================
 function initIntersectionObserver() {
-  // Configurazione observer con migliori performance
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.05,
+    rootMargin: '0px 0px -80px 0px' // margine più ampio per anticipare le animazioni
   };
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animate-in');
-        // Ottimizzazione: smetti di osservare dopo l'animazione
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
   
-  // Osserva tutte le sezioni
+  // Osserva sezioni principali
   document.querySelectorAll('.section').forEach(section => {
     observer.observe(section);
   });
   
-  // Osserva anche le card per animazioni progressive
+  // Osserva card con delay progressivo
   document.querySelectorAll('.tool-card, .course-card, .highlight-item').forEach((card, index) => {
-    // Aggiungi delay progressivo per effetto cascata
-    card.style.transitionDelay = `${index * 0.1}s`;
+    card.style.transitionDelay = `${index * 0.05}s`;
     observer.observe(card);
   });
 }
 
 // ========================================
-// GESTIONE MODALI MIGLIORATA
+// GESTIONE MODALI
 // ========================================
 function initModals() {
   const modals = document.querySelectorAll('.modal');
   const body = document.body;
   let lastFocusedElement = null;
   
-  // Apri modal al click sulla card
   document.querySelectorAll('.tool-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      // Previeni apertura se si clicca su un link interno
       if (e.target.tagName === 'A') return;
       
       const modalId = card.getAttribute('data-popup');
@@ -167,7 +163,6 @@ function initModals() {
       }
     });
     
-    // Accessibilità: apri con Enter o Space
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -181,7 +176,6 @@ function initModals() {
     });
   });
   
-  // Chiudi modal con click sul bottone close
   document.querySelectorAll('.close-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const modal = e.target.closest('.modal');
@@ -189,7 +183,6 @@ function initModals() {
     });
   });
   
-  // Chiudi modal con click sullo sfondo
   modals.forEach(modal => {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
@@ -198,7 +191,6 @@ function initModals() {
     });
   });
   
-  // Chiudi modal con ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       const openModal = document.querySelector('.modal.show');
@@ -210,32 +202,24 @@ function initModals() {
     modal.classList.add('show');
     modal.style.display = 'flex';
     body.style.overflow = 'hidden';
-    
-    // Annuncio per screen reader
     announceToScreenReader('Finestra modale aperta');
     
-    // Focus sul primo elemento focusabile nel modal
     const firstFocusable = modal.querySelector('.close-btn');
     if (firstFocusable) {
       setTimeout(() => firstFocusable.focus(), 100);
     }
     
-    // Trap focus nel modal
     trapFocus(modal);
   }
   
   function closeModal(modal) {
     modal.classList.remove('show');
-    // Aspetta la fine dell'animazione prima di nascondere
     setTimeout(() => {
       modal.style.display = 'none';
     }, 300);
     body.style.overflow = '';
-    
-    // Annuncio per screen reader
     announceToScreenReader('Finestra modale chiusa');
     
-    // Ritorna il focus all'elemento che ha aperto il modal
     if (lastFocusedElement) {
       lastFocusedElement.focus();
       lastFocusedElement = null;
@@ -270,7 +254,7 @@ function initModals() {
 }
 
 // ========================================
-// FILTRI CORSI OTTIMIZZATI
+// FILTRI CORSI
 // ========================================
 function initCourseFilters() {
   const filterButtons = document.querySelectorAll('.filters button');
@@ -280,20 +264,15 @@ function initCourseFilters() {
   
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Rimuovi classe active da tutti i bottoni
       filterButtons.forEach(b => b.classList.remove('active'));
-      
-      // Aggiungi classe active al bottone cliccato
       btn.classList.add('active');
       
       const filter = btn.dataset.filter;
       
-      // Animazione smooth per i corsi
       courseCards.forEach((card, index) => {
         const age = card.dataset.age;
         const tool = card.dataset.tool;
         
-        // Logica filtro migliorata
         const shouldShow = 
           filter === 'all' || 
           age === filter || 
@@ -301,29 +280,27 @@ function initCourseFilters() {
           tool === filter;
         
         if (shouldShow) {
-          // Fade in con delay progressivo
           setTimeout(() => {
             card.style.display = '';
             card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
+            card.style.transform = 'translateY(15px)';
             
             requestAnimationFrame(() => {
-              card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+              card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
               card.style.opacity = '1';
               card.style.transform = 'translateY(0)';
             });
-          }, index * 50);
+          }, index * 40);
         } else {
-          // Fade out
+          card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
           card.style.opacity = '0';
-          card.style.transform = 'translateY(-20px)';
+          card.style.transform = 'translateY(-10px)';
           setTimeout(() => {
             card.style.display = 'none';
           }, 300);
         }
       });
       
-      // Annuncio per screen reader
       setTimeout(() => {
         announceFilterChange(filter, courseCards);
       }, 500);
@@ -335,16 +312,9 @@ function initCourseFilters() {
 // ACCESSIBILITÀ
 // ========================================
 function initAccessibility() {
-  // Aggiungi skip link per navigazione da tastiera
   addSkipLink();
-  
-  // Migliora la navigazione da tastiera
   enhanceKeyboardNavigation();
-  
-  // Gestisci gli annunci per screen reader
   createLiveRegion();
-  
-  // Aggiungi ARIA labels dinamici
   addDynamicAriaLabels();
 }
 
@@ -379,7 +349,6 @@ function addSkipLink() {
 }
 
 function enhanceKeyboardNavigation() {
-  // Aggiungi indicatori visivi per focus
   const style = document.createElement('style');
   style.textContent = `
     *:focus-visible {
@@ -426,7 +395,6 @@ function announceFilterChange(filter, cards) {
 }
 
 function addDynamicAriaLabels() {
-  // Aggiungi labels ai bottoni FAB
   const fabButtons = document.querySelectorAll('.fab');
   fabButtons.forEach(fab => {
     if (!fab.getAttribute('aria-label')) {
@@ -450,25 +418,14 @@ function initHeaderScroll() {
   const handleScroll = throttle(() => {
     const currentScroll = window.pageYOffset;
     
-    // Aggiungi/rimuovi shadow quando si scrolla
     if (currentScroll > 10) {
       header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
     } else {
       header.style.boxShadow = 'var(--shadow)';
     }
     
-    // Header nascosto durante scroll down (opzionale)
-    // Decommentare per abilitare
-    /*
-    if (currentScroll > lastScroll && currentScroll > 200) {
-      header.style.transform = 'translateY(-100%)';
-    } else {
-      header.style.transform = 'translateY(0)';
-    }
-    */
-    
     lastScroll = currentScroll;
-  }, 10);
+  }, 16);
   
   window.addEventListener('scroll', handleScroll, { passive: true });
 }
@@ -482,15 +439,11 @@ function initFAQAccordion() {
   faqDetails.forEach(detail => {
     detail.addEventListener('toggle', function() {
       if (this.open) {
-        // Chiudi altri accordion aperti (comportamento accordion singolo)
-        // Commentare se si vuole permettere apertura multipla
         faqDetails.forEach(otherDetail => {
           if (otherDetail !== this && otherDetail.open) {
             otherDetail.open = false;
           }
         });
-        
-        // Annuncio per screen reader
         const summary = this.querySelector('summary');
         if (summary) {
           announceToScreenReader(`Domanda espansa: ${summary.textContent}`);
@@ -501,7 +454,7 @@ function initFAQAccordion() {
 }
 
 // ========================================
-// VALIDAZIONE FORM (se presente)
+// VALIDAZIONE FORM
 // ========================================
 function initFormValidation() {
   const forms = document.querySelectorAll('form');
@@ -534,7 +487,6 @@ function initFormValidation() {
 // SCROLL TO TOP BUTTON
 // ========================================
 function initScrollToTop() {
-  // Crea bottone scroll to top
   const scrollBtn = document.createElement('button');
   scrollBtn.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -558,7 +510,7 @@ function initScrollToTop() {
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow-xl);
-    transition: var(--transition);
+    transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 999;
     opacity: 0;
     transform: scale(0.8);
@@ -566,7 +518,6 @@ function initScrollToTop() {
   
   document.body.appendChild(scrollBtn);
   
-  // Mostra/nascondi bottone
   window.addEventListener('scroll', debounce(() => {
     if (window.pageYOffset > 500) {
       scrollBtn.style.display = 'flex';
@@ -581,9 +532,8 @@ function initScrollToTop() {
         scrollBtn.style.display = 'none';
       }, 300);
     }
-  }, 100), { passive: true });
+  }, 150), { passive: true });
   
-  // Click handler
   scrollBtn.addEventListener('click', () => {
     window.scrollTo({
       top: 0,
@@ -606,16 +556,14 @@ function initScrollToTop() {
 // ANIMAZIONI AGGIUNTIVE
 // ========================================
 function initAnimations() {
-  // Aggiungi animazioni hover alle card
   const cards = document.querySelectorAll('.tool-card, .course-card, .contact-card');
   
   cards.forEach(card => {
     card.addEventListener('mouseenter', function() {
-      this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+      this.style.transition = 'transform 0.35s ease, box-shadow 0.35s ease';
     });
   });
   
-  // Animazione contatore per numeri (se presenti)
   animateCounters();
 }
 
@@ -623,25 +571,24 @@ function animateCounters() {
   const counters = document.querySelectorAll('[data-count]');
   
   counters.forEach(counter => {
-    const target = parseInt(counter.getAttribute('data-count'));
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    let current = 0;
-    
-    const updateCounter = () => {
-      current += increment;
-      if (current < target) {
-        counter.textContent = Math.floor(current);
-        requestAnimationFrame(updateCounter);
-      } else {
-        counter.textContent = target;
-      }
-    };
-    
-    // Inizia animazione quando l'elemento è visibile
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          const target = parseInt(counter.getAttribute('data-count'));
+          const duration = 1500;
+          const increment = target / (duration / 16);
+          let current = 0;
+          
+          const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+              counter.textContent = Math.floor(current);
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target;
+            }
+          };
+          
           updateCounter();
           observer.unobserve(entry.target);
         }
@@ -655,8 +602,6 @@ function animateCounters() {
 // ========================================
 // OTTIMIZZAZIONI PERFORMANCE
 // ========================================
-
-// Lazy loading per immagini (fallback per browser senza supporto nativo)
 if ('IntersectionObserver' in window) {
   const imageObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -679,7 +624,6 @@ if ('IntersectionObserver' in window) {
   });
 }
 
-// Preload delle immagini critiche
 function preloadCriticalImages() {
   const criticalImages = [
     'images/logo.png',
@@ -695,90 +639,40 @@ function preloadCriticalImages() {
   });
 }
 
-// Esegui preload
 preloadCriticalImages();
 
-// ========================================
-// GESTIONE ERRORI IMMAGINI
-// ========================================
 document.querySelectorAll('img').forEach(img => {
   img.addEventListener('error', function() {
-    // Sostituisci con immagine placeholder
     this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%23f3f4f6" width="200" height="200"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%239ca3af" font-family="sans-serif"%3EImmagine non disponibile%3C/text%3E%3C/svg%3E';
     this.alt = 'Immagine non disponibile';
-    console.warn(`Impossibile caricare l'immagine: ${this.dataset.originalSrc || 'unknown'}`);
   });
   
-  // Salva src originale
   img.dataset.originalSrc = img.src;
 });
 
 // ========================================
-// DETECTION DISPOSITIVO E OTTIMIZZAZIONI
+// DETECTION DISPOSITIVO MOBILE
 // ========================================
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 if (isMobile || isTouch) {
   document.body.classList.add('touch-device');
-  
-  // Disabilita hover effects su touch devices
-  const style = document.createElement('style');
-  style.textContent = `
-    .touch-device *:hover {
-      /* Mantieni solo le transizioni essenziali */
-    }
-  `;
-  document.head.appendChild(style);
 }
 
 // ========================================
-// PERFORMANCE MONITORING (Development)
+// LOG VERSIONE
 // ========================================
-if (window.performance && console.table) {
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const perfData = performance.getEntriesByType('navigation')[0];
-      const paintData = performance.getEntriesByType('paint');
-      
-      console.group('📊 Performance Metrics');
-      console.log('DOM Content Loaded:', Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart), 'ms');
-      console.log('Load Complete:', Math.round(perfData.loadEventEnd - perfData.fetchStart), 'ms');
-      
-      paintData.forEach(paint => {
-        console.log(`${paint.name}:`, Math.round(paint.startTime), 'ms');
-      });
-      console.groupEnd();
-    }, 0);
-  });
-}
-
-// ========================================
-// SERVICE WORKER REGISTRATION (opzionale)
-// ========================================
-if ('serviceWorker' in navigator && location.protocol === 'https:') {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('✓ Service Worker registered'))
-      .catch(err => console.log('✗ Service Worker registration failed:', err));
-  });
-}
-
-// ========================================
-// LOG VERSIONE E CREDITS
-// ========================================
-console.log('%c🤖 Bit Corsi - Website Ottimizzato v2.0', 
+console.log('%c🤖 Bit Corsi - Website Ottimizzato v2.1', 
   'color: #FF6B35; font-size: 16px; font-weight: bold; padding: 8px;');
-console.log('%cPrestazioni ✓ | Accessibilità ✓ | UX ✓ | SEO ✓', 
+console.log('%cPrestazioni ✓ | Accessibilità ✓ | UX Fluida ✓', 
   'color: #10B981; font-size: 12px; padding: 4px;');
-console.log('%cDevelopment by Bit Team - 2025', 
-  'color: #6B7280; font-size: 10px; font-style: italic;');
 
 // ========================================
-// EXPORT PER TESTING (opzionale)
+// EXPORT PER TESTING
 // ========================================
 window.BitCorsi = {
   scrollToTarget,
   announceToScreenReader,
-  version: '2.0.0'
+  version: '2.1.0'
 };
