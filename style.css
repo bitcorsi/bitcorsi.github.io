@@ -1440,9 +1440,10 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .modal-content {
-    padding: 2rem;
-    margin: 1rem;
+.modal-content {
+    /* Padding ottimizzato per mobile */
+    padding: 1.5rem; 
+    min-width: unset;
   }
 .header .container {
   flex-direction: column;
