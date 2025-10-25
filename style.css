@@ -1129,21 +1129,26 @@ img {
   color: var(--gray-500);
   margin: 0;
 }
-
 /* ========================================
-   MODALI
+   MODALI (REVISIONE COMPLETA)
    ======================================== */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  padding: 16px;
   box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  /* Tempo di transizione fisso per l'overlay */
+  transition: opacity 0.5s ease-in-out;
 }
 
 .modal.show {
@@ -1155,19 +1160,35 @@ img {
 }
 
 .modal-content {
-  background-color: white;
-  margin: 5% auto;
-  padding: 2rem;
-  border-radius: 16px;
-  max-width: 600px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  /* Aumento Larghezza & Riduzione Altezza */
+  padding: 2.5rem 3rem; 
+  max-width: 700px; /* Più largo sul desktop */
+  min-width: 450px; /* Meno sottile */
+  width: 90%;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  text-align: left;
+  box-shadow: var(--shadow-xl);
+  opacity: 0;
+  transform: translateY(20px);
+  /* Transizione animata fissa a 0.5s per la fluidità */
+  transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .modal.show .modal-content {
   opacity: 1;
   transform: translateY(0);
+}
+
+.close-btn {
+  /* ... (Mantieni le proprietà esistenti per il bottone di chiusura) ... */
+}
+
+/* Regole per l'accessibilità e il focus */
+.modal-content:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .close-btn {
