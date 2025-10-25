@@ -331,6 +331,195 @@ img {
 }
 
 /* ========================================
+   CHI SIAMO
+   ======================================== */
+.section-chi-siamo {
+  padding-top: 0;
+}
+
+.chi-siamo-hero-image {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.chi-siamo-hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 400px;
+}
+
+.chi-siamo-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.chi-siamo-text .lead {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.chi-siamo-text p {
+  font-size: 1rem;
+  color: var(--gray-600);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.chi-siamo-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+}
+
+.highlight-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.2rem;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--primary);
+  transition: var(--transition);
+}
+
+.highlight-item:hover {
+  box-shadow: var(--shadow);
+  transform: translateX(5px);
+}
+
+.highlight-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.highlight-item strong {
+  display: block;
+  color: var(--gray-900);
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.highlight-item p {
+  margin: 0;
+  color: var(--gray-600);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ========================================
+   STRUMENTI
+   ======================================== */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.tool-card {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  border: 1px solid var(--gray-100);
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.tool-icon-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+}
+
+.lego-color { background: #FFCB05; color: #E3000B; }
+.roberta-color { background: #FF6B6B; }
+.arduino-color { background: #00979D; }
+.microbit-color { background: #00B5A2; }
+
+.tool-image {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+}
+
+.tool-title {
+  color: var(--gray-900);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.tool-description {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.tool-details {
+  background: var(--gray-50);
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.2rem;
+}
+
+.tool-details p {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.tool-details p:last-child {
+  margin-bottom: 0;
+}
+
+.tool-details strong {
+  color: var(--gray-900);
+}
+
+.tool-specs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.spec-badge {
+  padding: 0.4rem 0.8rem;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ========================================
    ALERT BOX
    ======================================== */
 .alert-box {
@@ -874,6 +1063,19 @@ details p {
     font-size: 1.6rem;
   }
 
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .tool-card {
+    padding: 1.5rem;
+  }
+
+  .tool-image {
+    height: 120px;
+  }
+
   .courses-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
@@ -924,6 +1126,18 @@ details p {
     width: 52px;
     height: 52px;
   }
+
+  .chi-siamo-hero-image img {
+    max-height: 250px;
+  }
+
+  .chi-siamo-highlights {
+    gap: 1rem;
+  }
+
+  .highlight-item {
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -937,6 +1151,10 @@ details p {
 
   .section-header h2 {
     font-size: 1.4rem;
+  }
+
+  .tool-card h3 {
+    font-size: 1.2rem;
   }
 
   .course-card h3 {
@@ -984,19 +1202,4 @@ button:focus-visible,
 summary:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
-}
-
-/* High contrast support */
-@media (prefers-contrast: high) {
-  :root {
-    --primary: #000000;
-    --primary-dark: #000000;
-    --gray-100: #ffffff;
-    --gray-200: #ffffff;
-    --gray-300: #ffffff;
-    --gray-600: #000000;
-    --gray-700: #000000;
-    --gray-800: #000000;
-    --gray-900: #000000;
-  }
 }
