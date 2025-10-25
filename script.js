@@ -3,7 +3,7 @@
 // ========================================
 
 // Debounce function per ottimizzare eventi scroll/resize
-function debounce(func, wait = 16) {
+function debounce(func, wait = 10) {
   let timeout;
   return function executedFunction(...args) {
     const later = () => {
@@ -12,18 +12,6 @@ function debounce(func, wait = 16) {
     };
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
-  };
-}
-
-// Throttle function per eventi ad alta frequenza
-function throttle(func, limit = 100) {
-  let inThrottle;
-  return function(...args) {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
   };
 }
 
@@ -36,20 +24,25 @@ document.addEventListener('DOMContentLoaded', () => {
   initModals();
   initCourseFilters();
   initAccessibility();
-  initHeaderScroll();
-  initFAQAccordion();
-  initFormValidation();
-  initAnimations();
+  initScrollEffects();
+  initFABBehavior();
+  
+  // Log caricamento completato
+  console.log('%c🤖 Bit Corsi - Website Ottimizzato v3.0', 
+    'color: #FF6B35; font-size: 16px; font-weight: bold; padding: 10px;');
+  console.log('%c✓ Performance | ✓ UX Eccellente | ✓ Accessibilità | ✓ Mobile First', 
+    'color: #10B981; font-size: 12px; padding: 5px;');
 });
 
 // ========================================
-// SMOOTH SCROLL MIGLIORATO CON FIX COMPLETO
+// SMOOTH SCROLL PERFEZIONATO
 // ========================================
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
       
+      // Ignora link vuoti
       if (targetId === '#' || targetId === '#!') {
         e.preventDefault();
         return;
@@ -60,120 +53,120 @@ function initSmoothScroll() {
       if (target) {
         e.preventDefault();
         
-        const openModal = document.querySelector('.modal.show');
+        // Chiudi eventuali modali aperti prima dello scroll
+        const openModal = document.querySelector('.modal[style*="flex"]');
         if (openModal) {
           closeModalForScroll(openModal);
         }
         
+        // Aspetta che il modal si chiuda, poi scrolla
         setTimeout(() => {
           scrollToTarget(target);
-        }, openModal ? 100 : 0);
+        }, openModal ? 150 : 0);
       }
     });
   });
 }
 
 function scrollToTarget(target) {
+  // Calcola dinamicamente l'altezza dell'header
   const header = document.querySelector('.header');
   const headerHeight = header ? header.offsetHeight : 0;
-  const extraPadding = 20;
-
+  
+  // Padding extra per sicurezza (più generoso per mobile)
+  const isMobile = window.innerWidth < 768;
+  const extraPadding = isMobile ? 25 : 20;
+  
+  // Calcola la posizione finale
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
   const offsetPosition = targetPosition - headerHeight - extraPadding;
-
-  // Usa SOLO window.scrollTo (niente scrollIntoView)
+  
+  // Scrolla smooth
   window.scrollTo({
     top: offsetPosition,
     behavior: 'smooth'
   });
-
-  // Focus per accessibilità
-  setTimeout(() => {
-    if (target.tabIndex < 0) target.tabIndex = -1;
-    target.focus({ preventScroll: true });
-  }, 800);
-
-
-  // Focus per accessibilità
+  
+  // Focus management per accessibilità
   setTimeout(() => {
     target.focus();
     if (document.activeElement !== target) {
       target.setAttribute('tabindex', '-1');
       target.focus();
     }
-  }, 1000);
+  }, 600);
 }
 
 function closeModalForScroll(modal) {
-  modal.classList.remove('show');
   modal.style.display = 'none';
   document.body.style.overflow = '';
 }
 
 // ========================================
-// INTERSECTION OBSERVER PER ANIMAZIONI FLUIDE
+// INTERSECTION OBSERVER PER ANIMAZIONI
 // ========================================
 function initIntersectionObserver() {
+  // Configurazione observer con migliori performance
   const observerOptions = {
-    threshold: 0.05,
-    rootMargin: '0px 0px -80px 0px' // margine più ampio per anticipare le animazioni
+    threshold: 0.1,
+    rootMargin: '0px 0px -80px 0px'
   };
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animate-in');
+        // Ottimizzazione: smetti di osservare dopo l'animazione
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
   
-  // Osserva sezioni principali
+  // Osserva tutte le sezioni
   document.querySelectorAll('.section').forEach(section => {
     observer.observe(section);
   });
   
-  // Osserva card con delay progressivo
+  // Osserva anche le card per animazioni progressive
   document.querySelectorAll('.tool-card, .course-card, .highlight-item').forEach((card, index) => {
-    card.style.transitionDelay = `${index * 0.05}s`;
+    card.style.transitionDelay = `${index * 0.1}s`;
     observer.observe(card);
   });
 }
 
 // ========================================
-// GESTIONE MODALI
+// GESTIONE MODALI MIGLIORATA
 // ========================================
 function initModals() {
   const modals = document.querySelectorAll('.modal');
   const body = document.body;
-  let lastFocusedElement = null;
   
+  // Apri modal al click sulla card
   document.querySelectorAll('.tool-card').forEach(card => {
     card.addEventListener('click', (e) => {
+      // Previeni apertura se si clicca su un link interno
       if (e.target.tagName === 'A') return;
       
       const modalId = card.getAttribute('data-popup');
       const modal = document.getElementById(modalId);
       
       if (modal) {
-        lastFocusedElement = document.activeElement;
         openModal(modal);
       }
     });
     
+    // Accessibilità: apri con Enter o Space
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const modalId = card.getAttribute('data-popup');
         const modal = document.getElementById(modalId);
-        if (modal) {
-          lastFocusedElement = document.activeElement;
-          openModal(modal);
-        }
+        if (modal) openModal(modal);
       }
     });
   });
   
+  // Chiudi modal con click sul bottone close
   document.querySelectorAll('.close-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const modal = e.target.closest('.modal');
@@ -181,6 +174,7 @@ function initModals() {
     });
   });
   
+  // Chiudi modal con click sullo sfondo
   modals.forEach(modal => {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
@@ -189,39 +183,31 @@ function initModals() {
     });
   });
   
+  // Chiudi modal con ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      const openModal = document.querySelector('.modal.show');
+      const openModal = document.querySelector('.modal[style*="flex"]');
       if (openModal) closeModal(openModal);
     }
   });
   
   function openModal(modal) {
-    modal.classList.add('show');
     modal.style.display = 'flex';
     body.style.overflow = 'hidden';
-    announceToScreenReader('Finestra modale aperta');
     
-    const firstFocusable = modal.querySelector('.close-btn');
+    // Focus sul primo elemento focusabile nel modal
+    const firstFocusable = modal.querySelector('button, a');
     if (firstFocusable) {
-      setTimeout(() => firstFocusable.focus(), 100);
+      setTimeout(() => firstFocusable.focus(), 150);
     }
     
+    // Trap focus nel modal
     trapFocus(modal);
   }
   
   function closeModal(modal) {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 500);
+    modal.style.display = 'none';
     body.style.overflow = '';
-    announceToScreenReader('Finestra modale chiusa');
-    
-    if (lastFocusedElement) {
-      lastFocusedElement.focus();
-      lastFocusedElement = null;
-    }
   }
   
   function trapFocus(modal) {
@@ -252,25 +238,29 @@ function initModals() {
 }
 
 // ========================================
-// FILTRI CORSI
+// FILTRI CORSI OTTIMIZZATI
 // ========================================
 function initCourseFilters() {
   const filterButtons = document.querySelectorAll('.filters button');
   const courseCards = document.querySelectorAll('.course-card');
   
-  if (filterButtons.length === 0 || courseCards.length === 0) return;
-  
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
+      // Rimuovi classe active da tutti i bottoni
       filterButtons.forEach(b => b.classList.remove('active'));
+      
+      // Aggiungi classe active al bottone cliccato
       btn.classList.add('active');
       
       const filter = btn.dataset.filter;
       
+      // Animazione smooth per i corsi
+      let visibleCount = 0;
       courseCards.forEach((card, index) => {
         const age = card.dataset.age;
         const tool = card.dataset.tool;
         
+        // Logica filtro migliorata
         const shouldShow = 
           filter === 'all' || 
           age === filter || 
@@ -278,80 +268,80 @@ function initCourseFilters() {
           tool === filter;
         
         if (shouldShow) {
-          setTimeout(() => {
-            card.style.display = '';
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(15px)';
-            
-            requestAnimationFrame(() => {
-              card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            });
-          }, index * 40);
+          card.style.display = '';
+          card.style.animation = `fadeIn 0.5s ease ${index * 0.1}s forwards`;
+          visibleCount++;
         } else {
-          card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(-10px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
+          card.style.display = 'none';
         }
       });
       
-      setTimeout(() => {
-        announceFilterChange(filter, courseCards);
-      }, 500);
+      // Annuncio per screen reader
+      announceFilterChange(filter, visibleCount);
     });
   });
+}
+
+function announceFilterChange(filter, count) {
+  const liveRegion = document.querySelector('[aria-live]');
+  if (!liveRegion) return;
+  
+  const filterName = filter === 'all' ? 'tutti i corsi' : filter;
+  liveRegion.textContent = `Filtro applicato: ${filterName}. ${count} corsi visualizzati.`;
 }
 
 // ========================================
 // ACCESSIBILITÀ
 // ========================================
 function initAccessibility() {
+  // Aggiungi skip link per navigazione da tastiera
   addSkipLink();
+  
+  // Migliora la navigazione da tastiera
   enhanceKeyboardNavigation();
+  
+  // Gestisci gli annunci per screen reader
   createLiveRegion();
-  addDynamicAriaLabels();
 }
 
 function addSkipLink() {
   const skipLink = document.createElement('a');
   skipLink.href = '#home';
-  skipLink.className = 'skip-link sr-only';
+  skipLink.className = 'skip-link';
   skipLink.textContent = 'Vai al contenuto principale';
   skipLink.style.cssText = `
-    position: fixed;
-    top: -40px;
-    left: 10px;
+    position: absolute;
+    top: -60px;
+    left: 20px;
     background: var(--primary);
     color: white;
-    padding: 8px 16px;
+    padding: 12px 24px;
     text-decoration: none;
-    z-index: 10000;
-    border-radius: 4px;
     font-weight: 600;
-    transition: top 0.3s ease;
+    border-radius: 8px;
+    z-index: 100000;
+    transition: top 0.3s;
   `;
   
   skipLink.addEventListener('focus', () => {
-    skipLink.style.top = '10px';
+    skipLink.style.top = '20px';
   });
   
   skipLink.addEventListener('blur', () => {
-    skipLink.style.top = '-40px';
+    skipLink.style.top = '-60px';
   });
   
   document.body.insertBefore(skipLink, document.body.firstChild);
 }
 
 function enhanceKeyboardNavigation() {
+  // Evidenzia gli elementi quando sono in focus
   const style = document.createElement('style');
   style.textContent = `
     *:focus-visible {
-      outline: 3px solid var(--primary) !important;
-      outline-offset: 2px !important;
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+      border-radius: 4px;
     }
   `;
   document.head.appendChild(style);
@@ -362,7 +352,6 @@ function createLiveRegion() {
   liveRegion.setAttribute('aria-live', 'polite');
   liveRegion.setAttribute('aria-atomic', 'true');
   liveRegion.className = 'sr-only';
-  liveRegion.id = 'live-region';
   liveRegion.style.cssText = `
     position: absolute;
     left: -10000px;
@@ -373,234 +362,207 @@ function createLiveRegion() {
   document.body.appendChild(liveRegion);
 }
 
-function announceToScreenReader(message) {
-  const liveRegion = document.getElementById('live-region');
-  if (!liveRegion) return;
-  
-  liveRegion.textContent = '';
-  setTimeout(() => {
-    liveRegion.textContent = message;
-  }, 100);
-}
-
-function announceFilterChange(filter, cards) {
-  const visibleCount = Array.from(cards).filter(
-    card => card.style.display !== 'none'
-  ).length;
-  
-  const filterName = filter === 'all' ? 'tutti i corsi' : filter;
-  announceToScreenReader(`Filtro applicato: ${filterName}. ${visibleCount} corsi visualizzati.`);
-}
-
-function addDynamicAriaLabels() {
-  const fabButtons = document.querySelectorAll('.fab');
-  fabButtons.forEach(fab => {
-    if (!fab.getAttribute('aria-label')) {
-      const tooltip = fab.querySelector('.fab-tooltip');
-      if (tooltip) {
-        fab.setAttribute('aria-label', tooltip.textContent);
-      }
-    }
-  });
-}
-
 // ========================================
-// GESTIONE SCROLL HEADER
+// EFFETTI SCROLL HEADER
 // ========================================
-function initHeaderScroll() {
-  let lastScroll = 0;
+function initScrollEffects() {
   const header = document.querySelector('.header');
+  let lastScroll = 0;
   
-  if (!header) return;
-  
-  const handleScroll = throttle(() => {
+  window.addEventListener('scroll', debounce(() => {
     const currentScroll = window.pageYOffset;
     
-    if (currentScroll > 10) {
-      header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+    // Aggiungi/rimuovi shadow basato sullo scroll
+    if (currentScroll > 20) {
+      header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.12)';
     } else {
-      header.style.boxShadow = 'var(--shadow)';
+      header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.08)';
     }
     
     lastScroll = currentScroll;
-  }, 16);
-  
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  }, 10));
 }
 
 // ========================================
-// FAQ ACCORDION
+// COMPORTAMENTO FAB (FLOATING ACTION BUTTONS)
 // ========================================
-function initFAQAccordion() {
-  const faqDetails = document.querySelectorAll('.faq details');
+function initFABBehavior() {
+  const fabContainer = document.querySelector('.fab-container');
+  if (!fabContainer) return;
   
-  faqDetails.forEach(detail => {
-    detail.addEventListener('toggle', function() {
-      if (this.open) {
-        faqDetails.forEach(otherDetail => {
-          if (otherDetail !== this && otherDetail.open) {
-            otherDetail.open = false;
-          }
-        });
-        const summary = this.querySelector('summary');
-        if (summary) {
-          announceToScreenReader(`Domanda espansa: ${summary.textContent}`);
-        }
+  let fabTimeout;
+  
+  // Nascondi FAB quando si scrolla in basso, mostra quando si scrolla in alto
+  let lastScrollY = window.pageYOffset;
+  
+  window.addEventListener('scroll', debounce(() => {
+    const currentScrollY = window.pageYOffset;
+    
+    // Nascondi se scrolliamo giù, mostra se scrolliamo su
+    if (currentScrollY > lastScrollY && currentScrollY > 300) {
+      fabContainer.style.transform = 'translateX(150px)';
+    } else {
+      fabContainer.style.transform = 'translateX(0)';
+    }
+    
+    lastScrollY = currentScrollY;
+  }, 10));
+  
+  // Aggiungi transizione smooth
+  fabContainer.style.transition = 'transform 0.3s ease';
+}
+
+// ========================================
+// GESTIONE ERRORI IMMAGINI
+// ========================================
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('error', function() {
+    this.style.opacity = '0';
+    this.style.height = '0';
+    console.warn(`Impossibile caricare: ${this.src}`);
+  });
+});
+
+// ========================================
+// ANIMAZIONI CSS AGGIUNTIVE
+// ========================================
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  /* Smooth scroll per tutti i link interni */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Loading state per immagini */
+  img {
+    transition: opacity 0.3s ease;
+  }
+  
+  img[loading="lazy"] {
+    opacity: 0;
+  }
+  
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+`;
+document.head.appendChild(style);
+
+// ========================================
+// LAZY LOADING ENHANCEMENT
+// ========================================
+if ('IntersectionObserver' in window) {
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.classList.add('loaded');
+        imageObserver.unobserve(img);
       }
     });
+  });
+  
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    imageObserver.observe(img);
   });
 }
 
 // ========================================
-// VALIDAZIONE FORM
+// PERFORMANCE MONITORING (DEV ONLY)
+// ========================================
+if (window.performance && window.performance.timing) {
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const perfData = window.performance.timing;
+      const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+      console.log(`📊 Tempo di caricamento: ${pageLoadTime}ms`);
+    }, 0);
+  });
+}
+
+// ========================================
+// UTILITY: SMOOTH REVEAL ON SCROLL
+// ========================================
+function revealOnScroll() {
+  const reveals = document.querySelectorAll('.reveal');
+  
+  reveals.forEach(element => {
+    const windowHeight = window.innerHeight;
+    const elementTop = element.getBoundingClientRect().top;
+    const elementVisible = 150;
+    
+    if (elementTop < windowHeight - elementVisible) {
+      element.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', debounce(revealOnScroll, 10));
+
+// ========================================
+// INIT: ACTIVE NAV LINK HIGHLIGHTING
+// ========================================
+function updateActiveNavLink() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav a[href^="#"]');
+  
+  let current = '';
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    
+    if (window.pageYOffset >= sectionTop - 150) {
+      current = section.getAttribute('id');
+    }
+  });
+  
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', debounce(updateActiveNavLink, 10));
+
+// ========================================
+// FORM VALIDATION (se aggiungerai form in futuro)
 // ========================================
 function initFormValidation() {
   const forms = document.querySelectorAll('form');
   
   forms.forEach(form => {
     form.addEventListener('submit', (e) => {
-      const inputs = form.querySelectorAll('input[required], textarea[required]');
-      let isValid = true;
-      
-      inputs.forEach(input => {
-        if (!input.value.trim()) {
-          isValid = false;
-          input.classList.add('error');
-          input.setAttribute('aria-invalid', 'true');
-        } else {
-          input.classList.remove('error');
-          input.removeAttribute('aria-invalid');
-        }
-      });
-      
-      if (!isValid) {
+      if (!form.checkValidity()) {
         e.preventDefault();
-        announceToScreenReader('Alcuni campi richiesti non sono stati compilati');
+        e.stopPropagation();
       }
+      form.classList.add('was-validated');
     });
   });
 }
-// ========================================
-// ANIMAZIONI AGGIUNTIVE
-// ========================================
-function initAnimations() {
-  const cards = document.querySelectorAll('.tool-card, .course-card, .contact-card');
-  
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transition = 'transform 0.35s ease, box-shadow 0.35s ease';
-    });
-  });
-  
-  animateCounters();
-}
 
-function animateCounters() {
-  const counters = document.querySelectorAll('[data-count]');
-  
-  counters.forEach(counter => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const target = parseInt(counter.getAttribute('data-count'));
-          const duration = 1500;
-          const increment = target / (duration / 16);
-          let current = 0;
-          
-          const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-              counter.textContent = Math.floor(current);
-              requestAnimationFrame(updateCounter);
-            } else {
-              counter.textContent = target;
-            }
-          };
-          
-          updateCounter();
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-    
-    observer.observe(counter);
-  });
-}
-
-// ========================================
-// OTTIMIZZAZIONI PERFORMANCE
-// ========================================
-if ('IntersectionObserver' in window) {
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-          img.classList.add('loaded');
-        }
-        observer.unobserve(img);
-      }
-    });
-  }, {
-    rootMargin: '50px'
-  });
-  
-  document.querySelectorAll('img[data-src]').forEach(img => {
-    imageObserver.observe(img);
-  });
-}
-
-function preloadCriticalImages() {
-  const criticalImages = [
-    'images/logo.png',
-    'images/chi-siamo-hero.png'
-  ];
-  
-  criticalImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    document.head.appendChild(link);
-  });
-}
-
-preloadCriticalImages();
-
-document.querySelectorAll('img').forEach(img => {
-  img.addEventListener('error', function() {
-    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%23f3f4f6" width="200" height="200"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%239ca3af" font-family="sans-serif"%3EImmagine non disponibile%3C/text%3E%3C/svg%3E';
-    this.alt = 'Immagine non disponibile';
-  });
-  
-  img.dataset.originalSrc = img.src;
-});
-
-// ========================================
-// DETECTION DISPOSITIVO MOBILE
-// ========================================
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-if (isMobile || isTouch) {
-  document.body.classList.add('touch-device');
-}
-
-// ========================================
-// LOG VERSIONE
-// ========================================
-console.log('%c🤖 Bit Corsi - Website Ottimizzato v2.1', 
-  'color: #FF6B35; font-size: 16px; font-weight: bold; padding: 8px;');
-console.log('%cPrestazioni ✓ | Accessibilità ✓ | UX Fluida ✓', 
-  'color: #10B981; font-size: 12px; padding: 4px;');
-
-// ========================================
-// EXPORT PER TESTING
-// ========================================
-window.BitCorsi = {
-  scrollToTarget,
-  announceToScreenReader,
-  version: '2.1.0'
-};
+// Esegui al caricamento
+initFormValidation();
