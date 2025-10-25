@@ -74,28 +74,24 @@ class BitCorsiApp {
     optimizePerformance() {
         // Lazy loading per immagini non critiche
         if ('IntersectionObserver' in window) {
-            const lazyImages = document.querySelectorAll('img[data-src]');
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
             
             const imageObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
+                        img.style.opacity = '1';
                         imageObserver.unobserve(img);
                     }
                 });
             });
 
-            lazyImages.forEach(img => imageObserver.observe(img));
+            lazyImages.forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+                imageObserver.observe(img);
+            });
         }
-
-        // Preload per font critici
-        const preloadLinks = document.createElement('link');
-        preloadLinks.rel = 'preload';
-        preloadLinks.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap';
-        preloadLinks.as = 'style';
-        document.head.appendChild(preloadLinks);
     }
 
     handleQuickContacts() {
@@ -121,17 +117,4 @@ if (document.readyState === 'loading') {
     });
 } else {
     new BitCorsiApp();
-}
-
-// Service Worker per caching (opzionale)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
 }
