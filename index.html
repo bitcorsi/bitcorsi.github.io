@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
   <title>Bit - Corsi di Robotica Educativa per Bambini e Ragazzi</title>
-  <meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dai 7 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta.">
+  <meta name="description" content="Corsi di robotica educativa per bambini e ragazzi dai 7 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta. Divertimento, creatività e coding!">
 
   <script type="application/ld+json">
   {
@@ -16,426 +17,427 @@
   }
   </script>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Corso Introduttivo di Robotica con LEGO Spike",
+    "description": "Corso base per imparare i fondamenti della programmazione e della robotica con kit LEGO Spike.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Bit - Corsi di Robotica Educativa",
+      "url": "https://www.bitcorsi.it"
+    },
+    "coursePrerequisites": "Nessuno",
+    "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado"
+  }
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#FF6B35">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style (1).css">
 </head>
 <body>
 
-<!-- FLOATING ACTION BUTTON PER CONTATTO RAPIDO -->
-<div class="fab-container">
-  <a href="https://wa.me/393703069215" class="fab fab-whatsapp" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
-    <span class="fab-tooltip">Scrivici!</span>
-  </a>
-  <a href="tel:+393703069215" class="fab fab-phone" aria-label="Chiamaci">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-      <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-    </svg>
-    <span class="fab-tooltip">Chiamaci!</span>
-  </a>
-</div>
-
-<header class="header">
-  <div class="container">
-    <div class="logo-container">     
-      <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img"> 
-      <h1 class="logo-text">Bit corsi</h1>
-    </div>
-    <div class="header-right">
-      <nav class="nav" aria-label="Navigazione principale">
-        <a href="#hero">Home</a>
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <a href="#">
+          <span>Bit corsi</span>
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="#home">Home</a> <a href="#corsi">Corsi</a>
         <a href="#strumenti">Strumenti</a>
-        <a href="#corsi">Corsi</a>
-        <a href="#contatti">Contatti</a>
+        <a href="#testimonianze">Testimonianze</a>
+        <a href="#contatti" class="btn btn-secondary btn-sm desktop-only">Contattaci</a>
       </nav>
-      <div class="header-cta">
-        <a href="#contatti" class="btn btn-header">Iscriviti ora</a>
-      </div>
+      <button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menu di navigazione">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
-  </div>
-</header>
+  </header>
 
-<section id="home" class="hero">
-  <div class="container">
-    <h2>Scopri il mondo della robotica educativa!</h2>
-    <p>Corsi divertenti e coinvolgenti per bambini e ragazzi dai 7 ai 16 anni. Impara programmazione, robotica ed elettronica con i migliori strumenti educativi.</p>
-    <div class="hero-actions">
-      <a href="#contatti" class="btn btn-primary-large">Contattaci subito</a>
-      <a href="#corsi" class="btn btn-secondary-large">Vedi i corsi</a>
+  <div class="mobile-menu" id="mobile-menu">
     </div>
-    <div class="hero-features">
-      <div class="hero-feature">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-        <span>Gruppi piccoli<br><strong>8-10 bambini</strong></span>
-      </div>
-      <div class="hero-feature">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-        </svg>
-        <span>Materiali inclusi<br><strong>Kit professionali</strong></span>
-      </div>
-      <div class="hero-feature">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-          <polyline points="22 4 12 14.01 9 11.01"/>
-        </svg>
-        <span>Esperienza pratica<br><strong>Progetti reali</strong></span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="chi-siamo" class="section section-chi-siamo">
-  <div class="chi-siamo-hero-image">
-    <img src="images/chi-siamo-hero.png" alt="Laboratorio di robotica educativa Bit a Brescia" loading="lazy">
-  </div>
-  <div class="container">
-    <div class="chi-siamo-content">
-      <div class="section-header">
-        <h2>La nostra missione</h2>
+  <section id="home" class="hero section">
+    <div class="container">
+      <h1 class="hero-title">Scopri il mondo della **robotica educativa!**</h1>
+      <p class="hero-subtitle">Laboratori pratici e divertenti per sviluppare creatività e pensiero computazionale in bambini e ragazzi (7-16 anni).</p>
+      
+      <div class="hero-actions">
+        <a href="#corsi" class="btn btn-primary btn-lg">Esplora i Corsi</a>
+        <a href="#contatti" class="btn btn-secondary btn-lg">Parla con Noi</a>
       </div>
+
+      <div class="hero-features">
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"></path><path d="M10 16H8a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2"></path><circle cx="12" cy="13" r="1"></circle></svg>
+          <p>Imparare **facendo**</p>
+        </div>
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 15 5-5 5 5"></path><path d="M12 10v11"></path></svg>
+          <p>Sviluppo di **logica**</p>
+        </div>
+        <div class="feature-card">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+          <p>Creatività e **teamwork**</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="chi-siamo" class="section reveal fade-bottom">
+    <div class="container chi-siamo-content">
       <div class="chi-siamo-text">
-        <p class="lead">Bit è un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo <strong>creativo e divertente</strong>.</p>
-        <p>I nostri corsi sono pensati per stimolare la curiosità, il pensiero logico e la collaborazione tra pari. Utilizziamo strumenti educativi professionali come LEGO Spike Prime, Arduino, micro:bit e Open Roberta per offrire un'esperienza di apprendimento completa e coinvolgente.</p>
-        <div class="chi-siamo-highlights">
-          <div class="highlight-item">
-            <div class="highlight-icon">✓</div>
-            <div>
-              <strong>Apprendimento pratico</strong>
-              <p>I ragazzi imparano facendo, costruendo progetti reali</p>
-            </div>
-          </div>
-          <div class="highlight-item">
-            <div class="highlight-icon">✓</div>
-            <div>
-              <strong>Insegnanti qualificati</strong>
-              <p>Team esperto in robotica educativa e coding</p>
-            </div>
-          </div>
-          <div class="highlight-item">
-            <div class="highlight-icon">✓</div>
-            <div>
-              <strong>Ambiente stimolante</strong>
-              <p>Laboratori attrezzati nel cuore di Brescia</p>
-            </div>
-          </div>
+        <div class="section-header">
+          <h2 class="section-title">La nostra missione</h2>
+          <p class="section-subtitle">Trasformare la curiosità in competenza digitale.</p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="strumenti" class="section bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>Tecnologie all'avanguardia</h2>
-      <p class="section-subtitle">Utilizziamo i migliori strumenti educativi per garantire un apprendimento efficace e divertente</p>
-    </div>
-    <div class="tools-grid">
-      <article class="tool-card">
-        <div class="tool-icon-badge lego-color">7-16 anni</div>
-        <img src="images/lego-spike-prime.svg" alt="Lego Spike Prime" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Lego Spike Prime</h3>
-        <p class="tool-description">Costruisci robot intelligenti con mattoncini LEGO e programmali con un linguaggio intuitivo a blocchi.</p>
-        <div class="tool-details">
-          <p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p>
-          <p><strong>Perché piace ai ragazzi:</strong> Unisce gioco, costruzione fisica e logica di programmazione. È collaborativo, creativo e dà risultati tangibili in pochi minuti.</p>
-        </div>
-        <div class="tool-specs">
-          <span class="spec-badge">Programmazione a blocchi</span>
-        </div>
-      </article>
-
-      <article class="tool-card">
-        <div class="tool-icon-badge roberta-color">7-16 anni</div>
-        <img src="images/open-roberta.svg" alt="Open Roberta" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Open Roberta</h3>
-        <p class="tool-description">Piattaforma online gratuita per programmare robot in modo semplice, sicuro e senza installazioni.</p>
-        <div class="tool-details">
-          <p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa. Blocchi colorati nel browser senza installazioni.</p>
-          <p><strong>Perché piace ai ragazzi:</strong> È gratuito, sicuro, funziona subito e permette di sperimentare con tanti robot diversi senza dover comprare hardware.</p>
-        </div>
-        <div class="tool-specs">
-          <span class="spec-badge">Piattaforma online</span>
-        </div>
-      </article>
-
-      <article class="tool-card">
-        <div class="tool-icon-badge arduino-color">12-16+ anni</div>
-        <img src="images/arduino.svg" alt="Arduino" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Arduino</h3>
-        <p class="tool-description">Esplora l'elettronica e la programmazione testuale con schede open-source per progetti creativi.</p>
-        <div class="tool-details">
-          <p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio testuale semplice basato su C++.</p>
-          <p><strong>Perché piace ai ragazzi:</strong> Permette di "dare vita" a oggetti reali. È lo strumento perfetto per chi vuole passare dal gioco al coding vero e all'elettronica creativa.</p>
-        </div>
-        <div class="tool-specs">
-          <span class="spec-badge">Programmazione testuale</span>
-        </div>
-      </article>
-
-      <article class="tool-card">
-        <div class="tool-icon-badge microbit-color">7-12 anni</div>
-        <img src="images/microbit.svg" alt="micro:bit BBC" class="tool-image" loading="lazy">
-        <h3 class="tool-title">micro:bit BBC</h3>
-        <p class="tool-description">Un piccolo computer tascabile per imparare a programmare giochi, sensori e molto altro.</p>
-        <div class="tool-details">
-          <p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori. Tre modalità: blocchi, JavaScript o Python.</p>
-          <p><strong>Perché piace ai ragazzi:</strong> È piccolo, robusto, ha LED e sensori integrati, e si programma in pochi click. Si può usare anche senza computer (es. con smartphone via Bluetooth)!</p>
-        </div>
-        <div class="tool-specs">
-          <span class="spec-badge">3 modalità di coding</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="corsi" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Corsi e Laboratori</h2>
-      <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio</p>
-    </div>
-
-    <div class="alert-box">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="12" y1="8" x2="12" y2="12"/>
-        <line x1="12" y1="16" x2="12.01" y2="16"/>
-      </svg>
-      <div>
-        <strong>Posti limitati!</strong>
-        <p>Iscriviti in anticipo: ogni gruppo è limitato a 8-10 partecipanti per garantire un'attenzione personalizzata.</p>
-      </div>
-    </div>
-
-    <div class="courses-grid">
-      <article class="course-card" data-age="7-10" data-tool="spike">
-        <div class="course-badge badge-available">Posti disponibili</div>
-        <h3>Robotica con LEGO Spike Prime</h3>
-        <div class="course-meta">
-          <span class="meta-item">7-12 anni</span>
-          <span class="meta-item">6 incontri</span>
-          <span class="meta-item meta-price">€120</span>
-        </div>
-        <div class="course-details">
-          <div class="detail-row">
-            <span><strong>Quando:</strong> Da sabato 15 novembre 2025, ore 10:00-11:30</span>
-          </div>
-        </div>
-        <p class="course-description">Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education. Progetti pratici e divertenti.</p>
-        <a href="#contatti" class="btn btn-course">Iscriviti ora</a>
-      </article>
-
-      <article class="course-card" data-age="11-16" data-tool="arduino">
-        <div class="course-badge badge-closed">Iscrizioni chiuse</div>
-        <h3>Introduzione ad Arduino</h3>
-        <div class="course-meta">
-          <span class="meta-item">12-16 anni</span>
-          <span class="meta-item">6 sessioni</span>
-          <span class="meta-item meta-price">€120</span>
-        </div>
-        <div class="course-details">
-          <div class="detail-row">
-            <span><strong>Quando:</strong> Weekend 8-9 e 15-16 novembre 2025</span>
-          </div>
-        </div>
-        <p class="course-description">Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.</p>
-        <button class="btn btn-course btn-disabled" disabled>Iscrizioni chiuse</button>
-      </article>
-
-      <article class="course-card" data-age="7-10" data-tool="microbit">
-        <div class="course-badge badge-closed">Iscrizioni chiuse</div>
-        <h3>Giochi e Sensori con micro:bit</h3>
-        <div class="course-meta">
-          <span class="meta-item">7-11 anni</span>
-          <span class="meta-item">10 incontri</span>
-          <span class="meta-item meta-price">€120</span>
-        </div>
-        <div class="course-details">
-          <div class="detail-row">
-            <span><strong>Quando:</strong> Ogni mercoledì da ottobre a dicembre</span>
-          </div>
-        </div>
-        <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi e misurare temperatura e movimenti.</p>
-        <button class="btn btn-course btn-disabled" disabled>Iscrizioni chiuse</button>
-      </article>
-
-      <article class="course-card" data-age="11-16" data-tool="roberta">
-        <div class="course-badge badge-available">Posti disponibili</div>
-        <h3>Open Roberta Lab</h3>
-        <div class="course-meta">
-          <span class="meta-item">9-14 anni</span>
-          <span class="meta-item">6 settimane</span>
-          <span class="meta-item meta-price">€90</span>
-        </div>
-        <div class="course-details">
-          <div class="detail-row">
-            <span><strong>Formato:</strong> 4 online + 2 incontri in sede</span>
-          </div>
-        </div>
-        <p class="course-description">Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab.</p>
-        <a href="#contatti" class="btn btn-course">Iscriviti ora</a>
-      </article>
-    </div>
-
-    <section class="faq">
-      <h3>Domande frequenti</h3>
-      <div class="faq-grid">
-        <details>
-          <summary>Serve portare il proprio kit?</summary>
-          <p>No! Forniamo tutti i materiali necessari durante i laboratori in sede. I ragazzi lavoreranno con kit professionali forniti da noi.</p>
-        </details>
-        <details>
-          <summary>È possibile fare una lezione di prova?</summary>
-          <p>Sì! Verifica se ci sono posti disponibili contattandoci su WhatsApp o per telefono. Saremo felici di farti provare gratuitamente una lezione.</p>
-        </details>
-        <details>
-          <summary>Cosa succede se manca un incontro?</summary>
-          <p>Possiamo fornire il materiale didattico e un breve video di recupero, ma non sono previste lezioni di recupero individuali.</p>
-        </details>
-        <details>
-          <summary>Posso iscrivere mio figlio a più corsi?</summary>
-          <p>Certamente! È possibile partecipare a più percorsi durante l'anno per approfondire diverse tecnologie e competenze.</p>
-        </details>
-      </div>
-    </section>
-  </div>
-</section>
-
-<section id="contatti" class="section section-contatti bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>Contattaci</h2>
-      <p class="section-subtitle">Siamo qui per rispondere a tutte le tue domande</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-main">
-        <h3>Scrivici o chiamaci</h3>
-        <p class="contact-intro">Per iscrizioni, informazioni, lezione di prova o collaborazioni</p>
         
-        <div class="contact-cards">
-          <a href="https://wa.me/393703069215" class="contact-card contact-card-whatsapp" target="_blank" rel="noopener">
-            <div class="contact-card-icon whatsapp-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-              </svg>
-            </div>
-            <div class="contact-card-content">
-              <h4>WhatsApp</h4>
-              <p class="contact-card-number">+39 370 306 9215</p>
-              <p class="contact-card-desc">Rispondiamo rapidamente</p>
-            </div>
-          </a>
+        <p>Bit corsi nasce dalla passione per l'innovazione e la didattica moderna. Crediamo che la robotica e il coding non siano solo materie tecniche, ma strumenti fondamentali per sviluppare la creatività, la logica e la capacità di risolvere problemi in modo strutturato.</p>
+        <p>I nostri laboratori sono pensati per essere interattivi e sfidanti, utilizzando kit didattici all'avanguardia (LEGO, micro:bit, Arduino) che i ragazzi amano. Non siamo solo docenti, ma guide in un'avventura tecnologica!</p>
+        <a href="#contatti" class="btn btn-link">Contatta un esperto →</a>
+      </div>
+      <div class="chi-siamo-img">
+        <img src="images/chi-siamo-hero.png" alt="Insegnante che aiuta un gruppo di bambini in un corso di robotica educativa" loading="lazy">
+      </div>
+    </div>
+  </section>
 
-          <a href="tel:+393703069215" class="contact-card contact-card-phone">
-            <div class="contact-card-icon phone-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-              </svg>
-            </div>
-            <div class="contact-card-content">
-              <h4>Telefono</h4>
-              <p class="contact-card-number">+39 370 306 9215</p>
-              <p class="contact-card-desc">Chiamaci direttamente</p>
-            </div>
-          </a>
-
-          <a href="mailto:bitcorsi@gmail.com" class="contact-card contact-card-email">
-            <div class="contact-card-icon email-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <div class="contact-card-content">
-              <h4>Email</h4>
-              <p class="contact-card-number">bitcorsi@gmail.com</p>
-              <p class="contact-card-desc">Per richieste dettagliate</p>
-            </div>
-          </a>
+  <section id="testimonianze" class="section section-gray reveal fade-left">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Dicono di noi</h2>
+            <p class="section-subtitle">La soddisfazione di genitori e ragazzi è la nostra migliore ricompensa.</p>
         </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)" stroke="none"><path d="M10 7a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3zm-6 0a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H4z"/></svg>
+                <p>"Mio figlio ha partecipato al corso LEGO Spike ed è tornato a casa entusiasta ogni volta. Ha imparato divertendosi, sviluppando una logica che ora usa anche per i compiti. Ottimi istruttori!"</p>
+                <div class="testimonial-author">
+                    — Marco R., papà di Luca (10 anni)
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)" stroke="none"><path d="M10 7a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3zm-6 0a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H4z"/></svg>
+                <p>"Consiglio a tutti i ragazzi che amano i videogiochi, ma vogliono capire come funzionano 'dietro le quinte'. Abbiamo programmato robot e creato un contapassi. 5 stelle!"</p>
+                <div class="testimonial-author">
+                    — Sofia G., studentessa (14 anni)
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="corsi" class="section reveal fade-right">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Scegli il tuo percorso</h2>
+        <p class="section-subtitle">Corsi suddivisi per età e livello. Il divertimento è assicurato.</p>
       </div>
 
-      <div class="contact-sidebar">
-        <div class="contact-info-box">
-          <div class="info-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
+      <div class="course-filters">
+        <button class="filter-btn active" data-filter="all">Tutti i Corsi</button>
+        <button class="filter-btn" data-filter="7-10">7-10 Anni</button>
+        <button class="filter-btn" data-filter="11-13">11-13 Anni</button>
+        <button class="filter-btn" data-filter="14+">14+ Anni</button>
+      </div>
+
+      <div class="courses-grid">
+
+        <div class="course-card" data-age="7-10">
+          <img src="images/course-lego.jpg" alt="Bambini che giocano con i robot LEGO Spike" loading="lazy" class="course-img">
+          <div class="course-content">
+            <span class="course-badge badge-primary">7-10 Anni</span>
+            <h3 class="course-title">Robotica Introduttiva con LEGO®</h3>
+            <p class="course-description">Il primo passo nel mondo del coding! I bambini imparano a costruire e programmare robot LEGO Spike Prime attraverso sfide divertenti e creative.</p>
+            <div class="course-specs">
+              <span class="spec-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+                Principianti
+              </span>
+              <span class="spec-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                Programmazione a Blocchi
+              </span>
+            </div>
+            <a href="#contatti" class="btn btn-primary">Iscriviti Ora</a>
           </div>
-          <h4>Dove siamo</h4>
-          <p><strong>Brescia</strong></p>
-          <p class="small-text">Ti comunicheremo l'indirizzo esatto della sede dopo l'iscrizione</p>
         </div>
 
-        <div class="social-section">
-          <h4>Seguici sui social</h4>
-          <a href="https://www.instagram.com/bit_corsi/" target="_blank" rel="noopener" class="social-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-            </svg>
-            <span>@bit_corsi</span>
-          </a>
+        <div class="course-card" data-age="11-13">
+          <img src="images/course-microbit.jpg" alt="Ragazzi che programmano una scheda micro:bit" loading="lazy" class="course-img">
+          <div class="course-content">
+            <span class="course-badge badge-success">11-13 Anni</span>
+            <h3 class="course-title">Creative Coding con micro:bit</h3>
+            <p class="course-description">Introduzione alla programmazione testuale (JavaScript/Python) attraverso la scheda micro:bit. Dalla teoria alla creazione di giochi, contapassi e strumenti musicali.</p>
+            <div class="course-specs">
+              <span class="spec-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+                Intermedio
+              </span>
+              <span class="spec-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                JavaScript / Python
+              </span>
+            </div>
+            <a href="#contatti" class="btn btn-primary">Iscriviti Ora</a>
+          </div>
+        </div>
+
+        <div class="course-card" data-age="14+">
+          <img src="images/course-arduino.jpg" alt="Studente che collega fili ad una scheda Arduino" loading="lazy" class="course-img">
+          <div class="course-content">
+            <span class="course-badge badge-warning">14+ Anni</span>
+            <h3 class="course-title">Sistemi Avanzati con Arduino</h3>
+            <p class="course-description">Progettazione e realizzazione di sistemi elettronici e robotici complessi. Dalla lettura dei sensori al controllo di attuatori. Introduzione al linguaggio C/C++.</p>
+            <div class="course-specs">
+              <span class="spec-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+                Avanzato
+              </span>
+              <span class="spec-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                C / C++
+              </span>
+            </div>
+            <a href="#contatti" class="btn btn-primary">Iscriviti Ora</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="strumenti" class="section section-gray reveal fade-bottom">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">I nostri strumenti</h2>
+        <p class="section-subtitle">Utilizziamo kit didattici riconosciuti a livello mondiale per l'apprendimento STEM.</p>
+      </div>
+
+      <div class="tools-grid">
+        
+        <div class="tool-card" data-modal-target="microbit-modal">
+          <img src="images/microbit.svg" alt="Scheda micro:bit BBC" loading="lazy" class="tool-img">
+          <h3 class="tool-title">micro:bit BBC</h3>
+          <p class="tool-description">Ideale per progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori.</p>
+          <button class="btn-link">Scopri di più →</button>
+        </div>
+
+        <div class="tool-card" data-modal-target="lego-modal">
+          <img src="images/lego.svg" alt="Logo LEGO Education" loading="lazy" class="tool-img">
+          <h3 class="tool-title">LEGO® Spike Prime</h3>
+          <p class="tool-description">Il kit più amato per imparare i concetti di base della robotica, della meccanica e della programmazione a blocchi in modo intuitivo e tattile.</p>
+          <button class="btn-link">Scopri di più →</button>
+        </div>
+
+        <div class="tool-card" data-modal-target="arduino-modal">
+          <img src="images/arduino.svg" alt="Logo Arduino" loading="lazy" class="tool-img">
+          <h3 class="tool-title">Arduino</h3>
+          <p class="tool-description">Piattaforma open-source per l'elettronica avanzata. Perfetta per progetti personalizzati, domotica e robotica con sensori e attuatori reali.</p>
+          <button class="btn-link">Scopri di più →</button>
+        </div>
+
+        <div class="tool-card" data-modal-target="roberta-modal">
+          <img src="images/roberta.svg" alt="Logo Open Roberta" loading="lazy" class="tool-img">
+          <h3 class="tool-title">Open Roberta Lab</h3>
+          <p class="tool-description">Ambiente di programmazione visuale (a blocchi) basato su NEPO. Permette di programmare robot e schede hardware direttamente online.</p>
+          <button class="btn-link">Scopri di più →</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contatti" class="section reveal fade-bottom">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Pronto per iniziare?</h2>
+        <p class="section-subtitle">Scegli il modo che preferisci per parlare con noi o ricevere informazioni.</p>
+      </div>
+      
+      <div class="contatti-content">
+        <div class="contact-form-container">
+            <h3>Inviaci un messaggio diretto</h3>
+            <form id="contact-form" class="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="name">Nome e Cognome <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required aria-required="true" placeholder="Mario Rossi">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required aria-required="true" placeholder="mario@esempio.it">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefono</label>
+                    <input type="tel" id="phone" name="phone" placeholder="333 1234567">
+                </div>
+                <div class="form-group">
+                    <label for="message">Messaggio <span class="required">*</span></label>
+                    <textarea id="message" name="message" rows="4" required aria-required="true" placeholder="Sono interessato al corso per 11-13 anni..."></textarea>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" id="privacy" name="privacy" required aria-required="true">
+                    <label for="privacy">Ho letto l'informativa sulla Privacy <span class="required">*</span></label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Invia Richiesta</button>
+                <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
+            </form>
+        </div>
+
+        <div class="contact-cards-container">
+            <h3>Preferisci un contatto rapido?</h3>
+            <div class="contact-cards">
+                <a href="https://wa.me/393331234567" target="_blank" rel="noopener" class="contact-card">
+                    <div class="contact-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7.3 16.5l-.7 2.5 2.8-.7A10 10 0 1 0 12 2z"></path><path d="M14.5 10c-.5-.3-2.7-.8-3.1-.9-.2-.1-.4-.1-.5.1-.2.2-.8 1-.9 1.2-.1.2-.3.2-.6.1-.3-.1-1.2-.5-2.2-1.4-.8-.8-1.4-1.7-1.4-2.1-.1-.3 0-.5.1-.6.1-.1.3-.3.4-.4.1-.1.3-.2.4-.1.1 0 .2 0 .3.1.1.1.2.2.3.3.1.1.1.3.1.4 0 .2 0 .8-.1.9s-.4.6-.7.9c-.2.3-.4.4-.7.6s-.5.2-.8.1-.6-.2-1-.4c-.4-.2-.8-.4-1.2-.6-.4-.2-.8-.4-1.2-.6"></path></svg>
+                    </div>
+                    <h4>Chatta su WhatsApp</h4>
+                    <p class="contact-card-number">+39 333 123 4567</p>
+                    <p class="contact-card-info">Risposta immediata garantita</p>
+                </a>
+
+                <a href="tel:+390301234567" class="contact-card">
+                    <div class="contact-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2 2A18.8 18.8 0 0 1 3.08 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2 11.2 11.2 0 0 0 2 6 11.2 11.2 0 0 0 6 2 2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <h4>Chiamaci</h4>
+                    <p class="contact-card-number">030 123 4567</p>
+                    <p class="contact-card-info">Lunedì-Venerdì, 9:00-18:00</p>
+                </a>
+            </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <div class="logo-container">
-          <img src="images/logo.png" alt="Bit Corsi" class="logo-img-footer">
-          <span class="logo-text">Bit corsi</span>
-        </div>
-        <p>Robotica educativa a Brescia per bambini e ragazzi</p>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <p>&copy; 2025 Bit Corsi - Tutti i diritti riservati.</p>
+        <p>Sede legale: Via dell'Innovazione, 1 - 25100 Brescia (BS)</p>
       </div>
       <div class="footer-links">
-        <div class="footer-col">
-          <h4>Navigazione</h4>
-          <a href="#home">Home</a>
-          <a href="#chi-siamo">Chi siamo</a>
-          <a href="#strumenti">Strumenti</a>
-          <a href="#corsi">Corsi</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contatti</h4>
-          <a href="tel:+393703069215">+39 370 306 9215</a>
-          <a href="mailto:bitcorsi@gmail.com">bitcorsi@gmail.com</a>
-          <a href="https://www.instagram.com/bit_corsi/" target="_blank" rel="noopener">Instagram</a>
-        </div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Termini e Condizioni</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Bit di K. L. - P. IVA 04701410989 - Tutti i diritti riservati.</p>
+  </footer>
+
+
+  <div class="modal" id="microbit-modal" role="dialog" aria-labelledby="microbit-title" aria-modal="true">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Chiudi finestra">&times;</button>
+      <img src="images/microbit.svg" alt="" class="modal-img" loading="lazy">
+      <h3 id="microbit-title">micro:bit BBC</h3>
+      <div class="modal-specs">
+        <span class="spec-badge">7-12 anni</span>
+        <span class="spec-badge">3 modalità di coding</span>
+      </div>
+      <p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori. Tre modalità: blocchi, JavaScript o Python.</p>
+      <p><strong>Perché piace ai ragazzi:</strong> È piccolo, robusto, ha LED e sensori integrati, e si programma in pochi click. Si può usare anche senza computer (es. con smartphone via Bluetooth)!</p>
+      <div class="modal-actions">
+        <a href="#contatti" class="btn btn-primary">Iscriviti al corso che usa micro:bit</a>
+        <a href="https://microbit.org/" target="_blank" rel="noopener" class="btn-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Visita il sito ufficiale
+        </a>
+      </div>
     </div>
   </div>
-</footer>
 
-<script src="script.js"></script>
+  <div class="modal" id="lego-modal" role="dialog" aria-labelledby="lego-title" aria-modal="true">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Chiudi finestra">&times;</button>
+      <img src="images/lego.svg" alt="" class="modal-img" loading="lazy">
+      <h3 id="lego-title">LEGO® Spike Prime</h3>
+      <div class="modal-specs">
+        <span class="spec-badge">7-14 anni</span>
+        <span class="spec-badge">Programmazione a blocchi</span>
+      </div>
+      <p><strong>Ideale per:</strong> Imparare i concetti fondamentali di ingegneria, meccanica e programmazione. I mattoncini iconici si uniscono a motori, sensori e un hub programmabile per dare vita a creazioni uniche.</p>
+      <p><strong>Perché piace ai ragazzi:</strong> Possono usare la loro immaginazione illimitata per costruire robot, veicoli e sistemi interattivi, vedendo immediatamente il risultato del loro codice.</p>
+      <div class="modal-actions">
+        <a href="#contatti" class="btn btn-primary">Iscriviti al corso LEGO</a>
+        <a href="https://education.lego.com/en-us/products/spike-prime" target="_blank" rel="noopener" class="btn-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Visita il sito ufficiale
+        </a>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal" id="arduino-modal" role="dialog" aria-labelledby="arduino-title" aria-modal="true">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Chiudi finestra">&times;</button>
+      <img src="images/arduino.svg" alt="" class="modal-img" loading="lazy">
+      <h3 id="arduino-title">Arduino</h3>
+      <div class="modal-specs">
+        <span class="spec-badge">14+ anni</span>
+        <span class="spec-badge">Elettronica avanzata</span>
+      </div>
+      <p><strong>Ideale per:</strong> Studenti che vogliono passare dal coding visuale alla programmazione vera e propria di microcontrollori. Permette di creare progetti di domotica, robotica mobile e sistemi interattivi complessi.</p>
+      <p><strong>Perché piace ai ragazzi:</strong> È un circuito aperto, che offre la libertà di creare oggetti e sistemi "intelligenti" che interagiscono con il mondo fisico, utilizzando il linguaggio C/C++.</p>
+      <div class="modal-actions">
+        <a href="#contatti" class="btn btn-primary">Iscriviti al corso Arduino</a>
+        <a href="https://www.arduino.cc/" target="_blank" rel="noopener" class="btn-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Visita il sito ufficiale
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="roberta-modal" role="dialog" aria-labelledby="roberta-title" aria-modal="true">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Chiudi finestra">&times;</button>
+      <img src="images/roberta.svg" alt="" class="modal-img" loading="lazy">
+      <h3 id="roberta-title">Open Roberta Lab</h3>
+      <div class="modal-specs">
+        <span class="spec-badge">Tutte le età</span>
+        <span class="spec-badge">Ambiente visuale</span>
+      </div>
+      <p><strong>Ideale per:</strong> La programmazione a blocchi multi-piattaforma. Permette di simulare o programmare in tempo reale robot popolari (come LEGO e micro:bit) senza dover installare nulla sul computer.</p>
+      <p><strong>Perché piace ai ragazzi:</strong> Interfaccia grafica intuitiva (basata su NEPO) che rende il passaggio dalla programmazione visuale a quella testuale estremamente fluido e didattico.</p>
+      <div class="modal-actions">
+        <a href="#contatti" class="btn btn-primary">Inizia un corso con Open Roberta</a>
+        <a href="https://lab.open-roberta.org/" target="_blank" rel="noopener" class="btn-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Visita l'ambiente di coding
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="fab-group">
+    <a href="https://wa.me/393331234567" target="_blank" rel="noopener" class="fab fab-whatsapp" aria-label="Contattaci su WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7.3 16.5l-.7 2.5 2.8-.7A10 10 0 1 0 12 2z"></path><path d="M14.5 10c-.5-.3-2.7-.8-3.1-.9-.2-.1-.4-.1-.5.1-.2.2-.8 1-.9 1.2-.1.2-.3.2-.6.1-.3-.1-1.2-.5-2.2-1.4-.8-.8-1.4-1.7-1.4-2.1-.1-.3 0-.5.1-.6.1-.1.3-.3.4-.4.1-.1.3-.2.4-.1.1 0 .2 0 .3.1.1.1.2.2.3.3.1.1.1.3.1.4 0 .2 0 .8-.1.9s-.4.6-.7.9c-.2.3-.4.4-.7.6s-.5.2-.8.1-.6-.2-1-.4c-.4-.2-.8-.4-1.2-.6-.4-.2-.8-.4-1.2-.6"></path></svg>
+    </a>
+    <a href="#contatti" class="fab fab-main" aria-label="Apri i contatti">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2 2A18.8 18.8 0 0 1 3.08 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2 11.2 11.2 0 0 0 2 6 11.2 11.2 0 0 0 6 2 2 2 0 0 1 2 2z"></path></svg>
+    </a>
+  </div>
+
+
+  <script src="script (1).js"></script>
 </body>
 </html>
