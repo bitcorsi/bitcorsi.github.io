@@ -1,5 +1,5 @@
 /* ========================================
-   RESET E BASE OTTIMIZZATI
+   RESET E BASE
    ======================================== */
 * {
   margin: 0;
@@ -7,60 +7,117 @@
   box-sizing: border-box;
 }
 
-:root {
-  --primary: #FF6B35;
-  --primary-dark: #E05A2B;
-  --white: #ffffff;
-  --gray-50: #F9FAFB;
-  --gray-100: #F3F4F6;
-  --gray-200: #E5E7EB;
-  --gray-600: #4B5563;
-  --gray-700: #374151;
-  --gray-800: #1F2937;
-  --gray-900: #111827;
-  --radius: 16px;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-}
-
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--gray-800);
   background-color: var(--white);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
 }
 
 /* ========================================
-   HEADER MOBILE-FIRST
+   VARIABILI CSS
+   ======================================== */
+:root {
+  --primary: #FF6B35;
+  --primary-light: #FFA77A;
+  --primary-dark: #E05A2B;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --white: #ffffff;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --black: #000000;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --transition: all 0.3s ease;
+}
+
+/* ========================================
+   FLOATING ACTION BUTTONS
+   ======================================== */
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-xl);
+  transition: var(--transition);
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.fab-whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.fab-phone {
+  background: var(--primary);
+  color: white;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+}
+
+.fab-tooltip {
+  display: none;
+}
+
+/* ========================================
+   HEADER
    ======================================== */
 .header {
-  background: rgba(255, 255, 255, 0.98);
+  background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
-  position: fixed;
+  box-shadow: var(--shadow);
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
   padding: 1rem 0;
   border-bottom: 1px solid var(--gray-100);
-  transition: var(--transition);
-}
-
-.header.compact {
-  padding: 0.5rem 0;
 }
 
 .header .container {
@@ -76,12 +133,12 @@ body {
 }
 
 .logo-img {
-  height: 40px;
+  height: 45px;
   width: auto;
 }
 
 .logo-text {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
@@ -89,34 +146,10 @@ body {
   color: transparent;
 }
 
-/* Menu Mobile */
-.mobile-menu-btn {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-}
-
-.mobile-menu-btn span {
-  width: 25px;
-  height: 3px;
-  background: var(--gray-800);
-  transition: var(--transition);
-}
-
-.mobile-menu-btn.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.mobile-menu-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.mobile-menu-btn.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .nav {
@@ -130,15 +163,11 @@ body {
   color: var(--gray-700);
   font-weight: 600;
   font-size: 0.95rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
   transition: var(--transition);
 }
 
-.nav a:hover,
-.nav a.active {
+.nav a:hover {
   color: var(--primary);
-  background: var(--gray-50);
 }
 
 .btn-header {
@@ -154,23 +183,30 @@ body {
 
 .btn-header:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 /* ========================================
-   HERO MOBILE
+   HERO SECTION
    ======================================== */
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
-  padding: 7rem 0 4rem;
+  padding: 4rem 0 5rem;
   text-align: center;
-  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-badge {
   display: inline-block;
   background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   padding: 0.5rem 1.2rem;
   border-radius: 50px;
   font-size: 0.9rem;
@@ -180,7 +216,7 @@ body {
 }
 
 .hero h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.2;
@@ -189,7 +225,11 @@ body {
 .hero p {
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
   opacity: 0.95;
+  line-height: 1.7;
 }
 
 .hero-actions {
@@ -200,37 +240,38 @@ body {
   margin-bottom: 3rem;
 }
 
-.btn-primary-large,
-.btn-secondary-large {
+.btn-primary-large {
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 700;
+  background: white;
+  color: var(--primary-dark);
   border-radius: 50px;
   text-decoration: none;
   transition: var(--transition);
-  flex: 1;
-  min-width: 200px;
-  text-align: center;
-}
-
-.btn-primary-large {
-  background: white;
-  color: var(--primary-dark);
-}
-
-.btn-secondary-large {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
 }
 
 .btn-primary-large:hover {
   transform: translateY(-2px);
+  background: var(--gray-50);
+}
+
+.btn-secondary-large {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: var(--transition);
 }
 
 .btn-secondary-large:hover {
   background: white;
   color: var(--primary);
+  transform: translateY(-2px);
 }
 
 .hero-features {
@@ -243,8 +284,19 @@ body {
 .hero-feature {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.9rem;
+}
+
+.hero-feature svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+}
+
+.hero-feature strong {
+  display: block;
+  font-size: 1rem;
 }
 
 /* ========================================
@@ -263,189 +315,14 @@ body {
   margin-bottom: 3rem;
 }
 
-.section-label {
-  display: inline-block;
-  color: var(--primary);
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
-}
-
 .section-header h2 {
   font-size: 2rem;
   font-weight: 800;
   color: var(--gray-900);
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .section-subtitle {
   font-size: 1.1rem;
-  color: var(--gray-600);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* ========================================
-   COMPONENTI MOBILE
-   ======================================== */
-.tools-grid,
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.tool-card,
-.course-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-}
-
-.tool-card:hover,
-.course-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* FAB semplificato */
-.fab-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.fab {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-lg);
-  transition: var(--transition);
-  text-decoration: none;
-}
-
-.fab:hover {
-  transform: scale(1.1);
-}
-
-.fab-whatsapp { background: #25D366; color: white; }
-.fab-phone { background: var(--primary); color: white; }
-
-/* ========================================
-   MOBILE RESPONSIVE
-   ======================================== */
-@media (max-width: 768px) {
-  .mobile-menu-btn {
-    display: flex;
-  }
-
-  .nav {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background: white;
-    flex-direction: column;
-    padding: 1rem;
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-100%);
-    opacity: 0;
-    transition: var(--transition);
-    pointer-events: none;
-  }
-
-  .nav.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .nav a {
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .hero {
-    padding: 6rem 0 3rem;
-    margin-top: 70px;
-  }
-
-  .hero h2 {
-    font-size: 1.75rem;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-  }
-
-  .btn-primary-large,
-  .btn-secondary-large {
-    min-width: auto;
-  }
-
-  .tools-grid,
-  .courses-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .section {
-    padding: 3rem 0;
-  }
-
-  .section-header h2 {
-    font-size: 1.75rem;
-  }
-
-  .fab-container {
-    bottom: 15px;
-    right: 15px;
-  }
-
-  .fab {
-    width: 50px;
-    height: 50px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    width: 95%;
-    padding: 0 10px;
-  }
-
-  .hero h2 {
-    font-size: 1.5rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .section-header h2 {
-    font-size: 1.5rem;
-  }
-
-  .tool-card,
-  .course-card {
-    padding: 1.25rem;
-  }
-}
+  color:
