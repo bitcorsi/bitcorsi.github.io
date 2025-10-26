@@ -1017,6 +1017,9 @@ details p {
     justify-content: space-between;
   }
 
+   .header-cta {
+  display: none; 
+}
   .nav {
     gap: 1rem;
   }
