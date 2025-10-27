@@ -123,6 +123,7 @@ img {
 .header .container {
   display: flex;
   justify-content: space-between;
+  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
 }
 
@@ -148,12 +149,14 @@ img {
 
 .header-right {
   display: flex;
+  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
   gap: 1.5rem;
 }
 
 .nav {
   display: flex;
+  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
   gap: 1.5rem;
 }
@@ -753,7 +756,8 @@ details p {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 3rem;
-  align-items: center;
+  /* MODIFICA: Allinea verticalmente contatti e sidebar su desktop */
+  align-items: center; 
 }
 
 .contact-main h3 {
@@ -1017,12 +1021,13 @@ details p {
     justify-content: space-between;
   }
 
-   .header-cta {
-  display: none; 
-}
+  /* MODIFICA: Nasconde il tasto Iscriviti ora su mobile (richiesta 1) */
+  .header-right .btn-header {
+    display: none;
+  }
+
   .nav {
-    display: flex;
-   gap: 1rem;
+    gap: 1rem;
   }
 
   .nav a {
