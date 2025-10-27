@@ -422,7 +422,7 @@ img {
 }
 
 /* ========================================
-   STRUMENTI - MODIFICATO: 2 PER RIGA
+   STRUMENTI - 2 PER RIGA
    ======================================== */
 .tools-grid {
   display: grid;
@@ -554,7 +554,7 @@ img {
 }
 
 /* ========================================
-   CORSI - MODIFICATO: 2 PER RIGA
+   CORSI - 2 PER RIGA
    ======================================== */
 .courses-grid {
   display: grid;
@@ -677,7 +677,7 @@ img {
 }
 
 /* ========================================
-   FAQ
+   FAQ CON FOTO
    ======================================== */
 .faq {
   margin-top: 3rem;
@@ -691,11 +691,33 @@ img {
   text-align: center;
 }
 
+.faq-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .faq-grid {
   display: grid;
   gap: 1rem;
-  max-width: 800px;
-  margin: 0 auto;
+}
+
+.faq-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+  max-height: 400px;
 }
 
 details {
@@ -826,8 +848,8 @@ details p {
 }
 
 .email-icon {
-  background: var(--gray-200);
-  color: var(--gray-700);
+  background: var(#0000FF);
+  color: white;
 }
 
 .contact-card-content h4 {
@@ -1017,8 +1039,9 @@ details p {
     justify-content: flex-start;
   }
 
+  /* MODIFICA: MOSTRA il tasto Iscriviti ora su mobile */
   .header-right .btn-header {
-    display: none;
+    display: block;
   }
 
   .nav {
@@ -1069,7 +1092,7 @@ details p {
     font-size: 1.6rem;
   }
 
-  /* MODIFICA RESPONSIVE: 1 colonna su mobile */
+  /* Strumenti: 1 colonna su mobile */
   .tools-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1083,7 +1106,7 @@ details p {
     height: 120px;
   }
 
-  /* MODIFICA RESPONSIVE: 1 colonna su mobile */
+  /* Corsi: 1 colonna su mobile */
   .courses-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
@@ -1095,6 +1118,20 @@ details p {
 
   .course-meta {
     gap: 0.7rem;
+  }
+
+  /* FAQ: 1 colonna su mobile */
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .faq-image {
+    order: -1;
+  }
+
+  .faq-image img {
+    max-height: 300px;
   }
 
   .contact-grid {
@@ -1125,14 +1162,9 @@ details p {
     gap: 1.5rem;
   }
 
+  /* MODIFICA: NASCONDE i bottoni fluttuanti su mobile */
   .fab-container {
-    bottom: 15px;
-    right: 15px;
-  }
-
-  .fab {
-    width: 52px;
-    height: 52px;
+    display: none;
   }
 
   .chi-siamo-hero-image img {
