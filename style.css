@@ -1125,7 +1125,7 @@ details p {
   .header-right .btn-header {
     display: block;
     padding: 0.5rem 1.2rem;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     margin-left: auto;
   }
 
@@ -1136,13 +1136,12 @@ details p {
   }
 
   .nav a {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
-  .hero {
-    padding: 3rem 0 4rem;
-  }
 
+
+   
   .hero h2 {
     font-size: 1.8rem;
   }
