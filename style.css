@@ -123,7 +123,6 @@ img {
 .header .container {
   display: flex;
   justify-content: space-between;
-  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
 }
 
@@ -149,14 +148,12 @@ img {
 
 .header-right {
   display: flex;
-  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
   gap: 1.5rem;
 }
 
 .nav {
   display: flex;
-  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
   gap: 1.5rem;
 }
@@ -425,11 +422,11 @@ img {
 }
 
 /* ========================================
-   STRUMENTI
+   STRUMENTI - MODIFICATO: 2 PER RIGA
    ======================================== */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
@@ -522,29 +519,6 @@ img {
   font-weight: 600;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .tools-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .tool-card {
-    padding: 1.5rem;
-  }
-  
-  .tool-image {
-    height: 120px;
-  }
-}
-
-/* Per schermi molto piccoli */
-@media (max-width: 480px) {
-  .tool-card h3 {
-    font-size: 1.2rem;
-  }
-}
-
 /* ========================================
    ALERT BOX
    ======================================== */
@@ -580,11 +554,11 @@ img {
 }
 
 /* ========================================
-   CORSI
+   CORSI - MODIFICATO: 2 PER RIGA
    ======================================== */
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
@@ -702,27 +676,6 @@ img {
   transform: none !important;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .courses-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  
-  .course-card {
-    padding: 1.5rem;
-  }
-  
-  .course-meta {
-    gap: 0.7rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .course-card h3 {
-    font-size: 1.2rem;
-  }
-}
 /* ========================================
    FAQ
    ======================================== */
@@ -800,7 +753,6 @@ details p {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 3rem;
-  /* MODIFICA: Allinea verticalmente contatti e sidebar su desktop */
   align-items: center; 
 }
 
@@ -1062,18 +1014,15 @@ details p {
 
   .header-right {
     width: 100%;
-    /* MODIFICA: Allinea gli elementi a sinistra */
     justify-content: flex-start;
   }
 
-  /* MODIFICA: Nasconde il tasto Iscriviti ora su mobile (richiesta 1) */
   .header-right .btn-header {
     display: none;
   }
 
   .nav {
     gap: 1rem;
-    /* MODIFICA: Allinea i link a sinistra */
     justify-content: flex-start; 
     width: 100%;
   }
@@ -1120,6 +1069,7 @@ details p {
     font-size: 1.6rem;
   }
 
+  /* MODIFICA RESPONSIVE: 1 colonna su mobile */
   .tools-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1133,6 +1083,7 @@ details p {
     height: 120px;
   }
 
+  /* MODIFICA RESPONSIVE: 1 colonna su mobile */
   .courses-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
