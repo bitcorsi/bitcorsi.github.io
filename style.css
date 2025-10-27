@@ -714,8 +714,6 @@ img {
 .faq-image img {
   width: 100%;
   height: auto;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
   object-fit: cover;
   max-height: 400px;
 }
