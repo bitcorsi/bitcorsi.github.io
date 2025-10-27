@@ -1040,14 +1040,6 @@ details p {
     font-size: 0.9rem;
   }
 
-  /* MODIFICA: NASCONDI il link "Contatti" su mobile */
-  .nav a[href="#contatti"] {
-    display: none;
-  }
-
-  /* ... resto del codice responsive ... */
-}
-
   .hero {
     padding: 3rem 0 4rem;
   }
