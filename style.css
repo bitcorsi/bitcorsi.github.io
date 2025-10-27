@@ -1021,7 +1021,8 @@ details p {
   display: none; 
 }
   .nav {
-    gap: 1rem;
+    display: flex;
+   gap: 1rem;
   }
 
   .nav a {
