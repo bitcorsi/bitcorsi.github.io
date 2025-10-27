@@ -1018,7 +1018,8 @@ details p {
 
   .header-right {
     width: 100%;
-    justify-content: space-between;
+    /* MODIFICA: Allinea gli elementi a sinistra */
+    justify-content: flex-start;
   }
 
   /* MODIFICA: Nasconde il tasto Iscriviti ora su mobile (richiesta 1) */
@@ -1028,6 +1029,9 @@ details p {
 
   .nav {
     gap: 1rem;
+    /* MODIFICA: Allinea i link a sinistra */
+    justify-content: flex-start; 
+    width: 100%;
   }
 
   .nav a {
