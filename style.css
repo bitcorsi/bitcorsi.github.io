@@ -830,8 +830,8 @@ details p {
 }
 
 .email-icon {
-  background: var(--gray-200);
-  color: var(--gray-700);
+  background: #005eff;
+  color: white;
 }
 
 .contact-card-content h4 {
@@ -1020,11 +1020,6 @@ details p {
     width: 100%;
     /* MODIFICA: Allinea gli elementi a sinistra */
     justify-content: flex-start;
-  }
-
-  /* MODIFICA: Nasconde il tasto Iscriviti ora su mobile (richiesta 1) */
-  .header-right .btn-header {
-    display: none;
   }
 
   .nav {
