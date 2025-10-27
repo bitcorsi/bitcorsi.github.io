@@ -584,7 +584,7 @@ img {
    ======================================== */
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
@@ -702,6 +702,27 @@ img {
   transform: none !important;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  
+  .course-card {
+    padding: 1.5rem;
+  }
+  
+  .course-meta {
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-card h3 {
+    font-size: 1.2rem;
+  }
+}
 /* ========================================
    FAQ
    ======================================== */
