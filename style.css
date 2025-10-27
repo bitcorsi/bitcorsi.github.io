@@ -1021,7 +1021,13 @@ details p {
     /* MODIFICA: Allinea gli elementi a sinistra */
     justify-content: flex-start;
   }
-
+  /* MODIFICA: MOSTRA il tasto Iscriviti ora su mobile con dimensioni ridotte */
+  .header-right .btn-header {
+    display: block;
+    padding: 0.5rem 1.2rem; /* DIMENSIONI RIDOTTE */
+    font-size: 0.85rem; /* FONT PIÙ PICCOLO */
+    margin-left: auto; /* ALLINEA A DESTRA */
+  }
   .nav {
     gap: 1rem;
     /* MODIFICA: Allinea i link a sinistra */
