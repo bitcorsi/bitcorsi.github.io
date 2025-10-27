@@ -429,7 +429,7 @@ img {
    ======================================== */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
 }
 
@@ -520,6 +520,29 @@ img {
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .tool-card {
+    padding: 1.5rem;
+  }
+  
+  .tool-image {
+    height: 120px;
+  }
+}
+
+/* Per schermi molto piccoli */
+@media (max-width: 480px) {
+  .tool-card h3 {
+    font-size: 1.2rem;
+  }
 }
 
 /* ========================================
