@@ -848,8 +848,8 @@ details p {
 }
 
 .email-icon {
-  background: var(#0000FF);
-  color: green;
+  background: #0000FF;
+  color: white;
 }
 
 .contact-card-content h4 {
