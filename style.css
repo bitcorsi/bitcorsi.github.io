@@ -123,6 +123,7 @@ img {
 .header .container {
   display: flex;
   justify-content: space-between;
+  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
 }
 
@@ -148,12 +149,14 @@ img {
 
 .header-right {
   display: flex;
+  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
   gap: 1.5rem;
 }
 
 .nav {
   display: flex;
+  /* Allineamento verticale centrato (richiesta 3) */
   align-items: center;
   gap: 1.5rem;
 }
@@ -422,11 +425,11 @@ img {
 }
 
 /* ========================================
-   STRUMENTI - 2 PER RIGA
+   STRUMENTI
    ======================================== */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
@@ -554,11 +557,11 @@ img {
 }
 
 /* ========================================
-   CORSI - 2 PER RIGA
+   CORSI
    ======================================== */
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
@@ -677,7 +680,7 @@ img {
 }
 
 /* ========================================
-   FAQ CON FOTO
+   FAQ
    ======================================== */
 .faq {
   margin-top: 3rem;
@@ -691,31 +694,11 @@ img {
   text-align: center;
 }
 
-.faq-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
 .faq-grid {
   display: grid;
   gap: 1rem;
-}
-
-.faq-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.faq-image img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  max-height: 400px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 details {
@@ -773,6 +756,7 @@ details p {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 3rem;
+  /* MODIFICA: Allinea verticalmente contatti e sidebar su desktop */
   align-items: center; 
 }
 
@@ -846,8 +830,8 @@ details p {
 }
 
 .email-icon {
-  background: #0040FF;
-  color: white;
+  background: var(--gray-200);
+  color: var(--gray-700);
 }
 
 .contact-card-content h4 {
@@ -948,17 +932,21 @@ details p {
 
 .footer-content {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 3rem;
   margin-bottom: 2rem;
 }
 
 .footer-brand {
-  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .footer-brand .logo-container {
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo-img-footer {
@@ -967,17 +955,15 @@ details p {
 }
 
 .footer-brand .logo-text {
-  background: linear-gradient(135deg, var(--primary-light), var(--primary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: white;
 }
 
 .footer-brand p {
-  font-size: 1rem;
-  color: var(--gray-400);
+  font-size: 0.95rem;
   line-height: 1.6;
+  color: var(--gray-400);
 }
 
 .footer-links {
@@ -987,9 +973,9 @@ details p {
 }
 
 .footer-col h4 {
-  font-size: 1.1rem;
-  font-weight: 700;
   color: white;
+  font-size: 1rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
@@ -997,14 +983,13 @@ details p {
   display: block;
   color: var(--gray-400);
   text-decoration: none;
-  font-size: 0.95rem;
   margin-bottom: 0.7rem;
+  font-size: 0.9rem;
   transition: var(--transition);
 }
 
 .footer-col a:hover {
   color: var(--primary-light);
-  padding-left: 4px;
 }
 
 .footer-bottom {
@@ -1014,9 +999,9 @@ details p {
 }
 
 .footer-bottom p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--gray-500);
-  margin: 0;
+}
 
 /* ========================================
    RESPONSIVE DESIGN
@@ -1033,16 +1018,18 @@ details p {
 
   .header-right {
     width: 100%;
+    /* MODIFICA: Allinea gli elementi a sinistra */
     justify-content: flex-start;
   }
 
-  /* MODIFICA: MOSTRA il tasto Iscriviti ora su mobile */
+  /* MODIFICA: Nasconde il tasto Iscriviti ora su mobile (richiesta 1) */
   .header-right .btn-header {
-    display: block;
+    display: none;
   }
 
   .nav {
     gap: 1rem;
+    /* MODIFICA: Allinea i link a sinistra */
     justify-content: flex-start; 
     width: 100%;
   }
@@ -1089,7 +1076,6 @@ details p {
     font-size: 1.6rem;
   }
 
-  /* Strumenti: 1 colonna su mobile */
   .tools-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1103,7 +1089,6 @@ details p {
     height: 120px;
   }
 
-  /* Corsi: 1 colonna su mobile */
   .courses-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
@@ -1115,20 +1100,6 @@ details p {
 
   .course-meta {
     gap: 0.7rem;
-  }
-
-  /* FAQ: 1 colonna su mobile */
-  .faq-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .faq-image {
-    order: -1;
-  }
-
-  .faq-image img {
-    max-height: 300px;
   }
 
   .contact-grid {
@@ -1159,9 +1130,14 @@ details p {
     gap: 1.5rem;
   }
 
-  /* MODIFICA: NASCONDE i bottoni fluttuanti su mobile */
   .fab-container {
-    display: none;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .fab {
+    width: 52px;
+    height: 52px;
   }
 
   .chi-siamo-hero-image img {
