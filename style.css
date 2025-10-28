@@ -139,7 +139,7 @@ img {
 }
 
 .logo-text {
-  font-size: 0.85rem;
+  font-size: 1.0rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
@@ -165,7 +165,7 @@ img {
   text-decoration: none;
   color: var(--gray-700);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.90rem;
   transition: var(--transition);
 }
 
@@ -175,7 +175,7 @@ img {
 
 .btn-header {
   padding: 0.6rem 1.5rem;
-  font-size: 0.9rem;
+  font-size: 0.90rem;
   font-weight: 700;
   background: var(--primary);
   color: white;
