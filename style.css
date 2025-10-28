@@ -107,7 +107,7 @@ img {
 }
 
 /* ========================================
-   HEADER - CORRETTO
+   HEADER
    ======================================== */
 .header {
   background-color: rgba(255, 255, 255, 0.98);
@@ -116,7 +116,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 0.5rem 0;
+  padding: 0.20rem 0;
   border-bottom: 1px solid var(--gray-100);
 }
 
@@ -146,11 +146,10 @@ img {
   color: transparent;
 }
 
-/* HEADER DESTRA - VISIBILE SOLO SU DESKTOP */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .nav {
@@ -163,9 +162,8 @@ img {
   text-decoration: none;
   color: var(--gray-700);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.90rem;
   transition: var(--transition);
-  white-space: nowrap;
 }
 
 .nav a:hover {
@@ -173,15 +171,14 @@ img {
 }
 
 .btn-header {
-  padding: 0.5rem 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.90rem;
+  font-weight: 400;
   background: var(--primary);
   color: white;
-  border-radius: 25px;
+  border-radius: 20px;
   text-decoration: none;
   transition: var(--transition);
-  white-space: nowrap;
 }
 
 .btn-header:hover {
@@ -189,74 +186,6 @@ img {
   transform: translateY(-1px);
 }
 
-/* ========================================
-   MENU MOBILE OVERLAY
-   ======================================== */
-.menu-toggle {
-  display: none;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0.5rem;
-  z-index: 1100;
-  transition: var(--transition);
-}
-
-.menu-toggle svg {
-  width: 28px;
-  height: 28px;
-  stroke: var(--gray-900);
-  transition: transform 0.3s ease;
-}
-
-/* Overlay principale */
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-
-.nav-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.nav-overlay a {
-  color: var(--gray-900);
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-overlay a:hover {
-  color: var(--primary);
-}
-
-/* Effetto X sul pulsante hamburger */
-.menu-toggle.open svg {
-  transform: rotate(90deg);
-}
-
-.menu-toggle.open svg path:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-.menu-toggle.open svg path:nth-child(2) {
-  opacity: 0;
-}
-.menu-toggle.open svg path:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
 
 /* ========================================
    HERO SECTION CON IMMAGINI LATERALI
@@ -302,7 +231,7 @@ img {
   .hero {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    padding: 3rem 0;
+    padding: 3rem 0; 
     min-height: 70vh;
   }
 
@@ -328,6 +257,8 @@ img {
     justify-self: start;
   }
 }
+/* --- Fine Immagini Laterali --- */
+
 
 .hero-badge {
   display: inline-block;
@@ -1126,8 +1057,70 @@ details p {
 }
 
 /* ========================================
-   RESPONSIVE DESIGN
+   MENU MOBILE OVERLAY
    ======================================== */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  color: var(--gray-900);
+  z-index: 1100;
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  transition: var(--transition);
+}
+
+.menu-toggle svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gray-900);
+  transition: transform 0.3s ease;
+}
+
+/* Overlay principale */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-overlay a {
+  color: var(--gray-900);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-overlay a:hover {
+  color: var(--primary);
+}
+
+/* Effetto X sul pulsante hamburger */
+.menu-toggle.open svg path:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.open svg path:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open svg path:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
 
 /* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
@@ -1135,14 +1128,14 @@ details p {
     display: block;
   }
 
-  .header-right {
-    display: none; /* Nasconde nav e pulsante su mobile */
-  }
-
   .header .container {
-    flex-direction: row; /* Logo e hamburger sulla stessa riga */
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .header-right {
+    display: none;
   }
 
   .header {
@@ -1156,17 +1149,31 @@ details p {
   .logo-text {
     font-size: 1.1rem;
   }
+}
 
+@media (max-width: 768px) {
   .container {
     width: 92%;
   }
 
-  /* Nascondi i FAB su mobile */
+  .header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-right {
+    display: none;
+  }
+
+  .nav {
+    display: none;
+  }
+  
   .fab-container {
       display: none;
   }
   
-  /* Rimuovi l'immagine Hero precedente */
   .hero-image {
     display: none;
   }
@@ -1270,7 +1277,6 @@ details p {
     padding: 1rem;
   }
 }
-
 @media (max-width: 480px) {
   .hero h2 {
     font-size: 1.5rem;
@@ -1296,6 +1302,19 @@ details p {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
+  }
+
+  .nav {
+    gap: 0.5rem;
+  }
+
+  .nav a {
+    font-size: 0.75rem;
+  }
+
+  .btn-header {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
   }
 }
 
