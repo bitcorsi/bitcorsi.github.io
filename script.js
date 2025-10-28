@@ -11,7 +11,7 @@ class BitCorsiApp {
         this.handleFAQ();
         this.optimizePerformance();
         this.handleQuickContacts();
-        this.handleMobileMenuOverlay(); // 👈 nuova funzione
+        this.handleMobileMenuOverlay();
     }
 
     handleHeaderScroll() {
@@ -76,7 +76,6 @@ class BitCorsiApp {
         });
     }
 
-    // 👇 Nuova funzione: menu mobile overlay
     handleMobileMenuOverlay() {
         const toggle = document.querySelector('.menu-toggle');
         const overlay = document.querySelector('.nav-overlay');
