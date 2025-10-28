@@ -1064,56 +1064,58 @@ details p {
   color: var(--gray-500);
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
+/* NUOVA VERSIONE DA INSERIRE */
 @media (max-width: 768px) {
   .container {
     width: 92%;
   }
 
   .header .container {
+    /* Mantiene Logo in Riga 1 e header-right in Riga 2 */
     flex-direction: column;
-    gap: 0.5rem; /* Riduci gap per evitare che vada a capo */
+    gap: 1rem;
   }
-
+  
+  /* Riga 2: Contiene Navigazione e Pulsante */
   .header-right {
     width: 100%;
-    justify-content: space-between; /* Distribuisci lo spazio */
-    gap: 0.5rem; /* Riduci il gap */
+    /* MODIFICA: Spinge NAV a sinistra e CTA a destra */
+    justify-content: space-between; 
+    align-items: center; 
   }
-
-  /* MODIFICA: Assicura che il bottone non crei wrapping indesiderato e si allinei */
-  .header-right  .btn-header {
-    display: block;
-    padding: 0.4rem 1rem; /* Riduci padding */
-    font-size: 0.8rem; /* Riduci font-size */
-    margin-left: 0.5rem; /* Sposta a destra gli elementi nav per dare spazio al bottone */
-    flex-shrink: 0;
-  }
-   
+  
+  /* Navigazione (Nav) */
   .nav {
-    gap: 0.8rem; /* Riduci il gap della navigazione */
+    gap: 1rem;
     justify-content: flex-start; 
-    width: auto;
-    flex-grow: 1; /* Permetti alla nav di crescere */
-    overflow-x: auto; /* Aggiungi scroll se necessario */
+    /* MODIFICA: Consente alla nav di ridimensionarsi e lascia spazio al bottone */
+    width: auto; 
+    /* Permette alla nav di crescere per spingere il bottone a destra */
+    flex-grow: 1; 
+    /* Aggiunto scroll orizzontale in caso di troppi link */
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+    padding-right: 5px; 
   }
 
   .nav a {
-    font-size: 0.8rem; /* Riduci font-size della nav */
-    white-space: nowrap; /* Evita che i link vadano a capo */
+    font-size: 0.85rem;
+    /* MODIFICA: Impedisce ai link di andare a capo */
+    white-space: nowrap; 
   }
   
-  /* Nascondi i FAB su mobile */
-  .fab-container {
-      display: none;
+  /* Pulsante (Btn) */
+  /* Assicura che l'area del bottone non si riduca */
+  .header-cta {
+    flex-shrink: 0;
   }
   
-  /* Rimuovi l'immagine Hero precedente */
-  .hero-image {
-    display: none;
+  .header-right  .btn-header {
+    /* MODIFICA: Assicura che il pulsante stia sulla stessa riga della NAV */
+    display: inline-block; 
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    margin-left: 0; 
   }
    
   .hero h2 {
@@ -1201,6 +1203,16 @@ details p {
   .footer-links {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .fab-container {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .fab {
+    width: 52px;
+    height: 52px;
   }
 
   .chi-siamo-hero-image img {
