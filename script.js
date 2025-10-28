@@ -14,7 +14,7 @@ class BitCorsiApp {
         // Gestione FAQ
         this.handleFAQ();
         
-        // Ottimizzazioni performance
+        // Ottimizzazioni performance (principalmente lazy loading)
         this.optimizePerformance();
         
         // Gestione contatti rapidi
@@ -22,19 +22,18 @@ class BitCorsiApp {
     }
 
     handleHeaderScroll() {
+        // Il CSS gestisce lo sticky header. Manteniamo il codice solo per abitudine, ma 
+        // nel CSS il background è fisso, quindi questa funzione non è strettamente necessaria.
         let lastScrollY = window.scrollY;
         const header = document.querySelector('.header');
         
         const updateHeader = () => {
             const currentScrollY = window.scrollY;
             
-            if (currentScrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.backdropFilter = 'blur(12px)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.backdropFilter = 'blur(12px)';
-            }
+            // Logica semplificata, dato che il CSS stabilisce sfondo e blur.
+            // Lasciato in caso di futuri cambiamenti dinamici dello stile.
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
+            header.style.backdropFilter = 'blur(12px)';
             
             lastScrollY = currentScrollY;
         };
@@ -80,15 +79,16 @@ class BitCorsiApp {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        img.style.opacity = '1';
+                        // Nota: il lazy loading fa il suo lavoro nativamente, qui viene solo
+                        // rimosso il codice per la transizione di opacità che non è più necessario
+                        // per le nuove immagini hero (che sono 'eager').
+                        // Il 'loading="lazy"' nel markup HTML assicura il lazy loading.
                         imageObserver.unobserve(img);
                     }
                 });
             });
 
             lazyImages.forEach(img => {
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
                 imageObserver.observe(img);
             });
         }
