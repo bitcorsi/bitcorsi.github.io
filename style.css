@@ -174,12 +174,12 @@ img {
 }
 
 .btn-header {
-  padding: 0.6rem 1.5rem;
+  padding: 0.2rem 0.5rem;
   font-size: 0.90rem;
   font-weight: 700;
   background: var(--primary);
   color: white;
-  border-radius: 50px;
+  border-radius: 20px;
   text-decoration: none;
   transition: var(--transition);
 }
@@ -189,9 +189,7 @@ img {
   transform: translateY(-1px);
 }
 
-/* ========================================
-   HERO SECTION
-   ======================================== */
+
 /* ========================================
    HERO SECTION CON IMMAGINE
    ======================================== */
