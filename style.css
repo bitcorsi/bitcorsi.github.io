@@ -1064,10 +1064,6 @@ details p {
   color: var(--gray-500);
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
 @media (max-width: 768px) {
   .container {
     width: 92%;
@@ -1080,24 +1076,34 @@ details p {
 
   .header-right {
     width: 100%;
-    justify-content: space-between; /* Distribuisci lo spazio */
+    /* MODIFICA: Allinea tutto a sinistra, dato che il bottone è rimosso */
+    justify-content: flex-start; 
     gap: 0.5rem; /* Riduci il gap */
   }
 
-  /* MODIFICA: Assicura che il bottone non crei wrapping indesiderato e si allinei */
-  .header-right  .btn-header {
-    display: block;
-    padding: 0.4rem 1rem; /* Riduci padding */
-    font-size: 0.8rem; /* Riduci font-size */
-    margin-left: 0.5rem; /* Sposta a destra gli elementi nav per dare spazio al bottone */
-    flex-shrink: 0;
+  /* NUOVA REGOLA: Nasconde il contenitore del pulsante */
+  .header-cta {
+    display: none;
   }
-   
+  
+  /* MODIFICA: Nasconde il bottone e le sue proprietà */
+  .header-right  .btn-header {
+    display: none; /* Nasconde il pulsante */
+    /* Proprietá precedenti rimosse/sovrascritte:
+       padding: 0.4rem 1rem;
+       font-size: 0.8rem;
+       margin-left: 0.5rem;
+       flex-shrink: 0; 
+    */
+  }
+    
   .nav {
     gap: 0.8rem; /* Riduci il gap della navigazione */
     justify-content: flex-start; 
-    width: auto;
-    flex-grow: 1; /* Permetti alla nav di crescere */
+    /* MODIFICA: Occupa tutta la larghezza */
+    width: 100%;
+    /* MODIFICA: Rimuovi flex-grow perché la navigazione deve occupare tutta la riga, non solo "crescere" */
+    flex-grow: 0; 
     overflow-x: auto; /* Aggiungi scroll se necessario */
   }
 
@@ -1115,7 +1121,7 @@ details p {
   .hero-image {
     display: none;
   }
-   
+    
   .hero h2 {
     font-size: 1.8rem;
   }
@@ -1215,7 +1221,6 @@ details p {
     padding: 1rem;
   }
 }
-
 @media (max-width: 480px) {
   .hero h2 {
     font-size: 1.5rem;
