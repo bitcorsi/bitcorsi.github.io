@@ -1122,13 +1122,17 @@ details p {
   }
 
   /* MODIFICA: MOSTRA il tasto Iscriviti ora su mobile con dimensioni ridotte */
-  .header-right .btn-header {
+  .header-right {
     display: block;
     padding: 0.5rem 1.2rem;
     font-size: 0.85rem;
     margin-left: auto;
   }
-
+ .btn-header {
+    display: block;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+  }
   .nav {
     gap: 1rem;
     justify-content: flex-start; 
@@ -1155,8 +1159,7 @@ details p {
     align-items: center;
   }
 
-  .btn-primary-large,
-  .btn-secondary-large {
+  .btn-primary-large {
     width: 100%;
     max-width: 280px;
     text-align: center;
