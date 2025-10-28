@@ -1067,6 +1067,100 @@ details p {
 /* ========================================
    RESPONSIVE DESIGN (Aggiornato per centraggio nav)
    ======================================== */
+/* ========================================
+   MENU MOBILE OVERLAY (AGGIUNTO)
+   ======================================== */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  color: var(--gray-900);
+  z-index: 1100;
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  transition: var(--transition);
+}
+
+.menu-toggle svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gray-900);
+  transition: transform 0.3s ease;
+}
+
+/* Overlay principale */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-overlay a {
+  color: var(--gray-900);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-overlay a:hover {
+  color: var(--primary);
+}
+
+/* Effetto X sul pulsante hamburger */
+.menu-toggle.open svg path:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.open svg path:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open svg path:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-right {
+    display: none; /* Nasconde nav e pulsante su mobile */
+  }
+
+  .header {
+    padding: 0.4rem 0;
+  }
+
+  .logo-img {
+    height: 34px;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+}
 
 @media (max-width: 768px) {
   .container {
