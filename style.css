@@ -1397,3 +1397,28 @@ summary:focus-visible {
     gap: 1.5rem;
   }
 }
+/* ========================================
+   DISPOSIZIONE DUE CARD PER RIGA
+   ======================================== */
+
+/* Strumenti */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* Corsi */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* Adattamento mobile */
+@media (max-width: 768px) {
+  .tools-grid,
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+}
