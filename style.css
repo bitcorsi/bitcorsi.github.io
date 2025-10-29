@@ -214,8 +214,8 @@ img {
 .hero-right-image {
   display: none;
   position: relative;
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: 60%;
   max-height: 700px;
 }
 
