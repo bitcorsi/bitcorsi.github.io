@@ -917,6 +917,10 @@ details p {
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   border: 1px solid var(--gray-200);
+   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .info-icon {
@@ -941,12 +945,16 @@ details p {
 .contact-info-box p {
   color: var(--gray-600);
   margin-bottom: 0.3rem;
+     width: 100%;
+  text-align: center;
 }
 
 .small-text {
   font-size: 0.85rem;
   color: var(--gray-500);
   margin-top: 0.5rem;
+     width: 100%;
+  text-align: center;
 }
 
 .social-section h4 {
@@ -954,6 +962,7 @@ details p {
   font-weight: 700;
   color: var(--gray-900);
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .social-link {
@@ -966,6 +975,7 @@ details p {
   border-radius: var(--radius);
   transition: var(--transition);
   border: 1px solid var(--gray-200);
+ justify-content: center;
 }
 
 .social-link:hover {
