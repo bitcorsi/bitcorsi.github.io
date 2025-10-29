@@ -736,7 +736,8 @@ img {
    FAQ
    ======================================== */
 .faq {
-  margin-top: 3rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+   margin-top: 3rem;
 }
 
 .faq h3 {
