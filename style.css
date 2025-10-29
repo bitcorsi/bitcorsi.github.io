@@ -1349,3 +1349,51 @@ summary:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
+/* ========================================
+   COLLABORAZIONI
+   ======================================== */
+.collab-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.collab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--gray-700);
+  transition: var(--transition);
+}
+
+.collab-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.collab-item:hover img {
+  transform: scale(1.08);
+}
+
+.collab-item span {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .collab-item img {
+    width: 60px;
+    height: 60px;
+  }
+  .collab-logos {
+    gap: 1.5rem;
+  }
+}
