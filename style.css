@@ -257,6 +257,18 @@ img {
     justify-self: start;
   }
 }
+/* ========================================
+   EFFETTO ANGOLI SMUSSATI HERO IMMAGINI
+   ======================================== */
+.hero-left-image img,
+.hero-right-image img {
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  filter: brightness(0.95) contrast(1.05);
+  opacity: 0.9;
+  object-fit: cover;
+}
+
 /* --- Fine Immagini Laterali --- */
 
 
