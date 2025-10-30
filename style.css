@@ -586,9 +586,9 @@ img {
 }
 
 .lego-color { background: #FFCB05; color: #E3000B; }
-.roberta-color { background: #FF6B6B; }
+.roberta-color { background: #0000FF; }
 .arduino-color { background: #00979D; }
-.microbit-color { background: #00B5A2; }
+.microbit-color { background: #DAA520; }
 
 .tool-image {
   width: 100%;
@@ -722,7 +722,7 @@ img {
 
 .meta-price {
   background: var(--primary-light);
-  color: var(--primary-dark);
+  color:white;
   font-weight: 700;
 }
 
