@@ -1723,3 +1723,108 @@ summary:focus-visible {
     gap: 2rem;
   }
 }
+/* ========================================
+   MENU MOBILE – ICONA X VISIBILE
+   ======================================== */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gray-900);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Quando il menu è aperto: cambia l’icona in una X */
+.menu-toggle.open svg {
+  transform: rotate(45deg);
+}
+
+/* Usa pseudo-elementi per creare la X pulita */
+.menu-toggle.open svg path {
+  d: path("M6 6L18 18M6 18L18 6");
+}
+
+/* Migliora visibilità su overlay chiaro/scuro */
+.nav-overlay.active ~ .menu-toggle svg {
+  stroke: #fff;
+}
+/* ========================================
+   MENU MOBILE – DESIGN MODERNO BIT
+   ======================================== */
+.menu-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 1002;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.05);
+}
+
+/* Le linee */
+.menu-toggle span {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: var(--gray-900);
+  border-radius: 2px;
+  transition: all 0.35s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+  top: 14px;
+}
+.menu-toggle span:nth-child(2) {
+  top: 21px;
+}
+.menu-toggle span:nth-child(3) {
+  top: 28px;
+}
+
+/* Stato "open" – diventa una X */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 21px;
+  background-color: var(--primary);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 21px;
+  background-color: var(--primary);
+}
+
+/* Variante su overlay attivo (menu aperto) */
+.nav-overlay.active + .menu-toggle {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.nav-overlay.active + .menu-toggle span {
+  background-color: #fff;
+}
