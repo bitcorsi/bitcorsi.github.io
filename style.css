@@ -1434,3 +1434,21 @@ summary:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+/* ========================================
+   HERO IMMAGINI CON EFFETTO ANGOLARE 3D
+   ======================================== */
+.hero-left-image img {
+  transform: perspective(800px) rotateY(8deg) scale(1.05);
+  transform-origin: right center;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.hero-right-image img {
+  transform: perspective(800px) rotateY(-8deg) scale(1.05);
+  transform-origin: left center;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  filter: brightness(0.95) contrast(1.05);
+}
