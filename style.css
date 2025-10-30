@@ -1441,11 +1441,13 @@ summary:focus-visible {
   filter: brightness(0.95) contrast(1.05);
 }
 /* ========================================
-   SEZIONE STRUMENTI – SFONDO ARANCIONE
+   SEZIONE STRUMENTI – SFONDO GRADIENTE + TESTO CHIARO
    ======================================== */
 #strumenti {
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 #strumenti .section-header h2,
@@ -1456,7 +1458,9 @@ summary:focus-visible {
 #strumenti .tool-card {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: none;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  color: white;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
@@ -1465,26 +1469,7 @@ summary:focus-visible {
   transform: translateY(-5px);
 }
 
-#strumenti .tool-title,
-#strumenti .tool-description,
-#strumenti .tool-details p,
-#strumenti .tool-details strong {
-  color: white;
-}
-
-#strumenti .spec-badge {
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
-}
-/* ========================================
-   CORREZIONE LEGGIBILITÀ SEZIONE STRUMENTI
-   ======================================== */
-#strumenti .tool-card {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: white;
-}
-
+/* Titoli e testo */
 #strumenti .tool-title {
   color: #fff;
 }
@@ -1509,14 +1494,15 @@ summary:focus-visible {
   font-weight: 700;
 }
 
+/* Badge e specifiche */
 #strumenti .spec-badge {
   background: rgba(255, 255, 255, 0.25);
   color: white;
 }
 
-#strumenti .tool-card:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-5px);
+#strumenti .tool-icon-badge {
+  opacity: 0.95;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* ========================================
