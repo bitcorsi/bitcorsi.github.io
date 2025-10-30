@@ -1722,39 +1722,4 @@ summary:focus-visible {
     gap: 2rem;
   }
 }
-/* ========================================
-   MENU MOBILE – ICONA X VISIBILE
-   ======================================== */
-.menu-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  z-index: 1001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-}
 
-.menu-toggle svg {
-  width: 28px;
-  height: 28px;
-  stroke: var(--gray-900);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Quando il menu è aperto: cambia l’icona in una X */
-.menu-toggle.open svg {
-  transform: rotate(45deg);
-}
-
-/* Usa pseudo-elementi per creare la X pulita */
-.menu-toggle.open svg path {
-  d: path("M6 6L18 18M6 18L18 6");
-}
-
-/* Migliora visibilità su overlay chiaro/scuro */
-.nav-overlay.active ~ .menu-toggle svg {
-  stroke: #fff;
-}
