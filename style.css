@@ -1564,3 +1564,64 @@ summary:focus-visible {
     gap: 2rem;
   }
 }
+/* ========================================
+   SEZIONE CONTATTI – VERSIONE COMPATTA
+   ======================================== */
+.section-contatti {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.section-contatti .section-header {
+  margin-bottom: 2rem;
+}
+
+.section-contatti .section-header h2 {
+  font-size: 1.8rem;
+}
+
+.section-contatti .section-subtitle {
+  font-size: 1rem;
+}
+
+.contact-grid {
+  gap: 2rem;
+}
+
+.contact-main h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-intro {
+  margin-bottom: 1.5rem;
+}
+
+.contact-card {
+  padding: 1.2rem 1.4rem;
+}
+
+.contact-card-content h4 {
+  font-size: 1rem;
+}
+
+.contact-card-number {
+  font-size: 0.9rem;
+}
+
+.contact-sidebar {
+  gap: 1rem;
+}
+
+.contact-info-box {
+  padding: 1.2rem;
+}
+
+.contact-info-box h4 {
+  font-size: 1rem;
+}
+
+.social-section h4 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
