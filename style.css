@@ -1508,16 +1508,16 @@ summary:focus-visible {
 .collab-item img {
   height: 60px;
   width: auto;
-  opacity: 0.9;
-  transition: var(--transition);
-  filter: grayscale(100%);
+  opacity: 0.95;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  filter: none; /* 🔸 Rimuove il grigio */
 }
 
 .collab-item:hover img {
-  opacity: 1;
-  filter: grayscale(0%);
   transform: scale(1.05);
+  opacity: 1;
 }
+
 
 /* Responsive */
 @media (max-width: 900px) {
