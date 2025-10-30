@@ -1477,6 +1477,49 @@ summary:focus-visible {
   color: white;
 }
 /* ========================================
+   CORREZIONE LEGGIBILITÀ SEZIONE STRUMENTI
+   ======================================== */
+#strumenti .tool-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+#strumenti .tool-title {
+  color: #fff;
+}
+
+#strumenti .tool-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#strumenti .tool-details {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+#strumenti .tool-details p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+#strumenti .tool-details strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+#strumenti .spec-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+#strumenti .tool-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+}
+
+/* ========================================
    CHI SIAMO + COLLABORAZIONI COMBINATI
    ======================================== */
 .chi-siamo-collab-grid {
