@@ -1125,6 +1125,104 @@ details p {
   font-size: 0.85rem;
   color: var(--gray-500);
 }
+/* ========================================
+   FOOTER – VERSIONE BILANCIATA
+   ======================================== */
+.footer {
+  background: #1a1a1a;
+  color: #f5f5f5;
+  padding: 3rem 0 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.footer-brand {
+  flex: 1 1 280px;
+}
+
+.footer-brand .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-brand .logo-img-footer {
+  height: 40px;
+  width: auto;
+}
+
+.footer-brand p {
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+  flex: 2 1 400px;
+  justify-content: flex-end;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: #fff;
+}
+
+.footer-col a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #aaa;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  font-size: 0.85rem;
+}
+
+/* ✅ Miglioramento mobile */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .footer-links {
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 0.4rem;
+  }
+}
 
 /* ========================================
    MENU MOBILE OVERLAY
