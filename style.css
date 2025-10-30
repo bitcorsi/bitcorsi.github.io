@@ -1440,3 +1440,39 @@ summary:focus-visible {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   filter: brightness(0.95) contrast(1.05);
 }
+/* ========================================
+   SEZIONE STRUMENTI – SFONDO ARANCIONE
+   ======================================== */
+#strumenti {
+  background: var(--primary);
+  color: white;
+}
+
+#strumenti .section-header h2,
+#strumenti .section-subtitle {
+  color: white;
+}
+
+#strumenti .tool-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: none;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+#strumenti .tool-card:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-5px);
+}
+
+#strumenti .tool-title,
+#strumenti .tool-description,
+#strumenti .tool-details p,
+#strumenti .tool-details strong {
+  color: white;
+}
+
+#strumenti .spec-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+}
