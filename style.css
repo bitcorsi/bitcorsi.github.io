@@ -1534,26 +1534,32 @@ summary:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
-/* ========================================
-   RIPRISTINO HIGHLIGHTS SU DESKTOP
-   ======================================== */
-@media (min-width: 901px) {
-  .chi-siamo-highlights {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+/* ==== FIX: Highlights affiancate su desktop ==== */
+
+/* 2 colonne da ~992px (laptop piccoli) */
+@media (min-width: 992px) {
+  .section-chi-siamo .chi-siamo-highlights {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 1.5rem 1.5rem;
     align-items: stretch;
     justify-items: stretch;
-    margin-top: 2.5rem;
   }
 
-  .highlight-item {
+  .section-chi-siamo .highlight-item {
+    /* assicura layout da card in griglia */
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
     text-align: left;
-  }
-
-  .highlight-item:hover {
-    transform: translateY(-3px);
+    height: 100%;
   }
 }
+
+/* 3 colonne da ~1280px (desktop ampi) */
+@media (min-width: 1280px) {
+  .section-chi-siamo .chi-siamo-highlights {
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+  }
+}
+
