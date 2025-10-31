@@ -674,7 +674,7 @@ img {
 }
 
 .tool-details {
-  background: rgba(255, 255, 0, 0.1);
+  background: var(--gray-50);
   border-radius: var(--radius);
   padding: 1.2rem;
   margin-bottom: 1.2rem;
