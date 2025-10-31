@@ -1534,3 +1534,26 @@ summary:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
+/* ========================================
+   RIPRISTINO HIGHLIGHTS SU DESKTOP
+   ======================================== */
+@media (min-width: 901px) {
+  .chi-siamo-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+    justify-items: stretch;
+    margin-top: 2.5rem;
+  }
+
+  .highlight-item {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .highlight-item:hover {
+    transform: translateY(-3px);
+  }
+}
