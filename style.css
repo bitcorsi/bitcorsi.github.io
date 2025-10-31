@@ -1487,18 +1487,14 @@ summary:focus-visible {
   .hero-feature {
     flex: 1 1 0;
     max-width: 260px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius-lg);
     padding: 1.2rem 1rem;
     text-align: center;
     color: white;
-    box-shadow: var(--shadow-sm);
     transition: transform 0.3s ease, background 0.3s ease;
   }
 
   .hero-feature:hover {
     transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.25);
   }
 
   .hero-feature h4 {
@@ -1528,9 +1524,7 @@ summary:focus-visible {
   .hero-feature {
     width: 100%;
     max-width: 320px;
-    background: rgba(255, 255, 255, 0.12);
     padding: 1rem;
-    border-radius: var(--radius);
     text-align: center;
   }
 }
