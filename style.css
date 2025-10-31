@@ -1528,3 +1528,16 @@ summary:focus-visible {
     display: none !important;
   }
 }
+/* ==== FOOTER minimal: mostra solo le ultime due righe ==== */
+.footer-content {
+  display: none !important;
+}
+
+.footer-bottom {
+  display: block !important;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
