@@ -1190,44 +1190,93 @@ details p {
     display: none;
   }
 
-  /* HERO */
+ @media (max-width: 768px) {
+
+  /* HERO mobile migliorata con immagine e fade-in */
   .hero {
+    display: flex;
     flex-direction: column;
-    padding: 3rem 1.5rem 2rem;
+    justify-content: flex-start;
+    align-items: center;
     text-align: center;
-    min-height: 90vh;
-    justify-content: center;
+    padding: 2.2rem 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    overflow: hidden;
   }
 
-  .hero h2,
-  .hero h1 {
-    font-size: 1.7rem;
+  .hero h1,
+  .hero h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
     line-height: 1.3;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    color: #fff;
   }
 
   .hero p {
     font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    line-height: 1.5;
+    opacity: 0.95;
+    margin: 0 auto 1.5rem;
     max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .btn-primary-large {
-    width: 100%;
-    max-width: 300px;
+    width: 90%;
+    max-width: 280px;
+    padding: 1rem 1.2rem;
     font-size: 1rem;
-    padding: 1rem 1.5rem;
-    border-radius: 14px;
-    font-weight: 700;
+    border-radius: 12px;
     box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn-primary-large:active {
+    transform: scale(0.97);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hero-right-image {
+    display: block;
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 380px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInImage 0.8s ease-out 0.2s forwards;
+  }
+
+  .hero-right-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  }
+
+  .hero-left-image {
+    display: none;
   }
 
   .hero-features {
-    display: none; /* riduce affollamento visivo */
+    display: none;
   }
+
+  .hero-subtext {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.8rem;
+  }
+
+  /* effetto fade-in */
+  @keyframes fadeInImage {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 
   /* SEZIONI GENERALI */
   .section {
