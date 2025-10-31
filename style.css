@@ -674,7 +674,7 @@ img {
 }
 
 .tool-details {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 0, 0.1);
   border-radius: var(--radius);
   padding: 1.2rem;
   margin-bottom: 1.2rem;
@@ -1252,94 +1252,6 @@ details p {
     display: none;
   }
 
- @media (max-width: 768px) {
-
-  /* HERO mobile migliorata con immagine e fade-in */
-  .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    padding: 2.2rem 1rem 1.5rem;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    overflow: hidden;
-  }
-
-  .hero h1,
-  .hero h2 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    line-height: 1.3;
-    margin-bottom: 0.8rem;
-    color: #fff;
-  }
-
-  .hero p {
-    font-size: 1rem;
-    line-height: 1.5;
-    opacity: 0.95;
-    margin: 0 auto 1.5rem;
-    max-width: 90%;
-  }
-
-  .btn-primary-large {
-    width: 90%;
-    max-width: 280px;
-    padding: 1rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .btn-primary-large:active {
-    transform: scale(0.97);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .hero-right-image {
-    display: block;
-    margin-top: 1.5rem;
-    width: 100%;
-    max-width: 380px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInImage 0.8s ease-out 0.2s forwards;
-  }
-
-  .hero-right-image img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-  }
-
-  .hero-left-image {
-    display: none;
-  }
-
-  .hero-features {
-    display: none;
-  }
-
-  .hero-subtext {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 0.8rem;
-  }
-
-  /* effetto fade-in */
-  @keyframes fadeInImage {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-
   /* SEZIONI GENERALI */
   .section {
     padding: 3rem 1rem;
@@ -1534,9 +1446,9 @@ summary:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
-/* ==== FIX: Highlights affiancate su desktop ==== */
 
-/* 2 colonne da ~992px (laptop piccoli) */
+/* ==== FIX: Highlights affiancate su desktop ==== */
+/* 2 colonne da ~992px (laptop) */
 @media (min-width: 992px) {
   .section-chi-siamo .chi-siamo-highlights {
     display: grid !important;
@@ -1545,9 +1457,7 @@ summary:focus-visible {
     align-items: stretch;
     justify-items: stretch;
   }
-
   .section-chi-siamo .highlight-item {
-    /* assicura layout da card in griglia */
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -1555,11 +1465,9 @@ summary:focus-visible {
     height: 100%;
   }
 }
-
 /* 3 colonne da ~1280px (desktop ampi) */
 @media (min-width: 1280px) {
   .section-chi-siamo .chi-siamo-highlights {
     grid-template-columns: repeat(3, minmax(260px, 1fr));
   }
 }
-
