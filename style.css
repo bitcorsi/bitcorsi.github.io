@@ -1523,3 +1523,8 @@ summary:focus-visible {
     text-align: center;
   }
 }
+@media (max-width: 768px) {
+  .hero-features {
+    display: none !important;
+  }
+}
