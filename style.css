@@ -600,25 +600,38 @@ img {
 /* ========================================
    STRUMENTI
    ======================================== */
+#strumenti {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+#strumenti .section-header h2,
+#strumenti .section-subtitle {
+  color: white;
+}
+
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
 .tool-card {
-  background: white;
-  padding: 2rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  color: white;
+  transition: transform 0.3s ease, background 0.3s ease;
+  padding: 2rem;
   position: relative;
-  border: 1px solid var(--gray-100);
 }
 
 .tool-card:hover {
+  background: rgba(255, 255, 255, 0.22);
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
 }
 
 .tool-icon-badge {
@@ -630,12 +643,14 @@ img {
   font-size: 0.75rem;
   font-weight: 700;
   color: white;
+  opacity: 0.95;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .lego-color { background: #FFCB05; color: #E3000B; }
-.roberta-color { background: #FF6B6B; }
+.roberta-color { background: #1E90FF	; }
 .arduino-color { background: #00979D; }
-.microbit-color { background: #00B5A2; }
+.microbit-color { background: #DAA520; }
 
 .tool-image {
   width: 100%;
@@ -645,29 +660,29 @@ img {
 }
 
 .tool-title {
-  color: var(--gray-900);
+  color: #fff;
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .tool-description {
-  color: var(--gray-600);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 1.2rem;
 }
 
 .tool-details {
-  background: var(--gray-50);
-  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: var(--radius);
+  padding: 1.2rem;
   margin-bottom: 1.2rem;
 }
 
 .tool-details p {
   font-size: 0.9rem;
-  color: var(--gray-700);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0.8rem;
   line-height: 1.5;
 }
@@ -677,7 +692,7 @@ img {
 }
 
 .tool-details strong {
-  color: var(--gray-900);
+  color: #fff;
 }
 
 .tool-specs {
@@ -688,12 +703,13 @@ img {
 
 .spec-badge {
   padding: 0.4rem 0.8rem;
-  background: var(--gray-100);
-  color: var(--gray-700);
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
 }
+
 /* ========================================
    CORSI
    ======================================== */
