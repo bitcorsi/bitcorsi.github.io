@@ -1471,3 +1471,66 @@ summary:focus-visible {
     grid-template-columns: repeat(3, minmax(260px, 1fr));
   }
 }
+/* ==== FIX: Hero features orizzontali su desktop ==== */
+
+/* Layout desktop ≥992px */
+@media (min-width: 992px) {
+  .hero-features {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .hero-feature {
+    flex: 1 1 0;
+    max-width: 260px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    color: white;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .hero-feature:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .hero-feature h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: #fff;
+  }
+
+  .hero-feature p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+  }
+}
+
+/* Layout mobile <992px (rimane in colonna) */
+@media (max-width: 991px) {
+  .hero-features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-feature {
+    width: 100%;
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 1rem;
+    border-radius: var(--radius);
+    text-align: center;
+  }
+}
