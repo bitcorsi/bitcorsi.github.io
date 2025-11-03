@@ -601,7 +601,6 @@ img {
    STRUMENTI
    ======================================== */
 #strumenti {
-  background: linear-gradient(135deg, var(--primary) 40%, var(--primary-dark) 60%);
   color: white;
   padding-top: 5rem;
   padding-bottom: 5rem;
