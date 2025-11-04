@@ -83,40 +83,56 @@ function initFAQ() {
 /**
  * Gestione form contatti
  */
+/**
+ * Gestione form contatti con invio reale via FormSubmit
+ */
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
+    const successMsg = document.getElementById('formSuccess');
     
     if (!contactForm) return;
 
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // evita il redirect di FormSubmit
+
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        
-        // Simula invio
+
         submitBtn.textContent = 'Invio in corso...';
         submitBtn.disabled = true;
-        
-        setTimeout(() => {
-            // Reset form
+
+        try {
+            // Invia i dati al tuo endpoint FormSubmit
+            await fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this)
+            });
+
+            // Reset del form
             this.reset();
-            
-            // Mostra messaggio successo
-            const successMsg = document.getElementById('formSuccess');
+
+            // Mostra messaggio di successo
             if (successMsg) {
                 successMsg.classList.add('visible');
                 setTimeout(() => {
                     successMsg.classList.remove('visible');
                 }, 5000);
             }
-            
-            // Ripristina bottone
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 1500);
+
+        } catch (error) {
+            console.error('Errore durante l’invio del form:', error);
+            if (successMsg) {
+                successMsg.textContent = '❌ Errore durante l’invio. Riprova più tardi.';
+                successMsg.classList.add('visible');
+            }
+        }
+
+        // Ripristina bottone
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
     });
 }
+
 
 /**
  * Gestione form newsletter
