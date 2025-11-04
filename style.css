@@ -1464,3 +1464,19 @@ textarea:focus-visible {
 .mt-1 { margin-top: 1rem; }
 .mt-2 { margin-top: 2rem; }
 }
+/* Stacca e separa la sezione Social dall'Indirizzo nella colonna 3 dei Contatti */
+.contact-info-col-3 .social-section {
+    /* 1. STACCO: Aggiunge un margine superiore per allontanarsi dall'indirizzo */
+    margin-top: 2.5rem; 
+    
+    /* 2. SEPARATORE: Aggiunge una riga orizzontale sottile */
+    border-top: 1px solid var(--gray-200); 
+    
+    /* 3. SPAZIO SOPRA LA LINEA: Aggiunge spazio interno sopra la linea per non farla toccare al testo */
+    padding-top: 1.5rem; 
+}
+
+/* Regola preventiva per garantire che la sezione Indirizzo non abbia margini indesiderati sotto */
+.contact-info-col-3 .contact-address {
+    margin-bottom: 0;
+}
