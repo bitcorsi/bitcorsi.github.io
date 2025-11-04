@@ -1417,47 +1417,6 @@ details p {
 }
 
 /* ========================================
-   RESPONSIVE TABLET
-   ======================================== */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .container {
-    width: 92%;
-  }
-
-  .hero h1,
-  .hero h2 {
-    font-size: 2rem;
-  }
-
-  .tools-grid,
-  .courses-grid {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
-
-  .chi-siamo-collab-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .contact-sidebar {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    gap: 2rem;
-  }
-
-  .contact-info-box,
-  .social-section {
-    flex: 1;
-  }
-}
-
-/* ========================================
    ACCESSIBILITA'
    ======================================== */
 @media (prefers-reduced-motion: reduce) {
