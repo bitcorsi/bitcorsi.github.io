@@ -205,8 +205,24 @@ function initSmoothScroll() {
 document.addEventListener('DOMContentLoaded', function() {
     init();
     initSmoothScroll();
+    hideFabInContacts(); // <-- AGGIUNGI QUESTA RIGA
 });
-
+// Nascondi FAB quando si è nella sezione contatti
+window.addEventListener('scroll', function() {
+  const fabContainer = document.querySelector('.fab-container');
+  const contactsSection = document.getElementById('contatti');
+  
+  if (fabContainer && contactsSection) {
+    const contactsRect = contactsSection.getBoundingClientRect();
+    
+    // Se la sezione contatti è visibile a schermo
+    if (contactsRect.top < window.innerHeight && contactsRect.bottom > 0) {
+      fabContainer.style.display = 'none';
+    } else {
+      fabContainer.style.display = 'flex';
+    }
+  }
+});
 // ========================================
 // GESTIONE ERRORI
 // ========================================
