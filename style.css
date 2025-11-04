@@ -1475,3 +1475,29 @@ textarea:focus-visible {
 #contatti .fab-container {
   display: none !important;
 }
+/* HERO FEATURES ORIZZONTALE */
+.hero-features {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.hero-feature svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* NASCONDI SU MOBILE */
+@media (max-width: 768px) {
+  .hero-features {
+    display: none;
+  }
+}
