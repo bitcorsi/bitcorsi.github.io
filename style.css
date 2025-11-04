@@ -1201,7 +1201,7 @@ details p {
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   border: 1px solid var(--gray-200);
-   margin-top: 1.5rem;
+   margin-top: 1rem;
   text-align: center;
 }
 
