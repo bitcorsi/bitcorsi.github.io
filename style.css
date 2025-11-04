@@ -1480,3 +1480,10 @@ textarea:focus-visible {
 .contact-info-col-3 .contact-address {
     margin-bottom: 0;
 }
+/* NASCONDI FAB NELLA SEZIONE CONTATTI - TUTTI I DISPOSITIVI */
+#contatti .fab,
+#contatti .floating-button,
+#contatti .whatsapp-float,
+#contatti .scroll-to-top {
+  display: none !important;
+}
