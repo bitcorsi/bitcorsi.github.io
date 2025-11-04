@@ -1,7 +1,7 @@
 # Privacy Policy
 
 ## Titolare del Trattamento
-Bit Education Lab  
+Bit Corsi 
 Email: bitcorsi@gmail.com
 
 ## Dati raccolti
@@ -33,4 +33,4 @@ Per esercitare i tuoi diritti, scrivi a: bitcorsi@gmail.com
 ## Conservazione dati
 I dati sono conservati per il tempo necessario alle finalità indicate.
 
-*Ultimo aggiornamento: 4 Novembre 2024*
+*Ultimo aggiornamento: 4 Novembre 2025*
