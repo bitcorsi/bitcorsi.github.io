@@ -1501,3 +1501,45 @@ textarea:focus-visible {
     display: none;
   }
 }
+/* ========================================
+   NUOVA CHICCA: FORMA ROBOTICA AI PULSANTI
+   ======================================== */
+
+.btn-primary,
+.btn-primary-large {
+    /* 1. Reset/Riduzione del raggio per prepare la forma robotica */
+    border-radius: 4px; 
+    
+    /* 2. Applicazione della forma con angoli tagliati (es. taglio diagonale in alto a destra) */
+    /* Funziona come una serie di coordinate (X Y) per i vertici: */
+    /* top-left | top-right | bottom-right | bottom-left */
+    clip-path: polygon(
+        0% 0%,       /* Top Left: 0, 0 */
+        90% 0%,      /* Top Right (Tagliato a 90% della larghezza) */
+        100% 25%,    /* Inizio taglio verticale */
+        100% 100%,   /* Bottom Right: 100%, 100% */
+        0% 100%      /* Bottom Left: 0%, 100% */
+    );
+    
+    /* Per maggiore compatibilità cross-browser (potrebbe non essere necessario ma è sicuro) */
+    -webkit-clip-path: polygon(0% 0%, 90% 0%, 100% 25%, 100% 100%, 0% 100%);
+}
+
+/* Modifica la forma al passaggio del mouse per renderla dinamica */
+.btn-primary:hover,
+.btn-primary-large:hover {
+    /* Mantiene la forma originale ma aggiunge l'effetto 3D di sollevamento */
+    transform: translateY(-2px); 
+    
+    /* Applica una forma leggermente diversa, per un effetto "meccanico" al click */
+    clip-path: polygon(
+        5% 0%,       /* Sposta l'angolo in alto a sinistra */
+        100% 0%, 
+        100% 75%,    /* Sposta il taglio verticale */
+        95% 100%,    /* Crea un angolo in basso a destra */
+        0% 100%
+    );
+    
+    /* Per compatibilità */
+    -webkit-clip-path: polygon(5% 0%, 100% 0%, 100% 75%, 95% 100%, 0% 100%);
+}
