@@ -1502,44 +1502,89 @@ textarea:focus-visible {
   }
 }
 /* ========================================
-   NUOVA CHICCA: FORMA ROBOTICA AI PULSANTI
+   NUOVA CHICCA: PULSANTI EFFETTO CAVO CONNETTORE (PIÙ AVANZATO)
    ======================================== */
 
 .btn-primary,
 .btn-primary-large {
-    /* 1. Reset/Riduzione del raggio per prepare la forma robotica */
-    border-radius: 4px; 
+    position: relative; /* Necessario per posizionare i pseudo-elementi */
+    overflow: hidden;   /* Nasconde le parti dei cavi che escono */
+    z-index: 1;         /* Assicura che il testo sia sopra i cavi */
+
+    border-radius: 6px; /* Leggera arrotondatura per l'aspetto del pulsante base */
+    transition: all 0.3s ease; /* Transizione per il pulsante stesso */
     
-    /* 2. Applicazione della forma con angoli tagliati (es. taglio diagonale in alto a destra) */
-    /* Funziona come una serie di coordinate (X Y) per i vertici: */
-    /* top-left | top-right | bottom-right | bottom-left */
-    clip-path: polygon(
-        0% 0%,       /* Top Left: 0, 0 */
-        90% 0%,      /* Top Right (Tagliato a 90% della larghezza) */
-        100% 25%,    /* Inizio taglio verticale */
-        100% 100%,   /* Bottom Right: 100%, 100% */
-        0% 100%      /* Bottom Left: 0%, 100% */
-    );
-    
-    /* Per maggiore compatibilità cross-browser (potrebbe non essere necessario ma è sicuro) */
-    -webkit-clip-path: polygon(0% 0%, 90% 0%, 100% 25%, 100% 100%, 0% 100%);
+    /* Puoi mantenere l'ombra 3D se ti piace, altrimenti commentala */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -2px rgba(0, 0, 0, 0.06); 
 }
 
-/* Modifica la forma al passaggio del mouse per renderla dinamica */
+/* Pseudo-elemento per il "cavo sinistro" */
+.btn-primary::before,
+.btn-primary-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px; /* Parte da fuori a sinistra */
+    width: 25px;
+    height: 100%;
+    background-color: var(--secondary); /* Colore del cavo (es. verde acido) */
+    transform: skewX(-20deg); /* Inclinazione del cavo */
+    transition: left 0.3s ease-out, transform 0.3s ease-out;
+    z-index: -1; /* Mettilo sotto il testo */
+    border-top-left-radius: 5px; /* Arrotonda l'estremità esterna */
+    border-bottom-left-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,255,0,0.5); /* Effetto luminoso */
+}
+
+/* Pseudo-elemento per il "cavo destro" */
+.btn-primary::after,
+.btn-primary-large::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px; /* Parte da fuori a destra */
+    width: 25px;
+    height: 100%;
+    background-color: var(--secondary); /* Colore del cavo (uguale al sinistro) */
+    transform: skewX(20deg); /* Inclinazione opposta */
+    transition: right 0.3s ease-out, transform 0.3s ease-out;
+    z-index: -1; /* Mettilo sotto il testo */
+    border-top-right-radius: 5px; /* Arrotonda l'estremità esterna */
+    border-bottom-right-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,255,0,0.5); /* Effetto luminoso */
+}
+
+/* Effetto al passaggio del mouse: i cavi si spostano verso il centro */
+.btn-primary:hover::before,
+.btn-primary-large:hover::before {
+    left: 10%; /* Il cavo sinistro si sposta verso destra */
+    transform: skewX(0deg); /* Diventa meno inclinato o dritto */
+}
+
+.btn-primary:hover::after,
+.btn-primary-large:hover::after {
+    right: 10%; /* Il cavo destro si sposta verso sinistra */
+    transform: skewX(0deg); /* Diventa meno inclinato o dritto */
+}
+
+/* Optional: Effetto 3D e ombra al passaggio del mouse per il pulsante base */
 .btn-primary:hover,
 .btn-primary-large:hover {
-    /* Mantiene la forma originale ma aggiunge l'effetto 3D di sollevamento */
     transform: translateY(-2px); 
-    
-    /* Applica una forma leggermente diversa, per un effetto "meccanico" al click */
-    clip-path: polygon(
-        5% 0%,       /* Sposta l'angolo in alto a sinistra */
-        100% 0%, 
-        100% 75%,    /* Sposta il taglio verticale */
-        95% 100%,    /* Crea un angolo in basso a destra */
-        0% 100%
-    );
-    
-    /* Per compatibilità */
-    -webkit-clip-path: polygon(5% 0%, 100% 0%, 100% 75%, 95% 100%, 0% 100%);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                0 4px 6px -4px rgba(0, 0, 0, 0.05); 
+}
+
+/* Optional: Effetto al click (più immersivo) */
+.btn-primary:active,
+.btn-primary-large:active {
+    transform: translateY(1px); 
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
+}
+
+/* Assicurati che il colore del testo sia ben visibile sopra il cavo */
+.btn-primary,
+.btn-primary-large {
+    color: var(--white); /* Rende il testo bianco */
 }
