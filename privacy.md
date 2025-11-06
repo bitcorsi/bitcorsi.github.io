@@ -1,11 +1,14 @@
 # Privacy Policy
 
 ## Titolare del Trattamento
-Bit Corsi 
+Bit Education Lab  
 Email: bitcorsi@gmail.com
 
 ## Dati raccolti
-- Nome e cognome
+- Nome e cognome del genitore/tutore
+- Nome e cognome dell'alunno/partecipante
+- Scuola frequentata dall'alunno
+- Come hai saputo del corso (referral, passaparola, volantino, etc.)
 - Numero di telefono  
 - Indirizzo email
 - Età del partecipante
@@ -16,6 +19,8 @@ I dati sono utilizzati esclusivamente per:
 - Iscrizioni ai corsi
 - Comunicazioni relative ai servizi
 - Invio di informazioni richieste
+- Miglioramento dell'esperienza formativa
+- Analisi delle fonti di acquisizione (solo in forma aggregata e anonima)
 
 ## Base giuridica
 Il trattamento è basato sul consenso espresso compilando il form di contatto.
