@@ -394,48 +394,84 @@
             
             <div class="contact-grid">
                 
-                <div class="contact-form-section">
-                    <h3>Iscriviti direttamente qui</h3>
-                    <form id="iscrizione-form" action="https://formsubmit.co/bitcorsi@gmail.com" method="POST" class="contact-form">
-                        <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" id="nome" name="nome" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Telefono</label>
-                            <input type="text" id="telefono" name="telefono" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="eta">Età Partecipante *</label>
-                            <input type="number" id="eta" name="eta" min="6" max="18" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="corso">Seleziona il corso</label>
-                            <select id="corso" name="corso" required>
-                                <option value="">-- Scegli un corso --</option>
-                                <option value="Spike Prime">Spike Prime (8-12 anni)</option>
-                                <option value="Arduino">Arduino (12-16 anni)</option>
-                                <option value="Open Roberta">Open Roberta Lab (9-14 anni)</option>
-                                <option value="micro:bit">micro:bit (8-11 anni)</option>
-                                <option value="altro">Altro / Da definire</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="messaggio">Note (esperienza, altro)</label>
-                            <textarea id="messaggio" name="messaggio" rows="4" placeholder="Scrivi una nota..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">INVIA</button>
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_subject" value="Nuova iscrizione dal sito BitCorsi">
-                        <div id="formSuccess" class="form-messaggio" style="display: none;">
-                            ✅ Grazie! La tua richiesta è stata inviata.
-                        </div>
-                    </form>
-                </div>
+
+
+<form class="contact-form-horizontal">
+  <!-- GENITORE -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="parent_name">Nome e Cognome del Genitore/Tutore *</label>
+      <input type="text" id="parent_name" name="parent_name" required>
+    </div>
+    <div class="form-group">
+      <label for="parent_phone">Telefono Genitore *</label>
+      <input type="tel" id="parent_phone" name="parent_phone" required>
+    </div>
+  </div>
+
+  <!-- ALUNNO -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="student_name">Nome e Cognome Alunno/Partecipante *</label>
+      <input type="text" id="student_name" name="student_name" required>
+    </div>
+    <div class="form-group">
+      <label for="student_age">Età Partecipante *</label>
+      <input type="number" id="student_age" name="student_age" min="6" max="18" required>
+    </div>
+  </div>
+
+  <!-- SCUOLA E CORSO -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="student_school">Scuola Frequentata *</label>
+      <input type="text" id="student_school" name="student_school" required>
+    </div>
+    <div class="form-group">
+      <label for="course">Corso di Interesse *</label>
+      <select id="course" name="course" required>
+        <option value="">Seleziona un corso</option>
+        <option value="robotica">Robotica per Bambini (8-11 anni)</option>
+        <option value="arduino">Programmazione con Arduino (12-16 anni)</option>
+        <option value="digitale">Creatività Digitale (14-18 anni)</option>
+        <option value="consulenza">Vorrei un consiglio</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- COME HAI SAPUTO -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="referral_source">Come hai saputo del corso? *</label>
+      <select id="referral_source" name="referral_source" required>
+        <option value="">Seleziona</option>
+        <option value="passaparola">Passaparola</option>
+        <option value="volantino">Volantino</option>
+        <option value="social">Social Media</option>
+        <option value="scuola">Scuola</option>
+        <option value="ricerca">Ricerca online</option>
+        <option value="altro">Altro</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="parent_email">Email Genitore *</label>
+      <input type="email" id="parent_email" name="parent_email" required>
+    </div>
+  </div>
+
+  <!-- MESSAGGIO -->
+  <div class="form-group full-width">
+    <label for="message">Note aggiuntive (opzionale)</label>
+    <textarea id="message" name="message" rows="3" placeholder="Domande particolari o informazioni aggiuntive..."></textarea>
+  </div>
+
+  <button type="submit" class="btn-primary btn-full">
+    <span class="btn-text">Invia richiesta iscrizione</span>
+    <span class="btn-icon">→</span>
+  </button>
+</form>
+
+              
                 
                 <div class="contact-info-col-2">
                     <h3>Contatti e Orari</h3>
