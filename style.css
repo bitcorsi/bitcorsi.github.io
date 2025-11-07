@@ -1660,3 +1660,47 @@ textarea:focus-visible {
         flex-direction: column;
     }
 }
+/* Correzione per allineamento label e input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Questo crea la distanza EQUIDISTANTE */
+    margin-bottom: 0; /* Rimuovi margin extra */
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #334155;
+    /* RIMUOVI margin-bottom: 0.5rem; */
+    display: block;
+    order: 1; /* Label prima */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    order: 2; /* Input dopo */
+    /* RIMUOVI margin-bottom se presente */
+}
+
+/* Se hai ancora problemi, resetta tutto */
+.form-row .form-group {
+    gap: 0.5rem !important;
+}
+
+.form-row .form-group label {
+    margin-bottom: 0 !important;
+}
+
+.form-row .form-group input,
+.form-row .form-group select,
+.form-row .form-group textarea {
+    margin-bottom: 0 !important;
+}
