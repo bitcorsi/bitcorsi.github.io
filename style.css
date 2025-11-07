@@ -1472,7 +1472,7 @@ textarea:focus-visible {
     border-top: 2px solid var(--gray-200);
 }
 /* NASCONDI FAB NELLA SEZIONE CONTATTI */
-#contatti .fab-container {
+#contatti-info .fab-container {
   display: none !important;
 }
 /* HERO FEATURES ORIZZONTALE */
