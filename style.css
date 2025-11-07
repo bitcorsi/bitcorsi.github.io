@@ -1699,36 +1699,41 @@ textarea:focus-visible {
     margin-bottom: 0 !important;
 }
 /* ========================================
-   1. SEZIONI PRINCIPALI (100% Altezza Schermo)
+   1. SEZIONI PRINCIPALI (80% Altezza Schermo)
    ======================================== */
 
-/* Imposta tutte le sezioni singole a 100% dell'altezza visibile (100vh) */
+/* Imposta tutte le sezioni singole a 80% dell'altezza visibile (80vh) */
 #home,
 #chi-siamo,
 #corsi,
 #contatti {
-    min-height: 100vh;
-    /* Centra il contenuto e imposta il padding */
+    min-height: 80vh;
+    height: 80vh; /* Forza l'altezza a 80vh */
+    
+    /* Gestione del Contenuto: se il contenuto è troppo grande, appare scroll interno */
+    overflow-y: auto; 
+
+    /* Centratura del Contenuto */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center; 
-    padding: 6rem 0; /* Padding di sicurezza */
+    padding: 4rem 0; /* Padding leggermente ridotto per 80vh */
     width: 100%;
 }
 
-/* Rimuovi il padding dalla sezione strumenti per estenderla a tutta altezza e larghezza */
+/* Rimuovi il padding dalla sezione strumenti */
 #strumenti {
     padding: 0;
 }
 
 
 /* ========================================
-   2. SEZIONE STRUMENTI (2 Righe da 100vh, 2 Colonne)
+   2. SEZIONE STRUMENTI (2 Righe da 80vh, 2 Colonne affiancate)
    ======================================== */
 
 .tools-grid {
-    /* Usa flexbox con wrap per creare le due righe orizzontali */
+    /* Il contenitore della griglia occuperà 160vh totali (2 righe x 80vh) */
     display: flex;
     flex-wrap: wrap; 
     margin: 0; 
@@ -1740,9 +1745,12 @@ textarea:focus-visible {
     /* 50% larghezza per avere 2 card affiancate (2 per riga) */
     width: 50%;
     
-    /* 100% altezza schermo. Due card affiancate (100vh) + 
-       le due card della riga successiva (100vh) = 200vh totali per la sezione */
-    min-height: 100vh; 
+    /* 80% altezza schermo per ogni riga */
+    min-height: 80vh; 
+    height: 80vh; /* Forza l'altezza a 80vh per ogni card */
+    
+    /* Gestione del Contenuto Interno */
+    overflow-y: auto; 
     
     /* Stile "blocco" a tutta altezza */
     display: flex; 
@@ -1751,7 +1759,7 @@ textarea:focus-visible {
     align-items: center;
     text-align: center;
     
-    /* Rimuovi stili predefiniti della card per l'effetto "blocco" */
+    /* Rimuovi stili per l'effetto blocco uniforme */
     border-radius: 0; 
     box-shadow: none; 
     margin: 0; 
@@ -1764,20 +1772,16 @@ textarea:focus-visible {
    ======================================== */
 
 @media (max-width: 768px) {
-    /* Riduci l'altezza minima delle sezioni singole su mobile */
-    #home,
-    #chi-siamo,
-    #corsi,
-    #contatti {
-        min-height: 75vh; 
-        padding: 4rem 0;
+    /* Rimuovi le altezze fisse e lascia che il contenuto decida l'altezza su mobile */
+    #home, #chi-siamo, #corsi, #contatti, .tool-card {
+        min-height: auto; 
+        height: auto;
+        overflow-y: visible;
+        padding: 4rem 1rem;
     }
     
-    /* Su mobile, le card degli strumenti tornano a tutta larghezza (100%)
-       e si impilano verticalmente, occupando meno dell'intera altezza (70vh) */
+    /* Le card degli strumenti tornano a tutta larghezza (100%) */
     .tool-card {
         width: 100%; 
-        min-height: 70vh; 
-        padding: 2rem;
     }
 }
