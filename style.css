@@ -1699,45 +1699,45 @@ textarea:focus-visible {
     margin-bottom: 0 !important;
 }
 /* ========================================
-   CONTATTI (VERSIONE 2.0 - MASSIMO IMPATTO)
+   CONTATTI (VERSIONE 3.0 - PULITA ED ELEGANTE)
    ======================================== */
 .section-contatti {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-    background: var(--gray-50); /* Leggero sfondo per l'intera sezione */
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background: var(--white); /* Sfondo chiaro per pulizia */
 }
 
 /* Layout grid - 2/3 per il form, 1/3 per info */
 .contact-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 4rem; /* Aumenta lo spazio */
-    align-items: flex-start; 
+    gap: 4rem; 
+    align-items: flex-start; /* Allinea in alto */
 }
 
-/* ------------------ COLONNA FORM (Bianco, Dominante) ------------------ */
+/* ------------------ COLONNA FORM (Focus Pulito) ------------------ */
 
 .contact-form-section {
-    background: var(--white);
-    border-radius: var(--radius-xl); /* Angoli molto arrotondati */
-    padding: 3rem; 
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); /* Ombra potente e soft */
-    border: none;
+    background: var(--gray-50); /* Leggero sfondo grigio chiaro */
+    border-radius: var(--radius-lg); 
+    padding: 2.5rem; 
+    /* Ombra sottile e raffinata (Drop Shadow) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    border: 1px solid var(--gray-100);
     order: 1; 
 }
 
 .contact-form-section h3 {
-    font-size: 2rem; 
-    font-weight: 900;
+    font-size: 1.8rem; 
+    font-weight: 800;
     color: var(--gray-900);
     margin-bottom: 1.5rem;
-    line-height: 1.2;
-    /* Linea di enfasi arancione sotto il titolo */
-    border-bottom: 3px solid var(--primary-light);
     padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-light); /* Sottolineatura sottile */
     display: inline-block; 
 }
 
+/* Form structure */
 .form-row {
     display: flex;
     gap: 1.5rem;
@@ -1750,7 +1750,7 @@ textarea:focus-visible {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 
 .form-group {
@@ -1760,193 +1760,206 @@ textarea:focus-visible {
 }
 
 .form-group label {
-    font-weight: 600;
-    color: var(--primary-dark); 
+    font-weight: 700;
+    color: var(--gray-700); 
     font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
 }
 
-/* Stili Input Moderni e Migliorati con Focus Ring */
+/* Stili Input */
 .form-group input, 
 .form-group select, 
 .form-group textarea {
-    padding: 1.1rem 1.2rem; 
-    border: 1px solid var(--gray-300); /* Bordo sottile */
-    border-radius: var(--radius);
+    padding: 1rem 1.1rem; 
+    border: 1px solid var(--gray-300); 
+    border-radius: var(--radius-sm);
     font-size: 1rem;
     color: var(--gray-800);
     background: var(--white); 
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-group input:focus, 
 .form-group select:focus, 
 .form-group textarea:focus {
     border-color: var(--primary);
-    /* Focus Ring (Glow) */
-    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.3); 
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2); /* Sottile focus ring arancione */
     outline: none;
 }
 
-/* Bottone di invio (Pillola con Gradiente) */
+/* Bottone di invio (Elegante e Chiaro) */
 .btn-primary {
     align-self: flex-start; 
-    min-width: 280px; 
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark)); /* Gradiente per profondità */
+    min-width: 220px; 
+    background: var(--primary);
     border: none;
     color: white;
-    border-radius: 50px; 
-    padding: 1rem 3rem;
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    box-shadow: 0 10px 20px -5px rgba(255, 107, 53, 0.4);
-    transition: all 0.3s ease;
+    border-radius: var(--radius); 
+    padding: 0.9rem 2rem;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary)); 
-    transform: translateY(-3px); 
-    box-shadow: 0 15px 30px -5px rgba(255, 107, 53, 0.6);
+    background: var(--primary-dark);
+    transform: translateY(-1px); 
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.5);
 }
 
 
-/* ------------------ COLONNA INFO (Alto Contrasto Scuro) ------------------ */
+/* ------------------ COLONNA INFO (Linee Sottili) ------------------ */
 
 .contact-info-col-2 {
-    background: var(--gray-800); 
-    color: var(--white);
-    border-radius: var(--radius-xl); 
-    padding: 3rem 2rem; 
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     display: flex;
     flex-direction: column;
-    gap: 3rem; 
+    gap: 2.5rem; 
     order: 2;
-    position: relative;
+    padding-top: 1rem; /* Allineamento visivo */
 }
 
-/* Elemento visivo di decorazione */
-.contact-info-col-2::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60px;
-    height: 60px;
-    background: var(--primary);
-    border-bottom-left-radius: 100%;
-    opacity: 0.15;
-}
-
-
-/* --- CONTACT CARDS (Whatsapp/Phone) --- */
+/* --- CONTACT CARDS (Whatsapp/Phone) - Minimali e Separati --- */
 .contact-cards {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--gray-200); /* Separatore sottile */
 }
 
 .contact-card {
     display: flex;
     align-items: center;
     gap: 1.2rem;
-    padding: 1.5rem;
-    border-radius: var(--radius);
-    background: var(--white); /* Card bianche sul fondo scuro */
-    box-shadow: var(--shadow);
+    padding: 0.5rem 0;
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-left: 5px solid var(--primary); /* Linea arancione di accento */
+    transition: opacity 0.2s ease;
+    background: none;
+    border: none;
+    box-shadow: none;
 }
 
 .contact-card:hover {
-    transform: translateY(-5px); /* Hover dinamico */
-    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3); 
+    opacity: 0.8;
+    transform: none;
+    box-shadow: none;
 }
 
 .contact-card-icon {
     flex-shrink: 0;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 5px rgba(255, 107, 53, 0.1); /* Anello esterno sottile */
+    background: var(--gray-100);
+    box-shadow: none;
 }
 
-.contact-card-whatsapp .contact-card-icon { background: #25D366; } /* WhatsApp Green */
-.contact-card-phone .contact-card-icon { background: var(--primary); } /* Primary Orange */
-
-.contact-card-whatsapp .contact-card-icon svg,
-.contact-card-phone .contact-card-icon svg { color: var(--white); }
+.contact-card-whatsapp .contact-card-icon { color: #25D366; } 
+.contact-card-phone .contact-card-icon { color: var(--primary); } 
+.contact-card-whatsapp .contact-card-icon { background: #E6F7ED; } /* Sfondo molto chiaro */
+.contact-card-phone .contact-card-icon { background: var(--gray-100); }
 
 .contact-card-text h4 {
-    font-weight: 800;
+    font-weight: 700;
     color: var(--gray-900); 
+    font-size: 1rem;
 }
 
 .contact-card-text p {
     color: var(--gray-600);
+    font-size: 0.9rem;
 }
 
 
-/* --- INFO BOXES (Email, Address) - Minimal sul fondo scuro --- */
-.contact-info-box {
-    background: none; 
-    border: none;
-    text-align: left; 
+/* --- INFO BOXES (Email, Address) - A Scheda Sottile --- */
+.info-boxes-container {
     display: flex;
-    flex-direction: row; 
-    align-items: flex-start;
-    gap: 1rem;
-    height: auto;
-    padding: 1rem 0;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--gray-200); /* Separatore sottile */
 }
 
-.contact-info-box h4 {
-    font-weight: 700;
-    color: var(--primary-light); 
-    margin-bottom: 0.3rem;
-}
-
-.contact-info-box p {
-    color: var(--gray-100); 
-}
-
-.contact-info-box .info-icon {
-    flex-shrink: 0;
-    width: 35px;
-    height: 35px;
-    background: var(--primary);
-    color: white;
-    box-shadow: none;
-    margin-bottom: 0;
-    border-radius: var(--radius-sm);
-}
-
-/* --- SOCIAL SECTION - Adattata al fondo scuro --- */
-.social-section {
-    background: var(--gray-900); 
+.contact-info-box {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 1.5rem;
     box-shadow: none;
-    border: 1px solid var(--gray-700);
+    text-align: left;
+    transition: border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+}
+
+.contact-info-box:hover {
+    border-color: var(--primary-light);
+    transform: none;
+    box-shadow: none;
+}
+
+.contact-info-box h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.contact-info-box p {
+    color: var(--gray-700);
+    margin: 0;
+}
+
+.contact-info-box .info-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--primary);
+    color: white;
+    box-shadow: none;
+    margin-bottom: 0.8rem;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- SOCIAL SECTION - A Scheda Sottile --- */
+.social-section {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: none;
+    border: 1px solid var(--gray-200);
     text-align: center;
 }
 
 .social-section h4 {
-    color: var(--primary-light);
+    color: var(--gray-800);
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 
 .social-link {
-    background: var(--gray-700);
-    border: 1px solid var(--gray-600);
-    color: var(--white);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--gray-700);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
 }
 
 .social-link:hover {
@@ -1955,8 +1968,12 @@ textarea:focus-visible {
     border-color: var(--primary);
 }
 
+.social-link:hover svg {
+    stroke: white;
+}
 
-/* ------------------ RESPONSIVE (Migliorato) ------------------ */
+
+/* ------------------ RESPONSIVE (Pulito) ------------------ */
 
 @media (max-width: 992px) { 
     .contact-grid {
@@ -1965,29 +1982,32 @@ textarea:focus-visible {
     }
 
     .contact-form-section {
-        padding: 2.5rem;
+        padding: 2rem;
     }
 
     .contact-info-col-2 {
-        padding: 2.5rem 2rem;
-        gap: 2.5rem;
+        padding-top: 0;
+        gap: 2rem;
     }
 
     .form-row {
         flex-direction: column;
     }
-
-    .contact-info-box {
-        flex-direction: row;
-        align-items: flex-start;
-        text-align: left;
+    
+    .contact-cards, .info-boxes-container {
+        border-bottom: none;
+        padding-bottom: 0;
+        /* Linea di separazione orizzontale per mobile */
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--gray-200); 
     }
 }
 
 @media (max-width: 576px) {
     .section-contatti {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
     .contact-form-section {
         padding: 1.5rem;
@@ -1995,7 +2015,7 @@ textarea:focus-visible {
 
     .contact-form-section h3 {
         font-size: 1.5rem;
-        display: block; /* Rimuovi inline-block per full width */
+        display: block; 
         text-align: center;
     }
 
@@ -2006,16 +2026,7 @@ textarea:focus-visible {
         font-size: 1rem;
     }
 
-    .contact-info-col-2 {
-        padding: 2rem 1.5rem;
-        border-radius: var(--radius);
-    }
-
-    /* Su mobile, le info box tornano centrate per pulizia */
-    .contact-info-box {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 0.5rem;
+    .contact-card-text p {
+        font-size: 0.85rem;
     }
 }
