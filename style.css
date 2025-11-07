@@ -1698,3 +1698,70 @@ textarea:focus-visible {
 .form-row .form-group textarea {
     margin-bottom: 0 !important;
 }
+/* ========================================
+   LAYOUT SEZIONI A ALTEZZA COMPLETA (100vh)
+   ======================================== */
+
+/* Le prime due sezioni (Home e Chi Siamo) a tutta altezza */
+#home,
+#chi-siamo {
+    min-height: 100vh;
+    /* Centra il contenuto verticalmente per un look più pulito */
+    display: flex;
+    align-items: center;
+    padding: 4rem 0; 
+}
+
+/* Rimuove il padding generale da #strumenti per estendere le card */
+#strumenti {
+    padding: 0; 
+    /* Rimuovi anche la classe section-padding dal div #strumenti in HTML se presente */
+}
+
+/* ========================================
+   GRIGLIA STRUMENTI 2x2 (4 box, 100vh totali)
+   ======================================== */
+
+.tools-grid {
+    /* Usa flexbox per il layout 2x2 */
+    display: flex;
+    flex-wrap: wrap; /* Permette il ritorno a capo dopo 2 elementi */
+    margin: 0; 
+    width: 100%;
+}
+
+.tool-card {
+    /* Ogni card occupa il 50% della larghezza */
+    width: 50%;
+    /* Ogni card occupa metà dell'altezza del viewport (2x2 = 100vh) */
+    min-height: 50vh; 
+    
+    /* Configurazione visiva stile "blocco Apple" */
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Rimuovi stili predefiniti della card per l'effetto "blocco" */
+    border-radius: 0; 
+    box-shadow: none; 
+    padding: 3rem;
+    margin: 0;
+    
+    /* Puoi aggiungere bordi sottili tra le card per separarle visivamente se necessario */
+    /* border: 1px solid var(--gray-200); */
+}
+
+
+/* ========================================
+   RESPONSIVE MOBILE 
+   ======================================== */
+
+@media (max-width: 768px) {
+    .tool-card {
+        width: 100%; /* Su mobile, le card tornano a tutta larghezza */
+        min-height: 70vh; /* Ognuna occupa il 70% dell'altezza dello schermo */
+        padding: 2rem 1rem;
+    }
+}
