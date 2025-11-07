@@ -1698,3 +1698,316 @@ textarea:focus-visible {
 .form-row .form-group textarea {
     margin-bottom: 0 !important;
 }
+/* ========================================
+   CONTATTI (MIGLIORAMENTO VISIVO)
+   ======================================== */
+.section-contatti {
+    padding-bottom: 5rem;
+}
+
+/* Layout grid migliorato per contatti */
+.contact-grid {
+    /* Nuova griglia 2 colonne per desktop (2/3 per Form, 1/3 per Info) */
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: flex-start; /* Allinea in alto */
+}
+
+/* Stile Form Container - Reso più prominente */
+.contact-form-section {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem; /* Aumenta il padding */
+    box-shadow: var(--shadow-xl); /* Rendi il form molto prominente */
+    border: 1px solid var(--gray-100);
+    order: 1; /* Il form viene prima */
+}
+
+.contact-form-section h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+    text-align: left; /* Allinea a sinistra */
+}
+
+.contact-info-col-2 {
+    /* Contenitore delle info */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Spazio tra i blocchi di informazioni */
+    order: 2;
+}
+
+/* Struttura a 2 colonne per i campi del form (basato sull'HTML) */
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.form-row > .form-group {
+    flex: 1 1 0%;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-weight: 700;
+    color: var(--gray-700);
+    font-size: 0.9rem;
+    text-transform: uppercase; /* Per dare enfasi */
+    letter-spacing: 0.5px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    padding: 1rem 1.2rem; /* Aumenta il padding */
+    border: 2px solid var(--gray-200); /* Bordo più visibile */
+    border-radius: var(--radius);
+    font-size: 1rem;
+    color: var(--gray-800);
+    background: var(--gray-50); /* Sfondo leggermente grigio */
+    transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15); /* Colore più soft per il focus */
+    background: var(--white); /* Sfondo bianco al focus */
+    outline: none;
+}
+
+/* Success/Error Message */
+.form-messaggio {
+    background: var(--success);
+    color: white;
+    padding: 1rem;
+    border-radius: var(--radius);
+    text-align: center;
+    font-weight: 700;
+    margin-top: 1.5rem;
+}
+
+/* Bottone di invio */
+.btn-primary {
+    align-self: flex-start; /* Allinea a sinistra */
+    min-width: 250px;
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius);
+    padding: 1rem 2.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+
+/* --- CONTACT CARDS (Whatsapp/Phone link) --- */
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    transition: var(--transition);
+    border: 1px solid var(--gray-200);
+}
+
+.contact-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.contact-card-whatsapp {
+    background: #E6F7ED; /* Verde chiaro per WhatsApp */
+    border-color: #A3E4B5;
+}
+
+.contact-card-whatsapp .whatsapp-icon {
+    color: #25D366;
+}
+
+.contact-card-phone {
+    background: var(--gray-100); /* Grigio chiaro per il telefono */
+    border-color: var(--gray-200);
+}
+
+.contact-card-phone .phone-icon {
+    color: var(--primary);
+}
+
+.contact-card-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-card-text h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.3rem;
+}
+
+.contact-card-text p {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+
+/* --- INFO BOXES (Email, Address) --- */
+/* Uso del flexbox/grid per allineare meglio i box, se necessario si può raggruppare l'html */
+/* Per ora, mantengo lo stile basato sulle classi esistenti */
+.contact-info-box {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+    text-align: center;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.contact-info-box:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.contact-info-box h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.contact-info-box p {
+    color: var(--gray-700);
+    margin-bottom: 0.1rem;
+}
+
+.contact-info-box .info-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-light);
+    color: white;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+}
+
+.contact-address p strong {
+    color: var(--gray-900);
+}
+
+/* --- SOCIAL SECTION --- */
+.social-section {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+    text-align: center;
+}
+
+.social-link {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--gray-700);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.social-link:hover svg {
+    stroke: white;
+}
+/* Modifica la media query esistente per i contatti */
+@media (max-width: 768px) {
+    /* ... (altre regole per mobile) ... */
+
+    /* CONTATTI - Layout mobile */
+    .contact-grid {
+        grid-template-columns: 1fr; /* Singola colonna su mobile */
+        gap: 2.5rem;
+    }
+
+    .contact-form-section {
+        order: 1; /* Il form viene prima su mobile */
+        padding: 1.5rem;
+        box-shadow: var(--shadow); /* Ombra meno intensa su mobile */
+    }
+
+    .contact-info-col-2 {
+        order: 2; /* Le info box vengono dopo su mobile */
+        gap: 1.5rem;
+    }
+
+    .contact-form-section h3 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .btn-primary {
+        align-self: stretch; /* Full width su mobile */
+        min-width: unset;
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+    }
+}
