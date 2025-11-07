@@ -1644,12 +1644,6 @@ textarea:focus-visible {
     }
 }
 
-/* Stile per i campi obbligatori */
-.form-group label::after {
-    content: " *";
-    color: #ef4444;
-}
-
 /* Miglioramento responsive */
 @media (max-width: 768px) {
     .contact-form {
