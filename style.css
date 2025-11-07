@@ -1505,7 +1505,7 @@ textarea:focus-visible {
 .contacts-faq-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 4rem;
     align-items: start;
 }
 
@@ -1516,24 +1516,10 @@ textarea:focus-visible {
     gap: 2rem;
 }
 
-/* Mantieni tutto il resto identico */
-.contact-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.contact-info-box {
-    background: var(--white);
-    padding: 1.5rem;
-    border-radius: var(--radius);
-    border: 1px solid var(--gray-200);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .contacts-faq-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
     }
 }
