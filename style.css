@@ -1699,44 +1699,52 @@ textarea:focus-visible {
     margin-bottom: 0 !important;
 }
 /* ========================================
-   LAYOUT SEZIONI A ALTEZZA COMPLETA (100vh)
+   1. SEZIONI PRINCIPALI (100% Altezza Schermo)
    ======================================== */
 
-/* Le prime due sezioni (Home e Chi Siamo) a tutta altezza */
+/* Imposta tutte le sezioni singole a 100% dell'altezza visibile (100vh) */
 #home,
-#chi-siamo {
+#chi-siamo,
+#corsi,
+#contatti {
     min-height: 100vh;
-    /* Centra il contenuto verticalmente per un look più pulito */
+    /* Centra il contenuto e imposta il padding */
     display: flex;
-    align-items: center;
-    padding: 4rem 0; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    padding: 6rem 0; /* Padding di sicurezza */
+    width: 100%;
 }
 
-/* Rimuove il padding generale da #strumenti per estendere le card */
+/* Rimuovi il padding dalla sezione strumenti per estenderla a tutta altezza e larghezza */
 #strumenti {
-    padding: 0; 
-    /* Rimuovi anche la classe section-padding dal div #strumenti in HTML se presente */
+    padding: 0;
 }
+
 
 /* ========================================
-   GRIGLIA STRUMENTI 2x2 (4 box, 100vh totali)
+   2. SEZIONE STRUMENTI (2 Righe da 100vh, 2 Colonne)
    ======================================== */
 
 .tools-grid {
-    /* Usa flexbox per il layout 2x2 */
+    /* Usa flexbox con wrap per creare le due righe orizzontali */
     display: flex;
-    flex-wrap: wrap; /* Permette il ritorno a capo dopo 2 elementi */
+    flex-wrap: wrap; 
     margin: 0; 
     width: 100%;
 }
 
+/* Ogni singola Tool Card */
 .tool-card {
-    /* Ogni card occupa il 50% della larghezza */
+    /* 50% larghezza per avere 2 card affiancate (2 per riga) */
     width: 50%;
-    /* Ogni card occupa metà dell'altezza del viewport (2x2 = 100vh) */
-    min-height: 50vh; 
     
-    /* Configurazione visiva stile "blocco Apple" */
+    /* 100% altezza schermo. Due card affiancate (100vh) + 
+       le due card della riga successiva (100vh) = 200vh totali per la sezione */
+    min-height: 100vh; 
+    
+    /* Stile "blocco" a tutta altezza */
     display: flex; 
     flex-direction: column;
     justify-content: center;
@@ -1746,22 +1754,30 @@ textarea:focus-visible {
     /* Rimuovi stili predefiniti della card per l'effetto "blocco" */
     border-radius: 0; 
     box-shadow: none; 
+    margin: 0; 
     padding: 3rem;
-    margin: 0;
-    
-    /* Puoi aggiungere bordi sottili tra le card per separarle visivamente se necessario */
-    /* border: 1px solid var(--gray-200); */
 }
 
 
 /* ========================================
-   RESPONSIVE MOBILE 
+   3. RESPONSIVE MOBILE (Regolazione)
    ======================================== */
 
 @media (max-width: 768px) {
+    /* Riduci l'altezza minima delle sezioni singole su mobile */
+    #home,
+    #chi-siamo,
+    #corsi,
+    #contatti {
+        min-height: 75vh; 
+        padding: 4rem 0;
+    }
+    
+    /* Su mobile, le card degli strumenti tornano a tutta larghezza (100%)
+       e si impilano verticalmente, occupando meno dell'intera altezza (70vh) */
     .tool-card {
-        width: 100%; /* Su mobile, le card tornano a tutta larghezza */
-        min-height: 70vh; /* Ognuna occupa il 70% dell'altezza dello schermo */
-        padding: 2rem 1rem;
+        width: 100%; 
+        min-height: 70vh; 
+        padding: 2rem;
     }
 }
