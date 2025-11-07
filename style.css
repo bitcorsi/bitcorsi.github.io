@@ -1528,3 +1528,26 @@ textarea:focus-visible {
     margin-bottom: 1.5rem;
     color: var(--gray-900);
 }
+/* Card style per Form e FAQ */
+.form-column .faq,
+.faq-column .faq {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+    height: fit-content;
+}
+
+/* Assicurati che il form occupi tutto lo spazio */
+.form-column .faq .contact-form {
+    height: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-column .faq,
+    .faq-column .faq {
+        padding: 2rem 1.5rem;
+    }
+}
