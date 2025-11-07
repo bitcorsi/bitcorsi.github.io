@@ -1522,3 +1522,9 @@ textarea:focus-visible {
         gap: 3rem;
     }
 }
+.form-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--gray-900);
+}
