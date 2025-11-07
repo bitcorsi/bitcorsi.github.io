@@ -54,7 +54,7 @@
         <a href="#chi-siamo">Chi siamo</a>
         <a href="#strumenti">Strumenti</a>
         <a href="#corsi">Corsi</a>
-        <a href="#contatti">Contatti</a>
+        <a href="#contatti-info">Contatti</a>
       </nav>
       <a href="#contatti" class="btn-header">Iscriviti ora</a>
     </div>
@@ -384,94 +384,103 @@
         </div>
     </section>
 
-    <!-- Contatti -->
+      <!-- Contatti - Sezione 1: Form -->
     <section id="contatti" class="section section-contatti">
         <div class="container">
             <div class="section-header">
-                <h2>Contattaci</h2>
-                <h3>Per iscrizioni, informazioni, lezione di prova o collaborazioni</h3>
+                <h2>Iscriviti ai Corsi</h2>
+                <h3>Compila il modulo per prenotare il posto o richiedere informazioni</h3>
             </div>
             
             <div class="contact-grid">
-           
-<form id="iscrizione-form" action="https://formsubmit.co/bitcorsi@gmail.com" method="POST" class="contact-form">
-  <!-- GENITORE -->
-  <div class="form-row">
-    <div class="form-group">
-      <label for="parent_name">Nome e Cognome del Genitore/Tutore *</label>
-      <input type="text" id="parent_name" name="parent_name" required>
-    </div>
-    <div class="form-group">
-      <label for="parent_phone">Telefono Genitore *</label>
-      <input type="tel" id="parent_phone" name="parent_phone" required>
-    </div>
-  </div>
+                <form id="iscrizione-form" action="https://formsubmit.co/bitcorsi@gmail.com" method="POST" class="contact-form">
+                    <!-- GENITORE -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parent_name">Nome e Cognome del Genitore/Tutore *</label>
+                            <input type="text" id="parent_name" name="parent_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parent_phone">Telefono Genitore *</label>
+                            <input type="tel" id="parent_phone" name="parent_phone" required>
+                        </div>
+                    </div>
 
-  <!-- ALUNNO -->
-  <div class="form-row">
-    <div class="form-group">
-      <label for="student_name">Nome e Cognome Alunno/Partecipante *</label>
-      <input type="text" id="student_name" name="student_name" required>
-    </div>
-    <div class="form-group">
-      <label for="student_age">Età Partecipante *</label>
-      <input type="number" id="student_age" name="student_age" min="6" max="18" required>
-    </div>
-  </div>
+                    <!-- ALUNNO -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="student_name">Nome e Cognome Alunno/Partecipante *</label>
+                            <input type="text" id="student_name" name="student_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student_age">Età Partecipante *</label>
+                            <input type="number" id="student_age" name="student_age" min="6" max="18" required>
+                        </div>
+                    </div>
 
-  <!-- SCUOLA E CORSO -->
-  <div class="form-row">
-    <div class="form-group">
-      <label for="student_school">Scuola Frequentata *</label>
-      <input type="text" id="student_school" name="student_school" required>
-    </div>
-    <div class="form-group">
-      <label for="course">Corso di Interesse *</label>
-      <select id="course" name="course" required>
-        <option value="">Seleziona un corso</option>
-        <option value="Spike Prime">Spike Prime (8-13 anni)</option>
-        <option value="arduino"> Arduino (12-16 anni)</option>
-        <option value="Open Roberta">Open Roberta Lab (9-14 anni)</option>
-        <option value="micro:bit">micro:bit (8-11 anni)</option>
-        <option value="consulenza">Vorrei un consiglio</option>
-      </select>
-    </div>
-  </div>
+                    <!-- SCUOLA E CORSO -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="student_school">Scuola Frequentata *</label>
+                            <input type="text" id="student_school" name="student_school" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Corso di Interesse *</label>
+                            <select id="course" name="course" required>
+                                <option value="">Seleziona un corso</option>
+                                <option value="Spike Prime">Spike Prime (8-13 anni)</option>
+                                <option value="arduino"> Arduino (12-16 anni)</option>
+                                <option value="Open Roberta">Open Roberta Lab (9-14 anni)</option>
+                                <option value="micro:bit">micro:bit (8-11 anni)</option>
+                                <option value="consulenza">Vorrei un consiglio</option>
+                            </select>
+                        </div>
+                    </div>
 
-  <!-- COME HAI SAPUTO -->
-  <div class="form-row">
-    <div class="form-group">
-      <label for="referral_source">Come hai saputo del corso? *</label>
-      <select id="referral_source" name="referral_source" required>
-        <option value="">Seleziona</option>
-        <option value="passaparola">Passaparola</option>
-        <option value="volantino">Volantino</option>
-        <option value="social">Social Media</option>
-        <option value="scuola">Scuola</option>
-        <option value="ricerca">Ricerca online</option>
-        <option value="altro">Altro</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="parent_email">Email Genitore *</label>
-      <input type="email" id="parent_email" name="parent_email" required>
-    </div>
-  </div>
+                    <!-- COME HAI SAPUTO -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="referral_source">Come hai saputo del corso? *</label>
+                            <select id="referral_source" name="referral_source" required>
+                                <option value="">Seleziona</option>
+                                <option value="passaparola">Passaparola</option>
+                                <option value="volantino">Volantino</option>
+                                <option value="social">Social Media</option>
+                                <option value="scuola">Scuola</option>
+                                <option value="ricerca">Ricerca online</option>
+                                <option value="altro">Altro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="parent_email">Email Genitore *</label>
+                            <input type="email" id="parent_email" name="parent_email" required>
+                        </div>
+                    </div>
 
-  <!-- MESSAGGIO -->
-  <div class="form-group full-width">
-    <label for="message">Note (opzionale)</label>
-    <textarea id="message" name="message" rows="3" placeholder="Informazioni aggiuntive..."></textarea>
-  </div>
+                    <!-- MESSAGGIO -->
+                    <div class="form-group full-width">
+                        <label for="message">Note (opzionale)</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Informazioni aggiuntive..."></textarea>
+                    </div>
 
-  <button type="submit" class="btn-primary">INVIA</button>
-  
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="Nuova iscrizione dal sito BitCorsi">
-</form>
+                    <button type="submit" class="btn-primary">INVIA</button>
+                    
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Nuova iscrizione dal sito BitCorsi">
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti - Sezione 2: Info e Contatti -->
+    <section id="contatti-info" class="section section-contatti bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contatti e Informazioni</h2>
+                <h3>Siamo a tua disposizione per qualsiasi domanda</h3>
+            </div>
             
-              
-                
+            <div class="contact-grid">
                 <div class="contact-info-col-2">
                     <h3>Contatti e Orari</h3>
                     <p class="contact-intro">Siamo a tua disposizione per qualsiasi informazione sui corsi e le modalità di iscrizione.</p>
@@ -507,23 +516,22 @@
                                 <p class="contact-card-desc">Per maggiori dettagli</p>
                             </div>
                         </a>
-                       <div class="contact-info-box contact-hours">
-                        <div class="info-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
+                        <div class="contact-info-box contact-hours">
+                            <div class="info-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h4>Orari di Lezione</h4>
+                            <p>Sabato: 10:00 - 11:30</p>
+                            <p class="small-text">Su appuntamento</p>
                         </div>
-                        <h4>Orari di Lezione</h4>
-                        <p>Sabato: 10:00 - 11:30</p>
-                        <p class="small-text">Su appuntamento</p>
                     </div>
                 </div>
-                    </div>
 
-                
                 <div class="contact-info-col-3">
                     <h3>Sede e Social</h3>
-                      <div class="contact-info-box contact-address">
+                    <div class="contact-info-box contact-address">
                         <div class="info-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -534,10 +542,8 @@
                         <p><strong>Piazzetta Santi Francesco e Chiara, n.1</strong></p>
                         <p class="small-text">Presso Centro Aperto Sandro Marelli</p>
                     </div>
-                  
 
-
-                       <div class="social-section">
+                    <div class="social-section">
                         <h4>Seguici sui social</h4>
                         <a href="https://www.instagram.com/bit_corsi/" target="_blank" rel="noopener" class="social-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -552,7 +558,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-bottom">
