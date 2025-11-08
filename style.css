@@ -420,10 +420,9 @@ img {
     align-items: center;
   }
 
-  .hero-left-image img {
-    transform: perspective(800px) rotateY(8deg) scale(1.05);
-    transform-origin: right center;
-  }
+ .hero-left-image img {
+  transform: none;
+}
 
   .hero-right-image img {
     transform: perspective(800px) rotateY(-8deg) scale(1.05);
