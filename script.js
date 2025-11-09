@@ -126,7 +126,7 @@ function initContactForm() {
             if (success) {
                 this.reset();
                 if (messageEl) {
-                    messageEl.textContent = '✅ Richiesta inviata! Ti risponderemo a breve.';
+                    messageEl.textContent = '✅ Iscrizione inviata con successo!';
                     messageEl.className = 'form-message success';
                     setTimeout(() => {
                         messageEl.className = 'form-message';
