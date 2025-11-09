@@ -350,131 +350,95 @@
     </section>
 
          <!-- Contatti - Sezione Unica con Form e FAQ Affiancati -->
-    <section id="contatti" class="section section-contatti">
-        <div class="container">
-            <div class="section-header">
-                <h2>Iscrizione</h2>
-                <h3>Prenota un posto compilando il modulo, fai cominciare l'avventura robotica!</h3>
+   <section id="contatti" class="section section-contatti">
+  <div class="container">
+    <div class="section-header">
+      <h2>Iscriviti</h2>
+      <p class="section-subtitle">Compila il modulo o leggi le domande frequenti</p>
+    </div>
+
+    <div class="form-faq-container">
+      <!-- Form Iscrizione -->
+      <div class="form-panel">
+        <h3 class="panel-title">Modulo d’iscrizione</h3>
+        <form id="iscrizione-form" action="https://formsubmit.co/bitcorsi@gmail.com" method="POST" class="compact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="Genitore">Genitore *</label>
+              <input type="text" id="Genitore" name="Genitore" required>
             </div>
-            
-            <div class="form-faq-grid">
-                <!-- Colonna Sinistra: Form -->
-                <div class="form-column">
-                  <div class="faq">
-                      <h3>Iscriviti direttamente qui</h3>
-                  <form id="iscrizione-form" action="https://formsubmit.co/bitcorsi@gmail.com" method="POST" class="contact-form">
-                        <!-- GENITORE -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="Genitore">Genitore/Tutore *</label>
-                                <input type="text" id="Genitore" name="Genitore" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="Telefono">Telefono  *</label>
-                                <input type="tel" id="Telefono" name="Telefono" required>
-                            </div>
-                        </div>
-
-                        <!-- ALUNNO -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="studente">Partecipante *</label>
-                                <input type="text" id="studente" name="studente" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="età">Età Partecipante *</label>
-                                <input type="number" id="età" name="età" min="6" max="18" required>
-                            </div>
-                        </div>
-
-                        <!-- SCUOLA E CORSO -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="scuola">Scuola Frequentata *</label>
-                                <input type="text" id="scuola" name="scuola" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="corso">Corso di Interesse *</label>
-                                <select id="corso" name="corso" required>
-                                    <option value="">Seleziona un corso</option>
-                                    <option value="Spike Prime">Spike Prime (8-13 anni)</option>
-                                    <option value="arduino"> Arduino (12-16 anni)</option>
-                                    <option value="Open Roberta">Open Roberta Lab (9-14 anni)</option>
-                                    <option value="micro:bit">micro:bit (8-11 anni)</option>
-                                    <option value="consulenza">Vorrei un consiglio</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- COME HAI SAPUTO -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="fonte">Come hai saputo del corso? *</label>
-                                <select id="fonte" name="fonte" required>
-                                    <option value="">Seleziona</option>
-                                    <option value="passaparola">Passaparola</option>
-                                    <option value="volantino">Volantino</option>
-                                    <option value="social">Social Media</option>
-                                    <option value="scuola">Scuola</option>
-                                    <option value="ricerca">Ricerca online</option>
-                                    <option value="altro">Altro</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Genitore *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                        </div>
-
-                        <!-- MESSAGGIO -->
-                        <div class="form-group full-width">
-                            <label for="note">Note (opzionale)</label>
-                            <textarea id="note" name="note" rows="3" placeholder="Note aggiuntive..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-primary">INVIA</button>
-                        
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_subject" value="Nuova iscrizione dal sito BitCorsi">
-                    </form>
-                </div>
-                </div>
-
-                <!-- Colonna Destra: FAQ -->
-                <div class="faq-column">
-                    <div class="faq">
-                        <h3>Domande frequenti</h3>
-                        <div class="faq-grid">
-                            <details>
-                                <summary>Serve portare il proprio kit?</summary>
-                                <p>No, forniamo tutti i materiali necessari durante i laboratori in sede. I ragazzi lavoreranno con kit forniti da noi.</p>
-                            </details>
-                            <details>
-                                <summary>È possibile fare una lezione di prova?</summary>
-                                <p>Sì, verifica se ci sono posti disponibili contattandoci su WhatsApp, saremo felici di farti provare gratuitamente una lezione.</p>
-                            </details>
-                            <details>
-                                <summary>Cosa succede se manca un incontro?</summary>
-                                <p>Cercheremo di recuperare l'incontro perso durante la sessione successiva di laboratori.</p>
-                            </details>
-                            <details>
-                                <summary>Posso iscrivere mio figlio a più corsi?</summary>
-                                <p>Certamente! È possibile partecipare a più percorsi durante l'anno per approfondire diverse tecnologie e competenze.</p>
-                            </details>
-                            <details>
-                                <summary>Dove si svolgono i corsi di robotica a Brescia?</summary>
-                                <p>I corsi si tengono presso il Centro Aperto Sandro Marelli, in Piazzetta Santi Francesco e Chiara n.1 a Brescia, facilmente raggiungibile anche in metro (fermata Mompiano).</p>
-                            </details>
-                            <details>
-                                <summary>Qual è l'età giusta per iniziare a fare robotica educativa?</summary>
-                                <p>I nostri corsi partono dagli 8 anni fino ai 16, con percorsi su misura per ogni fascia d'età. Non serve esperienza: si impara giocando e sperimentando.</p>
-                            </details>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label for="Telefono">Telefono *</label>
+              <input type="tel" id="Telefono" name="Telefono" required>
             </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="studente">Partecipante *</label>
+              <input type="text" id="studente" name="studente" required>
+            </div>
+            <div class="form-group">
+              <label for="età">Età *</label>
+              <input type="number" id="età" name="età" min="6" max="18" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="corso">Corso *</label>
+              <select id="corso" name="corso" required>
+                <option value="">Seleziona</option>
+                <option value="Spike Prime">Spike Prime (8–13)</option>
+                <option value="Arduino">Arduino (12–16)</option>
+                <option value="Open Roberta">Open Roberta (9–14)</option>
+                <option value="micro:bit">micro:bit (8–11)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="note">Note (opzionale)</label>
+            <textarea id="note" name="note" rows="2" placeholder="Es. giorni preferiti, allergie, ecc."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Invia richiesta</button>
+
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="Nuova iscrizione - BitCorsi">
+          <input type="hidden" name="_next" value="https://www.bitcorsi.it">
+        </form>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-panel">
+        <h3 class="panel-title">Domande frequenti</h3>
+        <div class="faq-list">
+          <details>
+            <summary>Serve portare il kit?</summary>
+            <p>No, forniamo tutti i materiali durante i laboratori in sede.</p>
+          </details>
+          <details>
+            <summary>È possibile una lezione di prova?</summary>
+            <p>Sì! Contattaci su WhatsApp per verificare disponibilità.</p>
+          </details>
+          <details>
+            <summary>Cosa succede se si salta un incontro?</summary>
+            <p>Forniamo materiale e video di recupero, ma non lezioni individuali.</p>
+          </details>
+          <details>
+            <summary>Dove si svolgono i corsi?</summary>
+            <p>A Brescia, presso il Centro Aperto Sandro Marelli (Piazzetta S. Francesco e Chiara, 1).</p>
+          </details>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Contatti - Sezione 2: Info e Contatti -->
     <section id="contatti-info" class="section section-contatti bg-light">
