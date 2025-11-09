@@ -1698,3 +1698,158 @@ textarea:focus-visible {
     margin-bottom: 0 !important;
 }
 
+/* === GRID DOPPIO COMPATTO === */
+.contact-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 2rem auto; /* centrato orizzontalmente */
+  align-items: stretch;
+}
+
+.contact-interactive,
+.contact-static {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.contact-interactive h3,
+.contact-static h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0;
+  text-align: left;
+}
+
+/* === LINK CLICCABILI (sinistra) — con 3D al hover === */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  /* ✅ SOLO qui: 3D per interazione */
+  transform-style: preserve-3d;
+}
+
+.contact-link:hover {
+  transform: translateY(-2px) translateZ(5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.link-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.whatsapp-icon { background: #25D366; color: white; }
+.phone-icon { background: var(--primary); color: white; }
+.email-icon { background: #005eff; color: white; }
+
+.link-content .link-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 0.1rem;
+}
+
+.link-content .link-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+/* === INFO STATICHE (destra) — nessun 3D === */
+.static-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.static-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.static-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.static-content .static-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 0.2rem;
+}
+
+.static-content .static-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray-900);
+  line-height: 1.4;
+}
+
+.static-content .static-sub {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  font-weight: 400;
+}
+
+/* Social link — stile compatto */
+.social-link {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.social-link a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--gray-700);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.social-link a:hover {
+  color: var(--primary);
+}
+
+/* === MOBILE: impila === */
+@media (max-width: 768px) {
+  .contact-dual-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
