@@ -2019,3 +2019,44 @@ textarea:focus-visible {
     font-size: 1.15rem;
   }
 }
+/* === MESSAGGIO DI CONFERMA INLINE === */
+.form-message {
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s;
+  pointer-events: none;
+  min-height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-message.success {
+  background: rgba(16, 185, 129, 0.15); /* verde soft */
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  animation: pulseSuccess 0.4s ease;
+}
+
+.form-message.error {
+  background: rgba(239, 68, 68, 0.15); /* rosso soft */
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@keyframes pulseSuccess {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
