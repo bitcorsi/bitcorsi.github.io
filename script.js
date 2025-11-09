@@ -80,53 +80,77 @@ function initFAQ() {
 }
 
 /**
- * Gestione form contatti con invio reale via FormSubmit
+ * Gestione form iscrizione con conferma inline (FormSubmit)
  */
 function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    const successMsg = document.getElementById('formSuccess');
+    const contactForm = document.getElementById('iscrizione-form');
+    const messageEl = document.getElementById('form-message');
     
     if (!contactForm) return;
 
     contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault(); // evita il redirect di FormSubmit
+        e.preventDefault();
 
-        const submitBtn = this.querySelector('button[type="submit"]');
+        const submitBtn = this.querySelector('.btn-submit');
+        if (!submitBtn || submitBtn.disabled) return;
+
         const originalText = submitBtn.textContent;
-
-        submitBtn.textContent = 'Invio in corso...';
         submitBtn.disabled = true;
+        submitBtn.textContent = 'Invio…';
+
+        // Reset messaggio precedente
+        if (messageEl) {
+            messageEl.className = 'form-message';
+            messageEl.textContent = '';
+        }
 
         try {
-            // Invia i dati al tuo endpoint FormSubmit
-            await fetch(this.action, {
+            const response = await fetch(this.action.trim(), {
                 method: 'POST',
                 body: new FormData(this)
             });
 
-            // Reset del form
-            this.reset();
+            let success = false;
+            const contentType = response.headers.get('content-type') || '';
 
-            // Mostra messaggio di successo
-            if (successMsg) {
-                successMsg.classList.add('visible');
-                successMsg.textContent = '✅ Grazie! Il tuo messaggio è stato inviato.';
-                setTimeout(() => {
-                    successMsg.classList.remove('visible');
-                }, 5000);
+            if (response.ok) {
+                if (contentType.includes('application/json')) {
+                    const data = await response.json();
+                    success = !!data.success;
+                } else {
+                    const text = await response.text();
+                    success = text.includes('success') || text.includes('Thank you');
+                }
+            }
+
+            if (success) {
+                this.reset();
+                if (messageEl) {
+                    messageEl.textContent = '✅ Richiesta inviata! Ti risponderemo a breve.';
+                    messageEl.className = 'form-message success';
+                    setTimeout(() => {
+                        messageEl.className = 'form-message';
+                        setTimeout(() => messageEl.textContent = '', 300);
+                    }, 5000);
+                }
+            } else {
+                throw new Error('FormSubmit: risposta non valida');
             }
 
         } catch (error) {
-            console.error('Errore durante l’invio del form:', error);
-            if (successMsg) {
-                successMsg.textContent = '❌ Errore durante l’invio. Riprova più tardi.';
-                successMsg.classList.add('visible');
+            console.error('❌ Invio fallito:', error);
+            if (messageEl) {
+                messageEl.textContent = '❌ Errore: controlla i dati e riprova.';
+                messageEl.className = 'form-message error';
             }
+        } finally {
+            setTimeout(() => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            }, 600);
         }
-
-        // Ripristina bottone
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
     });
 }
 
@@ -205,24 +229,38 @@ function initSmoothScroll() {
 document.addEventListener('DOMContentLoaded', function() {
     init();
     initSmoothScroll();
-    hideFabInContacts(); // <-- AGGIUNGI QUESTA RIGA
+    hideFabInContacts();
 });
+
 // Nascondi FAB quando si è nella sezione contatti
-window.addEventListener('scroll', function() {
-  const fabContainer = document.querySelector('.fab-container');
-  const contactsSection = document.getElementById('contatti');
-  
-  if (fabContainer && contactsSection) {
-    const contactsRect = contactsSection.getBoundingClientRect();
+function hideFabInContacts() {
+    const fabContainer = document.querySelector('.fab-container');
+    const contactsSection = document.getElementById('contatti');
     
-    // Se la sezione contatti è visibile a schermo
-    if (contactsRect.top < window.innerHeight && contactsRect.bottom > 0) {
-      fabContainer.style.display = 'none';
-    } else {
-      fabContainer.style.display = 'flex';
+    if (fabContainer && contactsSection) {
+        const contactsRect = contactsSection.getBoundingClientRect();
+        fabContainer.style.display = 
+            contactsRect.top < window.innerHeight && contactsRect.bottom > 0 
+                ? 'none' 
+                : 'flex';
     }
-  }
-});
+}
+
+// Debounce per migliorare performance dello scroll
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+window.addEventListener('scroll', debounce(hideFabInContacts, 100));
+
 // ========================================
 // GESTIONE ERRORI
 // ========================================
