@@ -1697,20 +1697,3 @@ textarea:focus-visible {
 .form-row .form-group textarea {
     margin-bottom: 0 !important;
 }
-.scratch-btn {
-  display: inline-block;
-  text-decoration: none;
-  transition: transform 0.2s ease, filter 0.2s ease;
-  outline: none;
-}
-
-.scratch-btn:hover {
-  transform: scale(1.03) translateY(-2px);
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-}
-
-.scratch-block {
-  width: 100%;
-  max-width: 280px;
-  height: auto;
-}
