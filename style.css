@@ -391,7 +391,7 @@ img {
     border-radius: 12px;
   }
 
-  .hero-left-image {
+  .hero-right-image {
     display: block;
     margin-top: 1.5rem;
     width: 100%;
@@ -399,7 +399,7 @@ img {
     animation-delay: 0.4s;
   }
 
-  .hero-right-image {
+  .hero-left-image {
     display: none;
   }
 
