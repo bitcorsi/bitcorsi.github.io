@@ -425,9 +425,8 @@ img {
 }
 
   .hero-right-image img {
-    transform: perspective(800px) rotateY(-8deg) scale(1.05);
-    transform-origin: left center;
-  }
+  transform: none;
+}
 }
 
 
