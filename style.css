@@ -2059,3 +2059,8 @@ textarea:focus-visible {
   50% { transform: scale(1.02); }
   100% { transform: scale(1); }
 }
+/* Colori SOLO per i titoli degli strumenti */
+.tool-title.lego-color { color: #E3000B; }
+.tool-title.roberta-color { color: #1E90FF; }
+.tool-title.arduino-color { color: #00979D; }
+.tool-title.microbit-color { color: #DAA520; }
