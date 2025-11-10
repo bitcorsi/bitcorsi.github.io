@@ -2059,8 +2059,8 @@ textarea:focus-visible {
   50% { transform: scale(1.02); }
   100% { transform: scale(1); }
 }
-/* Colori SOLO per i titoli degli strumenti */
-.tool-title.lego-color { color: #E3000B; }
-.tool-title.roberta-color { color: #1E90FF; }
-.tool-title.arduino-color { color: #00979D; }
-.tool-title.microbit-color { color: #DAA520; }
+/* Colora SOLO il testo dei titoli, senza sfondo né effetti */
+.tools-grid .tool-card:nth-child(1) .tool-title { color: #E3000B; } /* LEGO: rosso */
+.tools-grid .tool-card:nth-child(2) .tool-title { color: #1E90FF; } /* Open Roberta: blu */
+.tools-grid .tool-card:nth-child(3) .tool-title { color: #00979D; } /* Arduino: turchese */
+.tools-grid .tool-card:nth-child(4) .tool-title { color: #DAA520; } /* micro:bit: dorato */
