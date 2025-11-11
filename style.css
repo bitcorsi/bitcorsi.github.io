@@ -394,8 +394,8 @@ img {
   .hero-right-image {
     display: block;
     margin-top: 1.5rem;
-    width: 100%;
-    max-width: 380px;
+    heigh: auto;
+    max-width: 280px;
     animation-delay: 0.4s;
   }
 
