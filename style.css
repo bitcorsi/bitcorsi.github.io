@@ -418,12 +418,14 @@ hero-right-image img{
     align-items: center;
   }
 
- .hero-left-image img {
-  transform: none;
-}
-
-  .hero-right-image img {
-  transform: none;
+.hero-left-image img,
+.hero-right-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  filter: brightness(0.95) contrast(1.05);
 }
 }
 
