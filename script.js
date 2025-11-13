@@ -10,7 +10,6 @@ function init() {
     initFAQ();
     initContactForm();
     initScrollAnimations();
-    initTooltip();
 }
 
 /**
@@ -27,12 +26,10 @@ function initMobileMenu() {
         const isOpen = navOverlay.classList.contains('active');
         
         if (isOpen) {
-            // Chiudi menu
             navOverlay.classList.remove('active');
             menuToggle.classList.remove('open');
             body.style.overflow = '';
         } else {
-            // Apri menu
             navOverlay.classList.add('active');
             menuToggle.classList.add('open');
             body.style.overflow = 'hidden';
@@ -63,7 +60,7 @@ function initMobileMenu() {
  * Gestione FAQ (accordion)
  */
 function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-grid details');
+    const faqItems = document.querySelectorAll('.faq-list details');
     
     faqItems.forEach(item => {
         item.addEventListener('toggle', function() {
@@ -155,7 +152,7 @@ function initContactForm() {
 }
 
 /**
- * Animazioni al scroll
+ * Animazioni al scroll (opzionale: se preferisci solo al caricamento, rimuovi questa funzione)
  */
 function initScrollAnimations() {
     const observerOptions = {
@@ -172,7 +169,6 @@ function initScrollAnimations() {
         });
     }, observerOptions);
 
-    // Elementi da animare
     const animatedElements = document.querySelectorAll('.tool-card, .course-card, .highlight-item');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
@@ -182,84 +178,12 @@ function initScrollAnimations() {
     });
 }
 
-/**
- * Tooltip per i floating buttons
- */
-function initTooltip() {
-    const fabButtons = document.querySelectorAll('.fab');
-    
-    fabButtons.forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            const tooltip = this.querySelector('.fab-tooltip');
-            if (tooltip) {
-                tooltip.style.display = 'block';
-            }
-        });
-        
-        btn.addEventListener('mouseleave', function() {
-            const tooltip = this.querySelector('.fab-tooltip');
-            if (tooltip) {
-                tooltip.style.display = 'none';
-            }
-        });
-    });
-}
-
-/**
- * Smooth scroll per anchor links
- */
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
 // ========================================
 // INIZIALIZZAZIONE
 // ========================================
 document.addEventListener('DOMContentLoaded', function() {
     init();
-    initSmoothScroll();
-    hideFabInContacts();
 });
-
-// Nascondi FAB quando si è nella sezione contatti
-function hideFabInContacts() {
-    const fabContainer = document.querySelector('.fab-container');
-    const contactsSection = document.getElementById('contatti');
-    
-    if (fabContainer && contactsSection) {
-        const contactsRect = contactsSection.getBoundingClientRect();
-        fabContainer.style.display = 
-            contactsRect.top < window.innerHeight && contactsRect.bottom > 0 
-                ? 'none' 
-                : 'flex';
-    }
-}
-
-// Debounce per migliorare performance dello scroll
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-window.addEventListener('scroll', debounce(hideFabInContacts, 100));
 
 // ========================================
 // GESTIONE ERRORI
@@ -267,18 +191,3 @@ window.addEventListener('scroll', debounce(hideFabInContacts, 100));
 window.addEventListener('error', function(e) {
     console.error('Errore JavaScript:', e.error);
 });
-
-// ========================================
-// PERFORMANCE E OFFLINE
-// ========================================
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registrato con successo: ', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('Registrazione ServiceWorker fallita: ', error);
-            });
-    });
-}
