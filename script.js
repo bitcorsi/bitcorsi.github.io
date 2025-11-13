@@ -8,6 +8,7 @@
 function init() {
     initMobileMenu();
     initFAQ();
+    initCompactGallery(); 
     initContactForm();
     initScrollAnimations();
 }
