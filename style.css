@@ -305,8 +305,8 @@ img {
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 700;
-  background: white;
-  color: var(--primary-dark);
+  background: var(--primary-dark);
+  color:white ;
   border-radius: 50px;
   text-decoration: none;
   transition: var(--transition);
