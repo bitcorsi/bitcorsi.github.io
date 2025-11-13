@@ -393,11 +393,7 @@ img {
     margin-top: 1.5rem;
     heigh: auto;
     max-width: 280px;
-    animation-delay: 0.4s;
-  box-shadow: 
-    0 0 20px rgba(255, 255, 255, 0.3),   /* Luce esterna morbida */
-    0 0 40px rgba(255, 255, 255, 0.15);  /* Effetto di halo più largo */
-  }
+    }
 
   .hero-left-image {
     display: none;
