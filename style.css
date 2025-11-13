@@ -317,39 +317,50 @@ img {
   transform: translateY(-2px);
   background: var(--gray-50);
 }
-
-/* HERO IMMAGINI */
-.hero-left-image,
-.hero-right-image {
-  display: block;
+.hero-left-image img,
+.hero-right-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius); /* 12px, coerente */
   position: relative;
-  width: 100%;
-  max-width: 100%;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInImage 1s ease-out 0.4s forwards;
 }
 
-.hero-left-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: var(--radius); /* ✅ 12px, coerente */
-  box-shadow: 
-    0 0 20px rgba(255, 255, 255, 0.2),
-    0 0 40px rgba(255, 255, 255, 0.1),
-    0 0 60px rgba(255, 107, 53, 0.1); /* Glow arancione che si fonde con lo sfondo */
-
+/* Effetto "soft edge" interno — crea una sfumatura che nasconde il bordo bianco */
+.hero-left-image img::before,
+.hero-right-image img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.85) 10%,
+    rgba(255, 255, 255, 0.7) 30%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
 }
 
-.hero-right-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: var(--radius); /* ✅ 12px, coerente */
-
+/* Opzionale: overlay colorato per fondere con lo sfondo arancione */
+.hero-left-image img::after,
+.hero-right-image img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
 }
-
 /* Animazioni */
 @keyframes fadeInHero {
   to {
