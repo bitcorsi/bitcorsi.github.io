@@ -330,7 +330,14 @@ img {
   animation: fadeInImage 1s ease-out 0.4s forwards;
 }
 
-.hero-left-image img, 
+.hero-left-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius); /* ✅ 12px, coerente */
+
+}
+
 hero-right-image img{
   width: 100%;
   height: 100%;
