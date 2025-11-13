@@ -1492,7 +1492,7 @@ textarea:focus-visible {
 }
 
 .hero-feature svg {
-  color: white;
+  color: black;
   flex-shrink: 0;
 }
 
