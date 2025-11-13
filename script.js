@@ -75,7 +75,47 @@ function initFAQ() {
         });
     });
 }
+/**
+ * Slider compatto per volantini (senza lightbox)
+ */
+function initCompactGallery() {
+  const track = document.querySelector('.gallery-track');
+  const dots = document.querySelectorAll('.gallery-dots .dot');
+  
+  if (!track) return;
 
+  let index = 0;
+  const total = dots.length;
+
+  function goToSlide(n) {
+    index = (n + total) % total;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    
+    // Aggiorna dots
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  // Auto-avanzamento ogni 5s
+  let interval = setInterval(() => {
+    goToSlide(index + 1);
+  }, 5000);
+
+  // Pausa su hover
+  const gallery = document.querySelector('.contact-gallery');
+  gallery.addEventListener('mouseenter', () => clearInterval(interval));
+  gallery.addEventListener('mouseleave', () => {
+    interval = setInterval(() => goToSlide(index + 1), 5000);
+  });
+
+  // Clic sui dots
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goToSlide(parseInt(dot.dataset.index));
+    });
+  });
+}
 /**
  * Gestione form iscrizione con conferma inline (FormSubmit)
  */
