@@ -255,7 +255,7 @@ img {
    HERO SECTION AGGIORNATA (fade-in desktop + mobile)
    ======================================== */
 .hero {
-  background: white;
+  background-color: var(--gray-50);
   color: black;
   padding: 5rem 0;
   text-align: center;
