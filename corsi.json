@@ -1,0 +1,48 @@
+{
+  "corsi": [
+    {
+      "id": "spike",
+      "nome": "Spike Prime Lab",
+      "eta": "8-13 anni",
+      "incontri": "6 incontri",
+      "prezzo": "€120",
+      "quando": "Da sabato 15 novembre 2025, ore 10:00-11:30",
+      "descrizione": "Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education. Progetti pratici e divertenti.",
+      "stato": "aperto",
+      "badge": "Aperte"
+    },
+    {
+      "id": "arduino",
+      "nome": "Introduzione ad Arduino",
+      "eta": "12-16 anni",
+      "incontri": "4 sessioni",
+      "prezzo": "€120",
+      "quando": "Weekend 8-9 e 15-16 novembre 2025",
+      "descrizione": "Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.",
+      "stato": "chiuso",
+      "badge": "Chiuse"
+    },
+    {
+      "id": "microbit",
+      "nome": "Progetti con micro:bit",
+      "eta": "8-13 anni",
+      "incontri": "6 incontri",
+      "prezzo": "€120",
+      "quando": "Ogni mercoledì da ottobre a dicembre",
+      "descrizione": "Programma il piccolo computer tascabile micro:bit per creare giochi e misurare temperatura e movimenti.",
+      "stato": "chiuso",
+      "badge": "Chiuse"
+    },
+    {
+      "id": "roberta",
+      "nome": "Open Roberta Lab",
+      "eta": "8-13 anni",
+      "incontri": "6 settimane",
+      "prezzo": "€90",
+      "quando": "4 online + 2 incontri in sede",
+      "descrizione": "Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab.",
+      "stato": "aperto",
+      "badge": "Aperte"
+    }
+  ]
+}
