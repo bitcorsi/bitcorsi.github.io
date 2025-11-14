@@ -708,13 +708,12 @@ img {
 /* ========================================
    CORSI
    ======================================== */
+}
 .courses-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  margin-bottom: 3rem;
 }
-
 .course-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -1358,10 +1357,9 @@ details p {
   }
 
   /* CORSI */
-  .courses-grid {
+ .courses-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
 
   .course-card {
     padding: 1.5rem;
@@ -2083,4 +2081,9 @@ textarea:focus-visible {
 }
 .spec-badge {
   background: rgba(0, 0, 0, 0.2); /* sfondo badge più scuro → testo più leggibile */
+}
+/* Uniforma schede corsi a schede strumenti */
+.course-card {
+  padding: 2rem; /* invece di 1.8rem */
+  min-height: 100%; /* evita altezze diverse */
 }
