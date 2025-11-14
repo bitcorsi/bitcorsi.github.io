@@ -1,4 +1,5 @@
-{
+{  "titoloCorsi": "Laboratori autunno 2025",
+  "sottotitoloCorsi": "Iscrizioni aperte per i nuovi corsi — posti limitati a 10 ragazzi per gruppo",
   "corsi": [
     {
       "id": "spike",
