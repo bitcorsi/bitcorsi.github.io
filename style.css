@@ -726,7 +726,11 @@ img {
   display: flex;
   flex-direction: column;
 }
-
+.course-card.loading {
+  grid-column: 1 / -1;
+  background: var(--gray-50);
+  border: 1px dashed var(--gray-200);
+}
 .course-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
