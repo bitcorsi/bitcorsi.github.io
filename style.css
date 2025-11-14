@@ -2067,3 +2067,26 @@ textarea:focus-visible {
   /* Opzionale: aumenta leggermente il contrasto */
   /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); */
 }
+/* Sostituisci la regola esistente #strumenti */
+#strumenti {
+  background: linear-gradient(135deg, #E05A2B 40%, #C04A20 60%); /* più scuro, più profondo */
+  color: white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Migliora titoli */
+.tools-grid .tool-title {
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); /* ombra più marcata */
+  font-weight: 800; /* più incisivo */
+}
+
+/* Migliora testo normale */
+.tool-details p,
+.tool-specs .spec-badge {
+  color: rgba(255, 255, 255, 0.95); /* più opaco */
+}
+.spec-badge {
+  background: rgba(0, 0, 0, 0.2); /* sfondo badge più scuro → testo più leggibile */
+}
