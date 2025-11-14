@@ -2080,3 +2080,10 @@ textarea:focus-visible {
 .spec-badge {
   background: rgba(0, 0, 0, 0.2); /* sfondo badge più scuro → testo più leggibile */
 }
+#home::before {
+  content: "";
+  display: block;
+  height: calc(0.20rem * 2 + 40px + 16px); /* padding-top + logo height + margine */
+  margin-top: calc(-1 * (0.20rem * 2 + 40px + 16px));
+  visibility: hidden;
+}
