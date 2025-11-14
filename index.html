@@ -19,6 +19,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#FF6B35">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -458,8 +461,15 @@
 </section>
 
     <!-- Contatti - Sezione 2: Info e Contatti -->
-   <div class="contact-triple-grid">
-  <!-- 1. Contatti cliccabili -->
+    <section id="contatti-info" class="section section-contatti bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contatti e Informazioni</h2>
+                <h3>Siamo a tua disposizione per qualsiasi domanda</h3>
+            </div>
+            
+           <div class="contact-dual-grid">
+  <!-- Colonna SINISTRA: contatti cliccabili -->
   <div class="contact-interactive">
     <h3>Contattaci</h3>
     <div class="contact-links">
@@ -499,7 +509,7 @@
     </div>
   </div>
 
-  <!-- 2. Info statiche -->
+  <!-- Colonna DESTRA: info statiche + social -->
   <div class="contact-static">
     <h3>Info</h3>
     <div class="static-group">
@@ -536,34 +546,8 @@
       </a>
     </div>
   </div>
-
-  <!-- 3. ✅ NUOVO: Galleria volantini (slider compatto) -->
-  <div class="contact-gallery">
-    <h3>Laboratori passati</h3>
-    <div class="gallery-scroller">
-      <div class="gallery-track">
-        <div class="gallery-slide">
-          <img src="images/volantini/lab-2024-spike.jpg" alt="Spike Prime - marzo 2024">
-          <div class="slide-caption">Spike Prime<br><small>Marzo 2024</small></div>
-        </div>
-        <div class="gallery-slide">
-          <img src="images/volantini/microbit-festa-scienza.jpg" alt="micro:bit - Festa della Scienza">
-          <div class="slide-caption">Festa della Scienza<br><small>Ottobre 2024</small></div>
-        </div>
-        <div class="gallery-slide">
-          <img src="images/volantini/arduino-club28.jpg" alt="Arduino @ Club 28">
-          <div class="slide-caption">Arduino @ Club 28<br><small>Febbraio 2025</small></div>
-        </div>
-        <!-- Aggiungi altri .gallery-slide qui -->
-      </div>
-    </div>
-    <div class="gallery-dots" aria-hidden="true">
-      <span class="dot active" data-index="0"></span>
-      <span class="dot" data-index="1"></span>
-      <span class="dot" data-index="2"></span>
-    </div>
-  </div>
 </div>
+    </section>
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-bottom">
