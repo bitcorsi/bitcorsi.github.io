@@ -2056,17 +2056,7 @@ textarea:focus-visible {
   50% { transform: scale(1.02); }
   100% { transform: scale(1); }
 }
-/* Colora SOLO il testo dei titoli, senza sfondo né effetti */
-.tools-grid .tool-card:nth-child(1) .tool-title { color: #E3000B; } /* LEGO: rosso */
-.tools-grid .tool-card:nth-child(2) .tool-title { color: #1E90FF; } /* Open Roberta: blu */
-.tools-grid .tool-card:nth-child(3) .tool-title { color: #00979D; } /* Arduino: turchese */
-.tools-grid .tool-card:nth-child(4) .tool-title { color: #DAA520; } /* micro:bit: dorato */
-/* Ombreggiatura leggera SOLO sui titoli degli strumenti */
-.tools-grid .tool-title {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-  /* Opzionale: aumenta leggermente il contrasto */
-  /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); */
-}
+
 /* Sostituisci la regola esistente #strumenti */
 #strumenti {
   background: linear-gradient(135deg, #E05A2B 40%, #C04A20 60%); /* più scuro, più profondo */
