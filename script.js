@@ -152,58 +152,74 @@ function initContactForm() {
 }
 
 /**
- * Carica e mostra i corsi da corsi.json
+ * Carica e mostra titolo, sottotitolo e corsi da corsi.json
  */
 function initCourses() {
     const container = document.getElementById('courses-container');
+    const sectionHeader = document.querySelector('#corsi .section-header');
+    
     if (!container) return;
 
-    fetch('corsi.json?' + Date.now()) // Evita cache durante aggiornamenti
+    fetch('corsi.json?' + Date.now())
         .then(response => {
             if (!response.ok) throw new Error('corsi.json non trovato');
             return response.json();
         })
         .then(data => {
-            container.innerHTML = ''; // Rimuovi loader
-            data.corsi.forEach(corso => {
-                const isActive = corso.stato === 'aperto';
-                const badgeClass = isActive ? 'badge-available' : 'badge-closed';
-                const btn = isActive 
-                    ? `<a href="#contatti" class="btn-course">Iscriviti ora</a>`
-                    : `<button class="btn-course btn-disabled" disabled>Iscrizioni chiuse</button>`;
-
-                const card = `
-                    <div class="course-card">
-                        <div class="course-badge ${badgeClass}">${corso.badge}</div>
-                        <h3>${corso.nome}</h3>
-                        <div class="course-meta">
-                            <span class="meta-item">${corso.eta}</span>
-                            <span class="meta-item">${corso.incontri}</span>
-                            <span class="meta-item meta-price">${corso.prezzo}</span>
-                        </div>
-                        <div class="course-details">
-                            <div class="detail-row">
-                                <span><strong>Quando:</strong> ${corso.quando}</span>
-                            </div>
-                        </div>
-                        <p class="course-description">${corso.descrizione}</p>
-                        ${btn}
-                    </div>
+            // ✅ Aggiorna titolo e sottotitolo
+            if (sectionHeader && data.titoloCorsi) {
+                sectionHeader.innerHTML = `
+                    <h2>${data.titoloCorsi}</h2>
+                    <p class="section-subtitle">${data.sottotitoloCorsi || ''}</p>
                 `;
-                container.innerHTML += card;
-            });
+            }
+
+            // ✅ Aggiorna corsi
+            container.innerHTML = '';
+            if (data.corsi && data.corsi.length > 0) {
+                data.corsi.forEach(corso => {
+                    const isActive = corso.stato === 'aperto';
+                    const badgeClass = isActive ? 'badge-available' : 'badge-closed';
+                    const btn = isActive 
+                        ? `<a href="#contatti" class="btn-course">Iscriviti ora</a>`
+                        : `<button class="btn-course btn-disabled" disabled>Iscrizioni chiuse</button>`;
+
+                    const card = `
+                        <div class="course-card">
+                            <div class="course-badge ${badgeClass}">${corso.badge}</div>
+                            <h3>${corso.nome}</h3>
+                            <div class="course-meta">
+                                <span class="meta-item">${corso.eta}</span>
+                                <span class="meta-item">${corso.incontri}</span>
+                                <span class="meta-item meta-price">${corso.prezzo}</span>
+                            </div>
+                            <div class="course-details">
+                                <div class="detail-row">
+                                    <span><strong>Quando:</strong> ${corso.quando}</span>
+                                </div>
+                            </div>
+                            <p class="course-description">${corso.descrizione}</p>
+                            ${btn}
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+            } else {
+                container.innerHTML = `<div class="alert-box" style="grid-column:1/-1;"><p>Nessun corso attivo al momento.</p></div>`;
+            }
         })
         .catch(err => {
             console.error('❌ Errore caricamento corsi:', err);
+            if (sectionHeader) {
+                sectionHeader.innerHTML = `
+                    <h2>Corsi e Laboratori</h2>
+                    <p class="section-subtitle">Informazioni temporaneamente non disponibili</p>
+                `;
+            }
             container.innerHTML = `
                 <div class="alert-box" style="grid-column:1/-1;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                    </svg>
-                    <div>
-                        <strong>Info corsi temporaneamente non disponibile</strong>
-                        <p>Contattaci per avere aggiornamenti sui prossimi laboratori.</p>
-                    </div>
+                    <strong>⚠️ Impossibile caricare i corsi</strong>
+                    <p>Contattaci per info aggiornate.</p>
                 </div>
             `;
         });
