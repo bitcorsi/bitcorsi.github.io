@@ -9,8 +9,7 @@ function init() {
     initMobileMenu();
     initFAQ();
     initContactForm();
-    initScrollAnimations();
-    initTooltip();
+    initCourses(); // ✅ Gestione corsi dinamici
 }
 
 /**
@@ -27,12 +26,10 @@ function initMobileMenu() {
         const isOpen = navOverlay.classList.contains('active');
         
         if (isOpen) {
-            // Chiudi menu
             navOverlay.classList.remove('active');
             menuToggle.classList.remove('open');
             body.style.overflow = '';
         } else {
-            // Apri menu
             navOverlay.classList.add('active');
             menuToggle.classList.add('open');
             body.style.overflow = 'hidden';
@@ -63,7 +60,7 @@ function initMobileMenu() {
  * Gestione FAQ (accordion)
  */
 function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-grid details');
+    const faqItems = document.querySelectorAll('.faq-list details');
     
     faqItems.forEach(item => {
         item.addEventListener('toggle', function() {
@@ -155,72 +152,61 @@ function initContactForm() {
 }
 
 /**
- * Animazioni al scroll
+ * Carica e mostra i corsi da corsi.json
  */
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+function initCourses() {
+    const container = document.getElementById('courses-container');
+    if (!container) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
+    fetch('corsi.json?' + Date.now()) // Evita cache durante aggiornamenti
+        .then(response => {
+            if (!response.ok) throw new Error('corsi.json non trovato');
+            return response.json();
+        })
+        .then(data => {
+            container.innerHTML = ''; // Rimuovi loader
+            data.corsi.forEach(corso => {
+                const isActive = corso.stato === 'aperto';
+                const badgeClass = isActive ? 'badge-available' : 'badge-closed';
+                const btn = isActive 
+                    ? `<a href="#contatti" class="btn-course">Iscriviti ora</a>`
+                    : `<button class="btn-course btn-disabled" disabled>Iscrizioni chiuse</button>`;
 
-    // Elementi da animare
-    const animatedElements = document.querySelectorAll('.tool-card, .course-card, .highlight-item');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
-
-/**
- * Tooltip per i floating buttons
- */
-function initTooltip() {
-    const fabButtons = document.querySelectorAll('.fab');
-    
-    fabButtons.forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            const tooltip = this.querySelector('.fab-tooltip');
-            if (tooltip) {
-                tooltip.style.display = 'block';
-            }
+                const card = `
+                    <div class="course-card">
+                        <div class="course-badge ${badgeClass}">${corso.badge}</div>
+                        <h3>${corso.nome}</h3>
+                        <div class="course-meta">
+                            <span class="meta-item">${corso.eta}</span>
+                            <span class="meta-item">${corso.incontri}</span>
+                            <span class="meta-item meta-price">${corso.prezzo}</span>
+                        </div>
+                        <div class="course-details">
+                            <div class="detail-row">
+                                <span><strong>Quando:</strong> ${corso.quando}</span>
+                            </div>
+                        </div>
+                        <p class="course-description">${corso.descrizione}</p>
+                        ${btn}
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        })
+        .catch(err => {
+            console.error('❌ Errore caricamento corsi:', err);
+            container.innerHTML = `
+                <div class="alert-box" style="grid-column:1/-1;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    <div>
+                        <strong>Info corsi temporaneamente non disponibile</strong>
+                        <p>Contattaci per avere aggiornamenti sui prossimi laboratori.</p>
+                    </div>
+                </div>
+            `;
         });
-        
-        btn.addEventListener('mouseleave', function() {
-            const tooltip = this.querySelector('.fab-tooltip');
-            if (tooltip) {
-                tooltip.style.display = 'none';
-            }
-        });
-    });
-}
-
-/**
- * Smooth scroll per anchor links
- */
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
 }
 
 // ========================================
@@ -228,38 +214,7 @@ function initSmoothScroll() {
 // ========================================
 document.addEventListener('DOMContentLoaded', function() {
     init();
-    initSmoothScroll();
-    hideFabInContacts();
 });
-
-// Nascondi FAB quando si è nella sezione contatti
-function hideFabInContacts() {
-    const fabContainer = document.querySelector('.fab-container');
-    const contactsSection = document.getElementById('contatti');
-    
-    if (fabContainer && contactsSection) {
-        const contactsRect = contactsSection.getBoundingClientRect();
-        fabContainer.style.display = 
-            contactsRect.top < window.innerHeight && contactsRect.bottom > 0 
-                ? 'none' 
-                : 'flex';
-    }
-}
-
-// Debounce per migliorare performance dello scroll
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-window.addEventListener('scroll', debounce(hideFabInContacts, 100));
 
 // ========================================
 // GESTIONE ERRORI
@@ -267,18 +222,3 @@ window.addEventListener('scroll', debounce(hideFabInContacts, 100));
 window.addEventListener('error', function(e) {
     console.error('Errore JavaScript:', e.error);
 });
-
-// ========================================
-// PERFORMANCE E OFFLINE
-// ========================================
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registrato con successo: ', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('Registrazione ServiceWorker fallita: ', error);
-            });
-    });
-}
