@@ -10,6 +10,8 @@ function init() {
     initFAQ();
     initContactForm();
     initCourses(); // ✅ Gestione corsi dinamici
+    initFabHiding(); // ✅ Nasconde il FAB nelle sezioni contatto e footer
+}
 }
 
 /**
