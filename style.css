@@ -2086,3 +2086,11 @@ textarea:focus-visible {
   padding: 2rem; /* invece di 1.8rem */
   min-height: 100%; /* evita altezze diverse */
 }
+/* Corregge lo scroll su #home per mostrare l'intera hero */
+#home::before {
+  content: "";
+  display: block;
+  height: 72px;
+  margin-top: -72px;
+  visibility: hidden;
+}
