@@ -2058,9 +2058,9 @@ textarea:focus-visible {
   100% { transform: scale(1); }
 }
 
-/* Sostituisci la regola esistente #strumenti */
+
 #strumenti {
-  background: linear-gradient(135deg, #E05A2B 40%, #C04A20 60%); /* più scuro, più profondo */
+  background: linear-gradient(135deg, #E05A2B 40%, #C04A20 60%); 
   color: white;
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -2073,16 +2073,26 @@ textarea:focus-visible {
   font-weight: 800; /* più incisivo */
 }
 
-/* Migliora testo normale */
 .tool-details p,
 .tool-specs .spec-badge {
-  color: rgba(255, 255, 255, 0.95); /* più opaco */
+  color: rgba(255, 255, 255, 0.95); 
 }
 .spec-badge {
-  background: rgba(0, 0, 0, 0.2); /* sfondo badge più scuro → testo più leggibile */
-}
-/* Uniforma schede corsi a schede strumenti */
+  background: rgba(0, 0, 0, 0.2); 
 .course-card {
-  padding: 2rem; /* invece di 1.8rem */
-  min-height: 100%; /* evita altezze diverse */
+  padding: 2rem; 
+  min-height: 100%; 
+/* ========================================
+   FAB VISIBILITY
+   ======================================== */
+
+
+.fab-container {
+    transition: opacity 0.3s ease-in-out; 
+    pointer-events: auto; /* Deve essere cliccabile di default */
+}
+
+.fab-container.hidden {
+    opacity: 0;
+    pointer-events: none; 
 }
