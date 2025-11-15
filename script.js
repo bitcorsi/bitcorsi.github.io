@@ -10,8 +10,6 @@ function init() {
     initFAQ();
     initContactForm();
     initCourses(); // ✅ Gestione corsi dinamici
-    initFabHiding(); // ✅ Nasconde il FAB nelle sezioni contatto e footer
-}
 }
 
 /**
@@ -152,52 +150,7 @@ function initContactForm() {
         }
     });
 }
-/**
- * Gestione visibilità del Floating Action Button (FAB).
- * Nasconde il FAB quando l'utente entra nelle sezioni Contatti o nel Footer.
- */
-function initFabHiding() {
-    const fab = document.querySelector('.fab-container');
-    // Le sezioni che faranno nascondere il FAB
-    const targetSections = document.querySelectorAll('#contatti, #contatti-info, #footer'); 
 
-    if (!fab || targetSections.length === 0) return;
-
-    const observerOptions = {
-        root: null, // viewport
-        rootMargin: '0px',
-        // L'osservatore reagisce quando anche solo 1 pixel dell'elemento è visibile (threshold: 0)
-        threshold: 0 
-    };
-
-    const observerCallback = (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Se una delle sezioni Contatti/Footer è visibile
-                fab.classList.add('hidden');
-            } else {
-                // Se la sezione Contatti/Footer sta uscendo dalla viewport, 
-                // e nessuna delle altre è nel viewport, il FAB deve riapparire.
-                
-                // Verifichiamo se *tutte* le sezioni target sono uscite
-                const isAnyTargetVisible = Array.from(targetSections).some(section => {
-                    const rect = section.getBoundingClientRect();
-                    // Controlla se l'elemento è completamente fuori dalla viewport
-                    return rect.top < window.innerHeight && rect.bottom > 0;
-                });
-
-                if (!isAnyTargetVisible) {
-                    fab.classList.remove('hidden');
-                }
-            }
-        });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
-    // Osserva tutte le sezioni target
-    targetSections.forEach(section => observer.observe(section));
-}
 /**
  * Carica e mostra titolo, sottotitolo e corsi da corsi.json
  */
