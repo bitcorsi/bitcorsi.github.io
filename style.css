@@ -578,7 +578,7 @@ img {
   margin-bottom: 0.5rem;
   transition: transform 0.3s ease;
   opacity: 0.95;
-  filter: none;
+  filter: none;  flex-shrink: 0; /* impedisce al browser di ridurle in flex */
 }
 
 .collab-item:hover img {
