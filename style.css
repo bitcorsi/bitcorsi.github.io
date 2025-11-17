@@ -846,12 +846,17 @@ img {
   box-shadow: var(--shadow-sm);
 }
 
-.alert-box svg {
-  color: var(--warning);
+.bit-running {
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
-  margin-top: 2px;
+  animation: runCycle 1.2s ease-in-out infinite;
 }
 
+@keyframes runCycle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
 .alert-box strong {
   color: var(--gray-900);
   display: block;
