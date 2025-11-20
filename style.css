@@ -2091,3 +2091,41 @@ textarea:focus-visible {
   padding: 2rem; /* invece di 1.8rem */
   min-height: 100%; /* evita altezze diverse */
 }
+/* === ALLINEAMENTO CENTRALE NEL RIQUADRO "INFO" (colonna destra contatti) === */
+.contact-static {
+  text-align: center; /* ← centra tutto il contenuto */
+}
+
+.contact-static .static-group,
+.contact-static .static-item {
+  justify-content: center; /* centra orizzontalmente in flex */
+  text-align: center;
+}
+
+.contact-static .static-item {
+  flex-direction: column; /* icona sopra, testo sotto */
+  gap: 0.6rem;
+}
+
+.contact-static .static-icon {
+  margin: 0 auto; /* centra l’icona */
+}
+
+.contact-static .static-content {
+  text-align: center; /* centra il testo */
+}
+
+.contact-static .static-content .static-label,
+.contact-static .static-content .static-value,
+.contact-static .static-content .static-sub {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mantieni lo stile del link Instagram centrato (già lo è, ma assicuriamoci) */
+.contact-static .social-link,
+.contact-static .social-link a {
+  justify-content: center;
+  text-align: center;
+}
