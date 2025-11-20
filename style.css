@@ -94,11 +94,6 @@ img {
   color: white;
 }
 
-.fab-phone {
-  background: var(--primary);
-  color: white;
-}
-
 .fab:hover {
   transform: scale(1.1);
 }
