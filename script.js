@@ -153,11 +153,12 @@ function initContactForm() {
 }
 
 /**
- * Carica e mostra titolo, sottotitolo e corsi da corsi.json
+ * Carica e mostra titolo, sottotitolo, promo natalizia (se attiva) e corsi da corsi.json
  */
 function initCourses() {
     const container = document.getElementById('courses-container');
     const sectionHeader = document.querySelector('#corsi .section-header');
+    const promoContainer = document.querySelector('#promo-natale-container'); // ← nuovo
     
     if (!container) return;
 
@@ -167,7 +168,7 @@ function initCourses() {
             return response.json();
         })
         .then(data => {
-            // ✅ Aggiorna titolo e sottotitolo
+            // ✅ Titolo/sottotitolo principali
             if (sectionHeader && data.titoloCorsi) {
                 sectionHeader.innerHTML = `
                     <h2>${data.titoloCorsi}</h2>
@@ -175,10 +176,41 @@ function initCourses() {
                 `;
             }
 
-            // ✅ Aggiorna corsi
+            // ✅ Promo Natale (se attiva)
+            if (promoContainer && data.promoNatale && data.promoNatale.attiva) {
+                const p = data.promoNatale;
+                promoContainer.innerHTML = `
+                    <div class="promo-natale-card">
+                        <div class="promo-natale-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83M14 20a3 3 0 1 0-4 0M10 4a3 3 0 0 0 4 0"/>
+                            </svg>
+                        </div>
+                        <div class="promo-natale-content">
+                            <span class="promo-badge">OFFERTA SPECIALE</span>
+                            <h3>${p.titolo}</h3>
+                            <p class="promo-subtitle">${p.sottotitolo}</p>
+                            <p>${p.descrizione}</p>
+                            <div class="promo-meta">
+                                <span><strong>Date:</strong> ${p.date}</span>
+                                <span><strong>Età:</strong> ${p.eta}</span>
+                                <span><strong>Prezzo:</strong> ${p.prezzo}</span>
+                            </div>
+                            <p class="promo-note">${p.posti}</p>
+                            <a href="#contatti" class="btn-promo">${p.cta}</a>
+                        </div>
+                    </div>
+                `;
+                promoContainer.style.display = 'block';
+            } else if (promoContainer) {
+                promoContainer.style.display = 'none';
+            }
+
+            // ✅ Corsi (solo quelli normali)
             container.innerHTML = '';
-            if (data.corsi && data.corsi.length > 0) {
-                data.corsi.forEach(corso => {
+            const corsiNormali = data.corsi?.filter(c => c.tipo !== 'promo') || [];
+            if (corsiNormali.length > 0) {
+                corsiNormali.forEach(corso => {
                     const isActive = corso.stato === 'aperto';
                     const badgeClass = isActive ? 'badge-available' : 'badge-closed';
                     const btn = isActive 
@@ -195,9 +227,7 @@ function initCourses() {
                                 <span class="meta-item meta-price">${corso.prezzo}</span>
                             </div>
                             <div class="course-details">
-                                <div class="detail-row">
-                                    <span><strong>Quando:</strong> ${corso.quando}</span>
-                                </div>
+                                <div class="detail-row"><strong>Quando:</strong> ${corso.quando}</div>
                             </div>
                             <p class="course-description">${corso.descrizione}</p>
                             ${btn}
@@ -217,6 +247,7 @@ function initCourses() {
                     <p class="section-subtitle">Informazioni temporaneamente non disponibili</p>
                 `;
             }
+            if (promoContainer) promoContainer.style.display = 'none';
             container.innerHTML = `
                 <div class="alert-box" style="grid-column:1/-1;">
                     <strong>⚠️ Impossibile caricare i corsi</strong>
