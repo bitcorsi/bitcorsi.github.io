@@ -187,7 +187,7 @@ function initCourses() {
                             </svg>
                         </div>
                         <div class="promo-natale-content">
-                            <span class="promo-badge">CORSO SPECIALE</span>
+                            <span class="promo-badge">EDIZIONE SPECIALE</span>
                             <h3>${p.titolo}</h3>
                             <p class="promo-subtitle">${p.sottotitolo}</p>
                             <p>${p.descrizione}</p>
