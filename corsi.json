@@ -1,14 +1,14 @@
-{  "titoloCorsi": "Laboratori autunno 2025",
+{  "titoloCorsi": "Laboratori inverno 2025",
   "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio",
   "promoNatale": {
     "attiva": true,
     "titolo": "🎄 Laboratorio di Natale: Costruisci il Tuo Robot!",
     "sottotitolo": "Tre mattinate magiche per bambini e ragazzi",
-    "descrizione": "Un’esperienza unica di 3 giorni (9:30–12:30) per progettare, costruire e programmare un robot a tema natalizio con Lego Spike Prime o micro:bit. Kit incluso, attestato finale e tanto divertimento!",
-    "date": "23, 24 e 27 dicembre 2025",
+    "descrizione": "Un’esperienza unica di 3 giorni (9:30 – 12:30) per progettare, costruire e programmare un robot con Lego Spike Prime e micro:bit, kit incluso, e tanto divertimento!",
+    "date": "27 - 28 - 30  dicembre 2025",
     "eta": "8–13 anni",
     "prezzo": "€120",
-    "posti": "Posti limitati (max 8 per gruppo)",
+    "posti": "Posti limitati (max 10)",
     "cta": "Prenota il posto"
   },
   "corsi": [
