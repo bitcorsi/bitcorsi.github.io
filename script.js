@@ -10,6 +10,7 @@ function init() {
     initFAQ();
     initContactForm();
     initCourses(); // ✅ Gestione corsi dinamici
+    unifyWhatsAppFAB(); // ✅ Nuova: unione FAB ↔ icona fissa
 }
 
 /**
@@ -223,6 +224,54 @@ function initCourses() {
                 </div>
             `;
         });
+}
+
+// ========================================
+// NUOVA FUNZIONE: UNIFICAZIONE FAB WHATSAPP ↔ ICONA FISSIONE
+// ========================================
+function unifyWhatsAppFAB() {
+    const fab = document.querySelector('.fab-whatsapp');
+    const staticIcon = document.getElementById('whatsapp-static'); // ← deve avere id="whatsapp-static" in HTML
+    
+    if (!fab || !staticIcon) return;
+
+    // Memorizza lo stile originale per il ripristino
+    const originalStyle = {
+        position: fab.style.position,
+        left: fab.style.left,
+        top: fab.style.top,
+        transform: fab.style.transform,
+        zIndex: fab.style.zIndex,
+        pointerEvents: fab.style.pointerEvents
+    };
+
+    const updatePosition = () => {
+        const rect = staticIcon.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+        if (isVisible) {
+            // Posiziona la FAB al centro dell'icona fissa
+            const centerX = rect.left + window.scrollX + rect.width / 2;
+            const centerY = rect.top + window.scrollY + rect.height / 2;
+            
+            fab.style.position = 'fixed';
+            fab.style.left = (centerX - 28) + 'px'; // 28 = metà di 56px (larghezza FAB)
+            fab.style.top = (centerY - 28) + 'px';
+            fab.style.transform = 'scale(0.64)'; // 36/56 ≈ 0.64 → scala a 36px
+            fab.style.zIndex = '10000';
+            fab.style.pointerEvents = 'none'; // clic passa all'icona fissa
+            fab.style.opacity = '1';
+        } else {
+            // Ripristina posizione originale (in basso a destra)
+            Object.assign(fab.style, originalStyle);
+            fab.style.opacity = '';
+        }
+    };
+
+    // Avvia e aggiorna
+    updatePosition();
+    window.addEventListener('scroll', () => requestAnimationFrame(updatePosition));
+    window.addEventListener('resize', updatePosition);
 }
 
 // ========================================
