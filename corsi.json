@@ -25,7 +25,7 @@
     },
     {
       "id": "arduino",
-      "nome": "Introduzione ad Arduino",
+      "nome": "Arduino base",
       "eta": "12-16 anni",
       "incontri": "4 sessioni",
       "prezzo": "€100",
@@ -36,7 +36,7 @@
     },
     {
       "id": "microbit",
-      "nome": "Progetti con micro:bit",
+      "nome": "Micro:bit Lab",
       "eta": "8-13 anni",
       "incontri": "6 incontri",
       "prezzo": "€120",
