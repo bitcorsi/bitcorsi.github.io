@@ -1794,7 +1794,7 @@ textarea:focus-visible {
   height: 36px;
   border-radius: 50%;
   background: var(--primary);
-  color: var(--gray-700);
+  color:white;
   display: flex;
   align-items: center;
   justify-content: center;
