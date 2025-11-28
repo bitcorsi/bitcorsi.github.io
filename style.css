@@ -2320,4 +2320,19 @@ textarea:focus-visible {
 .tool-block-btn:hover .block-square {
     background: #fff;
 }
+/* Header minimal per pagine interne */
+.header .header-content {
+    display: flex;
+    justify-content: flex-start; /* logo sempre a sinistra */
+    align-items: center;
+}
+
+.header .logo img {
+    width: 38px; /* stessa dimensione del sito principale */
+    height: auto;
+}
+
+.header .logo span {
+    font-size: 1.3rem; /* identico al tuo index */
+}
 
