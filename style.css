@@ -2288,3 +2288,16 @@ textarea:focus-visible {
     opacity: 0.5;
   }
 }
+.tool-more {
+    margin-top: 0.8rem;
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.tool-more:hover {
+    opacity: 0.7;
+}
