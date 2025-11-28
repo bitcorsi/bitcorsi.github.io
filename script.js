@@ -318,3 +318,21 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('error', function(e) {
     console.error('Errore JavaScript:', e.error);
 });
+const SNOW_FLAKES = 50; // Numero di fiocchi per la neve
+
+function createSnow() {
+  const wrapper = document.querySelector('.snow-wrapper');
+  for (let i = 0; i < SNOW_FLAKES; i++) {
+    const snow = document.createElement('div');
+    snow.classList.add('snowflake');
+    const size = Math.random() * 5 + 6; // Fiocchi di dimensione media (6px - 11px)
+    snow.style.width = size + 'px';
+    snow.style.height = size + 'px';
+    snow.style.left = Math.random() * 100 + 'vw'; // Posizione orizzontale casuale
+    snow.style.animationDuration = (Math.random() * 3 + 6) + 's'; // 6-9 secondi
+    snow.style.opacity = Math.random() * 0.5 + 0.5;
+    wrapper.append(snow);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', createSnow);
