@@ -2288,4 +2288,36 @@ textarea:focus-visible {
     opacity: 0.5;
   }
 }
+.tool-block-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: #fff;
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+}
+
+.tool-block-btn:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+.block-square {
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 3px;
+    transition: background 0.2s ease;
+}
+
+.tool-block-btn:hover .block-square {
+    background: #fff;
+}
 
