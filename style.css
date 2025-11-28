@@ -2308,15 +2308,20 @@ textarea:focus-visible {
     background: var(--primary);
     color: #fff;
 }
-
-.block-square {
-    width: 12px;
-    height: 12px;
-    background: var(--primary);
-    border-radius: 3px;
-    transition: background 0.2s ease;
+.back-tools-floating {
+    position: absolute;
+    top: 90px;
+    right: 20px;
+    color: var(--primary, #ff6600);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    background: rgba(255,255,255,0.8);
+    padding: 6px 12px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
 }
 
-.tool-block-btn:hover .block-square {
-    background: #fff;
+.back-tools-floating:hover {
+    text-decoration: underline;
 }
