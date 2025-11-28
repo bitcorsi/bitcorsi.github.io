@@ -2288,40 +2288,4 @@ textarea:focus-visible {
     opacity: 0.5;
   }
 }
-.tool-block-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    background: #fff;
-    border: 2px solid var(--primary);
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--primary);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    margin-top: 1rem;
-}
 
-.tool-block-btn:hover {
-    background: var(--primary);
-    color: #fff;
-}
-.back-tools-floating {
-    position: absolute;
-    top: 90px;
-    right: 20px;
-    color: var(--primary, #ff6600);
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    background: rgba(255,255,255,0.8);
-    padding: 6px 12px;
-    border-radius: 6px;
-    backdrop-filter: blur(4px);
-}
-
-.back-tools-floating:hover {
-    text-decoration: underline;
-}
