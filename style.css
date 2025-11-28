@@ -2258,3 +2258,33 @@ textarea:focus-visible {
     justify-content: center;
   }
 }
+/* container neve */
+.snow-wrapper {
+  pointer-events: none;
+  position: absolute;  /* Cambia da fixed a absolute */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999; /* sopra tutto */
+  overflow: hidden;
+}
+
+/* fiocco */
+.snow-wrapper .snowflake {
+  position: absolute;
+  top: -10px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: fall 10s linear infinite;
+}
+
+/* animazione caduta */
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0.5;
+  }
+}
