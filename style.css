@@ -2335,4 +2335,46 @@ textarea:focus-visible {
 .header .logo span {
     font-size: 1.3rem; /* identico al tuo index */
 }
+/* Hero per pagine strumenti */
+.inner-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 0;
+}
+
+.inner-hero .hero-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.inner-hero .hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.inner-hero .hero-image img {
+    width: 90%;
+    max-width: 380px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .inner-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .inner-hero .hero-content {
+        padding-right: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .inner-hero .hero-image img {
+        width: 70%;
+    }
+}
 
