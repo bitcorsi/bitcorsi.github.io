@@ -215,7 +215,7 @@ function initCourses() {
                     const badgeClass = isActive ? 'badge-available' : 'badge-closed';
                     const btn = isActive 
                         ? `<a href="#contatti" class="btn-course">Iscriviti ora</a>`
-                        : `<button class="btn-course btn-disabled" disabled>Iscrizioni chiuse</button>`;
+                        : `<button class="btn-course btn-disabled" disabled>corso in svolgimento </button>`;
 
                     const card = `
                         <div class="course-card">
