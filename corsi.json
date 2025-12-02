@@ -2,13 +2,13 @@
   "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio",
   "promoNatale": {
     "attiva": true,
-    "titolo": "Xmas Tech Lab🎄: Costruisci il Tuo Robot!",
+    "titolo": "Aggiornato: Xmas Tech Lab🎄: Costruisci il Tuo Robot!",
     "sottotitolo": "4 mattinate e 12 ore magiche per per bambini e ragazzi",
     "descrizione": "per progettare, costruire e programmare un robot con Lego Spike Prime e Micro:bit. Divertimento assicurato!",
-    "date": "27 29 30 31  dicembre dalle 9:00 alle 12:00",
+    "date": "29 30 31  dicembre dalle 10:00 alle 12:00",
     "eta": "8–13 anni",
-    "prezzo": "€ 35 a mattinata / € 135 intero Lab",
-    "posti": "Posti limitati (max 12)",
+    "prezzo": "€ 35 a mattinata / € 90 intero Lab",
+    "posti": "Posti limitati (max 10)",
     "cta": "Prenota il posto"
   },
   "corsi": [
