@@ -134,7 +134,7 @@ img {
 }
 
 .logo-text {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
