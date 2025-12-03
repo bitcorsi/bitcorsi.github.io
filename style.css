@@ -2377,4 +2377,21 @@ textarea:focus-visible {
         width: 70%;
     }
 }
+/* Bottone Dettagli pulito */
+.btn-dettagli {
+    display: inline-block;
+    background: #ff7a00; /* arancione del sito */
+    color: #fff;
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: 0.2s ease;
+    font-size: 0.9rem;
+    line-height: 1;
+}
 
+.btn-dettagli:hover {
+    background: #e86e00;
+    transform: translateY(-2px);
+}
