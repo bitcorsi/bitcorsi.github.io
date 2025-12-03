@@ -2399,7 +2399,7 @@ textarea:focus-visible {
 .btn-strumenti {
     display: inline-block;
     background: rgba(255, 255, 255, 0.25); /* arancione del sito */
-    color: #fff;
+    color: black;
     padding: 0.55rem 1.1rem;
     border-radius: 8px;
     font-weight: 600;
