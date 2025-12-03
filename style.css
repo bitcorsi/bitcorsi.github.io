@@ -2398,7 +2398,7 @@ textarea:focus-visible {
 /* Bottone torna strumenti pulito */
 .btn-strumenti {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.25); /* arancione del sito */
+    background: var (--primary-light);/* arancione del sito */
     color: black;
     padding: 0.55rem 1.1rem;
     border-radius: 8px;
