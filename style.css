@@ -2380,7 +2380,7 @@ textarea:focus-visible {
 /* Bottone Dettagli pulito */
 .btn-dettagli {
     display: inline-block;
-    background: #ff7a00; /* arancione del sito */
+    background: var (-- primary-dark); /* arancione del sito */
     color: #fff;
     padding: 0.55rem 1.1rem;
     border-radius: 8px;
