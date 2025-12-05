@@ -1,375 +1,347 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEGO Spike Prime – Robotica Educativa | BitCorsi</title>
-    <meta name="description" content="Scopri LEGO Spike Prime: robotica educativa con Bit a Brescia per ragazzi dagli 8 ai 13 anni. Costruisci, programma e impara con kit LEGO Technic e sensori intelligenti.">
-    
-    <!-- Schema.org (Organization) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      "name": "LEGO Spike Prime - Robotica Educativa",
-      "description": "Laboratorio di robotica educativa con LEGO Spike Prime per bambini e ragazzi dagli 8 ai 13 anni.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Bit - Corsi di Robotica Educativa",
-        "url": "https://www.bitcorsi.it",
-        "logo": "https://www.bitcorsi.it/logo-600x600.png"
-      }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEGO® Spike Prime — Robotica che ispira | Bit</title>
+  <meta name="description" content="Scopri perché LEGO Spike Prime è lo strumento ideale per avvicinare bambini e ragazzi alla robotica educativa: costruzione, sensori, coding e collaborazione in un unico kit.">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "LEGO® Spike Prime – Guida completa",
+    "about": "Robotica educativa, coding a blocchi, STEM per ragazzi 8-13 anni",
+    "educationalLevel": "MiddleSchool",
+    "learningResourceType": "HandsOnActivity",
+    "provider": {
+      "@type": "Organization",
+      "name": "Bit - Corsi di Robotica Educativa",
+      "url": "https://www.bitcorsi.it"
     }
-    </script>
+  }
+  </script>
 
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#FF6B35">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0066CC"> <!-- blu più intenso per questa pagina tematica -->
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ✨ Stili *aggiuntivi* per questa pagina sola — mantenibili in un blocco isolato */
+    .spike-hero { 
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 1rem 4rem;
+      background: linear-gradient(135deg, #f0f8ff 0%, #e1f0fa 100%);
+      text-align: center;
+    }
+    .spike-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,102,204,0.04) 0%, transparent 70%);
+      z-index: 0;
+    }
+    .spike-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .spike-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      margin-bottom: 1rem;
+      font-weight: 800;
+      color: #004a99;
+    }
+    .spike-hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .spike-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff;
+      color: #004a99;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0,102,204,0.12);
+      margin: 1.5rem auto;
+      border: 2px solid #0066cc33;
+    }
+    .spike-logo-badge img {
+      height: 28px;
+      vertical-align: middle;
+    }
+
+    /* Sezione “in azione” */
+    .in-azione {
+      background: white;
+      padding: 4rem 1rem;
+    }
+    .video-placeholder {
+      background: #f5f9ff;
+      border-radius: 16px;
+      aspect-ratio: 16/9;
+      max-width: 900px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    .video-placeholder::before {
+      content: '▶';
+      position: absolute;
+      font-size: 5rem;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      z-index: 2;
+    }
+    .video-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle, rgba(0,102,204,0.6) 0%, transparent 70%);
+      z-index: 1;
+    }
+    .video-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Timeline verticale — per raccontare l’esperienza */
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .timeline-step {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .timeline-step::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 40px;
+      bottom: -20px;
+      width: 2px;
+      background: #0066cc;
+      z-index: 0;
+    }
+    .timeline-icon {
+      flex: 0 0 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #e6f0fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.25rem;
+      color: #0066cc;
+      z-index: 1;
+      border: 2px solid white;
+      box-shadow: 0 4px 8px rgba(0,102,204,0.15);
+    }
+    .timeline-content h3 {
+      margin-top: 0;
+      color: #004a99;
+    }
+    .timeline-content p { line-height: 1.6; }
+
+    /* Comparazione visiva — perché Spike Prime */
+    .comparison {
+      background: #f8fbff;
+      padding: 4rem 1rem;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .comparison-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    .comparison-card:hover {
+      transform: translateY(-6px);
+    }
+    .comparison-card.positive {
+      border-top: 4px solid #00AA55;
+    }
+    .comparison-card.negative {
+      border-top: 4px solid #CC3300;
+      opacity: 0.85;
+    }
+    .comparison-card h4 {
+      margin: 1rem 0 0.75rem;
+      font-size: 1.25rem;
+    }
+
+    /* CTA finale — minimal, elegante */
+    .spike-cta {
+      text-align: center;
+      padding: 5rem 1rem;
+      background: linear-gradient(to right, #0066cc, #004a99);
+      color: white;
+    }
+    .spike-cta h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .spike-cta p { max-width: 600px; margin: 0 auto 2rem; opacity: 0.9; }
+  </style>
 </head>
-
 <body>
 
-<!-- ✅ Header fisso, conforme a index.html -->
+<!-- ✅ Header semplificato ma coerente (logo + home + contatti) -->
 <header class="header">
   <div class="container">
     <div class="logo-container">
       <a href="index.html#home">
         <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
       </a>
-      <h1 class="logo-text">BIT </h1>
+      <h1 class="logo-text">BIT</h1>
     </div>
-    
-    <div class="header-right">
-      <nav class="nav">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#strumenti">Strumenti</a>
-        <a href="index.html#corsi">Corsi</a>
-        <a href="index.html#contatti-info">Contatti</a>
-      </nav>
-      <a href="index.html#contatti" class="btn-header">Iscriviti ora</a>
-    </div>
-
-    <button class="menu-toggle" aria-label="Apri menu">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
+    <nav class="nav">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#strumenti">Strumenti</a>
+      <a href="index.html#contatti-info">Contatti</a>
+    </nav>
   </div>
 </header>
 
-<nav class="nav-overlay" aria-label="Menu mobile">
-  <a href="index.html#home">Home</a>
-  <a href="index.html#strumenti">Strumenti</a>
-  <a href="index.html#corsi">Corsi</a>
-  <a href="index.html#contatti">Contatti</a>
-</nav>
-
-<!-- ✅ HERO – stile coerente con index (effetti bordi sfumati, 3D solo su pulsanti) -->
-<section class="hero inner-hero">
-  <div class="hero-left-image">
-    <img src="images/spike-prime-hero.webp" alt="LEGO Spike Prime - robot costruito con mattoncini e sensori" loading="eager">
+<!-- 🚀 Hero narrativo — non come homepage -->
+<section class="spike-hero">
+  <div class="spike-hero-content">
+    <div class="spike-logo-badge">
+      <img src="images/lego-logo.svg" alt="LEGO Education" height="28">
+      <span>LEGO® Education Spike Prime</span>
+    </div>
+    <h1>Robotica che ispira, costruisce, trasforma</h1>
+    <p>
+      Un solo kit. Tre dimensioni dell’apprendimento: <strong>manuale</strong> (costruire), <strong>digitale</strong> (programmare), <strong>relazionale</strong> (collaborare).
+    </p>
+    <a href="index.html#contatti" class="btn btn-primary-large" style="background:#FF6B35;color:white;">Prenota una demo gratuita</a>
   </div>
+</section>
+
+<!-- ▶️ In azione — video o placeholder immagine con CTA -->
+<section class="in-azione">
+  <div class="container">
+    <h2 style="text-align:center; margin-bottom:1.5rem;">Come funziona in un laboratorio Bit</h2>
+    <div class="video-placeholder">
+      <img src="images/spike-demo-thumb.webp" alt="Ragazzi che programmano un robot Spike Prime in un laboratorio Bit">
+    </div>
+    <p style="text-align:center; max-width:700px; margin:0 auto;">
+      Un robot che segue una linea, evita ostacoli e risponde al tocco — progettato, costruito e programmato interamente dai ragazzi in 90 minuti.
+    </p>
+  </div>
+</section>
+
+<!-- 📅 Timeline: l’esperienza di una lezione -->
+<section class="timeline">
+  <h2 style="text-align:center; margin-bottom:2.5rem;">Cos’è una lezione con Spike Prime?</h2>
   
-  <div class="container hero-content-container">
-    <h2>LEGO® Education Spike Prime</h2>
-    <p>Il kit perfetto per introdurre i ragazzi alla robotica moderna: costruzione, sensori, programmazione — tutto in un’unica esperienza.</p>
-    
-    <div class="hero-features">
-      <div class="hero-feature">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="6" cy="8" r="3" />
-          <circle cx="18" cy="8" r="3" />
-          <path d="M2 20v-2a4 4 0 0 1 4-4h4" />
-          <path d="M22 20v-2a4 4 0 0 0-4-4h-4" />
+  <div class="timeline-step">
+    <div class="timeline-icon">1</div>
+    <div class="timeline-content">
+      <h3>Sfida concreta</h3>
+      <p>“Costruisci un robot che trasporti un oggetto senza toccarlo” — parte tutto da una domanda aperta.</p>
+    </div>
+  </div>
+
+  <div class="timeline-step">
+    <div class="timeline-icon">2</div>
+    <div class="timeline-content">
+      <h3>Progettazione concreta</h3>
+      <p>In coppia, i ragazzi scelgono struttura, motori, sensori — e costruiscono con i 523 pezzi Technic.</p>
+    </div>
+  </div>
+
+  <div class="timeline-step">
+    <div class="timeline-icon">3</div>
+    <div class="timeline-content">
+      <h3>Coding senza paura</h3>
+      <p>Nessun testo: solo blocchi colorati, trascinati, uniti. Il robot si muove dopo pochi minuti.</p>
+    </div>
+  </div>
+
+  <div class="timeline-step" style="margin-bottom:0;">
+    <div class="timeline-icon">4</div>
+    <div class="timeline-content">
+      <h3>Condivisione e miglioramento</h3>
+      <p>Ogni gruppo mostra il proprio robot. Tutti imparano dagli errori — e dai successi — degli altri.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 🆚 Perché Spike Prime — non "noi lo usiamo", ma "perché funziona" -->
+<section class="comparison">
+  <div class="container">
+    <h2 style="text-align:center; margin-bottom:2.5rem;">Perché Spike Prime è diverso</h2>
+    <div class="comparison-grid">
+      <div class="comparison-card positive">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#00AA55" viewBox="0 0 24 24">
+          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
         </svg>
-        <span>Collaborazione tra pari<br><strong>gruppi da 2</strong></span>
+        <h4>Feedback immediato</h4>
+        <p>Il robot si muove subito: la motivazione non cala mai.</p>
       </div>
-      <div class="hero-feature">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="7" width="18" height="10" rx="2"/>
-          <path d="M7 7V5h10v2" />
-          <line x1="9" y1="12" x2="9" y2="12.01" />
-          <line x1="12" y1="12" x2="12" y2="12.01" />
-          <line x1="15" y1="12" x2="15" y2="12.01" />
+      <div class="comparison-card positive">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#00AA55" viewBox="0 0 24 24">
+          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
         </svg>
-        <span>Kit completo<br><strong>523 pezzi LEGO Technic</strong></span>
+        <h4>Scalabile in profondità</h4>
+        <p>Da blocchi a Python: cresce con il ragazzo, non lo abbandona.</p>
       </div>
-      <div class="hero-feature">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          <path d="M19.4 15a7.8 7.8 0 0 0 0-6"/>
-          <path d="M4.6 9a7.8 7.8 0 0 0 0 6"/>
-          <polyline points="15 18 17 20 21 16" />
+      <div class="comparison-card negative">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#CC3300" viewBox="0 0 24 24">
+          <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
-        <span>Progetti reali<br><strong>Robot funzionanti in 60 minuti</strong></span>
+        <h4>Non è un'app</h4>
+        <p>Niente schermi solitari: richiede mani, occhi, voci, collaborazione.</p>
       </div>
     </div>
-
-    <div class="hero-actions">
-      <a href="index.html#contatti-info" class="btn btn-primary-large">Prenota una prova</a>
-    </div>
   </div>
-
-  <div class="hero-right-image"><!-- riservato per eventuali immagini aggiuntive su desktop -->
-  </div>
-  <div class="snow-wrapper"></div>
 </section>
 
-<!-- ✅ Cos'è – stile identico a “Chi siamo” dell’index -->
-<section class="section section-chi-siamo bg-light">
+<!-- 🎯 CTA finale — minimal, elegante, efficace -->
+<section class="spike-cta">
   <div class="container">
-    <div class="section-header">
-      <h2>Cos’è Spike Prime</h2>
-      <p class="section-subtitle">Un kit LEGO® Education progettato per la didattica STEM: programmazione, robotica, pensiero computazionale.</p>
-    </div>
-    
-    <div class="chi-siamo-collab-grid">
-      <div class="chi-siamo-text">
-        <p class="lead">Spike Prime unisce la familiarità dei mattoncini LEGO Technic alla potenza di un hub programmabile, 3 motori, e 3 sensori (colore, forza/distanza, giroscopio).</p>
-        
-        <div class="chi-siamo-highlights">
-          <div class="highlight-item">
-            <div class="highlight-icon">1</div>
-            <div><strong>Costruzioni modulari</strong><br>Strutture solide e personalizzabili.</div>
-          </div>
-          <div class="highlight-item">
-            <div class="highlight-icon">2</div>
-            <div><strong>Hub 5 porte + Bluetooth</strong><br>Con display 5×5 LED e giroscopio integrato.</div>
-          </div>
-          <div class="highlight-item">
-            <div class="highlight-icon">3</div>
-            <div><strong>Programmazione a blocchi</strong><br>Basata su Scratch: intuitiva per principianti.</div>
-          </div>
-          <div class="highlight-item">
-            <div class="highlight-icon">4</div>
-            <div><strong>Estensibile a Python</strong><br>Per chi vuole approfondire il coding vero.</div>
-          </div>
-        </div>
-      </div>
-      <div class="collab-section">
-        <h3>Per chi è pensato?</h3>
-        <p>Ideale per <strong>ragazzi dagli 8 ai 13 anni</strong>, in percorsi curricolari o extra-scolastici. Lo utilizziamo nei nostri corsi e presso le scuole partner (es. <a href="https://www.club28bs.it" target="_blank" rel="noopener">Club 28 SSD</a>).</p>
-        <div class="collab-logos">
-          <a class="collab-item" aria-label="Club 28 SSD s.r.l.">
-            <img src="images/club28-logo.webp" alt="Club 28 SSD s.r.l." loading="lazy">
-            <span>Club 28</span>
-          </a>
-        </div>
-      </div>
-    </div>
+    <h2>Pronto a vedere tuo figlio costruire il futuro?</h2>
+    <p>Scrivici su WhatsApp o compila il modulo: ti risponderemo in meno di 2 ore.</p>
+    <a href="https://wa.me/393703069215" class="btn" style="background:#25D366;color:white;font-weight:600;">💬 Contattaci su WhatsApp</a>
   </div>
 </section>
 
-<!-- ✅ Cosa imparano – layout a griglia armonioso -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Cosa imparano i ragazzi</h2>
-      <p class="section-subtitle">Competenze trasversali, non solo tecniche.</p>
-    </div>
-    
-    <div class="tools-grid">
-      <div class="tool-card">
-        <div class="tool-icon-badge primary-color">🧠</div>
-        <h3>Problem solving</h3>
-        <p>Progettare, provare, fallire e riprovare: imparano a gestire l’errore come parte del processo.</p>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge primary-color">👥</div>
-        <h3>Lavoro di squadra</h3>
-        <p>Ogni kit prevede lavoro in coppia: ascolto, condivisione, delega.</p>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge primary-color">⚙️</div>
-        <h3>Pensiero logico</h3>
-        <p>Sequenze, condizioni (<em>if/else</em>), cicli (<em>repeat</em>) → fondamenti dell’informatica.</p>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge primary-color">💡</div>
-        <h3>Creatività tecnologica</h3>
-        <p>Dare forma a idee: da un semplice veicolo a un braccio meccanico o un robot danzante.</p>
-      </div>
-    </div>
+<!-- ✅ Footer leggero -->
+<footer class="footer" style="padding:1.5rem 0;">
+  <div style="text-align:center; font-size:0.9rem;">
+    <p>© 2025 Bit — Corsi di Robotica Educativa a Brescia | <a href="privacy.md" style="color:#0066cc;">Privacy</a></p>
   </div>
-</section>
-
-<!-- ✅ Programmazione – stile chiaro e visivo -->
-<section class="section bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>Come si programma</h2>
-      <p class="section-subtitle">Dal drag & drop a Python: un percorso graduale e motivante.</p>
-    </div>
-    
-    <div class="chi-siamo-collab-grid">
-      <div class="chi-siamo-text">
-        <p>L’ambiente ufficiale LEGO® Spike Prime è basato su Scratch: blocchi colorati, intuitivi, con retroazione immediata. Nessuna installazione richiesta su Chromebook o tablet.</p>
-        <ul class="bullet-list">
-          <li><strong>Motori:</strong> avanti/indietro, velocità, rotazioni, posizione</li>
-          <li><strong>Sensori:</strong> colore (RGB), distanza (ultrasuoni), forza (pressione), giroscopio</li>
-          <li><strong>Eventi:</strong> “quando si preme play”, “quando il sensore rileva…”</li>
-          <li><strong>Avanzato:</strong> passaggio a Python con la stessa interfaccia (modalità “text”)</li>
-        </ul>
-      </div>
-      <div class="collab-section">
-        <h3>Esempi di progetti</h3>
-        <ul class="bullet-list">
-          <li>Veicolo autonomo che segue una linea</li>
-          <li>Braccio robotico con pinza controllata</li>
-          <li>Fanale automatico (accende con poca luce)</li>
-          <li>Gioco “reaction time” con LED e sensore di tocco</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ Perché lo usiamo – call-to-action coerente -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Perché lo scegliamo</h2>
-      <p class="section-subtitle">Non è solo un giocattolo: è uno strumento educativo validato a livello internazionale.</p>
-    </div>
-    
-    <div class="tools-grid">
-      <div class="tool-card">
-        <h3>🎯 Motivazione alta</h3>
-        <p>Risultati visibili in pochi minuti → coinvolgimento costante.</p>
-      </div>
-      <div class="tool-card">
-        <h3>🔄 Scalabile</h3>
-        <p>Adatto a principianti e a chi vuole sfidarsi con logiche complesse.</p>
-      </div>
-      <div class="tool-card">
-        <h3>🧩 Aperto e duraturo</h3>
-        <p>I mattoncini sono compatibili con altri set LEGO Technic.</p>
-      </div>
-      <div class="tool-card">
-        <h3>🎓 Riconosciuto</h3>
-        <p>Adottato in scuole di tutto il mondo, incluso nei percorsi PNSD.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ CTA finale con bottone 3D -->
-<section class="section alt">
-  <div class="container">
-    <div class="section-header">
-      <h2>Pronto a costruire il primo robot?</h2>
-      <p>Iscriviti o prenota una lezione di prova gratuita.</p>
-    </div>
-    <div style="text-align: center; margin-top: 1.5rem;">
-      <a href="index.html#contatti" class="btn btn-primary-large">Iscriviti ora</a>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ Sezione contatti – IDENTICA a quella in index.html -->
-<section id="contatti-info" class="section section-contatti bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>Contatti e Informazioni</h2>
-      <h3>Siamo a tua disposizione per qualsiasi domanda</h3>
-    </div>
-    
-    <div class="contact-dual-grid">
-      <!-- SINISTRA: contatti cliccabili -->
-      <div class="contact-interactive">
-        <h3>Contattaci</h3>
-        <div class="contact-links">
-          <a id="whatsapp-static" href="https://wa.me/393703069215" class="contact-link contact-link-whatsapp" target="_blank" rel="noopener">
-            <div class="link-icon whatsapp-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-              </svg>
-            </div>
-            <div class="link-content">
-              <div class="link-title">WhatsApp</div>
-              <div class="link-value">+39 370 306 9215</div>
-            </div>
-          </a>
-          <a href="tel:+393703069215" class="contact-link contact-link-phone">
-            <div class="link-icon phone-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-              </svg>
-            </div>
-            <div class="link-content">
-              <div class="link-title">Telefono</div>
-              <div class="link-value">+39 370 306 9215</div>
-            </div>
-          </a>
-          <a href="mailto:bitcorsi@gmail.com" class="contact-link contact-link-email">
-            <div class="link-icon email-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <div class="link-content">
-              <div class="link-title">Email</div>
-              <div class="link-value">bitcorsi@gmail.com</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- DESTRA: info statiche + social -->
-      <div class="contact-static">
-        <h3>Info</h3>
-        <div class="static-group">
-          <div class="static-item">
-            <div class="static-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-            <div class="static-content">
-              <div class="static-label">Sede</div>
-              <div class="static-value">Centro Aperto Sandro Marelli<br><span class="static-sub">Piazzetta SS. Francesco e Chiara 1, Mompiano (BS)</span></div>
-            </div>
-          </div>
-          <div class="static-item">
-            <div class="static-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </div>
-            <div class="static-content">
-              <div class="static-label">Orari</div>
-              <div class="static-value">Sabato 10:00 – 11:30<br><span class="static-sub">Su appuntamento</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="social-link">
-          <a href="https://www.instagram.com/bit_corsi/" target="_blank" rel="noopener">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-            </svg>
-            <span>@bit_corsi</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ Footer identico -->
-<footer class="footer">
-  <div class="footer-bottom">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – 🔒 Privacy garantita – sito cookie free</p>
-  </div>
-  <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" target="_blank" rel="noopener noreferrer">
-    Privacy Policy
-  </a>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
