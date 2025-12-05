@@ -1,176 +1,362 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>micro:bit – Coding e Automazione per Ragazzi | BitCorsi</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>micro:bit — Coding Divertente per Ragazzi | Bit</title>
+  <meta name="description" content="BBC micro:bit per bambini 8–13 anni: corsi di coding visuale, sensori e automazioni con Bit a Brescia. Impara a creare giochi, strumenti musicali, contapassi e piccoli robot tascabili.">
 
+  <!-- Schema.org per Course -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Laboratorio con BBC micro:bit",
+    "description": "Percorso di coding e automazione con micro:bit per ragazzi dagli 8 ai 13 anni.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Bit - Corsi di Robotica Educativa",
+      "url": "https://www.bitcorsi.it",
+      "logo": "https://www.bitcorsi.it/logo-600x600.png"
+    },
+    "audience": {
+      "@type": "EducationalAudience",
+      "audienceType": "MiddleSchool"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#FF6B35">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- OVERRIDE MICRO:BIT — ARANCIONE DOMINANTE --- */
+    :root {
+      --spike-primary: #FF6B35;
+      --spike-primary-dark: #E55A2B;
+      --spike-bg-light: #fff9f7;
+      --spike-text: #2D3748;
+    }
+
+    /* Header */
+    .header .logo-text,
+    .nav a:hover {
+      color: var(--spike-primary);
+    }
+
+    /* Bottone primario */
+    .btn-primary,
+    .btn-primary-large {
+      background-color: var(--spike-primary) !important;
+      border-color: var(--spike-primary-dark) !important;
+      color: white !important;
+      font-weight: 600;
+    }
+    .btn-primary:hover,
+    .btn-primary-large:hover {
+      background-color: var(--spike-primary-dark) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255,107,53,0.3) !important;
+    }
+
+    /* --- HERO ARMONIZZATO --- */
+    .spike-hero {
+      background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .spike-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .spike-hero-content {
+      text-align: left;
+    }
+    .spike-hero-content h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--spike-primary-dark);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .spike-hero-content p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      color: var(--spike-text);
+    }
+
+    .spike-hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .spike-hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      filter: drop-shadow(0 4px 12px rgba(255,107,53,0.15));
+    }
+
+    /* --- Kit highlight --- */
+    .kit-highlight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 3rem auto;
+      max-width: 1000px;
+    }
+    .kit-item {
+      background: white;
+      border-radius: 12px;
+      padding: 1.25rem;
+      flex: 1 1 220px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-top: 3px solid var(--spike-primary);
+    }
+    .kit-item svg {
+      fill: var(--spike-primary);
+    }
+    .kit-item h3 {
+      margin: 0.75rem 0 0.5rem;
+      color: var(--spike-primary-dark);
+      font-weight: 700;
+    }
+    .kit-item p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* --- Griglia vantaggi --- */
+    .spike-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .spike-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+    }
+    .spike-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    .spike-card h3 {
+      color: var(--spike-primary);
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    /* --- CTA finale --- */
+    .spike-cta {
+      background: var(--spike-primary);
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+      margin: 4rem 0;
+      border-radius: 16px;
+    }
+    .spike-cta h2 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      margin-bottom: 1rem;
+    }
+    .spike-cta p {
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.95;
+    }
+    .spike-cta a {
+      background: white;
+      color: var(--spike-primary);
+      font-weight: 700;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      display: inline-block;
+      margin-top: 1rem;
+      text-decoration: none;
+      border: 2px solid white;
+      font-size: 1.1rem;
+    }
+    .spike-cta a:hover {
+      background: #fff5f0;
+      transform: scale(1.04);
+      box-shadow: 0 6px 16px rgba(255,255,255,0.2);
+    }
+
+    /* --- Mobile --- */
+    @media (max-width: 992px) {
+      .spike-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 3.5rem 1.5rem;
+        gap: 2rem;
+      }
+      .spike-hero-content {
+        text-align: center;
+      }
+      .spike-hero-content h1,
+      .spike-hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .spike-hero-content p {
+        max-width: 100%;
+      }
+      .spike-hero-image {
+        padding-top: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .spike-hero-inner { padding: 2.5rem 1rem; }
+      .spike-hero-content h1 { font-size: 1.9rem; }
+      .kit-item { flex: 1 1 100%; }
+    }
+  </style>
+</head>
 <body>
 
-<!-- HEADER -->
+<!-- ✅ HEADER — coerente con index.html -->
 <header class="header">
-    <div class="container">
-
-        <nav class="desktop-nav">
-          <a href="index.html#strumenti" class="btn-strumenti">Strumenti</a>
-        </nav>
+  <div class="container">
+    <div class="logo-container">
+      <a href="index.html#home">
+        <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
+      </a>
+      <h1 class="logo-text">BIT</h1>
     </div>
+    <nav class="nav">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#strumenti">Strumenti</a>
+      <a href="index.html#corsi">Corsi</a>
+      <a href="index.html#contatti-info">Contatti</a>
+    </nav>
+  </div>
 </header>
 
-<!-- HERO -->
-<section class="hero inner-hero">
-    <div class="hero-content">
-    <h2>BBC micro:bit</h2>
-    <p>La scheda educativa perfetta per avvicinare i ragazzi al coding, ai sensori e alle automazioni.</p>
-     <div class="hero-features">
-      <div class="hero-feature">
-     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-  <circle cx="6" cy="8" r="3" />
-  <circle cx="18" cy="8" r="3" />
-  <path d="M2 20v-2a4 4 0 0 1 4-4h4" />
-  <path d="M22 20v-2a4 4 0 0 0-4-4h-4" />
-</svg>
-        <span>Collaborazione tra pari<br><strong>gruppi da 2</strong></span>
-      </div>
-      <div class="hero-feature">
-     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-  <rect x="3" y="7" width="18" height="10" rx="2"/>
-  <path d="M7 7V5h10v2" />
-  <line x1="9" y1="12" x2="9" y2="12.01" />
-  <line x1="12" y1="12" x2="12" y2="12.01" />
-  <line x1="15" y1="12" x2="15" y2="12.01" />
-</svg>
+<!-- ✅ HERO — immagine a destra, spazio armonizzato -->
+<section class="spike-hero">
+  <div class="spike-hero-inner">
+    <div class="spike-hero-content">
+      <h1>BBC micro:bit</h1>
+      <p>Un computer tascabile grande come una carta di credito, ma potentissimo: perfetto per giocare, sperimentare e imparare il coding in modo divertente.</p>
+      <a href="index.html#contatti" class="btn btn-primary-large">Prenota una lezione di prova gratuita</a>
+    </div>
+    <div class="spike-hero-image">
+      <img src="images/microbit-hero.webp" alt="Scheda BBC micro:bit con LED accesi e collegata a sensori durante un laboratorio Bit" loading="eager">
+    </div>
+  </div>
+</section>
 
-        <span>Materiale economino<br><strong>Kit a disposizione</strong></span>
+<!-- ✅ Cosa c’è nel kit -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+      <h2>Cosa c’è nel kit</h2>
+      <p class="section-subtitle">Tutto incluso: nessun acquisto aggiuntivo richiesto.</p>
+    </div>
+
+    <div class="kit-highlight">
+      <div class="kit-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+          <path d="M3 3h18v18H3z"/>
+          <circle cx="6" cy="6" r="1"/>
+          <circle cx="12" cy="6" r="1"/>
+          <circle cx="18" cy="6" r="1"/>
+        </svg>
+        <h3>1 scheda micro:bit v2</h3>
+        <p>Con speaker, microfono, LED 5×5, sensori integrati (accelerometro, luce, temperatura).</p>
       </div>
-      <div class="hero-feature">
-       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-  <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-  <path d="M19.4 15a7.8 7.8 0 0 0 0-6"/>
-  <path d="M4.6 9a7.8 7.8 0 0 0 0 6"/>
-  <polyline points="15 18 17 20 21 16" />
-</svg>
-        <span>Progetti reali<br><strong>Modelli funzionanti</strong></span>
+      <div class="kit-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+          <path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 00-2-2H9m9 12v-2a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 005 17v2a2 2 0 002 2h10a2 2 0 002-2z"/>
+        </svg>
+        <h3>Cavo micro-USB</h3>
+        <p>Per caricare programmi e alimentare la scheda.</p>
+      </div>
+      <div class="kit-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </svg>
+        <h3>Accessori base</h3>
+        <p>Batterie, connettori, pulsanti — per progetti oltre la scheda.</p>
       </div>
     </div>
   </div>
-  <div class="hero-image">
-  <img src="images/microbit-hero.webp" alt="microbit">
-</div>
 </section>
-   
-<!-- COS’È micro:bit -->
-<section class="section">
-    <div class="container narrow">
-        <h2>Cos’è micro:bit</h2>
-        <p>
-            micro:bit è una piccola scheda programmabile progettata per insegnare ai più giovani
-            concetti fondamentali di programmazione e automazione.  
-            Dietro un formato compatto nasconde sensori, LED, pulsanti e funzioni ideali per
-            laboratori veloci, creativi e coinvolgenti.
-        </p>
-  <div class="chi-siamo-highlights">
-                        <div class="highlight-item">
-                            <div class="highlight-icon">1</div>
-                            <div>
-                                <strong>LED programmabili a matrice 5×5</strong>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-icon">2</div>
-                            <div>
-                                <strong>Accelerometro, magnetometro e sensori integrati</strong>
-                            </div>
-                        </div>
-                         <div class="highlight-item">
-                            <div class="highlight-icon">3</div>
-                            <div>
-                                <strong>Bluetooth per comunicazione tra dispositivi</strong>
-                            </div>
-                        </div>
-                          <div class="highlight-item">
-                            <div class="highlight-icon">4</div>
-                            <div>
-                                <strong>Pulsanti e connettori per progetti esterni</strong>
-                            </div>
-                        </div>
-                    </div>
+
+<!-- ✅ Perché micro:bit funziona -->
+<section class="section" style="background-color: var(--spike-bg-light);">
+  <div class="container">
+    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+      <h2>Perché micro:bit funziona con i ragazzi</h2>
     </div>
-</section>
 
-<!-- COSA IMPARANO -->
-<section class="section alt">
-    <div class="container narrow">
-        <h2>Cosa imparano i ragazzi</h2>
-
-        <ul class="bullet-list">
-            <li><strong>Logica di programmazione</strong> – sequenze, condizioni, cicli</li>
-            <li><strong>Coding visuale</strong> – con l’editor MakeCode</li>
-            <li><strong>Sensori e automazioni</strong> – luce, movimento, bussola</li>
-            <li><strong>Creatività pratica</strong> – giochi, strumenti, piccoli oggetti smart</li>
-            <li><strong>Problem solving</strong> – test continui e miglioramenti</li>
-        </ul>
+    <div class="spike-grid">
+      <div class="spike-card">
+        <h3>🎮 Coding giocoso</h3>
+        <p>Creano subito un dado digitale, un gioco del “chi batte più forte”, un termometro — e si divertono.</p>
+      </div>
+      <div class="spike-card">
+        <h3>📱 Si programma anche dallo smartphone</h3>
+        <p>Con l’app ufficiale, via Bluetooth: niente PC necessario.</p>
+      </div>
+      <div class="spike-card">
+        <h3>💡 Feedback immediato</h3>
+        <p>I LED si accendono, lo speaker emette suoni, la scheda vibra — il codice prende vita all’istante.</p>
+      </div>
+      <div class="spike-card">
+        <h3>🚀 Ponte verso il futuro</h3>
+        <p>Da micro:bit a Spike Prime, Arduino, Python: un percorso naturale di crescita tecnologica.</p>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- COME SI PROGRAMMA -->
-<section class="section">
-    <div class="container narrow">
-        <h2>Come si programma micro:bit</h2>
-        <p>
-            micro:bit utilizza <strong>MakeCode</strong>, un ambiente semplice basato su
-            blocchi colorati. I ragazzi creano programmi trascinando istruzioni e
-            collegandole tra loro in modo intuitivo.
-        </p>
-
-        <ul class="bullet-list">
-            <li>Programmazione a blocchi (MakeCode)</li>
-            <li>Simulatore integrato per testare i progetti</li>
-            <li>Possibilità di passare a JavaScript o Python</li>
-            <li>Download del programma tramite USB o Bluetooth</li>
-        </ul>
-    </div>
-</section>
-<!-- PERCHÉ LO USIAMO -->
-<section class="section">
-    <div class="container narrow">
-        <h2>Perché lo usiamo nei nostri corsi</h2>
-        <p>
-            micro:bit è uno strumento ideale per avvicinare i più giovani alla programmazione.
-            Permette di realizzare progetti immediati e divertenti, senza complicazioni tecniche:
-            perfetto per attività brevi, creative e altamente coinvolgenti.
-        </p>
-
-        <ul class="bullet-list">
-            <li>Perfetto per bambini 8–12 anni</li>
-            <li>Risultati immediati e visivi</li>
-            <li>Adatto a giochi, sensori e piccoli progetti tecnologici</li>
-            <li>Ottimo ponte verso robotica e automazione avanzata</li>
-        </ul>
-    </div>
+<!-- ✅ CTA finale -->
+<section class="spike-cta">
+  <div class="container">
+    <h2>Pronto a vedere tuo figlio creare un contapassi, un gioco o un termometro in 60 minuti?</h2>
+    <p>I nostri laboratori con micro:bit partono dagli 8 anni — ideali per chi muove i primi passi nel coding.</p>
+    <a href="https://wa.me/393703069215" target="_blank" rel="noopener">
+      📲 Scrivici su WhatsApp — Rispondiamo entro 2 ore
+    </a>
+  </div>
 </section>
 
-<!-- CTA -->
-<section class="section alt">
-    <div class="container narrow center">
-        <h2>Vuoi provarlo dal vivo?</h2>
-        <p>Scrivici per informazioni o per prenotare un laboratorio.</p>
+<!-- ✅ FOOTER -->
+<footer class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
+  <div class="container" style="text-align:center;">
+    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – 🔒 Privacy garantita – sito cookie free | 
+      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         style="color:#FF6B35; text-decoration:underline;">
+        Privacy Policy
+      </a>
+    </p>
+  </div>
+</footer>
 
-    </div>
-</section>
-
-<!-- FOOTER -->
-  <footer class="footer">
-        <div class="footer-bottom">
-            <p>P.IVA 04701410989 – © 2025 Bit di K. L. – 🔒 Privacy garantita – sito cookie free</p>
-        </div>
-      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" target="_blank" rel="noopener noreferrer">
-    Privacy Policy
-</a>
-    </footer>
-
-<script src="script.js"></script>
 </body>
 </html>
