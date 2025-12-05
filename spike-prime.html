@@ -6,46 +6,38 @@
   <title>LEGO® Spike Prime — Robotica Educativa | Bit</title>
   <meta name="description" content="LEGO Spike Prime: il kit per avvicinare bambini e ragazzi (8–13 anni) alla robotica educativa con coding a blocchi, sensori e costruzioni LEGO Technic. Scopri come lo usiamo nei corsi Bit a Brescia.">
 
-  <!-- Schema.org per Course/Tool -->
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Course",
     "name": "Laboratorio con LEGO Spike Prime",
     "description": "Percorso di robotica educativa con LEGO Spike Prime per ragazzi dagli 8 ai 13 anni.",
-    "about": "Robotica, coding a blocchi, STEM, pensiero computazionale",
     "provider": {
       "@type": "Organization",
       "name": "Bit - Corsi di Robotica Educativa",
       "url": "https://www.bitcorsi.it",
       "logo": "https://www.bitcorsi.it/logo-600x600.png"
-    },
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "MiddleSchool"
     }
   }
   </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#0066CC">
+  <meta name="theme-color" content="#FF6B35">
 
-  <!-- CSS principale + override locale -->
   <link rel="stylesheet" href="style.css">
   <style>
-    /* --- SPIKE-PRIME OVERRIDE: blu dominante, arancione solo per CTA --- */
+    /* --- OVERRIDE: arancione come colore dominante --- */
     :root {
-      --spike-primary: #0066CC;
-      --spike-primary-dark: #0052A3;
-      --spike-accent: #FF6B35; /* arancione solo per azioni */
-      --spike-bg-light: #f8fbff;
+      --spike-primary: #FF6B35;
+      --spike-primary-dark: #E55A2B;
+      --spike-bg-light: #fff9f7;
       --spike-text: #2D3748;
     }
 
     .header .logo-text,
-    .nav a:hover,
-    .btn-header:hover {
+    .nav a:hover {
       color: var(--spike-primary);
     }
 
@@ -59,29 +51,21 @@
     .btn-primary-large:hover {
       background-color: var(--spike-primary-dark) !important;
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,102,204,0.25) !important;
+      box-shadow: 0 6px 16px rgba(255,107,53,0.3) !important;
     }
 
+    /* Hero con immagine integrata */
     .spike-hero {
-      background: linear-gradient(135deg, #e6f0fa 0%, #d0e4f7 100%);
-      padding: 5rem 1rem 3rem;
-      text-align: center;
+      background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
+      padding: 0;
       position: relative;
       overflow: hidden;
     }
-    .spike-hero::before {
-      content: '';
-      position: absolute;
-      top: -40%;
-      left: -40%;
-      width: 180%;
-      height: 180%;
-      background: radial-gradient(circle, rgba(0,102,204,0.06) 0%, transparent 70%);
-      z-index: 0;
-    }
     .spike-hero-content {
+      padding: 5rem 1rem 3rem;
       position: relative;
       z-index: 2;
+      text-align: center;
       max-width: 900px;
       margin: 0 auto;
     }
@@ -98,6 +82,24 @@
       color: var(--spike-text);
     }
 
+    .spike-hero-image {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 50%;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .spike-hero-image img {
+      max-width: 90%;
+      max-height: 80%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    }
+
+    /* Kit highlight */
     .kit-highlight {
       display: flex;
       flex-wrap: wrap;
@@ -146,30 +148,45 @@
       border-radius: 16px;
     }
     .spike-cta a {
-      background: var(--spike-accent);
-      color: white;
-      font-weight: 600;
+      background: white;
+      color: var(--spike-primary);
+      font-weight: 700;
       padding: 0.85rem 2rem;
       border-radius: 50px;
       display: inline-block;
       margin-top: 1rem;
       text-decoration: none;
+      border: 2px solid white;
     }
     .spike-cta a:hover {
-      background: #e55a2b;
+      background: #fff5f0;
       transform: scale(1.03);
     }
 
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-      .spike-hero { padding: 3rem 1rem 2rem; }
-      .spike-hero h1 { font-size: 2rem; }
+    /* Mobile: immagine sotto il testo */
+    @media (max-width: 992px) {
+      .spike-hero {
+        text-align: center;
+      }
+      .spike-hero-content {
+        padding: 3rem 1rem 2rem;
+      }
+      .spike-hero-image {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 1.5rem 0;
+      }
+      .spike-hero-image img {
+        max-width: 80%;
+        max-height: 300px;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- ✅ Header identico al sito (logo + nav essenziale) -->
+<!-- Header -->
 <header class="header">
   <div class="container">
     <div class="logo-container">
@@ -187,16 +204,19 @@
   </div>
 </header>
 
-<!-- 🚀 Hero dedicato -->
+<!-- Hero con immagine a destra (desktop) / sotto (mobile) -->
 <section class="spike-hero">
   <div class="spike-hero-content">
     <h1>LEGO® Spike Prime</h1>
     <p>Il kit ufficiale LEGO® Education per la robotica educativa: costruzione fisica, sensori intelligenti e programmazione a blocchi in un’unica esperienza.</p>
     <a href="index.html#contatti" class="btn btn-primary-large">Prenota una lezione di prova gratuita</a>
   </div>
+  <div class="spike-hero-image">
+    <img src="images/spike-prime-hero.webp" alt="Robot LEGO Spike Prime costruito e in funzione durante un laboratorio Bit" loading="eager">
+  </div>
 </section>
 
-<!-- 📦 Kit contents — semplice, visivo, tecnico ma accessibile -->
+<!-- Kit contents -->
 <section class="section">
   <div class="container">
     <div class="section-header" style="text-align: center;">
@@ -230,7 +250,7 @@
   </div>
 </section>
 
-<!-- 🧠 Perché funziona — non "noi lo usiamo", ma "perché è efficace" -->
+<!-- Perché funziona -->
 <section class="section bg-light" style="background-color: var(--spike-bg-light);">
   <div class="container">
     <div class="section-header" style="text-align: center;">
@@ -243,36 +263,36 @@
         <p>In 20 minuti il robot si muove: la motivazione non cala mai.</p>
       </div>
       <div class="spike-card">
-        <h3>🧩 Pensiero sistemico</h3>
-        <p>Costruzione → programmazione → test → miglioramento: ciclo completo.</p>
+        <h3>🧩 Ciclo completo</h3>
+        <p>Costruisci → programma → testa → migliora: apprendimento attivo.</p>
       </div>
       <div class="spike-card">
-        <h3>👥 Collaborazione reale</h3>
-        <p>Ogni kit è per 2 ragazzi: condivisione, ascolto, delega.</p>
+        <h3>👥 Lavoro in coppia</h3>
+        <p>Ogni kit è per 2 ragazzi: collaborazione reale, non virtuale.</p>
       </div>
       <div class="spike-card">
-        <h3>📈 Scalabile</h3>
-        <p>Da blocchi (8 anni) a Python (13+): cresce con il ragazzo.</p>
+        <h3>📈 Da blocchi a Python</h3>
+        <p>Scalabile: adatto dagli 8 ai 13+ anni, con approfondimenti tecnici.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 🎯 CTA finale — chiaro, urgente, senza fronzoli -->
+<!-- CTA finale -->
 <section class="spike-cta">
   <div class="container">
     <h2>Pronto a vedere tuo figlio programmare un robot?</h2>
-    <p>I nostri laboratori partono da gruppi di 8–10 ragazzi. Ogni kit è dedicato a una coppia.</p>
+    <p>I nostri laboratori hanno massimo 10 partecipanti — per un’attenzione personalizzata.</p>
     <a href="https://wa.me/393703069215" target="_blank" rel="noopener">
-      ✅ Scrivici su WhatsApp — Rispondiamo entro 2 ore
+      📲 Scrivici su WhatsApp — Rispondiamo entro 2 ore
     </a>
   </div>
 </section>
 
-<!-- ✅ Footer leggero, coerente -->
+<!-- Footer -->
 <footer class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
   <div class="container" style="text-align:center;">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Sito cookie free | <a href="privacy.md" style="color:#0066CC;">Privacy</a></p>
+    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Sito cookie free | <a href="privacy.md" style="color:#FF6B35;">Privacy</a></p>
   </div>
 </footer>
 
