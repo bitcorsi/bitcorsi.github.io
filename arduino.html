@@ -3,38 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino — Elettronica e Coding Creativo | Bit</title>
-  <meta name="description" content="Arduino per ragazzi 11–16 anni: corsi di elettronica, sensori e automazioni con Bit a Brescia. Impara a costruire robot, stazioni meteo, semafori intelligenti e molto altro.">
+  <title>Arduino — Kit Completo per Elettronica e Coding | Bit</title>
+  <meta name="description" content="Kit Arduino per ragazzi 11–16 anni: scheda Uno, sensori, motori, breadboard. Scopri componenti, software (blocchi/Python), progetti reali e perché è ideale per l’apprendimento pratico di elettronica e automazione.">
 
-  <!-- Schema.org per Course -->
+  <!-- Schema.org: Product -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio con Arduino",
-    "description": "Percorso di elettronica e coding con Arduino per ragazzi dagli 11 ai 16 anni.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Bit - Corsi di Robotica Educativa",
-      "url": "https://www.bitcorsi.it",
-      "logo": "https://www.bitcorsi.it/logo-600x600.png"
+    "@type": "Product",
+    "name": "Kit Arduino per Educazione STEM",
+    "description": "Kit completo Arduino con sensori, motori e guida per laboratori educativi.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Arduino"
     },
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "HighSchool"
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.bitcorsi.it/arduino.html",
+      "availability": "https://schema.org/InStock"
     }
   }
   </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#FF6B35">
 
   <link rel="stylesheet" href="style.css">
   <style>
-    /* --- OVERRIDE ARDUINO — ARANCIONE DOMINANTE --- */
     :root {
       --spike-primary: #FF6B35;
       --spike-primary-dark: #E55A2B;
@@ -42,200 +38,113 @@
       --spike-text: #2D3748;
     }
 
-    /* Header */
-    .header .logo-text,
-    .nav a:hover {
-      color: var(--spike-primary);
-    }
-
-    /* Bottone primario */
-    .btn-primary,
-    .btn-primary-large {
+    /* Riutilizzo stili dalla spike-prime.html ristrutturata */
+    .header .logo-text, .nav a:hover { color: var(--spike-primary); }
+    .btn-primary, .btn-primary-large {
       background-color: var(--spike-primary) !important;
       border-color: var(--spike-primary-dark) !important;
       color: white !important;
       font-weight: 600;
     }
-    .btn-primary:hover,
-    .btn-primary-large:hover {
+    .btn-primary:hover, .btn-primary-large:hover {
       background-color: var(--spike-primary-dark) !important;
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(255,107,53,0.3) !important;
     }
 
-    /* --- HERO ARMONIZZATO --- */
     .spike-hero {
       background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
-      padding: 0;
-      position: relative;
-      overflow: hidden;
+      padding: 0; position: relative; overflow: hidden;
     }
-
     .spike-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    .spike-hero-content {
-      text-align: left;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
+      max-width: 1400px; margin: 0 auto; padding: 5rem 2rem;
     }
     .spike-hero-content h1 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      color: var(--spike-primary-dark);
-      font-weight: 800;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      font-size: clamp(2rem, 4vw, 2.8rem); color: var(--spike-primary-dark);
+      font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
     .spike-hero-content p {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      color: var(--spike-text);
-    }
-
-    .spike-hero-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-size: 1.25rem; max-width: 600px; margin-bottom: 2rem;
+      line-height: 1.6; color: var(--spike-text);
     }
     .spike-hero-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
+      width: 100%; border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
       filter: drop-shadow(0 4px 12px rgba(255,107,53,0.15));
     }
-
-    /* --- Kit highlight --- */
-    .kit-highlight {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      margin: 3rem auto;
-      max-width: 1000px;
-    }
-    .kit-item {
-      background: white;
-      border-radius: 12px;
-      padding: 1.25rem;
-      flex: 1 1 220px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      border-top: 3px solid var(--spike-primary);
-    }
-    .kit-item svg {
-      fill: var(--spike-primary);
-    }
-    .kit-item h3 {
-      margin: 0.75rem 0 0.5rem;
-      color: var(--spike-primary-dark);
-      font-weight: 700;
-    }
-    .kit-item p {
-      font-size: 0.95rem;
-      color: #555;
+    @media (max-width: 992px) {
+      .spike-hero-inner { grid-template-columns: 1fr; text-align: center; padding: 3.5rem 1.5rem; }
     }
 
-    /* --- Griglia vantaggi --- */
-    .spike-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
+    /* Sezioni comuni */
+    .kit-exploded, .section { padding: 4rem 1rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 { font-size: 2.2rem; color: var(--spike-primary-dark); }
+
+    .kit-exploded-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem; max-width: 1200px; margin: 0 auto;
     }
-    .spike-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.75rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: all 0.3s ease;
+    .kit-part {
+      text-align: center; padding: 1.5rem; border-radius: 12px;
+      background: #fafbff; border: 1px solid #eee;
     }
-    .spike-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    .kit-part-icon {
+      width: 64px; height: 64px; margin: 0 auto 1rem;
+      background: #ffe8dc; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 1.4rem; color: var(--spike-primary-dark);
     }
-    .spike-card h3 {
-      color: var(--spike-primary);
-      margin-top: 0;
-      font-size: 1.35rem;
+    .kit-part h3 { margin: 0.5rem 0; color: var(--spike-primary-dark); }
+    .kit-part p { font-size: 0.95rem; color: #555; }
+
+    .hub-detail {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+      max-width: 1000px; margin: 0 auto; padding: 2rem 0;
+    }
+    .hub-specs ul { list-style: none; padding: 0; }
+    .hub-specs li { padding: 0.5rem 0; border-bottom: 1px dashed #eee; }
+    .hub-specs strong { color: var(--spike-primary-dark); }
+
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin: 2rem 0;
+    }
+    .project-card {
+      background: white; border-radius: 10px; padding: 1.25rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    }
+    .project-card h4 { color: var(--spike-primary); margin-top: 0; }
+
+    .edu-value { background: var(--spike-bg-light); padding: 4rem 1rem; }
+    .edu-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+    }
+    .edu-item { text-align: center; }
+    .edu-icon {
+      display: inline-block; width: 56px; height: 56px;
+      background: white; border-radius: 50%; line-height: 56px;
+      font-weight: bold; color: var(--spike-primary);
+      margin-bottom: 1rem; border: 2px solid var(--spike-primary);
     }
 
-    /* --- CTA finale --- */
     .spike-cta {
-      background: var(--spike-primary);
-      color: white;
-      text-align: center;
-      padding: 4rem 1rem;
-      margin: 4rem 0;
-      border-radius: 16px;
-    }
-    .spike-cta h2 {
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
-      margin-bottom: 1rem;
-    }
-    .spike-cta p {
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      opacity: 0.95;
+      background: var(--spike-primary); color: white; text-align: center;
+      padding: 4rem 1rem; margin: 4rem 0; border-radius: 16px;
     }
     .spike-cta a {
-      background: white;
-      color: var(--spike-primary);
-      font-weight: 700;
-      padding: 0.9rem 2.2rem;
-      border-radius: 50px;
-      display: inline-block;
-      margin-top: 1rem;
-      text-decoration: none;
-      border: 2px solid white;
-      font-size: 1.1rem;
-    }
-    .spike-cta a:hover {
-      background: #fff5f0;
-      transform: scale(1.04);
-      box-shadow: 0 6px 16px rgba(255,255,255,0.2);
-    }
-
-    /* --- Mobile --- */
-    @media (max-width: 992px) {
-      .spike-hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 3.5rem 1.5rem;
-        gap: 2rem;
-      }
-      .spike-hero-content {
-        text-align: center;
-      }
-      .spike-hero-content h1,
-      .spike-hero-content p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .spike-hero-content p {
-        max-width: 100%;
-      }
-      .spike-hero-image {
-        padding-top: 1rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .spike-hero-inner { padding: 2.5rem 1rem; }
-      .spike-hero-content h1 { font-size: 1.9rem; }
-      .kit-item { flex: 1 1 100%; }
+      background: white; color: var(--spike-primary); font-weight: 700;
+      padding: 0.9rem 2.2rem; border-radius: 50px; display: inline-block;
+      margin-top: 1rem; text-decoration: none; border: 2px solid white;
     }
   </style>
 </head>
 <body>
 
-<!-- ✅ HEADER — coerente con index.html -->
+<!-- HEADER -->
 <header class="header">
   <div class="container">
     <div class="logo-container">
@@ -244,86 +153,180 @@
       </a>
       <h1 class="logo-text">BIT</h1>
     </div>
-     </div>
+    </div>
 </header>
 
-<!-- ✅ HERO — immagine a destra, spazio armonizzato -->
+<!-- HERO -->
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
       <h1>Arduino</h1>
-      <p>Il microcontrollore per dare vita a oggetti reali: luci, sensori, robot, automazioni — tutto nelle tue mani.</p>
+      <p>Il kit open-source per dare vita a oggetti intelligenti: luci, sensori, motori, robot — tutto programmabile con le tue mani.</p>
       <a href="index.html#contatti" class="btn btn-primary-large">Prenota una lezione di prova gratuita</a>
     </div>
     <div class="spike-hero-image">
-      <img src="images/arduino-hero.webp" alt="Scheda Arduino con sensori e LED collegati durante un laboratorio Bit" loading="eager">
+      <img src="images/arduino-hero.webp" alt="Kit Arduino con breadboard, sensori e LED accesi">
     </div>
   </div>
 </section>
 
-<!-- ✅ Cosa c’è nel kit -->
+<!-- ✅ PANORAMICA DEL KIT -->
+<section class="kit-exploded">
+  <div class="container">
+    <div class="section-header">
+      <h2>Contenuto del kit Arduino per i nostri laboratori</h2>
+      <p class="section-subtitle">Tutto incluso — nessun acquisto aggiuntivo richiesto.</p>
+    </div>
+
+    <div class="kit-exploded-grid">
+      <div class="kit-part">
+        <div class="kit-part-icon">1</div>
+        <h3>Scheda Arduino Uno R3</h3>
+        <p>Compatibile con tutti gli shield e sensori standard. USB programmabile.</p>
+      </div>
+       <div class="kit-part">
+        <div class="kit-part-icon">20+</div>
+        <h3>Componenti elettronici</h3>
+        <p>LED, resistenze, pulsanti, potenziometro, buzzer, cavi jumper.</p>
+      </div>
+      <div class="kit-part">
+        <div class="kit-part-icon">5</div>
+        <h3>Sensori</h3>
+        <p>Ultrasuoni (distanza), LDR (luce), DHT11 (temperatura/umidità), PIR (movimento), Joystick.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ LA SCHEDA ARDUINO UNO -->
 <section class="section">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-      <h2>Cosa c’è nel kit</h2>
-      <p class="section-subtitle">Tutto incluso: nessun acquisto aggiuntivo richiesto.</p>
+    <div class="section-header">
+      <h2>Arduino Uno R3: il cuore del progetto</h2>
     </div>
 
-    <div class="kit-highlight">
-      <div class="kit-item">
-        <h3>1 scheda Arduino Uno</h3>
-        <p>Compatibile con tutti i sensori e shield standard.</p>
+    <div class="hub-detail">
+      <div>
+        <img src="images/arduino-uno.webp" alt="Scheda Arduino Uno R3 con pinout visibile" style="width:100%; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1);">
       </div>
-      <div class="kit-item">
-        <h3>Decine di componenti</h3>
-        <p>LED, resistenze, pulsanti, sensori (luce, temperatura, ultrasuoni), motori, breadboard.</p>
-      </div>
-      <div class="kit-item">
-        <h3>Cavo USB + guida</h3>
-        <p>Per collegare, caricare e imparare passo dopo passo.</p>
+      <div class="hub-specs">
+        <ul>
+          <li><strong>Microcontrollore:</strong> ATmega328P</li>
+          <li><strong>Pin digitali:</strong> 14 (6 con uscita PWM)</li>
+          <li><strong>Pin analogici:</strong> 6 (lettura 0–1023)</li>
+          <li><strong>Alimentazione:</strong> 5V / 3.3V, ingresso 7–12V</li>
+          <li><strong>Comunicazione:</strong> USB, seriale, I2C, SPI</li>
+          <li><strong>IDE:</strong> Arduino IDE (Windows/macOS/Linux) o editor web</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ✅ Perché Arduino funziona -->
-<section class="section" style="background-color: var(--spike-bg-light);">
+<!-- ✅ SENSORI E ATTUATORI -->
+<section class="section bg-light">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-      <h2>Perché Arduino funziona con i ragazzi</h2>
+    <div class="section-header">
+      <h2>Sensori e attuatori: dagli input agli output</h2>
     </div>
 
-    <div class="spike-grid">
-      <div class="spike-card">
-        <h3>🔌 Elettronica reale</h3>
-        <p>Niente simulazioni: i ragazzi toccano, collegano, vedono i risultati con i propri occhi.</p>
+    <div class="projects-grid">
+          <div class="project-card">
+        <h4>🔆 Sensore di luce (LDR)</h4>
+        <p>Rileva intensità luminosa. Per luci che si accendono al buio o allarmi crepuscolari.</p>
       </div>
-      <div class="spike-card">
-        <h3>🧠 Dal visuale al testuale</h3>
-        <p>Partono con blocchi, arrivano a C++: transizione graduale e motivante.</p>
+      <div class="project-card">
+        <h4>🌡️ Sensore DHT11</h4>
+        <p>Temperatura (0–50°C) + umidità (20–90%). Per stazioni meteo tascabili.</p>
       </div>
-      <div class="spike-card">
-        <h3>💡 Progetti utili</h3>
-        <p>Semafori, stazioni meteo, allarmi, robot su ruote — niente esercizi astratti.</p>
-      </div>
-      <div class="spike-card">
-        <h3>🔧 Open-source per sempre</h3>
-        <p>Possibile continuare a casa, senza licenze o costi nascosti.</p>
+      <div class="project-card">
+        <h4>💡 LED, buzzer, motori</h4>
+        <p>Output visivi, sonori, meccanici: il codice prende vita davanti ai loro occhi.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ✅ FOOTER -->
+<!-- ✅ SOFTWARE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Programmazione: da blocchi a codice reale</h2>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>🧱 Arduino Blocks (8–12 anni)</h4>
+        <p>Editor visuale integrato in Arduino IDE. Blocchi per pin, sensori, logica. Zero sintassi.</p>
+      </div>
+      <div class="project-card">
+        <h4>💻 Linguaggio C/C++ (12–16 anni)</h4>
+        <p><code>digitalWrite(13, HIGH)</code>, <code>analogRead(A0)</code> — codice reale, subito.</p>
+      </div>
+      <div class="project-card">
+        <h4>🔬 Debug in tempo reale</h4>
+        <p>Monitor seriale integrato: vedi i valori dei sensori mentre il programma gira.</p>
+      </div>
+      </div>
+  </div>
+</section>
+
+<!-- ✅ PROGETTI REALI -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-header">
+      <h2>Progetti realizzabili in 1–2 incontri</h2>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>🚨 Allarme antintrusione</h4>
+        <p>Sensore PIR + buzzer: suona quando rileva movimento.</p>
+      </div>
+      <div class="project-card">
+        <h4>🌡️ Stazione meteo</h4>
+        <p>DHT11 + display LCD: mostra temperatura e umidità in tempo reale.</p>
+      </div>
+      <div class="project-card">
+        <h4>🚦 Semaforo a 3 luci</h4>
+        <p>LED rosso/giallo/verde con tempi regolabili via potenziometro.</p>
+      </div>
+     </div>
+  </div>
+</section>
+
+<!-- ✅ VALORE EDUCATIVO -->
+<section class="edu-value">
+  <div class="container">
+    <div class="section-header">
+      <h2>Perché Arduino è uno strumento formativo potente</h2>
+    </div>
+
+    <div class="edu-grid">
+      <div class="edu-item">
+        <div class="edu-icon">🔌</div>
+        <h3>Elettronica concreta</h3>
+        <p>Collegano fisicamente i componenti: capiscono corrente, tensione, circuiti.</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-icon">🧠</div>
+        <h3>Logica & debugging</h3>
+        <p>Se non funziona, devono trovare l’errore — sviluppano resilienza.</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-icon">🔧</div>
+        <h3>Prototipazione rapida</h3>
+        <p>Da idea a oggetto funzionante in 90 minuti: soddisfazione immediata.</p>
+      </div>
+     </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
   <div class="container" style="text-align:center;">
     <p>P.IVA 04701410989 – © 2025 Bit di K. L. – 🔒 Privacy garantita – sito cookie free | 
-      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" 
-         target="_blank" 
-         rel="noopener noreferrer"
-         style="color:#FF6B35; text-decoration:underline;">
-        Privacy Policy
-      </a>
+      <a href="privacy.md" target="_blank" rel="noopener noreferrer" style="color:#FF6B35;">Privacy Policy</a>
     </p>
   </div>
 </footer>
