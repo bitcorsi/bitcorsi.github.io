@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LEGO® Spike Prime — Kit Completo | Bit</title>
-  <meta name="description" content="Kit LEGO Spike Prime ufficiale: 523 pezzi, hub programmabile, 3 motori, 3 sensori. Scopri componenti, software, progetti reali e perché è lo strumento ideale per la robotica educativa 8–13 anni.">
+  <meta name="description" content="Kit LEGO Spike Prime ufficiale: 523 pezzi, hub programmabile, 3 motori, 3 sensori. Ideale per la robotica educativa 8–13 anni.">
 
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,257 +35,201 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
   <style>
+    /* STILI GLOBALI (Minimal adjustments) */
     :root {
       --spike-primary: #FF6B35;
       --spike-primary-dark: #E55A2B;
       --spike-bg-light: #fff9f7;
       --spike-text: #2D3748;
-      --gray-100: #f7fafc;
       --gray-600: #718096;
     }
-
     * { box-sizing: border-box; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.7;
+      line-height: 1.6; /* Lighter line-height */
       color: var(--spike-text);
       background: white;
       margin: 0;
     }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 1rem; }
 
-    /* Header */
-    .header {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #feece5;
-      position: sticky;
-      top: 0;
-      background: white;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-    }
+    /* Header (Mantenuto) */
+    .header { padding: 1.2rem 0; border-bottom: 1px solid #feece5; position: sticky; top: 0; background: white; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
     .logo-container { display: flex; align-items: center; gap: 1rem; }
-    .logo-img { height: 48px; }
-    .logo-text { font-size: 2rem; font-weight: 900; color: var(--spike-primary); margin: 0; }
+    .logo-img { height: 40px; } /* Slightly smaller logo */
+    .logo-text { font-size: 1.8rem; font-weight: 900; color: var(--spike-primary); margin: 0; }
 
-    /* Hero */
+    /* Hero (COMPATTATO) */
     .spike-hero {
       background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
-      padding: 7rem 0 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .spike-hero::before {
-      content: ''; position: absolute; top: -100px; right: -100px;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+      padding: 5rem 0 3rem; /* Spazio ridotto: 7rem -> 5rem */
+      position: relative; overflow: hidden;
     }
     .spike-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 5rem;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; /* Gap ridotto: 5rem -> 3rem */
+      align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 2rem;
     }
     .spike-hero-content h1 {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      color: var(--spike-primary-dark);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem); /* Font leggermente ridotto */
+      color: var(--spike-primary-dark); font-weight: 900; line-height: 1.1; margin-bottom: 1rem;
     }
     .spike-hero-content p {
-      font-size: 1.4rem;
-      max-width: 640px;
-      margin-bottom: 2.5rem;
-      color: #4a5568;
+      font-size: 1.25rem; /* Font ridotto: 1.4rem -> 1.25rem */
+      max-width: 640px; margin-bottom: 2rem; color: #4a5568;
     }
     .btn-primary-large {
-      background: var(--spike-primary);
-      color: white;
-      padding: 1.1rem 2.8rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      border-radius: 50px;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 12px 30px rgba(255,107,53,0.3);
+      background: var(--spike-primary); color: white;
+      padding: 0.9rem 2.5rem; /* Padding ridotto: 1.1rem -> 0.9rem */
+      font-size: 1.15rem; /* Font ridotto: 1.25rem -> 1.15rem */
+      font-weight: 700; border-radius: 50px; text-decoration: none; display: inline-block;
+      box-shadow: 0 10px 20px rgba(255,107,53,0.3);
       transition: all 0.35s ease;
     }
-    .btn-primary-large:hover {
-      background: var(--spike-primary-dark);
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(255,107,53,0.4);
-    }
-    .spike-hero-image img {
-      width: 100%;
-      border-radius: 24px;
-       }
-    /* Sezioni */
-    .section { padding: 7rem 0; }
+    .btn-primary-large:hover { background: var(--spike-primary-dark); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,107,53,0.4); }
+    .spike-hero-image img { width: 100%; border-radius: 16px; }
+
+    /* Sezioni Generiche (COMPATTATE) */
+    .section { padding: 5rem 0; } /* Spazio ridotto: 7rem -> 5rem */
     .bg-light { background: var(--spike-bg-light); }
-    .section-header { text-align: center; margin-bottom: 4.5rem; }
-    .section-header h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--spike-primary-dark);
-      position: relative;
-      display: inline-block;
-    }
-    .section-header h2::after {
-      content: ''; width: 90px; height: 5px; background: var(--spike-primary);
-      display: block; margin: 1.2rem auto; border-radius: 3px;
-    }
-    .section-subtitle { font-size: 1.25rem; color: var(--gray-600); max-width: 750px; margin: 1rem auto 0; }
+    .section-header { text-align: center; margin-bottom: 3rem; } /* Spazio ridotto: 4.5rem -> 3rem */
+    .section-header h2 { font-size: 1.6rem; font-weight: 800; color: var(--spike-primary-dark); position: relative; display: inline-block; }
+    .section-header h2::after { content: ''; width: 70px; height: 4px; background: var(--spike-primary); display: block; margin: 0.8rem auto; border-radius: 3px; } /* Linea più piccola */
+    .section-subtitle { font-size: 1.1rem; color: var(--gray-600); max-width: 750px; margin: 0.5rem auto 0; }
 
-    /* Kit esploso */
-    .kit-exploded-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
+    /* NUOVA: Sezione Dati Tecnici (Unione Hub + Kit) */
+    .tech-specs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: flex-start; /* Allinea in alto */
     }
-    .kit-part {
-      background: white;
-      padding: 2.5rem 2rem;
-      border-radius: 24px;
-      text-align: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-      transition: all 0.4s ease;
-    }
-    .kit-part:hover { transform: translateY(-15px); box-shadow: 0 25px 50px rgba(0,0,0,0.14); }
-    .kit-part-icon {
-      width: 100px; height: 100px; margin: 0 auto 1.8rem;
-      background: linear-gradient(135deg, #ffe8dc, #ffd4c7);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.4rem; font-weight: 900; color: var(--spike-primary-dark);
-      box-shadow: 0 10px 25px rgba(255,107,53,0.25);
+    .tech-specs-grid h3 {
+        font-size: 1.3rem;
+        color: var(--spike-primary-dark);
+        margin-top: 0;
+        border-bottom: 2px solid var(--spike-primary);
+        padding-bottom: 0.5rem;
     }
 
-    /* Hub detail */
-    .hub-detail {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
+    /* Stile Hub (ADATTATO) */
     .hub-specs ul {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      background: white; padding: 1.5rem 2rem; /* Padding ridotto */
+      border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
     .hub-specs li {
-      padding: 1rem 0;
-      border-bottom: 1px solid #fce8e1;
-      font-size: 1.1rem;
+      padding: 0.8rem 0; /* Padding ridotto: 1rem -> 0.8rem */
+      border-bottom: 1px solid #fce8e1; font-size: 1rem; /* Font leggermente ridotto */
     }
-    .hub-specs li:last-child { border-bottom: none; }
 
-    /* Cards (progetti, sensori, software) */
-    .projects-grid {
+    /* Stile Componenti (ADATTATO) */
+    .kit-parts-list {
+        display: grid;
+        gap: 1.5rem; /* Gap ridotto: 2.5rem -> 1.5rem */
+    }
+    .kit-part-item {
+        background: white;
+        padding: 1.5rem; /* Padding ridotto: 2.5rem -> 1.5rem */
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    .kit-part-item h4 { margin: 0; font-size: 1.15rem; color: var(--spike-primary); }
+    .kit-part-item p { margin: 0; font-size: 0.95rem; }
+    .kit-part-icon-small {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--spike-primary);
+        width: 35px; height: 35px;
+        line-height: 1;
+        display: flex; align-items: center; justify-content: center;
+        border: 3px solid var(--spike-primary);
+        border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+    /* Cards (Sensori, Software, Progetti) (COMPATTATE) */
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Min size ridotto */
+      gap: 2rem; /* Gap ridotto: 2.5rem -> 2rem */
     }
-    .project-card {
+    .card-item {
       background: white;
-      padding: 2.5rem;
-      border-radius: 24px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-      transition: all 0.4s ease;
+      padding: 1.8rem; /* Padding ridotto: 2.5rem -> 1.8rem */
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      height: 100%; /* Stessa altezza */
+      transition: all 0.3s ease;
     }
-    .project-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    .card-item:hover {
+      transform: translateY(-8px); /* Spostamento ridotto: -12px -> -8px */
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     }
-    .project-card h4 {
-      font-size: 1.45rem;
-      margin: 0 0 1.2rem;
+    .card-item h4 {
+      font-size: 1.25rem; /* Font ridotto: 1.45rem -> 1.25rem */
+      margin: 0 0 0.8rem;
       color: var(--spike-primary);
     }
+    .card-item p { font-size: 0.95rem; }
 
-    /* Valore educativo */
+    /* Valore educativo (COMPATTATO) */
     .edu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Min size ridotto */
+      gap: 2rem; /* Gap ridotto: 3rem -> 2rem */
+      margin-top: 3rem;
     }
     .edu-item {
       text-align: center;
-      padding: 2.5rem;
+      padding: 1.5rem; /* Padding ridotto: 2.5rem -> 1.5rem */
       background: white;
-      border-radius: 24px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.07);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     }
     .edu-icon {
-      font-size: 3rem;
-      width: 100px; height: 100px;
-      margin: 0 auto 1.8rem;
-      background: white;
-      border: 5px solid var(--spike-primary);
+      font-size: 2rem; /* Icona più piccola */
+      width: 60px; height: 60px; /* Dimensione ridotta */
+      margin: 0 auto 1rem;
+      border: 3px solid var(--spike-primary);
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 12px 30px rgba(255,107,53,0.22);
+      box-shadow: 0 8px 20px rgba(255,107,53,0.2);
     }
+    .edu-item h3 { font-size: 1.2rem; margin-top: 0.5rem; }
+    .edu-item p { font-size: 0.9rem; }
 
-    /* CTA finale */
+    /* CTA finale (COMPATTATA) */
     .spike-cta {
       background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark));
-      color: white;
-      text-align: center;
-      padding: 7rem 2rem;
-      margin: 7rem 1rem;
-      border-radius: 28px;
-      box-shadow: 0 25px 60px rgba(255,107,53,0.35);
+      color: white; text-align: center;
+      padding: 5rem 2rem; /* Padding ridotto: 7rem -> 5rem */
+      margin: 5rem 1rem; /* Margine ridotto: 7rem -> 5rem */
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(255,107,53,0.3);
     }
-    .spike-cta h2 { font-size: 3rem; margin-bottom: 1.2rem; }
-    .spike-cta p { font-size: 1.35rem; opacity: 0.95; max-width: 800px; margin: 0 auto 2rem; }
-    .spike-cta a {
-      background: white;
-      color: var(--spike-primary);
-      font-weight: 800;
-      padding: 1.2rem 3.2rem;
-      border-radius: 50px;
-      font-size: 1.3rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.35s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    .spike-cta a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    }
+    .spike-cta h2 { font-size: 2.2rem; margin-bottom: 1rem; } /* Font ridotto: 3rem -> 2.2rem */
+    .spike-cta p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 1.5rem; } /* Font ridotto */
+    .spike-cta a { padding: 1rem 2.8rem; font-size: 1.15rem; } /* Padding/Font ridotti */
 
-    /* Footer */
-    .footer {
-      background: #1a202c;
-      color: #e2e8f0;
-      padding: 2.5rem 0;
-      font-size: 0.95rem;
-      text-align: center;
-    }
+    /* Footer (Mantenuto) */
+    .footer { background: #1a202c; color: #e2e8f0; padding: 2rem 0; font-size: 0.85rem; text-align: center; }
     .footer a { color: var(--spike-primary); text-decoration: underline; }
 
-    /* Responsive */
+    /* Responsive (ADATTATO) */
     @media (max-width: 992px) {
-      .spike-hero-inner, .hub-detail { grid-template-columns: 1fr; }
-      .spike-hero-content { text-align: center; }
-      .spike-hero-image img { transform: none; }
+      .spike-hero-inner, .tech-specs-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
-      .section { padding: 5rem 0; }
-      .spike-hero { padding: 5rem 0 4rem; }
-      .spike-cta h2 { font-size: 2.4rem; }
+      .section { padding: 3rem 0; }
+      .spike-hero { padding: 3rem 0 2rem; }
+      .spike-cta { padding: 3rem 1rem; margin: 3rem 1rem; }
+      .spike-cta h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="container">
     <div class="logo-container">
@@ -298,13 +241,12 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
-      <h1>LEGO® Spike Prime</h1>
-      <p>Il kit ufficiale LEGO® Education per la robotica educativa: 523 pezzi, hub programmabile, 3 motori, 3 sensori — tutto in un’unica scatola.</p>
-      <a href="index.html#contatti" class="btn-primary-large">Prova gratuita</a>
+      <h1>LEGO® Education SPIKE™ Prime: Il kit completo</h1>
+      <p>La soluzione ufficiale LEGO® per la didattica STEM: 523 elementi, Hub programmabile avanzato, 3 motori e 3 sensori in un set pronto all'uso.</p>
+      <a href="index.html#contatti" class="btn-primary-large">Richiedi una Prova Gratuita</a>
     </div>
     <div class="spike-hero-image">
       <img src="images/spike-prime-hero.webp" alt="Kit LEGO Spike Prime aperto con tutti i componenti disposti">
@@ -312,170 +254,134 @@
   </div>
 </section>
 
-<!-- PANORAMICA COMPLETA DEL KIT -->
-<section class="kit-exploded section">
+<section class="section">
   <div class="container">
     <div class="section-header">
-      <h2>Contenuto del kit ufficiale</h2>
-      <p class="section-subtitle">Tutto incluso — nessun acquisto aggiuntivo richiesto.</p>
+      <h2>Caratteristiche Tecniche e Componenti Essenziali</h2>
+      <p class="section-subtitle">Hub, Motori e Sensori: la dotazione completa per l'apprendimento.</p>
     </div>
 
-    <div class="kit-exploded-grid">
-      <div class="kit-part">
-        <div class="kit-part-icon">1</div>
-        <h3>Hub programmabile</h3>
-        <p>6 porte, Bluetooth 5.0, giroscopio, speaker, microfono, display 5×5 LED.</p>
-      </div>
-      <div class="kit-part">
-        <div class="kit-part-icon">3</div>
-        <h3>Motori</h3>
-        <p>2 motori medi (angolo preciso) + 1 motore grande (alta coppia).</p>
-      </div>
-      <div class="kit-part">
-        <div class="kit-part-icon">3</div>
-        <h3>Sensori</h3>
-        <p>Colore/luce, forza e distanza, giroscopio & accelerometro.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HUB — IL CUORE DEL KIT -->
-<section class="section bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>L’Hub programmabile: il cervello del robot</h2>
-    </div>
-
-    <div class="hub-detail">
-      <div>
-        <img src="images/spike-hub.webp" alt="Hub LEGO Spike Prime con porte e display visibili">
-      </div>
+    <div class="tech-specs-grid">
       <div class="hub-specs">
+        <h3>Hub Programmabile (Il "Cervello")</h3>
         <ul>
-          <li><strong>Display:</strong> matrice LED 5×5 (animazioni, numeri, icone)</li>
-          <li><strong>Porte:</strong> 6 (A–F), compatibili con tutti i sensori/motori</li>
-          <li><strong>Comunicazione:</strong> Bluetooth 5.0, USB-C</li>
-          <li><strong>Sensori interni:</strong> giroscopio, accelerometro, microfono, temperatura</li>
-          <li><strong>Alimentazione:</strong> batteria ricaricabile inclusa (fino a 2h uso continuo)</li>
-          <li><strong>Compatibilità:</strong> Windows, macOS, ChromeOS, iPad, Android</li>
+          <li><strong>Display:</strong> Matrice LED 5×5 (animazioni, numeri, icone)</li>
+          <li><strong>Porte I/O:</strong> 6 porte universali (A–F) per motori e sensori</li>
+          <li><strong>Connettività:</strong> Bluetooth 5.0, USB-C per programmazione e ricarica</li>
+          <li><strong>Sensori Interni:</strong> Giroscopio, accelerometro, microfono e sensore di temperatura</li>
+          <li><strong>Alimentazione:</strong> Batteria ricaricabile inclusa (fino a 2 ore di autonomia)</li>
+          <li><strong>Compatibilità SO:</strong> Windows, macOS, ChromeOS, iPad, Android</li>
         </ul>
       </div>
+
+      <div class="kit-parts-list">
+        <h3>Dotazione Kit (523 Pezzi totali)</h3>
+        <div class="kit-part-item">
+            <div class="kit-part-icon-small">M</div>
+            <div>
+                <h4>Motori (3 unità)</h4>
+                <p>2 motori medi (angolo preciso) + 1 motore grande (alta coppia).</p>
+            </div>
+        </div>
+        <div class="kit-part-item">
+            <div class="kit-part-icon-small">S</div>
+            <div>
+                <h4>Sensori (3 unità)</h4>
+                <p>Sensore di colore/luce, sensore di forza/distanza, giroscopio.</p>
+            </div>
+        </div>
+        <div class="kit-part-item">
+            <div class="kit-part-icon-small">L</div>
+            <div>
+                <h4>Elementi LEGO®</h4>
+                <p>Oltre 500 mattoncini, Technic e componenti strutturali.</p>
+            </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SENSORI E MOTORI -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Sensori e motori: interagire con il mondo reale</h2>
-    </div>
-
-    <div class="projects-grid">
-      <div class="project-card">
-        <h4>Sensore Colore & Luce</h4>
-        <p>Rileva 8 colori, intensità luminosa, presenza/assenza di oggetti. Ideale per robot che seguono linee o reagiscono al colore.</p>
-      </div>
-      <div class="project-card">
-        <h4>Sensore Forza & Distanza</h4>
-        <p>Misura pressione (da 0 a 10 N) e distanza (da 0 a 20 cm). Perfetto per pinze, freni, rilevamento ostacoli.</p>
-      </div>
-      <div class="project-card">
-        <h4>Sensore Giroscopio</h4>
-        <p>Rileva inclinazione, rotazione, velocità angolare. Per robot che mantengono l’equilibrio o girano di 90° precisi.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SOFTWARE -->
 <section class="section bg-light">
   <div class="container">
     <div class="section-header">
-      <h2>Software: da principianti a esperti</h2>
+      <h2>Interazione con il Mondo Reale e Ambienti di Programmazione</h2>
     </div>
 
-    <div class="projects-grid">
-      <div class="project-card">
-        <h4>Codice a blocchi (8–11 anni)</h4>
-        <p>Interfaccia drag & drop, ispirata a Scratch. Blocchi colorati per motori, sensori, logica. Nessun errore di sintassi.</p>
+    <div class="cards-grid">
+      <div class="card-item">
+        <h4>Sensore Colore & Luce</h4>
+        <p>Rileva 8 colori distinti e l'intensità luminosa. Indispensabile per robot che seguono percorsi colorati o reagiscono all'ambiente.</p>
       </div>
-      <div class="project-card">
-        <h4>Python (12–16 anni)</h4>
-        <p>Stesso ambiente, passaggio a testo con un click. Libreria `spike` semplificata: <code>motor.run(50)</code>, <code>color_sensor.get_color()</code>.</p>
+      <div class="card-item">
+        <h4>Sensore Forza & Distanza</h4>
+        <p>Misura pressione (fino a 10 N) e distanza (fino a 20 cm). Utilizzato per creare pinze robotiche precise, freni automatici e rilevamento ostacoli.</p>
       </div>
-      <div class="project-card">
-        <h4>Simulatore integrato</h4>
-        <p>Prova il codice senza hardware: utile per assegnazioni a casa o in classe senza kit.</p>
+      <div class="card-item">
+        <h4>Codice a Blocchi (Scratch-based)</h4>
+        <p>Interfaccia drag & drop intuitiva per principianti (8–11 anni). Consente di programmare motori e sensori senza errori di sintassi.</p>
+      </div>
+      <div class="card-item">
+        <h4>Programmazione Python</h4>
+        <p>Transizione immediata alla programmazione testuale (12–16 anni) nello stesso ambiente. Utilizza una libreria `spike` semplificata per la robotica.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROGETTI REALI -->
 <section class="section">
   <div class="container">
     <div class="section-header">
-      <h2>Progetti realizzabili in 1–2 incontri</h2>
+      <h2>Obiettivi Educativi e Applicazioni Pratiche</h2>
+      <p class="section-subtitle">Il kit è pensato per sviluppare competenze di problem-solving e pensiero computazionale.</p>
     </div>
 
-    <div class="projects-grid">
-      <div class="project-card">
-        <h4>Semaforo intelligente</h4>
-        <p>Con sensore di distanza: si attiva quando un oggetto si avvicina.</p>
+    <div class="cards-grid">
+      <div class="card-item">
+        <h4>Veicolo Autonomo</h4>
+        <p>Costruisci un robot capace di seguire linee nere, evitare ostacoli (con sensore di distanza) e compiere manovre precise (giroscopio).</p>
       </div>
-      <div class="project-card">
-        <h4>Braccio robotico</h4>
-        <p>Pinza a 2 gradi di libertà, controllata da pulsanti o sensore di forza.</p>
+      <div class="card-item">
+        <h4>Braccio Robotico e Pinza</h4>
+        <p>Progetta un meccanismo a 2 gradi di libertà per sollevare e spostare oggetti. Controllo tramite sensore di forza o pulsanti sull'Hub.</p>
       </div>
-      <div class="project-card">
-        <h4>Veicolo autonomo</h4>
-        <p>Segue una linea nera, evita ostacoli, parcheggia automaticamente.</p>
+      <div class="card-item">
+        <h4>Semaforo Intelligente</h4>
+        <p>Implementa la logica di controllo del traffico: attivazione del cambio luce solo quando il sensore di distanza rileva un veicolo in avvicinamento.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- VALORE EDUCATIVO -->
-<section class="edu-value section bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>Perché LEGO Spike Prime è riconosciuto a livello internazionale</h2>
     </div>
 
     <div class="edu-grid">
-      <div class="edu-item">
-        <div class="edu-icon">🔧</div>
-        <h3>Engineering design</h3>
-        <p>Progetta → costruisci → testa → migliora — ciclo iterativo.</p>
-      </div>
-      <div class="edu-item">
-        <div class="edu-icon">👥</div>
-        <h3>Collaborazione</h3>
-        <p>Lavoro in coppia: ruoli definiti, condivisione, feedback.</p>
-      </div>
-      <div class="edu-item">
-        <div class="edu-icon">🎓</div>
-        <h3>Allineamento curricolare</h3>
-        <p>Compatibile con indicazioni ministeriali STEM e PNSD.</p>
-      </div>
+        <div class="edu-item">
+            <div class="edu-icon">🔧</div>
+            <h3>Design Engineering</h3>
+            <p>Gli studenti applicano il ciclo iterativo: Progetta → Costruisci → Testa → Migliora.</p>
+        </div>
+        <div class="edu-item">
+            <div class="edu-icon">👥</div>
+            <h3>Collaborazione</h3>
+            <p>Promuove il lavoro di squadra e la comunicazione tramite la definizione di ruoli specifici (costruttore, programmatore).</p>
+        </div>
+        <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <h3>Curriculum STEM</h3>
+            <p>Strumento riconosciuto e allineato alle indicazioni ministeriali per l'educazione alla robotica e al coding.</p>
+        </div>
     </div>
+
   </div>
 </section>
 
-<!-- CTA FINALE -->
 <section class="spike-cta">
   <div class="container">
-    <h2>Hai già un kit Spike Prime e non sai come usarlo?</h2>
-    <p>Offriamo anche formazione per insegnanti e consulenza per scuole.</p>
+    <h2>Massimizza l'Investimento in LEGO Spike Prime</h2>
+    <p>Offriamo consulenza completa, corsi di formazione per il corpo docente e supporto tecnico per le istituzioni scolastiche.</p>
     <a href="https://wa.me/393703069215" target="_blank" rel="noopener">
-      Scrivici su WhatsApp — Rispondiamo entro 2 ore
+      Contattaci su WhatsApp per una Consulenza Veloce
     </a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free | 
