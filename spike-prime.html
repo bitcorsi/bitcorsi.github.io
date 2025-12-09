@@ -3,38 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LEGO® Spike Prime — Robotica Educativa | Bit</title>
-  <meta name="description" content="LEGO Spike Prime: il kit per avvicinare bambini e ragazzi (8–13 anni) alla robotica educativa con coding a blocchi, sensori e costruzioni LEGO Technic. Scopri come lo usiamo nei corsi Bit a Brescia.">
+  <title>LEGO® Spike Prime — Kit Completo | Bit</title>
+  <meta name="description" content="Kit LEGO Spike Prime ufficiale: 523 pezzi, hub programmabile, 3 motori, 3 sensori. Scopri componenti, software, progetti reali e perché è lo strumento ideale per la robotica educativa 8–13 anni.">
 
-  <!-- Schema.org per Course -->
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio con LEGO Spike Prime",
-    "description": "Percorso di robotica educativa con LEGO Spike Prime per ragazzi dagli 8 ai 13 anni.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Bit - Corsi di Robotica Educativa",
-      "url": "https://www.bitcorsi.it",
-      "logo": "https://www.bitcorsi.it/logo-600x600.png"
+    "@type": "Product",
+    "name": "LEGO® Education SPIKE™ Prime Set",
+    "description": "Kit completo di robotica educativa LEGO Spike Prime per scuole e laboratori.",
+    "brand": {
+      "@type": "Brand",
+      "name": "LEGO Education"
     },
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "MiddleSchool"
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.bitcorsi.it/spike-prime.html",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "12"
     }
   }
   </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#FF6B35">
 
   <link rel="stylesheet" href="style.css">
   <style>
-    /* --- OVERRIDE SPIKE PRIME — ARANCIONE DOMINANTE --- */
     :root {
       --spike-primary: #FF6B35;
       --spike-primary-dark: #E55A2B;
@@ -42,35 +43,29 @@
       --spike-text: #2D3748;
     }
 
-    /* Header: logo e link in arancione al hover */
-    .header .logo-text,
-    .nav a:hover {
+    /* Header & bottoni — come prima */
+    .header .logo-text, .nav a:hover {
       color: var(--spike-primary);
     }
-
-    /* Bottone primario */
-    .btn-primary,
-    .btn-primary-large {
+    .btn-primary, .btn-primary-large {
       background-color: var(--spike-primary) !important;
       border-color: var(--spike-primary-dark) !important;
       color: white !important;
       font-weight: 600;
     }
-    .btn-primary:hover,
-    .btn-primary-large:hover {
+    .btn-primary:hover, .btn-primary-large:hover {
       background-color: var(--spike-primary-dark) !important;
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(255,107,53,0.3) !important;
     }
 
-    /* --- HERO ARMONIZZATO --- */
+    /* Hero */
     .spike-hero {
       background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
       padding: 0;
       position: relative;
       overflow: hidden;
     }
-
     .spike-hero-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -80,16 +75,11 @@
       margin: 0 auto;
       padding: 5rem 2rem;
     }
-
-    .spike-hero-content {
-      text-align: left;
-    }
     .spike-hero-content h1 {
       font-size: clamp(2rem, 4vw, 2.8rem);
       color: var(--spike-primary-dark);
       font-weight: 800;
       margin-bottom: 1rem;
-      /* ✅ Leggera ombreggiatura nei titoli */
       text-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
     .spike-hero-content p {
@@ -99,73 +89,116 @@
       line-height: 1.6;
       color: var(--spike-text);
     }
-
-    .spike-hero-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
     .spike-hero-image img {
-      max-width: 100%;
-      height: auto;
-    }
-      
-    /* --- Kit highlight --- */
-    .kit-highlight {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      margin: 3rem auto;
-      max-width: 1000px;
-    }
-    .kit-item {
-      background: white;
+      width: 100%;
       border-radius: 12px;
-      padding: 1.25rem;
-      flex: 1 1 220px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      border-top: 3px solid var(--spike-primary);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      filter: drop-shadow(0 4px 12px rgba(255,107,53,0.15));
     }
-    .kit-item svg {
-      fill: var(--spike-primary);
-    }
-    .kit-item h3 {
-      margin: 0.75rem 0 0.5rem;
-      color: var(--spike-primary-dark);
-      font-weight: 700;
-    }
-    .kit-item p {
-      font-size: 0.95rem;
-      color: #555;
+    @media (max-width: 992px) {
+      .spike-hero-inner { grid-template-columns: 1fr; text-align: center; padding: 3.5rem 1.5rem; }
+      .spike-hero-content { text-align: center; }
     }
 
-    /* --- Griglia vantaggi --- */
-    .spike-grid {
+    /* Sezione esplosa */
+    .kit-exploded {
+      background: white;
+      padding: 4rem 1rem;
+    }
+    .kit-exploded-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .kit-part {
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: 12px;
+      background: #fafbff;
+      border: 1px solid #eee;
+    }
+    .kit-part-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      background: #ffe8dc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: var(--spike-primary-dark);
+    }
+    .kit-part h3 {
+      margin: 0.5rem 0;
+      color: var(--spike-primary-dark);
+    }
+    .kit-part p { font-size: 0.95rem; color: #555; }
+
+    /* Hub detail */
+    .hub-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    .hub-specs ul { list-style: none; padding: 0; }
+    .hub-specs li { padding: 0.5rem 0; border-bottom: 1px dashed #eee; }
+    .hub-specs strong { color: var(--spike-primary-dark); }
+
+    /* Progetti */
+    .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
-    .spike-card {
+    .project-card {
       background: white;
-      border-radius: 12px;
-      padding: 1.75rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: all 0.3s ease;
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.04);
     }
-    .spike-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-    .spike-card h3 {
+    .project-card h4 {
       color: var(--spike-primary);
       margin-top: 0;
-      font-size: 1.35rem;
     }
 
-    /* --- CTA finale --- */
+    /* Valore educativo */
+    .edu-value {
+      background: var(--spike-bg-light);
+      padding: 4rem 1rem;
+    }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .edu-item {
+      text-align: center;
+    }
+    .edu-icon {
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      background: white;
+      border-radius: 50%;
+      line-height: 56px;
+      font-weight: bold;
+      color: var(--spike-primary);
+      margin-bottom: 1rem;
+      border: 2px solid var(--spike-primary);
+    }
+
+    /* CTA finale */
     .spike-cta {
       background: var(--spike-primary);
       color: white;
@@ -173,15 +206,6 @@
       padding: 4rem 1rem;
       margin: 4rem 0;
       border-radius: 16px;
-    }
-    .spike-cta h2 {
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
-      margin-bottom: 1rem;
-    }
-    .spike-cta p {
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      opacity: 0.95;
     }
     .spike-cta a {
       background: white;
@@ -193,48 +217,12 @@
       margin-top: 1rem;
       text-decoration: none;
       border: 2px solid white;
-      font-size: 1.1rem;
-    }
-    .spike-cta a:hover {
-      background: #fff5f0;
-      transform: scale(1.04);
-      box-shadow: 0 6px 16px rgba(255,255,255,0.2);
-    }
-
-    /* --- Mobile adjustments --- */
-    @media (max-width: 992px) {
-      .spike-hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 3.5rem 1.5rem;
-        gap: 2rem;
-      }
-      .spike-hero-content {
-        text-align: center;
-      }
-      .spike-hero-content h1,
-      .spike-hero-content p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .spike-hero-content p {
-        max-width: 100%;
-      }
-      .spike-hero-image {
-        padding-top: 1rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .spike-hero-inner { padding: 2.5rem 1rem; }
-      .spike-hero-content h1 { font-size: 1.9rem; }
-      .kit-item { flex: 1 1 100%; }
     }
   </style>
 </head>
 <body>
 
-<!-- ✅ HEADER — identico a index.html -->
+<!-- HEADER -->
 <header class="header">
   <div class="container">
     <div class="logo-container">
@@ -243,86 +231,219 @@
       </a>
       <h1 class="logo-text">BIT</h1>
     </div>
-    </div>
+    <nav class="nav">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#strumenti">Strumenti</a>
+      <a href="index.html#corsi">Corsi</a>
+      <a href="index.html#contatti-info">Contatti</a>
+    </nav>
+  </div>
 </header>
 
-<!-- ✅ HERO — spazio armonizzato, nessuna sovrapposizione -->
+<!-- HERO -->
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
       <h1>LEGO® Spike Prime</h1>
-      <p>Il kit LEGO® Education per la robotica educativa: costruzione fisica, sensori intelligenti e programmazione a blocchi in un’unica esperienza.</p>
+      <p>Il kit ufficiale LEGO® Education per la robotica educativa: 523 pezzi, hub programmabile, 3 motori, 3 sensori — tutto in un’unica scatola.</p>
       <a href="index.html#contatti" class="btn btn-primary-large">Prenota una lezione di prova gratuita</a>
     </div>
     <div class="spike-hero-image">
-      <img src="images/spike-prime-hero.webp" alt="Robot LEGO Spike Prime costruito e in funzione durante un laboratorio Bit" loading="eager">
+      <img src="images/spike-prime-hero.webp" alt="Kit LEGO Spike Prime aperto con tutti i componenti disposti">
     </div>
   </div>
 </section>
 
-<!-- ✅ Kit contents -->
+<!-- ✅ PANORAMICA COMPLETA DEL KIT -->
+<section class="kit-exploded">
+  <div class="container">
+    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+      <h2>Contenuto del kit ufficiale</h2>
+      <p class="section-subtitle">Tutto incluso — nessun acquisto aggiuntivo richiesto.</p>
+    </div>
+
+    <div class="kit-exploded-grid">
+      <div class="kit-part">
+        <div class="kit-part-icon">523</div>
+        <h3>Pezzi LEGO® Technic</h3>
+        <p>Travi, ingranaggi, ruote, connettori. Strutture robuste e modulari.</p>
+      </div>
+      <div class="kit-part">
+        <div class="kit-part-icon">1</div>
+        <h3>Hub programmabile</h3>
+        <p>6 porte, Bluetooth 5.0, giroscopio, speaker, microfono, display 5×5 LED.</p>
+      </div>
+      <div class="kit-part">
+        <div class="kit-part-icon">3</div>
+        <h3>Motori</h3>
+        <p>2 motori medi (angolo preciso) + 1 motore grande (alta coppia).</p>
+      </div>
+      <div class="kit-part">
+        <div class="kit-part-icon">3</div>
+        <h3>Sensori</h3>
+        <p>Colore & luce, forza & distanza, giroscopio & accelerometro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ HUB — IL CUORE DEL KIT -->
 <section class="section">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-      <h2>Cosa c’è nel kit</h2>
-      <p class="section-subtitle">Tutto incluso: nessun acquisto aggiuntivo richiesto.</p>
+    <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+      <h2>L’Hub programmabile: il cervello del robot</h2>
     </div>
 
-    <div class="kit-highlight">
-      <div class="kit-item">
-        <h3>523 pezzi LEGO® Technic</h3>
-        <p>Strutture solide, modulari, compatibili con altri set.</p>
+    <div class="hub-detail">
+      <div>
+        <img src="images/spike-hub.webp" alt="Hub LEGO Spike Prime con porte e display visibili" style="width:100%; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1);">
       </div>
-      <div class="kit-item">
-        <h3>1 Hub programmabile</h3>
-        <p>6 porte, Bluetooth, giroscopio, display 5×5 LED.</p>
-      </div>
-      <div class="kit-item">
-        <h3>3 motori + 3 sensori</h3>
-        <p>Colore, forza/distanza, giroscopio — per robot reattivi.</p>
+      <div class="hub-specs">
+        <ul>
+          <li><strong>Display:</strong> matrice LED 5×5 (animazioni, numeri, icone)</li>
+          <li><strong>Porte:</strong> 6 (A–F), compatibili con tutti i sensori/motori</li>
+          <li><strong>Comunicazione:</strong> Bluetooth 5.0, USB-C</li>
+          <li><strong>Sensori interni:</strong> giroscopio, accelerometro, microfono, temperatura</li>
+          <li><strong>Alimentazione:</strong> batteria ricaricabile inclusa (fino a 2h uso continuo)</li>
+          <li><strong>Compatibilità:</strong> Windows, macOS, ChromeOS, iPad, Android</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ✅ Perché funziona -->
-<section class="section" style="background-color: var(--spike-bg-light);">
+<!-- ✅ SENSORI E MOTORI — COSA FANNO, COME SI USANO -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+      <h2>Sensori e motori: interagire con il mondo reale</h2>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>🔷 Sensore Colore & Luce</h4>
+        <p>Rileva 8 colori, intensità luminosa, presenza/assenza di oggetti. Ideale per robot che seguono linee o reagiscono al colore.</p>
+      </div>
+      <div class="project-card">
+        <h4>🔷 Sensore Forza & Distanza</h4>
+        <p>Misura pressione (da 0 a 10 N) e distanza (da 0 a 20 cm). Perfetto per pinze, freni, rilevamento ostacoli.</p>
+      </div>
+      <div class="project-card">
+        <h4>🔷 Sensore Giroscopio</h4>
+        <p>Rileva inclinazione, rotazione, velocità angolare. Per robot che mantengono l’equilibrio o girano di 90° precisi.</p>
+      </div>
+      <div class="project-card">
+        <h4>🔷 Motori</h4>
+        <p>Controllo preciso di velocità, direzione, angolo (±0.5°). Programma un braccio che solleva 100g o un veicolo che percorre 1 metro esatto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ SOFTWARE — PROGRAMMAZIONE A LIVELLI -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+      <h2>Software: da principianti a esperti</h2>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>🧱 Codice a blocchi (8–11 anni)</h4>
+        <p>Interfaccia drag & drop, ispirata a Scratch. Blocchi colorati per motori, sensori, logica. Nessun errore di sintassi.</p>
+      </div>
+      <div class="project-card">
+        <h4>🐍 Python (12–16 anni)</h4>
+        <p>Stesso ambiente, passaggio a testo con un click. Libreria `spike` semplificata: <code>motor.run(50)</code>, <code>color_sensor.get_color()</code>.</p>
+      </div>
+      <div class="project-card">
+        <h4>🔁 Simulatore integrato</h4>
+        <p>Prova il codice senza hardware: utile per assegnazioni a casa o in classe senza kit.</p>
+      </div>
+      <div class="project-card">
+        <h4>☁️ Salvataggio cloud</h4>
+        <p>I progetti si salvano automaticamente: si riprendono da qualsiasi dispositivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ PROGETTI REALI — COSA SI FA IN LABORATORIO -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+      <h2>Progetti realizzabili in 1–2 incontri</h2>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>🚦 Semaforo intelligente</h4>
+        <p>Con sensore di distanza: si attiva quando un oggetto si avvicina.</p>
+      </div>
+      <div class="project-card">
+        <h4>🤖 Braccio robotico</h4>
+        <p>Pinza a 2 gradi di libertà, controllata da pulsanti o sensore di forza.</p>
+      </div>
+      <div class="project-card">
+        <h4>🚗 Veicolo autonomo</h4>
+        <p>Segue una linea nera, evita ostacoli, parcheggia automaticamente.</p>
+      </div>
+      <div class="project-card">
+        <h4>🎵 Strumento musicale</h4>
+        <p>5 note su LED + speaker, attivate da sensori di colore.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ VALORE EDUCATIVO — PERCHÉ È EFFICACE -->
+<section class="edu-value">
   <div class="container">
     <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-      <h2>Perché Spike Prime funziona con i ragazzi</h2>
+      <h2>Perché LEGO Spike Prime è riconosciuto a livello internazionale</h2>
     </div>
 
-    <div class="spike-grid">
-      <div class="spike-card">
-        <h3>✅ Risultati immediati</h3>
-        <p>In soli 30 minuti il robot si muove: la motivazione non cala mai.</p>
+    <div class="edu-grid">
+      <div class="edu-item">
+        <div class="edu-icon">🧠</div>
+        <h3>Pensiero computazionale</h3>
+        <p>Decomposizione, pattern recognition, astrazione, algoritmi.</p>
       </div>
-      <div class="spike-card">
-        <h3>🧩 Ciclo completo</h3>
-        <p>Costruisci → programma → testa → migliora: apprendimento attivo e significativo.</p>
+      <div class="edu-item">
+        <div class="edu-icon">🔧</div>
+        <h3>Engineering design</h3>
+        <p>Progetta → costruisci → testa → migliora — ciclo iterativo.</p>
       </div>
-      <div class="spike-card">
-        <h3>👥 Lavoro in coppia</h3>
-        <p>Ogni kit è per 2 ragazzi: collaborazione reale, non virtuale.</p>
+      <div class="edu-item">
+        <div class="edu-icon">👥</div>
+        <h3>Collaborazione</h3>
+        <p>Lavoro in coppia: ruoli definiti, condivisione, feedback.</p>
       </div>
-      <div class="spike-card">
-        <h3>📈 Da blocchi a Python</h3>
-        <p>Scalabile: adatto dagli 8 ai 13+ anni, con approfondimenti tecnici.</p>
+      <div class="edu-item">
+        <div class="edu-icon">🎓</div>
+        <h3>Allineamento curricolare</h3>
+        <p>Compatibile con indicazioni ministeriali STEM e PNSD.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ✅ FOOTER — leggero, coerente -->
+<!-- ✅ CTA FINALE -->
+<section class="spike-cta">
+  <div class="container">
+    <h2>Hai già un kit Spike Prime e non sai come usarlo?</h2>
+    <p>Offriamo anche formazione per insegnanti e consulenza per scuole.</p>
+    <a href="https://wa.me/393703069215" target="_blank" rel="noopener">
+      📲 Scrivici su WhatsApp — Rispondiamo entro 2 ore
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
   <div class="container" style="text-align:center;">
     <p>P.IVA 04701410989 – © 2025 Bit di K. L. – 🔒 Privacy garantita – sito cookie free | 
-      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" 
-         target="_blank" 
-         rel="noopener noreferrer"
-         style="color:#FF6B35; text-decoration:underline;">
-        Privacy Policy
-      </a>
+      <a href="privacy.md" target="_blank" rel="noopener noreferrer" style="color:#FF6B35;">Privacy Policy</a>
     </p>
   </div>
 </footer>
