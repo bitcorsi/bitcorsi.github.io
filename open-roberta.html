@@ -4,238 +4,273 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Roberta Lab — Coding Online per Tutti | Bit</title>
-  <meta name="description" content="Open Roberta Lab: piattaforma gratuita per programmare robot (LEGO, micro:bit, Arduino) con blocchi. Corsi per ragazzi 8–14 anni a Brescia con Bit.">
+  <meta name="description" content="Open Roberta Lab: piattaforma gratuita per programmare robot (LEGO, micro:bit, Arduino) con blocchi. Zero installazioni, simulatore integrato. Ideale per scuole e chi inizia con il coding.">
 
-  <!-- Schema.org per Course -->
+  <!-- Schema.org: SoftwareApplication + Course -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio con Open Roberta Lab",
-    "description": "Percorso di coding a blocchi con Open Roberta Lab per ragazzi dagli 8 ai 14 anni.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Bit - Corsi di Robotica Educativa",
-      "url": "https://www.bitcorsi.it",
-      "logo": "https://www.bitcorsi.it/logo-600x600.png"
-    },
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "MiddleSchool"
-    }
+    "@type": ["SoftwareApplication", "Course"],
+    "name": "Open Roberta Lab",
+    "description": "Piattaforma online gratuita per la programmazione educativa a blocchi, sviluppata dal Fraunhofer Institute.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web-based (Chrome, Firefox, Safari, Edge)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "provider": { "@type": "Organization", "name": "Bit - Corsi di Robotica Educativa", "url": "https://www.bitcorsi.it" },
+    "about": "Coding a blocchi, robotica educativa, pensiero computazionale",
+    "audience": { "@type": "EducationalAudience", "audienceType": "MiddleSchool" }
   }
   </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#FF6B35">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
   <style>
-    /* --- OVERRIDE OPEN ROBERTA — ARANCIONE DOMINANTE --- */
     :root {
       --spike-primary: #FF6B35;
       --spike-primary-dark: #E55A2B;
       --spike-bg-light: #fff9f7;
       --spike-text: #2D3748;
+      --gray-600: #718096;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.7;
+      color: var(--spike-text);
+      background: white;
+    }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 1rem; }
 
     /* Header */
-    .header .logo-text,
-    .nav a:hover {
-      color: var(--spike-primary);
+    .header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #feece5;
+      position: sticky; top: 0; background: white; z-index: 100;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.04);
     }
+    .logo-container { display: flex; align-items: center; gap: 1rem; }
+    .logo-img { height: 52px; }
+    .logo-text { font-size: 2.2rem; font-weight: 900; color: var(--spike-primary); margin: 0; }
 
-    /* Bottone primario */
-    .btn-primary,
-    .btn-primary-large {
-      background-color: var(--spike-primary) !important;
-      border-color: var(--spike-primary-dark) !important;
-      color: white !important;
-      font-weight: 600;
-    }
-    .btn-primary:hover,
-    .btn-primary-large:hover {
-      background-color: var(--spike-primary-dark) !important;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(255,107,53,0.3) !important;
-    }
-
-    /* --- HERO ARMONIZZATO --- */
+    /* Hero */
     .spike-hero {
       background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
-      padding: 0;
+      padding: 8rem 0 6rem;
       position: relative;
       overflow: hidden;
     }
-
+    .spike-hero::before {
+      content: ''; position: absolute; top: -150px; right: -120px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(255,107,53,0.18) 0%, transparent 70%);
+    }
     .spike-hero-inner {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 5.5rem;
       align-items: center;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    .spike-hero-content {
-      text-align: left;
+      padding: 0 2rem;
     }
     .spike-hero-content h1 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-size: clamp(3.4rem, 7vw, 5rem);
       color: var(--spike-primary-dark);
-      font-weight: 800;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      font-weight: 900;
+      line-height: 1.06;
+      margin-bottom: 1.7rem;
     }
     .spike-hero-content p {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      color: var(--spike-text);
+      font-size: 1.48rem;
+      max-width: 680px;
+      margin-bottom: 3rem;
+      color: #4a5568;
     }
-
-    .spike-hero-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .spike-hero-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      filter: drop-shadow(0 4px 12px rgba(255,107,53,0.15));
-    }
-
-    /* --- Kit highlight --- */
-    .kit-highlight {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      margin: 3rem auto;
-      max-width: 1000px;
-    }
-    .kit-item {
-      background: white;
-      border-radius: 12px;
-      padding: 1.25rem;
-      flex: 1 1 220px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      border-top: 3px solid var(--spike-primary);
-    }
-    .kit-item svg {
-      fill: var(--spike-primary);
-    }
-    .kit-item h3 {
-      margin: 0.75rem 0 0.5rem;
-      color: var(--spike-primary-dark);
-      font-weight: 700;
-    }
-    .kit-item p {
-      font-size: 0.95rem;
-      color: #555;
-    }
-
-    /* --- Griglia vantaggi --- */
-    .spike-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-    .spike-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.75rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: all 0.3s ease;
-    }
-    .spike-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-    .spike-card h3 {
-      color: var(--spike-primary);
-      margin-top: 0;
-      font-size: 1.35rem;
-    }
-
-    /* --- CTA finale --- */
-    .spike-cta {
+    .btn-primary-large {
       background: var(--spike-primary);
       color: white;
+      padding: 1.2rem 3.2rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 16px 40px rgba(255,107,53,0.34);
+      transition: all 0.35s ease;
+    }
+    .btn-primary-large:hover {
+      background: var(--spike-primary-dark);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 50px rgba(255,107,53,0.44);
+    }
+    .spike-hero-image img {
+      width: 100%;
+      border-radius: 32px;
+    }
+
+    /* Sezioni */
+    .section { padding: 8rem 0; }
+    .bg-light { background: var(--spike-bg-light); }
+    .section-header { text-align: center; margin-bottom: 5.5rem; }
+    .section-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--spike-primary-dark);
+      position: relative;
+      display: inline-block;
+    }
+    .section-header h2::after {
+      content: ''; width: 110px; height: 6px; background: var(--spike-primary);
+      display: block; margin: 1.4rem auto; border-radius: 3px;
+    }
+    .section-subtitle { font-size: 1.32rem; color: var(--gray-600); max-width: 820px; margin: 1.3rem auto 0; }
+
+    /* Griglia caratteristiche */
+    .kit-exploded-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+    .kit-part {
+      background: white;
+      padding: 3rem 2.4rem;
+      border-radius: 32px;
       text-align: center;
-      padding: 4rem 1rem;
-      margin: 4rem 0;
-      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
     }
-    .spike-cta h2 {
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
-      margin-bottom: 1rem;
+    .kit-part:hover { transform: translateY(-18px); box-shadow: 0 35px 70px rgba(0,0,0,0.17); }
+    .kit-part-icon {
+      width: 120px; height: 120px; margin: 0 auto 2.2rem;
+      background: linear-gradient(135deg, #ffe8dc, #ffd4c7);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; color: var(--spike-primary-dark);
+      box-shadow: 0 14px 35px rgba(255,107,53,0.3);
     }
-    .spike-cta p {
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      opacity: 0.95;
+
+    /* Dettaglio robot supportati */
+    .hub-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
     }
+    .hub-specs ul {
+      background: white;
+      padding: 3.2rem;
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    .hub-specs li {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #fce8e1;
+      font-size: 1.15rem;
+    }
+    .hub-specs li:last-child { border-bottom: none; }
+
+    /* Cards (blocchi, progetti, ecc.) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 3rem;
+    }
+    .project-card {
+      background: white;
+      padding: 3rem;
+      border-radius: 32px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-14px);
+      box-shadow: 0 35px 70px rgba(0,0,0,0.18);
+    }
+    .project-card h4 {
+      font-size: 1.55rem;
+      margin: 0 0 1.4rem;
+      color: var(--spike-primary);
+    }
+
+    /* Valore educativo */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3.5rem;
+    }
+    .edu-item {
+      text-align: center;
+      padding: 3.2rem;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.09);
+    }
+    .edu-icon {
+      font-size: 3.6rem;
+      width: 120px; height: 120px;
+      margin: 0 auto 2.2rem;
+      background: white;
+      border: 6px solid var(--spike-primary);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 16px 40px rgba(255,107,53,0.28);
+    }
+
+    /* CTA finale */
+    .spike-cta {
+      background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark));
+      color: white;
+      text-align: center;
+      padding: 8.5rem 2rem;
+      margin: 8rem 1rem;
+      border-radius: 36px;
+      box-shadow: 0 35px 80px rgba(255,107,53,0.4);
+    }
+    .spike-cta h2 { font-size: 3.4rem; margin-bottom: 1.5rem; }
+    .spike-cta p { font-size: 1.45rem; opacity: 0.95; max-width: 900px; margin: 0 auto 2.8rem; }
     .spike-cta a {
       background: white;
       color: var(--spike-primary);
-      font-weight: 700;
-      padding: 0.9rem 2.2rem;
+      font-weight: 800;
+      padding: 1.4rem 3.8rem;
       border-radius: 50px;
-      display: inline-block;
-      margin-top: 1rem;
+      font-size: 1.4rem;
       text-decoration: none;
-      border: 2px solid white;
-      font-size: 1.1rem;
+      display: inline-block;
+      transition: all 0.35s ease;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.25);
     }
-    .spike-cta a:hover {
-      background: #fff5f0;
-      transform: scale(1.04);
-      box-shadow: 0 6px 16px rgba(255,255,255,0.2);
-    }
+    .spike-cta a:hover { transform: scale(1.1); box-shadow: 0 20px 45px rgba(0,0,0,0.35); }
 
-    /* --- Mobile --- */
+    /* Footer */
+    .footer {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 3.2rem 0;
+      text-align: center;
+      font-size: 0.98rem;
+    }
+    .footer a { color: var(--spike-primary); text-decoration: underline; }
+
     @media (max-width: 992px) {
-      .spike-hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 3.5rem 1.5rem;
-        gap: 2rem;
-      }
-      .spike-hero-content {
-        text-align: center;
-      }
-      .spike-hero-content h1,
-      .spike-hero-content p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .spike-hero-content p {
-        max-width: 100%;
-      }
-      .spike-hero-image {
-        padding-top: 1rem;
-      }
+      .spike-hero-inner, .hub-detail { grid-template-columns: 1fr; }
+      .spike-hero-content { text-align: center; }
+      .spike-hero-image img { transform: none; }
     }
-
-    @media (max-width: 576px) {
-      .spike-hero-inner { padding: 2.5rem 1rem; }
-      .spike-hero-content h1 { font-size: 1.9rem; }
-      .kit-item { flex: 1 1 100%; }
+    @media (max-width: 640px) {
+      .section { padding: 6rem 0; }
+      .spike-hero { padding: 6rem 0 5rem; }
+      .spike-cta h2 { font-size: 2.7rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ✅ HEADER — coerente con index.html -->
+<!-- HEADER -->
 <header class="header">
   <div class="container">
     <div class="logo-container">
@@ -244,86 +279,195 @@
       </a>
       <h1 class="logo-text">BIT</h1>
     </div>
-    </div>
+  </div>
 </header>
 
-<!-- ✅ HERO — CORRETTO: immagine open-roberta, non arduino -->
+<!-- HERO -->
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
       <h1>Open Roberta Lab</h1>
-      <p>Una piattaforma gratuita, online e senza installazioni per programmare robot LEGO, micro:bit, Arduino e molti altri direttamente dal browser.</p>
-      <a href="index.html#contatti" class="btn btn-primary-large">Prenota una lezione di prova gratuita</a>
+      <p>Una piattaforma gratuita, 100% online, per programmare robot LEGO, micro:bit, Arduino e molti altri — direttamente dal browser, senza installazioni.</p>
+      <a href="index.html#contatti" class="btn-primary-large">Prenota una lezione di prova gratuita</a>
     </div>
     <div class="spike-hero-image">
-      <img src="images/open-roberta-hero.webp" alt="Interfaccia di Open Roberta Lab con blocchi di programmazione e simulatore di robot LEGO" loading="eager">
+      <img src="images/open-roberta-hero.webp" alt="Interfaccia Open Roberta Lab con blocchi di programmazione e simulatore di robot LEGO">
     </div>
   </div>
 </section>
 
-<!-- ✅ Perché è potente -->
+<!-- LA PIATTAFORMA -->
+<section class="kit-exploded section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Open Roberta Lab: cos’è e perché è speciale</h2>
+      <p class="section-subtitle">Sviluppato dal Fraunhofer Institute (Germania) — il MIT tedesco — ed è completamente gratuito e open-source.</p>
+    </div>
+    <div class="kit-exploded-grid">
+      <div class="kit-part">
+        <div class="kit-part-icon">Globe</div>
+        <h3>100% online</h3>
+        <p>Basta un browser moderno (Chrome, Firefox, Edge). Niente installazioni, niente aggiornamenti.</p>
+      </div>
+      <div class="kit-part">
+        <div class="kit-part-icon">Free</div>
+        <h3>Gratuito per sempre</h3>
+        <p>Zero costi di licenza, zero abbonamenti. Finanziato da fondi pubblici europei.</p>
+      </div>
+      <div class="kit-part">
+        <div class="kit-part-icon">Cloud</div>
+        <h3>Salvataggio cloud</h3>
+        <p>I progetti si salvano automaticamente: si riprendono da qualsiasi dispositivo con lo stesso account.</p>
+      </div>
+      <div class="kit-part">
+        <div class="kit-part-icon">Beaker</div>
+        <h3>Simulatore integrato</h3>
+        <p>Prova i programmi senza hardware: perfetto per la scuola, la DDI o chi non ha robot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROBOT SUPPORTATI -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-header">
+      <h2>Oltre 20 robot e dispositivi supportati</h2>
+    </div>
+    <div class="hub-detail">
+      <div>
+        <img src="images/open-roberta-robots.webp" alt="Logo robot supportati: LEGO WeDo, SPIKE, micro:bit, Calliope, NAO, Arduino">
+      </div>
+      <div class="hub-specs">
+        <ul>
+          <li><strong>LEGO:</strong> WeDo 2.0, SPIKE Prime, Mindstorms EV3, NXT</li>
+          <li><strong>Schede:</strong> micro:bit v1/v2, Calliope mini, Arduino (tramite plugin)</li>
+          <li><strong>Robot avanzati:</strong> NAO, Thymio, BOB3</li>
+          <li><strong>Simulatori:</strong> Rover (Marte), Drone, Auto a guida autonoma</li>
+          <li><strong>Estensioni:</strong> Python, C++, ROS (per percorsi avanzati)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENSORI & BLOCCHI -->
 <section class="section">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-      <h2>Cosa rende Open Roberta unica</h2>
-      <p class="section-subtitle">Sviluppata dal Fraunhofer Institute, è completamente gratuita.</p>
+    <div class="section-header">
+      <h2>Blocchi intelligenti per sensori reali</h2>
     </div>
-
-    <div class="kit-highlight">
-      <div class="kit-item">
-        <h3>20+ robot supportati</h3>
-        <p>LEGO WeDo, Mindstorms, SPIKE, micro:bit, Calliope, Arduino, NAO…</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>Sensore colore (LEGO)</h4>
+        <p><code>se il sensore colore rileva rosso → accendi motore A</code></p>
       </div>
-      <div class="kit-item">
-        <h3>Simulatore integrato</h3>
-        <p>Prova i programmi senza avere il robot: perfetto per la scuola o casa.</p>
+      <div class="project-card">
+        <h4>Sensore ultrasuoni</h4>
+        <p><code>se distanza < 10 cm → gira a destra</code></p>
       </div>
-      <div class="kit-item">
-        <h3>Salvataggio cloud</h3>
-        <p>I progetti si salvano online: si riprendono da qualsiasi dispositivo.</p>
+      <div class="project-card">
+        <h4>Giroscopio</h4>
+        <p><code>gira fino a 90 gradi → ferma i motori</code></p>
+      </div>
+      <div class="project-card">
+        <h4>LED & display</h4>
+        <p><code>mostra cuore → attendi 1 secondo → cancella schermo</code></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ✅ Perché lo usiamo -->
-<section class="section" style="background-color: var(--spike-bg-light);">
+<!-- SOFTWARE -->
+<section class="section bg-light">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-      <h2>Perché Open Roberta funziona con i ragazzi</h2>
+    <div class="section-header">
+      <h2>Un’unica interfaccia per tutti i livelli</h2>
     </div>
-
-    <div class="spike-grid">
-      <div class="spike-card">
-        <h3>🌍 Accessibile a tutti</h3>
-        <p>Basta un browser (anche su tablet o Chromebook): nessun software da installare.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>Coding a blocchi (8–11 anni)</h4>
+        <p>Blocchi colorati, trascina e rilascia, feedback immediato nel simulatore.</p>
       </div>
-      <div class="spike-card">
-        <h3>🧠 Focus sul pensiero, non sulla sintassi</h3>
-        <p>I blocchi evitano errori di battitura: i ragazzi imparano logica, non punteggiatura.</p>
+      <div class="project-card">
+        <h4>Python (12–14 anni)</h4>
+        <p>Passaggio a testo con un click. Libreria semplificata: <code>calliope.display.show_image("HEART")</code>.</p>
       </div>
-      <div class="spike-card">
-        <h3>🧩 Da robot simulato a robot reale</h3>
-        <p>Si programma prima in simulazione, poi si scarica sul dispositivo fisico — senza cambiare interfaccia.</p>
+      <div class="project-card">
+        <h4>Per insegnanti</h4>
+        <p>Classroom mode: crea classi, assegna esercizi, vedi i progressi in tempo reale.</p>
       </div>
-      <div class="spike-card">
-        <h3>🎓 Ponte universale</h3>
-        <p>Da Open Roberta a Python, Arduino o Spike Prime: un percorso senza salti tecnologici.</p>
+      <div class="project-card">
+        <h4>Esporta ovunque</h4>
+        <p>Scarica il codice per micro:bit (.hex), Arduino (.ino) o EV3 (.ev3).</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ✅ FOOTER -->
-<footer class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
-  <div class="container" style="text-align:center;">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – 🔒 Privacy garantita – sito cookie free | 
-      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" 
-         target="_blank" 
-         rel="noopener noreferrer"
-         style="color:#FF6B35; text-decoration:underline;">
-        Privacy Policy
-      </a>
+<!-- PROGETTI REALI -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Progetti realizzabili in 1 incontro (anche senza robot)</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>Semaforo simulato</h4>
+        <p>LED rosso → giallo → verde con tempi regolabili. Funziona nel simulatore LEGO.</p>
+      </div>
+      <div class="project-card">
+        <h4>Gioco del dado</h4>
+        <p>Scuoti (simulato) → numero casuale su display micro:bit.</p>
+      </div>
+      <div class="project-card">
+        <h4>Autopilota Mars Rover</h4>
+        <p>Nel simulatore: evita rocce, raccogli campioni, torna alla base.</p>
+      </div>
+      <div class="project-card">
+        <h4>Metronomo</h4>
+        <p>BPM regolabile con pulsante. Suono via speaker (micro:bit) o beep (simulatore).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORE EDUCATIVO -->
+<section class="edu-value section bg-light">
+  <div class="container">
+    <div class="section-header">
+      <h2>Perché Open Roberta è ideale per la scuola</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-item">
+        <div class="edu-icon">School</div>
+        <h3>Zero investimenti hardware</h3>
+        <p>Inizia subito con 1 solo computer + proiettore. Aggiungi robot dopo.</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-icon">Chart</div>
+        <h3>Valutazione oggettiva</h3>
+        <p>L’insegnante vede i programmi, i tentativi, gli errori — non solo il risultato finale.</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-icon">Sync</div>
+        <h3>Ponte tra strumenti</h3>
+        <p>Da WeDo a SPIKE a micro:bit: stessa logica, interfaccia coerente.</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-icon">EU</div>
+        <h3>Progetto europeo</h3>
+        <p>Supportato da Horizon 2020 — garanzia di longevità e aggiornamenti.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free |
+      <a href="privacy.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
     </p>
   </div>
 </footer>
