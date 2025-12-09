@@ -33,188 +33,254 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#FF6B35">
-
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --spike-primary: #FF6B35;
       --spike-primary-dark: #E55A2B;
       --spike-bg-light: #fff9f7;
       --spike-text: #2D3748;
+      --gray-100: #f7fafc;
+      --gray-600: #718096;
     }
 
-    /* Header & bottoni — come prima */
-    .header .logo-text, .nav a:hover {
-      color: var(--spike-primary);
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.7;
+      color: var(--spike-text);
+      background: white;
+      margin: 0;
     }
-    .btn-primary, .btn-primary-large {
-      background-color: var(--spike-primary) !important;
-      border-color: var(--spike-primary-dark) !important;
-      color: white !important;
-      font-weight: 600;
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Header */
+    .header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #feece5;
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
     }
-    .btn-primary:hover, .btn-primary-large:hover {
-      background-color: var(--spike-primary-dark) !important;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(255,107,53,0.3) !important;
-    }
+    .logo-container { display: flex; align-items: center; gap: 1rem; }
+    .logo-img { height: 48px; }
+    .logo-text { font-size: 2rem; font-weight: 900; color: var(--spike-primary); margin: 0; }
 
     /* Hero */
     .spike-hero {
       background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
-      padding: 0;
+      padding: 7rem 0 5rem;
       position: relative;
       overflow: hidden;
     }
+    .spike-hero::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+    }
     .spike-hero-inner {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
       align-items: center;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 5rem 2rem;
+      padding: 0 2rem;
     }
     .spike-hero-content h1 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-size: clamp(3rem, 6vw, 4.5rem);
       color: var(--spike-primary-dark);
-      font-weight: 800;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
     }
     .spike-hero-content p {
+      font-size: 1.4rem;
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+      color: #4a5568;
+    }
+    .btn-primary-large {
+      background: var(--spike-primary);
+      color: white;
+      padding: 1.1rem 2.8rem;
       font-size: 1.25rem;
-      max-width: 600px;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      color: var(--spike-text);
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 12px 30px rgba(255,107,53,0.3);
+      transition: all 0.35s ease;
+    }
+    .btn-primary-large:hover {
+      background: var(--spike-primary-dark);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255,107,53,0.4);
     }
     .spike-hero-image img {
       width: 100%;
-      border-radius: 12px;
-        }
-    @media (max-width: 992px) {
-      .spike-hero-inner { grid-template-columns: 1fr; text-align: center; padding: 3.5rem 1.5rem; }
-      .spike-hero-content { text-align: center; }
+      border-radius: 24px;
+       }
+    /* Sezioni */
+    .section { padding: 7rem 0; }
+    .bg-light { background: var(--spike-bg-light); }
+    .section-header { text-align: center; margin-bottom: 4.5rem; }
+    .section-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--spike-primary-dark);
+      position: relative;
+      display: inline-block;
     }
+    .section-header h2::after {
+      content: ''; width: 90px; height: 5px; background: var(--spike-primary);
+      display: block; margin: 1.2rem auto; border-radius: 3px;
+    }
+    .section-subtitle { font-size: 1.25rem; color: var(--gray-600); max-width: 750px; margin: 1rem auto 0; }
 
-    /* Sezione esplosa */
-    .kit-exploded {
-      background: white;
-      padding: 4rem 1rem;
-    }
+    /* Kit esploso */
     .kit-exploded-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
     }
     .kit-part {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 24px;
       text-align: center;
-      padding: 1.5rem;
-      border-radius: 12px;
-      background: #fafbff;
-      border: 1px solid #eee;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
     }
+    .kit-part:hover { transform: translateY(-15px); box-shadow: 0 25px 50px rgba(0,0,0,0.14); }
     .kit-part-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 1rem;
-      background: #ffe8dc;
+      width: 100px; height: 100px; margin: 0 auto 1.8rem;
+      background: linear-gradient(135deg, #ffe8dc, #ffd4c7);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1.4rem;
-      color: var(--spike-primary-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; font-weight: 900; color: var(--spike-primary-dark);
+      box-shadow: 0 10px 25px rgba(255,107,53,0.25);
     }
-    .kit-part h3 {
-      margin: 0.5rem 0;
-      color: var(--spike-primary-dark);
-    }
-    .kit-part p { font-size: 0.95rem; color: #555; }
 
     /* Hub detail */
     .hub-detail {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 5rem;
       align-items: center;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 0;
     }
-    .hub-specs ul { list-style: none; padding: 0; }
-    .hub-specs li { padding: 0.5rem 0; border-bottom: 1px dashed #eee; }
-    .hub-specs strong { color: var(--spike-primary-dark); }
+    .hub-specs ul {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+    .hub-specs li {
+      padding: 1rem 0;
+      border-bottom: 1px solid #fce8e1;
+      font-size: 1.1rem;
+    }
+    .hub-specs li:last-child { border-bottom: none; }
 
-    /* Progetti */
+    /* Cards (progetti, sensori, software) */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
     }
     .project-card {
       background: white;
-      border-radius: 10px;
-      padding: 1.25rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+      padding: 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
     }
     .project-card h4 {
+      font-size: 1.45rem;
+      margin: 0 0 1.2rem;
       color: var(--spike-primary);
-      margin-top: 0;
     }
 
     /* Valore educativo */
-    .edu-value {
-      background: var(--spike-bg-light);
-      padding: 4rem 1rem;
-    }
     .edu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
     }
     .edu-item {
       text-align: center;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.07);
     }
     .edu-icon {
-      display: inline-block;
-      width: 56px;
-      height: 56px;
+      font-size: 3rem;
+      width: 100px; height: 100px;
+      margin: 0 auto 1.8rem;
       background: white;
+      border: 5px solid var(--spike-primary);
       border-radius: 50%;
-      line-height: 56px;
-      font-weight: bold;
-      color: var(--spike-primary);
-      margin-bottom: 1rem;
-      border: 2px solid var(--spike-primary);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 12px 30px rgba(255,107,53,0.22);
     }
 
     /* CTA finale */
     .spike-cta {
-      background: var(--spike-primary);
+      background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark));
       color: white;
       text-align: center;
-      padding: 4rem 1rem;
-      margin: 4rem 0;
-      border-radius: 16px;
+      padding: 7rem 2rem;
+      margin: 7rem 1rem;
+      border-radius: 28px;
+      box-shadow: 0 25px 60px rgba(255,107,53,0.35);
     }
+    .spike-cta h2 { font-size: 3rem; margin-bottom: 1.2rem; }
+    .spike-cta p { font-size: 1.35rem; opacity: 0.95; max-width: 800px; margin: 0 auto 2rem; }
     .spike-cta a {
       background: white;
       color: var(--spike-primary);
-      font-weight: 700;
-      padding: 0.9rem 2.2rem;
+      font-weight: 800;
+      padding: 1.2rem 3.2rem;
       border-radius: 50px;
-      display: inline-block;
-      margin-top: 1rem;
+      font-size: 1.3rem;
       text-decoration: none;
-      border: 2px solid white;
+      display: inline-block;
+      transition: all 0.35s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .spike-cta a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    .footer {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 2.5rem 0;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    .footer a { color: var(--spike-primary); text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .spike-hero-inner, .hub-detail { grid-template-columns: 1fr; }
+      .spike-hero-content { text-align: center; }
+      .spike-hero-image img { transform: none; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 5rem 0; }
+      .spike-hero { padding: 5rem 0 4rem; }
+      .spike-cta h2 { font-size: 2.4rem; }
     }
   </style>
 </head>
@@ -229,7 +295,7 @@
       </a>
       <h1 class="logo-text">BIT</h1>
     </div>
-     </div>
+  </div>
 </header>
 
 <!-- HERO -->
@@ -238,7 +304,7 @@
     <div class="spike-hero-content">
       <h1>LEGO® Spike Prime</h1>
       <p>Il kit ufficiale LEGO® Education per la robotica educativa: 523 pezzi, hub programmabile, 3 motori, 3 sensori — tutto in un’unica scatola.</p>
-      <a href="index.html#contatti" class="btn btn-primary-large">Prenota una lezione di prova gratuita</a>
+      <a href="index.html#contatti" class="btn-primary-large">Prova gratuita</a>
     </div>
     <div class="spike-hero-image">
       <img src="images/spike-prime-hero.webp" alt="Kit LEGO Spike Prime aperto con tutti i componenti disposti">
@@ -246,10 +312,10 @@
   </div>
 </section>
 
-<!-- ✅ PANORAMICA COMPLETA DEL KIT -->
-<section class="kit-exploded">
+<!-- PANORAMICA COMPLETA DEL KIT -->
+<section class="kit-exploded section">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+    <div class="section-header">
       <h2>Contenuto del kit ufficiale</h2>
       <p class="section-subtitle">Tutto incluso — nessun acquisto aggiuntivo richiesto.</p>
     </div>
@@ -274,16 +340,16 @@
   </div>
 </section>
 
-<!-- ✅ HUB — IL CUORE DEL KIT -->
-<section class="section">
+<!-- HUB — IL CUORE DEL KIT -->
+<section class="section bg-light">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+    <div class="section-header">
       <h2>L’Hub programmabile: il cervello del robot</h2>
     </div>
 
     <div class="hub-detail">
       <div>
-        <img src="images/spike-hub.webp" alt="Hub LEGO Spike Prime con porte e display visibili" style="width:100%; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.1);">
+        <img src="images/spike-hub.webp" alt="Hub LEGO Spike Prime con porte e display visibili">
       </div>
       <div class="hub-specs">
         <ul>
@@ -299,82 +365,82 @@
   </div>
 </section>
 
-<!-- ✅ SENSORI E MOTORI — COSA FANNO, COME SI USANO -->
-<section class="section bg-light">
+<!-- SENSORI E MOTORI -->
+<section class="section">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+    <div class="section-header">
       <h2>Sensori e motori: interagire con il mondo reale</h2>
     </div>
 
     <div class="projects-grid">
       <div class="project-card">
-        <h4>🔷 Sensore Colore & Luce</h4>
+        <h4>Sensore Colore & Luce</h4>
         <p>Rileva 8 colori, intensità luminosa, presenza/assenza di oggetti. Ideale per robot che seguono linee o reagiscono al colore.</p>
       </div>
       <div class="project-card">
-        <h4>🔷 Sensore Forza & Distanza</h4>
+        <h4>Sensore Forza & Distanza</h4>
         <p>Misura pressione (da 0 a 10 N) e distanza (da 0 a 20 cm). Perfetto per pinze, freni, rilevamento ostacoli.</p>
       </div>
       <div class="project-card">
-        <h4>🔷 Sensore Giroscopio</h4>
+        <h4>Sensore Giroscopio</h4>
         <p>Rileva inclinazione, rotazione, velocità angolare. Per robot che mantengono l’equilibrio o girano di 90° precisi.</p>
       </div>
-     </div>
+    </div>
   </div>
 </section>
 
-<!-- ✅ SOFTWARE — PROGRAMMAZIONE A LIVELLI -->
-<section class="section">
+<!-- SOFTWARE -->
+<section class="section bg-light">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+    <div class="section-header">
       <h2>Software: da principianti a esperti</h2>
     </div>
 
     <div class="projects-grid">
       <div class="project-card">
-        <h4>🧱 Codice a blocchi (8–11 anni)</h4>
+        <h4>Codice a blocchi (8–11 anni)</h4>
         <p>Interfaccia drag & drop, ispirata a Scratch. Blocchi colorati per motori, sensori, logica. Nessun errore di sintassi.</p>
       </div>
       <div class="project-card">
-        <h4>🐍 Python (12–16 anni)</h4>
+        <h4>Python (12–16 anni)</h4>
         <p>Stesso ambiente, passaggio a testo con un click. Libreria `spike` semplificata: <code>motor.run(50)</code>, <code>color_sensor.get_color()</code>.</p>
       </div>
       <div class="project-card">
-        <h4>🔁 Simulatore integrato</h4>
+        <h4>Simulatore integrato</h4>
         <p>Prova il codice senza hardware: utile per assegnazioni a casa o in classe senza kit.</p>
       </div>
-     </div>
+    </div>
   </div>
 </section>
 
-<!-- ✅ PROGETTI REALI — COSA SI FA IN LABORATORIO -->
-<section class="section bg-light">
+<!-- PROGETTI REALI -->
+<section class="section">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+    <div class="section-header">
       <h2>Progetti realizzabili in 1–2 incontri</h2>
     </div>
 
     <div class="projects-grid">
       <div class="project-card">
-        <h4>🚦 Semaforo intelligente</h4>
+        <h4>Semaforo intelligente</h4>
         <p>Con sensore di distanza: si attiva quando un oggetto si avvicina.</p>
       </div>
       <div class="project-card">
-        <h4>🤖 Braccio robotico</h4>
+        <h4>Braccio robotico</h4>
         <p>Pinza a 2 gradi di libertà, controllata da pulsanti o sensore di forza.</p>
       </div>
       <div class="project-card">
-        <h4>🚗 Veicolo autonomo</h4>
+        <h4>Veicolo autonomo</h4>
         <p>Segue una linea nera, evita ostacoli, parcheggia automaticamente.</p>
       </div>
-      </div>
+    </div>
   </div>
 </section>
 
-<!-- ✅ VALORE EDUCATIVO — PERCHÉ È EFFICACE -->
-<section class="edu-value">
+<!-- VALORE EDUCATIVO -->
+<section class="edu-value section bg-light">
   <div class="container">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+    <div class="section-header">
       <h2>Perché LEGO Spike Prime è riconosciuto a livello internazionale</h2>
     </div>
 
@@ -398,22 +464,22 @@
   </div>
 </section>
 
-<!-- ✅ CTA FINALE -->
+<!-- CTA FINALE -->
 <section class="spike-cta">
   <div class="container">
     <h2>Hai già un kit Spike Prime e non sai come usarlo?</h2>
     <p>Offriamo anche formazione per insegnanti e consulenza per scuole.</p>
     <a href="https://wa.me/393703069215" target="_blank" rel="noopener">
-      📲 Scrivici su WhatsApp — Rispondiamo entro 2 ore
+      Scrivici su WhatsApp — Rispondiamo entro 2 ore
     </a>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
-  <div class="container" style="text-align:center;">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – 🔒 Privacy garantita – sito cookie free | 
-      <a href="privacy.md" target="_blank" rel="noopener noreferrer" style="color:#FF6B35;">Privacy Policy</a>
+<footer class="footer">
+  <div class="container">
+    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free | 
+      <a href="privacy.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
     </p>
   </div>
 </footer>
