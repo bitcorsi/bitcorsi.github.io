@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LEGO® Spike Prime — Kit Completo | Bit</title>
-  <meta name="description" content="Kit LEGO Spike Prime ufficiale: 523 pezzi, hub programmabile, 3 motori, 3 sensori. Scopri componenti, software, progetti reali e perché è lo strumento ideale per la robotica educativa 8–13 anni.">
+  <title>BBC micro:bit v2 — Kit Completo per Coding Divertente | Bit</title>
+  <meta name="description" content="BBC micro:bit v2 per ragazzi 8–13 anni: scheda con LED, sensori, speaker e Bluetooth. Scopri kit, software MakeCode, progetti (dado, contapassi, termometro) e perché è ideale per chi inizia con il coding.">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "LEGO® Education SPIKE™ Prime Set",
-    "description": "Kit completo di robotica educativa LEGO Spike Prime per scuole e laboratori.",
-    "brand": { "@type": "Brand", "name": "LEGO Education" },
+    "name": "BBC micro:bit v2 Educational Kit",
+    "description": "Kit completo con micro:bit v2, cavi, batterie e guida per laboratori di coding e automazione.",
+    "brand": { "@type": "Brand", "name": "BBC" },
     "offers": {
       "@type": "Offer",
-      "url": "https://www.bitcorsi.it/spike-prime.html",
+      "url": "https://www.bitcorsi.it/microbit.html",
       "availability": "https://schema.org/InStock"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "12"
+      "ratingValue": "4.8",
+      "reviewCount": "24"
     }
   }
   </script>
@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#FF6B35">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
+
   <style>
     /* STILI GLOBALI E VARIABILI (Compatti e Coerenti) */
     :root {
@@ -67,25 +67,25 @@
     .section-header h2::after { content: ''; width: 70px; height: 4px; background: var(--spike-primary); display: block; margin: 0.8rem auto; border-radius: 3px; }
     .section-subtitle { font-size: 1.1rem; color: var(--gray-600); max-width: 750px; margin: 0.5rem auto 0; }
 
-    /* NUOVA: Griglia 2 Colonne per Specifiche (Spec-Grid) */
-    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: flex-start; }
-    .spec-grid img { width: 100%; border-radius: 12px; margin-bottom: 1rem; }
-
     /* Kit esploso (Adattato) */
-    .kit-exploded-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;}
+    .kit-exploded-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .kit-part { background: white; padding: 1.5rem 1.2rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; }
     .kit-part:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
     .kit-part-icon { width: 60px; height: 60px; margin: 0 auto 0.8rem; background: linear-gradient(135deg, #ffe8dc, #ffd4c7); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 900; color: var(--spike-primary-dark); box-shadow: 0 6px 15px rgba(255,107,53,0.25); }
     .kit-part h3 { font-size: 1.1rem; margin-top: 0; }
     .kit-part p { font-size: 0.9rem; }
     
+    /* NUOVA: Griglia 2 Colonne per Specifiche (Spec-Grid) */
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+
     /* Stile Elenco Specifiche (Adattato) */
     .robot-list ul { background: white; padding: 1.5rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
     .robot-list li { padding: 0.8rem 0; border-bottom: 1px solid #fce8e1; font-size: 1rem; }
     .robot-list li:last-child { border-bottom: none; }
     .robot-list h3 { font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem; }
+    .spec-grid img { width: 100%; border-radius: 12px; }
 
-    /* Cards (Progetti/Sensori) (Compattate) */
+    /* Cards (Progetti) (Compattate) */
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .card-item { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); height: 100%; transition: all 0.3s ease; }
     .card-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
@@ -134,12 +134,12 @@
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
-      <h1>LEGO® Spike Prime: La Robotica Educativa Avanzata</h1>
-      <p>Il kit ufficiale LEGO® Education per la robotica educativa: 523 pezzi, hub programmabile, 3 motori, 3 sensori — tutto in un’unica scatola per le scuole.</p>
-      <a href="index.html#contatti" class="btn-primary-large">Prova Gratuita</a>
+      <h1>BBC micro:bit v2: Il PC tascabile per il Coding</h1>
+      <p>Un computer grande come una carta di credito, con LED, sensori, speaker e Bluetooth. Ideale per ragazzi 8–13 anni che iniziano con l'elettronica e il coding.</p>
+      <a href="index.html#contatti-info" class="btn-primary-large">Prenota la Lezione di Prova</a>
     </div>
     <div class="spike-hero-image">
-      <img src="images/spike-prime-hero.webp" alt="Kit LEGO Spike Prime aperto con tutti i componenti disposti">
+      <img src="images/microbit-hero.webp" alt="micro:bit v2 con LED accesi, collegato a batterie e sensore">
     </div>
   </div>
 </section>
@@ -147,43 +147,36 @@
 <section class="section bg-light">
   <div class="container">
     <div class="section-header">
-      <h2>Hub e Componenti Essenziali del Kit Ufficiale</h2>
-      <p class="section-subtitle">Il set Spike Prime è un ecosistema completo per costruire, programmare e testare.</p>
+      <h2>Componenti e Specifiche Essenziali della Scheda v2</h2>
+      <p class="section-subtitle">Il kit include tutto il necessario per iniziare, senza componenti aggiuntivi richiesti.</p>
     </div>
 
     <div class="spec-grid">
-      <div>
-        <img src="images/spike-hub.webp" alt="Hub LEGO Spike Prime con porte e display visibili">
-        <div class="robot-list">
-            <h3>Specifiche dell'Hub Programmabile</h3>
-            <ul>
-                <li><strong>Display:</strong> matrice LED 5×5 (animazioni, numeri)</li>
-                <li><strong>Porte:</strong> 6 porte (A–F) per sensori e motori</li>
-                <li><strong>Sensori interni:</strong> giroscopio, accelerometro, microfono</li>
-                <li><strong>Comunicazione:</strong> Bluetooth 5.0, USB-C</li>
-                <li><strong>Alimentazione:</strong> batteria ricaricabile inclusa (fino a 2h uso continuo)</li>
-                <li><strong>Compatibilità:</strong> Windows, macOS, ChromeOS, iPad, Android</li>
-            </ul>
-        </div>
+      <div class="robot-list">
+        <h3>Specifiche Hardware Micro:bit v2</h3>
+        <ul>
+          <li><strong>LED:</strong> matrice 5×5 programmabile (25 LED)</li>
+          <li><strong>Sensori integrati:</strong> accelerometro, magnetometro (bussola), microfono, temperatura</li>
+          <li><strong>Audio:</strong> speaker integrato + jack 3.5mm per cuffie</li>
+          <li><strong>Pulsanti:</strong> A, B, Reset (+ touch sul logo)</li>
+          <li><strong>Connettività:</strong> Bluetooth LE, pin esterni (0–2, 3V, GND)</li>
+          <li><strong>Alimentazione:</strong> USB o 2× batterie AAA (portabatterie incluso)</li>
+        </ul>
       </div>
-      
-      <div style="margin-top: 1rem;">
-        <h3 style="color: var(--spike-primary-dark); font-size: 1.3rem; margin-bottom: 1rem;">Contenuto Tecnico Principale</h3>
-        <div class="kit-exploded-grid">
+
+      <div>
+        <img src="images/microbit-v2.webp" alt="Scheda micro:bit v2 con pinout e componenti evidenziati">
+        <h3 style="margin-top: 1.5rem; color: var(--spike-primary-dark); font-size: 1.3rem;">Contenuto del Kit Didattico</h3>
+        <div class="kit-exploded-grid" style="margin-top: 1rem;">
           <div class="kit-part">
-            <div class="kit-part-icon">523</div>
-            <h3>Pezzi LEGO</h3>
-            <p>Pezzi Technic moderni, travi, assi e connettori colorati.</p>
+            <div class="kit-part-icon">1</div>
+            <h3>micro:bit v2</h3>
+            <p>La scheda principale con speaker e sensori.</p>
           </div>
           <div class="kit-part">
-            <div class="kit-part-icon">3M</div>
-            <h3>Motori Potenti</h3>
-            <p>2 motori medi (precisi) + 1 motore grande (alta coppia).</p>
-          </div>
-          <div class="kit-part">
-            <div class="kit-part-icon">3S</div>
-            <h3>Sensori Intelligenti</h3>
-            <p>Colore/luce, forza/distanza, e giroscopio.</p>
+            <div class="kit-part-icon">🔌</div>
+            <h3>Cavo + Batterie</h3>
+            <p>Cavo micro-USB e porta-batterie con 2 AAA.</p>
           </div>
         </div>
       </div>
@@ -194,25 +187,25 @@
 <section class="section">
   <div class="container">
     <div class="section-header">
-      <h2>Sensori Intelligenti e Flusso di Programmazione</h2>
+      <h2>Sensori Integrati e Progetti che Funzionano Subito</h2>
+      <p class="section-subtitle">Il suo punto di forza: è un laboratorio di elettronica completo nella scatola.</p>
     </div>
-
     <div class="cards-grid">
       <div class="card-item">
-        <h4>Sensori di Percezione</h4>
-        <p>Il Sensore Colore e il Sensore Forza/Distanza permettono al robot di "vedere" e "toccare" l'ambiente per decisioni autonome.</p>
+        <h4>Dado digitale (Shake)</h4>
+        <p>Programma l’accelerometro: scuoti micro:bit e il risultato (1–6) appare sui LED. Suono al lancio.</p>
       </div>
       <div class="card-item">
-        <h4>Codice a Blocchi (Entry Level)</h4>
-        <p>Interfaccia drag & drop, ispirata a Scratch, ideale per i neofiti del coding e per i ragazzi 8–11 anni.</p>
+        <h4>Termometro tascabile</h4>
+        <p>Usa il sensore di temperatura interno per mostrare il valore in °C sulla matrice LED.</p>
       </div>
       <div class="card-item">
-        <h4>Transizione a Python</h4>
-        <p>L'ambiente supporta il passaggio al codice testuale con libreria Python semplificata, per un percorso didattico completo.</p>
+        <h4>Bussola digitale</h4>
+        <p>Sfrutta il magnetometro per determinare il nord dopo una rapida calibrazione.</p>
       </div>
       <div class="card-item">
-        <h4>Simulazione & Testing</h4>
-        <p>Il software include un simulatore per testare il codice e la logica prima di caricarlo sull'hardware, utile per i compiti a casa.</p>
+        <h4>Musica e Suoni</h4>
+        <p>Programma lo speaker interno per riprodurre melodie semplici o effetti sonori.</p>
       </div>
     </div>
   </div>
@@ -221,21 +214,24 @@
 <section class="section bg-light">
   <div class="container">
     <div class="section-header">
-      <h2>Esempi di Progetti Realizzabili in Laboratorio</h2>
+      <h2>Software MakeCode e Potenzialità Avanzate</h2>
     </div>
-
     <div class="cards-grid">
       <div class="card-item">
-        <h4>Veicolo Autonomo Avanzato</h4>
-        <p>Programmazione per seguire linee, evitare ostacoli e calcolare traiettorie precise usando il giroscopio.</p>
+        <h4>MakeCode a Blocchi</h4>
+        <p>Ambiente di programmazione drag & drop (tipo Scratch) di Microsoft: semplice, potente e con simulatore.</p>
       </div>
       <div class="card-item">
-        <h4>Sistema di Smistamento</h4>
-        <p>Utilizzo della pinza robotica (motori) e del sensore colore per ordinare oggetti in base al loro colore o dimensione.</p>
+        <h4>Transizione a Python</h4>
+        <p>Supporto Python (MicroPython) per i ragazzi che vogliono passare al codice testuale avanzato.</p>
       </div>
       <div class="card-item">
-        <h4>Braccio Robotico su Comando</h4>
-        <p>Controllo di tutti e tre i motori per simulare l'articolazione di un braccio e prelevare oggetti con precisione.</p>
+        <h4>Programmazione Mobile</h4>
+        <p>App ufficiale per smartphone/tablet + Bluetooth: programma e carica i progetti senza bisogno di cavi.</p>
+      </div>
+      <div class="card-item">
+        <h4>Allarmi e Automazioni</h4>
+        <p>Con i pin esterni si possono collegare buzzer, LED, servomotori per creare contapassi o allarmi antifurto.</p>
       </div>
     </div>
   </div>
@@ -244,42 +240,31 @@
 <section class="edu-value section">
   <div class="container">
     <div class="section-header">
-      <h2>Perché Spike Prime è la Scelta Istituzionale</h2>
+      <h2>Vantaggi Didattici: Perché è l'Ideale per Iniziare</h2>
     </div>
-
     <div class="edu-grid">
       <div class="edu-item">
-        <div class="edu-icon">🔧</div>
-        <h3>Engineering Design</h3>
-        <p>Focalizzato sul ciclo: Progetta → Costruisci → Testa → Migliora, fondamentale per l'ingegneria.</p>
+        <div class="edu-icon">⏱️</div>
+        <h3>Risultati Rapidi</h3>
+        <p>Primo programma in 5 minuti: genera subito fiducia e massima motivazione negli studenti.</p>
       </div>
       <div class="edu-item">
-        <div class="edu-icon">👥</div>
-        <h3>Collaborazione</h3>
-        <p>Kit ottimizzato per il lavoro in coppia, dove gli studenti imparano a definire ruoli e dare feedback.</p>
+        <div class="edu-icon">🎒</div>
+        <h3>Ultra Tascabile</h3>
+        <p>I ragazzi lo portano a casa per usarlo in autonomia o mostrarlo con orgoglio ai genitori.</p>
       </div>
       <div class="edu-item">
-        <div class="edu-icon">🎓</div>
-        <h3>Allineamento STEM</h3>
-        <p>Curriculum didattico allineato con gli standard STEM e le indicazioni ministeriali per la robotica.</p>
+        <div class="edu-icon">🔗</div>
+        <h3>Versatilità Totale</h3>
+        <p>Si collega a LEGO, Arduino, sensori esterni, e si programma via Bluetooth o USB.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="spike-cta">
-  <div class="container">
-    <h2>Hai già un kit Spike Prime e non sai come usarlo?</h2>
-    <p>Offriamo anche formazione per insegnanti e consulenza per scuole.</p>
-    <a href="https://wa.me/393703069215" target="_blank" rel="noopener" class="btn-primary-large" style="background: white; color: var(--spike-primary);">
-      Scrivici su WhatsApp — Rispondiamo entro 2 ore
-    </a>
   </div>
 </section>
 
 <footer class="footer">
   <div class="container">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free | 
+    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free |
       <a href="privacy.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
     </p>
   </div>
