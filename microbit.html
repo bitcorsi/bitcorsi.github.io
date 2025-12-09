@@ -3,26 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BBC micro:bit v2 — Kit Completo per Coding Divertente | Bit</title>
-  <meta name="description" content="BBC micro:bit v2 per ragazzi 8–13 anni: scheda con LED, sensori, speaker e Bluetooth. Scopri kit, software MakeCode, progetti (dado, contapassi, termometro) e perché è ideale per chi inizia con il coding.">
+  <title>LEGO® Spike Prime — Kit Completo | Bit</title>
+  <meta name="description" content="Kit LEGO Spike Prime ufficiale: 523 pezzi, hub programmabile, 3 motori, 3 sensori. Scopri componenti, software, progetti reali e perché è lo strumento ideale per la robotica educativa 8–13 anni.">
 
-  <!-- Schema.org: Product -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "BBC micro:bit v2 Educational Kit",
-    "description": "Kit completo con micro:bit v2, cavi, batterie e guida per laboratori di coding e automazione.",
-    "brand": { "@type": "Brand", "name": "BBC" },
+    "name": "LEGO® Education SPIKE™ Prime Set",
+    "description": "Kit completo di robotica educativa LEGO Spike Prime per scuole e laboratori.",
+    "brand": { "@type": "Brand", "name": "LEGO Education" },
     "offers": {
       "@type": "Offer",
-      "url": "https://www.bitcorsi.it/microbit.html",
+      "url": "https://www.bitcorsi.it/spike-prime.html",
       "availability": "https://schema.org/InStock"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "24"
+      "ratingValue": "4.9",
+      "reviewCount": "12"
     }
   }
   </script>
@@ -31,8 +30,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#FF6B35">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
+  
   <style>
+    /* STILI GLOBALI E VARIABILI (Compatti e Coerenti) */
     :root {
       --spike-primary: #FF6B35;
       --spike-primary-dark: #E55A2B;
@@ -40,430 +40,246 @@
       --spike-text: #2D3748;
       --gray-600: #718096;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.7;
-      color: var(--spike-text);
-      background: white;
-    }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: var(--spike-text); background: white; }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 1rem; }
 
-    /* Header */
-    .header {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #feece5;
-      position: sticky; top: 0; background: white; z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    }
+    /* Header (Compattato) */
+    .header { padding: 1.2rem 0; border-bottom: 1px solid #feece5; position: sticky; top: 0; background: white; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
     .logo-container { display: flex; align-items: center; gap: 1rem; }
-    .logo-img { height: 50px; }
-    .logo-text { font-size: 2.1rem; font-weight: 900; color: var(--spike-primary); margin: 0; }
+    .logo-img { height: 40px; }
+    .logo-text { font-size: 1.8rem; font-weight: 900; color: var(--spike-primary); margin: 0; }
 
-    /* Hero */
-    .spike-hero {
-      background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
-      padding: 7rem 0 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .spike-hero::before {
-      content: ''; position: absolute; top: -120px; right: -80px;
-      width: 750px; height: 750px;
-      background: radial-gradient(circle, rgba(255,107,53,0.16) 0%, transparent 68%);
-    }
-    .spike-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 5rem;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .spike-hero-content h1 {
-      font-size: clamp(3.2rem, 6.5vw, 4.8rem);
-      color: var(--spike-primary-dark);
-      font-weight: 900;
-      line-height: 1.08;
-      margin-bottom: 1.6rem;
-    }
-    .spike-hero-content p {
-      font-size: 1.42rem;
-      max-width: 660px;
-      margin-bottom: 2.8rem;
-      color: #4a5568;
-    }
-    .btn-primary-large {
-      background: var(--spike-primary);
-      color: white;
-      padding: 1.15rem 3rem;
-      font-size: 1.3rem;
-      font-weight: 700;
-      border-radius: 50px;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 14px 35px rgba(255,107,53,0.32);
-      transition: all 0.35s ease;
-    }
-    .btn-primary-large:hover {
-      background: var(--spike-primary-dark);
-      transform: translateY(-6px);
-      box-shadow: 0 22px 45px rgba(255,107,53,0.42);
-    }
-    .spike-hero-image img {
-      width: 100%;
-      border-radius: 28px;
-    }
+    /* Hero (Compattato) */
+    .spike-hero { background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%); padding: 5rem 0 3rem; position: relative; overflow: hidden; }
+    .spike-hero-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+    .spike-hero-content h1 { font-size: clamp(1.4rem, 2.8vw, 2.1rem); color: var(--spike-primary-dark); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    .spike-hero-content p { font-size: 1.25rem; max-width: 640px; margin-bottom: 2rem; color: #4a5568; }
+    .btn-primary-large { background: var(--spike-primary); color: white; padding: 0.9rem 2.5rem; font-size: 1.15rem; font-weight: 700; border-radius: 50px; text-decoration: none; display: inline-block; box-shadow: 0 10px 20px rgba(255,107,53,0.3); transition: all 0.35s ease; }
+    .btn-primary-large:hover { background: var(--spike-primary-dark); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,107,53,0.4); }
+    .spike-hero-image img { width: 100%; }
 
-    /* Sezioni */
-    .section { padding: 7.5rem 0; }
+    /* Sezioni Generiche (Compattate) */
+    .section { padding: 5rem 0; }
     .bg-light { background: var(--spike-bg-light); }
-    .section-header { text-align: center; margin-bottom: 5rem; }
-    .section-header h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--spike-primary-dark);
-      position: relative;
-      display: inline-block;
-    }
-    .section-header h2::after {
-      content: ''; width: 100px; height: 5.5px; background: var(--spike-primary);
-      display: block; margin: 1.3rem auto; border-radius: 3px;
-    }
-    .section-subtitle { font-size: 1.28rem; color: var(--gray-600); max-width: 780px; margin: 1.2rem auto 0; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 { font-size: 1.6rem; font-weight: 800; color: var(--spike-primary-dark); position: relative; display: inline-block; }
+    .section-header h2::after { content: ''; width: 70px; height: 4px; background: var(--spike-primary); display: block; margin: 0.8rem auto; border-radius: 3px; }
+    .section-subtitle { font-size: 1.1rem; color: var(--gray-600); max-width: 750px; margin: 0.5rem auto 0; }
 
-    /* Kit esploso */
-    .kit-exploded-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 2.8rem;
-    }
-    .kit-part {
-      background: white;
-      padding: 2.8rem 2.2rem;
-      border-radius: 28px;
-      text-align: center;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.09);
-      transition: all 0.4s ease;
-    }
-    .kit-part:hover { transform: translateY(-16px); box-shadow: 0 30px 60px rgba(0,0,0,0.16); }
-    .kit-part-icon {
-      width: 110px; height: 110px; margin: 0 auto 2rem;
-      background: linear-gradient(135deg, #ffe8dc, #ffd4c7);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.6rem; font-weight: 900; color: var(--spike-primary-dark);
-      box-shadow: 0 12px 30px rgba(255,107,53,0.28);
-    }
+    /* NUOVA: Griglia 2 Colonne per Specifiche (Spec-Grid) */
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: flex-start; }
+    .spec-grid img { width: 100%; border-radius: 12px; margin-bottom: 1rem; }
 
-    /* Dettaglio scheda */
-    .hub-detail {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5.5rem;
-      align-items: center;
-    }
-    .hub-specs ul {
-      background: white;
-      padding: 3rem;
-      border-radius: 24px;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.09);
-    }
-    .hub-specs li {
-      padding: 1.1rem 0;
-      border-bottom: 1px solid #fce8e1;
-      font-size: 1.12rem;
-    }
-    .hub-specs li:last-child { border-bottom: none; }
+    /* Kit esploso (Adattato) */
+    .kit-exploded-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;}
+    .kit-part { background: white; padding: 1.5rem 1.2rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+    .kit-part:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .kit-part-icon { width: 60px; height: 60px; margin: 0 auto 0.8rem; background: linear-gradient(135deg, #ffe8dc, #ffd4c7); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 900; color: var(--spike-primary-dark); box-shadow: 0 6px 15px rgba(255,107,53,0.25); }
+    .kit-part h3 { font-size: 1.1rem; margin-top: 0; }
+    .kit-part p { font-size: 0.9rem; }
+    
+    /* Stile Elenco Specifiche (Adattato) */
+    .robot-list ul { background: white; padding: 1.5rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    .robot-list li { padding: 0.8rem 0; border-bottom: 1px solid #fce8e1; font-size: 1rem; }
+    .robot-list li:last-child { border-bottom: none; }
+    .robot-list h3 { font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem; }
 
-    /* Cards progetti */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2.8rem;
-    }
-    .project-card {
-      background: white;
-      padding: 2.8rem;
-      border-radius: 28px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.09);
-      transition: all 0.4s ease;
-    }
-    .project-card:hover {
-      transform: translateY(-14px);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.17);
-    }
-    .project-card h4 {
-      font-size: 1.5rem;
-      margin: 0 0 1.3rem;
-      color: var(--spike-primary);
-    }
+    /* Cards (Progetti/Sensori) (Compattate) */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card-item { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); height: 100%; transition: all 0.3s ease; }
+    .card-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .card-item h4 { font-size: 1.15rem; margin: 0 0 0.8rem; color: var(--spike-primary); }
+    .card-item p { font-size: 0.9rem; }
 
-    /* Valore educativo */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3.2rem;
-    }
-    .edu-item {
-      text-align: center;
-      padding: 3rem;
-      background: white;
-      border-radius: 28px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-    }
-    .edu-icon {
-      font-size: 3.4rem;
-      width: 110px; height: 110px;
-      margin: 0 auto 2rem;
-      background: white;
-      border: 6px solid var(--spike-primary);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 14px 35px rgba(255,107,53,0.25);
-    }
+    /* Valore educativo (Compattato) */
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .edu-item { text-align: center; padding: 1.5rem; background: white; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+    .edu-icon { font-size: 2rem; width: 60px; height: 60px; margin: 0 auto 1rem; border: 3px solid var(--spike-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 8px 20px rgba(255,107,53,0.2); }
+    .edu-item h3 { font-size: 1.2rem; margin-top: 0.5rem; }
+    .edu-item p { font-size: 0.9rem; }
 
-    /* CTA finale (assente nella pagina originale → aggiunta coerente) */
-    .spike-cta {
-      background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark));
-      color: white;
-      text-align: center;
-      padding: 8rem 2rem;
-      margin: 8rem 1rem;
-      border-radius: 32px;
-      box-shadow: 0 30px 70px rgba(255,107,53,0.38);
-    }
-    .spike-cta h2 { font-size: 3.2rem; margin-bottom: 1.4rem; }
-    .spike-cta p { font-size: 1.4rem; opacity: 0.95; max-width: 860px; margin: 0 auto 2.5rem; }
-    .spike-cta a {
-      background: white;
-      color: var(--spike-primary);
-      font-weight: 800;
-      padding: 1.3rem 3.5rem;
-      border-radius: 50px;
-      font-size: 1.35rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.35s ease;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.22);
-    }
-    .spike-cta a:hover { transform: scale(1.1); box-shadow: 0 18px 40px rgba(0,0,0,0.3); }
+    /* CTA finale (Compattata) */
+    .spike-cta { background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark)); color: white; text-align: center; padding: 5rem 2rem; margin: 5rem 1rem; border-radius: 24px; box-shadow: 0 20px 50px rgba(255,107,53,0.3); }
+    .spike-cta h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    .spike-cta p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 1.5rem; }
+    .spike-cta a { padding: 1rem 2.8rem; font-size: 1.15rem; }
+    .spike-cta a:hover { transform: scale(1.05); }
 
-    /* Footer */
-    .footer {
-      background: #1a202c;
-      color: #e2e8f0;
-      padding: 3rem 0;
-      text-align: center;
-      font-size: 0.98rem;
-    }
+    /* Footer (Compattato) */
+    .footer { background: #1a202c; color: #e2e8f0; padding: 2rem 0; text-align: center; font-size: 0.85rem; }
     .footer a { color: var(--spike-primary); text-decoration: underline; }
 
-    @media (max-width: 992px) {
-      .spike-hero-inner, .hub-detail { grid-template-columns: 1fr; }
-      .spike-hero-content { text-align: center; }
-      .spike-hero-image img { transform: none; }
-    }
+    /* Responsive (Adattato) */
+    @media (max-width: 992px) { .spike-hero-inner, .spec-grid { grid-template-columns: 1fr; } .spike-hero-content { text-align: center; } }
     @media (max-width: 640px) {
-      .section { padding: 5.5rem 0; }
-      .spike-hero { padding: 5.5rem 0 4.5rem; }
-      .spike-cta h2 { font-size: 2.6rem; }
+      .section { padding: 3rem 0; }
+      .spike-hero { padding: 3rem 0 2rem; }
+      .spike-cta { padding: 3rem 1rem; margin: 3rem 1rem; }
+      .spike-cta h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="container">
     <div class="logo-container">
-      <a href="index.html#home">
-        <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
-      </a>
+      <a href="index.html#home"><img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img"></a>
       <h1 class="logo-text">BIT</h1>
     </div>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
-      <h1>BBC micro:bit v2</h1>
-      <p>Un computer grande come una carta di credito, ma potentissimo: LED, sensori, speaker, Bluetooth — tutto in una scheda per imparare il coding giocando.</p>
-      <a href="index.html#contatti-info" class="btn-primary-large">Prova gratuita</a>
+      <h1>LEGO® Spike Prime: La Robotica Educativa Avanzata</h1>
+      <p>Il kit ufficiale LEGO® Education per la robotica educativa: 523 pezzi, hub programmabile, 3 motori, 3 sensori — tutto in un’unica scatola per le scuole.</p>
+      <a href="index.html#contatti" class="btn-primary-large">Prova Gratuita</a>
     </div>
     <div class="spike-hero-image">
-      <img src="images/microbit-hero.webp" alt="micro:bit v2 con LED accesi, collegato a batterie e sensore">
+      <img src="images/spike-prime-hero.webp" alt="Kit LEGO Spike Prime aperto con tutti i componenti disposti">
     </div>
   </div>
 </section>
 
-<!-- PANORAMICA DEL KIT -->
-<section class="kit-exploded section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Contenuto del kit micro:bit per i nostri laboratori</h2>
-      <p class="section-subtitle">Tutto incluso — nessun acquisto aggiuntivo richiesto.</p>
-    </div>
-    <div class="kit-exploded-grid">
-      <div class="kit-part">
-        <div class="kit-part-icon">1</div>
-        <h3>micro:bit v2</h3>
-        <p>Con speaker, microfono, touch logo, LED 5×5, accelerometro, magnetometro, temperatura.</p>
-      </div>
-      <div class="kit-part">
-        <div class="kit-part-icon">1</div>
-        <h3>Cavo micro-USB</h3>
-        <p>Per alimentare e caricare programmi (USB standard, non Type-C).</p>
-      </div>
-      <div class="kit-part">
-        <div class="kit-part-icon">2</div>
-        <h3>Batterie AAA + porta-batterie</h3>
-        <p>Per usare micro:bit senza PC: autonomia fino a 10 ore.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SCHEDA MICRO:BIT V2 -->
 <section class="section bg-light">
   <div class="container">
     <div class="section-header">
-      <h2>micro:bit v2: un computer tascabile avanzato</h2>
+      <h2>Hub e Componenti Essenziali del Kit Ufficiale</h2>
+      <p class="section-subtitle">Il set Spike Prime è un ecosistema completo per costruire, programmare e testare.</p>
     </div>
-    <div class="hub-detail">
+
+    <div class="spec-grid">
       <div>
-        <img src="images/microbit-v2.webp" alt="Scheda micro:bit v2 con pinout e componenti evidenziati">
+        <img src="images/spike-hub.webp" alt="Hub LEGO Spike Prime con porte e display visibili">
+        <div class="robot-list">
+            <h3>Specifiche dell'Hub Programmabile</h3>
+            <ul>
+                <li><strong>Display:</strong> matrice LED 5×5 (animazioni, numeri)</li>
+                <li><strong>Porte:</strong> 6 porte (A–F) per sensori e motori</li>
+                <li><strong>Sensori interni:</strong> giroscopio, accelerometro, microfono</li>
+                <li><strong>Comunicazione:</strong> Bluetooth 5.0, USB-C</li>
+                <li><strong>Alimentazione:</strong> batteria ricaricabile inclusa (fino a 2h uso continuo)</li>
+                <li><strong>Compatibilità:</strong> Windows, macOS, ChromeOS, iPad, Android</li>
+            </ul>
+        </div>
       </div>
-      <div class="hub-specs">
-        <ul>
-          <li><strong>LED:</strong> matrice 5×5 programmabile (25 LED)</li>
-          <li><strong>Pulsanti:</strong> A, B, Reset (+ touch sul logo)</li>
-          <li><strong>Sensori integrati:</strong> accelerometro, magnetometro (bussola), microfono, temperatura</li>
-          <li><strong>Audio:</strong> speaker integrato + jack 3.5mm per cuffie</li>
-          <li><strong>Connettività:</strong> Bluetooth LE, pin esterni (0–2, 3V, GND)</li>
-          <li><strong>Alimentazione:</strong> USB o 2× batterie AAA</li>
-        </ul>
+      
+      <div style="margin-top: 1rem;">
+        <h3 style="color: var(--spike-primary-dark); font-size: 1.3rem; margin-bottom: 1rem;">Contenuto Tecnico Principale</h3>
+        <div class="kit-exploded-grid">
+          <div class="kit-part">
+            <div class="kit-part-icon">523</div>
+            <h3>Pezzi LEGO</h3>
+            <p>Pezzi Technic moderni, travi, assi e connettori colorati.</p>
+          </div>
+          <div class="kit-part">
+            <div class="kit-part-icon">3M</div>
+            <h3>Motori Potenti</h3>
+            <p>2 motori medi (precisi) + 1 motore grande (alta coppia).</p>
+          </div>
+          <div class="kit-part">
+            <div class="kit-part-icon">3S</div>
+            <h3>Sensori Intelligenti</h3>
+            <p>Colore/luce, forza/distanza, e giroscopio.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SENSORI E FUNZIONI INTEGRATE -->
 <section class="section">
   <div class="container">
     <div class="section-header">
-      <h2>Cosa può fare micro:bit — senza aggiungere nulla</h2>
+      <h2>Sensori Intelligenti e Flusso di Programmazione</h2>
     </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <h4>Gioco del “chi batte più forte”</h4>
-        <p>Usa l’accelerometro: chi scuote di più vince. Risultato su LED.</p>
+
+    <div class="cards-grid">
+      <div class="card-item">
+        <h4>Sensori di Percezione</h4>
+        <p>Il Sensore Colore e il Sensore Forza/Distanza permettono al robot di "vedere" e "toccare" l'ambiente per decisioni autonome.</p>
       </div>
-      <div class="project-card">
-        <h4>Dado digitale</h4>
-        <p>Scuoti → numero casuale (1–6) appare sui LED. Suono al lancio.</p>
+      <div class="card-item">
+        <h4>Codice a Blocchi (Entry Level)</h4>
+        <p>Interfaccia drag & drop, ispirata a Scratch, ideale per i neofiti del coding e per i ragazzi 8–11 anni.</p>
       </div>
-      <div class="project-card">
-        <h4>Termometro tascabile</h4>
-        <p>Mostra la temperatura ambiente in °C sui LED (sensore interno).</p>
+      <div class="card-item">
+        <h4>Transizione a Python</h4>
+        <p>L'ambiente supporta il passaggio al codice testuale con libreria Python semplificata, per un percorso didattico completo.</p>
       </div>
-      <div class="project-card">
-        <h4>Bussola digitale</h4>
-        <p>Calibra con un cerchio → punta il nord. Ideale per orienteering.</p>
+      <div class="card-item">
+        <h4>Simulazione & Testing</h4>
+        <p>Il software include un simulatore per testare il codice e la logica prima di caricarlo sull'hardware, utile per i compiti a casa.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOFTWARE -->
 <section class="section bg-light">
   <div class="container">
     <div class="section-header">
-      <h2>MakeCode: programmazione semplice, potente, multi-piattaforma</h2>
+      <h2>Esempi di Progetti Realizzabili in Laboratorio</h2>
     </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <h4>Blocchi drag & drop</h4>
-        <p>Interfaccia tipo Scratch: <code>on shake → show number pick random 1 to 6</code>.</p>
+
+    <div class="cards-grid">
+      <div class="card-item">
+        <h4>Veicolo Autonomo Avanzato</h4>
+        <p>Programmazione per seguire linee, evitare ostacoli e calcolare traiettorie precise usando il giroscopio.</p>
       </div>
-      <div class="project-card">
-        <h4>Da smartphone o tablet</h4>
-        <p>App ufficiale + Bluetooth: programma e carica senza PC.</p>
+      <div class="card-item">
+        <h4>Sistema di Smistamento</h4>
+        <p>Utilizzo della pinza robotica (motori) e del sensore colore per ordinare oggetti in base al loro colore o dimensione.</p>
       </div>
-      <div class="project-card">
-        <h4>Simulatore integrato</h4>
-        <p>Prova il codice in tempo reale: vedi i LED, senti il suono, simula lo shake.</p>
+      <div class="card-item">
+        <h4>Braccio Robotico su Comando</h4>
+        <p>Controllo di tutti e tre i motori per simulare l'articolazione di un braccio e prelevare oggetti con precisione.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROGETTI CON ESTERNI -->
-<section class="section">
+<section class="edu-value section">
   <div class="container">
     <div class="section-header">
-      <h2>Progetti con sensori esterni (kit avanzato)</h2>
+      <h2>Perché Spike Prime è la Scelta Istituzionale</h2>
     </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <h4>Contapassi</h4>
-        <p>Accelerometro + algoritmo semplice: conta i passi e mostra su LED.</p>
-      </div>
-      <div class="project-card">
-        <h4>Allarme antifurto</h4>
-        <p>Sensore di vibrazione + buzzer esterno: suona se qualcuno tocca l’oggetto.</p>
-      </div>
-      <div class="project-card">
-        <h4>Strumento musicale</h4>
-        <p>5 LED = 5 note. Tocca il logo per attivare, pulsanti per cambiare scala.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- VALORE EDUCATIVO -->
-<section class="edu-value section bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>Perché micro:bit è lo strumento ideale per chi inizia</h2>
-    </div>
     <div class="edu-grid">
       <div class="edu-item">
-        <div class="edu-icon">Fast</div>
-        <h3>Risultati in pochi minuti</h3>
-        <p>Primo programma in 5 minuti: fiducia e motivazione crescono subito.</p>
+        <div class="edu-icon">🔧</div>
+        <h3>Engineering Design</h3>
+        <p>Focalizzato sul ciclo: Progetta → Costruisci → Testa → Migliora, fondamentale per l'ingegneria.</p>
       </div>
       <div class="edu-item">
-        <div class="edu-icon">Backpack</div>
-        <h3>Tascabile</h3>
-        <p>Lo portano a casa, lo usano in vacanza, lo mostrano ai genitori.</p>
+        <div class="edu-icon">👥</div>
+        <h3>Collaborazione</h3>
+        <p>Kit ottimizzato per il lavoro in coppia, dove gli studenti imparano a definire ruoli e dare feedback.</p>
       </div>
       <div class="edu-item">
-        <div class="edu-icon">Wireless</div>
-        <h3>Wireless</h3>
-        <p>Niente cavi: programmazione via Bluetooth → esperienza moderna.</p>
+        <div class="edu-icon">🎓</div>
+        <h3>Allineamento STEM</h3>
+        <p>Curriculum didattico allineato con gli standard STEM e le indicazioni ministeriali per la robotica.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINALE (aggiunta per coerenza con le altre pagine) -->
 <section class="spike-cta">
   <div class="container">
-    <h2>Il primo passo nel coding non è mai stato così divertente</h2>
-    <p>I tuoi figli programmeranno il loro primo dispositivo in pochi minuti — e non vorranno più smettere.</p>
-    <a href="index.html#contatti-info">Prenota ora la lezione di prova gratuita</a>
+    <h2>Hai già un kit Spike Prime e non sai come usarlo?</h2>
+    <p>Offriamo anche formazione per insegnanti e consulenza per scuole.</p>
+    <a href="https://wa.me/393703069215" target="_blank" rel="noopener" class="btn-primary-large" style="background: white; color: var(--spike-primary);">
+      Scrivici su WhatsApp — Rispondiamo entro 2 ore
+    </a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free |
+    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free | 
       <a href="privacy.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
     </p>
   </div>
