@@ -75,38 +75,34 @@
     .kit-part-icon-small {
         font-size: 1.5rem; font-weight: 900; color: var(--spike-primary);
         width: 35px; height: 35px; line-height: 1;
-        display: flex; align-items: center; justify-content: center;
-        border: 3px solid var(--spike-primary); border-radius: 8px; flex-shrink: 0;
+        display: flex; justify-content: center; align-items: center;
+        border: 2px solid var(--spike-primary); border-radius: 50%;
+        flex-shrink: 0;
     }
-    /* Cards (Progetti/Software) (Compattate) */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .card-item { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); height: 100%; transition: all 0.3s ease; }
-    .card-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-    .card-item h4 { font-size: 1.15rem; margin: 0 0 0.8rem; color: var(--spike-primary); }
-    .card-item p { font-size: 0.9rem; }
+    /* Sezione Casi d'uso (Adattata) */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .card-item { padding: 1.5rem; background: var(--spike-bg-light); border: 1px solid #feece5; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); height: 100%; transition: all 0.3s ease; }
+    .card-item:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+    .card-item h4 { font-size: 1.25rem; margin: 0 0 0.8rem; color: var(--spike-primary); }
+    .card-item p { font-size: 0.95rem; }
     /* Valore educativo (Compattato) */
     .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
     .edu-item { text-align: center; padding: 1.5rem; background: white; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
-    .edu-icon { font-size: 2rem; width: 60px; height: 60px; margin: 0 auto 1rem; border: 3px solid var(--spike-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 8px 20px rgba(255,107,53,0.2); }
+    .edu-icon { font-size: 2rem; width: 60px; height: 60px; margin: 0 auto 1rem; border: 3px solid var(--spike-primary); border-radius: 50%; box-shadow: 0 8px 20px rgba(255,107,53,0.2); }
     .edu-item h3 { font-size: 1.2rem; margin-top: 0.5rem; }
     .edu-item p { font-size: 0.9rem; }
     /* CTA finale (Compattata) */
     .spike-cta { background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark)); color: white; text-align: center; padding: 5rem 2rem; margin: 5rem 1rem; border-radius: 24px; box-shadow: 0 20px 50px rgba(255,107,53,0.3); }
     .spike-cta h2 { font-size: 2.2rem; margin-bottom: 1rem; }
     .spike-cta p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 1.5rem; }
-    .spike-cta a { padding: 1rem 2.8rem; font-size: 1.15rem; }
+    .spike-cta a { background: white; color: var(--spike-primary); padding: 1rem 2.8rem; font-size: 1.15rem; font-weight: 700; border-radius: 50px; text-decoration: none; display: inline-block; transition: all 0.35s ease; }
     .spike-cta a:hover { transform: scale(1.05); }
     /* Footer (Compattato) */
     .footer { background: #1a202c; color: #e2e8f0; padding: 2rem 0; text-align: center; font-size: 0.85rem; }
     .footer a { color: var(--spike-primary); text-decoration: underline; }
     /* Responsive (Adattato) */
     @media (max-width: 992px) { .spike-hero-inner, .spec-grid { grid-template-columns: 1fr; } .spike-hero-content { text-align: center; } }
-    @media (max-width: 640px) {
-      .section { padding: 3rem 0; }
-      .spike-hero { padding: 3rem 0 2rem; }
-      .spike-cta { padding: 3rem 1rem; margin: 3rem 1rem; }
-      .spike-cta h2 { font-size: 1.8rem; }
-    }
+    @media (max-width: 640px) { .section { padding: 3rem 0; } .spike-hero { padding: 3rem 0 2rem; } .spike-cta { padding: 3rem 1rem; margin: 3rem 1rem; } .spike-cta h2 { font-size: 1.8rem; } }
   </style>
 </head>
 <body>
@@ -116,55 +112,77 @@
       <a href="index.html#home"><img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img"></a>
       <h1 class="logo-text">BIT</h1>
     </div>
+    
+    <div class="header-right">
+      <nav class="nav">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#chi-siamo">Chi siamo</a>
+        <a href="index.html#strumenti">Strumenti</a>
+        <a href="index.html#corsi">Corsi</a>
+        <a href="index.html#contatti-info">Contatti</a> 
+      </nav>
+      <a href="index.html#contatti" class="btn-header">Iscriviti ora</a>
+    </div>
+    <button class="menu-toggle" aria-label="Apri menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </div>
 </header>
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
       <h1>BBC micro:bit per il Coding</h1>
-      <p>Un computer più piccolo di una carta di credito, con LED, sensori, speaker e Bluetooth. Ideale per ragazzi 8–13 anni che iniziano con l'elettronica e il coding.</p>
-      <a href="index.html#contatti-info" class="btn-primary-large">Lezione di Prova</a>
+      <p>Un computer più piccolo di una carta di credito, ideale per iniziare con il coding a blocchi e l'elettronica. Perfetto per la scuola media.</p>
+      <a href="index.html#contatti" class="btn-primary-large">Richiedi Demo</a>
     </div>
     <div class="spike-hero-image">
-      <img src="images/microbit-hero.webp" alt="micro:bit v2 con LED accesi, collegato a batterie e sensore">
+      <img src="images/microbit-hero.webp" alt="Kit BBC micro:bit v2 con la scheda elettronica e i componenti">
     </div>
   </div>
 </section>
 <section class="section">
   <div class="container">
     <div class="section-header">
-      <h2>Componenti e specifiche della Scheda</h2>
-      <p class="section-subtitle">Il kit include tutto il necessario per iniziare, senza componenti aggiuntivi richiesti.</p>
+      <h2>Caratteristiche Tecniche della V2</h2>
+      <p class="section-subtitle">Tutti i sensori e attuatori essenziali integrati in una singola scheda.</p>
     </div>
     <div class="spec-grid">
-      <div>
-        <h3 style="font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem;">Pinout Micro:bit</h3>
-        <img src="images/microbit-v2.webp" alt="Scheda micro:bit v2 con pinout e componenti evidenziati">
-        <p style="font-size: 0.95rem; margin-top: 1rem;">Scheda completa con matrice LED, sensori integrati, speaker e connettività Bluetooth. Tutto pronto per iniziare subito.</p>
+      <div class="tech-specs">
+        <h3>Specifiche della Scheda (V2)</h3>
+        <ul>
+          <li><strong>Display:</strong> Matrice LED 5x5 (25 LED rossi)</li>
+          <li><strong>Input:</strong> 2 Pulsanti programmabili (A e B) + Tasto Logo (Touch)</li>
+          <li><strong>Sensori:</strong> Accelerometro, Bussola (Magnetometro), Sensore di Temperatura, Microfono</li>
+          <li><strong>Output:</strong> Speaker integrato e Connettori a pettine (5 I/O ad anello + 20 Edge Connector)</li>
+          <li><strong>Connettività:</strong> Bluetooth Low Energy 5.0, Radio, USB per alimentazione e programmazione</li>
+          <li><strong>Programmazione:</strong> MakeCode (a blocchi e JavaScript), Python</li>
+        </ul>
       </div>
-      <div>
-        <h3 style="font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem;">Dotazione completa del Kit base</h3>
-        <div class="kit-parts-list">
-          <div class="kit-part-item">
-              <div class="kit-part-icon-small">🎙️</div>
-              <div>
-                  <h4>Scheda micro:bit</h4>
-                  <p>Con LED 5×5, speaker, microfono, accelerometro, magnetometro e Bluetooth.</p>
-              </div>
+      <div class="kit-parts-list">
+        <h3>Componenti del Kit Completo</h3>
+        <div class="kit-part-item">
+          <div class="kit-part-icon-small">🔌</div>
+          <div>
+            <h4>Cavo USB Dati/Alimentazione</h4>
+            <p>Per programmare e alimentare micro:bit direttamente da PC.</p>
           </div>
-          <div class="kit-part-item">
-              <div class="kit-part-icon-small">⚡</div>
-              <div>
-                  <h4>Cavo micro-USB</h4>
-                  <p>Per alimentare e caricare i programmi direttamente dal PC.</p>
-              </div>
+        </div>
+        <div class="kit-part-item">
+          <div class="kit-part-icon-small">🔋</div>
+          <div>
+            <h4>Portabatterie con Batterie</h4>
+            <p>Per rendere micro:bit completamente portatile e usare i progetti fuori dall'aula.</p>
           </div>
-          <div class="kit-part-item">
-              <div class="kit-part-icon-small">🔋</div>
-              <div>
-                  <h4>Portabatterie + 2×AAA</h4>
-                  <p>Per usare micro:bit senza cavi, ovunque e in autonomia.</p>
-              </div>
+        </div>
+        <div class="kit-part-item">
+          <div class="kit-part-icon-small">📚</div>
+          <div>
+            <h4>Guida Introduttiva e Tutorial</h4>
+            <p>Per iniziare subito con i primi progetti pratici di coding.</p>
           </div>
         </div>
       </div>
@@ -174,9 +192,14 @@
 <section class="section bg-light">
   <div class="container">
     <div class="section-header">
-      <h2>Sensori integrati e progetti che funzionano subito</h2>
+      <h2>Progetti Reali per l'Apprendimento</h2>
+      <p class="section-subtitle">Lavora subito su progetti semplici ma di grande impatto didattico.</p>
     </div>
     <div class="cards-grid">
+      <div class="card-item">
+        <h4>Contapassi (Pedometro)</h4>
+        <p>Programma l'accelerometro interno per contare i passi e mostrare il totale sui LED, combinando sport e coding.</p>
+      </div>
       <div class="card-item">
         <h4>Dado digitale (Shake)</h4>
         <p>Programma l’accelerometro: scuoti micro:bit e il risultato (1–6) appare sui LED. Suono al lancio.</p>
@@ -193,25 +216,12 @@
         <h4>Musica e Suoni</h4>
         <p>Programma lo speaker interno per riprodurre melodie semplici o effetti sonori.</p>
       </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Software MakeCode e potenzialità avanzate</h2>
-    </div>
-    <div class="cards-grid">
       <div class="card-item">
-        <h4>MakeCode a Blocchi</h4>
-        <p>Ambiente di programmazione drag & drop (tipo Scratch) di Microsoft: semplice, potente e con simulatore.</p>
+        <h4>Radio Messaggero</h4>
+        <p>Invia messaggi o dati tra due o più micro:bit grazie al modulo radio integrato (es. telecomando).</p>
       </div>
       <div class="card-item">
-        <h4>Transizione a Python</h4>
-        <p>Supporto Python (MicroPython) per i ragazzi che vogliono passare al codice testuale avanzato.</p>
-      </div>
-      <div class="card-item">
-        <h4>Programmazione Mobile</h4>
+        <h4>Programmazione via App</h4>
         <p>App ufficiale per smartphone/tablet + Bluetooth: programma e carica i progetti senza bisogno di cavi.</p>
       </div>
       <div class="card-item">
@@ -247,7 +257,7 @@
 </section>
 <footer class="footer">
   <div class="container">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free |
+    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free | 
       <a href="privacy.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
     </p>
   </div>
