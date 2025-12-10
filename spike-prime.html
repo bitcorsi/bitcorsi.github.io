@@ -53,33 +53,7 @@
     }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 1rem; }
 
-    /* Header (Mantenuto) */
- <header class="header">
-  <div class="container">
-    <div class="logo-container">
-      <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
-      <h1 class="logo-text">BIT </h1>
-    </div>
     
-    <div class="header-right">
-      <nav class="nav">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#chi-siamo">Chi siamo</a>
-        <a href="index.html#strumenti">Strumenti</a>
-        <a href="index.html#corsi">Corsi</a>
-        <a href="index.html#contatti-info">Contatti</a> 
-      </nav>
-      <a href="index.html#contatti" class="btn-header">Iscriviti ora</a>
-    </div>
-    <button class="menu-toggle" aria-label="Apri menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
-  </div>
-</header>
     /* Hero (COMPATTATO) */
     .spike-hero {
       background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%);
@@ -145,127 +119,103 @@
     /* Stile Componenti (ADATTATO) */
     .kit-parts-list {
         display: grid;
-        gap: 1.5rem; /* Gap ridotto: 2.5rem -> 1.5rem */
+        gap: 1rem;
     }
     .kit-part-item {
-        background: white;
-        padding: 1.5rem; /* Padding ridotto: 2.5rem -> 1.5rem */
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        display: flex;
-        gap: 1rem;
-        align-items: center;
+        background: white; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        display: flex; gap: 1.5rem; align-items: center;
     }
-    .kit-part-item h4 { margin: 0; font-size: 1.15rem; color: var(--spike-primary); }
-    .kit-part-item p { margin: 0; font-size: 0.95rem; }
-    .kit-part-icon-small {
-        font-size: 1.5rem;
-        font-weight: 900;
-        color: var(--spike-primary);
-        width: 35px; height: 35px;
-        line-height: 1;
-        display: flex; align-items: center; justify-content: center;
-        border: 3px solid var(--spike-primary);
-        border-radius: 8px;
-        flex-shrink: 0;
+    .kit-part-icon {
+        font-size: 2.5rem; color: var(--spike-primary); flex-shrink: 0;
     }
+    .kit-part-item h4 { margin: 0; font-size: 1.2rem; color: var(--spike-text); }
+    .kit-part-item p { margin: 0.2rem 0 0; font-size: 0.95rem; color: var(--gray-600); }
 
-    /* Cards (Sensori, Software, Progetti) (COMPATTATE) */
+    /* Sezione Casi d'uso (COMPATTATA) */
     .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Min size ridotto */
-      gap: 2rem; /* Gap ridotto: 2.5rem -> 2rem */
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Min size ridotto */
+      gap: 2rem; margin-top: 3rem;
     }
     .card-item {
-      background: white;
-      padding: 1.8rem; /* Padding ridotto: 2.5rem -> 1.8rem */
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      height: 100%; /* Stessa altezza */
+      padding: 1.5rem; background: var(--spike-bg-light); border: 1px solid #feece5;
+      border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); height: 100%; /* Stessa altezza */
       transition: all 0.3s ease;
     }
-    .card-item:hover {
-      transform: translateY(-8px); /* Spostamento ridotto: -12px -> -8px */
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    }
-    .card-item h4 {
-      font-size: 1.25rem; /* Font ridotto: 1.45rem -> 1.25rem */
-      margin: 0 0 0.8rem;
-      color: var(--spike-primary);
-    }
+    .card-item:hover { transform: translateY(-8px); /* Spostamento ridotto: -12px -> -8px */ box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+    .card-item h4 { font-size: 1.25rem; /* Font ridotto: 1.45rem -> 1.25rem */ margin: 0 0 0.8rem; color: var(--spike-primary); }
     .card-item p { font-size: 0.95rem; }
 
     /* Valore educativo (COMPATTATO) */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Min size ridotto */
-      gap: 2rem; /* Gap ridotto: 3rem -> 2rem */
-      margin-top: 3rem;
-    }
-    .edu-item {
-      text-align: center;
-      padding: 1.5rem; /* Padding ridotto: 2.5rem -> 1.5rem */
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    }
-    .edu-icon {
-      font-size: 2rem; /* Icona più piccola */
-      width: 60px; height: 60px; /* Dimensione ridotta */
-      margin: 0 auto 1rem;
-      border: 3px solid var(--spike-primary);
-      border-radius: 50%;
-      box-shadow: 0 8px 20px rgba(255,107,53,0.2);
-    }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Min size ridotto */ gap: 2rem; /* Gap ridotto: 3rem -> 2rem */ margin-top: 3rem; }
+    .edu-item { text-align: center; padding: 1.5rem; /* Padding ridotto: 2.5rem -> 1.5rem */ background: white; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+    .edu-icon { font-size: 2rem; /* Icona più piccola */ width: 60px; height: 60px; /* Dimensione ridotta */ margin: 0 auto 1rem; border: 3px solid var(--spike-primary); border-radius: 50%; box-shadow: 0 8px 20px rgba(255,107,53,0.2); }
     .edu-item h3 { font-size: 1.2rem; margin-top: 0.5rem; }
     .edu-item p { font-size: 0.9rem; }
 
-    /* CTA finale (COMPATTATA) */
+    /* CTA finale (Compattata) */
     .spike-cta {
-      background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark));
-      color: white; text-align: center;
-      padding: 5rem 2rem; /* Padding ridotto: 7rem -> 5rem */
-      margin: 5rem 1rem; /* Margine ridotto: 7rem -> 5rem */
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(255,107,53,0.3);
+      background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark)); color: white;
+      text-align: center; padding: 5rem 2rem; /* Padding ridotto: 7rem -> 5rem */ margin: 5rem 1rem;
+      border-radius: 24px; box-shadow: 0 20px 50px rgba(255,107,53,0.3);
     }
-    .spike-cta h2 { font-size: 2.2rem; margin-bottom: 1rem; } /* Font ridotto: 3rem -> 2.2rem */
-    .spike-cta p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 1.5rem; } /* Font ridotto */
-    .spike-cta a { padding: 1rem 2.8rem; font-size: 1.15rem; } /* Padding/Font ridotti */
+    .spike-cta h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    .spike-cta p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 1.5rem; }
+    .spike-cta a {
+      background: white; color: var(--spike-primary); padding: 1rem 2.8rem; font-size: 1.15rem;
+      font-weight: 700; border-radius: 50px; text-decoration: none; display: inline-block;
+      transition: all 0.35s ease;
+    }
+    .spike-cta a:hover { transform: scale(1.05); }
 
-    /* Footer (Mantenuto) */
-    .footer { background: #1a202c; color: #e2e8f0; padding: 2rem 0; font-size: 0.85rem; text-align: center; }
+    /* Footer (Compattato) */
+    .footer { background: #1a202c; color: #e2e8f0; padding: 2rem 0; text-align: center; font-size: 0.85rem; }
     .footer a { color: var(--spike-primary); text-decoration: underline; }
 
-    /* Responsive (ADATTATO) */
+    /* Responsive (Adattato) */
     @media (max-width: 992px) {
       .spike-hero-inner, .tech-specs-grid { grid-template-columns: 1fr; }
+      .spike-hero-content { text-align: center; }
     }
     @media (max-width: 640px) {
       .section { padding: 3rem 0; }
       .spike-hero { padding: 3rem 0 2rem; }
       .spike-cta { padding: 3rem 1rem; margin: 3rem 1rem; }
       .spike-cta h2 { font-size: 1.8rem; }
+      .cards-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-
 <header class="header">
   <div class="container">
     <div class="logo-container">
-      <a href="index.html#home">
-        <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
-      </a>
+      <a href="index.html#home"><img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img"></a>
       <h1 class="logo-text">BIT</h1>
     </div>
+    
+    <div class="header-right">
+      <nav class="nav">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#chi-siamo">Chi siamo</a>
+        <a href="index.html#strumenti">Strumenti</a>
+        <a href="index.html#corsi">Corsi</a>
+        <a href="index.html#contatti-info">Contatti</a> 
+      </nav>
+      <a href="index.html#contatti" class="btn-header">Iscriviti ora</a>
+    </div>
+    <button class="menu-toggle" aria-label="Apri menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </div>
 </header>
-
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
-      <h1> SPIKE™ Prime: un kit LEGO® Education</h1>
+      <h1>Il Kit Ufficiale LEGO® Education SPIKE™ Prime</h1>
       <p>La soluzione ufficiale LEGO® per la didattica STEM: 523 elementi, Hub programmabile avanzato, 3 motori e 3 sensori in un set pronto all'uso.</p>
       <a href="index.html#contatti" class="btn-primary-large">Prova Gratuita</a>
     </div>
@@ -274,14 +224,12 @@
     </div>
   </div>
 </section>
-
 <section class="section">
   <div class="container">
     <div class="section-header">
       <h2>Caratteristiche Tecniche e Componenti Essenziali</h2>
       <p class="section-subtitle">Hub, Motori e Sensori: la dotazione completa per l'apprendimento.</p>
     </div>
-
     <div class="tech-specs-grid">
       <div class="hub-specs">
         <h3>Hub Programmabile (Il "Cervello")</h3>
@@ -294,73 +242,50 @@
           <li><strong>Compatibilità SO:</strong> Windows, macOS, ChromeOS, iPad, Android</li>
         </ul>
       </div>
-
       <div class="kit-parts-list">
-        <h3>Dotazione Kit (523 Pezzi totali)</h3>
+        <h3>Componenti Meccanici ed Elettronici</h3>
         <div class="kit-part-item">
-            <div class="kit-part-icon-small">M</div>
-            <div>
-                <h4>Motori (3 unità)</h4>
-                <p>2 motori medi (angolo preciso) + 1 motore grande (alta coppia).</p>
-            </div>
+          <div class="kit-part-icon">🤖</div>
+          <div>
+            <h4>Motori Potenti (3 inclusi)</h4>
+            <p>1 motore grande e 2 motori medi per progetti complessi di movimento, sollevamento e bilanciamento.</p>
+          </div>
         </div>
         <div class="kit-part-item">
-            <div class="kit-part-icon-small">S</div>
-            <div>
-                <h4>Sensori (3 unità)</h4>
-                <p>Sensore di colore/luce, sensore di forza/distanza, giroscopio.</p>
-            </div>
+          <div class="kit-part-icon">🎨</div>
+          <div>
+            <h4>Sensore Colore</h4>
+            <p>Riconosce 8 colori diversi e misura l'intensità luminosa (dal buio alla piena luce solare).</p>
+          </div>
         </div>
         <div class="kit-part-item">
-            <div class="kit-part-icon-small">L</div>
-            <div>
-                <h4>Elementi LEGO®</h4>
-                <p>Oltre 500 pezzi technic e componenti strutturali.</p>
-            </div>
+          <div class="kit-part-icon">📏</div>
+          <div>
+            <h4>Sensore Distanza</h4>
+            <p>Misura la distanza dagli ostacoli in centimetri (portata da 1 cm a 200 cm).</p>
+          </div>
+        </div>
+        <div class="kit-part-item">
+          <div class="kit-part-icon">👆</div>
+          <div>
+            <h4>Sensore Forza/Tatto</h4>
+            <p>Rileva quando viene premuto o rilasciato con precisione, essenziale per bracci robotici o pulsanti.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 <section class="section bg-light">
   <div class="container">
     <div class="section-header">
-      <h2>Interazione con il mondo reale e ambienti di programmazione</h2>
+      <h2>Casi d'Uso: Progetti Reali e Funzionali</h2>
+      <p class="section-subtitle">Trasforma la teoria in pratica con progetti concreti di robotica, fisica e logica.</p>
     </div>
-
     <div class="cards-grid">
       <div class="card-item">
-        <h4>Sensore Colore & Luce</h4>
-        <p>Rileva 8 colori distinti e l'intensità luminosa. Indispensabile per robot che seguono percorsi colorati o reagiscono all'ambiente.</p>
-      </div>
-      <div class="card-item">
-        <h4>Sensore Forza & Distanza</h4>
-        <p>Misura pressione (fino a 10 N) e distanza (fino a 20 cm). Utilizzato per creare pinze robotiche precise, freni automatici e rilevamento ostacoli.</p>
-      </div>
-      <div class="card-item">
-        <h4>Codice a Blocchi (Scratch-based)</h4>
-        <p>Interfaccia drag & drop intuitiva per principianti (8–11 anni). Consente di programmare motori e sensori senza errori di sintassi.</p>
-      </div>
-      <div class="card-item">
-        <h4>Programmazione Python</h4>
-        <p>Transizione immediata alla programmazione testuale (12–16 anni) nello stesso ambiente. Utilizza una libreria `spike` semplificata per la robotica.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Obiettivi educativi e applicazioni pratiche</h2>
-      <p class="section-subtitle">Il kit è pensato per sviluppare competenze di problem-solving e pensiero computazionale.</p>
-    </div>
-
-    <div class="cards-grid">
-      <div class="card-item">
-        <h4>Veicolo Autonomo</h4>
-        <p>Costruisci un robot capace di seguire linee nere, evitare ostacoli (con sensore di distanza) e compiere manovre precise (giroscopio).</p>
+        <h4>Robot Esploratore Automatico</h4>
+        <p>Programma il robot per navigare in un labirinto, evitando ostacoli (sensore di distanza) e compiendo manovre precise (giroscopio).</p>
       </div>
       <div class="card-item">
         <h4>Braccio Robotico e Pinza</h4>
@@ -400,6 +325,5 @@
     </p>
   </div>
 </footer>
-
 </body>
 </html>
