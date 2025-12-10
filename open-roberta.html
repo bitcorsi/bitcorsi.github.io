@@ -135,7 +135,23 @@
     /* Footer (Compattato) */
     .footer { background: #1a202c; color: #e2e8f0; padding: 2rem 0; text-align: center; font-size: 0.85rem; }
     .footer a { color: var(--spike-primary); text-decoration: underline; }
-
+    /* Cards (Sensori, Software, Progetti) (Compattate) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card-item {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+    .card-item:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+    .card-item h4 { font-size: 1.25rem; margin: 0 0 0.8rem; color: var(--spike-primary); }
+    .card-item p { font-size: 0.95rem; }
     /* Responsive (Adattato) */
     @media (max-width: 992px) {
       .spike-hero-inner, .spec-grid { grid-template-columns: 1fr; }
