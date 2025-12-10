@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BBC micro:bit v2 — Kit Completo per Coding Divertente | Bit</title>
   <meta name="description" content="BBC micro:bit v2 per ragazzi 8–13 anni: scheda con LED, sensori, speaker e Bluetooth. Scopri kit, software MakeCode, progetti (dado, contapassi, termometro) e perché è ideale per chi inizia con il coding.">
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -25,7 +24,6 @@
     }
   }
   </script>
-
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#FF6B35">
@@ -43,43 +41,19 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: var(--spike-text); background: white; }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 1rem; }
-
     /* Header (Compattato) */
-   <header class="header">
-  <div class="container">
-    <div class="logo-container">
-      <img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img">
-      <h1 class="logo-text">BIT </h1>
-    </div>
-    
-    <div class="header-right">
-      <nav class="nav">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#chi-siamo">Chi siamo</a>
-        <a href="index.html#strumenti">Strumenti</a>
-        <a href="index.html#corsi">Corsi</a>
-        <a href="index.html#contatti-info">Contatti</a> 
-      </nav>
-      <a href="index.html#contatti" class="btn-header">Iscriviti ora</a>
-    </div>
-    <button class="menu-toggle" aria-label="Apri menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
-  </div>
-</header>
+    .header { padding: 1.5rem 0; border-bottom: 1px solid #feece5; position: sticky; top: 0; background: white; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+    .logo-container { display: flex; align-items: center; gap: 1rem; }
+    .logo-img { height: 50px; }
+    .logo-text { font-size: 2.1rem; font-weight: 900; color: var(--spike-primary); margin: 0; }
     /* Hero (Compattato) */
-    .spike-hero { background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%); padding: 5rem 0 3rem; position: relative; overflow: hidden;}
+    .spike-hero { background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%); padding: 5rem 0 3rem; position: relative; overflow: hidden; }
     .spike-hero-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
     .spike-hero-content h1 { font-size: clamp(1.4rem, 2.8vw, 2.1rem); color: var(--spike-primary-dark); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
     .spike-hero-content p { font-size: 1.25rem; max-width: 640px; margin-bottom: 2rem; color: #4a5568; }
     .btn-primary-large { background: var(--spike-primary); color: white; padding: 0.9rem 2.5rem; font-size: 1.15rem; font-weight: 700; border-radius: 50px; text-decoration: none; display: inline-block; box-shadow: 0 10px 20px rgba(255,107,53,0.3); transition: all 0.35s ease; }
     .btn-primary-large:hover { background: var(--spike-primary-dark); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,107,53,0.4); }
-    .spike-hero-image img { width: 100%; }
-
+    .spike-hero-image img { width: 100%; border-radius: 12px; }
     /* Sezioni Generiche (Compattate) */
     .section { padding: 5rem 0; }
     .bg-light { background: var(--spike-bg-light); }
@@ -87,50 +61,44 @@
     .section-header h2 { font-size: 1.6rem; font-weight: 800; color: var(--spike-primary-dark); position: relative; display: inline-block; }
     .section-header h2::after { content: ''; width: 70px; height: 4px; background: var(--spike-primary); display: block; margin: 0.8rem auto; border-radius: 3px; }
     .section-subtitle { font-size: 1.1rem; color: var(--gray-600); max-width: 750px; margin: 0.5rem auto 0; }
-
-    /* Kit esploso (Adattato) */
-    .kit-exploded-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .kit-part { background: white; padding: 1.5rem 1.2rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; }
-    .kit-part:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-    .kit-part-icon { width: 60px; height: 60px; margin: 0 auto 0.8rem; background: linear-gradient(135deg, #ffe8dc, #ffd4c7); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 900; color: var(--spike-primary-dark); box-shadow: 0 6px 15px rgba(255,107,53,0.25); }
-    .kit-part h3 { font-size: 1.1rem; margin-top: 0; }
-    .kit-part p { font-size: 0.9rem; }
-    
     /* NUOVA: Griglia 2 Colonne per Specifiche (Spec-Grid) */
-    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-
-    /* Stile Elenco Specifiche (Adattato) */
-    .robot-list ul { background: white; padding: 1.5rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
-    .robot-list li { padding: 0.8rem 0; border-bottom: 1px solid #fce8e1; font-size: 1rem; }
-    .robot-list li:last-child { border-bottom: none; }
-    .robot-list h3 { font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem; }
-    .spec-grid img { width: 60%; border-radius: 12px;}
-
-    /* Cards (Progetti) (Compattate) */
+    .spec-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: flex-start; }
+    .spec-grid img { width: 100%; border-radius: 12px; margin-bottom: 1rem; }
+    /* Stile Elenco Kit (Adattato) */
+    .kit-parts-list { display: grid; gap: 1rem; margin-top: 1rem; }
+    .kit-part-item {
+        background: white; padding: 1rem 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        display: flex; align-items: center; gap: 1rem;
+    }
+    .kit-part-item h4 { margin: 0; font-size: 1.1rem; color: var(--spike-primary-dark); }
+    .kit-part-item p { margin: 0; font-size: 0.9rem; color: var(--gray-600); }
+    .kit-part-icon-small {
+        font-size: 1.5rem; font-weight: 900; color: var(--spike-primary);
+        width: 35px; height: 35px; line-height: 1;
+        display: flex; align-items: center; justify-content: center;
+        border: 3px solid var(--spike-primary); border-radius: 8px; flex-shrink: 0;
+    }
+    /* Cards (Progetti/Software) (Compattate) */
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .card-item { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); height: 100%; transition: all 0.3s ease; }
     .card-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
     .card-item h4 { font-size: 1.15rem; margin: 0 0 0.8rem; color: var(--spike-primary); }
     .card-item p { font-size: 0.9rem; }
-
     /* Valore educativo (Compattato) */
     .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
     .edu-item { text-align: center; padding: 1.5rem; background: white; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
     .edu-icon { font-size: 2rem; width: 60px; height: 60px; margin: 0 auto 1rem; border: 3px solid var(--spike-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 8px 20px rgba(255,107,53,0.2); }
     .edu-item h3 { font-size: 1.2rem; margin-top: 0.5rem; }
     .edu-item p { font-size: 0.9rem; }
-
     /* CTA finale (Compattata) */
     .spike-cta { background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark)); color: white; text-align: center; padding: 5rem 2rem; margin: 5rem 1rem; border-radius: 24px; box-shadow: 0 20px 50px rgba(255,107,53,0.3); }
     .spike-cta h2 { font-size: 2.2rem; margin-bottom: 1rem; }
     .spike-cta p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 1.5rem; }
     .spike-cta a { padding: 1rem 2.8rem; font-size: 1.15rem; }
     .spike-cta a:hover { transform: scale(1.05); }
-
     /* Footer (Compattato) */
     .footer { background: #1a202c; color: #e2e8f0; padding: 2rem 0; text-align: center; font-size: 0.85rem; }
     .footer a { color: var(--spike-primary); text-decoration: underline; }
-
     /* Responsive (Adattato) */
     @media (max-width: 992px) { .spike-hero-inner, .spec-grid { grid-template-columns: 1fr; } .spike-hero-content { text-align: center; } }
     @media (max-width: 640px) {
@@ -142,7 +110,6 @@
   </style>
 </head>
 <body>
-
 <header class="header">
   <div class="container">
     <div class="logo-container">
@@ -151,7 +118,6 @@
     </div>
   </div>
 </header>
-
 <section class="spike-hero">
   <div class="spike-hero-inner">
     <div class="spike-hero-content">
@@ -164,40 +130,51 @@
     </div>
   </div>
 </section>
-
-<section class="section bg-light">
+<section class="section">
   <div class="container">
     <div class="section-header">
       <h2>Componenti e Specifiche Essenziali della Scheda v2</h2>
       <p class="section-subtitle">Il kit include tutto il necessario per iniziare, senza componenti aggiuntivi richiesti.</p>
     </div>
-
     <div class="spec-grid">
-      <div class="robot-list">
-        <h3>Specifiche Hardware Micro:bit v2</h3>
-        <ul>
-          <li><strong>LED:</strong> matrice 5×5 programmabile (25 LED)</li>
-          <li><strong>Sensori integrati:</strong> accelerometro, magnetometro (bussola), microfono, temperatura</li>
-          <li><strong>Audio:</strong> speaker integrato + jack 3.5mm per cuffie</li>
-          <li><strong>Pulsanti:</strong> A, B, Reset (+ touch sul logo)</li>
-          <li><strong>Connettività:</strong> Bluetooth LE, pin esterni (0–2, 3V, GND)</li>
-          <li><strong>Alimentazione:</strong> USB o 2× batterie AAA (portabatterie incluso)</li>
-        </ul>
-      </div>
-
       <div>
+        <h3 style="font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem;">Specifiche Hardware Micro:bit v2</h3>
         <img src="images/microbit-v2.webp" alt="Scheda micro:bit v2 con pinout e componenti evidenziati">
-        <h3 style="margin-top: 1.5rem; color: var(--spike-primary-dark); font-size: 1.3rem;">Contenuto del Kit Didattico</h3>
+        <p style="font-size: 0.95rem; margin-top: 1rem;">Scheda completa con matrice LED, sensori integrati, speaker e connettività Bluetooth. Tutto pronto per iniziare subito.</p>
+      </div>
+      <div>
+        <h3 style="font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem;">Dotazione Completa del Kit Base</h3>
+        <div class="kit-parts-list">
+          <div class="kit-part-item">
+              <div class="kit-part-icon-small">micro:bit</div>
+              <div>
+                  <h4>Scheda micro:bit v2</h4>
+                  <p>Con LED 5×5, speaker, microfono, accelerometro, magnetometro e Bluetooth.</p>
+              </div>
+          </div>
+          <div class="kit-part-item">
+              <div class="kit-part-icon-small">USB</div>
+              <div>
+                  <h4>Cavo micro-USB</h4>
+                  <p>Per alimentare e caricare i programmi direttamente dal PC.</p>
+              </div>
+          </div>
+          <div class="kit-part-item">
+              <div class="kit-part-icon-small">Battery</div>
+              <div>
+                  <h4>Portabatterie + 2×AAA</h4>
+                  <p>Per usare micro:bit senza cavi, ovunque e in autonomia.</p>
+              </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
-<section class="section">
+<section class="section bg-light">
   <div class="container">
     <div class="section-header">
       <h2>Sensori Integrati e Progetti che Funzionano Subito</h2>
-      <p class="section-subtitle">Il suo punto di forza: è un laboratorio di elettronica completo nella scatola.</p>
     </div>
     <div class="cards-grid">
       <div class="card-item">
@@ -219,8 +196,7 @@
     </div>
   </div>
 </section>
-
-<section class="section bg-light">
+<section class="section">
   <div class="container">
     <div class="section-header">
       <h2>Software MakeCode e Potenzialità Avanzate</h2>
@@ -245,7 +221,6 @@
     </div>
   </div>
 </section>
-
 <section class="edu-value section">
   <div class="container">
     <div class="section-header">
@@ -253,24 +228,23 @@
     </div>
     <div class="edu-grid">
       <div class="edu-item">
-        <div class="edu-icon">⏱️</div>
+        <div class="edu-icon">Fast</div>
         <h3>Risultati Rapidi</h3>
         <p>Primo programma in 5 minuti: genera subito fiducia e massima motivazione negli studenti.</p>
       </div>
       <div class="edu-item">
-        <div class="edu-icon">🎒</div>
+        <div class="edu-icon">Backpack</div>
         <h3>Ultra Tascabile</h3>
         <p>I ragazzi lo portano a casa per usarlo in autonomia o mostrarlo con orgoglio ai genitori.</p>
       </div>
       <div class="edu-item">
-        <div class="edu-icon">🔗</div>
+        <div class="edu-icon">Link</div>
         <h3>Versatilità Totale</h3>
         <p>Si collega a LEGO, Arduino, sensori esterni, e si programma via Bluetooth o USB.</p>
       </div>
     </div>
   </div>
 </section>
-
 <footer class="footer">
   <div class="container">
     <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free |
@@ -278,6 +252,5 @@
     </p>
   </div>
 </footer>
-
 </body>
 </html>
