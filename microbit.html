@@ -1,252 +1,166 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BBC micro:bit v2 — Kit Completo per Coding Divertente | Bit</title>
-  <meta name="description" content="BBC micro:bit v2 per ragazzi 8–13 anni: scheda con LED, sensori, speaker e Bluetooth. Scopri kit, software MakeCode, progetti (dado, contapassi, termometro) e perché è ideale per chi inizia con il coding.">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "BBC micro:bit v2 Educational Kit",
-    "description": "Kit completo con micro:bit v2, cavi, batterie e guida per laboratori di coding e automazione.",
-    "brand": { "@type": "Brand", "name": "BBC" },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.bitcorsi.it/microbit.html",
-      "availability": "https://schema.org/InStock"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "24"
-    }
-  }
-  </script>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#FF6B35">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* STILI GLOBALI E VARIABILI (Compatti e Coerenti) */
-    :root {
-      --spike-primary: #FF6B35;
-      --spike-primary-dark: #E55A2B;
-      --spike-bg-light: #fff9f7;
-      --spike-text: #2D3748;
-      --gray-600: #718096;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: var(--spike-text); background: white; }
-    .container { max-width: 1240px; margin: 0 auto; padding: 0 1rem; }
-
-    /* Hero (Compattato) */
-    .spike-hero { background: linear-gradient(135deg, #fff8f5 0%, #fffbf9 100%); padding: 5rem 0 3rem; position: relative; overflow: hidden; }
-    .spike-hero-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
-    .spike-hero-content h1 { font-size: clamp(1.4rem, 2.8vw, 2.1rem); color: var(--spike-primary-dark); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
-    .spike-hero-content p { font-size: 1.25rem; max-width: 640px; margin-bottom: 2rem; color: #4a5568; }
-    .btn-primary-large { background: var(--spike-primary); color: white; padding: 0.9rem 2.5rem; font-size: 1.15rem; font-weight: 700; border-radius: 50px; text-decoration: none; display: inline-block; box-shadow: 0 10px 20px rgba(255,107,53,0.3); transition: all 0.35s ease; }
-    .btn-primary-large:hover { background: var(--spike-primary-dark); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,107,53,0.4); }
-    .spike-hero-image img { width: 100%; border-radius: 12px; }
-    /* Sezioni Generiche (Compattate) */
-    .section { padding: 5rem 0; }
-    .bg-light { background: var(--spike-bg-light); }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-header h2 { font-size: 1.6rem; font-weight: 800; color: var(--spike-primary-dark); position: relative; display: inline-block; }
-    .section-header h2::after { content: ''; width: 70px; height: 4px; background: var(--spike-primary); display: block; margin: 0.8rem auto; border-radius: 3px; }
-    .section-subtitle { font-size: 1.1rem; color: var(--gray-600); max-width: 750px; margin: 0.5rem auto 0; }
-    /* NUOVA: Griglia 2 Colonne per Specifiche (Spec-Grid) */
-    .spec-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: flex-start; }
-    .spec-grid img { width: 100%; border-radius: 12px; margin-bottom: 1rem; }
-    /* Stile Elenco Kit (Adattato) */
-    .kit-parts-list { display: grid; gap: 1rem; margin-top: 1rem; }
-    .kit-part-item {
-        background: white; padding: 1rem 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        display: flex; align-items: center; gap: 1rem;
-    }
-    .kit-part-item h4 { margin: 0; font-size: 1.1rem; color: var(--spike-primary-dark); }
-    .kit-part-item p { margin: 0; font-size: 0.9rem; color: var(--gray-600); }
-    .kit-part-icon-small {
-        font-size: 1.5rem; font-weight: 900; color: var(--spike-primary);
-        width: 35px; height: 35px; line-height: 1;
-        display: flex; align-items: center; justify-content: center;
-        border: 3px solid var(--spike-primary); border-radius: 8px; flex-shrink: 0;
-    }
-    /* Cards (Progetti/Software) (Compattate) */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .card-item { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); height: 100%; transition: all 0.3s ease; }
-    .card-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-    .card-item h4 { font-size: 1.15rem; margin: 0 0 0.8rem; color: var(--spike-primary); }
-    .card-item p { font-size: 0.9rem; }
-    /* Valore educativo (Compattato) */
-    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
-    .edu-item { text-align: center; padding: 1.5rem; background: white; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
-    .edu-icon { font-size: 2rem; width: 60px; height: 60px; margin: 0 auto 1rem; border: 3px solid var(--spike-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 8px 20px rgba(255,107,53,0.2); }
-    .edu-item h3 { font-size: 1.2rem; margin-top: 0.5rem; }
-    .edu-item p { font-size: 0.9rem; }
-    /* CTA finale (Compattata) */
-    .spike-cta { background: linear-gradient(135deg, var(--spike-primary), var(--spike-primary-dark)); color: white; text-align: center; padding: 5rem 2rem; margin: 5rem 1rem; border-radius: 24px; box-shadow: 0 20px 50px rgba(255,107,53,0.3); }
-    .spike-cta h2 { font-size: 2.2rem; margin-bottom: 1rem; }
-    .spike-cta p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 1.5rem; }
-    .spike-cta a { padding: 1rem 2.8rem; font-size: 1.15rem; }
-    .spike-cta a:hover { transform: scale(1.05); }
-    /* Footer (Compattato) */
-    .footer { background: #1a202c; color: #e2e8f0; padding: 2rem 0; text-align: center; font-size: 0.85rem; }
-    .footer a { color: var(--spike-primary); text-decoration: underline; }
-    /* Responsive (Adattato) */
-    @media (max-width: 992px) { .spike-hero-inner, .spec-grid { grid-template-columns: 1fr; } .spike-hero-content { text-align: center; } }
-    @media (max-width: 640px) {
-      .section { padding: 3rem 0; }
-      .spike-hero { padding: 3rem 0 2rem; }
-      .spike-cta { padding: 3rem 1rem; margin: 3rem 1rem; }
-      .spike-cta h2 { font-size: 1.8rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riassunto Strumenti di Robotica Educativa</title>
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --bg-light: #fff9f7;
+            --text: #2D3748;
+            --gray: #718096;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+        h1 { margin: 0; font-size: 2.2rem; }
+        .tool-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--primary);
+        }
+        .tool-card h2 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .info-item h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .info-item p, .info-item ul {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin: 0;
+        }
+        ul { padding-left: 20px; }
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray);
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-<header class="header">
-  <div class="container">
-    <div class="logo-container">
-      <a href="index.html#home"><img src="images/logo.png" alt="Bit Corsi - Logo" class="logo-img"></a>
-      <h1 class="logo-text">BIT</h1>
-    </div>
-  </div>
-</header>
-<section class="spike-hero">
-  <div class="spike-hero-inner">
-    <div class="spike-hero-content">
-      <h1>BBC micro:bit per il Coding</h1>
-      <p>Un computer più piccolo di una carta di credito, con LED, sensori, speaker e Bluetooth. Ideale per ragazzi 8–13 anni che iniziano con l'elettronica e il coding.</p>
-      <a href="index.html#contatti-info" class="btn-primary-large">Lezione di Prova</a>
-    </div>
-    <div class="spike-hero-image">
-      <img src="images/microbit-hero.webp" alt="micro:bit v2 con LED accesi, collegato a batterie e sensore">
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Componenti e specifiche della Scheda</h2>
-      <p class="section-subtitle">Il kit include tutto il necessario per iniziare.</p>
-    </div>
-    <div class="spec-grid">
-      <div>
-        <h3 style="font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem;">Pinout Micro:bit</h3>
-        <img src="images/microbit-v2.webp" alt="Scheda micro:bit v2 con pinout e componenti evidenziati">
-        <p style="font-size: 0.95rem; margin-top: 1rem;">Scheda completa con matrice LED, sensori integrati, speaker e connettività Bluetooth. Tutto pronto per iniziare subito.</p>
-      </div>
-      <div>
-        <h3 style="font-size: 1.3rem; color: var(--spike-primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--spike-primary); padding-bottom: 0.5rem;">Dotazione del Kit base</h3>
-        <div class="kit-parts-list">
-          <div class="kit-part-item">
-              <div class="kit-part-icon-small">🎙️</div>
-              <div>
-                  <h4>Scheda micro:bit</h4>
-                  <p>Con LED 5×5, speaker, microfono, accelerometro, magnetometro e Bluetooth.</p>
-              </div>
-          </div>
-          <div class="kit-part-item">
-              <div class="kit-part-icon-small">⚡</div>
-              <div>
-                  <h4>Cavo micro-USB</h4>
-                  <p>Per alimentare e caricare i programmi direttamente dal PC.</p>
-              </div>
-          </div>
-          <div class="kit-part-item">
-              <div class="kit-part-icon-small">🔋</div>
-              <div>
-                  <h4>Portabatterie + 2×AAA</h4>
-                  <p>Per usare micro:bit senza cavi, ovunque e in autonomia.</p>
-              </div>
-          </div>
+
+<div class="container">
+    <header>
+        <h1>Strumenti per la Robotica e il Coding</h1>
+        <p>Sintesi dei kit e delle piattaforme educative</p>
+    </header>
+
+    <section class="tool-card">
+        <h2>LEGO® Spike Prime</h2>
+        <p>Un kit completo di robotica educativa ideale per la fascia d'età 8-13 anni, che combina mattoncini LEGO con componenti elettronici programmabili.</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>Caratteristiche principali</h3>
+                <ul>
+                    <li>523 pezzi totali</li>
+                    <li>Hub programmabile con matrice LED 5x5 e Bluetooth</li>
+                    <li>3 motori e 3 sensori (colore, forza, distanza)</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <h3>Valore Educativo</h3>
+                <p>Applica il ciclo "Progetta → Costruisci → Testa → Migliora", promuovendo la collaborazione e il design engineering secondo i curriculum STEM.</p>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>Esempi di progetti</h2>
-    </div>
-    <div class="cards-grid">
-      <div class="card-item">
-        <h4>Dado digitale (Shake)</h4>
-        <p>Programma l’accelerometro: scuoti micro:bit e il risultato (1–6) appare sui LED. Suono al lancio.</p>
-      </div>
-      <div class="card-item">
-        <h4>Termometro tascabile</h4>
-        <p>Usa il sensore di temperatura interno per mostrare il valore in °C sulla matrice LED.</p>
-      </div>
-      <div class="card-item">
-        <h4>Bussola digitale</h4>
-        <p>Sfrutta il magnetometro per determinare il nord dopo una rapida calibrazione.</p>
-      </div>
-      <div class="card-item">
-        <h4>Musica e Suoni</h4>
-        <p>Programma lo speaker interno per riprodurre melodie semplici o effetti sonori.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Software MakeCode e potenzialità avanzate</h2>
-    </div>
-    <div class="cards-grid">
-      <div class="card-item">
-        <h4>MakeCode a Blocchi</h4>
-        <p>Ambiente di programmazione drag & drop (tipo Scratch) di Microsoft: semplice, potente e con simulatore.</p>
-      </div>
-      <div class="card-item">
-        <h4>Transizione a Python</h4>
-        <p>Supporto Python (MicroPython) per i ragazzi che vogliono passare al codice testuale avanzato.</p>
-      </div>
-      <div class="card-item">
-        <h4>Programmazione Mobile</h4>
-        <p>App ufficiale per smartphone/tablet + Bluetooth: programma e carica i progetti senza bisogno di cavi.</p>
-      </div>
-      <div class="card-item">
-        <h4>Allarmi e Automazioni</h4>
-        <p>Con i pin esterni si possono collegare buzzer, LED, servomotori per creare contapassi o allarmi antifurto.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="edu-value section">
-  <div class="container">
-    <div class="section-header">
-      <h2>L'ideale per iniziare</h2>
-    </div>
-    <div class="edu-grid">
-      <div class="edu-item">
-        <div class="edu-icon">⏱️</div>
-        <h3>Risultati rapidi</h3>
-        <p>Primo programma in 5 minuti: genera subito fiducia e massima motivazione negli studenti.</p>
-      </div>
-      <div class="edu-item">
-        <div class="edu-icon">🎒</div>
-        <h3>Ultra tascabile</h3>
-        <p>I ragazzi lo portano a casa per usarlo in autonomia o mostrarlo con orgoglio ai genitori.</p>
-      </div>
-      <div class="edu-item">
-        <div class="edu-icon">🛜</div>
-        <h3>Versatilità totale</h3>
-        <p>Si collega a LEGO, Arduino, sensori esterni, e si programma via Bluetooth o USB.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<footer class="footer">
-  <div class="container">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – Privacy garantita – sito cookie free |
-      <a href="privacy.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-    </p>
-  </div>
-</footer>
+    </section>
+
+    <section class="tool-card">
+        <h2>Open Roberta Lab</h2>
+        <p>Piattaforma online gratuita basata sul web per la programmazione a blocchi di diversi tipi di robot, sviluppata dal Fraunhofer Institute.</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>Caratteristiche principali</h3>
+                <ul>
+                    <li>Zero installazioni (funziona via browser)</li>
+                    <li>Simulatore 2D integrato per testare il codice senza hardware</li>
+                    <li>Compatibile con LEGO, micro:bit e Arduino</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <h3>Scopo Didattico</h3>
+                <p>Facilita l'approccio al coding eliminando le barriere di costo e permettendo una valutazione formativa dell'intero processo di programmazione.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tool-card">
+        <h2>BBC micro:bit v2</h2>
+        <p>Una scheda elettronica ultra-tascabile progettata per rendere l'apprendimento del coding facile e divertente per ragazzi dagli 8 ai 13 anni.</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>Caratteristiche principali</h3>
+                <ul>
+                    <li>Display a 25 LED e sensori integrati (accelerometro, bussola, luce, temp)</li>
+                    <li>Speaker, microfono e connettività Bluetooth integrati</li>
+                    <li>Programmabile via MakeCode (blocchi), Python o Scratch</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <h3>Punti di Forza</h3>
+                <p>Risultati rapidi (primo programma in 5 minuti) e grande versatilità per progetti di automazione come contapassi o allarmi.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tool-card">
+        <h2>Arduino (Kit Educativo)</h2>
+        <p>Piattaforma hardware open-source ideale per ragazzi dagli 11 ai 16 anni, focalizzata sull'elettronica concreta e sulla prototipazione rapida.</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>Caratteristiche principali</h3>
+                <ul>
+                    <li>Scheda Arduino Uno e breadboard per circuiti</li>
+                    <li>Vasta gamma di sensori e attuatori (LED, motori, LCD)</li>
+                    <li>Programmazione testuale in C/C++ o a blocchi</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <h3>Obiettivi</h3>
+                <p>Insegnare la logica rigorosa del debugging e la comprensione fisica dei circuiti elettrici attraverso progetti reali.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Sintesi generata dai documenti tecnici forniti.</p>
+    </footer>
+</div>
+
 </body>
 </html>
