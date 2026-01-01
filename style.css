@@ -262,7 +262,7 @@ img {
   min-height: 60vh;
 }
 
-.hero > .container.hero-content-container {
+.container.hero-content-container {
   position: relative;
   z-index: 1;
   opacity: 0;
