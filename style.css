@@ -2378,3 +2378,38 @@ textarea:focus-visible {
     background: #e86e00;
     transform: translateY(-2px);
 }
+/* ========================================
+   WAVE DIVIDER - Header to Hero
+   ======================================== */
+.wave-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  margin-top: -1px; /* Sovrappone leggermente l'header */
+}
+
+.wave-divider svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 80px;
+}
+
+.wave-divider path {
+  fill: var(--primary-dark); /* Colore dell'hero */
+}
+
+/* Versione per mobile - onda più piccola */
+@media (max-width: 768px) {
+  .wave-divider svg {
+    height: 60px;
+  }
+}
+
+/* Versione per schermi molto grandi */
+@media (min-width: 1600px) {
+  .wave-divider svg {
+    height: 100px;
+  }
+}
