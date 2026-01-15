@@ -2387,7 +2387,7 @@ textarea:focus-visible {
   overflow: hidden;
   line-height: 0;
   z-index: 9;
-  background: var(--white); /* L'ONDA STESSA È BIANCA */
+  background: var(--primary-dark); /* L'ONDA STESSA È BIANCA */
   margin-top: -1px;
 }
 
@@ -2399,7 +2399,7 @@ textarea:focus-visible {
 }
 
 .white-wave path {
-  fill: var(--primary-dark); /* La PARTE INFERIORE è arancione */
+  fill: var(--white); /* La PARTE INFERIORE è arancione */
 }
 
 /* Assicurati che l'hero inizi esattamente dopo l'onda */
