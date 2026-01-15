@@ -2379,37 +2379,39 @@ textarea:focus-visible {
     transform: translateY(-2px);
 }
 /* ========================================
-   WAVE DIVIDER - Header to Hero
+   WAVE SEPARATOR - Bianco su arancione
    ======================================== */
-.wave-divider {
+.wave-separator {
   position: relative;
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  margin-top: -1px; /* Sovrappone leggermente l'header */
+  margin-top: -1px;
+  z-index: 9;
+  background: var(--primary-dark); /* Colore dell'hero */
 }
 
-.wave-divider svg {
+.wave-separator svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 80px;
 }
 
-.wave-divider path {
-  fill: var(--primary-dark); /* Colore dell'hero */
+.wave-separator path {
+  fill: var(--white); /* BIANCO - colore dell'header */
 }
 
-/* Versione per mobile - onda più piccola */
+/* Responsive */
 @media (max-width: 768px) {
-  .wave-divider svg {
+  .wave-separator svg {
     height: 60px;
   }
 }
 
-/* Versione per schermi molto grandi */
-@media (min-width: 1600px) {
-  .wave-divider svg {
-    height: 100px;
-  }
+/* Assicura che l'hero inizi subito dopo l'onda */
+.hero {
+  margin-top: -1px;
+  position: relative;
+  z-index: 8;
 }
