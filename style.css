@@ -293,14 +293,27 @@ img {
 .hero {
   background: var(--primary-dark);
   color: white;
-  padding: 5rem 0;
-  text-align: center;
+  padding: 6rem 0 4rem 0;
   position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
+  margin-top: -30px;
+  z-index: 8;
+  overflow: hidden; /* Importante per contenere l'onda */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Più alta per onda più morbida */
+  background: white;
+  
+  /* Onda classica */
+  border-radius: 50% 50% 0 0;
+  
+  /* Ombra leggera */
+  box-shadow: 0 -5px 15px rgba(255, 255, 255, 0.1);
 }
 
 .container.hero-content-container {
