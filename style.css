@@ -2379,39 +2379,39 @@ textarea:focus-visible {
     transform: translateY(-2px);
 }
 /* ========================================
-   WAVE SEPARATOR - Bianco su arancione
+   WHITE WAVE SEPARATOR
    ======================================== */
-.wave-separator {
+.white-wave {
   position: relative;
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  margin-top: -1px;
   z-index: 9;
-  background: var(--primary-dark); /* Colore dell'hero */
+  background: var(--white); /* L'ONDA STESSA È BIANCA */
+  margin-top: -1px;
 }
 
-.wave-separator svg {
+.white-wave svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 80px;
 }
 
-.wave-separator path {
-  fill: var(--white); /* BIANCO - colore dell'header */
+.white-wave path {
+  fill: var(--primary-dark); /* La PARTE INFERIORE è arancione */
+}
+
+/* Assicurati che l'hero inizi esattamente dopo l'onda */
+.hero {
+  margin-top: -1px; /* Elimina lo spazio */
+  position: relative;
+  z-index: 8;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .wave-separator svg {
+  .white-wave svg {
     height: 60px;
   }
-}
-
-/* Assicura che l'hero inizi subito dopo l'onda */
-.hero {
-  margin-top: -1px;
-  position: relative;
-  z-index: 8;
 }
