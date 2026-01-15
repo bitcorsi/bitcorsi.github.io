@@ -105,20 +105,15 @@ img {
 /* ========================================
    HEADER
    ======================================== */
-/* ========================================
-   HEADER - NO BORDI, SOLO SFONDO
-   ======================================== */
 .header {
   background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 0.75rem 0;
-  
-  /* IMPORTANTE: NESSUNA LINEA O OMBRA */
-  border-bottom: none;
-  box-shadow: none;
+  padding: 0.20rem 0;
+  border-bottom: 1px solid var(--gray-100);
 }
 
 .header .container {
@@ -254,13 +249,10 @@ img {
 /* ========================================
    HERO SECTION AGGIORNATA (fade-in desktop + mobile)
    ======================================== */
-/* ========================================
-   HERO CON ONDA SUPERIORE
-   ======================================== */
 .hero {
   background: var(--primary-dark);
   color: white;
-  padding: 5rem 0 4rem 0;
+  padding: 5rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -268,117 +260,6 @@ img {
   align-items: center;
   justify-content: center;
   min-height: 60vh;
-  
-  /* ONDA: Sovrappone l'header di 25px */
-  margin-top: -25px;
-  padding-top: 6rem; /* Compensa l'onda */
-  
-  /* Onda verrà posizionata qui */
-  position: relative;
-  z-index: 8;
-}
-
-/* ONDA BIANCA PERFETTA - posizionata TOP */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -25px; /* ESCE dall'hero */
-  left: 0;
-  width: 100%;
-  height: 50px; /* Altezza onda generosa */
-  background: white; /* Colore header */
-  
-  /* FORMA ONDA PERFETTA */
-  border-radius: 50% 50% 0 0;
-  
-  /* Ombra leggera per definire il bordo */
-  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
-  
-  /* Sta SOPRA l'hero visivamente */
-  z-index: 1;
-}
-
-/* Container del contenuto hero */
-.container.hero-content-container {
-  position: relative;
-  z-index: 2; /* Sopra l'onda */
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInHero 0.9s ease-out 0.2s forwards;
-}
-
-/* Immagini hero */
-.hero-left-image,
-.hero-right-image {
-  display: block;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInImage 1s ease-out 0.4s forwards;
-  z-index: 2; /* Sopra l'onda */
-}
-
-/* Animazioni esistenti - mantieni */
-@keyframes fadeInHero {
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInImage {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* RESPONSIVE MOBILE */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    padding: 2.2rem 1rem 1.5rem;
-    min-height: auto;
-    
-    /* Onda mobile più piccola */
-    margin-top: -20px;
-    padding-top: 4rem;
-  }
-  
-  .hero::before {
-    top: -20px;
-    height: 40px;
-    border-radius: 40% 40% 0 0; /* Onda più stretta su mobile */
-  }
-  
-  .hero-right-image {
-    display: block;
-    margin-top: 1.5rem;
-    height: auto;
-    max-width: 280px;
-  }
-  
-  .hero-left-image {
-    display: none;
-  }
-  
-  .hero-features {
-    display: none;
-  }
-}
-
-/* LAYOUT DESKTOP */
-@media (min-width: 769px) {
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    padding: 3rem 0;
-    min-height: 70vh;
-    align-items: center;
-  }
-  
-  .hero::before {
-    top: -30px; /* Onda più alta su desktop */
-    height: 60px;
-  }
 }
 
 .container.hero-content-container {
@@ -2403,6 +2284,63 @@ textarea:focus-visible {
 
 .tool-block-btn:hover .block-square {
     background: #fff;
+}
+/* Header minimal per pagine interne */
+.header .header-content {
+    display: flex;
+    justify-content: flex-start; /* logo sempre a sinistra */
+    align-items: center;
+}
+
+.header .logo img {
+    width: 38px; /* stessa dimensione del sito principale */
+    height: auto;
+}
+
+.header .logo span {
+    font-size: 1.3rem; /* identico al tuo index */
+}
+/* Hero per pagine strumenti */
+.inner-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 0;
+}
+
+.inner-hero .hero-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.inner-hero .hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.inner-hero .hero-image img {
+    width: 90%;
+    max-width: 380px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .inner-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .inner-hero .hero-content {
+        padding-right: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .inner-hero .hero-image img {
+        width: 70%;
+    }
 }
 /* Bottone Dettagli pulito */
 .btn-dettagli {
