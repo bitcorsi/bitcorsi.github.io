@@ -105,18 +105,22 @@ img {
 /* ========================================
    HEADER
    ======================================== */
+/* ========================================
+   HEADER CON BORDO A ONDA
+   ======================================== */
 .header {
   background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 0.75rem 0 3rem 0;
+  padding: 0.75rem 0 3rem 0; /* Più padding in basso */
   border-bottom: none;
   box-shadow: none;
   position: relative;
 }
 
+/* Onda come pseudo-elemento */
 .header::after {
   content: '';
   position: absolute;
@@ -124,10 +128,42 @@ img {
   left: 0;
   width: 100%;
   height: 40px;
-  background: inherit;
+  background: inherit; /* Eredita il colore dell'header */
+  
+  /* Forma d'onda con border-radius multipli */
   border-radius: 60% 40% 50% 30% / 70% 50% 80% 40%;
+  
+  /* Ombra leggera per definire il bordo */
   box-shadow: 0 8px 20px rgba(255, 107, 53, 0.12);
+  
+  /* Garantisce che l'onda sia sopra l'hero */
   z-index: 1;
+}
+
+/* Hero si sovrappone all'onda */
+.hero {
+  margin-top: -25px;
+  padding-top: 45px;
+  position: relative;
+  z-index: 9;
+}
+
+/* Mobile: onda più piccola */
+@media (max-width: 768px) {
+  .header {
+    padding: 0.5rem 0 2.5rem 0;
+  }
+  
+  .header::after {
+    height: 30px;
+    border-radius: 50% 30% 40% 20% / 60% 40% 70% 30%;
+    box-shadow: 0 5px 12px rgba(255, 107, 53, 0.08);
+  }
+  
+  .hero {
+    margin-top: -20px;
+    padding-top: 35px;
+  }
 }
 
 .hero {
