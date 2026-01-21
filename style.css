@@ -105,15 +105,42 @@ img {
 /* ========================================
    HEADER
    ======================================== */
-.header {
-  background-color: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow);
-  position: sticky;
+/* Assicurati che il body non abbia margini indesiderati */
+body {
+  margin: 0;
+}
+
+/* Header fisso (come desideri) */
+header {
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  padding: 0.20rem 0;
-  border-bottom: 1px solid var(--gray-100);
+  /* Aggiungi il tuo background qui, es: */
+  background-color: #ffffff; /* <-- sostituisci con il tuo colore */
+}
+
+/* Onda decorativa */
+.header-wave {
+  height: 80px; /* Altezza dell'onda – regolabile */
+  width: 100%;
+  position: relative;
+  z-index: 999;
+  margin-top: [ALTEZZA HEADER]px; /* ← IMPORTANTE! Sostituisci con l'altezza reale del tuo header in px */
+}
+
+.header-wave::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,60 Q300,120 600,60 T1200,60 L1200,120 L0,120 Z' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat center bottom;
+  background-size: cover;
+  pointer-events: none;
 }
 
 .header .container {
