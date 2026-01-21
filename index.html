@@ -340,60 +340,122 @@
     </section>
 
     <!-- 📚 CORSI - VISUALE CHIARO PER GENITORI -->
-    <section id="corsi" class="courses-timeline">
-        <div class="container">
-            <div class="section-header">
-                <h2><i class="fas fa-calendar-alt"></i> Calendario Corsi 2025/2026</h2>
-                <p class="section-subtitle">Percorsi su misura per ogni età e interesse</p>
-            </div>
+   <!-- Sostituisci la sezione corsi nell'HTML con questo: -->
+<section id="corsi" class="courses-timeline">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-calendar-alt"></i> <span id="courses-title">Aperte le iscrizioni - gennaio 2026</span></h2>
+            <p class="section-subtitle" id="courses-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio</p>
+        </div>
 
-            <!-- Timeline Età -->
-            <div class="age-timeline">
-                <div class="timeline-track">
-                    <div class="timeline-point" data-age="8-9">
-                        <div class="point">8-9</div>
-                        <span class="point-label">Inizia qui</span>
-                    </div>
-                    <div class="timeline-point" data-age="10-11">
-                        <div class="point">10-11</div>
-                        <span class="point-label">Progredisce</span>
-                    </div>
-                    <div class="timeline-point active" data-age="12-13">
-                        <div class="point">12-13</div>
-                        <span class="point-label">Esplora</span>
-                    </div>
-                    <div class="timeline-point" data-age="14-16">
-                        <div class="point">14-16</div>
-                        <span class="point-label">Specializza</span>
-                    </div>
+        <!-- Promo Natale Dinamica -->
+        <div id="promo-natale-container" class="promo-natale-container"></div>
+
+        <!-- Alert Posti Limitati -->
+        <div class="alert-box">
+            <div class="alert-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="alert-content">
+                <h4>⚠️ POSTI LIMITATI!</h4>
+                <p>Ogni gruppo è limitato a <strong>8-10 partecipanti</strong> per garantire un'attenzione personalizzata.</p>
+                <small>I posti si esauriscono rapidamente - Prenota in anticipo!</small>
+            </div>
+            <a href="#iscrizione" class="alert-button">
+                <i class="fas fa-calendar-check"></i>
+                Prenota ora
+            </a>
+        </div>
+
+        <!-- Timeline Età -->
+        <div class="age-timeline">
+            <div class="timeline-track">
+                <div class="timeline-point" data-age="8-9">
+                    <div class="point">8-9</div>
+                    <span class="point-label">Inizia</span>
+                </div>
+                <div class="timeline-point" data-age="10-11">
+                    <div class="point">10-11</div>
+                    <span class="point-label">Progredisce</span>
+                </div>
+                <div class="timeline-point active" data-age="12-13">
+                    <div class="point">12-13</div>
+                    <span class="point-label">Esplora</span>
+                </div>
+                <div class="timeline-point" data-age="14-16">
+                    <div class="point">14-16</div>
+                    <span class="point-label">Specializza</span>
                 </div>
             </div>
-
-            <!-- Corsi Disponibili -->
-            <div class="courses-grid" id="courses-container">
-                <!-- I corsi verranno caricati qui dinamicamente -->
-                <div class="loading-courses">
-                    <i class="fas fa-robot fa-spin"></i>
-                    <p>Caricamento corsi in corso...</p>
-                </div>
-            </div>
-
-            <!-- Promo Speciale -->
-            <div class="promo-section">
-                <div class="promo-card">
-                    <div class="promo-badge">🎄 PROMO NATALE 2024</div>
-                    <h3>Laboratorio Tecnologico Natalizio</h3>
-                    <p>3 incontri speciali per creare addobbi tecnologici e giochi digitali</p>
-                    <div class="promo-details">
-                        <span><i class="fas fa-calendar"></i> Dicembre 2024</span>
-                        <span><i class="fas fa-euro-sign"></i> Prezzo speciale</span>
-                        <span><i class="fas fa-user-friends"></i> Posti limitati</span>
-                    </div>
-                    <a href="#iscrizione" class="btn-promo">Prenota ora</a>
-                </div>
+            <div class="timeline-legend">
+                <span><i class="fas fa-circle" style="color: #FF6B35;"></i> Target principale</span>
+                <span><i class="fas fa-circle" style="color: #10B981;"></i> Disponibile</span>
+                <span><i class="fas fa-circle" style="color: #6B7280;"></i> Altri percorsi</span>
             </div>
         </div>
-    </section>
+
+        <!-- Filtri Corsi -->
+        <div class="courses-filter">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-layer-group"></i>
+                Tutti i corsi
+            </button>
+            <button class="filter-btn" data-filter="beginner">
+                <i class="fas fa-baby"></i>
+                8-11 anni
+            </button>
+            <button class="filter-btn" data-filter="intermediate">
+                <i class="fas fa-child"></i>
+                12-13 anni
+            </button>
+            <button class="filter-btn" data-filter="advanced">
+                <i class="fas fa-user-graduate"></i>
+                14-16 anni
+            </button>
+            <button class="filter-btn" data-filter="available">
+                <i class="fas fa-check-circle"></i>
+                Disponibili
+            </button>
+        </div>
+
+        <!-- Grid Corsi Dinamica -->
+        <div class="courses-grid" id="courses-container">
+            <!-- I corsi verranno caricati qui da JavaScript -->
+            <div class="loading-state">
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <p>Caricamento corsi disponibili...</p>
+            </div>
+        </div>
+
+        <!-- Info Importanti per Genitori -->
+        <div class="parents-info">
+            <div class="info-card">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Kit Inclusi</h4>
+                <p>Tutti i materiali e strumenti sono forniti da noi durante le lezioni</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-user-friends"></i>
+                <h4>Gruppi Piccoli</h4>
+                <p>Massimo 10 partecipanti per garantire attenzione individuale</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-certificate"></i>
+                <h4>Certificato Finale</h4>
+                <p>Attestato di partecipazione al termine di ogni percorso</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h4>Flessibilità</h4>
+                <p>Possibilità di recupero lezioni in caso di assenza</p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- 📝 ISCRIZIONE SEMPLIFICATA -->
     <section id="iscrizione" class="registration-flow">
