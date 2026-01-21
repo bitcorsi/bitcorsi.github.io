@@ -118,7 +118,7 @@ header {
   width: 100%;
   z-index: 1000;
   /* Aggiungi il tuo background qui, es: */
-  background-color: #ffffff; /* <-- sostituisci con il tuo colore */
+  background-color: #FF6B35; /* <-- sostituisci con il tuo colore */
 }
 
 /* Onda decorativa */
@@ -127,7 +127,7 @@ header {
   width: 100%;
   position: relative;
   z-index: 999;
-  margin-top: [ALTEZZA HEADER]px; /* ← IMPORTANTE! Sostituisci con l'altezza reale del tuo header in px */
+  margin-top: 12px; /* ← IMPORTANTE! Sostituisci con l'altezza reale del tuo header in px */
 }
 
 .header-wave::before {
