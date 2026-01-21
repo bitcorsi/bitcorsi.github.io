@@ -1,11 +1,12 @@
-{  "titoloCorsi": "Aperte le iscrizioni - gennaio 2026",
+{
+  "titoloCorsi": "Aperte le iscrizioni - gennaio 2026",
   "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio",
   "promoNatale": {
     "attiva": false,
     "titolo": "Aggiornato: Xmas Tech Lab🎄: Costruisci il Tuo Robot!",
     "sottotitolo": "3 mattinate e 6 ore magiche per bambini e ragazzi",
     "descrizione": "per progettare, costruire e programmare un robot con Lego Spike Prime e Micro:bit. Divertimento assicurato!",
-    "date": "29 30 31  dicembre dalle 10:00 alle 12:00",
+    "date": "29 30 31 dicembre dalle 10:00 alle 12:00",
     "eta": "8–13 anni",
     "prezzo": "€ 35 a mattinata / € 90 intero Lab",
     "posti": "Posti limitati (max 10)",
@@ -40,7 +41,7 @@
       "eta": "8-13 anni",
       "incontri": "6 incontri",
       "prezzo": "€125",
-      "quando": " sabato mattina ore 10:00-11:30 ",
+      "quando": "sabato mattina ore 10:00-11:30",
       "descrizione": "Programma il piccolo computer tascabile micro:bit per creare giochi e misurare temperatura e movimenti.",
       "stato": "aperto",
       "badge": "Aperte"
