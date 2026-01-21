@@ -16,6 +16,9 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden; /* Previene scorrimento orizzontale */
+    width: 100%;
+    position: relative;
 }
 
 body {
@@ -23,9 +26,11 @@ body {
     line-height: 1.6;
     color: #1a1a1a;
     background: #ffffff;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Previene scorrimento orizzontale */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    position: relative;
 }
 
 img {
@@ -42,6 +47,7 @@ a {
 
 button, input, select, textarea {
     font-family: inherit;
+    max-width: 100%; /* Previene overflow */
 }
 
 :focus {
@@ -54,8 +60,17 @@ button, input, select, textarea {
     color: #1a1a1a;
 }
 
+/* Container che non causa overflow */
+.container {
+    width: 100%;
+    max-width: 100%; /* Assicura che non superi la viewport */
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 2rem); /* Padding responsivo */
+    overflow: hidden; /* Previene overflow interno */
+}
+
 /* ===========================================
-   2. VARIABLES - Design System
+   2. VARIABLES - Design System Mobile-First
    =========================================== */
 
 :root {
@@ -89,14 +104,14 @@ button, input, select, textarea {
     --whatsapp: #25D366;
     --instagram: #E4405F;
     
-    /* Spacing Scale */
-    --space-xs: 0.5rem;
-    --space-sm: 1rem;
-    --space-md: 1.5rem;
-    --space-lg: 2rem;
-    --space-xl: 3rem;
-    --space-2xl: 4rem;
-    --space-3xl: 6rem;
+    /* Spacing Scale Mobile-First */
+    --space-xs: clamp(0.25rem, 1vw, 0.5rem);
+    --space-sm: clamp(0.5rem, 2vw, 1rem);
+    --space-md: clamp(1rem, 3vw, 1.5rem);
+    --space-lg: clamp(1.5rem, 4vw, 2rem);
+    --space-xl: clamp(2rem, 5vw, 3rem);
+    --space-2xl: clamp(3rem, 6vw, 4rem);
+    --space-3xl: clamp(4rem, 8vw, 6rem);
     
     /* Border Radius */
     --radius-sm: 0.5rem;
@@ -118,19 +133,12 @@ button, input, select, textarea {
     --transition-slow: 0.5s ease;
     
     /* Container */
-    --container-width: 1200px;
+    --container-width: min(1200px, 95vw); /* Limite massimo con margini */
 }
 
 /* ===========================================
    3. UTILITY CLASSES - Rapidi e Potenti
    =========================================== */
-
-.container {
-    width: 100%;
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 var(--space-md);
-}
 
 /* Display */
 .flex { display: flex; }
@@ -199,46 +207,52 @@ button, input, select, textarea {
 /* Width/Height */
 .w-full { width: 100%; }
 .h-full { height: 100%; }
+.max-w-full { max-width: 100%; }
 
 /* ===========================================
-   4. NOTIFICATION BANNER - Urgenza Visibile
+   4. NOTIFICATION BANNER - Urgenza Visibile Mobile
    =========================================== */
 
 .notification-banner {
     background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
     color: white;
     padding: var(--space-xs) 0;
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .notification-banner .container {
     display: flex;
+    flex-direction: column; /* Mobile first */
     align-items: center;
-    justify-content: space-between;
     gap: var(--space-sm);
+    text-align: center;
+    width: 100%;
 }
 
 .notification-tag {
     background: rgba(255, 255, 255, 0.2);
-    padding: 0.25rem 0.75rem;
+    padding: 0.25rem clamp(0.5rem, 2vw, 0.75rem);
     border-radius: var(--radius-full);
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 2vw, 0.75rem);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    white-space: nowrap;
 }
 
 .notification-cta {
     background: white;
     color: var(--primary);
-    padding: 0.375rem 1rem;
+    padding: clamp(0.25rem, 1vw, 0.375rem) clamp(0.75rem, 3vw, 1rem);
     border-radius: var(--radius-full);
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
     white-space: nowrap;
     transition: all var(--transition-fast);
+    display: inline-block;
 }
 
 .notification-cta:hover {
@@ -247,7 +261,7 @@ button, input, select, textarea {
 }
 
 /* ===========================================
-   5. HEADER - Professionale e Informativo
+   5. HEADER - Professionale e Informativo MOBILE
    =========================================== */
 
 .main-header {
@@ -256,35 +270,41 @@ button, input, select, textarea {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow: hidden;
 }
 
+/* Header Grid Mobile First */
 .header-grid {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: var(--space-lg);
+    display: flex;
+    flex-direction: column; /* Mobile: tutto in colonna */
+    gap: var(--space-md);
     padding: var(--space-sm) 0;
+    width: 100%;
 }
 
 /* Logo Section */
 .logo-section {
     display: flex;
-    align-items: center;
+    justify-content: center; /* Centrato su mobile */
+    width: 100%;
 }
 
 .logo-wrapper {
     display: flex;
+    flex-direction: column; /* Logo sopra testo su mobile */
     align-items: center;
     gap: var(--space-sm);
+    text-align: center;
 }
 
 .logo {
-    height: 48px;
+    height: clamp(40px, 10vw, 48px);
     width: auto;
 }
 
 .logo-text h1 {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 6vw, 1.75rem);
     font-weight: 800;
     background: var(--primary-gradient);
     -webkit-background-clip: text;
@@ -294,107 +314,127 @@ button, input, select, textarea {
 }
 
 .logo-subtitle {
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 2.5vw, 0.75rem);
     color: var(--gray-600);
     font-weight: 500;
     display: block;
     margin-top: 0.125rem;
 }
 
-/* Header Info */
+/* Header Info - Mobile Grid */
 .header-info {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-xl);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    width: 100%;
+    justify-items: center;
 }
 
 .info-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--space-xs);
+    text-align: center;
+    padding: var(--space-xs);
+    background: var(--gray-100);
+    border-radius: var(--radius-sm);
+    width: 100%;
+    max-width: 120px;
 }
 
 .info-item i {
     color: var(--primary);
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    margin-bottom: 0.25rem;
 }
 
 .info-label {
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 2.5vw, 0.75rem);
     color: var(--gray-600);
     display: block;
 }
 
 .info-value {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     font-weight: 600;
     color: var(--gray-900);
     display: block;
 }
 
-/* Header CTA */
+/* Header CTA Mobile */
 .header-cta {
     display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
+    width: 100%;
+}
+
+.btn-whatsapp, .btn-primary {
+    padding: clamp(0.5rem, 2vw, 0.625rem) clamp(1rem, 4vw, 1.25rem);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    transition: all var(--transition-fast);
+    display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px; /* Touch-friendly minimum height */
 }
 
 .btn-whatsapp {
     background: var(--whatsapp);
     color: white;
-    padding: 0.625rem 1.25rem;
-    border-radius: var(--radius-full);
-    font-weight: 600;
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all var(--transition-fast);
-}
-
-.btn-whatsapp:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
 }
 
 .btn-primary {
     background: var(--primary-gradient);
     color: white;
-    padding: 0.625rem 1.5rem;
-    border-radius: var(--radius-full);
-    font-weight: 600;
-    font-size: 0.875rem;
-    transition: all var(--transition-fast);
 }
 
-.btn-primary:hover {
+.btn-whatsapp:hover, .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
 }
 
-/* Main Navigation */
+/* Main Navigation Mobile */
 .main-nav {
     border-top: 1px solid var(--gray-200);
     background: var(--white);
+    overflow-x: auto; /* Permette scroll orizzontale se necessario */
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+.main-nav::-webkit-scrollbar {
+    display: none; /* Nasconde scrollbar su mobile */
 }
 
 .nav-list {
     display: flex;
-    justify-content: center;
-    gap: var(--space-xl);
     list-style: none;
     padding: var(--space-sm) 0;
+    min-width: max-content; /* Permette scroll se non entra tutto */
+    padding: 0 var(--space-md);
+}
+
+.nav-list li {
+    margin-right: clamp(0.75rem, 3vw, 1rem);
 }
 
 .nav-list a {
     color: var(--gray-700);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: clamp(0.8rem, 3vw, 0.95rem);
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     position: relative;
+    white-space: nowrap;
 }
 
 .nav-list a:hover {
@@ -417,14 +457,15 @@ button, input, select, textarea {
 }
 
 /* ===========================================
-   6. HERO - Impattante e Memorabile
+   6. HERO - Impattante e Memorabile MOBILE
    =========================================== */
 
 .hero-visual {
     background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
-    padding: var(--space-3xl) 0;
+    padding: clamp(2rem, 8vw, 6rem) 0;
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .hero-background::before {
@@ -438,28 +479,31 @@ button, input, select, textarea {
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
+/* Hero Grid Mobile First */
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
-    align-items: center;
+    display: flex;
+    flex-direction: column; /* Mobile: tutto in colonna */
+    gap: var(--space-xl);
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 
 /* Hero Content */
 .hero-content {
-    max-width: 600px;
+    order: 2; /* Testo dopo l'immagine su mobile */
+    text-align: center;
+    width: 100%;
 }
 
 .hero-badge {
     display: inline-block;
     background: var(--primary-gradient);
     color: white;
-    padding: 0.5rem 1.25rem;
+    padding: 0.5rem clamp(1rem, 3vw, 1.25rem);
     border-radius: var(--radius-full);
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
     margin-bottom: var(--space-lg);
     animation: float 3s ease-in-out infinite;
 }
@@ -470,11 +514,13 @@ button, input, select, textarea {
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 8vw, 3.5rem);
     font-weight: 800;
     line-height: 1.1;
     color: var(--gray-900);
     margin-bottom: var(--space-md);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .hero-title .highlight {
@@ -485,16 +531,16 @@ button, input, select, textarea {
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 4vw, 1.25rem);
     color: var(--gray-600);
     line-height: 1.6;
     margin-bottom: var(--space-xl);
 }
 
-/* Hero Highlights */
+/* Hero Highlights Mobile */
 .hero-highlights {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr; /* Una colonna su mobile */
     gap: var(--space-md);
     margin-bottom: var(--space-xl);
 }
@@ -506,6 +552,7 @@ button, input, select, textarea {
     box-shadow: var(--shadow-md);
     text-align: center;
     transition: all var(--transition-base);
+    width: 100%;
 }
 
 .highlight-card:hover {
@@ -514,40 +561,50 @@ button, input, select, textarea {
 }
 
 .highlight-card i {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 6vw, 2rem);
     color: var(--primary);
     margin-bottom: var(--space-sm);
 }
 
 .highlight-card h4 {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     font-weight: 600;
     color: var(--gray-900);
     margin-bottom: 0.25rem;
 }
 
 .highlight-card p {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     color: var(--gray-600);
 }
 
-/* Hero Actions */
+/* Hero Actions Mobile */
 .hero-actions {
     display: flex;
+    flex-direction: column; /* Bottoni in colonna su mobile */
     gap: var(--space-md);
+    margin-top: var(--space-xl);
+    width: 100%;
+}
+
+.btn-hero-primary, .btn-hero-secondary {
+    padding: clamp(0.875rem, 3vw, 1rem) clamp(1.5rem, 5vw, 2rem);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    font-size: clamp(1rem, 4vw, 1.125rem);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    transition: all var(--transition-base);
+    min-height: 56px;
 }
 
 .btn-hero-primary {
     background: var(--primary-gradient);
     color: white;
-    padding: 1rem 2rem;
-    border-radius: var(--radius-lg);
-    font-weight: 600;
-    font-size: 1.125rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: all var(--transition-base);
 }
 
 .btn-hero-primary:hover {
@@ -558,15 +615,7 @@ button, input, select, textarea {
 .btn-hero-secondary {
     background: var(--white);
     color: var(--primary);
-    padding: 1rem 2rem;
-    border-radius: var(--radius-lg);
-    font-weight: 600;
-    font-size: 1.125rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
     border: 2px solid var(--primary);
-    transition: all var(--transition-base);
 }
 
 .btn-hero-secondary:hover {
@@ -575,26 +624,34 @@ button, input, select, textarea {
     transform: translateY(-3px);
 }
 
-/* Hero Visual */
+/* Hero Visual Mobile */
+.hero-visual .visual-container {
+    order: 1; /* Immagine prima del testo su mobile */
+    width: 100%;
+}
+
 .visual-container {
     position: relative;
-    height: 400px;
+    height: clamp(250px, 60vw, 400px);
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: var(--radius-xl);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .demo-robot {
     text-align: center;
     color: white;
+    padding: var(--space-md);
+    width: 100%;
 }
 
 .robot-animation {
-    width: 150px;
-    height: 150px;
+    width: clamp(100px, 30vw, 150px);
+    height: clamp(100px, 30vw, 150px);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     margin: 0 auto var(--space-md);
@@ -604,7 +661,7 @@ button, input, select, textarea {
 
 .robot-animation::before {
     content: '🤖';
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 10vw, 4rem);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -616,48 +673,52 @@ button, input, select, textarea {
 }
 
 .demo-text {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
     font-weight: 600;
 }
 
 /* ===========================================
-   7. TOOLS SHOWCASE - Visivamente Incredibile
+   7. TOOLS SHOWCASE - Visivamente Incredibile MOBILE
    =========================================== */
 
 .tools-showcase {
-    padding: var(--space-3xl) 0;
+    padding: clamp(2rem, 8vw, 6rem) 0;
     background: var(--white);
+    width: 100%;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+    width: 100%;
 }
 
 .section-header h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
     font-weight: 700;
     color: var(--gray-900);
     margin-bottom: var(--space-sm);
     display: flex;
+    flex-direction: column; /* Icona sopra testo su mobile */
     align-items: center;
-    justify-content: center;
     gap: 0.75rem;
 }
 
 .section-subtitle {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     color: var(--gray-600);
     max-width: 600px;
     margin: 0 auto;
+    padding: 0 var(--space-sm);
 }
 
-/* Tools Comparison */
+/* Tools Comparison Mobile First */
 .tools-comparison {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column; /* Una colonna su mobile */
     gap: var(--space-lg);
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+    width: 100%;
 }
 
 .tool-card {
@@ -667,6 +728,7 @@ button, input, select, textarea {
     box-shadow: var(--shadow-lg);
     transition: all var(--transition-base);
     position: relative;
+    width: 100%;
 }
 
 .tool-card:hover {
@@ -683,15 +745,16 @@ button, input, select, textarea {
     text-align: center;
     background: var(--gray-50);
     position: relative;
+    width: 100%;
 }
 
 .tool-badge {
     position: absolute;
     top: var(--space-sm);
     right: var(--space-sm);
-    padding: 0.375rem 0.875rem;
+    padding: 0.375rem clamp(0.5rem, 2vw, 0.875rem);
     border-radius: var(--radius-full);
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 2vw, 0.75rem);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -708,7 +771,7 @@ button, input, select, textarea {
 }
 
 .tool-image {
-    height: 120px;
+    height: clamp(80px, 20vw, 120px);
     width: auto;
     margin: 0 auto;
     object-fit: contain;
@@ -719,7 +782,7 @@ button, input, select, textarea {
 }
 
 .tool-body h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
     font-weight: 700;
     color: var(--gray-900);
     margin-bottom: var(--space-md);
@@ -741,14 +804,14 @@ button, input, select, textarea {
 }
 
 .spec-item i {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
     color: var(--primary);
     margin-bottom: 0.5rem;
     display: block;
 }
 
 .spec-item span {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     color: var(--gray-700);
     font-weight: 500;
 }
@@ -760,10 +823,11 @@ button, input, select, textarea {
 .tool-description p {
     color: var(--gray-600);
     line-height: 1.6;
+    font-size: clamp(0.875rem, 3vw, 1rem);
 }
 
 .tool-projects h4 {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     font-weight: 600;
     color: var(--gray-900);
     margin-bottom: var(--space-sm);
@@ -779,6 +843,7 @@ button, input, select, textarea {
     color: var(--gray-600);
     position: relative;
     padding-left: 1.5rem;
+    font-size: clamp(0.875rem, 3vw, 1rem);
 }
 
 .tool-projects li::before {
@@ -789,16 +854,18 @@ button, input, select, textarea {
     font-weight: bold;
 }
 
-/* Comparison Table */
+/* Comparison Table Mobile */
 .comparison-table {
     background: var(--white);
     border-radius: var(--radius-xl);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     box-shadow: var(--shadow-lg);
+    width: 100%;
+    overflow: hidden; /* Contiene la tabella */
 }
 
 .comparison-table h3 {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 1.75rem);
     font-weight: 600;
     color: var(--gray-900);
     margin-bottom: var(--space-lg);
@@ -808,6 +875,9 @@ button, input, select, textarea {
 table {
     width: 100%;
     border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 thead {
@@ -815,17 +885,21 @@ thead {
 }
 
 th {
-    padding: 1rem;
+    padding: 0.75rem;
     text-align: left;
     font-weight: 600;
     color: var(--gray-900);
     border-bottom: 2px solid var(--gray-200);
+    white-space: nowrap;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
 }
 
 td {
-    padding: 1rem;
+    padding: 0.75rem;
     border-bottom: 1px solid var(--gray-200);
     color: var(--gray-700);
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+    white-space: nowrap;
 }
 
 tbody tr:hover {
@@ -833,39 +907,44 @@ tbody tr:hover {
 }
 
 /* ===========================================
-   8. COURSES TIMELINE - Chiara e Organizzata
+   8. COURSES TIMELINE - Chiara e Organizzata MOBILE
    =========================================== */
 
 .courses-timeline {
-    padding: var(--space-3xl) 0;
+    padding: clamp(2rem, 8vw, 6rem) 0;
     background: var(--gray-50);
+    width: 100%;
 }
 
-/* Age Timeline */
+/* Age Timeline Mobile */
 .age-timeline {
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+    width: 100%;
 }
 
 .timeline-track {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Verticale su mobile */
+    align-items: center;
+    gap: var(--space-lg);
     position: relative;
-    padding: var(--space-xl) 0;
+    padding: var(--space-lg) 0;
+    width: 100%;
 }
 
 .timeline-track::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, 
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, 
         var(--primary) 0%, 
         var(--info) 33%, 
         var(--success) 66%, 
         var(--warning) 100%);
-    transform: translateY(-50%);
+    transform: translateX(-50%);
     border-radius: var(--radius-full);
 }
 
@@ -873,18 +952,19 @@ tbody tr:hover {
     text-align: center;
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 
 .point {
-    width: 60px;
-    height: 60px;
+    width: clamp(50px, 12vw, 60px);
+    height: clamp(50px, 12vw, 60px);
     background: var(--white);
     border: 4px solid var(--gray-300);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
     font-weight: 700;
     color: var(--gray-700);
     margin: 0 auto var(--space-xs);
@@ -906,51 +986,55 @@ tbody tr:hover {
 }
 
 .point-label {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     color: var(--gray-600);
     font-weight: 500;
     display: block;
 }
 
-/* Courses Grid */
+/* Courses Grid Mobile */
 .courses-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr; /* Una colonna su mobile */
     gap: var(--space-lg);
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+    width: 100%;
 }
 
 .loading-courses {
     grid-column: 1 / -1;
     text-align: center;
-    padding: var(--space-2xl);
+    padding: var(--space-xl);
+    width: 100%;
 }
 
 .loading-courses i {
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 3rem);
     color: var(--primary);
     margin-bottom: var(--space-md);
     animation: spin 2s linear infinite;
 }
 
 .loading-courses p {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     color: var(--gray-600);
 }
 
-/* Promo Section */
+/* Promo Section Mobile */
 .promo-section {
-    margin-top: var(--space-2xl);
+    margin-top: var(--space-xl);
+    width: 100%;
 }
 
 .promo-card {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     border-radius: var(--radius-xl);
     text-align: center;
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .promo-badge {
@@ -958,47 +1042,52 @@ tbody tr:hover {
     top: var(--space-md);
     right: var(--space-md);
     background: rgba(255, 255, 255, 0.2);
-    padding: 0.5rem 1rem;
+    padding: 0.5rem clamp(0.75rem, 3vw, 1rem);
     border-radius: var(--radius-full);
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     font-weight: 600;
 }
 
 .promo-card h3 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 6vw, 2rem);
     font-weight: 700;
     margin-bottom: var(--space-sm);
+    padding-top: var(--space-md);
 }
 
 .promo-card p {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     opacity: 0.9;
     margin-bottom: var(--space-lg);
 }
 
 .promo-details {
     display: flex;
-    justify-content: center;
-    gap: var(--space-xl);
+    flex-direction: column; /* Verticale su mobile */
+    gap: var(--space-sm);
     margin-bottom: var(--space-lg);
 }
 
 .promo-details span {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     font-weight: 500;
+    font-size: clamp(0.875rem, 3vw, 1rem);
 }
 
 .btn-promo {
     background: white;
     color: var(--primary);
-    padding: 1rem 2.5rem;
+    padding: 0.875rem clamp(1.5rem, 5vw, 2.5rem);
     border-radius: var(--radius-full);
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     font-weight: 600;
     display: inline-block;
     transition: all var(--transition-base);
+    width: 100%;
+    max-width: 250px;
 }
 
 .btn-promo:hover {
@@ -1007,43 +1096,48 @@ tbody tr:hover {
 }
 
 /* ===========================================
-   9. REGISTRATION FLOW - Semplice e Intuitivo
+   9. REGISTRATION FLOW - Semplice e Intuitivo MOBILE
    =========================================== */
 
 .registration-flow {
-    padding: var(--space-3xl) 0;
+    padding: clamp(2rem, 8vw, 6rem) 0;
     background: var(--white);
+    width: 100%;
 }
 
 .registration-header {
     text-align: center;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    width: 100%;
 }
 
 .registration-header h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
     font-weight: 700;
     color: var(--gray-900);
     margin-bottom: var(--space-sm);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 0.75rem;
 }
 
 .registration-header p {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     color: var(--gray-600);
     max-width: 600px;
     margin: 0 auto;
+    padding: 0 var(--space-sm);
 }
 
-/* Registration Steps */
+/* Registration Steps Mobile */
 .registration-steps {
     display: flex;
-    justify-content: center;
-    gap: var(--space-xl);
-    margin-bottom: var(--space-xl);
+    flex-direction: column; /* Verticale su mobile */
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    width: 100%;
 }
 
 .step {
@@ -1053,6 +1147,8 @@ tbody tr:hover {
     gap: var(--space-xs);
     opacity: 0.5;
     transition: all var(--transition-base);
+    width: 100%;
+    max-width: 200px;
 }
 
 .step.active {
@@ -1077,23 +1173,25 @@ tbody tr:hover {
 }
 
 .step span {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     font-weight: 500;
     color: var(--gray-700);
+    text-align: center;
 }
 
-/* Registration Form */
+/* Registration Form Mobile */
 .registration-form {
-    max-width: 800px;
+    width: 100%;
     margin: 0 auto;
     background: var(--white);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
 }
 
 .form-step {
     display: none;
+    width: 100%;
 }
 
 .form-step.active {
@@ -1107,26 +1205,29 @@ tbody tr:hover {
 }
 
 .form-step h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
     font-weight: 600;
     color: var(--gray-900);
     margin-bottom: var(--space-lg);
+    text-align: center;
 }
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr; /* Una colonna su mobile */
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
+    width: 100%;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .form-group label {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     font-weight: 500;
     color: var(--gray-700);
     margin-bottom: 0.5rem;
@@ -1137,8 +1238,9 @@ tbody tr:hover {
     padding: 0.875rem 1rem;
     border: 2px solid var(--gray-300);
     border-radius: var(--radius-md);
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 3vw, 1rem);
     transition: all var(--transition-fast);
+    width: 100%;
 }
 
 .form-group input:focus,
@@ -1147,12 +1249,13 @@ tbody tr:hover {
     box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
-/* Course Options */
+/* Course Options Mobile */
 .course-options {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr; /* Una colonna su mobile */
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
+    width: 100%;
 }
 
 .course-option {
@@ -1161,6 +1264,7 @@ tbody tr:hover {
     padding: var(--space-md);
     cursor: pointer;
     transition: all var(--transition-base);
+    width: 100%;
 }
 
 .course-option:hover {
@@ -1181,12 +1285,12 @@ tbody tr:hover {
 }
 
 .option-header i {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
     color: var(--primary);
 }
 
 .option-header h4 {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     font-weight: 600;
     color: var(--gray-900);
 }
@@ -1198,15 +1302,17 @@ tbody tr:hover {
 }
 
 .option-details span {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     color: var(--gray-600);
 }
 
-/* Form Buttons */
+/* Form Buttons Mobile */
 .form-buttons {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Bottoni in colonna su mobile */
+    gap: var(--space-md);
     margin-top: var(--space-lg);
+    width: 100%;
 }
 
 .btn-next,
@@ -1215,10 +1321,12 @@ tbody tr:hover {
     padding: 0.875rem 1.75rem;
     border-radius: var(--radius-full);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 3vw, 1rem);
     border: none;
     cursor: pointer;
     transition: all var(--transition-base);
+    width: 100%;
+    min-height: 48px; /* Touch-friendly */
 }
 
 .btn-next {
@@ -1245,8 +1353,9 @@ tbody tr:hover {
     color: white;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .btn-submit:hover {
@@ -1254,44 +1363,50 @@ tbody tr:hover {
     box-shadow: var(--shadow-md);
 }
 
-/* Summary Box */
+/* Summary Box Mobile */
 .summary-box {
     background: var(--gray-50);
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
     margin-bottom: var(--space-lg);
+    width: 100%;
 }
 
-/* Contact Alternatives */
+/* Contact Alternatives Mobile */
 .contact-alternatives {
     text-align: center;
     margin-top: var(--space-xl);
     padding-top: var(--space-xl);
     border-top: 1px solid var(--gray-200);
+    width: 100%;
 }
 
 .contact-alternatives p {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     color: var(--gray-700);
     margin-bottom: var(--space-lg);
 }
 
 .contact-buttons {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Bottoni in colonna su mobile */
     gap: var(--space-md);
+    width: 100%;
 }
 
 .btn-whatsapp-large,
 .btn-phone-large {
     padding: 1rem 2rem;
     border-radius: var(--radius-lg);
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     font-weight: 600;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     transition: all var(--transition-base);
+    width: 100%;
+    min-height: 56px;
 }
 
 .btn-whatsapp-large {
@@ -1311,36 +1426,36 @@ tbody tr:hover {
 }
 
 /* ===========================================
-   10. FAQ - Organizzata e Chiara
+   10. FAQ - Organizzata e Chiara MOBILE
    =========================================== */
 
 .faq-section {
-    padding: var(--space-3xl) 0;
+    padding: clamp(2rem, 8vw, 6rem) 0;
     background: var(--gray-50);
+    width: 100%;
 }
 
 .faq-section h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
     font-weight: 700;
     color: var(--gray-900);
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-xl);
     text-align: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 0.75rem;
 }
 
 .faq-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr; /* Una colonna su mobile */
     gap: var(--space-lg);
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .faq-category h3 {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
     font-weight: 600;
     color: var(--gray-900);
     margin-bottom: var(--space-md);
@@ -1356,6 +1471,7 @@ details {
     margin-bottom: var(--space-sm);
     box-shadow: var(--shadow-sm);
     transition: all var(--transition-base);
+    width: 100%;
 }
 
 details:hover {
@@ -1369,6 +1485,7 @@ summary {
     list-style: none;
     position: relative;
     padding-right: 2rem;
+    font-size: clamp(0.875rem, 3vw, 1rem);
 }
 
 summary::-webkit-details-marker {
@@ -1394,90 +1511,103 @@ details p {
     margin-top: var(--space-sm);
     color: var(--gray-600);
     line-height: 1.6;
+    font-size: clamp(0.875rem, 3vw, 1rem);
 }
 
 /* ===========================================
-   11. LOCATION - Professionale e Rassicurante
+   11. LOCATION - Professionale e Rassicurante MOBILE
    =========================================== */
 
 .location-section {
-    padding: var(--space-3xl) 0;
+    padding: clamp(2rem, 8vw, 6rem) 0;
     background: var(--white);
+    width: 100%;
 }
 
 .location-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
-    align-items: start;
+    display: flex;
+    flex-direction: column; /* Una colonna su mobile */
+    gap: var(--space-xl);
+    width: 100%;
 }
 
 .location-info h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
     font-weight: 700;
     color: var(--gray-900);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 0.75rem;
+    text-align: center;
 }
 
 .address-card {
     background: var(--white);
     border-radius: var(--radius-xl);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     box-shadow: var(--shadow-lg);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    width: 100%;
 }
 
 .address-card h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
     font-weight: 600;
     color: var(--gray-900);
     margin-bottom: var(--space-sm);
+    text-align: center;
 }
 
 .address {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     color: var(--gray-600);
     line-height: 1.6;
     margin-bottom: var(--space-lg);
+    text-align: center;
 }
 
 .location-features {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Due colonne su mobile */
     gap: var(--space-md);
 }
 
 .feature {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 0.5rem;
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     color: var(--gray-700);
 }
 
 .feature i {
     color: var(--primary);
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
 }
 
-/* Collaborations */
+/* Collaborations Mobile */
 .collaborations h3 {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
     font-weight: 600;
     color: var(--gray-900);
     margin-bottom: var(--space-md);
+    text-align: center;
 }
 
 .collab-logos {
     display: flex;
-    gap: var(--space-lg);
+    flex-wrap: wrap;
+    gap: var(--space-md);
     align-items: center;
+    justify-content: center;
 }
 
 .collab-logos img {
-    height: 60px;
+    height: clamp(40px, 10vw, 60px);
     filter: grayscale(100%);
     opacity: 0.7;
     transition: all var(--transition-base);
@@ -1488,9 +1618,10 @@ details p {
     opacity: 1;
 }
 
-/* Location Map */
+/* Location Map Mobile */
 .location-map {
-    height: 400px;
+    height: 300px;
+    width: 100%;
 }
 
 .map-placeholder {
@@ -1502,42 +1633,44 @@ details p {
     align-items: center;
     justify-content: center;
     color: var(--gray-600);
+    padding: var(--space-lg);
+    text-align: center;
 }
 
 .map-placeholder i {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 10vw, 4rem);
     margin-bottom: var(--space-md);
     color: var(--gray-400);
 }
 
 .map-placeholder p {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
     font-weight: 600;
     margin-bottom: 0.25rem;
 }
 
 .map-placeholder small {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
 }
 
 /* ===========================================
-   12. FINAL CTA - Invitante e Chiara
+   12. FINAL CTA - Invitante e Chiara MOBILE
    =========================================== */
 
 .final-cta {
-    padding: var(--space-3xl) 0;
+    padding: clamp(2rem, 8vw, 6rem) 0;
     background: linear-gradient(135deg, var(--gray-900) 0%, var(--black) 100%);
     color: white;
+    width: 100%;
 }
 
 .cta-card {
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .cta-card h2 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 3rem);
     font-weight: 700;
     margin-bottom: var(--space-sm);
     background: linear-gradient(90deg, #fff 0%, #ff8b5c 100%);
@@ -1547,20 +1680,20 @@ details p {
 }
 
 .cta-card p {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 4vw, 1.25rem);
     opacity: 0.9;
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+    padding: 0 var(--space-sm);
 }
 
 .cta-buttons {
     display: flex;
-    justify-content: center;
-    gap: var(--space-lg);
+    flex-direction: column; /* Bottoni in colonna su mobile */
+    gap: var(--space-md);
+    width: 100%;
 }
 
 .cta-btn {
-    flex: 1;
-    max-width: 250px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-xl);
     padding: var(--space-lg);
@@ -1570,6 +1703,8 @@ details p {
     transition: all var(--transition-base);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    text-align: left;
 }
 
 .cta-btn:hover {
@@ -1579,19 +1714,19 @@ details p {
 }
 
 .cta-btn i {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 6vw, 2rem);
 }
 
 .cta-label {
     display: block;
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     opacity: 0.8;
     margin-bottom: 0.25rem;
 }
 
 .cta-value {
     display: block;
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     font-weight: 600;
 }
 
@@ -1600,60 +1735,67 @@ details p {
 .cta-btn.email i { color: var(--white); }
 
 /* ===========================================
-   13. FOOTER - Completo e Professionale
+   13. FOOTER - Completo e Professionale MOBILE
    =========================================== */
 
 .main-footer {
     background: var(--gray-900);
     color: var(--gray-400);
-    padding: var(--space-3xl) 0 var(--space-lg);
+    padding: clamp(2rem, 8vw, 6rem) 0 var(--space-lg);
+    width: 100%;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-2xl);
-    margin-bottom: var(--space-2xl);
+    grid-template-columns: 1fr; /* Una colonna su mobile */
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+    width: 100%;
 }
 
 .footer-col h3 {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 4vw, 1.125rem);
     font-weight: 600;
     color: white;
     margin-bottom: var(--space-md);
+    text-align: center;
 }
 
 .footer-logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: var(--space-sm);
     margin-bottom: var(--space-md);
+    text-align: center;
 }
 
 .footer-logo img {
-    height: 40px;
+    height: clamp(35px, 8vw, 40px);
 }
 
 .footer-logo span {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
     font-weight: 700;
     color: white;
 }
 
 .footer-col p {
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     line-height: 1.6;
     margin-bottom: var(--space-md);
+    text-align: center;
 }
 
 .social-links {
     display: flex;
+    justify-content: center;
     gap: var(--space-sm);
 }
 
 .social-links a {
-    width: 40px;
-    height: 40px;
+    width: clamp(35px, 8vw, 40px);
+    height: clamp(35px, 8vw, 40px);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     display: flex;
@@ -1668,18 +1810,19 @@ details p {
 }
 
 .social-links i {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 4vw, 1.25rem);
     color: white;
 }
 
 .footer-col ul {
     list-style: none;
     padding: 0;
+    text-align: center;
 }
 
 .footer-col li {
     margin-bottom: 0.75rem;
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
 }
 
 .footer-col a {
@@ -1695,30 +1838,31 @@ details p {
     text-align: center;
     padding-top: var(--space-lg);
     border-top: 1px solid var(--gray-800);
+    width: 100%;
 }
 
 .footer-bottom p {
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 3vw, 1rem);
     color: var(--gray-500);
 }
 
 /* ===========================================
-   14. FLOATING WHATSAPP - Sempre Visibile
+   14. FLOATING WHATSAPP - Sempre Visibile MOBILE
    =========================================== */
 
 .floating-whatsapp {
     position: fixed;
-    bottom: var(--space-lg);
-    right: var(--space-lg);
-    width: 60px;
-    height: 60px;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    width: clamp(50px, 12vw, 60px);
+    height: clamp(50px, 12vw, 60px);
     background: var(--whatsapp);
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
     z-index: 9999;
     box-shadow: var(--shadow-2xl);
     transition: all var(--transition-base);
@@ -1731,12 +1875,12 @@ details p {
 
 .tooltip {
     position: absolute;
-    right: 70px;
+    right: calc(100% + 10px);
     background: var(--gray-900);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-md);
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
     font-weight: 500;
     white-space: nowrap;
     opacity: 0;
@@ -1751,131 +1895,241 @@ details p {
 }
 
 /* ===========================================
-   15. RESPONSIVE DESIGN - Mobile First
+   15. MEDIA QUERIES - Tablet e Desktop
    =========================================== */
 
-@media (max-width: 1024px) {
-    html { font-size: 14px; }
-    
-    .hero-grid,
-    .tools-comparison,
-    .location-grid,
-    .footer-grid {
-        grid-template-columns: 1fr;
+/* Tablet (768px e oltre) */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 clamp(1.5rem, 4vw, 2rem);
     }
     
-    .hero-highlights,
-    .form-grid,
-    .course-options,
-    .location-features {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .faq-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
+    /* Header diventa orizzontale */
     .header-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .logo-section {
+        justify-content: flex-start;
+        order: 1;
+        width: auto;
+    }
+    
+    .logo-wrapper {
+        flex-direction: row;
+        text-align: left;
     }
     
     .header-info {
         order: 3;
-        justify-content: space-around;
         width: 100%;
-    }
-    
-    .nav-list {
-        flex-wrap: wrap;
-        gap: var(--space-md);
+        grid-template-columns: repeat(3, auto);
         justify-content: center;
-    }
-}
-
-@media (max-width: 768px) {
-    html { font-size: 13px; }
-    
-    .hero-highlights,
-    .tools-comparison,
-    .form-grid,
-    .course-options,
-    .location-features,
-    .faq-grid,
-    .cta-buttons {
-        grid-template-columns: 1fr;
+        gap: var(--space-lg);
     }
     
-    .hero-actions {
-        flex-direction: column;
-    }
-    
-    .registration-steps {
-        gap: var(--space-md);
+    .info-item {
+        max-width: none;
+        flex-direction: row;
+        background: none;
+        padding: 0;
     }
     
     .header-cta {
-        flex-direction: column;
-        width: 100%;
+        order: 2;
+        flex-direction: row;
+        width: auto;
     }
     
-    .btn-whatsapp,
-    .btn-primary {
-        width: 100%;
-        justify-content: center;
+    .btn-whatsapp, .btn-primary {
+        width: auto;
     }
     
-    .notification-banner .container {
-        flex-direction: column;
-        gap: var(--space-xs);
-        text-align: center;
-    }
-    
-    .timeline-track {
-        flex-direction: column;
+    /* Hero diventa due colonne */
+    .hero-grid {
+        flex-direction: row;
         align-items: center;
-        gap: var(--space-xl);
+    }
+    
+    .hero-content {
+        order: 1;
+        text-align: left;
+    }
+    
+    .hero-visual .visual-container {
+        order: 2;
+    }
+    
+    .hero-highlights {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .hero-actions {
+        flex-direction: row;
+    }
+    
+    /* Strumenti due colonne */
+    .tools-comparison {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* FAQ due colonne */
+    .faq-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Location due colonne */
+    .location-grid {
+        flex-direction: row;
+        align-items: start;
+    }
+    
+    /* Footer due colonne */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Notification banner torna orizzontale */
+    .notification-banner .container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+    
+    /* Timeline orizzontale */
+    .timeline-track {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: var(--space-xl) 0;
     }
     
     .timeline-track::before {
-        display: none;
+        left: 0;
+        right: 0;
+        top: 50%;
+        width: 100%;
+        height: 4px;
+        transform: translateY(-50%);
+        background: linear-gradient(90deg, 
+            var(--primary) 0%, 
+            var(--info) 33%, 
+            var(--success) 66%, 
+            var(--warning) 100%);
     }
     
-    .floating-whatsapp {
-        bottom: var(--space-md);
-        right: var(--space-md);
-        width: 50px;
-        height: 50px;
-        font-size: 1.25rem;
+    .timeline-point {
+        width: auto;
+    }
+    
+    /* Corsi due colonne */
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Registration steps orizzontale */
+    .registration-steps {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .course-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .form-buttons {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .btn-next, .btn-back, .btn-submit {
+        width: auto;
+    }
+    
+    .contact-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .btn-whatsapp-large, .btn-phone-large {
+        width: auto;
+        min-width: 200px;
+    }
+    
+    /* CTA buttons orizzontale */
+    .cta-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .cta-btn {
+        max-width: 250px;
     }
 }
 
-@media (max-width: 480px) {
+/* Desktop (1024px e oltre) */
+@media (min-width: 1024px) {
     .container {
-        padding: 0 var(--space-sm);
+        max-width: var(--container-width);
     }
     
-    .hero-title {
-        font-size: 2.5rem;
+    /* Header torna alla griglia originale */
+    .header-grid {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: var(--space-lg);
     }
     
-    .section-header h2,
-    .registration-header h2,
-    .faq-section h2,
-    .location-info h2 {
-        font-size: 2rem;
-        flex-direction: column;
-        text-align: center;
-        gap: var(--space-xs);
+    .header-info {
+        order: 2;
+        width: auto;
+        grid-template-columns: repeat(3, auto);
     }
     
-    .cta-card h2 {
-        font-size: 2rem;
+    .header-cta {
+        order: 3;
     }
     
-    table {
-        display: block;
-        overflow-x: auto;
+    /* Strumenti tre colonne */
+    .tools-comparison {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* FAQ tre colonne */
+    .faq-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Footer quattro colonne */
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    /* Course options tre colonne */
+    .course-options {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Corsi tre colonne */
+    .courses-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Location features tre colonne */
+    .location-features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Desktop Large (1200px e oltre) */
+@media (min-width: 1200px) {
+    html {
+        font-size: 16px;
     }
 }
 
@@ -1969,5 +2223,5 @@ html {
 }
 
 /* ===========================================
-   END OF CSS - BIT CORSI PERFETTO
+   END OF CSS - BIT CORSI PERFETTO E RESPONSIVE
    =========================================== */
