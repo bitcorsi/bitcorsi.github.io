@@ -1,1500 +1,1751 @@
 // ===========================================
-// BIT CORSI - MAIN JAVASCRIPT
-// Core functionality e inizializzazione
+// BIT CORSI - JavaScript Completo & Ottimizzato
 // ===========================================
 
-/**
- * Sistema di inizializzazione modulare
- */
-class BitApp {
-    constructor() {
-        this.modules = new Map();
-        this.initialized = false;
-        this.debug = window.location.hostname === 'localhost';
-    }
 
-    /**
-     * Registra un modulo
-     */
-    registerModule(name, module) {
-        this.modules.set(name, module);
-        if (this.debug) {
-            console.log(`📦 Modulo registrato: ${name}`);
+// 📦 VARIABILI GLOBALI
+const DOM = {
+    body: document.body,
+    html: document.documentElement,
+    // Menu mobile
+    menuToggle: document.querySelector('.menu-toggle'),
+    mobileMenu: document.querySelector('.mobile-menu'),
+    // Timeline età
+    timelinePoints: document.querySelectorAll('.timeline-point'),
+    // Form a step
+    registrationSteps: document.querySelectorAll('.registration-step'),
+    // FAQ
+    faqDetails: document.querySelectorAll('details'),
+    // Corsi
+    coursesContainer: document.getElementById('courses-container'),
+    // Promo
+    promoContainer: document.getElementById('promo-natale-container')
+};
+
+// 🎛️ CONFIGURAZIONE
+const CONFIG = {
+    formSubmitUrl: 'https://formsubmit.co/bitcorsi@gmail.com',
+    whatsappNumber: '393703069215',
+    phoneNumber: '+393703069215',
+    email: 'bitcorsi@gmail.com',
+    instagramUrl: 'https://www.instagram.com/bit_corsi/'
+};
+
+
+// ===========================================
+// 1. INITIALIZATION - Inizializza tutto
+// ===========================================
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 BIT CORSI - Inizializzazione');
+    
+    initMobileMenu();
+    initTimeline();
+    initFAQ();
+    initRegistrationForm();
+    loadCourses();
+    initScrollEffects();
+    initWhatsAppFAB();
+    initPrintButton();
+    
+    // Mostra notifica di caricamento
+    showNotification('Sito caricato con successo!', 'success');
+});
+
+
+// ===========================================
+// 2. MOBILE MENU - Gestione completa
+// ===========================================
+function initMobileMenu() {
+    if (!DOM.menuToggle) return;
+    
+    let isOpen = false;
+    
+    DOM.menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMobileMenu();
+    });
+    
+    // Chiudi menu cliccando fuori
+    document.addEventListener('click', (e) => {
+        if (isOpen && !DOM.mobileMenu.contains(e.target) && e.target !== DOM.menuToggle) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Chiudi menu con ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Gestione link nel menu mobile
+    const mobileLinks = DOM.mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
+    
+    function toggleMobileMenu() {
+        isOpen = !isOpen;
+        
+        if (isOpen) {
+            DOM.mobileMenu.classList.add('active');
+            DOM.menuToggle.classList.add('active');
+            DOM.body.style.overflow = 'hidden';
+            DOM.menuToggle.setAttribute('aria-expanded', 'true');
+            DOM.mobileMenu.setAttribute('aria-hidden', 'false');
+        } else {
+            closeMobileMenu();
         }
     }
-
-    /**
-     * Inizializza tutti i moduli
-     */
-    async initialize() {
-        if (this.initialized) return;
-
-        try {
-            // Inizializza moduli in sequenza
-            for (const [name, module] of this.modules) {
-                if (typeof module.init === 'function') {
-                    await module.init();
-                    if (this.debug) {
-                        console.log(`✅ Modulo inizializzato: ${name}`);
-                    }
-                }
-            }
-
-            this.initialized = true;
-            this.dispatchEvent('app:ready');
-            
-            if (this.debug) {
-                console.log('🎉 BIT App completamente inizializzata');
-            }
-        } catch (error) {
-            console.error('❌ Errore inizializzazione:', error);
-            this.dispatchEvent('app:error', { error });
-        }
-    }
-
-    /**
-     * Event system
-     */
-    dispatchEvent(name, detail = {}) {
-        const event = new CustomEvent(name, { detail });
-        document.dispatchEvent(event);
-    }
-
-    /**
-     * Logger per debug
-     */
-    log(...args) {
-        if (this.debug) {
-            console.log('[BIT]', ...args);
-        }
-    }
-
-    error(...args) {
-        console.error('[BIT]', ...args);
+    
+    function closeMobileMenu() {
+        isOpen = false;
+        DOM.mobileMenu.classList.remove('active');
+        DOM.menuToggle.classList.remove('active');
+        DOM.body.style.overflow = '';
+        DOM.menuToggle.setAttribute('aria-expanded', 'false');
+        DOM.mobileMenu.setAttribute('aria-hidden', 'true');
     }
 }
 
-// Istanza globale
-window.BIT = new BitApp();
 
 // ===========================================
-// MODULO: UI COMPONENTS
+// 3. TIMELINE INTERATTIVA - Per età
 // ===========================================
-const UIComponents = {
-    init() {
-        this.initMobileMenu();
-        this.initSmoothScroll();
-        this.initHeaderEffects();
-        this.initBackToTop();
-        this.initLazyLoad();
-        return Promise.resolve();
-    },
-
-    /**
-     * Mobile menu con animazioni fluide
-     */
-    initMobileMenu() {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const header = document.getElementById('header');
+function initTimeline() {
+    if (!DOM.timelinePoints.length) return;
+    
+    DOM.timelinePoints.forEach(point => {
+        point.addEventListener('click', () => {
+            const age = point.dataset.age;
+            selectTimelinePoint(age);
+            filterCoursesByAge(age);
+        });
         
-        if (!menuToggle || !mobileMenu) return;
+        point.addEventListener('mouseenter', () => {
+            if (!point.classList.contains('active')) {
+                point.classList.add('hover');
+            }
+        });
+        
+        point.addEventListener('mouseleave', () => {
+            point.classList.remove('hover');
+        });
+    });
+    
+    // Seleziona automaticamente 12-13 anni (target principale)
+    setTimeout(() => {
+        selectTimelinePoint('12-13');
+    }, 1000);
+}
 
-        let isOpen = false;
-
-        const toggleMenu = () => {
-            isOpen = !isOpen;
+function selectTimelinePoint(age) {
+    DOM.timelinePoints.forEach(point => {
+        point.classList.remove('active', 'hover');
+        if (point.dataset.age === age) {
+            point.classList.add('active');
             
-            // Update aria attributes
-            menuToggle.setAttribute('aria-expanded', isOpen);
-            mobileMenu.setAttribute('aria-hidden', !isOpen);
-            
-            // Toggle classes
-            mobileMenu.classList.toggle('hidden');
-            document.body.classList.toggle('overflow-hidden', isOpen);
-            
-            // Animate
-            if (isOpen) {
-                mobileMenu.style.transform = 'translateY(0)';
-                mobileMenu.style.opacity = '1';
-            } else {
-                mobileMenu.style.transform = 'translateY(-20px)';
-                mobileMenu.style.opacity = '0';
-            }
-        };
+            // Animazione del punto
+            const dot = point.querySelector('.point');
+            dot.style.animation = 'none';
+            setTimeout(() => {
+                dot.style.animation = 'pulse 1s ease';
+            }, 10);
+        }
+    });
+}
 
-        // Click handler
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleMenu();
-        });
-
-        // Close on escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isOpen) {
-                toggleMenu();
-            }
-        });
-
-        // Close on click outside
-        document.addEventListener('click', (e) => {
-            if (isOpen && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                toggleMenu();
-            }
-        });
-
-        // Close on navigation link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (isOpen) toggleMenu();
-            });
-        });
-
-        BIT.log('Mobile menu inizializzato');
-    },
-
-    /**
-     * Smooth scroll con offset per header fisso
-     */
-    initSmoothScroll() {
-        const headerHeight = document.getElementById('header')?.offsetHeight || 80;
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#' || href === '#!') return;
-                
-                const target = document.querySelector(href);
-                if (!target) return;
-                
-                e.preventDefault();
-                
-                // Calcola posizione con offset
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = targetPosition - headerHeight;
-                
-                // Smooth scroll
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Update URL senza scroll
-                history.pushState(null, null, href);
-            });
-        });
-
-        BIT.log('Smooth scroll inizializzato');
-    },
-
-    /**
-     * Header effects on scroll
-     */
-    initHeaderEffects() {
-        const header = document.getElementById('header');
-        if (!header) return;
-
-        let lastScroll = 0;
-        const scrollThreshold = 100;
-
-        const handleScroll = () => {
-            const currentScroll = window.pageYOffset;
-            
-            // Aggiungi/rimuovi classe scrolled
-            if (currentScroll > 20) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-
-            // Update active nav link
-            this.updateActiveNavLink(currentScroll);
-            
-            lastScroll = currentScroll;
-        };
-
-        // Throttle scroll events
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    handleScroll();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-
-        // Initial check
-        handleScroll();
-        BIT.log('Header effects inizializzati');
-    },
-
-    /**
-     * Update active navigation link based on scroll position
-     */
-    updateActiveNavLink(scrollPos) {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-        
-        let currentSection = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionBottom = sectionTop + section.offsetHeight;
-            
-            if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === `#${currentSection}`) {
-                link.classList.add('active');
-            }
-        });
-    },
-
-    /**
-     * Back to top button
-     */
-    initBackToTop() {
-        const button = document.createElement('button');
-        button.className = 'fixed bottom-24 right-6 z-40 w-12 h-12 bg-primary-500 text-white rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center opacity-0 translate-y-10';
-        button.setAttribute('aria-label', 'Torna all\'inizio');
-        button.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-            </svg>
-        `;
-        
-        document.body.appendChild(button);
-        
-        const toggleVisibility = () => {
-            if (window.pageYOffset > 300) {
-                button.classList.remove('opacity-0', 'translate-y-10');
-                button.classList.add('opacity-100', 'translate-y-0');
-            } else {
-                button.classList.remove('opacity-100', 'translate-y-0');
-                button.classList.add('opacity-0', 'translate-y-10');
-            }
-        };
-        
-        button.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        window.addEventListener('scroll', toggleVisibility);
-        toggleVisibility();
-        
-        BIT.log('Back to top button inizializzato');
-    },
-
-    /**
-     * Lazy load images with intersection observer
-     */
-    initLazyLoad() {
-        if (!('IntersectionObserver' in window)) return;
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    const src = img.getAttribute('data-src');
-                    
-                    if (src) {
-                        img.src = src;
-                        img.removeAttribute('data-src');
-                        observer.unobserve(img);
-                    }
-                }
-            });
-        }, {
-            rootMargin: '50px',
-            threshold: 0.1
-        });
-        
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            observer.observe(img);
-        });
-        
-        BIT.log('Lazy loading inizializzato');
-    }
-};
 
 // ===========================================
-// MODULO: ANIMATIONS
+// 4. FAQ INTERATTIVE - Accordion avanzato
 // ===========================================
-const Animations = {
-    init() {
-        this.initScrollAnimations();
-        this.init3DEffects();
-        this.initCounterAnimation();
-        return Promise.resolve();
-    },
-
-    /**
-     * Scroll-triggered animations
-     */
-    initScrollAnimations() {
-        if (!('IntersectionObserver' in window)) return;
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                    
-                    // Se ha un delay specificato
-                    const delay = entry.target.dataset.animationDelay;
-                    if (delay) {
-                        entry.target.style.animationDelay = delay;
-                    }
-                    
-                    // Observer disconnesso dopo l'animazione
-                    setTimeout(() => {
-                        observer.unobserve(entry.target);
-                    }, 1000);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        // Elements to animate
-        document.querySelectorAll('.tool-card-3d, .course-card, .contact-card').forEach(el => {
-            observer.observe(el);
-        });
-        
-        BIT.log('Scroll animations inizializzate');
-    },
-
-    /**
-     * 3D hover effects
-     */
-    init3DEffects() {
-        const cards = document.querySelectorAll('.tool-card-3d');
-        
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                if (window.innerWidth < 768) return;
-                
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateY = ((x - centerX) / centerX) * 10;
-                const rotateX = ((centerY - y) / centerY) * 5;
-                
-                card.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateZ(20px)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                if (window.innerWidth < 768) return;
-                
-                card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
-                card.style.transition = 'transform 0.5s ease';
-                
-                setTimeout(() => {
-                    card.style.transition = '';
-                }, 500);
-            });
-        });
-        
-        BIT.log('3D effects inizializzati');
-    },
-
-    /**
-     * Animated counters
-     */
-    initCounterAnimation() {
-        const counters = document.querySelectorAll('.counter');
-        if (!counters.length) return;
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    const duration = 2000;
-                    const step = target / (duration / 16);
-                    let current = 0;
-                    
-                    const updateCounter = () => {
-                        current += step;
-                        if (current < target) {
-                            counter.textContent = Math.floor(current);
-                            requestAnimationFrame(updateCounter);
-                        } else {
-                            counter.textContent = target;
+function initFAQ() {
+    if (!DOM.faqDetails.length) return;
+    
+    DOM.faqDetails.forEach(details => {
+        details.addEventListener('toggle', () => {
+            if (details.open) {
+                // Chiudi altri dettagli nella stessa categoria
+                const category = details.closest('.faq-category');
+                if (category) {
+                    const otherDetails = category.querySelectorAll('details');
+                    otherDetails.forEach(other => {
+                        if (other !== details && other.open) {
+                            other.open = false;
                         }
-                    };
-                    
-                    updateCounter();
-                    observer.unobserve(counter);
+                    });
                 }
-            });
-        }, { threshold: 0.5 });
-        
-        counters.forEach(counter => observer.observe(counter));
-        
-        BIT.log('Counter animations inizializzate');
-    }
-};
-
-// ===========================================
-// MODULO: FORM WIZARD
-// ===========================================
-const FormWizard = {
-    init() {
-        this.currentStep = 1;
-        this.totalSteps = 3;
-        this.formData = {};
-        
-        this.initWizard();
-        this.initFormValidation();
-        return Promise.resolve();
-    },
-
-    /**
-     * Initialize multi-step form wizard
-     */
-    initWizard() {
-        const wizard = document.querySelector('.form-wizard');
-        if (!wizard) return;
-        
-        // Next step buttons
-        wizard.querySelectorAll('[data-next-step]').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const nextStep = parseInt(e.target.dataset.nextStep);
-                if (this.validateStep(this.currentStep)) {
-                    this.saveStepData(this.currentStep);
-                    this.goToStep(nextStep);
+                
+                // Animazione di apertura
+                const content = details.querySelector('p');
+                if (content) {
+                    content.style.animation = 'fadeInUp 0.3s ease-out';
                 }
+            }
+        });
+    });
+    
+    // Aggiungi ricerca FAQ (feature avanzata)
+    createFAQSearch();
+}
+
+function createFAQSearch() {
+    const faqSection = document.querySelector('.faq-section');
+    if (!faqSection) return;
+    
+    const searchContainer = document.createElement('div');
+    searchContainer.className = 'faq-search';
+    searchContainer.innerHTML = `
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Cerca nelle FAQ..." id="faq-search">
+            <button class="clear-search" aria-label="Pulisci ricerca">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="search-results"></div>
+    `;
+    
+    faqSection.insertBefore(searchContainer, faqSection.querySelector('.faq-grid'));
+    
+    const searchInput = document.getElementById('faq-search');
+    const clearButton = searchContainer.querySelector('.clear-search');
+    const resultsContainer = searchContainer.querySelector('.search-results');
+    
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        
+        if (query.length < 2) {
+            resultsContainer.innerHTML = '';
+            resultsContainer.style.display = 'none';
+            DOM.faqDetails.forEach(details => {
+                details.style.display = 'block';
             });
-        });
-        
-        // Previous step buttons
-        wizard.querySelectorAll('[data-prev-step]').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const prevStep = parseInt(e.target.dataset.prevStep);
-                this.goToStep(prevStep);
-            });
-        });
-        
-        // Form submission
-        const form = document.getElementById('iscrizione-form');
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleFormSubmit();
-            });
-        }
-        
-        BIT.log('Form wizard inizializzato');
-    },
-
-    /**
-     * Navigate to specific step
-     */
-    goToStep(step) {
-        if (step < 1 || step > this.totalSteps) return;
-        
-        // Hide all steps
-        document.querySelectorAll('.form-step').forEach(el => {
-            el.classList.remove('active');
-        });
-        
-        // Show target step
-        const targetStep = document.querySelector(`.form-step[data-step="${step}"]`);
-        if (targetStep) {
-            targetStep.classList.add('active');
-            
-            // Update progress
-            this.updateProgress(step);
-            this.currentStep = step;
-            
-            // If last step, show review
-            if (step === this.totalSteps) {
-                this.showReview();
-            }
-        }
-    },
-
-    /**
-     * Update progress bar
-     */
-    updateProgress(currentStep) {
-        const progress = (currentStep - 1) / (this.totalSteps - 1) * 100;
-        const progressFill = document.querySelector('.progress-fill');
-        if (progressFill) {
-            progressFill.style.width = `${progress}%`;
-        }
-        
-        // Update step indicators
-        document.querySelectorAll('.progress-step').forEach((stepEl, index) => {
-            const stepNumber = index + 1;
-            stepEl.classList.remove('active', 'completed');
-            
-            if (stepNumber === currentStep) {
-                stepEl.classList.add('active');
-            } else if (stepNumber < currentStep) {
-                stepEl.classList.add('completed');
-            }
-        });
-    },
-
-    /**
-     * Validate current step
-     */
-    validateStep(step) {
-        const currentForm = document.querySelector(`.form-step[data-step="${step}"]`);
-        if (!currentForm) return true;
-        
-        let isValid = true;
-        const inputs = currentForm.querySelectorAll('input[required], select[required]');
-        
-        inputs.forEach(input => {
-            const group = input.closest('.form-group');
-            const errorEl = group?.querySelector('.error-message') || this.createErrorElement(group);
-            
-            if (!input.value.trim()) {
-                this.showError(input, 'Questo campo è obbligatorio', errorEl);
-                isValid = false;
-            } else if (input.type === 'email' && !this.validateEmail(input.value)) {
-                this.showError(input, 'Inserisci un\'email valida', errorEl);
-                isValid = false;
-            } else if (input.type === 'tel' && !this.validatePhone(input.value)) {
-                this.showError(input, 'Inserisci un numero di telefono valido', errorEl);
-                isValid = false;
-            } else {
-                this.clearError(input, errorEl);
-            }
-        });
-        
-        return isValid;
-    },
-
-    /**
-     * Create error message element
-     */
-    createErrorElement(group) {
-        const errorEl = document.createElement('div');
-        errorEl.className = 'error-message text-error-500 text-sm mt-1';
-        group.appendChild(errorEl);
-        return errorEl;
-    },
-
-    /**
-     * Show error message
-     */
-    showError(input, message, errorEl) {
-        input.classList.add('border-error-500');
-        errorEl.textContent = message;
-        errorEl.classList.remove('hidden');
-    },
-
-    /**
-     * Clear error
-     */
-    clearError(input, errorEl) {
-        input.classList.remove('border-error-500');
-        errorEl.textContent = '';
-        errorEl.classList.add('hidden');
-    },
-
-    /**
-     * Email validation
-     */
-    validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    },
-
-    /**
-     * Phone validation
-     */
-    validatePhone(phone) {
-        const re = /^[+]?[\d\s\-\(\)]+$/;
-        return re.test(phone.replace(/\s/g, ''));
-    },
-
-    /**
-     * Save step data
-     */
-    saveStepData(step) {
-        const form = document.querySelector(`.form-step[data-step="${step}"]`);
-        if (!form) return;
-        
-        const formData = new FormData(form);
-        for (const [key, value] of formData.entries()) {
-            if (value.trim()) {
-                this.formData[key] = value.trim();
-            }
-        }
-        
-        BIT.log(`Step ${step} data saved:`, this.formData);
-    },
-
-    /**
-     * Show review before submission
-     */
-    showReview() {
-        const reviewContainer = document.getElementById('review-data');
-        if (!reviewContainer) return;
-        
-        const fields = {
-            'genitore': 'Genitore',
-            'telefono': 'Telefono',
-            'studente': 'Partecipante',
-            'eta': 'Età',
-            'corso': 'Corso scelto',
-            'fonte': 'Come ci hai conosciuto',
-            'email': 'Email',
-            'scuola': 'Scuola frequentata',
-            'note': 'Note'
-        };
-        
-        let html = '';
-        for (const [key, label] of Object.entries(fields)) {
-            if (this.formData[key]) {
-                html += `
-                    <div class="flex justify-between py-2 border-b border-white/10">
-                        <span class="text-neutral-300">${label}:</span>
-                        <span class="font-semibold">${this.formData[key]}</span>
-                    </div>
-                `;
-            }
-        }
-        
-        reviewContainer.innerHTML = html || '<p class="text-center py-4">Nessun dato da mostrare</p>';
-    },
-
-    /**
-     * Handle form submission
-     */
-    async handleFormSubmit() {
-        const submitBtn = document.querySelector('.form-step[data-step="3"] button[type="submit"]');
-        const originalText = submitBtn?.textContent;
-        
-        try {
-            // Show loading state
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `
-                    <svg class="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Invio in corso...
-                `;
-            }
-            
-            // Prepare data for FormSubmit
-            const formData = new FormData();
-            Object.entries(this.formData).forEach(([key, value]) => {
-                formData.append(key, value);
-            });
-            
-            // Additional hidden fields
-            formData.append('_subject', 'BIT - Nuova iscrizione dal sito');
-            formData.append('_captcha', 'false');
-            formData.append('_template', 'table');
-            formData.append('_autoresponse', 'yes');
-            
-            // Send to FormSubmit
-            const response = await fetch('https://formsubmit.co/bitcorsi@gmail.com', {
-                method: 'POST',
-                body: formData
-            });
-            
-            if (response.ok) {
-                this.showSuccess();
-                BIT.log('Form submitted successfully');
-            } else {
-                throw new Error('Form submission failed');
-            }
-            
-        } catch (error) {
-            console.error('Form submission error:', error);
-            this.showError('Si è verificato un errore. Riprova più tardi o contattaci direttamente.');
-            
-            // Restore button
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-            }
-        }
-    },
-
-    /**
-     * Show success message
-     */
-    showSuccess() {
-        // Hide form wizard
-        document.querySelector('.wizard-body')?.classList.add('hidden');
-        
-        // Show success message
-        const successEl = document.getElementById('form-success');
-        if (successEl) {
-            successEl.classList.remove('hidden');
-            
-            // Reset form button
-            successEl.querySelector('[data-reset-form]').addEventListener('click', () => {
-                this.resetForm();
-            });
-            
-            // Confetti animation
-            this.fireConfetti();
-        }
-    },
-
-    /**
-     * Show error message
-     */
-    showError(message) {
-        // Create error toast
-        const toast = document.createElement('div');
-        toast.className = 'fixed top-6 right-6 bg-error-500 text-white px-6 py-3 rounded-lg shadow-xl z-50 animate-slide-in';
-        toast.textContent = message;
-        
-        document.body.appendChild(toast);
-        
-        // Remove after 5 seconds
-        setTimeout(() => {
-            toast.classList.add('animate-slide-out');
-            setTimeout(() => toast.remove(), 300);
-        }, 5000);
-    },
-
-    /**
-     * Reset form
-     */
-    resetForm() {
-        // Reset form data
-        this.formData = {};
-        this.currentStep = 1;
-        
-        // Reset all form inputs
-        document.querySelectorAll('.form-step input, .form-step select, .form-step textarea').forEach(input => {
-            input.value = '';
-        });
-        
-        // Hide success message
-        document.getElementById('form-success')?.classList.add('hidden');
-        
-        // Show wizard body
-        document.querySelector('.wizard-body')?.classList.remove('hidden');
-        
-        // Go to first step
-        this.goToStep(1);
-    },
-
-    /**
-     * Confetti animation
-     */
-    fireConfetti() {
-        if (typeof confetti !== 'function') return;
-        
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
-    },
-
-    /**
-     * Initialize form validation
-     */
-    initFormValidation() {
-        // Real-time validation
-        document.querySelectorAll('.form-control').forEach(input => {
-            input.addEventListener('blur', () => {
-                if (input.hasAttribute('required') && input.value.trim()) {
-                    if (input.type === 'email' && !this.validateEmail(input.value)) {
-                        input.classList.add('border-error-500');
-                    } else if (input.type === 'tel' && !this.validatePhone(input.value)) {
-                        input.classList.add('border-error-500');
-                    } else {
-                        input.classList.remove('border-error-500');
-                    }
-                }
-            });
-        });
-        
-        BIT.log('Form validation inizializzato');
-    }
-};
-
-// ===========================================
-// MODULO: COURSES LOADER
-// ===========================================
-const CoursesLoader = {
-    init() {
-        this.loadCourses();
-        this.initFilter();
-        this.initPromo();
-        return Promise.resolve();
-    },
-
-    /**
-     * Load courses from JSON
-     */
-    async loadCourses() {
-        const container = document.getElementById('courses-container');
-        if (!container) return;
-        
-        try {
-            // Show loading state
-            container.innerHTML = this.createLoadingTemplate();
-            
-            // Fetch courses data
-            const response = await fetch('data/courses.json?' + Date.now());
-            if (!response.ok) throw new Error('Failed to load courses');
-            
-            const data = await response.json();
-            
-            // Render courses
-            this.renderCourses(data.corsi);
-            
-            // Update promo if available
-            if (data.promoNatale?.attiva) {
-                this.renderPromo(data.promoNatale);
-            }
-            
-            BIT.log('Courses loaded successfully');
-            
-        } catch (error) {
-            console.error('Error loading courses:', error);
-            this.showErrorState();
-        }
-    },
-
-    /**
-     * Create loading template
-     */
-    createLoadingTemplate() {
-        return `
-            <div class="card text-center py-12">
-                <div class="animate-spin w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full mx-auto mb-6"></div>
-                <p class="text-lg font-semibold">Caricamento corsi...</p>
-                <p class="text-neutral-600 mt-2">Stiamo recuperando le informazioni più aggiornate</p>
-            </div>
-        `;
-    },
-
-    /**
-     * Show error state
-     */
-    showErrorState() {
-        const container = document.getElementById('courses-container');
-        if (!container) return;
-        
-        container.innerHTML = `
-            <div class="card border-error-500 border-2">
-                <div class="text-center py-8">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-error-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <h3 class="text-xl font-semibold mb-2">Errore di caricamento</h3>
-                    <p class="text-neutral-600 mb-4">Impossibile caricare l'elenco dei corsi.</p>
-                    <button onclick="CoursesLoader.loadCourses()" class="btn btn-primary">
-                        Riprova
-                    </button>
-                </div>
-            </div>
-        `;
-    },
-
-    /**
-     * Render courses to DOM
-     */
-    renderCourses(courses) {
-        const container = document.getElementById('courses-container');
-        if (!container) return;
-        
-        if (!courses || courses.length === 0) {
-            container.innerHTML = `
-                <div class="card text-center py-12">
-                    <p class="text-lg font-semibold">Nessun corso disponibile al momento</p>
-                    <p class="text-neutral-600 mt-2">Controlla più tardi o contattaci per informazioni</p>
-                </div>
-            `;
             return;
         }
         
-        const coursesHtml = courses.map(course => this.createCourseCard(course)).join('');
-        container.innerHTML = coursesHtml;
-        
-        // Initialize availability indicators
-        this.initAvailabilityIndicators();
-    },
-
-    /**
-     * Create course card HTML
-     */
-    createCourseCard(course) {
-        const isAvailable = course.stato === 'aperto';
-        const isFeatured = course.featured;
-        const availabilityClass = this.getAvailabilityClass(course.disponibilita);
-        
-        return `
-            <div class="course-card ${isFeatured ? 'course-card-featured' : ''}" 
-                 data-level="${course.livello}"
-                 data-available="${isAvailable}">
-                <div class="card">
-                    ${course.badge ? `
-                        <div class="badge ${isAvailable ? 'badge-success' : 'badge-warning'} absolute top-4 right-4">
-                            ${course.badge}
-                        </div>
-                    ` : ''}
-                    
-                    <h3 class="heading-4 mb-3">${course.nome}</h3>
-                    
-                    <div class="course-meta flex flex-wrap gap-2 mb-4">
-                        <span class="badge badge-neutral">${course.eta}</span>
-                        <span class="badge badge-neutral">${course.incontri}</span>
-                        <span class="badge badge-primary">${course.prezzo}</span>
-                    </div>
-                    
-                    <div class="card-body mb-6">
-                        <p class="text-body mb-4">${course.descrizione}</p>
-                        
-                        <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                <span class="text-sm">${course.quando}</span>
-                            </div>
-                            
-                            ${course.durata ? `
-                                <div class="flex items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <span class="text-sm">${course.durata}</span>
-                                </div>
-                            ` : ''}
-                        </div>
-                    </div>
-                    
-                    <div class="card-footer flex items-center justify-between">
-                        <div class="availability ${availabilityClass}">
-                            <span class="availability-dot"></span>
-                            ${this.getAvailabilityText(course.disponibilita)}
-                        </div>
-                        
-                        ${isAvailable ? `
-                            <a href="#contatti" class="btn btn-primary btn-sm" data-course="${course.nome}">
-                                Iscriviti ora
-                            </a>
-                        ` : `
-                            <button class="btn btn-secondary btn-sm" disabled>
-                                Corso al completo
-                            </button>
-                        `}
-                    </div>
-                </div>
-            </div>
-        `;
-    },
-
-    /**
-     * Get availability CSS class
-     */
-    getAvailabilityClass(availability) {
-        switch (availability) {
-            case 'high': return 'availability-high';
-            case 'low': return 'availability-low';
-            case 'none': return 'availability-none';
-            default: return 'availability-high';
-        }
-    },
-
-    /**
-     * Get availability text
-     */
-    getAvailabilityText(availability) {
-        switch (availability) {
-            case 'high': return 'Posti disponibili';
-            case 'low': return 'Ultimi posti';
-            case 'none': return 'Esaurito';
-            default: return 'Disponibile';
-        }
-    },
-
-    /**
-     * Initialize availability indicators
-     */
-    initAvailabilityIndicators() {
-        document.querySelectorAll('.availability').forEach(availability => {
-            const dot = availability.querySelector('.availability-dot');
-            if (availability.classList.contains('availability-high')) {
-                dot.style.animation = 'pulse 2s infinite';
-            }
+        searchFAQ(query);
+    });
+    
+    clearButton.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.focus();
+        resultsContainer.innerHTML = '';
+        resultsContainer.style.display = 'none';
+        DOM.faqDetails.forEach(details => {
+            details.style.display = 'block';
         });
-    },
+    });
+}
 
-    /**
-     * Initialize course filter
-     */
-    initFilter() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const coursesContainer = document.getElementById('courses-container');
+function searchFAQ(query) {
+    const results = [];
+    const resultsContainer = document.querySelector('.search-results');
+    
+    DOM.faqDetails.forEach(details => {
+        const question = details.querySelector('summary').textContent.toLowerCase();
+        const answer = details.querySelector('p').textContent.toLowerCase();
+        const category = details.closest('.faq-category').querySelector('h3').textContent.toLowerCase();
         
-        if (!filterButtons.length || !coursesContainer) return;
-        
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Get filter criteria
-                const filter = button.dataset.filter;
-                
-                // Filter courses
-                this.filterCourses(filter);
+        if (question.includes(query) || answer.includes(query) || category.includes(query)) {
+            results.push({
+                element: details,
+                question: details.querySelector('summary').textContent,
+                answer: details.querySelector('p').textContent.substring(0, 100) + '...',
+                category: details.closest('.faq-category').querySelector('h3').textContent
             });
-        });
-        
-        BIT.log('Course filter inizializzato');
-    },
+            details.style.display = 'block';
+        } else {
+            details.style.display = 'none';
+        }
+    });
+    
+    if (results.length > 0) {
+        resultsContainer.innerHTML = `
+            <p class="results-count">${results.length} risultati trovati</p>
+            ${results.map(result => `
+                <div class="result-item">
+                    <h4>${result.question}</h4>
+                    <p class="result-category">${result.category}</p>
+                    <p class="result-answer">${result.answer}</p>
+                </div>
+            `).join('')}
+        `;
+        resultsContainer.style.display = 'block';
+    } else {
+        resultsContainer.innerHTML = `
+            <p class="no-results">Nessun risultato trovato per "${query}"</p>
+        `;
+        resultsContainer.style.display = 'block';
+    }
+}
 
-    /**
-     * Filter courses based on criteria
-     */
-    filterCourses(filter) {
-        const courseCards = document.querySelectorAll('.course-card');
-        
-        courseCards.forEach(card => {
-            let shouldShow = true;
-            
-            switch (filter) {
-                case 'beginner':
-                    shouldShow = card.dataset.level === 'beginner';
-                    break;
-                case 'intermediate':
-                    shouldShow = card.dataset.level === 'intermediate';
-                    break;
-                case 'advanced':
-                    shouldShow = card.dataset.level === 'advanced';
-                    break;
-                case 'available':
-                    shouldShow = card.dataset.available === 'true';
-                    break;
-                // 'all' shows everything
+
+// ===========================================
+// 5. FORM DI ISCRIZIONE - Multi-step avanzato
+// ===========================================
+function initRegistrationForm() {
+    const form = document.getElementById('simple-registration');
+    if (!form) return;
+    
+    const steps = form.querySelectorAll('.form-step');
+    const nextButtons = form.querySelectorAll('.btn-next');
+    const backButtons = form.querySelectorAll('.btn-back');
+    const submitButton = form.querySelector('.btn-submit');
+    const progressSteps = document.querySelectorAll('.registration-steps .step');
+    
+    let currentStep = 0;
+    const formData = {
+        parent: {},
+        child: {},
+        course: null
+    };
+    
+    // Inizializza i passi
+    showStep(0);
+    
+    // Gestione pulsanti Avanti
+    nextButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                saveStepData(currentStep);
+                if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    showStep(currentStep);
+                    updateProgressBar();
+                }
             }
+        });
+    });
+    
+    // Gestione pulsanti Indietro
+    backButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+                updateProgressBar();
+            }
+        });
+    });
+    
+    // Gestione selezione corso
+    const courseOptions = form.querySelectorAll('.course-option');
+    courseOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            courseOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            formData.course = option.dataset.course;
             
-            if (shouldShow) {
-                card.style.display = 'block';
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 10);
+            // Aggiorna riepilogo
+            updateSummary();
+        });
+    });
+    
+    // Gestione submit
+    if (submitButton) {
+        submitButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            if (validateStep(currentStep)) {
+                saveStepData(currentStep);
+                
+                if (!formData.course) {
+                    showNotification('Seleziona un corso prima di procedere', 'error');
+                    return;
+                }
+                
+                try {
+                    await submitForm();
+                } catch (error) {
+                    console.error('Errore invio form:', error);
+                    showNotification('Errore nell\'invio. Riprova più tardi.', 'error');
+                }
+            }
+        });
+    }
+    
+    // Funzioni helper
+    function showStep(stepIndex) {
+        steps.forEach((step, index) => {
+            step.classList.toggle('active', index === stepIndex);
+        });
+    }
+    
+    function validateStep(stepIndex) {
+        const currentStepElement = steps[stepIndex];
+        const inputs = currentStepElement.querySelectorAll('input[required], select[required]');
+        
+        let isValid = true;
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                highlightError(input);
             } else {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.display = 'none';
-                }, 300);
+                removeError(input);
+                
+                // Validazioni specifiche
+                if (input.type === 'email') {
+                    if (!isValidEmail(input.value)) {
+                        isValid = false;
+                        highlightError(input, 'Email non valida');
+                    }
+                }
+                
+                if (input.type === 'tel') {
+                    if (!isValidPhone(input.value)) {
+                        isValid = false;
+                        highlightError(input, 'Numero di telefono non valido');
+                    }
+                }
             }
         });
-    },
-
-    /**
-     * Initialize promo banner
-     */
-    initPromo() {
-        // Check if promo should be shown based on date
-        const today = new Date();
-        const promoStart = new Date(today.getFullYear(), 10, 1); // Nov 1
-        const promoEnd = new Date(today.getFullYear(), 11, 31); // Dec 31
         
-        if (today >= promoStart && today <= promoEnd) {
-            // Promo season - banner will be loaded from JSON
-            BIT.log('Promo season active');
+        if (!isValid) {
+            showNotification('Compila tutti i campi obbligatori', 'error');
         }
-    },
-
-    /**
-     * Render promo banner
-     */
-    renderPromo(promoData) {
-        const container = document.getElementById('promo-container');
-        if (!container || !promoData) return;
         
-        container.innerHTML = `
-            <div class="promo-banner card bg-gradient-to-r from-primary-500 to-primary-700 text-white">
-                <div class="flex flex-col md:flex-row items-center gap-6">
-                    <div class="promo-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                        </svg>
-                    </div>
-                    
-                    <div class="flex-1">
-                        <div class="badge badge-warning mb-2">${promoData.badge || 'EDIZIONE SPECIALE'}</div>
-                        <h3 class="heading-4 mb-2">${promoData.titolo}</h3>
-                        <p class="mb-4">${promoData.descrizione}</p>
-                        
-                        <div class="flex flex-wrap gap-4 mb-4">
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                <span>${promoData.date}</span>
-                            </div>
-                            
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>${promoData.eta}</span>
-                            </div>
-                            
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>${promoData.prezzo}</span>
-                            </div>
-                        </div>
-                        
-                        <p class="text-sm opacity-90 mb-4">${promoData.posti}</p>
-                        
-                        <a href="#contatti" class="btn btn-white">
-                            ${promoData.cta || 'Iscriviti ora'}
-                        </a>
-                    </div>
+        return isValid;
+    }
+    
+    function saveStepData(stepIndex) {
+        const currentStepElement = steps[stepIndex];
+        const inputs = currentStepElement.querySelectorAll('input, select');
+        
+        inputs.forEach(input => {
+            const name = input.id || input.name;
+            const value = input.value.trim();
+            
+            if (name && value) {
+                if (name.includes('parent')) {
+                    formData.parent[name.replace('parent-', '')] = value;
+                } else if (name.includes('child')) {
+                    formData.child[name.replace('child-', '')] = value;
+                }
+            }
+        });
+    }
+    
+    function updateProgressBar() {
+        progressSteps.forEach((step, index) => {
+            step.classList.remove('active');
+            if (index <= currentStep) {
+                step.classList.add('active');
+            }
+        });
+    }
+    
+    function updateSummary() {
+        const summaryBox = form.querySelector('.summary-box');
+        if (!summaryBox) return;
+        
+        const courseName = getCourseName(formData.course);
+        
+        summaryBox.innerHTML = `
+            <div class="summary-content">
+                <h4>Riepilogo Iscrizione</h4>
+                <div class="summary-item">
+                    <strong>Genitore:</strong> ${formData.parent.name || 'Non specificato'}
+                </div>
+                <div class="summary-item">
+                    <strong>Telefono:</strong> ${formData.parent.phone || 'Non specificato'}
+                </div>
+                <div class="summary-item">
+                    <strong>Bambino/Ragazzo:</strong> ${formData.child.name || 'Non specificato'}
+                </div>
+                <div class="summary-item">
+                    <strong>Età:</strong> ${formData.child.age || 'Non specificato'} anni
+                </div>
+                <div class="summary-item">
+                    <strong>Corso selezionato:</strong> ${courseName}
                 </div>
             </div>
         `;
     }
-};
-
-// ===========================================
-// MODULO: ANALYTICS & OPTIMIZATION
-// ===========================================
-const Analytics = {
-    init() {
-        this.initPerformanceMonitoring();
-        this.initErrorTracking();
-        this.initFormAnalytics();
-        return Promise.resolve();
-    },
-
-    /**
-     * Monitor performance metrics
-     */
-    initPerformanceMonitoring() {
-        // Monitor Core Web Vitals
-        if ('PerformanceObserver' in window) {
-            try {
-                // LCP (Largest Contentful Paint)
-                const lcpObserver = new PerformanceObserver((entryList) => {
-                    const entries = entryList.getEntries();
-                    const lastEntry = entries[entries.length - 1];
-                    
-                    BIT.log('LCP:', lastEntry.startTime);
-                    this.trackMetric('lcp', lastEntry.startTime);
-                });
-                
-                lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-                
-                // FID (First Input Delay)
-                const fidObserver = new PerformanceObserver((entryList) => {
-                    const entries = entryList.getEntries();
-                    entries.forEach(entry => {
-                        BIT.log('FID:', entry.processingStart - entry.startTime);
-                        this.trackMetric('fid', entry.processingStart - entry.startTime);
-                    });
-                });
-                
-                fidObserver.observe({ entryTypes: ['first-input'] });
-                
-                // CLS (Cumulative Layout Shift)
-                let clsValue = 0;
-                let clsEntries = [];
-                
-                const clsObserver = new PerformanceObserver((entryList) => {
-                    for (const entry of entryList.getEntries()) {
-                        if (!entry.hadRecentInput) {
-                            clsValue += entry.value;
-                            clsEntries.push(entry);
-                        }
-                    }
-                });
-                
-                clsObserver.observe({ entryTypes: ['layout-shift'] });
-                
-                // Report CLS on page hide
-                document.addEventListener('visibilitychange', () => {
-                    if (document.visibilityState === 'hidden') {
-                        BIT.log('CLS:', clsValue);
-                        this.trackMetric('cls', clsValue);
-                        
-                        // Send to analytics
-                        clsObserver.disconnect();
-                    }
-                });
-                
-            } catch (e) {
-                BIT.error('Performance monitoring failed:', e);
-            }
-        }
-    },
-
-    /**
-     * Track custom metric
-     */
-    trackMetric(name, value) {
-        // Store in localStorage for later analysis
-        const metrics = JSON.parse(localStorage.getItem('bit_metrics') || '{}');
-        metrics[name] = metrics[name] || [];
-        metrics[name].push({
-            value,
-            timestamp: Date.now(),
-            url: window.location.pathname
+    
+    async function submitForm() {
+        // Mostra loading
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
+        submitButton.disabled = true;
+        
+        // Prepara dati per FormSubmit
+        const formDataToSend = new FormData();
+        
+        // Aggiungi dati del form
+        Object.entries(formData.parent).forEach(([key, value]) => {
+            formDataToSend.append(`Genitore ${key}`, value);
         });
         
-        localStorage.setItem('bit_metrics', JSON.stringify(metrics));
-    },
-
-    /**
-     * Error tracking
-     */
-    initErrorTracking() {
-        // Global error handler
-        window.addEventListener('error', (event) => {
-            this.trackError({
-                message: event.message,
-                filename: event.filename,
-                lineno: event.lineno,
-                colno: event.colno,
-                error: event.error?.stack
-            });
+        Object.entries(formData.child).forEach(([key, value]) => {
+            formDataToSend.append(`Bambino ${key}`, value);
         });
         
-        // Unhandled promise rejections
-        window.addEventListener('unhandledrejection', (event) => {
-            this.trackError({
-                type: 'unhandledrejection',
-                reason: event.reason?.toString(),
-                stack: event.reason?.stack
-            });
-        });
-    },
-
-    /**
-     * Track error
-     */
-    trackError(error) {
-        const errors = JSON.parse(localStorage.getItem('bit_errors') || '[]');
-        errors.push({
-            ...error,
-            timestamp: Date.now(),
-            userAgent: navigator.userAgent,
-            url: window.location.href
-        });
+        formDataToSend.append('Corso', getCourseName(formData.course));
+        formDataToSend.append('_subject', 'Nuova Iscrizione BIT Corsi');
+        formDataToSend.append('_template', 'table');
+        formDataToSend.append('_captcha', 'false');
+        formDataToSend.append('_next', window.location.origin + '/grazie.html');
         
-        localStorage.setItem('bit_errors', JSON.stringify(errors.slice(-50))); // Keep last 50 errors
-        
-        BIT.error('Error tracked:', error);
-    },
-
-    /**
-     * Form analytics
-     */
-    initFormAnalytics() {
-        document.addEventListener('app:ready', () => {
-            // Track form interactions
-            document.querySelectorAll('form').forEach(form => {
-                form.addEventListener('submit', () => {
-                    this.trackEvent('form_submit', {
-                        form_id: form.id,
-                        form_action: form.action
-                    });
-                });
+        try {
+            const response = await fetch(CONFIG.formSubmitUrl, {
+                method: 'POST',
+                body: formDataToSend,
+                mode: 'no-cors'
             });
             
-            // Track CTA clicks
-            document.querySelectorAll('.btn-primary, .btn-outline').forEach(button => {
-                button.addEventListener('click', () => {
-                    this.trackEvent('cta_click', {
-                        text: button.textContent.trim(),
-                        href: button.getAttribute('href') || button.getAttribute('data-href')
-                    });
-                });
-            });
+            // Succes
+            showFormSuccess();
             
-            // Track tool card interactions
-            document.querySelectorAll('.tool-card-3d').forEach(card => {
-                card.addEventListener('click', () => {
-                    const title = card.querySelector('h3')?.textContent;
-                    this.trackEvent('tool_click', { tool: title });
-                });
-            });
-        });
-    },
-
-    /**
-     * Track custom event
-     */
-    trackEvent(name, data = {}) {
-        const events = JSON.parse(localStorage.getItem('bit_events') || '[]');
-        events.push({
-            name,
-            data,
-            timestamp: Date.now(),
-            url: window.location.pathname
-        });
-        
-        localStorage.setItem('bit_events', JSON.stringify(events.slice(-100))); // Keep last 100 events
-        
-        BIT.log(`Event tracked: ${name}`, data);
-    }
-};
-
-// ===========================================
-// INIZIALIZZAZIONE APP
-// ===========================================
-document.addEventListener('DOMContentLoaded', () => {
-    // Registra tutti i moduli
-    BIT.registerModule('ui', UIComponents);
-    BIT.registerModule('animations', Animations);
-    BIT.registerModule('form', FormWizard);
-    BIT.registerModule('courses', CoursesLoader);
-    BIT.registerModule('analytics', Analytics);
-    
-    // Inizializza l'app
-    BIT.initialize();
-    
-    // Service Worker registration (solo in produzione)
-    if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').catch(error => {
-                BIT.error('Service Worker registration failed:', error);
-            });
-        });
-    }
-    
-    // Gestione offline
-    window.addEventListener('offline', () => {
-        BIT.dispatchEvent('app:offline');
-        BIT.log('App is offline');
-    });
-    
-    window.addEventListener('online', () => {
-        BIT.dispatchEvent('app:online');
-        BIT.log('App is online');
-    });
-});
-
-// ===========================================
-// UTILITY FUNCTIONS (globali)
-// ===========================================
-window.debounce = function(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-};
-
-window.throttle = function(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
+        } catch (error) {
+            throw error;
+        } finally {
+            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Invia richiesta iscrizione';
+            submitButton.disabled = false;
         }
-    };
-};
-
-// ===========================================
-// ERROR BOUNDARY
-// ===========================================
-window.addEventListener('error', (event) => {
-    console.error('Global error:', event.error);
+    }
     
-    // Mostra un messaggio user-friendly per errori critici
-    if (event.error.message.includes('Critical') || event.error.message.includes('Syntax')) {
-        const errorOverlay = document.createElement('div');
-        errorOverlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            padding: 20px;
-            text-align: center;
+    function showFormSuccess() {
+        const successHTML = `
+            <div class="form-success">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Iscrizione Inviata con Successo!</h3>
+                <p>Ti abbiamo inviato una email di conferma. Ti contatteremo al più presto per definire i dettagli.</p>
+                <div class="success-actions">
+                    <button class="btn-primary" onclick="window.location.reload()">Nuova Iscrizione</button>
+                    <a href="https://wa.me/${CONFIG.whatsappNumber}" class="btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Scrivici su WhatsApp
+                    </a>
+                </div>
+            </div>
         `;
         
-        errorOverlay.innerHTML = `
-            <div>
-                <h2 style="font-size: 24px; margin-bottom: 20px;">⚠️ Si è verificato un errore</h2>
-                <p style="margin-bottom: 20px;">La pagina potrebbe non funzionare correttamente.</p>
-                <button onclick="location.reload()" style="
-                    background: #FF6B35;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 8px;
-                    cursor: pointer;
-                ">
-                    Ricarica la pagina
+        form.innerHTML = successHTML;
+        
+        // Animazione di successo
+        setTimeout(() => {
+            const confetti = createConfetti();
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }, 500);
+    }
+}
+
+
+// ===========================================
+// 6. CARICAMENTO CORSI - Dinamico con JSON
+// ===========================================
+async function loadCourses() {
+    if (!DOM.coursesContainer) return;
+    
+    // Mostra loading
+    DOM.coursesContainer.innerHTML = `
+        <div class="loading-courses">
+            <i class="fas fa-robot fa-spin"></i>
+            <p>Caricamento corsi in corso...</p>
+        </div>
+    `;
+    
+    try {
+        // Simula caricamento da API/JSON
+        await simulateDelay(1500);
+        
+        const courses = await fetchCourses();
+        renderCourses(courses);
+        
+        // Carica anche la promo
+        loadPromo();
+        
+    } catch (error) {
+        console.error('Errore caricamento corsi:', error);
+        DOM.coursesContainer.innerHTML = `
+            <div class="error-loading">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Impossibile caricare i corsi al momento.</p>
+                <button class="btn-retry" onclick="loadCourses()">Riprova</button>
+            </div>
+        `;
+    }
+}
+
+async function fetchCourses() {
+    // In produzione, sostituisci con fetch('/corsi.json')
+    return [
+        {
+            id: 'lego-basic',
+            name: 'LEGO Spike Prime - Base',
+            age: '8-13 anni',
+            duration: '10 lezioni',
+            schedule: 'Sabato 10:00-11:30',
+            price: '€180',
+            description: 'Introduzione alla robotica con LEGO. Costruisci e programma il tuo primo robot.',
+            features: ['Kit LEGO incluso', 'Programmazione a blocchi', 'Progetti pratici'],
+            availability: 'alta',
+            featured: true
+        },
+        {
+            id: 'microbit-starter',
+            name: 'micro:bit - Starter',
+            age: '8-13 anni',
+            duration: '8 lezioni',
+            schedule: 'Sabato 14:00-15:30',
+            price: '€150',
+            description: 'Scopri l\'elettronica creativa con la scheda micro:bit della BBC.',
+            features: ['micro:bit incluso', 'LED e sensori', 'Progetti portatili'],
+            availability: 'media'
+        },
+        {
+            id: 'arduino-junior',
+            name: 'Arduino - Junior',
+            age: '12-16 anni',
+            duration: '12 lezioni',
+            schedule: 'Sabato 16:00-17:30',
+            price: '€220',
+            description: 'Passa al coding testuale e all\'elettronica avanzata con Arduino.',
+            features: ['Kit Arduino incluso', 'Coding in C++', 'Progetti reali'],
+            availability: 'bassa'
+        }
+    ];
+}
+
+function renderCourses(courses) {
+    if (!courses || courses.length === 0) {
+        DOM.coursesContainer.innerHTML = `
+            <div class="no-courses">
+                <i class="fas fa-calendar-times"></i>
+                <p>Nessun corso disponibile al momento.</p>
+                <p>Controlla più tardi o contattaci per informazioni.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    const coursesHTML = courses.map(course => `
+        <div class="course-card ${course.featured ? 'featured' : ''}" data-age="${course.age}" data-availability="${course.availability}">
+            ${course.featured ? '<div class="course-badge">🌟 POPOLARE</div>' : ''}
+            
+            <div class="course-header">
+                <h3>${course.name}</h3>
+                <div class="course-age">${course.age}</div>
+            </div>
+            
+            <div class="course-body">
+                <p class="course-description">${course.description}</p>
+                
+                <div class="course-features">
+                    ${course.features.map(feature => `
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>${feature}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>${course.duration}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>${course.schedule}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-euro-sign"></i>
+                        <span>${course.price}</span>
+                    </div>
+                </div>
+                
+                <div class="availability ${course.availability}">
+                    <i class="fas fa-user-friends"></i>
+                    <span>${getAvailabilityText(course.availability)}</span>
+                </div>
+            </div>
+            
+            <div class="course-footer">
+                <button class="btn-course-select" data-course="${course.id}">
+                    <i class="fas fa-info-circle"></i>
+                    Maggiori informazioni
+                </button>
+                <button class="btn-course-enroll" data-course="${course.id}">
+                    <i class="fas fa-pen-alt"></i>
+                    Iscriviti ora
                 </button>
             </div>
-        `;
+        </div>
+    `).join('');
+    
+    DOM.coursesContainer.innerHTML = coursesHTML;
+    
+    // Aggiungi event listeners ai pulsanti
+    initCourseButtons();
+}
+
+function initCourseButtons() {
+    // Pulsanti per maggiori informazioni
+    const infoButtons = document.querySelectorAll('.btn-course-select');
+    infoButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const courseId = button.dataset.course;
+            showCourseDetails(courseId);
+        });
+    });
+    
+    // Pulsanti per iscrizione diretta
+    const enrollButtons = document.querySelectorAll('.btn-course-enroll');
+    enrollButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const courseId = button.dataset.course;
+            enrollToCourse(courseId);
+        });
+    });
+}
+
+function showCourseDetails(courseId) {
+    // Implementa modal con dettagli corso
+    showNotification(`Dettagli per corso ${courseId}`, 'info');
+    
+    // Scroll al form di iscrizione
+    const registrationSection = document.getElementById('iscrizione');
+    if (registrationSection) {
+        registrationSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function enrollToCourse(courseId) {
+    showNotification(`Iscrizione al corso ${courseId}`, 'success');
+    
+    // Scroll al form e seleziona il corso
+    const registrationSection = document.getElementById('iscrizione');
+    if (registrationSection) {
+        registrationSection.scrollIntoView({ behavior: 'smooth' });
         
-        document.body.appendChild(errorOverlay);
+        // Seleziona il corso nel form (se esiste)
+        setTimeout(() => {
+            const courseOptions = document.querySelectorAll('.course-option');
+            courseOptions.forEach(option => {
+                if (option.dataset.course === courseId) {
+                    option.click();
+                }
+            });
+        }, 500);
+    }
+}
+
+function filterCoursesByAge(ageRange) {
+    const courseCards = document.querySelectorAll('.course-card');
+    const [minAge, maxAge] = ageRange.split('-').map(Number);
+    
+    courseCards.forEach(card => {
+        const courseAge = card.dataset.age;
+        const [courseMin, courseMax] = courseAge.split('-').map(str => parseInt(str));
+        
+        if (minAge >= courseMin && maxAge <= courseMax) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeInUp 0.5s ease';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+async function loadPromo() {
+    if (!DOM.promoContainer) return;
+    
+    try {
+        // Simula fetch della promo
+        await simulateDelay(500);
+        
+        const promo = {
+            active: true,
+            title: '🎄 Laboratorio Tecnologico Natalizio',
+            subtitle: 'Crea addobbi tecnologici e giochi digitali',
+            description: '3 incontri speciali per immergersi nella tecnologia creativa del Natale',
+            dates: 'Dicembre 2024',
+            age: '8-14 anni',
+            price: 'Prezzo speciale',
+            spots: 'Posti limitati',
+            cta: 'Prenota ora il tuo posto'
+        };
+        
+        if (promo.active) {
+            DOM.promoContainer.innerHTML = `
+                <div class="promo-banner">
+                    <div class="promo-content">
+                        <div class="promo-tag">OFFERTA SPECIALE</div>
+                        <h3>${promo.title}</h3>
+                        <p class="promo-subtitle">${promo.subtitle}</p>
+                        <p class="promo-description">${promo.description}</p>
+                        
+                        <div class="promo-details">
+                            <div class="promo-detail">
+                                <i class="fas fa-calendar"></i>
+                                <span>${promo.dates}</span>
+                            </div>
+                            <div class="promo-detail">
+                                <i class="fas fa-child"></i>
+                                <span>${promo.age}</span>
+                            </div>
+                            <div class="promo-detail">
+                                <i class="fas fa-euro-sign"></i>
+                                <span>${promo.price}</span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-promo-action" onclick="enrollToPromo()">
+                            ${promo.cta} <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                    <div class="promo-image">
+                        <i class="fas fa-snowflake fa-spin"></i>
+                    </div>
+                </div>
+            `;
+            
+            DOM.promoContainer.style.display = 'block';
+            
+            // Animazione della promo
+            setTimeout(() => {
+                DOM.promoContainer.style.opacity = '1';
+                DOM.promoContainer.style.transform = 'translateY(0)';
+            }, 100);
+        }
+        
+    } catch (error) {
+        console.error('Errore caricamento promo:', error);
+        DOM.promoContainer.style.display = 'none';
+    }
+}
+
+function enrollToPromo() {
+    showNotification('Iscrizione al Laboratorio Natalizio!', 'success');
+    
+    // Scroll al form
+    const registrationSection = document.getElementById('iscrizione');
+    if (registrationSection) {
+        registrationSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+
+// ===========================================
+// 7. SCROLL EFFECTS - Animazioni al scroll
+// ===========================================
+function initScrollEffects() {
+    // Header scroll effect
+    let lastScroll = 0;
+    const header = document.querySelector('.main-header');
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+            header.classList.add('scrolled');
+            
+            if (currentScroll > lastScroll && currentScroll > 200) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+        } else {
+            header.classList.remove('scrolled', 'hidden');
+        }
+        
+        lastScroll = currentScroll;
+        
+        // Animazioni al reveal
+        animateOnScroll();
+    });
+    
+    // Inizializza osservatore per animazioni
+    initIntersectionObserver();
+}
+
+function initIntersectionObserver() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                
+                // Se è una card, aggiungi delay progressivo
+                if (entry.target.classList.contains('course-card') || 
+                    entry.target.classList.contains('tool-card')) {
+                    const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
+                    entry.target.style.animationDelay = `${index * 0.1}s`;
+                }
+            }
+        });
+    }, observerOptions);
+    
+    // Osserva elementi da animare
+    const elementsToAnimate = document.querySelectorAll(
+        '.course-card, .tool-card, .highlight-card, .faq-category'
+    );
+    
+    elementsToAnimate.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+function animateOnScroll() {
+    // Implementa animazioni personalizzate se necessario
+}
+
+
+// ===========================================
+// 8. WHATSAPP FAB - Intelligente
+// ===========================================
+function initWhatsAppFAB() {
+    const fab = document.querySelector('.floating-whatsapp');
+    if (!fab) return;
+    
+    let isVisible = true;
+    let lastScrollTop = 0;
+    
+    // Mostra/nascondi in base allo scroll
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset;
+        
+        // Nascondi quando si scrolla verso il basso
+        if (scrollTop > lastScrollTop && scrollTop > 300) {
+            if (isVisible) {
+                fab.style.transform = 'translateY(100px)';
+                isVisible = false;
+            }
+        } else {
+            if (!isVisible) {
+                fab.style.transform = 'translateY(0)';
+                isVisible = true;
+            }
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+    
+    // Effetto hover migliorato
+    fab.addEventListener('mouseenter', () => {
+        fab.style.transform = 'scale(1.1)';
+    });
+    
+    fab.addEventListener('mouseleave', () => {
+        fab.style.transform = 'scale(1)';
+    });
+    
+    // Clic per WhatsApp
+    fab.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Apre WhatsApp con messaggio precompilato
+        const message = `Ciao BIT Corsi! Sono interessato ai corsi di robotica educativa. Potete darmi maggiori informazioni?`;
+        const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+        
+        window.open(whatsappUrl, '_blank');
+    });
+}
+
+
+// ===========================================
+// 9. UTILITY FUNCTIONS - Funzioni di supporto
+// ===========================================
+function showNotification(message, type = 'info') {
+    // Rimuovi notifiche precedenti
+    removeExistingNotifications();
+    
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-${getNotificationIcon(type)}"></i>
+            <span>${message}</span>
+        </div>
+        <button class="notification-close" aria-label="Chiudi notifica">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animazione di entrata
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Auto-rimozione dopo 5 secondi
+    const autoRemove = setTimeout(() => {
+        removeNotification(notification);
+    }, 5000);
+    
+    // Pulsante di chiusura
+    const closeButton = notification.querySelector('.notification-close');
+    closeButton.addEventListener('click', () => {
+        clearTimeout(autoRemove);
+        removeNotification(notification);
+    });
+    
+    // Chiudi al click
+    notification.addEventListener('click', (e) => {
+        if (!e.target.closest('.notification-close')) {
+            clearTimeout(autoRemove);
+            removeNotification(notification);
+        }
+    });
+}
+
+function removeExistingNotifications() {
+    const existing = document.querySelectorAll('.notification');
+    existing.forEach(notification => {
+        removeNotification(notification);
+    });
+}
+
+function removeNotification(notification) {
+    notification.classList.remove('show');
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 300);
+}
+
+function getNotificationIcon(type) {
+    const icons = {
+        success: 'check-circle',
+        error: 'exclamation-circle',
+        warning: 'exclamation-triangle',
+        info: 'info-circle'
+    };
+    return icons[type] || 'info-circle';
+}
+
+function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti-container';
+    
+    const colors = ['#FF6B35', '#10B981', '#3B82F6', '#F59E0B'];
+    
+    for (let i = 0; i < 100; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'confetti-particle';
+        
+        // Stili casuali
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.width = `${Math.random() * 10 + 5}px`;
+        particle.style.height = particle.style.width;
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.animationDelay = `${Math.random() * 2}s`;
+        particle.style.animationDuration = `${Math.random() * 2 + 2}s`;
+        
+        confetti.appendChild(particle);
+    }
+    
+    return confetti;
+}
+
+function simulateDelay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function isValidPhone(phone) {
+    const re = /^[\+]?[1-9][\d]{0,15}$/;
+    return re.test(phone.replace(/[\s\-\(\)]/g, ''));
+}
+
+function getCourseName(courseId) {
+    const courses = {
+        'lego': 'LEGO Spike Prime',
+        'microbit': 'micro:bit BBC',
+        'arduino': 'Arduino'
+    };
+    return courses[courseId] || 'Corso di robotica';
+}
+
+function getAvailabilityText(availability) {
+    const texts = {
+        'alta': 'Posti disponibili',
+        'media': 'Pochi posti rimasti',
+        'bassa': 'Lista d\'attesa'
+    };
+    return texts[availability] || 'Disponibilità da verificare';
+}
+
+function highlightError(input, message = 'Campo obbligatorio') {
+    input.classList.add('error');
+    
+    // Rimuovi errori precedenti
+    const existingError = input.parentNode.querySelector('.error-message');
+    if (existingError) existingError.remove();
+    
+    // Aggiungi messaggio di errore
+    const error = document.createElement('div');
+    error.className = 'error-message';
+    error.textContent = message;
+    input.parentNode.appendChild(error);
+}
+
+function removeError(input) {
+    input.classList.remove('error');
+    const error = input.parentNode.querySelector('.error-message');
+    if (error) error.remove();
+}
+
+
+// ===========================================
+// 10. PRINT FUNCTIONALITY - Stampa info
+// ===========================================
+function initPrintButton() {
+    // Aggiungi pulsante stampa nel footer
+    const footer = document.querySelector('.main-footer');
+    if (!footer) return;
+    
+    const printButton = document.createElement('button');
+    printButton.className = 'btn-print';
+    printButton.innerHTML = '<i class="fas fa-print"></i> Stampa informazioni';
+    printButton.addEventListener('click', printCourseInfo);
+    
+    const footerBottom = footer.querySelector('.footer-bottom');
+    if (footerBottom) {
+        footerBottom.appendChild(printButton);
+    }
+}
+
+function printCourseInfo() {
+    // Crea una finestra di stampa con informazioni essenziali
+    const printWindow = window.open('', '_blank');
+    
+    const courses = Array.from(document.querySelectorAll('.course-card')).map(card => ({
+        name: card.querySelector('h3')?.textContent || 'Corso',
+        age: card.querySelector('.course-age')?.textContent || '',
+        schedule: card.querySelector('.meta-item:nth-child(2) span')?.textContent || '',
+        price: card.querySelector('.meta-item:nth-child(3) span')?.textContent || ''
+    }));
+    
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>BIT Corsi - Informazioni Corsi</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 2cm; }
+                h1 { color: #FF6B35; }
+                .course { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #ccc; }
+                .contact { margin-top: 40px; }
+                @media print {
+                    .no-print { display: none; }
+                }
+            </style>
+        </head>
+        <body>
+            <h1>BIT Corsi - Informazioni Corsi 2025/2026</h1>
+            <p>Stampato il ${new Date().toLocaleDateString('it-IT')}</p>
+            
+            <h2>Corsi Disponibili</h2>
+            ${courses.map(course => `
+                <div class="course">
+                    <h3>${course.name}</h3>
+                    <p><strong>Età:</strong> ${course.age}</p>
+                    <p><strong>Orario:</strong> ${course.schedule}</p>
+                    <p><strong>Prezzo:</strong> ${course.price}</p>
+                </div>
+            `).join('')}
+            
+            <div class="contact">
+                <h2>Contatti</h2>
+                <p><strong>Telefono:</strong> ${CONFIG.phoneNumber}</p>
+                <p><strong>Email:</strong> ${CONFIG.email}</p>
+                <p><strong>Sede:</strong> Centro Aperto Sandro Marelli, Piazzetta SS. Francesco e Chiara 1, Mompiano (BS)</p>
+            </div>
+            
+            <button class="no-print" onclick="window.print()">Stampa</button>
+            <button class="no-print" onclick="window.close()">Chiudi</button>
+        </body>
+        </html>
+    `);
+    
+    printWindow.document.close();
+}
+
+
+// ===========================================
+// 11. SERVICE WORKER (Opzionale) - PWA
+// ===========================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('Service Worker registrato con successo:', registration);
+            })
+            .catch(error => {
+                console.log('Service Worker registrazione fallita:', error);
+            });
+    });
+}
+
+
+// ===========================================
+// 12. ERROR HANDLING - Gestione errori globale
+// ===========================================
+window.addEventListener('error', (event) => {
+    console.error('Errore JavaScript:', event.error);
+    
+    // Invia errore a Google Analytics (se configurato)
+    if (typeof gtag === 'function') {
+        gtag('event', 'exception', {
+            description: event.error.message,
+            fatal: false
+        });
     }
 });
 
-// ===========================================
-// READY STATE
-// ===========================================
-document.addEventListener('app:ready', () => {
-    // Aggiungi classe loaded al body per transizioni
-    document.body.classList.add('loaded');
-    
-    // Log per debug
-    BIT.log('Tutto pronto!');
+window.addEventListener('unhandledrejection', (event) => {
+    console.error('Promise rifiutata non gestita:', event.reason);
 });
 
+
 // ===========================================
-// EXPORT PER TESTING
+// 13. ANALYTICS (Opzionale) - Tracking base
 // ===========================================
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        BitApp,
-        UIComponents,
-        Animations,
-        FormWizard,
-        CoursesLoader,
-        Analytics
-    };
+function trackEvent(category, action, label) {
+    // Implementa Google Analytics o altro
+    if (typeof gtag === 'function') {
+        gtag('event', action, {
+            event_category: category,
+            event_label: label
+        });
+    }
+    
+    // Log locale per debug
+    console.log(`Tracking: ${category} - ${action} - ${label}`);
 }
+
+// Traccia click su CTA principali
+document.addEventListener('click', (e) => {
+    const button = e.target.closest('button, a[href^="#"], a.btn');
+    if (button) {
+        const text = button.textContent.trim() || button.getAttribute('aria-label') || 'Unknown';
+        trackEvent('CTA Click', text, window.location.pathname);
+    }
+});
+
+
+// ===========================================
+// EXPORT FUNCTIONS per uso globale
+// ===========================================
+window.BIT = {
+    showNotification,
+    loadCourses,
+    enrollToCourse,
+    trackEvent,
+    printCourseInfo
+};
+
+
+// ===========================================
+// READY STATE - Quando tutto è pronto
+// ===========================================
+if (document.readyState === 'complete') {
+    console.log('BIT Corsi - Sito completamente caricato');
+    showNotification('Benvenuto in BIT Corsi! 👋', 'info');
+}
+
+// ===========================================
+// CSS AGGIUNTIVO per JavaScript (inline)
+// ===========================================
+const dynamicStyles = `
+    /* Notification Styles */
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        border-radius: 12px;
+        padding: 16px 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        max-width: 400px;
+        transform: translateX(120%);
+        transition: transform 0.3s ease;
+        z-index: 10000;
+        border-left: 4px solid var(--primary);
+    }
+    
+    .notification.show {
+        transform: translateX(0);
+    }
+    
+    .notification-success { border-color: var(--success); }
+    .notification-error { border-color: var(--error); }
+    .notification-warning { border-color: var(--warning); }
+    .notification-info { border-color: var(--info); }
+    
+    .notification-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+    }
+    
+    .notification-content i {
+        font-size: 1.2rem;
+    }
+    
+    .notification-success i { color: var(--success); }
+    .notification-error i { color: var(--error); }
+    .notification-warning i { color: var(--warning); }
+    .notification-info i { color: var(--info); }
+    
+    .notification-close {
+        background: none;
+        border: none;
+        color: var(--gray-400);
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+    
+    .notification-close:hover {
+        color: var(--gray-700);
+        background: var(--gray-100);
+    }
+    
+    /* Confetti */
+    .confetti-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+    }
+    
+    .confetti-particle {
+        position: absolute;
+        border-radius: 50%;
+        animation: confetti-fall linear forwards;
+    }
+    
+    @keyframes confetti-fall {
+        0% {
+            transform: translateY(-100px) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
+        }
+    }
+    
+    /* FAQ Search */
+    .faq-search {
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 12px;
+        padding: 12px 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    .search-box i {
+        color: var(--gray-400);
+        margin-right: 10px;
+    }
+    
+    #faq-search {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        background: transparent;
+    }
+    
+    .clear-search {
+        background: none;
+        border: none;
+        color: var(--gray-400);
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+    
+    .clear-search:hover {
+        color: var(--gray-700);
+        background: var(--gray-100);
+    }
+    
+    .search-results {
+        margin-top: 20px;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        display: none;
+    }
+    
+    .results-count {
+        font-weight: 600;
+        color: var(--gray-700);
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .result-item {
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        background: var(--gray-50);
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .result-item:hover {
+        background: var(--gray-100);
+        transform: translateX(5px);
+    }
+    
+    .result-item h4 {
+        margin: 0 0 5px 0;
+        color: var(--gray-900);
+        font-size: 1rem;
+    }
+    
+    .result-category {
+        font-size: 0.85rem;
+        color: var(--primary);
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+    
+    .result-answer {
+        font-size: 0.9rem;
+        color: var(--gray-600);
+        margin: 0;
+    }
+    
+    .no-results {
+        text-align: center;
+        color: var(--gray-500);
+        padding: 20px;
+    }
+    
+    /* Form Errors */
+    .error {
+        border-color: var(--error) !important;
+    }
+    
+    .error-message {
+        color: var(--error);
+        font-size: 0.85rem;
+        margin-top: 4px;
+    }
+    
+    /* Course Cards Hover */
+    .course-card {
+        transition: all 0.3s ease;
+    }
+    
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .course-card.featured {
+        border: 2px solid var(--primary);
+    }
+    
+    .course-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .availability {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-top: 15px;
+    }
+    
+    .availability.alta {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--success);
+    }
+    
+    .availability.media {
+        background: rgba(245, 158, 11, 0.1);
+        color: var(--warning);
+    }
+    
+    .availability.bassa {
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--error);
+    }
+    
+    /* Promo Banner */
+    .promo-banner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 30px;
+        background: linear-gradient(135deg, #FF6B35 0%, #FF8B5C 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+    }
+    
+    .promo-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    
+    .promo-banner h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.5rem;
+    }
+    
+    .promo-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 10px;
+    }
+    
+    .promo-description {
+        opacity: 0.8;
+        margin-bottom: 20px;
+    }
+    
+    .promo-details {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+    
+    .promo-detail {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+    }
+    
+    .btn-promo-action {
+        background: white;
+        color: var(--primary);
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+    }
+    
+    .btn-promo-action:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .promo-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+    
+    /* Form Success */
+    .form-success {
+        text-align: center;
+        padding: 40px 20px;
+    }
+    
+    .success-icon {
+        font-size: 4rem;
+        color: var(--success);
+        margin-bottom: 20px;
+    }
+    
+    .form-success h3 {
+        margin: 0 0 15px 0;
+        color: var(--gray-900);
+    }
+    
+    .form-success p {
+        color: var(--gray-600);
+        margin-bottom: 30px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .success-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    /* Loading States */
+    .loading-courses, .error-loading, .no-courses {
+        text-align: center;
+        padding: 60px 20px;
+        grid-column: 1 / -1;
+    }
+    
+    .loading-courses i {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+        animation: spin 1s linear infinite;
+    }
+    
+    .error-loading i {
+        font-size: 3rem;
+        color: var(--error);
+        margin-bottom: 20px;
+    }
+    
+    .no-courses i {
+        font-size: 3rem;
+        color: var(--gray-400);
+        margin-bottom: 20px;
+    }
+    
+    .btn-retry {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s;
+    }
+    
+    .btn-retry:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+    }
+    
+    /* Print Button */
+    .btn-print {
+        background: var(--gray-200);
+        color: var(--gray-700);
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 20px;
+        transition: all 0.3s;
+    }
+    
+    .btn-print:hover {
+        background: var(--gray-300);
+        transform: translateY(-1px);
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animated {
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .promo-banner {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        
+        .promo-details {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .success-actions {
+            flex-direction: column;
+        }
+        
+        .notification {
+            left: 20px;
+            right: 20px;
+            max-width: none;
+        }
+    }
+`;
+
+// Aggiungi stili dinamici al documento
+const styleSheet = document.createElement('style');
+styleSheet.textContent = dynamicStyles;
+document.head.appendChild(styleSheet);
+
+
+// ===========================================
+// FINAL INIT - Ultime inizializzazioni
+// ===========================================
+console.log('🎉 BIT CORSI JavaScript - Caricato e pronto!');
