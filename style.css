@@ -105,42 +105,15 @@ img {
 /* ========================================
    HEADER
    ======================================== */
-/* Assicurati che il body non abbia margini indesiderati */
-body {
-  margin: 0;
-}
-
-/* Header fisso (come desideri) */
-header {
-  position: fixed;
+.header {
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
   z-index: 1000;
-  /* Aggiungi il tuo background qui, es: */
-  background-color: #FF6B35; /* <-- sostituisci con il tuo colore */
-}
-
-/* Onda decorativa */
-.header-wave {
-  height: 10px; /* Altezza dell'onda – regolabile */
-  width: 100%;
-  position: relative;
-  z-index: 999;
-  margin-top: 12px; /* ← IMPORTANTE! Sostituisci con l'altezza reale del tuo header in px */
-}
-
-.header-wave::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,60 Q300,120 600,60 T1200,60 L1200,120 L0,120 Z' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat center bottom;
-  background-size: cover;
-  pointer-events: none;
+  padding: 0.20rem 0;
+  border-bottom: 1px solid var(--gray-100);
 }
 
 .header .container {
@@ -2311,4 +2284,97 @@ textarea:focus-visible {
 
 .tool-block-btn:hover .block-square {
     background: #fff;
+}
+/* Header minimal per pagine interne */
+.header .header-content {
+    display: flex;
+    justify-content: flex-start; /* logo sempre a sinistra */
+    align-items: center;
+}
+
+.header .logo img {
+    width: 38px; /* stessa dimensione del sito principale */
+    height: auto;
+}
+
+.header .logo span {
+    font-size: 1.3rem; /* identico al tuo index */
+}
+/* Hero per pagine strumenti */
+.inner-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 0;
+}
+
+.inner-hero .hero-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.inner-hero .hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.inner-hero .hero-image img {
+    width: 90%;
+    max-width: 380px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .inner-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .inner-hero .hero-content {
+        padding-right: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .inner-hero .hero-image img {
+        width: 70%;
+    }
+}
+/* Bottone Dettagli pulito */
+.btn-dettagli {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25); /* arancione del sito */
+    color: #fff;
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: 0.2s ease;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.btn-dettagli:hover {
+    background: #e86e00;
+    transform: translateY(-2px);
+}
+/* Bottone torna strumenti pulito */
+.btn-strumenti {
+    display: inline-block;
+    background: var (--primary-light);/* arancione del sito */
+    color: black;
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: 0.2s ease;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.btn-strumenti :hover {
+    background: #e86e00;
+    transform: translateY(-2px);
 }
