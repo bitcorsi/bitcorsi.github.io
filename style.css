@@ -2279,63 +2279,7 @@ textarea:focus-visible {
 .tool-block-btn:hover .block-square {
     background: #fff;
 }
-/* Header minimal per pagine interne */
-.header .header-content {
-    display: flex;
-    justify-content: flex-start; /* logo sempre a sinistra */
-    align-items: center;
-}
 
-.header .logo img {
-    width: 38px; /* stessa dimensione del sito principale */
-    height: auto;
-}
-
-.header .logo span {
-    font-size: 1.3rem; /* identico al tuo index */
-}
-/* Hero per pagine strumenti */
-.inner-hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4rem 0;
-}
-
-.inner-hero .hero-content {
-    flex: 1;
-    padding-right: 2rem;
-}
-
-.inner-hero .hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.inner-hero .hero-image img {
-    width: 90%;
-    max-width: 380px;
-    height: auto;
-    object-fit: contain;
-}
-
-/* Mobile layout */
-@media (max-width: 768px) {
-    .inner-hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .inner-hero .hero-content {
-        padding-right: 0;
-        margin-bottom: 1.5rem;
-    }
-
-    .inner-hero .hero-image img {
-        width: 70%;
-    }
-}
 /* Bottone Dettagli pulito */
 .btn-dettagli {
     display: inline-block;
@@ -2353,33 +2297,36 @@ textarea:focus-visible {
 .btn-dettagli:hover {
     background: #e86e00;
     transform: translateY(-2px);
-}
-/* Bottone torna strumenti pulito */
-.btn-strumenti {
-    display: inline-block;
-    background: var (--primary-light);/* arancione del sito */
-    color: black;
-    padding: 0.55rem 1.1rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none !important;
-    transition: 0.2s ease;
-    font-size: 0.9rem;
-    line-height: 1;
+
+
+.header {
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-strumenti :hover {
-    background: #e86e00;
-    transform: translateY(-2px);
-}
 .header::after {
   content: '';
   position: absolute;
-  bottom: -15px;
+  bottom: -20px;
   left: 0;
-  width: 100%;
-  height: 30px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V7.23C0,65.52,0,94.78,0,120H1200V0Z' fill='%23ffffff' opacity='0.8'/%3E%3C/svg%3E");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  width: 200%;
+  height: 40px;
+  background: var(--primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 600px 100%;
+  animation: waveFlow 20s linear infinite;
+  z-index: 1;
+}
+
+@keyframes waveFlow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-600px); }
+}
+
+.hero {
+  position: relative;
+  margin-top: -20px;
+  padding-top: 40px;
+  z-index: 10;
 }
