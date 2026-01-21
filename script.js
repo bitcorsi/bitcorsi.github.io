@@ -542,192 +542,532 @@ function initRegistrationForm() {
 // ===========================================
 // 6. CARICAMENTO CORSI - Dinamico con JSON
 // ===========================================
+// ===========================================
+// FUNZIONI AGGIORNATE per JSON Integration
+// ===========================================
+
+// Sovrascrivi la funzione loadCourses con questa versione aggiornata:
 async function loadCourses() {
     if (!DOM.coursesContainer) return;
     
-    // Mostra loading
-    DOM.coursesContainer.innerHTML = `
-        <div class="loading-courses">
-            <i class="fas fa-robot fa-spin"></i>
-            <p>Caricamento corsi in corso...</p>
-        </div>
-    `;
-    
     try {
-        // Simula caricamento da API/JSON
-        await simulateDelay(1500);
+        // Carica il JSON esterno
+        const response = await fetch('corsi.json');
+        if (!response.ok) throw new Error('JSON non trovato');
         
-        const courses = await fetchCourses();
-        renderCourses(courses);
+        const data = await response.json();
         
-        // Carica anche la promo
-        loadPromo();
+        // Aggiorna titolo e sottotitolo
+        updateCoursesHeader(data);
+        
+        // Carica promo natale (se attiva)
+        loadPromo(data.promoNatale);
+        
+        // Renderizza i corsi
+        renderCourses(data.corsi);
+        
+        // Inizializza filtri
+        initCourseFilters();
+        
+        // Animazione di entrata
+        animateCoursesEntry();
         
     } catch (error) {
         console.error('Errore caricamento corsi:', error);
-        DOM.coursesContainer.innerHTML = `
-            <div class="error-loading">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p>Impossibile caricare i corsi al momento.</p>
-                <button class="btn-retry" onclick="loadCourses()">Riprova</button>
-            </div>
-        `;
+        showCoursesError();
     }
 }
 
-async function fetchCourses() {
-    // In produzione, sostituisci con fetch('/corsi.json')
-    return [
-        {
-            id: 'lego-basic',
-            name: 'LEGO Spike Prime - Base',
-            age: '8-13 anni',
-            duration: '10 lezioni',
-            schedule: 'Sabato 10:00-11:30',
-            price: '€180',
-            description: 'Introduzione alla robotica con LEGO. Costruisci e programma il tuo primo robot.',
-            features: ['Kit LEGO incluso', 'Programmazione a blocchi', 'Progetti pratici'],
-            availability: 'alta',
-            featured: true
-        },
-        {
-            id: 'microbit-starter',
-            name: 'micro:bit - Starter',
-            age: '8-13 anni',
-            duration: '8 lezioni',
-            schedule: 'Sabato 14:00-15:30',
-            price: '€150',
-            description: 'Scopri l\'elettronica creativa con la scheda micro:bit della BBC.',
-            features: ['micro:bit incluso', 'LED e sensori', 'Progetti portatili'],
-            availability: 'media'
-        },
-        {
-            id: 'arduino-junior',
-            name: 'Arduino - Junior',
-            age: '12-16 anni',
-            duration: '12 lezioni',
-            schedule: 'Sabato 16:00-17:30',
-            price: '€220',
-            description: 'Passa al coding testuale e all\'elettronica avanzata con Arduino.',
-            features: ['Kit Arduino incluso', 'Coding in C++', 'Progetti reali'],
-            availability: 'bassa'
-        }
-    ];
+function updateCoursesHeader(data) {
+    const title = document.getElementById('courses-title');
+    const subtitle = document.getElementById('courses-subtitle');
+    
+    if (title && data.titoloCorsi) {
+        title.textContent = data.titoloCorsi;
+    }
+    
+    if (subtitle && data.sottotitoloCorsi) {
+        subtitle.textContent = data.sottotitoloCorsi;
+    }
+}
+
+function loadPromo(promoData) {
+    if (!DOM.promoContainer || !promoData || !promoData.attiva) {
+        DOM.promoContainer.style.display = 'none';
+        return;
+    }
+    
+    DOM.promoContainer.innerHTML = createPromoHTML(promoData);
+    DOM.promoContainer.style.display = 'block';
+    
+    // Animazione speciale per la promo
+    animatePromo();
+    createSnowflakes();
+}
+
+function createPromoHTML(promo) {
+    return `
+        <div class="promo-natale-banner">
+            <div class="promo-natale-content">
+                <div class="promo-natale-tag">🎄 OFFERTA NATALIZIA</div>
+                <h3>${promo.titolo}</h3>
+                <p class="promo-natale-subtitle">${promo.sottotitolo}</p>
+                <p class="promo-natale-description">${promo.descrizione}</p>
+                
+                <div class="promo-natale-details">
+                    <div class="promo-detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Date:</strong> ${promo.date}</span>
+                    </div>
+                    <div class="promo-detail-item">
+                        <i class="fas fa-child"></i>
+                        <span><strong>Età:</strong> ${promo.eta}</span>
+                    </div>
+                    <div class="promo-detail-item">
+                        <i class="fas fa-euro-sign"></i>
+                        <span><strong>Prezzo:</strong> ${promo.prezzo}</span>
+                    </div>
+                    <div class="promo-detail-item">
+                        <i class="fas fa-user-friends"></i>
+                        <span><strong>${promo.posti}</strong></span>
+                    </div>
+                </div>
+                
+                <a href="#iscrizione" class="promo-natale-cta" data-course="natale">
+                    <i class="fas fa-gift"></i>
+                    ${promo.cta}
+                </a>
+            </div>
+            <div class="snowflakes" id="snowflakes"></div>
+        </div>
+    `;
+}
+
+function createSnowflakes() {
+    const container = document.getElementById('snowflakes');
+    if (!container) return;
+    
+    for (let i = 0; i < 30; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        
+        // Dimensioni casuali
+        const size = Math.random() * 10 + 5;
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        
+        // Posizione casuale
+        snowflake.style.left = `${Math.random() * 100}%`;
+        
+        // Opacità casuale
+        snowflake.style.opacity = `${Math.random() * 0.5 + 0.3}`;
+        
+        // Animazione
+        const duration = Math.random() * 5 + 5;
+        const delay = Math.random() * 5;
+        snowflake.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+        
+        container.appendChild(snowflake);
+    }
+}
+
+function animatePromo() {
+    const banner = document.querySelector('.promo-natale-banner');
+    if (!banner) return;
+    
+    // Animazione di entrata
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        banner.style.transition = 'all 0.6s ease-out';
+        banner.style.opacity = '1';
+        banner.style.transform = 'translateY(0)';
+    }, 100);
 }
 
 function renderCourses(courses) {
     if (!courses || courses.length === 0) {
-        DOM.coursesContainer.innerHTML = `
-            <div class="no-courses">
-                <i class="fas fa-calendar-times"></i>
-                <p>Nessun corso disponibile al momento.</p>
-                <p>Controlla più tardi o contattaci per informazioni.</p>
-            </div>
-        `;
+        DOM.coursesContainer.innerHTML = createNoCoursesHTML();
         return;
     }
     
-    const coursesHTML = courses.map(course => `
-        <div class="course-card ${course.featured ? 'featured' : ''}" data-age="${course.age}" data-availability="${course.availability}">
-            ${course.featured ? '<div class="course-badge">🌟 POPOLARE</div>' : ''}
+    const coursesHTML = courses.map(course => createCourseHTML(course)).join('');
+    DOM.coursesContainer.innerHTML = coursesHTML;
+    
+    // Inizializza bottoni dei corsi
+    initCourseButtons();
+}
+
+function createCourseHTML(course) {
+    const badgeClass = course.stato === 'aperto' ? 'badge-open' : 'badge-closed';
+    const badgeText = course.stato === 'aperto' ? '🟢 Aperte' : '🔴 Esaurito';
+    
+    // Determina età per filtri
+    const ageRange = course.eta;
+    let filterClass = '';
+    if (ageRange.includes('8-11') || ageRange.includes('8-13')) {
+        filterClass = 'beginner intermediate';
+    } else if (ageRange.includes('12-16')) {
+        filterClass = 'intermediate advanced';
+    }
+    
+    return `
+        <div class="course-card ${filterClass}" data-age="${course.eta}" data-status="${course.stato}">
+            <div class="course-badge ${badgeClass}">${badgeText}</div>
             
             <div class="course-header">
-                <h3>${course.name}</h3>
-                <div class="course-age">${course.age}</div>
+                <h3>${course.nome}</h3>
+                <div class="course-age">${course.eta}</div>
             </div>
             
             <div class="course-body">
-                <p class="course-description">${course.description}</p>
+                <p class="course-description">${course.descrizione}</p>
+                
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>${course.incontri}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>${course.quando.split(',')[0]}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-euro-sign"></i>
+                        <span>${course.prezzo}</span>
+                    </div>
+                </div>
                 
                 <div class="course-features">
-                    ${course.features.map(feature => `
+                    ${getCourseFeatures(course.id).map(feature => `
                         <div class="feature">
                             <i class="fas fa-check"></i>
                             <span>${feature}</span>
                         </div>
                     `).join('')}
                 </div>
-                
-                <div class="course-meta">
-                    <div class="meta-item">
-                        <i class="fas fa-clock"></i>
-                        <span>${course.duration}</span>
-                    </div>
-                    <div class="meta-item">
-                        <i class="fas fa-calendar"></i>
-                        <span>${course.schedule}</span>
-                    </div>
-                    <div class="meta-item">
-                        <i class="fas fa-euro-sign"></i>
-                        <span>${course.price}</span>
-                    </div>
-                </div>
-                
-                <div class="availability ${course.availability}">
-                    <i class="fas fa-user-friends"></i>
-                    <span>${getAvailabilityText(course.availability)}</span>
-                </div>
             </div>
             
             <div class="course-footer">
-                <button class="btn-course-select" data-course="${course.id}">
+                <button class="btn-course-info" onclick="showCourseDetails('${course.id}')">
                     <i class="fas fa-info-circle"></i>
-                    Maggiori informazioni
+                    Dettagli
                 </button>
-                <button class="btn-course-enroll" data-course="${course.id}">
+                <button class="btn-course-enroll" onclick="enrollToCourse('${course.id}')" 
+                        ${course.stato !== 'aperto' ? 'disabled' : ''}>
                     <i class="fas fa-pen-alt"></i>
-                    Iscriviti ora
+                    ${course.stato === 'aperto' ? 'Iscriviti' : 'Esaurito'}
                 </button>
             </div>
         </div>
-    `).join('');
-    
-    DOM.coursesContainer.innerHTML = coursesHTML;
-    
-    // Aggiungi event listeners ai pulsanti
-    initCourseButtons();
+    `;
 }
 
-function initCourseButtons() {
-    // Pulsanti per maggiori informazioni
-    const infoButtons = document.querySelectorAll('.btn-course-select');
-    infoButtons.forEach(button => {
+function getCourseFeatures(courseId) {
+    const features = {
+        'spike': [
+            'Kit LEGO Spike Prime incluso',
+            'Programmazione a blocchi intuitiva',
+            '6 progetti pratici completi',
+            'Certificato finale'
+        ],
+        'arduino': [
+            'Kit Arduino base incluso',
+            'Introduzione all\'elettronica',
+            '4 progetti avanzati',
+            'Supporto coding testuale'
+        ],
+        'microbit': [
+            'micro:bit BBC incluso',
+            'Programmazione creativa',
+            '6 progetti interattivi',
+            'Sensori e LED integrati'
+        ],
+        'roberta': [
+            'Accesso Open Roberta Lab',
+            '4 sessioni online + 2 in sede',
+            'Simulazione multipla robot',
+            'Apprendimento flessibile'
+        ],
+        'natale': [
+            '3 mattinate immersive',
+            'Progetti natalizi tecnologici',
+            'Materiali premium inclusi',
+            'Regalo speciale finale'
+        ]
+    };
+    
+    return features[courseId] || [
+        'Materiali inclusi',
+        'Gruppi piccoli',
+        'Istruttori certificati',
+        'Progetti pratici'
+    ];
+}
+
+function createNoCoursesHTML() {
+    return `
+        <div class="no-courses">
+            <div class="no-courses-icon">
+                <i class="fas fa-calendar-times"></i>
+            </div>
+            <h3>Nessun corso disponibile al momento</h3>
+            <p>Stiamo preparando nuove date per i prossimi mesi.</p>
+            <div class="no-courses-actions">
+                <a href="#contatti" class="btn-primary">
+                    <i class="fas fa-bell"></i>
+                    Notificami quando disponibili
+                </a>
+                <a href="https://wa.me/${CONFIG.whatsappNumber}" class="btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Chiedi informazioni
+                </a>
+            </div>
+        </div>
+    `;
+}
+
+function showCoursesError() {
+    DOM.coursesContainer.innerHTML = `
+        <div class="error-loading">
+            <div class="error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>Impossibile caricare i corsi</h3>
+            <p>Si è verificato un errore durante il caricamento delle informazioni.</p>
+            <div class="error-actions">
+                <button class="btn-retry" onclick="loadCourses()">
+                    <i class="fas fa-redo"></i>
+                    Riprova
+                </button>
+                <a href="tel:${CONFIG.phoneNumber}" class="btn-phone">
+                    <i class="fas fa-phone"></i>
+                    Chiamaci per info
+                </a>
+            </div>
+        </div>
+    `;
+}
+
+function initCourseFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const courseCards = document.querySelectorAll('.course-card');
+    
+    filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const courseId = button.dataset.course;
-            showCourseDetails(courseId);
+            // Aggiorna bottoni attivi
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const filter = button.dataset.filter;
+            applyCourseFilter(filter, courseCards);
         });
     });
-    
-    // Pulsanti per iscrizione diretta
-    const enrollButtons = document.querySelectorAll('.btn-course-enroll');
-    enrollButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const courseId = button.dataset.course;
-            enrollToCourse(courseId);
-        });
-    });
 }
 
-function showCourseDetails(courseId) {
-    // Implementa modal con dettagli corso
-    showNotification(`Dettagli per corso ${courseId}`, 'info');
-    
-    // Scroll al form di iscrizione
-    const registrationSection = document.getElementById('iscrizione');
-    if (registrationSection) {
-        registrationSection.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-function enrollToCourse(courseId) {
-    showNotification(`Iscrizione al corso ${courseId}`, 'success');
-    
-    // Scroll al form e seleziona il corso
-    const registrationSection = document.getElementById('iscrizione');
-    if (registrationSection) {
-        registrationSection.scrollIntoView({ behavior: 'smooth' });
+function applyCourseFilter(filter, courseCards) {
+    courseCards.forEach(card => {
+        const age = card.dataset.age;
+        const status = card.dataset.status;
         
-        // Seleziona il corso nel form (se esiste)
+        let shouldShow = true;
+        
+        switch (filter) {
+            case 'all':
+                shouldShow = true;
+                break;
+                
+            case 'beginner':
+                shouldShow = age.includes('8-11') || age.includes('8-13');
+                break;
+                
+            case 'intermediate':
+                shouldShow = age.includes('12-13');
+                break;
+                
+            case 'advanced':
+                shouldShow = age.includes('14-16');
+                break;
+                
+            case 'available':
+                shouldShow = status === 'aperto';
+                break;
+        }
+        
+        if (shouldShow) {
+            card.style.display = 'block';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 10);
+        } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+function animateCoursesEntry() {
+    const cards = document.querySelectorAll('.course-card');
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.5s ease-out';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+}
+
+// Funzioni globali aggiornate
+window.showCourseDetails = function(courseId) {
+    // Implementa modal dettagli corso
+    const courseDetails = {
+        'spike': {
+            title: 'Spike Prime Lab',
+            description: 'Corso completo di robotica con LEGO Education Spike Prime',
+            details: '6 incontri pratici per imparare a costruire e programmare robot',
+            requirements: 'Nessuna esperienza richiesta',
+            included: ['Kit LEGO Spike Prime', 'Accesso software', 'Materiali', 'Certificato'],
+            schedule: 'Sabato 10:00-11:30'
+        },
+        'arduino': {
+            title: 'Arduino Base',
+            description: 'Introduzione all\'elettronica e programmazione con Arduino',
+            details: '4 sessioni per creare progetti elettronici interattivi',
+            requirements: 'Conoscenze base di informatica consigliate',
+            included: ['Kit Arduino', 'Componenti elettronici', 'Supporto', 'Certificato'],
+            schedule: 'Sabato mattina ore 10:00-11:30'
+        },
+        'microbit': {
+            title: 'Micro:bit Lab',
+            description: 'Programmazione creativa con il computer tascabile BBC',
+            details: '6 incontri per creare giochi e strumenti digitali',
+            requirements: 'Nessuna esperienza richiesta',
+            included: ['micro:bit BBC', 'Accesso editor online', 'Sensori', 'Certificato'],
+            schedule: 'Sabato mattina ore 10:00-11:30'
+        },
+        'roberta': {
+            title: 'Open Roberta Lab',
+            description: 'Robotica virtuale con piattaforma cloud',
+            details: '4 sessioni online + 2 incontri in sede',
+            requirements: 'Computer con connessione internet',
+            included: ['Accesso piattaforma', 'Supporto remoto', 'Simulatore', 'Certificato'],
+            schedule: 'Flessibile (online + in sede)'
+        },
+        'natale': {
+            title: 'Xmas Tech Lab',
+            description: 'Laboratorio tecnologico natalizio speciale',
+            details: '3 mattinate immersive di robotica creativa',
+            requirements: 'Entusiasmo e creatività',
+            included: ['Tutti i materiali', 'Regalo natalizio', 'Merenda', 'Diploma speciale'],
+            schedule: '29-30-31 dicembre 10:00-12:00'
+        }
+    };
+    
+    const course = courseDetails[courseId];
+    if (!course) return;
+    
+    showCourseModal(course);
+};
+
+function showCourseModal(course) {
+    // Crea e mostra modal con dettagli corso
+    const modalHTML = `
+        <div class="course-modal-overlay">
+            <div class="course-modal">
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="modal-header">
+                    <h3>${course.title}</h3>
+                    <p class="modal-subtitle">${course.description}</p>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h4><i class="fas fa-info-circle"></i> Descrizione</h4>
+                        <p>${course.details}</p>
+                    </div>
+                    
+                    <div class="modal-grid">
+                        <div class="modal-card">
+                            <h4><i class="fas fa-clipboard-check"></i> Requisiti</h4>
+                            <p>${course.requirements}</p>
+                        </div>
+                        
+                        <div class="modal-card">
+                            <h4><i class="fas fa-calendar-alt"></i> Orario</h4>
+                            <p>${course.schedule}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h4><i class="fas fa-box-open"></i> Cosa include</h4>
+                        <ul class="included-list">
+                            ${course.included.map(item => `
+                                <li><i class="fas fa-check"></i> ${item}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button class="btn-secondary modal-close-btn">
+                        <i class="fas fa-times"></i>
+                        Chiudi
+                    </button>
+                    <a href="#iscrizione" class="btn-primary" data-course="${course.title.toLowerCase()}">
+                        <i class="fas fa-pen-alt"></i>
+                        Iscriviti ora
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Aggiungi modal al documento
+    const modalContainer = document.createElement('div');
+    modalContainer.innerHTML = modalHTML;
+    document.body.appendChild(modalContainer);
+    
+    // Gestione chiusura modal
+    const closeButtons = modalContainer.querySelectorAll('.modal-close, .modal-close-btn');
+    const overlay = modalContainer.querySelector('.course-modal-overlay');
+    
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modalContainer.remove();
+        });
+    });
+    
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            modalContainer.remove();
+        }
+    });
+    
+    // Animazione di entrata
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+        modalContainer.querySelector('.course-modal').style.transform = 'translateY(0)';
+    }, 10);
+}
+
+window.enrollToCourse = function(courseId) {
+    // Scroll al form di iscrizione
+    const formSection = document.getElementById('iscrizione');
+    if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // Imposta il corso selezionato nel form
         setTimeout(() => {
             const courseOptions = document.querySelectorAll('.course-option');
             courseOptions.forEach(option => {
@@ -735,105 +1075,205 @@ function enrollToCourse(courseId) {
                     option.click();
                 }
             });
+            
+            // Mostra notifica
+            showNotification(`Pronto per iscriverti al corso! Compila il modulo qui sotto.`, 'success');
         }, 500);
     }
-}
+};
 
-function filterCoursesByAge(ageRange) {
-    const courseCards = document.querySelectorAll('.course-card');
-    const [minAge, maxAge] = ageRange.split('-').map(Number);
-    
-    courseCards.forEach(card => {
-        const courseAge = card.dataset.age;
-        const [courseMin, courseMax] = courseAge.split('-').map(str => parseInt(str));
-        
-        if (minAge >= courseMin && maxAge <= courseMax) {
-            card.style.display = 'block';
-            card.style.animation = 'fadeInUp 0.5s ease';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
-async function loadPromo() {
-    if (!DOM.promoContainer) return;
-    
-    try {
-        // Simula fetch della promo
-        await simulateDelay(500);
-        
-        const promo = {
-            active: true,
-            title: '🎄 Laboratorio Tecnologico Natalizio',
-            subtitle: 'Crea addobbi tecnologici e giochi digitali',
-            description: '3 incontri speciali per immergersi nella tecnologia creativa del Natale',
-            dates: 'Dicembre 2024',
-            age: '8-14 anni',
-            price: 'Prezzo speciale',
-            spots: 'Posti limitati',
-            cta: 'Prenota ora il tuo posto'
-        };
-        
-        if (promo.active) {
-            DOM.promoContainer.innerHTML = `
-                <div class="promo-banner">
-                    <div class="promo-content">
-                        <div class="promo-tag">OFFERTA SPECIALE</div>
-                        <h3>${promo.title}</h3>
-                        <p class="promo-subtitle">${promo.subtitle}</p>
-                        <p class="promo-description">${promo.description}</p>
-                        
-                        <div class="promo-details">
-                            <div class="promo-detail">
-                                <i class="fas fa-calendar"></i>
-                                <span>${promo.dates}</span>
-                            </div>
-                            <div class="promo-detail">
-                                <i class="fas fa-child"></i>
-                                <span>${promo.age}</span>
-                            </div>
-                            <div class="promo-detail">
-                                <i class="fas fa-euro-sign"></i>
-                                <span>${promo.price}</span>
-                            </div>
-                        </div>
-                        
-                        <button class="btn-promo-action" onclick="enrollToPromo()">
-                            ${promo.cta} <i class="fas fa-gift"></i>
-                        </button>
-                    </div>
-                    <div class="promo-image">
-                        <i class="fas fa-snowflake fa-spin"></i>
-                    </div>
-                </div>
-            `;
-            
-            DOM.promoContainer.style.display = 'block';
-            
-            // Animazione della promo
-            setTimeout(() => {
-                DOM.promoContainer.style.opacity = '1';
-                DOM.promoContainer.style.transform = 'translateY(0)';
-            }, 100);
-        }
-        
-    } catch (error) {
-        console.error('Errore caricamento promo:', error);
-        DOM.promoContainer.style.display = 'none';
+// CSS aggiuntivo per modal
+const modalStyles = `
+    .course-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 20px;
     }
-}
-
-function enrollToPromo() {
-    showNotification('Iscrizione al Laboratorio Natalizio!', 'success');
     
-    // Scroll al form
-    const registrationSection = document.getElementById('iscrizione');
-    if (registrationSection) {
-        registrationSection.scrollIntoView({ behavior: 'smooth' });
+    .course-modal {
+        background: white;
+        border-radius: var(--radius-xl);
+        width: 100%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+        position: relative;
     }
-}
+    
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--gray-100);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: var(--gray-700);
+        transition: all 0.2s;
+        z-index: 1;
+    }
+    
+    .modal-close:hover {
+        background: var(--gray-200);
+        transform: rotate(90deg);
+    }
+    
+    .modal-header {
+        padding: 40px 40px 20px;
+        border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .modal-header h3 {
+        font-size: 1.75rem;
+        color: var(--gray-900);
+        margin-bottom: 10px;
+    }
+    
+    .modal-subtitle {
+        color: var(--gray-600);
+        font-size: 1.1rem;
+    }
+    
+    .modal-body {
+        padding: 30px 40px;
+    }
+    
+    .modal-section {
+        margin-bottom: 30px;
+    }
+    
+    .modal-section h4 {
+        font-size: 1.1rem;
+        color: var(--gray-900);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .modal-section h4 i {
+        color: var(--primary);
+    }
+    
+    .modal-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin: 25px 0;
+    }
+    
+    .modal-card {
+        background: var(--gray-50);
+        padding: 20px;
+        border-radius: var(--radius-lg);
+    }
+    
+    .modal-card h4 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .included-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .included-list li {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--gray-700);
+    }
+    
+    .included-list li i {
+        color: var(--success);
+    }
+    
+    .modal-footer {
+        padding: 25px 40px;
+        border-top: 1px solid var(--gray-200);
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+    }
+    
+    .modal-close-btn {
+        background: var(--gray-200);
+        color: var(--gray-700);
+        border: none;
+        padding: 12px 24px;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+    }
+    
+    .modal-close-btn:hover {
+        background: var(--gray-300);
+    }
+    
+    @media (max-width: 768px) {
+        .course-modal {
+            max-height: 80vh;
+        }
+        
+        .modal-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .modal-footer {
+            flex-direction: column;
+        }
+        
+        .modal-header,
+        .modal-body,
+        .modal-footer {
+            padding: 25px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .course-modal {
+            border-radius: 20px 20px 0 0;
+            margin-top: auto;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+    }
+`;
 
+// Aggiungi stili modal
+const modalStyleSheet = document.createElement('style');
+modalStyleSheet.textContent = modalStyles;
+document.head.appendChild(modalStyleSheet);
 
 // ===========================================
 // 7. SCROLL EFFECTS - Animazioni al scroll
