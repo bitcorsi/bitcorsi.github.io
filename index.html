@@ -8,11 +8,11 @@
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org  ",
+    "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Bit - Corsi di Robotica Educativa",
-    "url": "https://www.bitcorsi.it  ",
-    "logo": "https://www.bitcorsi.it/logo-600x600.png  "
+    "url": "https://www.bitcorsi.it",
+    "logo": "https://www.bitcorsi.it/logo-600x600.png"
   }
   </script>
 
@@ -21,16 +21,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#FF6B35">
-
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+<!-- WhatsApp FAB -->
 <div class="fab-container">
-  <a href="https://wa.me/393703069215  " class="fab fab-whatsapp" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
+  <a href="https://wa.me/393703069215" class="fab fab-whatsapp" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fab-tooltip">Scrivici su WhatsApp</span>
   </a>
 </div>
 
@@ -48,6 +48,7 @@
     <div class="header-right">
       <nav class="nav">
         <a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+        <a href="#vantaggi" class="nav-link"><i class="fas fa-star"></i> Perché Sceglierci</a>
         <a href="#corsi" class="nav-link"><i class="fas fa-robot"></i> Corsi</a>
         <a href="#strumenti" class="nav-link"><i class="fas fa-tools"></i> Strumenti</a>
         <a href="#contatti" class="nav-link"><i class="fas fa-envelope"></i> Contatti</a>
@@ -62,14 +63,6 @@
     </button>
   </div>
 </header>
-
-<nav class="nav-overlay" aria-label="Menu mobile">
-  <a href="#home">Home</a>
-  <a href="#chi-siamo">Chi siamo</a>
-  <a href="#strumenti">Strumenti</a>
-  <a href="#corsi">Corsi</a>
-  <a href="#contatti">Contatti</a>
-</nav>
 
 <!-- Hero Section -->
 <section id="home" class="hero">
@@ -127,376 +120,462 @@
     </div>
   </div>
 </section>
-
-      <!-- Chi Siamo -->
-    <section id="chi-siamo" class="section section-chi-siamo bg-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Chi siamo</h2>
-                <p class="section-subtitle">Bit è un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente. Chiamaci per una prova gratuita</p>
-            </div>
-            
-            <div class="chi-siamo-collab-grid">
-                <div class="chi-siamo-text">
-                    <p class="lead">I nostri corsi stimolano la curiosità, il pensiero logico e la collaborazione tra pari.</p>
-                    
-                    <div class="chi-siamo-highlights">
-                        <div class="highlight-item">
-                            <div class="highlight-icon">1</div>
-                            <div>
-                                <strong>Apprendimento Interattivo</strong>
-                                <p>Esperienze pratiche con kit LEGO, Arduino, micro:bit.</p>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-icon">2</div>
-                            <div>
-                                <strong>Sviluppo STEM</strong>
-                                <p>Scienza, Tecnologia, Ingegneria e Matematica in modo pratico</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="collab-section">
-                    <h3>Le nostre collaborazioni</h3>
-                    <p>Portiamo la robotica nei doposcuola di Brescia in collaborazione con 
-  <a href="https://www.club28bs.it  " target="_blank" rel="noopener" 
-     style="color:inherit; text-decoration:underline; font-weight:600;">Club 28 SSD s.r.l.</a>.
-</p>
-                  <div class="collab-logos">
-  <a class="collab-item" aria-label="Primaria Torricella (BS)">
-    <img src="images/Torricella.webp" alt="Primaria Torricella (BS)">
-    <span>Torricella</span>
-  </a>
-  
-  <a class="collab-item" aria-label="Primaria Casazza (BS)">
-    <img src="images/Casazza.webp" alt="Primaria Casazza (BS)">
-    <span>Casazza</span>
-  </a>
-  
-  <a class="collab-item" aria-label="Primaria Melzi (BS)">
-    <img src="images/Melzi.webp" alt="Primaria Melzi (BS)">
-    <span>Melzi</span>
-  </a>
-</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Strumenti -->
-    <section id="strumenti" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>I nostri strumenti per imparare costruendo</h2>
-                <p class="section-subtitle">per coltivare i Maker del futuro o solo per divertirsi</p>
-            </div>
-            
-            <div class="tools-grid">
-                <!-- Lego Spike Prime -->
-                <div class="tool-card">
-                    <div class="tool-icon-badge lego-color">8-13 anni</div>
-                    <img src="images/lego-spike-prime.webp" alt="Corso robotica educativa con LEGO Spike Prime per ragazzi a Brescia" class="tool-image" loading="lazy">
-                    <h3 class="tool-title">Lego Spike Prime</h3>
-                  <div class="tool-details">
-                        <p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p>
-                       <!-- <p><strong>Perché piace ai ragazzi:</strong> Unisce gioco, costruzione fisica e logica di programmazione. È collaborativo, creativo e dà risultati tangibili in pochi minuti.</p>-->
-                    </div> 
-                    <div class="tool-specs">
-                        <a href="#contatti-info" class="btn-dettagli">Informazioni</a>
-                    </div>
-                    </div>
-                
-                <!-- Open Roberta -->
-                <div class="tool-card">
-                    <div class="tool-icon-badge roberta-color">8-13 anni</div>
-                    <img src="images/open-roberta.svg" alt="Laboratorio di coding con Open Roberta a Brescia" class="tool-image" loading="lazy">
-                    <h3 class="tool-title">Open Roberta</h3>
-                    <div class="tool-details">
-                        <p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms...), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa. Blocchi colorati nel browser senza installazioni.</p>
-                      <!--  <p><strong>Perché piace ai ragazzi:</strong> È gratuito, sicuro, funziona subito e permette di sperimentare con tanti robot diversi senza dover comprare hardware. Alcuni robots sono provvisti di simulatore!</p>-->
-                    </div>
-                    <div class="tool-specs">
-                      <a href="#contatti-info" class="btn-dettagli">Informazioni</a>
-                    </div>
-                </div>
-                
-                <!-- Arduino -->
-                <div class="tool-card">
-                    <div class="tool-icon-badge arduino-color">12-16 anni</div>
-                    <img src="images/arduino.svg" alt="Corso Arduino per ragazzi a Brescia" class="tool-image" loading="lazy">
-                    <h3 class="tool-title">Arduino</h3>
-                    <div class="tool-details">
-                        <p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio testuale semplice basato su C++.</p>
-                      <!--  <p><strong>Perché piace ai ragazzi:</strong> Permette di "dare vita" a oggetti reali. È lo strumento perfetto per chi vuole passare dal gioco al coding vero e all'elettronica creativa.</p>-->
-                    </div>
-                    <div class="tool-specs">
-                    <a href="#contatti-info" class="btn-dettagli">Informazioni</a>
-                    </div>
-                </div>
-                
-                <!-- micro:bit -->
-                <div class="tool-card">
-                    <div class="tool-icon-badge microbit-color">8-13 anni</div>
-                    <img src="images/microbit.svg" alt="Corso di programmazione con micro:bit per bambini a Brescia" class="tool-image" loading="lazy">
-                    <h3 class="tool-title">micro:bit BBC</h3>
-                    <div class="tool-details">
-                        <p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori. Tre modalità: blocchi, JavaScript o Python.</p>
-                      <!--  <p><strong>Perché piace ai ragazzi:</strong> È piccolo, robusto, ha LED e sensori integrati, e si programma in pochi click. Si può usare anche senza computer (es. con smartphone via Bluetooth)!</p>-->
-                    </div>
-                    <div class="tool-specs">
-                    <a href="#contatti-info" class="btn-dettagli">Informazioni</a>
-                   </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-       <!-- Corsi -->
-    <section id="corsi" class="section bg-light">
+<!-- Strumenti -->
+<section id="strumenti" class="section section-tools">
   <div class="container">
     <div class="section-header">
-      <h2>Aperte le iscrizioni 2026</h2>
-      <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio</p>
+      <h2 class="section-title">Imparano con i migliori strumenti</h2>
+      <p class="section-subtitle">Tecnologie usate nelle scuole e nell'industria</p>
     </div>
-    <div id="promo-natale-container" class="promo-natale-container" style="display:none;"></div>
-    <div class="alert-box">
-  <img src="images/bit-corre.webp" alt="" class="bit-running" loading="lazy">
-  <div>
-    <strong>ISCRIVITI IN ANTICIPO!</strong>
-    <p>Ogni gruppo è limitato a 8 - 10 partecipanti per garantire un'attenzione personalizzata.</p>
+    
+    <div class="tools-tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="lego">
+          <i class="fas fa-cube"></i> LEGO Spike
+        </button>
+        <button class="tab-btn" data-tab="microbit">
+          <i class="fas fa-microchip"></i> micro:bit
+        </button>
+        <button class="tab-btn" data-tab="arduino">
+          <i class="fas fa-bolt"></i> Arduino
+        </button>
+        <button class="tab-btn" data-tab="roberta">
+          <i class="fas fa-code"></i> Open Roberta
+        </button>
+      </div>
+      
+      <div class="tab-content">
+        <!-- TAB 1: LEGO Spike -->
+        <div class="tab-pane active" id="lego">
+          <div class="tool-detail">
+            <div class="tool-image">
+              <img src="images/lego-spike-prime.webp" alt="LEGO Spike Prime" loading="lazy">
+            </div>
+            <div class="tool-info">
+              <h3>LEGO® Education SPIKE™ Prime</h3>
+              <div class="tool-meta">
+                <span class="badge age-badge"><i class="fas fa-child"></i> 8-13 anni</span>
+                <span class="badge level-badge"><i class="fas fa-signal"></i> Principiante/Intermedio</span>
+                <span class="badge time-badge"><i class="fas fa-clock"></i> 90 min/incontro</span>
+              </div>
+              <p class="tool-description">Il sistema perfetto per avvicinarsi alla robotica: mattoncini LEGO combinati con motori, sensori e programmazione a blocchi intuitiva.</p>
+              
+              <div class="tool-highlights">
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i> 
+                  <div>
+                    <strong>Perfetto per iniziare</strong>
+                    <p>Unisce il gioco familiare dei LEGO con la logica della programmazione. I risultati sono immediati e tangibili.</p>
+                  </div>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i><strong>Costruiscono</strong>
+                  <div>
+                    <p>Robot autonomi, veicoli intelligenti, bracci meccanici, macchine che risolvono labirinti.</p>
+                  </div>
+                </div>
+              </div>
+             </div>
+          </div>
+        </div>
+        
+        <!-- TAB 2: micro:bit -->
+        <div class="tab-pane" id="microbit">
+          <div class="tool-detail">
+            <div class="tool-image">
+              <img src="images/microbit.svg" alt="micro:bit BBC" loading="lazy">
+            </div>
+            <div class="tool-info">
+              <h3>micro:bit BBC - Il computer tascabile</h3>
+              <div class="tool-meta">
+                <span class="badge age-badge"><i class="fas fa-child"></i> 8-13 anni</span>
+                <span class="badge level-badge"><i class="fas fa-signal"></i> Principiante/Avanzato</span>
+                <span class="badge time-badge"><i class="fas fa-clock"></i> 60 min/incontro</span>
+              </div>
+              <p class="tool-description">Una schedina elettronica grande quanto una carta di credito, con LED, sensori e Bluetooth integrato. La porta d'accesso alla programmazione e all'elettronica creativa.</p>
+              
+              <div class="tool-highlights">
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i> <strong>Perché piace ai ragazzi</strong>
+                  <div>
+                    <p>È piccolo, robusto e si programma in pochi click. Ha già tutto integrato: 25 LED, 2 pulsanti, sensori di movimento, bussola, Bluetooth.</p>
+                  </div>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Programmazione multi-livello</strong>
+                    <p>Si può programmare con blocchi visuali (per iniziare), JavaScript (per crescere) o Python (per esperti).</p>
+                  </div>
+                </div>
+              </div>
+             </div>
+          </div>
+        </div>
+        
+        <!-- TAB 3: Arduino -->
+        <div class="tab-pane" id="arduino">
+          <div class="tool-detail">
+            <div class="tool-image">
+              <img src="images/arduino.svg" alt="Arduino" loading="lazy">
+            </div>
+            <div class="tool-info">
+              <h3>Arduino - Dai vita alle tue idee</h3>
+              <div class="tool-meta">
+                <span class="badge age-badge"><i class="fas fa-child"></i> 12-16 anni</span>
+                <span class="badge level-badge"><i class="fas fa-signal"></i> Intermedio/Avanzato</span>
+                <span class="badge time-badge"><i class="fas fa-clock"></i> 90 min/incontro</span>
+              </div>
+              <p class="tool-description">La piattaforma di prototipazione elettronica più famosa al mondo. Perfetta per passare dalla teoria alla pratica, creando progetti reali che interagiscono con il mondo fisico.</p>
+              
+              <div class="tool-highlights">
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Il passaggio al coding "vero"</strong>
+                    <p>Si programma in un linguaggio simile al C++, ma semplificato. È il ponte perfetto tra giochi educativi e programmazione professionale.</p>
+                  </div>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Progetti complessi e gratificanti</strong>
+                    <p>Dalla domotica alla robotica avanzata, Arduino permette di realizzare ciò che prima era solo un'idea.</p>
+                  </div>
+                </div>
+              </div>
+             </div>
+          </div>
+        </div>
+        
+        <!-- TAB 4: Open Roberta -->
+        <div class="tab-pane" id="roberta">
+          <div class="tool-detail">
+            <div class="tool-image">
+              <img src="images/open-roberta.svg" alt="Open Roberta Lab" loading="lazy">
+            </div>
+            <div class="tool-info">
+              <h3>Open Roberta Lab - Programmare senza limiti</h3>
+              <div class="tool-meta">
+                <span class="badge age-badge"><i class="fas fa-child"></i> 8-13 anni</span>
+                <span class="badge level-badge"><i class="fas fa-signal"></i> Principiante/Intermedio</span>
+                <span class="badge time-badge"><i class="fas fa-clock"></i> 60 min/incontro</span>
+              </div>
+              <p class="tool-description">Una piattaforma cloud open-source sviluppata dal Fraunhofer IAIS in Germania. Permette di programmare robot reali e virtuali direttamente dal browser, senza installare nulla.</p>
+              
+              <div class="tool-highlights">
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Accessibilità totale</strong>
+                    <p>Funziona su qualsiasi dispositivo con browser: PC, tablet, Chromebook. Non serve hardware costoso per iniziare.</p>
+                  </div>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Simulatore integrato</strong>
+                    <p>Prima di usare robot fisici, i ragazzi testano i programmi in un ambiente virtuale 3D. Zero rischi, massimo apprendimento.</p>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   
+      
+      
+    </div>
   </div>
-</div>
+</section>
+
+<!-- Corsi Disponibili -->
+<section id="corsi" class="section section-courses bg-light">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Scegli il percorso perfetto</h2>
+      <p class="section-subtitle">Dall'iniziale al creatore di robot avanzato</p>
+    </div>
+    
+    <!-- Promo Banner -->
+    <div class="promo-banner">
+      <div class="promo-content">
+        <span class="promo-badge"><i class="fas fa-gift"></i> PROMO NATALE</span>
+        <h3>Laboratorio Tecnologico Natalizio</h3>
+        <p>Costruisci decorazioni tecnologiche con LED e sensori! 4 incontri a dicembre.</p>
+        <div class="promo-meta">
+          <span><i class="fas fa-calendar"></i> 7-14-21-28 Dicembre</span>
+          <span><i class="fas fa-euro-sign"></i> 120€ (materiali inclusi)</span>
+          <span><i class="fas fa-users"></i> Posti limitati!</span>
+        </div>
+      </div>
+      <a href="#contatti" class="btn btn-promo">
+        <i class="fas fa-shopping-cart"></i> Prenota ora
+      </a>
+    </div>
     
     <div class="courses-grid" id="courses-container">
-      <div class="course-card loading" style="grid-column: 1 / -1;">
-        <p style="text-align:center; padding:2rem; color:var(--gray-600);">Caricamento corsi…</p>
+      <!-- I corsi verranno caricati dinamicamente da script.js -->
+      <div class="loading-courses">
+        <div class="loader"></div>
+        <p>Caricamento corsi disponibili...</p>
       </div>
+    </div>
+    
+    <div class="info-box">
+      <i class="fas fa-info-circle"></i>
+      <p><strong>Tutti i corsi includono:</strong> materiali, certificato di partecipazione, assicurazione, merenda e foto dei progetti.</p>
     </div>
   </div>
 </section>
 
-         <!-- Contatti - Sezione Unica con Form e FAQ Affiancati -->
-   <section id="contatti" class="section section-contatti">
+
+
+<!-- Contatti -->
+<section id="contatti" class="section section-contact">
   <div class="container">
-    <div class="section-header">
-      <h2>Iscriviti</h2>
-      <h3>Prenota un posto compilando il modulo, fai cominciare l'avventura robotica!</h3>
-    </div>
-
-    <div class="form-faq-container">
-      <!-- Form Iscrizione -->
-      <div class="form-panel">
-        <h3 class="panel-title">Modulo d’iscrizione</h3>
-        <form id="iscrizione-form" action="https://formsubmit.co/bitcorsi@gmail.com  " method="POST" class="compact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="Genitore">Genitore *</label>
-              <input type="text" id="Genitore" name="Genitore" required>
-            </div>
-            <div class="form-group">
-              <label for="Telefono">Telefono *</label>
-              <input type="tel" id="Telefono" name="Telefono" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="studente">Partecipante *</label>
-              <input type="text" id="studente" name="studente" required>
-            </div>
-            <div class="form-group">
-              <label for="età">Età *</label>
-              <input type="number" id="età" name="età" min="6" max="18" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="corso">Corso *</label>
-              <select id="corso" name="corso" required>
-                <option value="">Seleziona</option>
-                <option value="Spike Prime">Spike Prime (8–13)</option>
-                <option value="Arduino">Arduino (12–16)</option>
-                <option value="Open Roberta">Open Roberta (8–13)</option>
-                <option value="micro:bit">micro:bit (8–13)</option>
-                <option value="micro:bit">Laboratorio Tecnologico Natalizio</option>
-              </select>
-            </div>
-                           <div class="form-group">
-                                <label for="fonte">Come hai saputo del corso? *</label>
-                                <select id="fonte" name="fonte" required>
-                                    <option value="">Seleziona</option>
-                                    <option value="passaparola">Passaparola</option>
-                                    <option value="volantino">Volantino</option>
-                                    <option value="social">Social Media</option>
-                                    <option value="scuola">Scuola</option>
-                                    <option value="ricerca">Ricerca online</option>
-                                    <option value="altro">Altro</option>
-                                </select>
-                            </div> 
-                           </div>
-                                             
-                   <div class="form-row">
-                 <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-                 <div class="form-group">
-                    <label for="scuola">Scuola Frequentata *</label>
-                  <input type="text" id="scuola" name="scuola" required>
-              </div>
-           </div>
+    <div class="contact-grid">
+      <!-- Info Contatti -->
+      <div class="contact-info">
+        <h2 class="contact-title">Prenota ora il tuo posto</h2>
+        <p class="contact-subtitle">Contattaci per maggiori informazioni o per prenotare una lezione di prova gratuita.</p>
         
-
-
+        <div class="contact-methods">
+          <a href="https://wa.me/393703069215" class="contact-method whatsapp" target="_blank">
+            <div class="method-icon">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="method-details">
+              <h4>WhatsApp</h4>
+              <p>+39 370 306 9215</p>
+              <span class="method-hint">Rispondiamo in pochi minuti</span>
+            </div>
+          </a>
           
-          <div class="form-group full-width">
-            <label for="note">Note (opzionale)</label>
-            <textarea id="note" name="note" rows="2" placeholder="aggiungi nota ..."></textarea>
+          <a href="tel:+393703069215" class="contact-method phone">
+            <div class="method-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="method-details">
+              <h4>Telefono</h4>
+              <p>+39 370 306 9215</p>
+              <span class="method-hint">Lun-Sab 9:00-19:00</span>
+            </div>
+          </a>
+          
+          <a href="mailto:bitcorsi@gmail.com" class="contact-method email">
+            <div class="method-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="method-details">
+              <h4>Email</h4>
+              <p>bitcorsi@gmail.com</p>
+              <span class="method-hint">Risposta entro 24 ore</span>
+            </div>
+          </a>
+        </div>
+        
+        <div class="contact-details">
+          <div class="detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Sede corsi</h4>
+              <p>Centro Aperto Sandro Marelli<br>
+              Piazzetta SS. Francesco e Chiara 1, Mompiano (BS)</p>
+            </div>
           </div>
-
-          <button type="submit" class="btn-submit">Invia richiesta</button>
-          <div id="form-message" class="form-message" aria-live="polite"></div>
+          
+          <div class="detail-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Orari lezioni</h4>
+              <p>Sabato 10:00 – 11:30<br>
+              <small>Su appuntamento per lezioni prova</small></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="social-links">
+          <p>Seguici su Instagram per vedere i progetti:</p>
+          <a href="https://www.instagram.com/bit_corsi/" class="social-link instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+            @bit_corsi
+          </a>
+        </div>
+      </div>
+      
+      <!-- Form Iscrizione -->
+      <div class="contact-form-container">
+        <div class="form-header">
+          <h3><i class="fas fa-edit"></i> Modulo di pre-iscrizione</h3>
+          <p>Compila per prenotare un posto o richiedere informazioni</p>
+        </div>
+        
+        <form id="iscrizione-form" class="contact-form" action="https://formsubmit.co/bitcorsi@gmail.com" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="genitore"><i class="fas fa-user"></i> Genitore *</label>
+              <input type="text" id="genitore" name="genitore" required placeholder="Nome e cognome">
+            </div>
+            <div class="form-group">
+              <label for="telefono"><i class="fas fa-phone"></i> Telefono *</label>
+              <input type="tel" id="telefono" name="telefono" required placeholder="Cellulare per contatti">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="studente"><i class="fas fa-child"></i> Partecipante *</label>
+              <input type="text" id="studente" name="studente" required placeholder="Nome e cognome">
+            </div>
+            <div class="form-group">
+              <label for="età"><i class="fas fa-birthday-cake"></i> Età *</label>
+              <input type="number" id="età" name="età" min="6" max="18" required placeholder="Es. 10">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="corso"><i class="fas fa-robot"></i> Corso di interesse *</label>
+            <select id="corso" name="corso" required>
+              <option value="">Scegli un corso</option>
+              <option value="Spike Prime">LEGO Spike Prime (8–13 anni)</option>
+              <option value="Arduino">Arduino (12–16 anni)</option>
+              <option value="Open Roberta">Open Roberta (8–13 anni)</option>
+              <option value="micro:bit">micro:bit (8–13 anni)</option>
+              <option value="laboratorio">Laboratorio Tecnologico Natalizio</option>
+              <option value="prova">Lezione prova gratuita</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email *</label>
+            <input type="email" id="email" name="email" required placeholder="Per conferma e comunicazioni">
+          </div>
+          
+          <div class="form-group">
+            <label for="note"><i class="fas fa-sticky-note"></i> Note (opzionali)</label>
+            <textarea id="note" name="note" rows="3" placeholder="Particolari esigenze, preferenze orarie, domande..."></textarea>
+          </div>
+          
+          <div class="form-footer">
+            <button type="submit" class="btn btn-primary btn-submit">
+              <i class="fas fa-paper-plane"></i> Invia richiesta
+            </button>
+            <p class="form-note"><i class="fas fa-lock"></i> I tuoi dati sono al sicuro. Privacy garantita.</p>
+          </div>
+          
           <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_subject" value="BIT - Nuova iscrizione">
-          <input type="hidden" name="_next" value="https://www.bitcorsi.it  ">
+          <input type="hidden" name="_subject" value="BIT - Nuova iscrizione dal sito">
+          <input type="hidden" name="_next" value="https://www.bitcorsi.it/grazie.html">
         </form>
       </div>
-
-      <!-- FAQ -->
-      <div class="faq-panel">
-        <h3 class="panel-title">Domande frequenti</h3>
-        <div class="faq-list">
-          <details>
-            <summary>Serve portare il kit?</summary>
-            <p>No, forniamo tutti i materiali durante i laboratori in sede.</p>
-          </details>
-          <details>
-            <summary>È possibile una lezione di prova?</summary>
-            <p>Sì! Contattaci su WhatsApp per verificare la disponibilità.</p>
-          </details>
-          <details>
-            <summary>Cosa succede se si salta un incontro?</summary>
-            <p>Cercheremo di recuperare l'incontro perso durante la sessione successiva di laboratori.</p>
-          </details>
-          <details>
-            <summary>Dove si svolgono i corsi?</summary>
-            <p>A Brescia, presso il Centro Aperto Sandro Marelli (Piazzetta S. Francesco e Chiara, 1).</p>
-          </details>
-           <details>
-           <summary>Qual è l'età giusta per iniziare a fare robotica educativa?</summary>
-           <p>I nostri corsi partono dagli 8 anni fino ai 16, con percorsi su misura per ogni fascia d'età. Si impara sperimentando.</p>
-           </details>
-        </div>
-      </div> 
     </div>
-    </div>
+  </div>
 </section>
 
-    <!-- Contatti - Sezione 2: Info e Contatti -->
-    <section id="contatti-info" class="section section-contatti bg-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contatti e Informazioni</h2>
-                <h3>Siamo a tua disposizione per qualsiasi domanda</h3>
-            </div>
-            
-           <div class="contact-dual-grid">
-  <!-- Colonna SINISTRA: contatti cliccabili -->
-  <div class="contact-interactive">
-    <h3>Contattaci</h3>
-    <div class="contact-links">
-      <a id="whatsapp-static" href="https://wa.me/393703069215  " class="contact-link contact-link-whatsapp" target="_blank" rel="noopener">
-        <div class="link-icon whatsapp-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-        </div>
-        <div class="link-content">
-          <div class="link-title">Whatsapp</div>
-          <div class="link-value">+39 370 306 9215</div>
-        </div>
-      </a>
-      <a href="tel:+393703069215" class="contact-link contact-link-phone">
-        <div class="link-icon phone-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-          </svg>
-        </div>
-        <div class="link-content">
-          <div class="link-title">Telefono</div>
-          <div class="link-value">+39 370 306 9215</div>
-        </div>
-      </a>
-      <a href="mailto:bitcorsi@gmail.com" class="contact-link contact-link-email">
-        <div class="link-icon email-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-        </div>
-        <div class="link-content">
-          <div class="link-title">Email</div>
-          <div class="link-value">bitcorsi@gmail.com</div>
-        </div>
-      </a>
+<!-- FAQ -->
+<section class="section section-faq bg-light">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Domande frequenti</h2>
+      <p class="section-subtitle">Tutto quello che vorresti sapere</p>
     </div>
-  </div>
-
-  <!-- Colonna DESTRA: info statiche + social -->
-  <div class="contact-static">
-    <h3>Info</h3>
-    <div class="static-group">
-      <div class="static-item">
-        <div class="static-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
+    
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3><i class="fas fa-question-circle"></i> Serve esperienza pregressa?</h3>
+          <i class="fas fa-chevron-down"></i>
         </div>
-        <div class="static-content">
-          <div class="static-label">Sede</div>
-          <div class="static-value">Centro Aperto Sandro Marelli<br><span class="static-sub">Piazzetta SS. Francesco e Chiara 1, Mompiano (BS)</span></div>
+        <div class="faq-answer">
+          <p>Assolutamente no! Partiamo sempre dalle basi e adattiamo il percorso al livello di ogni partecipante.</p>
         </div>
       </div>
-      <div class="static-item">
-        <div class="static-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3><i class="fas fa-question-circle"></i> Cosa serve portare?</h3>
+          <i class="fas fa-chevron-down"></i>
         </div>
-        <div class="static-content">
-          <div class="static-label">Orari</div>
-          <div class="static-value">Sabato 10:00 – 11:30<br><span class="static-sub">Su appuntamento</span></div>
+        <div class="faq-answer">
+          <p>Niente! Forniamo noi tutti i materiali: kit, computer, strumenti. I ragazzi devono portare solo il loro entusiasmo.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3><i class="fas fa-question-circle"></i> È possibile fare una lezione di prova?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Sì, offriamo una lezione prova gratuita. Contattaci per verificare la disponibilità.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3><i class="fas fa-question-circle"></i> Cosa succede se si salta una lezione?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Cerchiamo sempre di recuperare l'incontro perso nelle sessioni successive o organizziamo un mini recupero.</p>
         </div>
       </div>
     </div>
-
-    <div class="social-link">
-      <a href="https://www.instagram.com/bit_corsi/  " target="_blank" rel="noopener">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-        </svg>
-        <span>@bit_corsi</span>
-      </a>
-    </div>
   </div>
-</div>
-    </section>
-    <!-- Footer -->
-  <footer class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
-  <div class="container" style="text-align:center;">
-    <p>P.IVA 04701410989 – © 2025 Bit di K. L. – 🔒 Privacy garantita – sito cookie free | 
-      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md  " 
-         target="_blank" 
-         rel="noopener noreferrer"
-         style="color:#FF6B35; text-decoration:underline;">
-        Privacy Policy
-      </a>
-    </p>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="BIT Logo" class="footer-logo-img">
+          <h3>BIT Robotica Educativa</h3>
+          <p>Accendiamo la passione per la tecnologia nelle nuove generazioni.</p>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Contatti</h4>
+        <ul class="footer-links">
+          <li><i class="fas fa-phone"></i> +39 370 306 9215</li>
+          <li><i class="fas fa-envelope"></i> bitcorsi@gmail.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> Brescia, Mompiano</li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Link rapidi</h4>
+        <ul class="footer-links">
+          <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="#corsi"><i class="fas fa-chevron-right"></i> Corsi</a></li>
+          <li><a href="#strumenti"><i class="fas fa-chevron-right"></i> Strumenti</a></li>
+          <li><a href="#contatti"><i class="fas fa-chevron-right"></i> Contatti</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
+          <li>P.IVA 04701410989</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 BIT di K. L. - Tutti i diritti riservati. | Sito cookie-free e rispettoso della privacy.</p>
+    </div>
   </div>
 </footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
