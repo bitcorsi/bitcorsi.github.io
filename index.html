@@ -235,6 +235,7 @@
 </section>
 
 <!-- Strumenti -->
+<!-- Strumenti -->
 <section id="strumenti" class="section section-tools">
   <div class="container">
     <div class="section-header">
@@ -244,42 +245,374 @@
     
     <div class="tools-tabs">
       <div class="tab-buttons">
-        <button class="tab-btn active" data-tab="lego">LEGO Spike</button>
-        <button class="tab-btn" data-tab="microbit">micro:bit</button>
-        <button class="tab-btn" data-tab="arduino">Arduino</button>
-        <button class="tab-btn" data-tab="roberta">Open Roberta</button>
+        <button class="tab-btn active" data-tab="lego">
+          <i class="fas fa-cube"></i> LEGO Spike
+        </button>
+        <button class="tab-btn" data-tab="microbit">
+          <i class="fas fa-microchip"></i> micro:bit
+        </button>
+        <button class="tab-btn" data-tab="arduino">
+          <i class="fas fa-bolt"></i> Arduino
+        </button>
+        <button class="tab-btn" data-tab="roberta">
+          <i class="fas fa-code"></i> Open Roberta
+        </button>
       </div>
       
       <div class="tab-content">
+        <!-- TAB 1: LEGO Spike -->
         <div class="tab-pane active" id="lego">
           <div class="tool-detail">
             <div class="tool-image">
-              <img src="images/lego-spike-prime.webp" alt="LEGO Spike Prime">
+              <img src="images/lego-spike-prime.webp" alt="LEGO Spike Prime" loading="lazy">
             </div>
             <div class="tool-info">
               <h3>LEGO® Education SPIKE™ Prime</h3>
               <div class="tool-meta">
                 <span class="badge age-badge"><i class="fas fa-child"></i> 8-13 anni</span>
                 <span class="badge level-badge"><i class="fas fa-signal"></i> Principiante/Intermedio</span>
+                <span class="badge time-badge"><i class="fas fa-clock"></i> 60 min/incontro</span>
               </div>
-              <p>Il sistema perfetto per avvicinarsi alla robotica: mattoncini LEGO combinati con motori, sensori e programmazione a blocchi intuitiva.</p>
+              <p class="tool-description">Il sistema perfetto per avvicinarsi alla robotica: mattoncini LEGO combinati con motori, sensori e programmazione a blocchi intuitiva.</p>
+              
+              <div class="tool-highlights">
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Perché è perfetto per iniziare</strong>
+                    <p>Unisce il gioco familiare dei LEGO con la logica della programmazione. I risultati sono immediati e tangibili.</p>
+                  </div>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Cosa costruiscono</strong>
+                    <p>Robot autonomi, veicoli intelligenti, bracci meccanici, macchine che risolvono labirinti.</p>
+                  </div>
+                </div>
+              </div>
+              
               <div class="tool-benefits">
                 <h4>Cosa imparano:</h4>
                 <ul>
-                  <li><i class="fas fa-check"></i> Logica della programmazione</li>
-                  <li><i class="fas fa-check"></i> Principi di ingegneria</li>
-                  <li><i class="fas fa-check"></i> Risoluzione problemi pratici</li>
-                  <li><i class="fas fa-check"></i> Lavoro collaborativo</li>
+                  <li><i class="fas fa-brain"></i> <strong>Pensiero computazionale</strong> - Suddividere problemi complessi in passi semplici</li>
+                  <li><i class="fas fa-cogs"></i> <strong>Logica della programmazione</strong> - Sequenze, condizioni, cicli</li>
+                  <li><i class="fas fa-robot"></i> <strong>Principi di ingegneria</strong> - Strutture, meccanismi, trasmissioni</li>
+                  <li><i class="fas fa-users"></i> <strong>Lavoro collaborativo</strong> - Progettare in squadra e condividere idee</li>
+                  <li><i class="fas fa-lightbulb"></i> <strong>Creatività applicata</strong> - Trasformare idee in progetti funzionanti</li>
                 </ul>
               </div>
-              <a href="#contatti" class="btn btn-tool">
-                <i class="fas fa-info-circle"></i> Info corso LEGO
-              </a>
+              
+              <div class="tool-cta">
+                <a href="#contatti" class="btn btn-primary btn-tool">
+                  <i class="fas fa-calendar-check"></i> Iscriviti al corso LEGO
+                </a>
+                <span class="tool-note">
+                  <i class="fas fa-info-circle"></i> Kit completi forniti da noi
+                </span>
+              </div>
             </div>
           </div>
         </div>
         
-        <!-- Altri tab content... -->
+        <!-- TAB 2: micro:bit -->
+        <div class="tab-pane" id="microbit">
+          <div class="tool-detail">
+            <div class="tool-image">
+              <img src="images/microbit.svg" alt="micro:bit BBC" loading="lazy">
+            </div>
+            <div class="tool-info">
+              <h3>micro:bit BBC - Il computer tascabile</h3>
+              <div class="tool-meta">
+                <span class="badge age-badge"><i class="fas fa-child"></i> 8-13 anni</span>
+                <span class="badge level-badge"><i class="fas fa-signal"></i> Principiante/Avanzato</span>
+                <span class="badge time-badge"><i class="fas fa-clock"></i> 60 min/incontro</span>
+              </div>
+              <p class="tool-description">Una schedina elettronica grande quanto una carta di credito, con LED, sensori e Bluetooth integrato. La porta d'accesso alla programmazione e all'elettronica creativa.</p>
+              
+              <div class="tool-highlights">
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Perché piace tantissimo ai ragazzi</strong>
+                    <p>È piccolo, robusto e si programma in pochi click. Ha già tutto integrato: 25 LED, 2 pulsanti, sensori di movimento, bussola, Bluetooth.</p>
+                  </div>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Programmazione multi-livello</strong>
+                    <p>Si può programmare con blocchi visuali (per iniziare), JavaScript (per crescere) o Python (per esperti).</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tool-benefits">
+                <h4>Cosa creano con micro:bit:</h4>
+                <ul>
+                  <li><i class="fas fa-gamepad"></i> <strong>Videogiochi portatili</strong> - Snake, memory game, platform</li>
+                  <li><i class="fas fa-heartbeat"></i> <strong>Dispositivi wearable</strong> - Contapassi, braccialetti luminosi</li>
+                  <li><i class="fas fa-music"></i> <strong>Strumenti musicali</strong> - Theremin digitale, drum machine</li>
+                  <li><i class="fas fa-home"></i> <strong>Smart devices</strong> - Controllo luci, stazione meteo</li>
+                  <li><i class="fas fa-robot"></i> <strong>Cervello per robot</strong> - Controllo di motori e sensori esterni</li>
+                </ul>
+              </div>
+              
+              <div class="tool-specs">
+                <h4>Caratteristiche tecniche:</h4>
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <span><strong>25 LED</strong> programmabili</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-compress-alt"></i>
+                    <span><strong>Sensori</strong> movimento/luce/temp</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-bluetooth"></i>
+                    <span><strong>Bluetooth</strong> integrato</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-plug"></i>
+                    <span><strong>+40 pin</strong> per espansioni</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tool-cta">
+                <a href="#contatti" class="btn btn-primary btn-tool">
+                  <i class="fas fa-calendar-check"></i> Iscriviti al corso micro:bit
+                </a>
+                <span class="tool-note">
+                  <i class="fas fa-mobile-alt"></i> Si programma anche da smartphone
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- TAB 3: Arduino -->
+        <div class="tab-pane" id="arduino">
+          <div class="tool-detail">
+            <div class="tool-image">
+              <img src="images/arduino.svg" alt="Arduino" loading="lazy">
+            </div>
+            <div class="tool-info">
+              <h3>Arduino - Dai vita alle tue idee</h3>
+              <div class="tool-meta">
+                <span class="badge age-badge"><i class="fas fa-child"></i> 12-16 anni</span>
+                <span class="badge level-badge"><i class="fas fa-signal"></i> Intermedio/Avanzato</span>
+                <span class="badge time-badge"><i class="fas fa-clock"></i> 90 min/incontro</span>
+              </div>
+              <p class="tool-description">La piattaforma di prototipazione elettronica più famosa al mondo. Perfetta per passare dalla teoria alla pratica, creando progetti reali che interagiscono con il mondo fisico.</p>
+              
+              <div class="tool-highlights">
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Il passaggio al coding "vero"</strong>
+                    <p>Si programma in un linguaggio simile al C++, ma semplificato. È il ponte perfetto tra giochi educativi e programmazione professionale.</p>
+                  </div>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Progetti complessi e gratificanti</strong>
+                    <p>Dalla domotica alla robotica avanzata, Arduino permette di realizzare ciò che prima era solo un'idea.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tool-benefits">
+                <h4>Progetti che realizzano:</h4>
+                <ul>
+                  <li><i class="fas fa-traffic-light"></i> <strong>Sistema di controllo</strong> - Semaforo intelligente, parcheggio automatico</li>
+                  <li><i class="fas fa-cloud-sun"></i> <strong>Stazione meteo</strong> - Misura temperatura, umidità, pressione</li>
+                  <li><i class="fas fa-gamepad"></i> <strong>Console di gioco</strong> - Controller custom, flipper digitale</li>
+                  <li><i class="fas fa-robot"></i> <strong>Robot mobile</strong> - Segu-linea, evitando ostacoli, telecomandato</li>
+                  <li><i class="fas fa-home"></i> <strong>Domotica</strong> - Controllo luci, serratura digitale, allarme</li>
+                </ul>
+              </div>
+              
+              <div class="tool-specs">
+                <h4>Competenze acquisite:</h4>
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <i class="fas fa-code"></i>
+                    <span><strong>Coding</strong> linguaggio strutturato</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <span><strong>Circuiti</strong> elettronici base</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-tools"></i>
+                    <span><strong>Prototipazione</strong> e debugging</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-file-code"></i>
+                    <span><strong>Librerie</strong> e modularità</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tool-cta">
+                <a href="#contatti" class="btn btn-primary btn-tool">
+                  <i class="fas fa-calendar-check"></i> Iscriviti al corso Arduino
+                </a>
+                <span class="tool-note">
+                  <i class="fas fa-graduation-cap"></i> Prepara a studi superiori tecnici
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- TAB 4: Open Roberta -->
+        <div class="tab-pane" id="roberta">
+          <div class="tool-detail">
+            <div class="tool-image">
+              <img src="images/open-roberta.svg" alt="Open Roberta Lab" loading="lazy">
+            </div>
+            <div class="tool-info">
+              <h3>Open Roberta Lab - Programmare senza limiti</h3>
+              <div class="tool-meta">
+                <span class="badge age-badge"><i class="fas fa-child"></i> 8-13 anni</span>
+                <span class="badge level-badge"><i class="fas fa-signal"></i> Principiante/Intermedio</span>
+                <span class="badge time-badge"><i class="fas fa-clock"></i> 60 min/incontro</span>
+              </div>
+              <p class="tool-description">Una piattaforma cloud open-source sviluppata dal Fraunhofer IAIS in Germania. Permette di programmare robot reali e virtuali direttamente dal browser, senza installare nulla.</p>
+              
+              <div class="tool-highlights">
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Accessibilità totale</strong>
+                    <p>Funziona su qualsiasi dispositivo con browser: PC, tablet, Chromebook. Non serve hardware costoso per iniziare.</p>
+                  </div>
+                </div>
+                <div class="highlight">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Simulatore integrato</strong>
+                    <p>Prima di usare robot fisici, i ragazzi testano i programmi in un ambiente virtuale 3D. Zero rischi, massimo apprendimento.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tool-benefits">
+                <h4>Perfetto per:</h4>
+                <ul>
+                  <li><i class="fas fa-school"></i> <strong>Approccio in classe</strong> - Tutti programmano insieme, condividono progetti</li>
+                  <li><i class="fas fa-laptop-code"></i> <strong>Continuare a casa</strong> - I progetti salvati sul cloud sono accessibili ovunque</li>
+                  <li><i class="fas fa-robot"></i> <strong>Sperimentare senza limiti</strong> - Si programma LEGO, micro:bit, NAO, EV3...</li>
+                  <li><i class="fas fa-users"></i> <strong>Lavoro collaborativo</strong> - Più ragazzi possono lavorare sullo stesso progetto</li>
+                  <li><i class="fas fa-language"></i> <strong>Internazionalità</strong> - Interfaccia in italiano, inglese e altre 15 lingue</li>
+                </ul>
+              </div>
+              
+              <div class="tool-specs">
+                <h4>Robot supportati:</h4>
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <i class="fas fa-cube"></i>
+                    <span><strong>LEGO</strong> Mindstorms/WeDo/Spike</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-microchip"></i>
+                    <span><strong>micro:bit</strong> BBC e Calliope</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-robot"></i>
+                    <span><strong>NAO</strong> robot umanoide</span>
+                  </div>
+                  <div class="spec-item">
+                    <i class="fas fa-car"></i>
+                    <span><strong>AutoNOMOS</strong> veicoli autonomi</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tool-cta">
+                <a href="#contatti" class="btn btn-primary btn-tool">
+                  <i class="fas fa-calendar-check"></i> Iscriviti al corso Open Roberta
+                </a>
+                <span class="tool-note">
+                  <i class="fas fa-lock"></i> Ambiente sicuro e controllato
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Confronto Strumenti -->
+    <div class="tools-comparison">
+      <h3 class="comparison-title">Quale strumento scegliere?</h3>
+      <div class="comparison-table">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>LEGO Spike</th>
+              <th>micro:bit</th>
+              <th>Arduino</th>
+              <th>Open Roberta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Età consigliata</strong></td>
+              <td>8-13 anni</td>
+              <td>8-13 anni</td>
+              <td>12-16 anni</td>
+              <td>8-13 anni</td>
+            </tr>
+            <tr>
+              <td><strong>Livello</strong></td>
+              <td>Principiante/Intermedio</td>
+              <td>Principiante/Avanzato</td>
+              <td>Intermedio/Avanzato</td>
+              <td>Principiante/Intermedio</td>
+            </tr>
+            <tr>
+              <td><strong>Tipo di coding</strong></td>
+              <td>Blocchi visuali</td>
+              <td>Blocchi/JavaScript/Python</td>
+              <td>C++ (semplificato)</td>
+              <td>Blocchi visuali</td>
+            </tr>
+            <tr>
+              <td><strong>Hardware necessario</strong></td>
+              <td>Kit LEGO specifico</td>
+              <td>Scheda micro:bit</td>
+              <td>Board Arduino + componenti</td>
+              <td>Nessuno (cloud) o vari</td>
+            </tr>
+            <tr>
+              <td><strong>Ideale per</strong></td>
+              <td>Costruzioni fisiche</td>
+              <td>Progetti portatili</td>
+              <td>Elettronica creativa</td>
+              <td>Apprendimento collaborativo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="comparison-help">
+        <div class="help-card">
+          <i class="fas fa-question-circle"></i>
+          <div>
+            <h4>Non sai quale scegliere?</h4>
+            <p>Contattaci per una consulenza gratuita. Ti aiuteremo a trovare lo strumento perfetto per l'età e gli interessi di tuo figlio.</p>
+            <a href="#contatti" class="btn btn-outline btn-small">
+              <i class="fas fa-comments"></i> Chiedi consiglio
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
