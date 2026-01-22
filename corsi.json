@@ -2,7 +2,7 @@
   "titoloCorsi": "Aperte le iscrizioni 2024/2025",
   "sottotitoloCorsi": "Percorsi personalizzati per ogni età e interesse",
   "promoNatale": {
-    "attiva": true,
+    "attiva": false,
     "titolo": "Laboratorio Tecnologico Natalizio",
     "sottotitolo": "Costruisci decorazioni tecnologiche con LED e sensori!",
     "descrizione": "4 incontri speciali per creare decorazioni natalizie tecnologiche che si illuminano, reagiscono al movimento e creano magia.",
