@@ -196,42 +196,26 @@
   </div>
 </section>
 
-<!-- Corsi Disponibili -->
-<section id="corsi" class="section section-courses bg-light">
+ <!-- Corsi -->
+    <section id="corsi" class="section bg-light">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Scegli il percorso perfetto</h2>
-      <p class="section-subtitle">Dall'iniziale al creatore di robot avanzato</p>
+      <h2>Aperte le iscrizioni 2026</h2>
+      <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio</p>
     </div>
-    
-    <!-- Promo Banner -->
-    <div class="promo-banner">
-      <div class="promo-content">
-        <span class="promo-badge"><i class="fas fa-gift"></i> PROMO NATALE</span>
-        <h3>Laboratorio Tecnologico Natalizio</h3>
-        <p>Costruisci decorazioni tecnologiche con LED e sensori! 4 incontri a dicembre.</p>
-        <div class="promo-meta">
-          <span><i class="fas fa-calendar"></i> 7-14-21-28 Dicembre</span>
-          <span><i class="fas fa-euro-sign"></i> 120€ (materiali inclusi)</span>
-          <span><i class="fas fa-users"></i> Posti limitati!</span>
-        </div>
-      </div>
-      <a href="#contatti" class="btn btn-promo">
-        <i class="fas fa-shopping-cart"></i> Prenota ora
-      </a>
-    </div>
+    <div id="promo-natale-container" class="promo-natale-container" style="display:none;"></div>
+    <div class="alert-box">
+  <img src="images/bit-corre.webp" alt="" class="bit-running" loading="lazy">
+  <div>
+    <strong>ISCRIVITI IN ANTICIPO!</strong>
+    <p>Ogni gruppo è limitato a 8 - 10 partecipanti per garantire un'attenzione personalizzata.</p>
+  </div>
+</div>
     
     <div class="courses-grid" id="courses-container">
-      <!-- I corsi verranno caricati dinamicamente da script.js -->
-      <div class="loading-courses">
-        <div class="loader"></div>
-        <p>Caricamento corsi disponibili...</p>
+      <div class="course-card loading" style="grid-column: 1 / -1;">
+        <p style="text-align:center; padding:2rem; color:var(--gray-600);">Caricamento corsi…</p>
       </div>
-    </div>
-    
-    <div class="info-box">
-      <i class="fas fa-info-circle"></i>
-      <p><strong>Tutti i corsi includono:</strong> materiali, certificato di partecipazione, assicurazione, merenda e foto dei progetti.</p>
     </div>
   </div>
 </section>
