@@ -369,7 +369,90 @@ img {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
+/* ========================================
+   FEATURES SECTION
+   ======================================== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
 
+.feature-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 40px 30px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary);
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+.feature-icon.safety { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+.feature-icon.learning { background: rgba(59, 130, 246, 0.1); color: var(--secondary); }
+.feature-icon.practical { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+.feature-icon.flexible { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; }
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--dark);
+}
+
+.feature-list {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--gray-700);
+}
+
+.feature-list li i {
+  color: var(--success);
+}
+
+.cta-box {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  margin-top: 50px;
+}
+
+.cta-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.cta-content p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
 
 /* ========================================
    SEZIONI GENERALI
