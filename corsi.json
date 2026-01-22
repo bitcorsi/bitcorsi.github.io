@@ -1,61 +1,77 @@
 {
-  "titoloCorsi": "Aperte le iscrizioni - gennaio 2026",
-  "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio",
+  "titoloCorsi": "Aperte le iscrizioni 2024/2025",
+  "sottotitoloCorsi": "Percorsi personalizzati per ogni età e interesse",
   "promoNatale": {
-    "attiva": false,
-    "titolo": "Aggiornato: Xmas Tech Lab🎄: Costruisci il Tuo Robot!",
-    "sottotitolo": "3 mattinate e 6 ore magiche per bambini e ragazzi",
-    "descrizione": "per progettare, costruire e programmare un robot con Lego Spike Prime e Micro:bit. Divertimento assicurato!",
-    "date": "29 30 31 dicembre dalle 10:00 alle 12:00",
-    "eta": "8–13 anni",
-    "prezzo": "€ 35 a mattinata / € 90 intero Lab",
-    "posti": "Posti limitati (max 10)",
-    "cta": "Prenota il posto"
+    "attiva": true,
+    "titolo": "Laboratorio Tecnologico Natalizio",
+    "sottotitolo": "Costruisci decorazioni tecnologiche con LED e sensori!",
+    "descrizione": "4 incontri speciali per creare decorazioni natalizie tecnologiche che si illuminano, reagiscono al movimento e creano magia.",
+    "date": "7, 14, 21, 28 Dicembre 2024",
+    "eta": "8-13 anni",
+    "prezzo": "120€ (materiali inclusi)",
+    "posti": "Massimo 8 partecipanti - Prenotazione obbligatoria",
+    "cta": "Prenota il posto ora"
   },
   "corsi": [
     {
-      "id": "spike",
-      "nome": "Spike Prime Lab",
-      "eta": "8-13 anni",
-      "incontri": "6 incontri",
-      "prezzo": "€125",
-      "quando": "Da sabato 31 gennaio 2026, ore 10:00-11:30",
-      "descrizione": "Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education. Progetti pratici e divertenti.",
+      "id": 1,
+      "nome": "LEGO Spike Prime Base",
+      "eta": "8-11 anni",
+      "incontri": "8 incontri",
+      "prezzo": "€180",
+      "badge": "Disponibile",
       "stato": "aperto",
-      "badge": "Aperte"
+      "quando": "Sabato 10:00-11:30",
+      "descrizione": "Introduzione alla robotica con mattoncini LEGO e programmazione a blocchi. Costruiscono robot che si muovono, evitano ostacoli e risolvono sfide.",
+      "tipo": "regolare"
     },
     {
-      "id": "arduino",
-      "nome": "Arduino base",
+      "id": 2,
+      "nome": "LEGO Spike Prime Avanzato",
+      "eta": "10-13 anni",
+      "incontri": "10 incontri",
+      "prezzo": "€220",
+      "badge": "Disponibile",
+      "stato": "aperto",
+      "quando": "Sabato 11:30-13:00",
+      "descrizione": "Per chi ha già esperienza base. Robot più complessi con sensori multipli, programmazione avanzata e competizioni tra squadre.",
+      "tipo": "regolare"
+    },
+    {
+      "id": 3,
+      "nome": "Arduino Creativo",
       "eta": "12-16 anni",
-      "incontri": "4 sessioni",
-      "prezzo": "€125",
-      "quando": "sabato mattina ore 10:00-11:30",
-      "descrizione": "Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.",
+      "incontri": "12 incontri",
+      "prezzo": "€250",
+      "badge": "Ultimi posti",
       "stato": "aperto",
-      "badge": "Aperte"
+      "quando": "Sabato 14:30-16:00",
+      "descrizione": "Progetti di elettronica e coding con Arduino. Dalla stazione meteo al braccio robotico, fino alla smart home in miniatura.",
+      "tipo": "regolare"
     },
     {
-      "id": "microbit",
-      "nome": "Micro:bit Lab",
+      "id": 4,
+      "nome": "micro:bit Innovativo",
       "eta": "8-13 anni",
       "incontri": "6 incontri",
-      "prezzo": "€125",
-      "quando": "sabato mattina ore 10:00-11:30",
-      "descrizione": "Programma il piccolo computer tascabile micro:bit per creare giochi e misurare temperatura e movimenti.",
+      "prezzo": "€150",
+      "badge": "In partenza",
       "stato": "aperto",
-      "badge": "Aperte"
+      "quando": "Sabato 9:00-10:30",
+      "descrizione": "Programmazione di dispositivi portatili con LED matrix, sensori integrati e Bluetooth. Creano giochi, strumenti musicali e wearable tech.",
+      "tipo": "regolare"
     },
     {
-      "id": "roberta",
+      "id": 5,
       "nome": "Open Roberta Lab",
       "eta": "8-13 anni",
-      "incontri": "6 settimane",
-      "prezzo": "€90",
-      "quando": "4 online + 2 incontri in sede",
-      "descrizione": "Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab.",
+      "incontri": "8 incontri",
+      "prezzo": "€180",
+      "badge": "Disponibile",
       "stato": "aperto",
-      "badge": "Aperte"
+      "quando": "Su appuntamento",
+      "descrizione": "Programmazione di robot virtuali e fisici con la piattaforma Open Roberta. Perfetto per chi vuole sperimentare senza hardware.",
+      "tipo": "regolare"
     }
   ]
 }
