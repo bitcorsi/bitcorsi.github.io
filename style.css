@@ -279,16 +279,12 @@ img {
    HERO SECTION AGGIORNATA (fade-in desktop + mobile)
    ======================================== */
 .hero {
-  background: var(--primary-dark);
+   padding-top: 140px;
+  padding-bottom: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 5rem 0;
-  text-align: center;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
 }
 
 .container.hero-content-container {
