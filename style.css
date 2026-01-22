@@ -761,65 +761,42 @@ p {
 }
 
 /* ========================================
-   TESTIMONIALS
+   ALERT BOX
    ======================================== */
-.testimonials-slider {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-
-.testimonial-card {
-  background: white;
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  box-shadow: var(--shadow);
-  position: relative;
-}
-
-.testimonial-card::before {
-  content: '"';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 4rem;
-  color: var(--primary-light);
-  font-family: serif;
-  opacity: 0.3;
-}
-
-.testimonial-rating {
-  color: var(--accent);
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-}
-
-.testimonial-text {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--gray-700);
-  margin-bottom: 30px;
-  position: relative;
-  z-index: 1;
-}
-
-.testimonial-author {
+.alert-box {
+  background: var(--white);
+  border: 1px solid var(--warning);
+  border-left: 4px solid var(--warning);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  margin-bottom: 2rem;
   display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--gray-200);
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
 }
 
-.author-info strong {
+.bit-running {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  animation: runCycle 1.2s ease-in-out infinite;
+}
+
+@keyframes runCycle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.alert-box strong {
+  color: var(--gray-900);
   display: block;
-  color: var(--dark);
-  margin-bottom: 5px;
+  margin-bottom: 0.3rem;
 }
 
-.author-info span {
+.alert-box p {
   color: var(--gray-600);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  margin: 0;
 }
 
 /* ========================================
