@@ -2378,3 +2378,23 @@ textarea:focus-visible {
     background: #e86e00;
     transform: translateY(-2px);
 }
+.gradient-text {
+  background: linear-gradient(135deg, 
+    #FF6B35 0%, 
+    #FF8E6B 25%, 
+    #FFD166 50%, 
+    #4CC9F0 75%, 
+    #4361EE 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
