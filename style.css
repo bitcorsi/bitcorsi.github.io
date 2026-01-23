@@ -2386,27 +2386,23 @@ textarea:focus-visible {
     transform: translateY(-2px);
 }
 .gradient-text {
-  /* Gradiente */
-  background: linear-gradient(135deg, 
-    #FF6B35 0%, 
-    #FFD166 25%, 
-    #4CC9F0 50%, 
-    #7209B7 100%);
-  
-  /* Supporto per Webkit (Chrome, Safari, Edge) */
+  background: linear-gradient(
+    90deg,
+    #FF6B35 0%,      /* LEGO - Robotica fisica */
+    #FFD166 33%,     /* Energia/Gioia */
+    #4CC9F0 66%,     /* Open Roberta - Coding */
+    #7209B7 100%     /* Arduino - Elettronica */
+  );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  
-  /* Supporto standard */
   background-clip: text;
   color: transparent;
-  
   display: inline-block;
   font-weight: 900;
-  
-  /* Fallback per browser che non supportano */
-  @supports not (background-clip: text) {
-    color: #FF6B35;
-    background: none;
-  }
+  position: relative;
+  animation: gradientShift 3s ease infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
