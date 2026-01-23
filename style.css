@@ -2385,25 +2385,6 @@ textarea:focus-visible {
     background: #e86e00;
     transform: translateY(-2px);
 }
-/* Gradiente tecnologico */
-.gradient-text {
-  background: linear-gradient(
-    90deg,
-    #FF6B35 0%,    /* Arancione LEGO */
-    #FFD166 25%,   /* Giallo accent */
-    #4CC9F0 50%,   /* Blu ROBERTA */
-    #3D7EBB 75%,   /* Blu micro:bit */
-    #7209B7 100%   /* Viola Arduino */
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
-  font-weight: 900;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: relative;
-}
-
 /* Effetto luci LED */
 .gradient-text::before {
   content: '';
