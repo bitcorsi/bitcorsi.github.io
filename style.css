@@ -2285,9 +2285,4 @@ textarea:focus-visible {
 .tool-block-btn:hover .block-square {
     background: #fff;
 }
-.hero-gradient-light {
-  background: linear-gradient(90deg, #ffffff, #FFD166, #FFA77A);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+
