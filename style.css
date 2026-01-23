@@ -19,7 +19,7 @@ body {
   color: var(--gray-800);
   background-color: var(--white);
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+
 }
 
 img {
