@@ -2285,4 +2285,11 @@ textarea:focus-visible {
 .tool-block-btn:hover .block-square {
     background: #fff;
 }
-
+/* Gradiente per il testo dell'hero - Aggiungi nel tuo CSS */
+.hero-gradient-text {
+  background: linear-gradient(90deg, #FF6B35, #FFA77A, #FFD166);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
