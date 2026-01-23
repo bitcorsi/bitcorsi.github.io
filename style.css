@@ -2285,4 +2285,22 @@ textarea:focus-visible {
 .tool-block-btn:hover .block-square {
     background: #fff;
 }
+.highlight-orange {
+  color: #FF6B35;
+  font-weight: 800;
+  position: relative;
+  padding: 0 5px;
+}
 
+.highlight-orange::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B35, #FFD166, #FF6B35);
+  border-radius: 2px;
+  z-index: -1;
+  opacity: 0.6;
+}
