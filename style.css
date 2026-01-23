@@ -134,7 +134,7 @@ img {
 }
 
 .logo-text {
-  font-size: 1rem;
+  font-size: 1.7rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
@@ -385,7 +385,7 @@ img {
 
   .hero-right-image {
     display: block;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     heigh: auto;
     max-width: 280px;
     }
