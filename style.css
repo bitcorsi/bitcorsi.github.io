@@ -385,7 +385,7 @@ img {
 
   .hero-right-image {
     display: block;
-    margin-top: 1rem;
+    margin-top: 0.3rem;
     heigh: auto;
     max-width: 280px;
     }
