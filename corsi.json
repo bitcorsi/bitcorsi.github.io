@@ -1,5 +1,5 @@
 {
-  "titoloCorsi": " Iscrizioni Aperte - Gennaio 2026",
+  "titoloCorsi": " Iscrizioni Aperte - Inverno 2026",
   "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia",
   "promoNatale": {
     "attiva": false,
@@ -19,7 +19,7 @@
       "eta": "8-13 anni",
       "incontri": "6 incontri",
       "prezzo": "€125",
-      "quando": "sabato mattina ore 10:00-11:30",
+      "quando": "sabato pomeriggio ore 15:00-16:30",
       "descrizione": "Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education. Progetti pratici e divertenti.",
       "stato": "aperto",
       "badge": "Aperte"
