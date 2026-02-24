@@ -2298,14 +2298,14 @@ textarea:focus-visible {
 
 /* Immagine del logo che scende nella sezione Hero */
 .logo-img {
-  height: 80px; /* leggermente più grande per impatto visivo */
+  height: 100px; /* leggermente più grande per impatto visivo */
   width: auto;
   object-fit: contain;
   background-color: transparent;
   border-radius: 8px;
   padding: 4px;
   /* Fai scendere il logo di 30px nella sezione sottostante */
-  margin-bottom: -30px;
+  margin-bottom: -40px;
   display: block;
 }
 
