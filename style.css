@@ -142,7 +142,8 @@ img {
 }
 
 .logo-text {
-  font-size: 1.7rem;
+  margin-left: 120px;
+   font-size: 1.7rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   -webkit-background-clip: text;
@@ -2298,5 +2299,17 @@ textarea:focus-visible {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+  }
+  .logo-img {
+    height: 90px;
+    top: -10px;
+  }
+  .logo-text {
+    margin-left: 80px;
+    font-size: 1.3rem;
+  }
+}
 
