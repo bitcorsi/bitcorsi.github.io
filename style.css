@@ -144,13 +144,13 @@ img {
 
 .header-right {
   display: flex;
-  align-items: center;
+  align-items: right;
   gap: 1.5rem;
 }
 
 .nav {
   display: flex;
-  align-items: center;
+  align-items: right;
   gap: 1.5rem;
 }
 
