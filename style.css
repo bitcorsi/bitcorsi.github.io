@@ -2318,25 +2318,3 @@ textarea:focus-visible {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Riduci il padding superiore della sezione Hero */
-#home.hero {
-  padding-top: 1.2rem; /* era 2.5rem */
-  margin-top: 0;
-}
-.logo-drop {
-  position: relative;
-  z-index: 1002;
-  margin-bottom: -40px;
-}
-
-.logo-img {
-  height: 80px;
-  width: auto;
-  display: block;
-  background: transparent;
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
-}
-
-#home.hero {
-  padding-top: 4rem;
-}
