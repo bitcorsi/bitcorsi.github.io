@@ -18,7 +18,7 @@ body {
   line-height: 1.7;
   color: var(--gray-800);
   background-color: var(--white);
-   overflow: hidden;
+
   -webkit-font-smoothing: antialiased;
 }
 
