@@ -2290,31 +2290,8 @@ textarea:focus-visible {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-/* Disabilita overflow sull'header */
-.header {
-  overflow: visible !important; /* ← fondamentale */
-  padding: 0.35rem 0;
-}
 
-/* Contenitore del logo */
-.logo-container {
-  display: flex;
-  align-items: flex-start; /* allinea in alto, non al centro */
-  gap: 12px;
-  position: relative;
-  z-index: 1001;
+/* Riduci il padding superiore della sezione Hero */
+#home.hero {
+  padding-top: 1.8rem;
 }
-
-/* Immagine del logo che scende */
-.logo-img {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
-  background-color: transparent;
-  border-radius: 8px;
-  padding: 4px;
-  /* Fai scendere il logo nella sezione sottostante */
-  margin-bottom: -30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
