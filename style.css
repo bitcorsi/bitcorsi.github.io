@@ -2290,31 +2290,36 @@ textarea:focus-visible {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-/* Contenitore del logo per il "drop-down" */
-.logo-wrapper {
-  position: relative;
-  z-index: 1001; /* sopra l'header e la sezione sottostante */
+/* Disabilita overflow sull'header */
+.header {
+  overflow: visible !important; /* ← fondamentale */
+  padding: 0.35rem 0;
 }
 
-/* Immagine del logo che scende nella sezione Hero */
+/* Contenitore del logo */
+.logo-container {
+  display: flex;
+  align-items: flex-start; /* allinea in alto, non al centro */
+  gap: 12px;
+  position: relative;
+  z-index: 1001;
+}
+
+/* Immagine del logo che scende */
 .logo-img {
-  height: 100px; /* leggermente più grande per impatto visivo */
+  height: 80px;
   width: auto;
   object-fit: contain;
   background-color: transparent;
   border-radius: 8px;
   padding: 4px;
-  /* Fai scendere il logo di 30px nella sezione sottostante */
-  margin-bottom: -40px;
-  display: block;
+  /* Fai scendere il logo nella sezione sottostante */
+  margin-bottom: -30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Assicurati che l'header non tagli il logo */
-.header {
-  overflow: visible; /* ← fondamentale! */
-}
-
-/* Riduci lo spazio superiore della sezione Hero per compensare */
+/* Riduci il padding superiore della sezione Hero */
 #home.hero {
-  padding-top: 1.5rem; /* era 2.5rem */
+  padding-top: 1.2rem; /* era 2.5rem */
+  margin-top: 0;
 }
