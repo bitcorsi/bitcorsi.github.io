@@ -2312,8 +2312,6 @@ textarea:focus-visible {
     margin-left: 80px;
     font-size: 1.3rem;
   }
-}
-
 .logo-container {
   display: flex;
   align-items: center; /* Allinea verticalmente robot e scritte */
