@@ -2290,3 +2290,31 @@ textarea:focus-visible {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+/* Contenitore del logo per il "drop-down" */
+.logo-wrapper {
+  position: relative;
+  z-index: 1001; /* sopra l'header e la sezione sottostante */
+}
+
+/* Immagine del logo che scende nella sezione Hero */
+.logo-img {
+  height: 80px; /* leggermente più grande per impatto visivo */
+  width: auto;
+  object-fit: contain;
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 4px;
+  /* Fai scendere il logo di 30px nella sezione sottostante */
+  margin-bottom: -30px;
+  display: block;
+}
+
+/* Assicurati che l'header non tagli il logo */
+.header {
+  overflow: visible; /* ← fondamentale! */
+}
+
+/* Riduci lo spazio superiore della sezione Hero per compensare */
+#home.hero {
+  padding-top: 1.5rem; /* era 2.5rem */
+}
