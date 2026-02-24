@@ -113,7 +113,6 @@ img {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid var(--gray-100);
-
   padding: 0.5rem 0; /* Ridotto per un header sottile */
   height: 70px;      /* Altezza fissa per controllo totale */
   display: flex;
@@ -128,7 +127,7 @@ img {
 
 .logo-container {
   display: relative;
-  align-items: center;
+  align-items: left;
  
 }
 
