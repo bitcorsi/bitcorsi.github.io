@@ -2296,7 +2296,4 @@ textarea:focus-visible {
   100% { background-position: 0% 50%; }
 }
 
-/* Riduci il padding superiore della sezione Hero */
-#home.hero {
-  padding-top: 1.8rem;
-}
+
