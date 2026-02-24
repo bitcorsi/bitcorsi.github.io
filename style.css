@@ -126,8 +126,10 @@ img {
 }
 
 .logo-container {
-  display: relative;
-  align-items: left;
+  display: flex;
+  align-items: center; /* Allinea verticalmente logo e testo */
+  gap: 15px;           /* Spazio tra robottino e scritta */
+  position: relative;
  
 }
 
