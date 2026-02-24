@@ -124,7 +124,7 @@ img {
 
 .logo-container {
   display: flex;
-  align-items: left;
+  align-items: center;
   gap: 10px;
 }
 
@@ -149,13 +149,13 @@ img {
 
 .header-right {
   display: flex;
-  align-items: right;
+  align-items: center;
   gap: 1.5rem;
 }
 
 .nav {
   display: flex;
-  align-items: right;
+  align-items: center;
   gap: 1.5rem;
 }
 
