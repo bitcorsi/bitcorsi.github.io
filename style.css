@@ -18,6 +18,7 @@ body {
   line-height: 1.7;
   color: var(--gray-800);
   background-color: var(--white);
+   overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -110,7 +111,7 @@ img {
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 2000;
   padding: 0.20rem 0;
   border-bottom: 1px solid var(--gray-100);
 }
@@ -123,7 +124,7 @@ img {
 
 .logo-container {
   display: flex;
-  align-items: center;
+  align-items: left;
   gap: 10px;
 }
 
@@ -143,7 +144,7 @@ img {
 
 .header-right {
   display: flex;
-  align-items: right;
+  align-items: center;
   gap: 1.5rem;
 }
 
