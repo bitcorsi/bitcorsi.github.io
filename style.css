@@ -2314,3 +2314,27 @@ textarea:focus-visible {
   }
 }
 
+.logo-container {
+  display: flex;
+  align-items: center; /* Allinea verticalmente robot e scritte */
+  gap: 15px;           /* Distanza fissa tra robot e scritte */
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column; /* Mette Bit sopra e Labs sotto */
+  justify-content: center;
+  line-height: 1.1;       /* Tiene le scritte compatte verticalmente */
+}
+
+.logo-text {
+  margin: 0;
+  font-size: 1.8rem;
+  /* Il tuo stile per Bit... */
+}
+
+.logo-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  /* Il tuo stile per Labs... */
+}
