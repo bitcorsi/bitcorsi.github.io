@@ -138,7 +138,8 @@ img {
   width: auto;
   position: relative;
   margin-bottom: -60px; /* Lo "spinge" fuori dall'header */
-  z-index: 1001;        /* Lo tiene sopra la Hero */
+ margin-top: 1.5px;
+   z-index: 1001;        /* Lo tiene sopra la Hero */
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); /* Opzionale: aggiunge profondità */
 }
 
