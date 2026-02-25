@@ -134,7 +134,7 @@ img {
 }
 
 .logo-img {
-  height: 150px;
+  height: 130px;
   width: auto;
   position: relative;
   margin-bottom: -60px; /* Lo "spinge" fuori dall'header */
