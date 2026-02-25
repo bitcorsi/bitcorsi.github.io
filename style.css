@@ -2319,7 +2319,7 @@ textarea:focus-visible {
 }
 @media (max-width: 768px) {
   .header {
-    height: 60px;
+    height: 65px;
   }
   .logo-img {
     height: 90px;
