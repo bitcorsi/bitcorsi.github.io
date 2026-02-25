@@ -120,14 +120,18 @@ img {
 .header::after {
   content: "";
   position: absolute;
-  bottom: -20px;     /* Profondità dell'onda */
+  bottom: -35px; /* Aumentato per far vedere bene le onde */
   left: 0;
   width: 100%;
-  height: 25px;      /* Spessore dell'onda */
+  height: 40px; /* Spessore dell'area ondeggiante */
   background-color: rgba(255, 255, 255, 0.98);
-  /* Crea una curva morbida verso il basso */
-  clip-path: ellipse(55% 100% at 50% 0%);
-  pointer-events: none;
+  /* SVG con tripla onda */
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' d='M0,224L120,202.7C240,181,480,139,720,138.7C960,139,1200,181,1320,202.7L1440,224L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' d='M0,224L120,202.7C240,181,480,139,720,138.7C960,139,1200,181,1320,202.7L1440,224L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+  -webkit-mask-size: cover;
+  z-index: -1; /* Sta dietro al logo e al menu */
 }
 .header .container {
   display: flex;
