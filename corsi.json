@@ -19,7 +19,7 @@
       "eta": "8-13 anni",
       "incontri": "6 incontri",
       "prezzo": "€125",
-      "quando": "sabato pomeriggio ore 15:00-16:30",
+      "quando": "sabato  10:00 - 11.:30 o 15:00-16:30",
       "descrizione": "Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education. Progetti pratici e divertenti.",
       "stato": "aperto",
       "badge": "Aperte"
@@ -32,8 +32,8 @@
       "prezzo": "€125",
       "quando": "sabato mattina ore 10:00-11:30",
       "descrizione": "Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.",
-      "stato": "aperto",
-      "badge": "Aperte"
+      "stato": "chiuso",
+      "badge": "Chiuse"
     },
     {
       "id": "microbit",
