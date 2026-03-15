@@ -38,8 +38,9 @@ function openMenu() {
     body.style.overflow = 'hidden';
 }
 
-// Bottone hamburger
-menuToggle.addEventListener('click', function () {
+// Bottone hamburger — stopPropagation per non triggerare il listener sul documento
+menuToggle.addEventListener('click', function (e) {
+    e.stopPropagation();
     navOverlay.classList.contains('active') ? closeMenu() : openMenu();
 });
 
@@ -48,9 +49,15 @@ navOverlay.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMenu);
 });
 
-// Click fuori dal menu (sullo sfondo)
-navOverlay.addEventListener('click', function (e) {
-    if (e.target === navOverlay) closeMenu();
+// Click fuori dal menu: listener sul documento, esclude overlay e toggle
+document.addEventListener('click', function (e) {
+    if (
+        navOverlay.classList.contains('active') &&
+        !navOverlay.contains(e.target) &&
+        !menuToggle.contains(e.target)
+    ) {
+        closeMenu();
+    }
 });
 
 // Tasto ESC
