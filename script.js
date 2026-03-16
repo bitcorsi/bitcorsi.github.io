@@ -23,13 +23,17 @@ function initMobileMenu() {
 
     if (!menuToggle || !navOverlay) return;
 
-    menuToggle.addEventListener('click', function() {
-        const isOpen = navOverlay.classList.contains('active');
-        
-        if (isOpen) {
-            navOverlay.classList.remove('active');
-            menuToggle.classList.remove('open');
-            body.style.overflow = '';
+    function closeMenu() {
+        navOverlay.classList.remove('active');
+        menuToggle.classList.remove('open');
+        body.style.overflow = '';
+    }
+
+    // Apri/chiudi con hamburger
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (navOverlay.classList.contains('active')) {
+            closeMenu();
         } else {
             navOverlay.classList.add('active');
             menuToggle.classList.add('open');
@@ -37,23 +41,19 @@ function initMobileMenu() {
         }
     });
 
-    // Chiudi menu quando si clicca su un link
-    const navLinks = navOverlay.querySelectorAll('a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navOverlay.classList.remove('active');
-            menuToggle.classList.remove('open');
-            body.style.overflow = '';
-        });
+    // Chiudi cliccando su un link
+    navOverlay.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
     });
 
-    // Chiudi menu quando si preme ESC
+    // Chiudi premendo ESC
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navOverlay.classList.contains('active')) {
-            navOverlay.classList.remove('active');
-            menuToggle.classList.remove('open');
-            body.style.overflow = '';
-        }
+        if (e.key === 'Escape') closeMenu();
+    });
+
+    // ✅ Chiudi cliccando sullo sfondo (fuori dai link)
+    navOverlay.addEventListener('click', function(e) {
+        if (e.target === navOverlay) closeMenu();
     });
 }
 
