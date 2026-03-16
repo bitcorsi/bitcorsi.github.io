@@ -1692,3 +1692,104 @@ textarea:focus-visible {
 section[id] {
   scroll-margin-top: 75px; /* altezza header (65px) + margine */
 }
+/* ========================================
+   COME FUNZIONA
+   ======================================== */
+.steps-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+}
+
+.step {
+  flex: 1;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.step-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.step-circle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.s1 .step-circle { background: #FAECE7; color: #993C1D; }
+.s2 .step-circle { background: #FAEEDA; color: #633806; }
+.s3 .step-circle { background: #E1F5EE; color: #0F6E56; }
+
+.step-num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  margin-bottom: 0.3rem;
+}
+
+.step-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+.step-arrow {
+  display: flex;
+  align-items: center;
+  padding-top: 1.5rem;
+  color: var(--gray-300);
+  flex-shrink: 0;
+}
+
+.step-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .steps-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .step {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    max-width: 100%;
+    padding: 1rem 0;
+    gap: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .step-circle {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .step-arrow {
+    display: none;
+  }
+}
