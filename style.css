@@ -1689,3 +1689,6 @@ textarea:focus-visible {
     border-radius: var(--radius);
   }
 }
+section[id] {
+  scroll-margin-top: 75px; /* altezza header (65px) + margine */
+}
