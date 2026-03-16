@@ -1692,3 +1692,17 @@ textarea:focus-visible {
 section[id] {
   scroll-margin-top: 75px; /* altezza header (65px) + margine */
 }
+.hero-badge-prova {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  padding: 0.35rem 1rem;
+  margin-top: -0.5rem;
+  backdrop-filter: blur(4px);
+}
