@@ -1863,3 +1863,119 @@ section[id] {
     background: white;
   }
 }
+/* ========================================
+   HERO STEPPER
+   ======================================== */
+.hero-right-stepper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInImage 1s ease-out 0.4s forwards;
+}
+
+.hero-stepper-box {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+  width: 100%;
+  max-width: 280px;
+}
+
+.hero-stepper-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.hero-step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.hero-step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hero-step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.95);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-step-line {
+  width: 1px;
+  flex: 1;
+  min-height: 16px;
+  background: rgba(255,255,255,0.25);
+  margin: 3px 0;
+}
+
+.hero-step:last-child .hero-step-line {
+  display: none;
+}
+
+.hero-step-body {
+  padding: 2px 0 10px;
+}
+
+.hero-step-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 0.2rem;
+}
+
+.hero-step-desc {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+}
+
+.hero-stepper-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 50px;
+  padding: 0.45rem 1.2rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.hero-stepper-cta:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+/* Su mobile nascondi lo stepper hero (già c'è hero-right-image nascosta) */
+@media (max-width: 768px) {
+  .hero-right-stepper {
+    display: none;
+  }
+}
