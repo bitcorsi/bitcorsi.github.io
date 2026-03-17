@@ -1705,3 +1705,161 @@ section[id] {
   margin-top: -0.5rem;
   backdrop-filter: blur(4px);
 }
+/* ========================================
+   HERO STEPPER (sostituisce hero-right-image)
+   ======================================== */
+.hero-right-stepper {
+  display: none;
+}
+
+.hero-right-image {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInImage 1s ease-out 0.4s forwards;
+}
+
+.stepper-inner {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.2rem 1rem;
+}
+
+.stepper-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.stepper-steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepper-step {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 6px 0;
+}
+
+.stepper-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.stepper-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--primary-dark);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stepper-line {
+  width: 2px;
+  flex: 1;
+  min-height: 14px;
+  background: #FFD0BC;
+  margin: 3px 0;
+}
+
+.stepper-body {
+  padding-top: 3px;
+  padding-bottom: 6px;
+}
+
+.stepper-body strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 2px;
+}
+
+.stepper-body p {
+  font-size: 0.78rem;
+  color: var(--gray-500);
+  line-height: 1.5;
+  margin: 0;
+  opacity: 1;
+}
+
+.stepper-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 1rem;
+  padding: 8px 20px;
+  border-radius: 99px;
+  background: rgba(224, 90, 43, 0.15);
+  border: 1px solid rgba(224, 90, 43, 0.35);
+  color: var(--primary-dark);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.stepper-cta:hover {
+  background: rgba(224, 90, 43, 0.25);
+}
+
+/* Su desktop lo stepper è visibile, l'immagine anche */
+@media (min-width: 769px) {
+  .hero-right-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInImage 1s ease-out 0.4s forwards;
+  }
+}
+
+/* Su mobile: stepper sotto al testo, immagine nascosta */
+@media (max-width: 768px) {
+  .hero-right-stepper {
+    display: block;
+    width: 100%;
+    padding: 0 1rem 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInImage 1s ease-out 0.4s forwards;
+  }
+
+  .hero-right-image {
+    display: none;
+  }
+
+  .stepper-cta {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+  }
+
+  .stepper-cta:hover {
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  .stepper-inner {
+    background: white;
+  }
+}
