@@ -1485,12 +1485,7 @@ textarea:focus-visible {
   .hero-left-image  { display: none; }
   .hero-features    { display: none; }
 
-.hero-right-image {
-  background: white;
-  width: 100%;
-  max-width: 100%;
-  padding: 1rem 0 1.5rem;
-}
+
   /* Sezioni */
   .section { padding: 3rem 1rem; }
 
