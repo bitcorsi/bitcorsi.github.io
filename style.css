@@ -2003,3 +2003,23 @@ section[id] {
     display: none;
   }
 }
+.section-il-progetto {
+  position: relative;
+}
+
+.il-progetto-symbols {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.il-sym {
+  position: absolute;
+  font-family: monospace;
+  font-weight: 700;
+  color: var(--primary);
+  opacity: 0.07;
+  user-select: none;
+  line-height: 1;
+}
