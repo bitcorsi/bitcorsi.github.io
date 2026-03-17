@@ -1727,7 +1727,6 @@ section[id] {
 /* Mobile: nascondi il CTA split (già gestito) */
 @media (max-width: 768px) {
   .hero-actions {
-    display: none;
   }
 }
 /* ========================================
