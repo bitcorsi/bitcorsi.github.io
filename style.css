@@ -1691,19 +1691,44 @@ textarea:focus-visible {
 section[id] {
   scroll-margin-top: 75px; /* altezza header (65px) + margine */
 }
-.hero-badge-prova {
+.hero-cta-split {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-  padding: 0.35rem 1rem;
-  margin-top: -0.5rem;
-  backdrop-filter: blur(4px);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.hero-cta-split:hover {
+  opacity: 0.9;
+}
+
+.hero-cta-left {
+  background: white;
+  color: var(--primary-dark);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.6rem 1.2rem;
+}
+
+.hero-cta-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.95);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+}
+
+/* Mobile: nascondi il CTA split (già gestito) */
+@media (max-width: 768px) {
+  .hero-actions {
+    display: none;
+  }
 }
 /* ========================================
    HERO STEPPER (sostituisce hero-right-image)
