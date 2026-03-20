@@ -14,13 +14,13 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;touch-action:none;}
 body{font-family:'Exo 2',sans-serif;cursor:none;}
-canvas{display:block;position:fixed;top:0;left:0;right:0;bottom:0;}
+canvas{display:block;position:fixed;inset:0;}
 
 /* ─── HUD ─── */
 #hud{position:fixed;top:0;left:0;right:0;padding:10px 14px;display:flex;align-items:center;gap:10px;z-index:20;pointer-events:none;flex-wrap:wrap;}
 .hud-label{font-family:'Orbitron',monospace;font-size:0.5rem;letter-spacing:2px;color:#0ff9;text-transform:uppercase;margin-bottom:1px;}
 .hud-val{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:#fff;}
-.hud-box{background:rgba(0,15,35,0.82);border:1px solid rgba(0,255,255,0.18);border-radius:7px;padding:4px 10px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+.hud-box{background:rgba(0,15,35,0.82);border:1px solid rgba(0,255,255,0.18);border-radius:7px;padding:4px 10px;backdrop-filter:blur(6px);}
 .bar-wrap{width:110px;}
 .bar-bg{height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;margin-top:3px;}
 .bar-fill{height:100%;border-radius:3px;transition:width 0.12s;}
@@ -35,7 +35,7 @@ canvas{display:block;position:fixed;top:0;left:0;right:0;bottom:0;}
 #clown-heal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;color:#00ff88;opacity:0;transition:opacity 0.3s;z-index:32;pointer-events:none;text-shadow:0 0 20px #00ff88;}
 
 /* ─── SCREENS ─── */
-.screen{position:fixed;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:40;background:radial-gradient(ellipse at center,rgba(0,10,30,0.98) 0%,rgba(0,0,12,0.99) 100%);padding:20px;overflow-y:auto;}
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:40;background:radial-gradient(ellipse at center,rgba(0,10,30,0.98) 0%,rgba(0,0,12,0.99) 100%);padding:20px;overflow-y:auto;}
 .screen.hidden{display:none;}
 .screen-title{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,5vw,3.4rem);font-weight:900;letter-spacing:3px;background:linear-gradient(135deg,#ff4466,#ff9900,#ffcc00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;text-align:center;}
 .screen-sub{font-size:0.88rem;color:rgba(255,255,255,0.42);letter-spacing:2px;margin-bottom:26px;text-align:center;line-height:1.6;}
@@ -60,10 +60,10 @@ canvas{display:block;position:fixed;top:0;left:0;right:0;bottom:0;}
 
 /* ─── OVERLAYS ─── */
 #combo{position:fixed;top:50%;right:22px;transform:translateY(-50%);font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;color:#ffcc00;opacity:0;transition:opacity 0.3s;text-shadow:0 0 18px rgba(255,200,0,0.8);pointer-events:none;z-index:22;}
-#minimap{position:fixed;bottom:14px;right:14px;width:130px;height:130px;background:rgba(0,6,20,0.8);border:1px solid rgba(0,255,255,0.18);border-radius:7px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:20;}
-#damage-flash{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,0,60,0);pointer-events:none;z-index:25;transition:background 0.08s;}
-#laser-flash{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,200,255,0);pointer-events:none;z-index:24;transition:background 0.05s;}
-#witch-flash{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(180,0,255,0);pointer-events:none;z-index:23;transition:background 0.1s;}
+#minimap{position:fixed;bottom:14px;right:14px;width:130px;height:130px;background:rgba(0,6,20,0.8);border:1px solid rgba(0,255,255,0.18);border-radius:7px;backdrop-filter:blur(4px);z-index:20;}
+#damage-flash{position:fixed;inset:0;background:rgba(255,0,60,0);pointer-events:none;z-index:25;transition:background 0.08s;}
+#laser-flash{position:fixed;inset:0;background:rgba(0,200,255,0);pointer-events:none;z-index:24;transition:background 0.05s;}
+#witch-flash{position:fixed;inset:0;background:rgba(180,0,255,0);pointer-events:none;z-index:23;transition:background 0.1s;}
 
 /* ─── TOUCH JOYSTICK ─── */
 #touch-controls{position:fixed;bottom:0;left:0;right:0;height:200px;pointer-events:none;z-index:18;display:none;}
@@ -78,7 +78,7 @@ canvas{display:block;position:fixed;top:0;left:0;right:0;bottom:0;}
   #cursor{display:none;}
 }
 /* PWA install banner */
-#install-banner{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(0,20,50,0.92);border:1px solid rgba(0,255,200,0.3);border-radius:12px;padding:10px 20px;display:flex;align-items:center;gap:12px;z-index:50;font-size:0.8rem;color:rgba(255,255,255,0.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:none;}
+#install-banner{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(0,20,50,0.92);border:1px solid rgba(0,255,200,0.3);border-radius:12px;padding:10px 20px;display:flex;align-items:center;gap:12px;z-index:50;font-size:0.8rem;color:rgba(255,255,255,0.7);backdrop-filter:blur(8px);display:none;}
 #install-banner button{background:rgba(0,255,200,0.2);border:1px solid rgba(0,255,200,0.5);border-radius:20px;color:#00ffcc;font-family:'Orbitron',monospace;font-size:0.65rem;font-weight:700;padding:5px 14px;cursor:pointer;letter-spacing:1px;}
 </style>
 </head>
@@ -162,23 +162,6 @@ canvas{display:block;position:fixed;top:0;left:0;right:0;bottom:0;}
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-//  SAFARI COMPATIBILITY HELPERS
-// ═══════════════════════════════════════════════
-// Rounded rect polyfill (roundRect not on Safari < 16)
-function rrect(c,x,y,w,h,r){
-  r=Math.min(r,w/2,h/2);
-  c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);
-  c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
-  c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);
-  c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();
-}
-// Ellipse polyfill (safe everywhere but let's wrap it)
-function safeEllipse(c,x,y,rx,ry,rot,s,e){
-  if(c.ellipse){c.ellipse(x,y,rx,ry,rot,s,e);}
-  else{c.save();c.translate(x,y);c.rotate(rot);c.scale(rx,ry);c.arc(0,0,1,s,e);c.restore();}
-}
-
 // ═══════════════════════════════════════════════
 //  PWA REGISTRATION
 // ═══════════════════════════════════════════════
@@ -404,7 +387,7 @@ function drawWitchHat(w){
   ctx.scale(scale,scale);
   ctx.fillStyle='#220033';ctx.strokeStyle='#8800cc';ctx.lineWidth=2;
   ctx.shadowBlur=12;ctx.shadowColor='#6600aa';
-  ctx.beginPath();safeEllipse(ctx,0,8,26,7,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.beginPath();ctx.ellipse(0,8,26,7,0,0,Math.PI*2);ctx.fill();ctx.stroke();
   // Hat cone
   ctx.beginPath();ctx.moveTo(0,-36);ctx.lineTo(-20,8);ctx.lineTo(20,8);ctx.closePath();
   const hg=ctx.createLinearGradient(0,-36,0,8);
@@ -418,8 +401,8 @@ function drawWitchHat(w){
   drawStar5(ctx,0,-20,6);
   // Eyes glow (spooky)
   ctx.fillStyle='rgba(255,200,0,0.9)';ctx.shadowBlur=5;ctx.shadowColor='#ffcc00';
-  ctx.beginPath();safeEllipse(ctx,-7,-12,3,2,0,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();safeEllipse(ctx,7,-12,3,2,0,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(-7,-12,3,2,0,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(7,-12,3,2,0,0,Math.PI*2);ctx.fill();
   // Floating sparkles
   const t=Date.now()*.002;
   for(let i=0;i<4;i++){
@@ -608,7 +591,7 @@ function drawPlayer(){
   const bg=ctx.createLinearGradient(0,-22,0,16);bg.addColorStop(0,'#00ffee');bg.addColorStop(.4,'#0099cc');bg.addColorStop(1,'#003355');
   ctx.fillStyle=bg;ctx.fill();ctx.strokeStyle='rgba(0,255,230,.8)';ctx.lineWidth=1.5;ctx.stroke();
   ctx.fillStyle='rgba(0,255,220,.35)';ctx.strokeStyle='rgba(0,255,220,.9)';ctx.lineWidth=1;
-  ctx.beginPath();safeEllipse(ctx,0,-10,5,7,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.beginPath();ctx.ellipse(0,-10,5,7,0,0,Math.PI*2);ctx.fill();ctx.stroke();
   ctx.strokeStyle='rgba(0,220,255,.4)';ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(-4,0);ctx.lineTo(-12,7);ctx.stroke();
   ctx.beginPath();ctx.moveTo(4,0);ctx.lineTo(12,7);ctx.stroke();
@@ -650,7 +633,7 @@ function drawStation(s){
     ctx.fillStyle='#ffcc00';ctx.beginPath();ctx.arc(0,0,16,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ff6600';ctx.beginPath();ctx.arc(0,0,8,0,Math.PI*2);ctx.fill();
   }else{
     ctx.shadowBlur=10;ctx.shadowColor='#aa44ff';
-    for(let i=0;i<5;i++){const a=(i/5)*Math.PI*2,mx=Math.cos(a)*s.r*.7,my=Math.sin(a)*s.r*.7;ctx.fillStyle='#220044';ctx.strokeStyle='#aa44ff';ctx.lineWidth=2;ctx.beginPath();rrect(ctx,mx-12,my-8,24,16,4);ctx.fill();ctx.stroke();ctx.fillStyle=`hsl(${280+i*20},100%,70%)`;ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();}
+    for(let i=0;i<5;i++){const a=(i/5)*Math.PI*2,mx=Math.cos(a)*s.r*.7,my=Math.sin(a)*s.r*.7;ctx.fillStyle='#220044';ctx.strokeStyle='#aa44ff';ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(mx-12,my-8,24,16,4);ctx.fill();ctx.stroke();ctx.fillStyle=`hsl(${280+i*20},100%,70%)`;ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();}
     ctx.strokeStyle='#6600aa33';ctx.lineWidth=4;for(let i=0;i<5;i++){const a1=(i/5)*Math.PI*2,a2=((i+1)/5)*Math.PI*2;ctx.beginPath();ctx.moveTo(Math.cos(a1)*s.r*.7,Math.sin(a1)*s.r*.7);ctx.lineTo(Math.cos(a2)*s.r*.7,Math.sin(a2)*s.r*.7);ctx.stroke();}
     ctx.fillStyle='#aa44ff';ctx.beginPath();ctx.arc(0,0,14,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(0,0,6,0,Math.PI*2);ctx.fill();
   }
@@ -675,7 +658,7 @@ function drawBullet(b,enemy=false){
   ctx.save();
   const col=enemy?(b.col||'#ff6600'):'#00ffee';
   ctx.shadowBlur=10;ctx.shadowColor=col;ctx.fillStyle=col;
-  ctx.save();ctx.translate(sx,sy);ctx.rotate(b.angle);ctx.fillRect(-3,-8,6,16);ctx.restore();ctx.shadowBlur=0;ctx.restore();
+  ctx.beginPath();ctx.ellipse(sx,sy,3,8,b.angle,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.restore();
 }
 function drawLaser(l){
   const sx=l.ex-camX+W/2,sy=l.ey-camY+H/2;
