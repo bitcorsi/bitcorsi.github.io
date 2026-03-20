@@ -318,3 +318,16 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('error', function(e) {
     console.error('Errore JavaScript:', e.error);
 });
+// ── SCROLL REVEAL ──
+(function(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if(el.isIntersecting){
+        el.target.classList.add('visible');
+        observer.unobserve(el.target); // anima solo una volta
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
