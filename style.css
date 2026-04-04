@@ -164,12 +164,10 @@ img {
 
 .logo-text {
   margin: 0;
-  font-size: 1.7rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--primary-dark);
+  letter-spacing: -0.02em;
 }
 
 .logo-subtitle {
@@ -2331,4 +2329,24 @@ section[id] {
   .camp-banner {
     position: relative;
   }
+}
+.logo-text-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-divider {
+  width: 2px;
+  height: 28px;
+  background: var(--primary-dark);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.logo-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  line-height: 1.3;
 }
