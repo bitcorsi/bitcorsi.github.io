@@ -2203,3 +2203,132 @@ section[id] {
   user-select: none;
   line-height: 1;
 }
+/* ========================================
+   BANNER SUMMER CAMP
+   ======================================== */
+.camp-banner {
+  background: linear-gradient(90deg, #E05A2B 0%, #C04A20 100%);
+  position: sticky;
+  top: 65px;
+  z-index: 999;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.camp-banner-inner {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.camp-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.camp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFD166;
+  color: #7a3800;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 99px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.camp-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.4;
+}
+
+.camp-text span {
+  color: rgba(255,255,255,0.75);
+  font-weight: 400;
+}
+
+.camp-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.camp-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #25D366;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 99px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.camp-wa:hover {
+  background: #1eb557;
+}
+
+.camp-close {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.camp-close:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+@media (max-width: 768px) {
+  .camp-banner {
+    top: 65px;
+  }
+
+  .camp-banner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .camp-text span {
+    display: block;
+  }
+
+  .camp-close {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .camp-banner {
+    position: relative;
+  }
+}
