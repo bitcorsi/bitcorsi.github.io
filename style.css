@@ -164,7 +164,7 @@ img {
 
 .logo-text {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 900;
   color: var(--primary-dark);
   letter-spacing: -0.02em;
@@ -172,7 +172,7 @@ img {
 
 .logo-subtitle {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
 }
 
 .header-right {
