@@ -2333,7 +2333,8 @@ section[id] {
 .logo-text-group {
   display: flex;
   align-items: center;
-  gap: 10px;
+   flex-direction: row;
+   gap: 10px;
 }
 
 .logo-divider {
