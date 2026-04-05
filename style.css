@@ -1359,7 +1359,7 @@ section[id] { scroll-margin-top: 75px; }
   .section-subtitle { font-size: 1rem; line-height: 1.5; max-width: 90%; }
 
   .progetto-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .progetto-img { height: 200px; }
+  .progetto-img { height: auto; }
   .progetto-title { font-size: 1.4rem; }
   .collab-header h3 { font-size: 1.2rem; }
   .scuole-grid { gap: 0.7rem; }
