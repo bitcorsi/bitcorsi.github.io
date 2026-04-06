@@ -8,15 +8,16 @@ function init() {
     initContactForm();
     initCourses();
     unifyWhatsAppFAB();
+    initSummerCampPopup();
 }
 
 // ========================================
 // MENU MOBILE
 // ========================================
 function initMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navOverlay = document.querySelector('.nav-overlay');
-    const body = document.body;
+    var menuToggle = document.querySelector('.menu-toggle');
+    var navOverlay = document.querySelector('.nav-overlay');
+    var body = document.body;
 
     if (!menuToggle || !navOverlay) return;
 
@@ -37,11 +38,11 @@ function initMobileMenu() {
         }
     });
 
-    navOverlay.querySelectorAll('a').forEach(link => {
+    navOverlay.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', closeMenu);
     });
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeMenu();
     });
 
@@ -54,13 +55,13 @@ function initMobileMenu() {
 // FAQ ACCORDION
 // ========================================
 function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-list details');
+    var faqItems = document.querySelectorAll('.faq-list details');
 
-    faqItems.forEach(item => {
+    faqItems.forEach(function(item) {
         item.addEventListener('toggle', function() {
             if (this.open) {
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== this && otherItem.open) {
+                faqItems.forEach(function(otherItem) {
+                    if (otherItem !== item && otherItem.open) {
                         otherItem.open = false;
                     }
                 });
@@ -73,18 +74,18 @@ function initFAQ() {
 // FORM ISCRIZIONE
 // ========================================
 function initContactForm() {
-    const contactForm = document.getElementById('iscrizione-form');
-    const messageEl = document.getElementById('form-message');
+    var contactForm = document.getElementById('iscrizione-form');
+    var messageEl = document.getElementById('form-message');
 
     if (!contactForm) return;
 
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        const submitBtn = this.querySelector('.btn-submit');
+        var submitBtn = this.querySelector('.btn-submit');
         if (!submitBtn || submitBtn.disabled) return;
 
-        const originalText = submitBtn.textContent;
+        var originalText = submitBtn.textContent;
         submitBtn.disabled = true;
         submitBtn.textContent = 'Invio…';
 
@@ -94,20 +95,20 @@ function initContactForm() {
         }
 
         try {
-            const response = await fetch(this.action.trim(), {
+            var response = await fetch(this.action.trim(), {
                 method: 'POST',
                 body: new FormData(this)
             });
 
-            let success = false;
-            const contentType = response.headers.get('content-type') || '';
+            var success = false;
+            var contentType = response.headers.get('content-type') || '';
 
             if (response.ok) {
                 if (contentType.includes('application/json')) {
-                    const data = await response.json();
+                    var data = await response.json();
                     success = !!data.success;
                 } else {
-                    const text = await response.text();
+                    var text = await response.text();
                     success = text.includes('success') || text.includes('Thank you');
                 }
             }
@@ -115,11 +116,11 @@ function initContactForm() {
             if (success) {
                 this.reset();
                 if (messageEl) {
-                    messageEl.textContent = '✅ Iscrizione inviata con successo!';
+                    messageEl.textContent = 'Iscrizione inviata con successo!';
                     messageEl.className = 'form-message success';
-                    setTimeout(() => {
+                    setTimeout(function() {
                         messageEl.className = 'form-message';
-                        setTimeout(() => messageEl.textContent = '', 300);
+                        setTimeout(function() { messageEl.textContent = ''; }, 300);
                     }, 5000);
                 }
             } else {
@@ -133,7 +134,7 @@ function initContactForm() {
                 messageEl.className = 'form-message error';
             }
         } finally {
-            setTimeout(() => {
+            setTimeout(function() {
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
@@ -252,6 +253,47 @@ function initCourses() {
                     '<p>Contattaci per info aggiornate.</p>' +
                 '</div>';
         });
+}
+
+// ========================================
+// POPUP SUMMER CAMP
+// ========================================
+function initSummerCampPopup() {
+    var SESSION_KEY = 'sc_popup_shown';
+
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+
+    var overlay = document.getElementById('sc-popup-overlay');
+    if (!overlay) return;
+
+    function closePopup() {
+        overlay.classList.remove('sc-open');
+        setTimeout(function() {
+            overlay.style.display = 'none';
+        }, 280);
+    }
+
+    var closeBtn = document.getElementById('sc-popup-close');
+    var skipBtn = document.getElementById('sc-popup-skip');
+
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+    if (skipBtn) skipBtn.addEventListener('click', closePopup);
+
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closePopup();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePopup();
+    });
+
+    setTimeout(function() {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        overlay.style.display = 'flex';
+        requestAnimationFrame(function() {
+            overlay.classList.add('sc-open');
+        });
+    }, 3000);
 }
 
 // ========================================
