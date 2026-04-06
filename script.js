@@ -2,20 +2,17 @@
 // FUNZIONI GENERALI
 // ========================================
 
-/**
- * Inizializza tutte le funzionalità del sito
- */
 function init() {
     initMobileMenu();
     initFAQ();
     initContactForm();
-    initCourses(); // ✅ Gestione corsi dinamici
-    unifyWhatsAppFAB(); // ✅ Nuova: unione FAB ↔ icona fissa
+    initCourses();
+    unifyWhatsAppFAB();
 }
 
-/**
- * Gestione menu mobile
- */
+// ========================================
+// MENU MOBILE
+// ========================================
 function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navOverlay = document.querySelector('.nav-overlay');
@@ -29,7 +26,6 @@ function initMobileMenu() {
         body.style.overflow = '';
     }
 
-    // Apri/chiudi con hamburger
     menuToggle.addEventListener('click', function(e) {
         e.stopPropagation();
         if (navOverlay.classList.contains('active')) {
@@ -41,32 +37,28 @@ function initMobileMenu() {
         }
     });
 
-    // Chiudi cliccando su un link
     navOverlay.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeMenu);
     });
 
-    // Chiudi premendo ESC
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeMenu();
     });
 
-    // ✅ Chiudi cliccando sullo sfondo (fuori dai link)
     navOverlay.addEventListener('click', function(e) {
         if (e.target === navOverlay) closeMenu();
     });
 }
 
-/**
- * Gestione FAQ (accordion)
- */
+// ========================================
+// FAQ ACCORDION
+// ========================================
 function initFAQ() {
     const faqItems = document.querySelectorAll('.faq-list details');
-    
+
     faqItems.forEach(item => {
         item.addEventListener('toggle', function() {
             if (this.open) {
-                // Chiudi altri elementi aperti
                 faqItems.forEach(otherItem => {
                     if (otherItem !== this && otherItem.open) {
                         otherItem.open = false;
@@ -77,13 +69,13 @@ function initFAQ() {
     });
 }
 
-/**
- * Gestione form iscrizione con conferma inline (FormSubmit)
- */
+// ========================================
+// FORM ISCRIZIONE
+// ========================================
 function initContactForm() {
     const contactForm = document.getElementById('iscrizione-form');
     const messageEl = document.getElementById('form-message');
-    
+
     if (!contactForm) return;
 
     contactForm.addEventListener('submit', async function(e) {
@@ -96,7 +88,6 @@ function initContactForm() {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Invio…';
 
-        // Reset messaggio precedente
         if (messageEl) {
             messageEl.className = 'form-message';
             messageEl.textContent = '';
@@ -136,9 +127,9 @@ function initContactForm() {
             }
 
         } catch (error) {
-            console.error('❌ Invio fallito:', error);
+            console.error('Invio fallito:', error);
             if (messageEl) {
-                messageEl.textContent = '❌ Errore: controlla i dati e riprova.';
+                messageEl.textContent = 'Errore: controlla i dati e riprova.';
                 messageEl.className = 'form-message error';
             }
         } finally {
@@ -152,122 +143,127 @@ function initContactForm() {
     });
 }
 
-/**
- * Carica e mostra titolo, sottotitolo, promo natalizia (se attiva) e corsi da corsi.json
- */
+// ========================================
+// CORSI DINAMICI DA corsi.json
+// ========================================
 function initCourses() {
-    const container = document.getElementById('courses-container');
-    const sectionHeader = document.querySelector('#corsi .section-header');
-    const promoContainer = document.querySelector('#promo-natale-container'); // ← nuovo
-    
+    var container = document.getElementById('courses-container');
+    var sectionHeader = document.querySelector('#corsi .section-header');
+    var promoContainer = document.querySelector('#promo-natale-container');
+
     if (!container) return;
 
     fetch('corsi.json?' + Date.now())
-        .then(response => {
+        .then(function(response) {
             if (!response.ok) throw new Error('corsi.json non trovato');
             return response.json();
         })
-        .then(data => {
-            // ✅ Titolo/sottotitolo principali
+        .then(function(data) {
+
             if (sectionHeader && data.titoloCorsi) {
-                sectionHeader.innerHTML = `
-                    <h2>${data.titoloCorsi}</h2>
-                    <p class="section-subtitle">${data.sottotitoloCorsi || ''}</p>
-                `;
+                sectionHeader.innerHTML =
+                    '<h2>' + data.titoloCorsi + '</h2>' +
+                    '<p class="section-subtitle">' + (data.sottotitoloCorsi || '') + '</p>';
             }
 
-            // ✅ Promo Natale (se attiva)
             if (promoContainer && data.promoNatale && data.promoNatale.attiva) {
-                const p = data.promoNatale;
-                promoContainer.innerHTML = `
-                    <div class="promo-natale-card">
-                        <div class="promo-natale-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83M14 20a3 3 0 1 0-4 0M10 4a3 3 0 0 0 4 0"/>
-                            </svg>
-                        </div>
-                        <div class="promo-natale-content">
-                            <span class="promo-badge">EDIZIONE SPECIALE</span>
-                            <h3>${p.titolo}</h3>
-                            <p class="promo-subtitle">${p.sottotitolo}</p>
-                            <p>${p.descrizione}</p>
-                            <div class="promo-meta">
-                                <span><strong>Date:</strong> ${p.date}</span>
-                                <span><strong>Età:</strong> ${p.eta}</span>
-                                <span><strong>Prezzo:</strong> ${p.prezzo}</span>
-                            </div>
-                            <p class="promo-note">${p.posti}</p>
-                            <a href="#contatti" class="btn-promo">${p.cta}</a>
-                        </div>
-                    </div>
-                `;
+                var p = data.promoNatale;
+                promoContainer.innerHTML =
+                    '<div class="promo-natale-card">' +
+                        '<div class="promo-natale-icon">' +
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor">' +
+                                '<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83M14 20a3 3 0 1 0-4 0M10 4a3 3 0 0 0 4 0"/>' +
+                            '</svg>' +
+                        '</div>' +
+                        '<div class="promo-natale-content">' +
+                            '<span class="promo-badge">EDIZIONE SPECIALE</span>' +
+                            '<h3>' + p.titolo + '</h3>' +
+                            '<p class="promo-subtitle">' + p.sottotitolo + '</p>' +
+                            '<p>' + p.descrizione + '</p>' +
+                            '<div class="promo-meta">' +
+                                '<span><strong>Date:</strong> ' + p.date + '</span>' +
+                                '<span><strong>Eta:</strong> ' + p.eta + '</span>' +
+                                '<span><strong>Prezzo:</strong> ' + p.prezzo + '</span>' +
+                            '</div>' +
+                            '<p class="promo-note">' + p.posti + '</p>' +
+                            '<a href="#contatti" class="btn-promo">' + p.cta + '</a>' +
+                        '</div>' +
+                    '</div>';
                 promoContainer.style.display = 'block';
             } else if (promoContainer) {
                 promoContainer.style.display = 'none';
             }
 
-            // ✅ Corsi (solo quelli normali)
             container.innerHTML = '';
-            const corsiNormali = data.corsi?.filter(c => c.tipo !== 'promo') || [];
-            if (corsiNormali.length > 0) {
-                corsiNormali.forEach(corso => {
-                    const isActive = corso.stato === 'aperto';
-                    const badgeClass = isActive ? 'badge-available' : 'badge-closed';
-                    const btn = isActive 
-                        ? `<a href="#contatti" class="btn-course">Iscriviti ora</a>`
-                        : `<button class="btn-course btn-disabled" disabled>corso in svolgimento </button>`;
+            var corsiNormali = (data.corsi || []).filter(function(c) {
+                return c.tipo !== 'promo';
+            });
 
-                    const card = `
-                        <div class="course-card">
-                            <div class="course-badge ${badgeClass}">${corso.badge}</div>
-                            <h3>${corso.nome}</h3>
-                            <div class="course-meta">
-                                <span class="meta-item">${corso.eta}</span>
-                                <span class="meta-item">${corso.incontri}</span>
-                                <span class="meta-item meta-price">${corso.prezzo}</span>
-                            </div>
-                            <div class="course-details">
-                                <div class="detail-row"><strong>Quando:</strong> ${corso.quando}</div>
-                            </div>
-                            <p class="course-description">${corso.descrizione}</p>
-                            ${btn}
-                        </div>
-                    `;
+            if (corsiNormali.length > 0) {
+                corsiNormali.forEach(function(corso) {
+                    var isActive = corso.stato === 'aperto';
+                    var badgeClass = isActive ? 'badge-available' : 'badge-closed';
+                    var btn;
+
+                    if (!isActive) {
+                        btn = '<button class="btn-course btn-disabled" disabled>Corso in svolgimento</button>';
+                    } else if (corso.link) {
+                        btn = '<a href="' + corso.link + '" class="btn-course" target="_blank" rel="noopener">' +
+                                (corso.linkTesto || 'Scopri di piu') +
+                              '</a>';
+                    } else {
+                        btn = '<a href="#contatti" class="btn-course">Iscriviti ora</a>';
+                    }
+
+                    var extraClass = corso.id === 'summercamp' ? ' course-card-summer' : '';
+                    var card =
+                        '<div class="course-card' + extraClass + '">' +
+                            '<div class="course-badge ' + badgeClass + '">' + corso.badge + '</div>' +
+                            '<h3>' + corso.nome + '</h3>' +
+                            '<div class="course-meta">' +
+                                '<span class="meta-item">' + corso.eta + '</span>' +
+                                '<span class="meta-item">' + corso.incontri + '</span>' +
+                                '<span class="meta-item meta-price">' + corso.prezzo + '</span>' +
+                            '</div>' +
+                            '<div class="course-details">' +
+                                '<div class="detail-row"><strong>Quando:</strong> ' + corso.quando + '</div>' +
+                            '</div>' +
+                            '<p class="course-description">' + corso.descrizione + '</p>' +
+                            btn +
+                        '</div>';
+
                     container.innerHTML += card;
                 });
             } else {
-                container.innerHTML = `<div class="alert-box" style="grid-column:1/-1;"><p>Nessun corso attivo al momento.</p></div>`;
+                container.innerHTML = '<div class="alert-box" style="grid-column:1/-1;"><p>Nessun corso attivo al momento.</p></div>';
             }
         })
-        .catch(err => {
-            console.error('❌ Errore caricamento corsi:', err);
+        .catch(function(err) {
+            console.error('Errore caricamento corsi:', err);
             if (sectionHeader) {
-                sectionHeader.innerHTML = `
-                    <h2>Corsi e Laboratori</h2>
-                    <p class="section-subtitle">Informazioni temporaneamente non disponibili</p>
-                `;
+                sectionHeader.innerHTML =
+                    '<h2>Corsi e Laboratori</h2>' +
+                    '<p class="section-subtitle">Informazioni temporaneamente non disponibili</p>';
             }
             if (promoContainer) promoContainer.style.display = 'none';
-            container.innerHTML = `
-                <div class="alert-box" style="grid-column:1/-1;">
-                    <strong>⚠️ Impossibile caricare i corsi</strong>
-                    <p>Contattaci per info aggiornate.</p>
-                </div>
-            `;
+            container.innerHTML =
+                '<div class="alert-box" style="grid-column:1/-1;">' +
+                    '<strong>Impossibile caricare i corsi</strong>' +
+                    '<p>Contattaci per info aggiornate.</p>' +
+                '</div>';
         });
 }
 
 // ========================================
-// NUOVA FUNZIONE: UNIFICAZIONE FAB WHATSAPP ↔ ICONA FISSIONE
+// FAB WHATSAPP — unificazione con icona fissa
 // ========================================
 function unifyWhatsAppFAB() {
-    const fab = document.querySelector('.fab-whatsapp');
-    const staticIcon = document.getElementById('whatsapp-static'); // ← deve avere id="whatsapp-static" in HTML
-    
+    var fab = document.querySelector('.fab-whatsapp');
+    var staticIcon = document.getElementById('whatsapp-static');
+
     if (!fab || !staticIcon) return;
 
-    // Memorizza lo stile originale per il ripristino
-    const originalStyle = {
+    var originalStyle = {
         position: fab.style.position,
         left: fab.style.left,
         top: fab.style.top,
@@ -276,32 +272,28 @@ function unifyWhatsAppFAB() {
         pointerEvents: fab.style.pointerEvents
     };
 
-    const updatePosition = () => {
-        const rect = staticIcon.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    function updatePosition() {
+        var rect = staticIcon.getBoundingClientRect();
+        var isVisible = rect.top < window.innerHeight && rect.bottom > 0;
 
         if (isVisible) {
-            // Posiziona la FAB al centro dell'icona fissa
-            const centerX = rect.left + window.scrollX + rect.width / 2;
-            const centerY = rect.top + window.scrollY + rect.height / 2;
-            
+            var centerX = rect.left + window.scrollX + rect.width / 2;
+            var centerY = rect.top + window.scrollY + rect.height / 2;
             fab.style.position = 'fixed';
-            fab.style.left = (centerX - 28) + 'px'; // 28 = metà di 56px (larghezza FAB)
+            fab.style.left = (centerX - 28) + 'px';
             fab.style.top = (centerY - 28) + 'px';
-            fab.style.transform = 'scale(0.64)'; // 36/56 ≈ 0.64 → scala a 36px
+            fab.style.transform = 'scale(0.64)';
             fab.style.zIndex = '10000';
-            fab.style.pointerEvents = 'none'; // clic passa all'icona fissa
+            fab.style.pointerEvents = 'none';
             fab.style.opacity = '1';
         } else {
-            // Ripristina posizione originale (in basso a destra)
             Object.assign(fab.style, originalStyle);
             fab.style.opacity = '';
         }
-    };
+    }
 
-    // Avvia e aggiorna
     updatePosition();
-    window.addEventListener('scroll', () => requestAnimationFrame(updatePosition));
+    window.addEventListener('scroll', function() { requestAnimationFrame(updatePosition); });
     window.addEventListener('resize', updatePosition);
 }
 
@@ -312,22 +304,6 @@ document.addEventListener('DOMContentLoaded', function() {
     init();
 });
 
-// ========================================
-// GESTIONE ERRORI
-// ========================================
 window.addEventListener('error', function(e) {
     console.error('Errore JavaScript:', e.error);
 });
-// ── SCROLL REVEAL ──
-(function(){
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(el => {
-      if(el.isIntersecting){
-        el.target.classList.add('visible');
-        observer.unobserve(el.target); // anima solo una volta
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-})();
