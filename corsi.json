@@ -1,4 +1,79 @@
 {
+  "titoloCorsi": "Iscrizioni Aperte - Primavera 🌺 2026",
+  "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia",
+  "promoNatale": {
+    "attiva": false,
+    "titolo": "Aggiornato: Xmas Tech Lab🎄: Costruisci il Tuo Robot!",
+    "sottotitolo": "3 mattinate e 6 ore magiche per bambini e ragazzi",
+    "descrizione": "per progettare, costruire e programmare un robot con Lego Spike Prime e Micro:bit. Divertimento assicurato!",
+    "date": "29 30 31 dicembre dalle 10:00 alle 12:00",
+    "eta": "8–13 anni",
+    "prezzo": "€ 35 a mattinata / € 90 intero Lab",
+    "posti": "Posti limitati (max 10)",
+    "cta": "Prenota il posto"
+  },
+  "corsi": [
+    {
+      "id": "summercamp",
+      "nome": "☀️ Summer Camp + Laboratorio Robotica",
+      "eta": "6-14 anni",
+      "incontri": "settimane a scelta",
+      "prezzo": "€ 150 / settimana",
+      "quando": "10 giugno – 31 luglio 2026 | lun–ven 9:00–17:00",
+      "descrizione": "In collaborazione con Club 28, il Summer Camp include sport, giochi, pranzo e — novità 2026 — un laboratorio di robotica BIT ogni settimana. Caparra di €30 per prenotare il posto.",
+      "stato": "aperto",
+      "badge": "Novità",
+      "link": "https://www.club28bs.it/summer-camp/",
+      "linkTesto": "Scopri il Summer Camp"
+    },
+    {
+      "id": "spike",
+      "nome": "Spike Prime Lab",
+      "eta": "8-13 anni",
+      "incontri": "6 incontri",
+      "prezzo": "€ 125",
+      "quando": "ogni sabato 10:00 - 11:30 o 15:00 - 16:30",
+      "descrizione": "Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education. Progetti pratici e divertenti.",
+      "stato": "aperto",
+      "badge": "Aperte"
+    },
+    {
+      "id": "arduino",
+      "nome": "Arduino base",
+      "eta": "12-16 anni",
+      "incontri": "4 sessioni",
+      "prezzo": "€ 125",
+      "quando": "sabato mattina ore 10:00 - 11:30",
+      "descrizione": "Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.",
+      "stato": "chiuso",
+      "badge": "Chiuse"
+    },
+    {
+      "id": "microbit",
+      "nome": "Micro:bit Lab",
+      "eta": "8-13 anni",
+      "incontri": "6 incontri",
+      "prezzo": "€ 125",
+      "quando": "sabato mattina ore 10:00 - 11:30",
+      "descrizione": "Programma il piccolo computer tascabile micro:bit per creare giochi e misurare temperatura e movimenti.",
+      "stato": "chiuso",
+      "badge": "Chiuse"
+    },
+    {
+      "id": "roberta",
+      "nome": "Open Roberta Lab",
+      "eta": "8-13 anni",
+      "incontri": "6 settimane",
+      "prezzo": "€ 90",
+      "quando": "4 online + 2 incontri in sede sabato mattina ore 10:00 - 11:30 o 15:00 - 16:30",
+      "descrizione": "Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab.",
+      "stato": "aperto",
+      "badge": "Aperte"
+    }
+  ]
+}
+
+{
   "titoloCorsi": " Iscrizioni Aperte - Primavera 🌺 2026",
   "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia",
   "promoNatale": {
