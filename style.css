@@ -135,7 +135,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .logo-sub {
-  font-size: 0.75rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--gray-500);
   line-height: 1.3;
