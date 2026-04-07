@@ -623,7 +623,7 @@ img { max-width: 100%; height: auto; display: block; }
 .progetto-hl p { margin: 0; font-size: 0.82rem; color: var(--gray-600); line-height: 1.5; }
 
 .progetto-img {
-  width: 100%;
+  width: 80%;
   height: auto;
   object-fit: contain;
   border-radius: var(--radius-lg);
