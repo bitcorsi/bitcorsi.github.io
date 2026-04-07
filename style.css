@@ -417,8 +417,8 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-step-line { width: 1px; flex: 1; min-height: 16px; background: rgba(255,255,255,0.2); margin: 3px 0; }
 .hero-step:last-child .hero-step-line { display: none; }
 .hero-step-body { padding: 2px 0 10px; }
-.hero-step-label { font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.95); margin-bottom: 0.2rem; }
-.hero-step-desc { font-size: 0.75rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+.hero-step-label { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.95); margin-bottom: 0.2rem; }
+.hero-step-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
 
 .hero-stepper-cta {
   display: inline-flex;
