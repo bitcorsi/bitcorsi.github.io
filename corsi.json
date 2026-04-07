@@ -1,6 +1,6 @@
 
 {
-  "titoloCorsi": "Iscrizioni Aperte - Primavera 🌺 2026",
+  "titoloCorsi": "Iscrizioni Aperte - Camp Estivo ☀️ robotico 2026",
   "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia",
   "promoNatale": {
     "attiva": false,
@@ -35,8 +35,8 @@
       "prezzo": "€ 125",
       "quando": "ogni sabato 10:00 - 11:30 o 15:00 - 16:30",
       "descrizione": "Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education. Progetti pratici e divertenti.",
-      "stato": "aperto",
-      "badge": "Aperte"
+      "stato": "chiuso",
+      "badge": "Chiuse"
     },
     {
       "id": "arduino",
