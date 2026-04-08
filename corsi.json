@@ -3,31 +3,18 @@
   "titoloCorsi": "Iscrizioni Aperte - Camp Estivo ☀️ robotico 2026",
   "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia",
   "promoNatale": {
-    "attiva": false,
-    "titolo": "Aggiornato: Xmas Tech Lab🎄: Costruisci il Tuo Robot!",
-    "sottotitolo": "3 mattinate e 6 ore magiche per bambini e ragazzi",
+    "attiva": true,
+    "titolo": "Aggiornato: 🌅 Mattine di coding: Costruisci il Tuo Robot!",
+    "sottotitolo": "per bambini e ragazzi",
     "descrizione": "per progettare, costruire e programmare un robot con Lego Spike Prime e Micro:bit. Divertimento assicurato!",
-    "date": "29 30 31 dicembre dalle 10:00 alle 12:00",
+    "date": "10 giugno – 31 luglio 2026 | lun–ven 9:00–12:30",
     "eta": "8–13 anni",
-    "prezzo": "€ 35 a mattinata / € 90 intero Lab",
-    "posti": "Posti limitati (max 10)",
+    "prezzo": "€ 100 / settimana",
+    "posti": "Posti limitati (max 16)",
     "cta": "Prenota il posto"
   },
   "corsi": [
-    {
-      "id": "summercamp",
-      "nome": "🌅 Mattine di coding",
-      "eta": "7 - 13 anni",
-      "incontri": "settimane a scelta",
-      "prezzo": "€ 100 / settimana",
-      "quando": "10 giugno – 31 luglio 2026 | lun–ven 9:00–12:30",
-      "descrizione": "In collaborazione con Alberi di Vita ASD, — novità 2026 — un laboratorio di coding e robotica BIT ogni settimana con possibilità di trovare spazio anche per aiuto compiti. Caparra di €30 per prenotare il posto.",
-      "stato": "aperto",
-      "badge": "Novità",
-      "link": "https://www.club28bs.it/summer-camp/",
-      "linkTesto": "Scopri il Summer Camp"
-    },
-    {
+      {
       "id": "summercamp",
       "nome": "☀️ Summer Camp + Laboratorio Robotica",
       "eta": "6-14 anni",
