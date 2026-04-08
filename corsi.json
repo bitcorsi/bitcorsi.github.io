@@ -16,6 +16,19 @@
   "corsi": [
     {
       "id": "summercamp",
+      "nome": "☀️ Le mattinate di coding + aiuto compito",
+      "eta": "6-14 anni",
+      "incontri": "settimane a scelta",
+      "prezzo": "€ 90 / settimana",
+      "quando": "10 giugno – 31 luglio 2026 | lun–ven 9:00–12:30",
+      "descrizione": "In collaborazione con Alberi di Vita ASD, — novità 2026 — un laboratorio di robotica BIT ogni settimana. Caparra di €30 per prenotare il posto.",
+      "stato": "aperto",
+      "badge": "Novità",
+      "link": "",
+      "linkTesto": "Scopri il Summer Camp"
+    },
+    {
+      "id": "summercamp",
       "nome": "☀️ Summer Camp + Laboratorio Robotica",
       "eta": "6-14 anni",
       "incontri": "settimane a scelta",
