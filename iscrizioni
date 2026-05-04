@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iscriviti ai Corsi - BIT Lab Tecnologici</title>
+    <meta name="description" content="Iscriviti ai corsi di robotica educativa di BIT Lab Tecnologici a Brescia">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .enrollment-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+            padding: 2rem 1rem;
+            margin-top: 0;
+        }
+
+```
+    .enrollment-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 3rem;
+        animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .enrollment-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .enrollment-header h2 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .enrollment-header p {
+        color: #666;
+        font-size: 1rem;
+    }
+
+    .form-section {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-section:last-of-type {
+        border-bottom: none;
+    }
+
+    .form-section-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #333;
+        font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #FF6B35;
+        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .courses-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 600px) {
+        .courses-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .course-option {
+        position: relative;
+    }
+
+    .course-option input[type="radio"] {
+        display: none;
+    }
+
+    .course-label {
+        display: block;
+        padding: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #fafafa;
+    }
+
+    .course-option input[type="radio"]:checked + .course-label {
+        border-color: #FF6B35;
+        background: #fff5f0;
+    }
+
+    .course-label strong {
+        display: block;
+        color: #333;
+        margin-bottom: 0.3rem;
+    }
+
+    .course-label small {
+        color: #666;
+        font-size: 0.85rem;
+    }
+
+    .course-availability {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .course-availability.available {
+        color: #10b981;
+    }
+
+    .course-availability.full {
+        color: #ef4444;
+    }
+
+    .course-availability.limited {
+        color: #f59e0b;
+    }
+
+    .form-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    .form-checkbox input[type="checkbox"] {
+        width: auto;
+        margin-top: 0.3rem;
+        cursor: pointer;
+    }
+
+    .form-checkbox label {
+        margin: 0;
+        font-weight: normal;
+        color: #666;
+        font-size: 0.9rem;
+        cursor: pointer;
+    }
+
+    .form-checkbox a {
+        color: #FF6B35;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .form-checkbox a:hover {
+        text-decoration: underline;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+    }
+
+    .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .success-message {
+        padding: 1rem;
+        background: #d1fae5;
+        border-left: 4px solid #10b981;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        display: none;
+    }
+
+    .success-message.show {
+        display: block;
+    }
+
+    .success-message strong {
+        color: #065f46;
+    }
+
+    .success-message p {
+        color: #047857;
+        margin-top: 0.5rem;
+    }
+
+    .error-message {
+        padding: 1rem;
+        background: #fee2e2;
+        border-left: 4px solid #ef4444;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        display: none;
+    }
+
+    .error-message.show {
+        display: block;
+    }
+
+    .error-message strong {
+        color: #7f1d1d;
+    }
+
+    .error-message p {
+        color: #b91c1c;
+        margin-top: 0.5rem;
+    }
+
+    .waitlist-message {
+        padding: 1rem;
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        display: none;
+    }
+
+    .waitlist-message.show {
+        display: block;
+    }
+
+    .waitlist-message strong {
+        color: #92400e;
+    }
+
+    .waitlist-message p {
+        color: #b45309;
+        margin-top: 0.5rem;
+    }
+
+    .loading-spinner {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .info-box {
+        background: #fff5f0;
+        border: 1px solid #fed7aa;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        color: #a16207;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .info-box a {
+        color: #a16207;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .info-box a:hover {
+        text-decoration: underline;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 2rem;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+        .enrollment-container {
+            padding: 1.5rem;
+        }
+
+        .enrollment-header h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+
+<div class="enrollment-page">
+    <div class="container">
+        <a href="/" class="back-link">← Torna alla Home</a>
+    </div>
+
+```
+<div class="enrollment-container">
+    
+    <!-- Messaggi di stato -->
+    <div id="successMessage" class="success-message">
+        <strong>✅ Iscrizione Confermata!</strong>
+        <p id="successText"></p>
+    </div>
+
+    <div id="waitlistMessage" class="waitlist-message">
+        <strong>⏳ In Lista d'Attesa</strong>
+        <p id="waitlistText"></p>
+    </div>
+
+    <div id="errorMessage" class="error-message">
+        <strong>⚠️ Errore</strong>
+        <p id="errorText"></p>
+    </div>
+
+    <!-- Header -->
+    <div class="enrollment-header">
+        <h2>🤖 Iscriviti ai Corsi</h2>
+        <p>Scegli il tuo corso di robotica preferito</p>
+    </div>
+
+    <!-- Form -->
+    <form id="enrollmentForm">
+        
+        <!-- Sezione: Dati Alunno -->
+        <div class="form-section">
+            <div class="form-section-title">👦 Dati dell'Alunno</div>
+            
+            <div class="form-group">
+                <label for="studentName">Nome e Cognome *</label>
+                <input type="text" id="studentName" name="studentName" placeholder="Es. Marco Rossi" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="studentAge">Età *</label>
+                    <select id="studentAge" name="studentAge" required>
+                        <option value="">Seleziona età</option>
+                        <option value="8">8 anni</option>
+                        <option value="9">9 anni</option>
+                        <option value="10">10 anni</option>
+                        <option value="11">11 anni</option>
+                        <option value="12">12 anni</option>
+                        <option value="13">13 anni</option>
+                        <option value="14">14 anni</option>
+                        <option value="15">15 anni</option>
+                        <option value="16">16 anni</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="schoolName">Scuola</label>
+                    <input type="text" id="schoolName" name="schoolName" placeholder="Es. IC Dante Alighieri">
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione: Dati Genitore -->
+        <div class="form-section">
+            <div class="form-section-title">📧 Dati del Genitore (PRINCIPALE)</div>
+            
+            <div class="form-group">
+                <label for="parentEmail">Email del Genitore *</label>
+                <input type="email" id="parentEmail" name="parentEmail" placeholder="email@example.com" required style="border: 2px solid #FF6B35; background: #fff5f0;">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="parentName">Nome Genitore</label>
+                    <input type="text" id="parentName" name="parentName" placeholder="Es. Anna Rossi">
+                </div>
+
+                <div class="form-group">
+                    <label for="parentPhone">Telefono Genitore</label>
+                    <input type="tel" id="parentPhone" name="parentPhone" placeholder="+39 335 1234567">
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione: Scelta Corso -->
+        <div class="form-section">
+            <div class="form-section-title">🤖 Seleziona il Corso *</div>
+            
+            <div class="courses-grid" id="coursesGrid">
+                <!-- I corsi verranno inseriti qui dal JavaScript -->
+            </div>
+        </div>
+
+        <!-- Sezione: Informazioni Aggiuntive -->
+        <div class="form-section">
+            <div class="form-section-title">⚡ Informazioni Aggiuntive</div>
+            
+            <div class="form-group">
+                <label for="referral">Come hai saputo del corso?</label>
+                <select id="referral" name="referral">
+                    <option value="Passaparola">Passaparola</option>
+                    <option value="Volantino">Volantino</option>
+                    <option value="Social Media">Social Media</option>
+                    <option value="Scuola">Scuola</option>
+                    <option value="Ricerca online">Ricerca online</option>
+                    <option value="Altro">Altro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Note (es: esperienze precedenti)</label>
+                <textarea id="notes" name="notes" placeholder="Scrivi qui..."></textarea>
+            </div>
+        </div>
+
+        <!-- Privacy -->
+        <div class="form-checkbox">
+            <input type="checkbox" id="privacy" name="privacy" required>
+            <label for="privacy">
+                Accetto l'<a href="/privacy.md" target="_blank">informativa privacy</a> *
+            </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="submit-btn">
+            <span id="submitText">✨ Iscriviti Subito!</span>
+        </button>
+    </form>
+
+    <!-- Info -->
+    <div class="info-box">
+        <p>📧 Riceverai email di conferma all'indirizzo del genitore</p>
+        <p style="margin-top: 0.5rem;">📞 Domande? Contattaci: <a href="tel:+393703069215">+39 370 306 9215</a></p>
+    </div>
+</div>
+```
+
+</div>
+
+<!-- Firebase SDK -->
+
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
+
+<!-- Script di integrazione -->
+
+<script>
+    // ============================================
+    // CONFIGURAZIONE FIREBASE
+    // ============================================
+    // TODO: Sostituisci questi valori con le TUE credenziali da Firebase Console
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID",
+        measurementId: "YOUR_MEASUREMENT_ID"
+    };
+
+    // Inizializza Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // ============================================
+    // CORSI DISPONIBILI
+    // ============================================
+    const COURSES = {
+        'lego-spike': { name: 'Lego Spike Prime', age: '8–13 anni', max: 10 },
+        'arduino': { name: 'Arduino', age: '12–16 anni', max: 10 },
+        'open-roberta': { name: 'Open Roberta', age: '8–13 anni', max: 10 },
+        'microbit': { name: 'micro:bit BBC', age: '8–13 anni', max: 10 },
+        'mattine-coding': { name: 'Mattine di coding', age: '8–13 anni', max: 12 },
+    };
+
+    // ============================================
+    // POPOLA I CORSI
+    // ============================================
+    async function populateCourses() {
+        const coursesGrid = document.getElementById('coursesGrid');
+        coursesGrid.innerHTML = ''; // Pulisci
+        
+        for (const [courseId, courseInfo] of Object.entries(COURSES)) {
+            try {
+                // Conta iscritti confermati
+                const snapshot = await db.collection('enrollments')
+                    .where('courseId', '==', courseId)
+                    .where('status', '==', 'confermato')
+                    .get();
+                
+                const confirmed = snapshot.size;
+                const available = Math.max(0, courseInfo.max - confirmed);
+                const isFull = available === 0;
+                
+                // Crea elemento HTML
+                const courseHTML = `
+                    <div class="course-option">
+                        <input type="radio" id="course-${courseId}" name="courseId" value="${courseId}" ${isFull ? 'disabled' : ''}>
+                        <label for="course-${courseId}" class="course-label">
+                            <strong>${courseInfo.name}</strong>
+                            <small>${courseInfo.age}</small>
+                            <div class="course-availability ${isFull ? 'full' : available <= 2 ? 'limited' : 'available'}">
+                                ${isFull ? '❌ Corso Pieno' : `✓ ${available} posti liberi`}
+                            </div>
+                        </label>
+                    </div>
+                `;
+                
+                coursesGrid.innerHTML += courseHTML;
+            } catch (error) {
+                console.error('Errore caricamento corso:', error);
+            }
+        }
+    }
+
+    // ============================================
+    // SUBMIT FORM
+    // ============================================
+    document.getElementById('enrollmentForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Nascondi messaggi precedenti
+        document.getElementById('successMessage').classList.remove('show');
+        document.getElementById('errorMessage').classList.remove('show');
+        document.getElementById('waitlistMessage').classList.remove('show');
+        
+        // Disabilita bottone
+        const submitBtn = document.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="loading-spinner"></span> Elaborazione...';
+        
+        try {
+            // Raccogli dati
+            const courseId = document.querySelector('input[name="courseId"]:checked');
+            if (!courseId) {
+                throw new Error('Seleziona un corso');
+            }
+
+            const formData = {
+                studentName: document.getElementById('studentName').value,
+                studentAge: document.getElementById('studentAge').value,
+                parentName: document.getElementById('parentName').value,
+                parentEmail: document.getElementById('parentEmail').value,
+                parentPhone: document.getElementById('parentPhone').value,
+                schoolName: document.getElementById('schoolName').value,
+                courseId: courseId.value,
+                referral: document.getElementById('referral').value,
+                notes: document.getElementById('notes').value,
+            };
+            
+            // Validazione
+            if (!formData.studentName || !formData.studentAge || !formData.parentEmail || !formData.courseId) {
+                throw new Error('Completa tutti i campi obbligatori');
+            }
+            
+            // Controlla posti disponibili
+            const courseInfo = COURSES[formData.courseId];
+            const snapshot = await db.collection('enrollments')
+                .where('courseId', '==', formData.courseId)
+                .where('status', '==', 'confermato')
+                .get();
+            
+            const confirmed = snapshot.size;
+            let status = 'confermato';
+            let waitlistPosition = null;
+            
+            if (confirmed >= courseInfo.max) {
+                status = 'in_attesa';
+                waitlistPosition = confirmed - courseInfo.max + 1;
+            }
+            
+            // Salva su Firebase
+            const docRef = await db.collection('enrollments').add({
+                studentName: formData.studentName,
+                studentAge: parseInt(formData.studentAge),
+                parentName: formData.parentName,
+                parentEmail: formData.parentEmail,
+                parentPhone: formData.parentPhone,
+                schoolName: formData.schoolName,
+                courseId: formData.courseId,
+                courseName: courseInfo.name,
+                status: status,
+                waitlistPosition: waitlistPosition,
+                paid: false,
+                referral: formData.referral,
+                notes: formData.notes,
+                enrollmentDate: new Date(),
+            });
+            
+            console.log('✅ Iscritto salvato con ID:', docRef.id);
+            
+            // Mostra messaggio appropriato
+            if (status === 'in_attesa') {
+                document.getElementById('waitlistText').innerText = 
+                    `Sei in lista d'attesa (posizione ${waitlistPosition}). Ti contatteremo se si libera un posto!`;
+                document.getElementById('waitlistMessage').classList.add('show');
+            } else {
+                document.getElementById('successText').innerText = 
+                    'Iscrizione confermata! Riceverai email di conferma.';
+                document.getElementById('successMessage').classList.add('show');
+            }
+            
+            // Resetta form
+            document.getElementById('enrollmentForm').reset();
+            
+            // Ricarica corsi per aggiornare posti
+            setTimeout(() => {
+                populateCourses();
+            }, 1000);
+            
+        } catch (error) {
+            console.error('❌ Errore:', error);
+            document.getElementById('errorText').innerText = error.message || 'Errore durante l\'iscrizione. Riprova.';
+            document.getElementById('errorMessage').classList.add('show');
+        } finally {
+            // Riabilita bottone
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '✨ Iscriviti Subito!';
+        }
+    });
+
+    // Popola corsi al caricamento della pagina
+    populateCourses();
+</script>
+
+</body>
+</html>
