@@ -471,5 +471,351 @@
 </div>
 
 <script src="script.js"></script>
+
+  <div id="enrollmentModal" class="enrollment-modal">
+  <div class="enrollment-modal-overlay"></div>
+  <div class="enrollment-modal-content">
+    <button class="enrollment-modal-close" id="closeEnrollmentModal" aria-label="Chiudi">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+ 
+    <div class="enrollment-modal-header">
+      <h2>🤖 Iscriviti ai Corsi</h2>
+      <p>Scegli il tuo corso di robotica preferito</p>
+    </div>
+ 
+    <!-- Messaggi di stato -->
+    <div id="enrollmentSuccessMessage" class="enrollment-message success-message">
+      <strong>✅ Iscrizione Confermata!</strong>
+      <p id="enrollmentSuccessText"></p>
+    </div>
+ 
+    <div id="enrollmentWaitlistMessage" class="enrollment-message waitlist-message">
+      <strong>⏳ In Lista d'Attesa</strong>
+      <p id="enrollmentWaitlistText"></p>
+    </div>
+ 
+    <div id="enrollmentErrorMessage" class="enrollment-message error-message">
+      <strong>⚠️ Errore</strong>
+      <p id="enrollmentErrorText"></p>
+    </div>
+ 
+    <!-- Form -->
+    <form id="enrollmentForm" class="enrollment-form">
+      
+      <!-- Sezione: Dati Alunno -->
+      <div class="enrollment-form-section">
+        <div class="enrollment-form-section-title">👦 Dati dell'Alunno</div>
+        
+        <div class="enrollment-form-group">
+          <label for="studentName">Nome e Cognome *</label>
+          <input type="text" id="studentName" name="studentName" placeholder="Es. Marco Rossi" required>
+        </div>
+ 
+        <div class="enrollment-form-row">
+          <div class="enrollment-form-group">
+            <label for="studentAge">Età *</label>
+            <select id="studentAge" name="studentAge" required>
+              <option value="">Seleziona età</option>
+              <option value="8">8 anni</option>
+              <option value="9">9 anni</option>
+              <option value="10">10 anni</option>
+              <option value="11">11 anni</option>
+              <option value="12">12 anni</option>
+              <option value="13">13 anni</option>
+              <option value="14">14 anni</option>
+              <option value="15">15 anni</option>
+              <option value="16">16 anni</option>
+            </select>
+          </div>
+ 
+          <div class="enrollment-form-group">
+            <label for="schoolName">Scuola</label>
+            <input type="text" id="schoolName" name="schoolName" placeholder="Es. IC Dante Alighieri">
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Sezione: Dati Genitore -->
+      <div class="enrollment-form-section">
+        <div class="enrollment-form-section-title">📧 Dati del Genitore (PRINCIPALE)</div>
+        
+        <div class="enrollment-form-group">
+          <label for="parentEmail">Email del Genitore *</label>
+          <input type="email" id="parentEmail" name="parentEmail" placeholder="email@example.com" required style="border: 2px solid #FF6B35; background: #fff5f0;">
+        </div>
+ 
+        <div class="enrollment-form-row">
+          <div class="enrollment-form-group">
+            <label for="parentName">Nome Genitore</label>
+            <input type="text" id="parentName" name="parentName" placeholder="Es. Anna Rossi">
+          </div>
+ 
+          <div class="enrollment-form-group">
+            <label for="parentPhone">Telefono Genitore</label>
+            <input type="tel" id="parentPhone" name="parentPhone" placeholder="+39 335 1234567">
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Sezione: Scelta Corso -->
+      <div class="enrollment-form-section">
+        <div class="enrollment-form-section-title">🤖 Seleziona il Corso *</div>
+        
+        <div class="enrollment-courses-grid" id="enrollmentCoursesGrid">
+          <!-- I corsi verranno inseriti qui dal JavaScript -->
+        </div>
+      </div>
+ 
+      <!-- Sezione: Informazioni Aggiuntive -->
+      <div class="enrollment-form-section">
+        <div class="enrollment-form-section-title">⚡ Informazioni Aggiuntive</div>
+        
+        <div class="enrollment-form-group">
+          <label for="referral">Come hai saputo del corso?</label>
+          <select id="referral" name="referral">
+            <option value="Passaparola">Passaparola</option>
+            <option value="Volantino">Volantino</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Scuola">Scuola</option>
+            <option value="Ricerca online">Ricerca online</option>
+            <option value="Altro">Altro</option>
+          </select>
+        </div>
+ 
+        <div class="enrollment-form-group">
+          <label for="notes">Note (es: esperienze precedenti)</label>
+          <textarea id="notes" name="notes" placeholder="Scrivi qui..."></textarea>
+        </div>
+      </div>
+ 
+      <!-- Privacy -->
+      <div class="enrollment-form-checkbox">
+        <input type="checkbox" id="privacy" name="privacy" required>
+        <label for="privacy">
+          Accetto l'<a href="/privacy.md" target="_blank">informativa privacy</a> *
+        </label>
+      </div>
+ 
+      <!-- Submit -->
+      <button type="submit" class="enrollment-submit-btn">
+        <span id="enrollmentSubmitText">✨ Iscriviti Subito!</span>
+      </button>
+    </form>
+ 
+    <!-- Info -->
+    <div class="enrollment-info-box">
+      <p>📧 Riceverai email di conferma all'indirizzo del genitore</p>
+      <p style="margin-top: 0.5rem;">📞 Domande? Contattaci: <a href="tel:+393703069215">+39 370 306 9215</a></p>
+    </div>
+  </div>
+</div>
+ 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
+ 
+<!-- Script iscrizioni integrato -->
+<script>
+  // ============================================
+  // CONFIGURAZIONE FIREBASE
+  // ============================================
+  // TODO: Sostituisci con le TUE credenziali da Firebase Console
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
+  };
+ 
+  // Inizializza Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+ 
+  // ============================================
+  // CORSI DISPONIBILI
+  // ============================================
+  const ENROLLMENT_COURSES = {
+    'lego-spike': { name: 'Lego Spike Prime', age: '8–13 anni', max: 10 },
+    'arduino': { name: 'Arduino', age: '12–16 anni', max: 10 },
+    'open-roberta': { name: 'Open Roberta', age: '8–13 anni', max: 10 },
+    'microbit': { name: 'micro:bit BBC', age: '8–13 anni', max: 10 },
+    'mattine-coding': { name: 'Mattine di coding', age: '8–13 anni', max: 12 },
+  };
+ 
+  // ============================================
+  // GESTIONE MODAL
+  // ============================================
+  const enrollmentModal = document.getElementById('enrollmentModal');
+  const closeEnrollmentModalBtn = document.getElementById('closeEnrollmentModal');
+ 
+  // Apri modal quando clicchi su "Contattaci subito"
+  document.querySelectorAll('[href="#contatti-info"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      enrollmentModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      populateEnrollmentCourses();
+    });
+  });
+ 
+  // Chiudi modal
+  function closeEnrollmentModal() {
+    enrollmentModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+ 
+  closeEnrollmentModalBtn.addEventListener('click', closeEnrollmentModal);
+ 
+  // Chiudi cliccando fuori
+  document.getElementById('enrollmentModal').addEventListener('click', (e) => {
+    if (e.target === enrollmentModal) {
+      closeEnrollmentModal();
+    }
+  });
+ 
+  // Chiudi con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && enrollmentModal.classList.contains('active')) {
+      closeEnrollmentModal();
+    }
+  });
+ 
+  // ============================================
+  // POPOLA CORSI
+  // ============================================
+  async function populateEnrollmentCourses() {
+    const coursesGrid = document.getElementById('enrollmentCoursesGrid');
+    if (coursesGrid.children.length > 0) return; // Evita di ricaricare
+    
+    for (const [courseId, courseInfo] of Object.entries(ENROLLMENT_COURSES)) {
+      try {
+        const snapshot = await db.collection('enrollments')
+          .where('courseId', '==', courseId)
+          .where('status', '==', 'confermato')
+          .get();
+        
+        const confirmed = snapshot.size;
+        const available = Math.max(0, courseInfo.max - confirmed);
+        const isFull = available === 0;
+        
+        const courseHTML = `
+          <div class="enrollment-course-option">
+            <input type="radio" id="enrollment-course-${courseId}" name="courseId" value="${courseId}" ${isFull ? 'disabled' : ''}>
+            <label for="enrollment-course-${courseId}" class="enrollment-course-label">
+              <strong>${courseInfo.name}</strong>
+              <small>${courseInfo.age}</small>
+              <div class="enrollment-course-availability ${isFull ? 'full' : available <= 2 ? 'limited' : 'available'}">
+                ${isFull ? '❌ Corso Pieno' : `✓ ${available} posti liberi`}
+              </div>
+            </label>
+          </div>
+        `;
+        
+        coursesGrid.innerHTML += courseHTML;
+      } catch (error) {
+        console.error('Errore caricamento corso:', error);
+      }
+    }
+  }
+ 
+  // ============================================
+  // SUBMIT FORM
+  // ============================================
+  document.getElementById('enrollmentForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    document.getElementById('enrollmentSuccessMessage').classList.remove('show');
+    document.getElementById('enrollmentErrorMessage').classList.remove('show');
+    document.getElementById('enrollmentWaitlistMessage').classList.remove('show');
+    
+    const submitBtn = document.querySelector('.enrollment-submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span style="display:inline-block;width:1rem;height:1rem;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.6s linear infinite;"></span> Elaborazione...';
+    
+    try {
+      const courseId = document.querySelector('input[name="courseId"]:checked');
+      if (!courseId) {
+        throw new Error('Seleziona un corso');
+      }
+ 
+      const formData = {
+        studentName: document.getElementById('studentName').value,
+        studentAge: document.getElementById('studentAge').value,
+        parentName: document.getElementById('parentName').value,
+        parentEmail: document.getElementById('parentEmail').value,
+        parentPhone: document.getElementById('parentPhone').value,
+        schoolName: document.getElementById('schoolName').value,
+        courseId: courseId.value,
+        referral: document.getElementById('referral').value,
+        notes: document.getElementById('notes').value,
+      };
+      
+      if (!formData.studentName || !formData.studentAge || !formData.parentEmail || !formData.courseId) {
+        throw new Error('Completa tutti i campi obbligatori');
+      }
+      
+      const courseInfo = ENROLLMENT_COURSES[formData.courseId];
+      const snapshot = await db.collection('enrollments')
+        .where('courseId', '==', formData.courseId)
+        .where('status', '==', 'confermato')
+        .get();
+      
+      const confirmed = snapshot.size;
+      let status = 'confermato';
+      let waitlistPosition = null;
+      
+      if (confirmed >= courseInfo.max) {
+        status = 'in_attesa';
+        waitlistPosition = confirmed - courseInfo.max + 1;
+      }
+      
+      await db.collection('enrollments').add({
+        studentName: formData.studentName,
+        studentAge: parseInt(formData.studentAge),
+        parentName: formData.parentName,
+        parentEmail: formData.parentEmail,
+        parentPhone: formData.parentPhone,
+        schoolName: formData.schoolName,
+        courseId: formData.courseId,
+        courseName: courseInfo.name,
+        status: status,
+        waitlistPosition: waitlistPosition,
+        paid: false,
+        referral: formData.referral,
+        notes: formData.notes,
+        enrollmentDate: new Date(),
+      });
+      
+      if (status === 'in_attesa') {
+        document.getElementById('enrollmentWaitlistText').innerText = 
+          `Sei in lista d'attesa (posizione ${waitlistPosition}). Ti contatteremo se si libera un posto!`;
+        document.getElementById('enrollmentWaitlistMessage').classList.add('show');
+      } else {
+        document.getElementById('enrollmentSuccessText').innerText = 
+          'Iscrizione confermata! Riceverai email di conferma.';
+        document.getElementById('enrollmentSuccessMessage').classList.add('show');
+      }
+      
+      document.getElementById('enrollmentForm').reset();
+      document.getElementById('enrollmentCoursesGrid').innerHTML = '';
+      
+    } catch (error) {
+      console.error('❌ Errore:', error);
+      document.getElementById('enrollmentErrorText').innerText = error.message || 'Errore durante l\'iscrizione. Riprova.';
+      document.getElementById('enrollmentErrorMessage').classList.add('show');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '✨ Iscriviti Subito!';
+    }
+  });
+</script>
+  
 </body>
 </html>
