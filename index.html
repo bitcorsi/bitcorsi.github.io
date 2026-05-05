@@ -688,8 +688,7 @@
  
   // ============================================
   // POPOLA CORSI
-  // ============================================
-  async function populateEnrollmentCourses() {
+async function populateEnrollmentCourses() {
     const coursesGrid = document.getElementById('enrollmentCoursesGrid');
     if (coursesGrid.children.length > 0) return; // Evita di ricaricare
     
@@ -714,9 +713,8 @@
                 ${isFull ? '❌ Corso Pieno' : `✓ ${available} posti liberi`}
               </div>
             </label>
-          </div>
-        `;
-        
+          </div>;
+
         coursesGrid.innerHTML += courseHTML;
       } catch (error) {
         console.error('Errore caricamento corso:', error);
