@@ -341,7 +341,18 @@ function unifyWhatsAppFAB() {
 }
 
 // ========================================
-// MODAL ISCRIZIONI - NUOVO
+// CORSI DISPONIBILI (USATI NEL MODAL)
+// ========================================
+var ENROLLMENT_COURSES = {
+    'lego-spike': { name: 'Lego Spike Prime', age: '8–13 anni', max: 10 },
+    'arduino': { name: 'Arduino', age: '12–16 anni', max: 10 },
+    'open-roberta': { name: 'Open Roberta', age: '8–13 anni', max: 10 },
+    'microbit': { name: 'micro:bit BBC', age: '8–13 anni', max: 10 },
+    'mattine-coding': { name: 'Mattine di coding', age: '8–13 anni', max: 12 },
+};
+
+// ========================================
+// MODAL ISCRIZIONI
 // ========================================
 function initEnrollmentModal() {
     var enrollmentModal = document.getElementById('enrollmentModal');
@@ -401,50 +412,119 @@ function initEnrollmentModal() {
 }
 
 // ============================================
-// POPOLA CORSI NEL MODAL
+// POPOLA CORSI NEL MODAL (CON FIREBASE)
 // ============================================
 function populateEnrollmentCourses() {
     var coursesGrid = document.getElementById('enrollmentCoursesGrid');
     if (!coursesGrid) return;
     
-    var ENROLLMENT_COURSES = {
-        'lego-spike': { name: 'Lego Spike Prime', age: '8–13 anni', max: 10 },
-        'arduino': { name: 'Arduino', age: '12–16 anni', max: 10 },
-        'open-roberta': { name: 'Open Roberta', age: '8–13 anni', max: 10 },
-        'microbit': { name: 'micro:bit BBC', age: '8–13 anni', max: 10 },
-        'mattine-coding': { name: 'Mattine di coding', age: '8–13 anni', max: 12 },
-    };
+    coursesGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999;">Caricamento corsi...</p>';
+    
+    var coursePromises = [];
     
     for (var courseId in ENROLLMENT_COURSES) {
-        var courseInfo = ENROLLMENT_COURSES[courseId];
-        
-        // Nota: senza Firebase, mostriamo posti di default
-        var available = courseInfo.max;
-        var isFull = false;
-        
-        var courseHTML = 
-            '<div class="enrollment-course-option">' +
-                '<input type="radio" id="enrollment-course-' + courseId + '" name="courseId" value="' + courseId + '" ' + (isFull ? 'disabled' : '') + '>' +
-                '<label for="enrollment-course-' + courseId + '" class="enrollment-course-label">' +
-                    '<strong>' + courseInfo.name + '</strong>' +
-                    '<small>' + courseInfo.age + '</small>' +
-                    '<div class="enrollment-course-availability ' + (isFull ? 'full' : 'available') + '">' +
-                        (isFull ? '❌ Corso Pieno' : '✓ ' + available + ' posti liberi') +
-                    '</div>' +
-                '</label>' +
-            '</div>';
-        
-        coursesGrid.innerHTML += courseHTML;
+        coursePromises.push(
+            getCourseAvailability(courseId)
+                .then(function(data) {
+                    return {
+                        courseId: data.courseId,
+                        confirmed: data.confirmed,
+                        available: data.available,
+                        isFull: data.isFull
+                    };
+                })
+                .catch(function(err) {
+                    console.warn('Errore corso ' + courseId + ':', err);
+                    // Se Firebase non è configurato, mostra tutti i posti disponibili
+                    var info = ENROLLMENT_COURSES[courseId];
+                    return {
+                        courseId: courseId,
+                        confirmed: 0,
+                        available: info.max,
+                        isFull: false
+                    };
+                })
+        );
     }
+    
+    Promise.all(coursePromises).then(function(results) {
+        coursesGrid.innerHTML = ''; // Pulisci il "caricamento..."
+        
+        results.forEach(function(data) {
+            var courseInfo = ENROLLMENT_COURSES[data.courseId];
+            var courseId = data.courseId;
+            var available = data.available;
+            var isFull = data.isFull;
+            
+            var courseHTML = 
+                '<div class="enrollment-course-option">' +
+                    '<input type="radio" id="enrollment-course-' + courseId + '" name="courseId" value="' + courseId + '" ' + (isFull ? 'disabled' : '') + '>' +
+                    '<label for="enrollment-course-' + courseId + '" class="enrollment-course-label">' +
+                        '<strong>' + courseInfo.name + '</strong>' +
+                        '<small>' + courseInfo.age + '</small>' +
+                        '<div class="enrollment-course-availability ' + (isFull ? 'full' : available <= 2 ? 'limited' : 'available') + '">' +
+                            (isFull ? '❌ Corso Pieno' : '✓ ' + available + ' posti liberi') +
+                        '</div>' +
+                    '</label>' +
+                '</div>';
+            
+            coursesGrid.innerHTML += courseHTML;
+        });
+    });
 }
 
 // ============================================
-// SUBMIT FORM ISCRIZIONI
+// CONTA POSTI DISPONIBILI (FIREBASE)
+// ============================================
+function getCourseAvailability(courseId) {
+    return new Promise(function(resolve, reject) {
+        // Controlla se Firebase è configurato
+        if (typeof firebase === 'undefined' || !firebase.firestore) {
+            console.warn('Firebase non configurato, usi valori di default');
+            var info = ENROLLMENT_COURSES[courseId];
+            resolve({
+                courseId: courseId,
+                confirmed: 0,
+                available: info.max,
+                isFull: false
+            });
+            return;
+        }
+
+        var db = firebase.firestore();
+        var courseInfo = ENROLLMENT_COURSES[courseId];
+
+        db.collection('enrollments')
+            .where('courseId', '==', courseId)
+            .where('status', '==', 'confermato')
+            .get()
+            .then(function(snapshot) {
+                var confirmed = snapshot.size;
+                var available = Math.max(0, courseInfo.max - confirmed);
+                var isFull = available === 0;
+
+                resolve({
+                    courseId: courseId,
+                    confirmed: confirmed,
+                    available: available,
+                    isFull: isFull
+                });
+            })
+            .catch(function(error) {
+                console.error('Errore Firebase per ' + courseId + ':', error);
+                reject(error);
+            });
+    });
+}
+
+// ============================================
+// SUBMIT FORM ISCRIZIONI (CON FIREBASE)
 // ============================================
 function handleEnrollmentSubmit() {
     var enrollmentForm = document.getElementById('enrollmentForm');
     var successMessage = document.getElementById('enrollmentSuccessMessage');
     var errorMessage = document.getElementById('enrollmentErrorMessage');
+    var waitlistMessage = document.getElementById('enrollmentWaitlistMessage');
     var submitBtn = document.querySelector('.enrollment-submit-btn');
     
     if (!enrollmentForm || !submitBtn) return;
@@ -452,6 +532,7 @@ function handleEnrollmentSubmit() {
     // Nascondi messaggi precedenti
     if (successMessage) successMessage.classList.remove('show');
     if (errorMessage) errorMessage.classList.remove('show');
+    if (waitlistMessage) waitlistMessage.classList.remove('show');
 
     submitBtn.disabled = true;
     submitBtn.innerHTML = '⏳ Elaborazione...';
@@ -478,30 +559,36 @@ function handleEnrollmentSubmit() {
             throw new Error('Completa tutti i campi obbligatori');
         }
 
-        // Senza Firebase per ora, mostriamo successo
-        console.log('✅ Dati form (pronto per Firebase):', formData);
-        
-        if (successMessage) {
-            document.getElementById('enrollmentSuccessText').innerText = 
-                'Iscrizione ricevuta! Ti contatteremo presto a ' + formData.parentEmail;
-            successMessage.classList.add('show');
-        }
-        
-        // Resetta il form dopo 2 secondi
-        setTimeout(function() {
-            enrollmentForm.reset();
-            var coursesGrid = document.getElementById('enrollmentCoursesGrid');
-            if (coursesGrid) coursesGrid.innerHTML = '';
+        // Se Firebase è configurato, salva i dati
+        if (typeof firebase !== 'undefined' && firebase.firestore) {
+            saveEnrollmentToFirebase(formData, successMessage, waitlistMessage, enrollmentForm, submitBtn);
+        } else {
+            // Altrimenti mostra il messaggio di successo senza Firebase
+            console.log('✅ Dati form (Firebase non configurato):', formData);
             
-            // Chiudi il modal dopo 3 secondi
+            if (successMessage) {
+                document.getElementById('enrollmentSuccessText').innerText = 
+                    'Iscrizione ricevuta! Ti contatteremo presto a ' + formData.parentEmail;
+                successMessage.classList.add('show');
+            }
+            
             setTimeout(function() {
-                var enrollmentModal = document.getElementById('enrollmentModal');
-                if (enrollmentModal) {
-                    enrollmentModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }, 1000);
-        }, 2000);
+                enrollmentForm.reset();
+                var coursesGrid = document.getElementById('enrollmentCoursesGrid');
+                if (coursesGrid) coursesGrid.innerHTML = '';
+                
+                setTimeout(function() {
+                    var enrollmentModal = document.getElementById('enrollmentModal');
+                    if (enrollmentModal) {
+                        enrollmentModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                }, 1000);
+            }, 2000);
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '✨ Iscriviti Subito!';
+        }
 
     } catch (error) {
         console.error('❌ Errore:', error);
@@ -509,10 +596,98 @@ function handleEnrollmentSubmit() {
             document.getElementById('enrollmentErrorText').innerText = error.message || 'Errore durante l\'iscrizione. Riprova.';
             errorMessage.classList.add('show');
         }
-    } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '✨ Iscriviti Subito!';
     }
+}
+
+// ============================================
+// SALVA SU FIREBASE
+// ============================================
+function saveEnrollmentToFirebase(formData, successMessage, waitlistMessage, enrollmentForm, submitBtn) {
+    var db = firebase.firestore();
+    var courseInfo = ENROLLMENT_COURSES[formData.courseId];
+
+    // Conta iscritti confermati per questo corso
+    db.collection('enrollments')
+        .where('courseId', '==', formData.courseId)
+        .where('status', '==', 'confermato')
+        .get()
+        .then(function(snapshot) {
+            var confirmed = snapshot.size;
+            var status = 'confermato';
+            var waitlistPosition = null;
+
+            // Se corso pieno, metti in lista d'attesa
+            if (confirmed >= courseInfo.max) {
+                status = 'in_attesa';
+                waitlistPosition = confirmed - courseInfo.max + 1;
+            }
+
+            // Salva l'iscrizione
+            return db.collection('enrollments').add({
+                studentName: formData.studentName,
+                studentAge: parseInt(formData.studentAge),
+                parentName: formData.parentName,
+                parentEmail: formData.parentEmail,
+                parentPhone: formData.parentPhone,
+                schoolName: formData.schoolName,
+                courseId: formData.courseId,
+                courseName: courseInfo.name,
+                status: status,
+                waitlistPosition: waitlistPosition,
+                paid: false,
+                referral: formData.referral,
+                notes: formData.notes,
+                enrollmentDate: new Date(),
+            }).then(function() {
+                console.log('✅ Iscrizione salvata su Firebase');
+
+                // Mostra messaggio appropriato
+                if (status === 'in_attesa') {
+                    if (waitlistMessage) {
+                        document.getElementById('enrollmentWaitlistText').innerText = 
+                            'Sei in lista d\'attesa (posizione ' + waitlistPosition + '). Ti contatteremo se si libera un posto!';
+                        waitlistMessage.classList.add('show');
+                    }
+                } else {
+                    if (successMessage) {
+                        document.getElementById('enrollmentSuccessText').innerText = 
+                            'Iscrizione confermata! Riceverai email di conferma a ' + formData.parentEmail;
+                        successMessage.classList.add('show');
+                    }
+                }
+
+                // Resetta il form dopo 2 secondi
+                setTimeout(function() {
+                    enrollmentForm.reset();
+                    var coursesGrid = document.getElementById('enrollmentCoursesGrid');
+                    if (coursesGrid) coursesGrid.innerHTML = '';
+                    
+                    // Chiudi il modal dopo 3 secondi
+                    setTimeout(function() {
+                        var enrollmentModal = document.getElementById('enrollmentModal');
+                        if (enrollmentModal) {
+                            enrollmentModal.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    }, 1000);
+                }, 2000);
+
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✨ Iscriviti Subito!';
+            });
+        })
+        .catch(function(error) {
+            console.error('❌ Errore Firebase:', error);
+            var errorMessage = document.getElementById('enrollmentErrorMessage');
+            if (errorMessage) {
+                document.getElementById('enrollmentErrorText').innerText = 'Errore di connessione. Riprova.';
+                errorMessage.classList.add('show');
+            }
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '✨ Iscriviti Subito!';
+        });
 }
 
 // ========================================
