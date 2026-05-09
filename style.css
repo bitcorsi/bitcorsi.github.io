@@ -117,12 +117,6 @@ img { max-width: 100%; height: auto; display: block; }
   flex-shrink: 0;
 }
 
-.logo-wordmark {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
 .logo-name {
   font-size: 15px;
   font-weight: 700;
@@ -130,16 +124,11 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
-
-.logo-tagline {
-  font-size: 10px;
-  font-weight: 500;
-  color: #aaa;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
 }
-
 /* Nav */
 .nav {
   display: flex;
