@@ -2030,14 +2030,14 @@ a.bit-bar-column:hover .bit-value {
 }
 
 .logo-img {
-  height: 42px;
+  height: 60px;
   width: auto;
   display: block;
 }
 
 .logo-name {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 25px;
+  font-weight: 900;
   color: #1a1a1a;
   letter-spacing: -0.02em;
   white-space: nowrap;
@@ -2045,9 +2045,9 @@ a.bit-bar-column:hover .bit-value {
 
 @media (max-width: 768px) {
   .logo-img {
-    height: 32px;
+    height: 40px;
   }
   .logo-name {
-    font-size: 13px;
+    font-size: 18px;
   }
 }
