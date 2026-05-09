@@ -2022,3 +2022,32 @@ a.bit-bar-column:hover .bit-value {
     }
     .bit-contact-slim { padding: 30px 20px; }
 }
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.logo-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 32px;
+  }
+  .logo-name {
+    font-size: 13px;
+  }
+}
