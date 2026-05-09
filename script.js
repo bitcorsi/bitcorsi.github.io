@@ -53,17 +53,18 @@ function initMobileMenu() {
 
     function closeMenu() {
         navOverlay.classList.remove('active');
-        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
         body.style.overflow = '';
     }
 
     menuToggle.addEventListener('click', function(e) {
         e.stopPropagation();
-        if (navOverlay.classList.contains('active')) {
+        var isOpen = navOverlay.classList.contains('active');
+        if (isOpen) {
             closeMenu();
         } else {
             navOverlay.classList.add('active');
-            menuToggle.classList.add('open');
+            menuToggle.setAttribute('aria-expanded', 'true');
             body.style.overflow = 'hidden';
         }
     });
@@ -287,6 +288,8 @@ function initCourses() {
 
 // ========================================
 // POPUP SUMMER CAMP
+// — Mostrato dopo 8 secondi (non immediatamente)
+//   per ridurre il bounce rate
 // ========================================
 function initSummerCampPopup() {
     var SESSION_KEY = 'sc_popup_shown';
@@ -304,10 +307,10 @@ function initSummerCampPopup() {
     }
 
     var closeBtn = document.getElementById('sc-popup-close');
-    var skipBtn = document.getElementById('sc-popup-skip');
+    var skipBtn  = document.getElementById('sc-popup-skip');
 
     if (closeBtn) closeBtn.addEventListener('click', closePopup);
-    if (skipBtn) skipBtn.addEventListener('click', closePopup);
+    if (skipBtn)  skipBtn.addEventListener('click', closePopup);
 
     overlay.addEventListener('click', function(e) {
         if (e.target === overlay) closePopup();
@@ -317,13 +320,15 @@ function initSummerCampPopup() {
         if (e.key === 'Escape') closePopup();
     });
 
+    // Ritardo aumentato a 8 secondi per non interrompere
+    // l'utente che sta ancora scoprendo il sito
     setTimeout(function() {
         sessionStorage.setItem(SESSION_KEY, '1');
         overlay.style.display = 'flex';
         requestAnimationFrame(function() {
             overlay.classList.add('sc-open');
         });
-    }, 3000);
+    }, 8000);
 }
 
 // ========================================
@@ -392,7 +397,6 @@ function initEnrollmentModal() {
         document.body.style.overflow = 'auto';
     }
 
-    // Apri da tutti i link che puntano a #contatti-info
     document.querySelectorAll('[href="#contatti-info"]').forEach(function(link) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -410,14 +414,6 @@ function initEnrollmentModal() {
             closeModal();
         }
     });
-
-    var form = document.getElementById('enrollmentForm');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            handleEnrollmentSubmit();
-        });
-    }
 }
 
 // ========================================
@@ -441,7 +437,7 @@ function populateEnrollmentCourses() {
         results.forEach(function(data) {
             var info = ENROLLMENT_COURSES[data.courseId];
             var availClass = data.isFull ? 'full' : data.available <= 2 ? 'limited' : 'available';
-            var availText = data.isFull ? '❌ Corso Pieno' : '✓ ' + data.available + ' posti liberi';
+            var availText  = data.isFull ? '❌ Corso Pieno' : '✓ ' + data.available + ' posti liberi';
 
             grid.innerHTML +=
                 '<div class="enrollment-course-option">' +
@@ -485,16 +481,15 @@ function getCourseAvailability(courseId) {
 // SUBMIT FORM ISCRIZIONI
 // ========================================
 function handleEnrollmentSubmit() {
-    var form = document.getElementById('enrollmentForm');
-    var successMsg = document.getElementById('enrollmentSuccessMessage');
-    var errorMsg = document.getElementById('enrollmentErrorMessage');
+    var successMsg  = document.getElementById('enrollmentSuccessMessage');
+    var errorMsg    = document.getElementById('enrollmentErrorMessage');
     var waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
-    var submitBtn = document.querySelector('.enrollment-submit-btn');
+    var submitBtn   = document.getElementById('enrollmentSubmitBtn');
 
-    if (!form || !submitBtn) return;
+    if (!submitBtn) return;
 
-    if (successMsg) successMsg.classList.remove('show');
-    if (errorMsg) errorMsg.classList.remove('show');
+    if (successMsg)  successMsg.classList.remove('show');
+    if (errorMsg)    errorMsg.classList.remove('show');
     if (waitlistMsg) waitlistMsg.classList.remove('show');
 
     submitBtn.disabled = true;
@@ -504,11 +499,24 @@ function handleEnrollmentSubmit() {
         var courseRadio = document.querySelector('input[name="courseId"]:checked');
         if (!courseRadio) throw new Error('Seleziona un corso');
 
+        var studentName  = document.getElementById('studentName');
+        var studentAge   = document.getElementById('studentAge');
+        var parentEmail  = document.getElementById('parentEmail');
+        var privacy      = document.getElementById('privacy');
+
+        if (!studentName.value || !studentAge.value || !parentEmail.value) {
+            throw new Error('Completa tutti i campi obbligatori');
+        }
+
+        if (!privacy.checked) {
+            throw new Error("Accetta l'informativa privacy per procedere");
+        }
+
         var formData = {
-            studentName:  document.getElementById('studentName').value,
-            studentAge:   document.getElementById('studentAge').value,
+            studentName:  studentName.value,
+            studentAge:   studentAge.value,
             parentName:   document.getElementById('parentName').value,
-            parentEmail:  document.getElementById('parentEmail').value,
+            parentEmail:  parentEmail.value,
             parentPhone:  document.getElementById('parentPhone').value,
             schoolName:   document.getElementById('schoolName').value,
             courseId:     courseRadio.value,
@@ -516,11 +524,7 @@ function handleEnrollmentSubmit() {
             notes:        document.getElementById('notes').value
         };
 
-        if (!formData.studentName || !formData.studentAge || !formData.parentEmail || !formData.courseId) {
-            throw new Error('Completa tutti i campi obbligatori');
-        }
-
-        saveEnrollmentToFirebase(formData, successMsg, waitlistMsg, errorMsg, form, submitBtn);
+        saveEnrollmentToFirebase(formData, successMsg, waitlistMsg, errorMsg, submitBtn);
 
     } catch (error) {
         console.error('Errore:', error);
@@ -536,7 +540,7 @@ function handleEnrollmentSubmit() {
 // ========================================
 // SALVA SU FIREBASE
 // ========================================
-function saveEnrollmentToFirebase(formData, successMsg, waitlistMsg, errorMsg, form, submitBtn) {
+function saveEnrollmentToFirebase(formData, successMsg, waitlistMsg, errorMsg, submitBtn) {
     var info = ENROLLMENT_COURSES[formData.courseId];
 
     db.collection('enrollments')
@@ -549,22 +553,21 @@ function saveEnrollmentToFirebase(formData, successMsg, waitlistMsg, errorMsg, f
             var waitlistPosition = status === 'in_attesa' ? (confirmed - info.max + 1) : null;
 
             return db.collection('enrollments').add({
-                studentName:     formData.studentName,
-                studentAge:      parseInt(formData.studentAge),
-                parentName:      formData.parentName,
-                parentEmail:     formData.parentEmail,
-                parentPhone:     formData.parentPhone,
-                schoolName:      formData.schoolName,
-                courseId:        formData.courseId,
-                courseName:      info.name,
-                status:          status,
+                studentName:      formData.studentName,
+                studentAge:       parseInt(formData.studentAge),
+                parentName:       formData.parentName,
+                parentEmail:      formData.parentEmail,
+                parentPhone:      formData.parentPhone,
+                schoolName:       formData.schoolName,
+                courseId:         formData.courseId,
+                courseName:       info.name,
+                status:           status,
                 waitlistPosition: waitlistPosition,
-                paid:            false,
-                referral:        formData.referral,
-                notes:           formData.notes,
-                enrollmentDate:  new Date()
+                paid:             false,
+                referral:         formData.referral,
+                notes:            formData.notes,
+                enrollmentDate:   new Date()
             }).then(function() {
-                console.log('Iscrizione salvata su Firebase');
 
                 if (status === 'in_attesa') {
                     document.getElementById('enrollmentWaitlistText').innerText =
@@ -577,7 +580,11 @@ function saveEnrollmentToFirebase(formData, successMsg, waitlistMsg, errorMsg, f
                 }
 
                 setTimeout(function() {
-                    form.reset();
+                    // Reset form fields
+                    ['studentName','studentAge','parentName','parentEmail','parentPhone','schoolName','referral','notes'].forEach(function(id) {
+                        var el = document.getElementById(id);
+                        if (el) el.value = el.tagName === 'SELECT' ? el.options[0].value : '';
+                    });
                     var grid = document.getElementById('enrollmentCoursesGrid');
                     if (grid) grid.innerHTML = '';
 
