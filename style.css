@@ -1449,14 +1449,30 @@ section[id] { scroll-margin-top: 75px; }
   .logo-text { font-size: 1.2rem; }
 
   /* Hero semplificato su mobile — solo colonna centrale */
-  .hero {
+  /*.hero {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     text-align: center;
     padding: 2.5rem 1rem 2rem;
     min-height: auto;
-  }
+  }*/
+
+.hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 16px 22px;
+  text-align: left;
+}
+.hero-eyebrow,
+.hero-title,
+.hero p { text-align: left; }
+
+.hero-actions { justify-content: flex-start; }
+
+
 
   .hero::before, .hero::after { display: none; }
 
@@ -1464,7 +1480,24 @@ section[id] { scroll-margin-top: 75px; }
   .hero-desc  { font-size: var(--text-base); margin-bottom: 1.5rem; max-width: 90%; }
 
   /* Nascondi elementi decorativi non necessari su mobile */
-  .hero-left-image  { display: none; }
+  .hero-left-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 90px;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.hero-left-image img {
+  width: 90px;
+  height: 110px;
+  object-fit: contain;
+}
+
+  
   .hero-features    { display: none; }
   .hero-right-stepper { display: none; }
 
