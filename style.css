@@ -110,28 +110,56 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 1rem;
 }
 
+/* ========================================
+   LOGO — nuovo stile icona + wordmark
+   ======================================== */
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
   flex-shrink: 0;
 }
 
+/* Nasconde eventuali elementi vecchi se ancora nel DOM */
+.logo-overlap,
+.logo-text-group,
+.logo-divider,
+.logo-text,
+.logo-sub,
 .logo-img {
-  height: 42px;
-  width: auto;
-  display: block;
+  display: none !important;
 }
 
-.logo-name {
-  font-size: 15px;
-  font-weight: 700;
+.logo-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #E05A2B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-icon-box svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.logo-wordmark {
+  font-size: 20px;
+  font-weight: 800;
   color: #1a1a1a;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   white-space: nowrap;
+  line-height: 1;
 }
 
+/* ========================================
+   NAV
+   ======================================== */
 .nav {
   display: flex;
   align-items: center;
@@ -1298,33 +1326,56 @@ section[id] { scroll-margin-top: 75px; }
   .menu-toggle { display: flex; }
   .nav, .header-cta { display: none; }
   .header { height: 64px; }
-  .logo-img { height: 32px; }
-  .logo-name { font-size: 13px; }
 
-  /* Hero — layout float */
+  /* Hero — layout a 2 colonne */
   .hero {
     display: block;
-    padding: 20px 16px 24px;
+    padding: 28px 20px 32px;
     min-height: auto;
     text-align: left;
   }
 
   .hero::before, .hero::after { display: none; }
 
+  /* Riga superiore: testo a sinistra + immagine a destra */
+  .hero-main-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .hero-text-col {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-img-col {
+    flex-shrink: 0;
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Reset float e animazione del vecchio layout */
   .hero-left-image {
-    display: block;
-    width: 75px;
-    float: right;
-    margin: 0 0 6px 12px;
-    opacity: 1;
-    transform: none;
-    animation: none;
+    float: none !important;
+    width: 130px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    display: block !important;
   }
 
   .hero-left-image img {
-    width: 75px;
-    height: auto;
-    object-fit: contain;
+    width: 130px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.13);
+    padding: 12px;
   }
 
   .container.hero-content-container {
@@ -1332,33 +1383,84 @@ section[id] { scroll-margin-top: 75px; }
     opacity: 1;
     transform: none;
     animation: none;
+    width: 100%;
+    padding: 0;
   }
 
-  .hero-eyebrow { text-align: left; margin-bottom: 6px; }
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    text-align: left;
+  }
 
   .hero-title {
-    font-size: 1.55rem;
-    margin-bottom: 0.6rem;
+    font-size: 1.85rem;
+    margin-bottom: 0;
+    line-height: 1.18;
+  }
+
+  /* Desc — sotto la riga titolo+immagine, a tutta larghezza */
+  .hero-desc {
+    font-size: 0.95rem;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+  }
+
+  /* Bottoni: due pill separati affiancati */
+  .hero-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    clear: none;
+  }
+
+  /* Rende il link-wrapper trasparente e i due span come bottoni indipendenti */
+  .hero-cta-split {
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    background: none;
+    display: contents;
+  }
+
+  .hero-cta-left {
+    background: rgba(255,255,255,0.22);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .hero-cta-right {
+    background: transparent;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 11px 22px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
   }
 
   .hero p {
-    clear: both;
-    text-align: center;
-    margin-bottom: 1.2rem;
-    font-size: var(--text-base);
-  }
-
-  .hero-actions {
-    justify-content: center;
-    clear: both;
-    margin-bottom: 0;
-  }
-
-  .hero-cta-left,
-  .hero-cta-right {
-    white-space: nowrap;
-    font-size: 0.82rem;
-    padding: 0.5rem 0.9rem;
+    clear: none;
+    text-align: left;
   }
 
   .hero-features, .hero-right-stepper { display: none; }
