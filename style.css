@@ -1536,6 +1536,53 @@ section[id] { scroll-margin-top: 75px; }
   font-size: 0.82rem;
   padding: 0.5rem 0.9rem;
 }
+.hero {
+  display: block;
+  padding: 20px 16px 22px;
+  text-align: left;
+  min-height: auto;
+}
+
+.hero-left-image {
+  display: block;
+  width: 80px;
+  height: auto;
+  float: right;
+  margin-left: 12px;
+  margin-bottom: 8px;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.hero-left-image img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+.container.hero-content-container {
+  display: block;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.hero h2 {
+  font-size: 1.55rem;
+  margin-bottom: 0.6rem;
+}
+
+.hero p {
+  clear: both;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.hero-actions {
+  justify-content: center;
+  clear: both;
+}
 
   
   .hero-features    { display: none; }
