@@ -218,7 +218,7 @@ function initCourses() {
                                 '<span><strong>Prezzo:</strong> ' + p.prezzo + '</span>' +
                             '</div>' +
                             '<p class="promo-note">' + p.posti + '</p>' +
-                            '<a href="#contatti" class="btn-promo">' + p.cta + '</a>' +
+                            '<a href="#footer" class="btn-promo">' + p.cta + '</a>' +
                         '</div>' +
                     '</div>';
                 promoContainer.style.display = 'block';
@@ -244,7 +244,7 @@ function initCourses() {
                                 (corso.linkTesto || 'Scopri di piu') +
                               '</a>';
                     } else {
-                        btn = '<a href="#contatti" class="btn-course">Iscriviti ora</a>';
+                        btn = '<a href="#contatti-info" class="btn-course">Iscriviti ora</a>';
                     }
 
                     var extraClass = corso.id === 'summercamp' ? ' course-card-summer' : '';
