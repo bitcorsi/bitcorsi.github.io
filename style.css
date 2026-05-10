@@ -1496,6 +1496,46 @@ section[id] { scroll-margin-top: 75px; }
   height: 110px;
   object-fit: contain;
 }
+.hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 16px 22px;
+  text-align: left;
+  min-height: auto;
+}
+
+.hero-left-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 85px;
+  opacity: 1;
+  transform: none;
+  animation: none;
+  order: 2;
+}
+
+.hero-left-image img {
+  width: 85px;
+  height: auto;
+  object-fit: contain;
+}
+
+.container.hero-content-container {
+  order: 1;
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-cta-left,
+.hero-cta-right {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  padding: 0.5rem 0.9rem;
+}
 
   
   .hero-features    { display: none; }
