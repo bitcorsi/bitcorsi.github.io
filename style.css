@@ -95,7 +95,7 @@ img { max-width: 100%; height: auto; display: block; }
    HEADER
    ======================================== */
 .header {
-  background-color: #fff;
+  background-color: #FFF5EF;
   position: sticky;
   top: 0;
   z-index: 1000;
