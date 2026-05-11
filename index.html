@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIT - Lab Tecnologici e Corsi di Robotica Educativa per Bambini e Ragazzi</title>
-<meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta.">
-<script type="application/ld+json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIT - Lab Tecnologici e Corsi di Robotica Educativa per Bambini e Ragazzi</title>
+  <meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta.">
+
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -33,81 +34,128 @@
     "https://wa.me/393703069215"
   ]
 }
-</script>
+  </script>
 
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#FF6B35">
-
-<!-- Font Awesome — caricato nel head per evitare FOUC -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
-
-<link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#FF6B35">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- FAB WhatsApp -->
 <div class="fab-container">
   <a href="https://wa.me/393703069215" class="fab fab-whatsapp" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
     </svg>
   </a>
 </div>
 
-<!-- Header -->
+<!-- ========== HEADER ========== -->
 <header class="header">
   <div class="container header-inner">
+
     <div class="logo-container">
-      <div class="logo-overlap">
-        <img src="images/Logo.webp" alt="Bit Lab Tecnologici - Logo corsi robotica educativa Brescia" class="logo-img">
+      <div class="logo-icon-box">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
       </div>
-      <div class="logo-text-group">
-        <span class="logo-text">BIT</span>
-        <div class="logo-divider"></div>
-        <span class="logo-sub">Lab<br>Tecnologici</span>
+      <div class="logo-wordmark">
+        <span class="logo-name">BIT Lab Tecnologici</span>
+        <span class="logo-tagline">Robotica educativa · Brescia</span>
       </div>
     </div>
-    <div class="header-right">
-      <nav class="nav" aria-label="Menu principale">
-        <a href="#home">Home</a>
-        <a href="#il-progetto">Progetto</a>
-        <a href="#strumenti">Strumenti</a>
-        <a href="#corsi">Corsi</a>
-        <a href="#footer">Contatti</a>
-      </nav>
+
+    <nav class="nav" aria-label="Navigazione principale">
+      <a href="#home">Home</a>
+      <a href="#il-progetto">Progetto</a>
+      <a href="#strumenti">Strumenti</a>
+      <a href="#corsi">Corsi</a>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <div class="nav-chip">
+        <div class="nav-chip-dot"></div>
+        Iscrizioni aperte
+      </div>
+    </nav>
+
+    <div class="header-cta">
+      <a href="https://wa.me/393703069215" class="btn-wa" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        WhatsApp
+      </a>
+      <button class="btn-header-primary" onclick="document.getElementById('enrollmentModal').classList.add('active'); document.body.style.overflow='hidden'; var g=document.getElementById('enrollmentCoursesGrid'); if(g && g.children.length===0) populateEnrollmentCourses();">
+        Iscriviti ora
+      </button>
     </div>
-    <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+    <button class="menu-toggle" aria-label="Apri menu">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
+
   </div>
 </header>
 
-<!-- Menu mobile overlay -->
+<!-- ========== NAV OVERLAY MOBILE ========== -->
 <nav class="nav-overlay" aria-label="Menu mobile">
+  <div class="nav-overlay-header">
+    <div class="logo-container">
+      <div class="logo-icon-box" style="width:30px;height:30px;border-radius:8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+      </div>
+      <span class="logo-name">BIT Lab</span>
+    </div>
+    <button class="menu-toggle" aria-label="Chiudi menu">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="nav-overlay-chip">
+    <div class="nav-chip-dot"></div>
+    Iscrizioni aperte
+  </div>
+
   <a href="#home">Home</a>
-  <a href="#il-progetto">Il progetto</a>
+  <a href="#il-progetto">Progetto</a>
   <a href="#strumenti">Strumenti</a>
   <a href="#corsi">Corsi</a>
   <a href="#footer">Contatti</a>
+
+  <div class="nav-overlay-cta">
+    <a href="https://wa.me/393703069215" class="nav-overlay-btn-wa" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      WhatsApp
+    </a>
+    <button class="nav-overlay-btn-primary" onclick="document.querySelector('.nav-overlay').classList.remove('active'); document.body.style.overflow=''; document.getElementById('enrollmentModal').classList.add('active'); document.body.style.overflow='hidden'; var g=document.getElementById('enrollmentCoursesGrid'); if(g && g.children.length===0) populateEnrollmentCourses();">
+      Iscriviti ora
+    </button>
+  </div>
 </nav>
 
-<!-- Hero -->
 <section id="home" class="hero">
-  <div class="hero-left-image" aria-hidden="true">
-    <img src="images/hero-left.webp" alt="" loading="eager">
+  <div class="hero-left-image">
+    <img src="images/hero-left.webp" alt="Bit Lab Tecnologici: programma i robot LEGO a Brescia a blocchi o con python" loading="eager">
   </div>
-
   <div class="container hero-content-container">
     <p class="hero-eyebrow">Robotica educativa · Brescia</p>
-    <h1 class="hero-title">
-      Accendi la sua <span class="hero-gradient-text">passione</span><br>
+    <h2 class="hero-title">
+      Accendi la sua <span style="background:linear-gradient(135deg,#FF6B35 0%,#FFD166 50%,#FF6B35 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;display:inline-block;background-size:200% auto;animation:gradientFlow 3s ease infinite;">passione</span><br>
       per la tecnologia
-    </h1>
-    <p class="hero-desc">Lab divertenti per ragazzi e ragazze dagli 8 ai 16 anni.</p>
+    </h2>
+    <p>Lab divertenti per ragazzi e ragazze dagli 8 ai 16 anni.</p>
     <div class="hero-actions">
       <a href="#contatti-info" class="hero-cta-split">
         <span class="hero-cta-left">Iscriviti ora</span>
@@ -119,20 +167,19 @@
     </div>
     <div class="hero-features">
       <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <div><div class="hero-pill-label">Gruppi piccoli</div><div class="hero-pill-sub">8-10 ragazzi</div></div>
       </div>
       <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         <div><div class="hero-pill-label">Kit inclusi</div><div class="hero-pill-sub">ogni lezione</div></div>
       </div>
       <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <div><div class="hero-pill-label">100% pratico</div><div class="hero-pill-sub">progetti reali</div></div>
       </div>
     </div>
   </div>
-
   <div class="hero-right-stepper">
     <div class="hero-stepper-box">
       <div class="hero-stepper-title">Come funziona un laboratorio</div>
@@ -156,8 +203,24 @@
   </div>
 </section>
 
-<!-- Il Progetto -->
+<!-- IL PROGETTO -->
 <section id="il-progetto" class="section section-il-progetto">
+  <div class="il-progetto-symbols" aria-hidden="true">
+    <span class="il-sym" style="font-size:3.2rem; top:5%; left:2%">&lt;/&gt;</span>
+    <span class="il-sym" style="font-size:2.4rem; top:8%; left:22%">{ }</span>
+    <span class="il-sym" style="font-size:2.8rem; top:3%; left:55%">01</span>
+    <span class="il-sym" style="font-size:2rem;   top:10%; left:78%">⚙</span>
+    <span class="il-sym" style="font-size:3rem;   top:55%; left:0%">if()</span>
+    <span class="il-sym" style="font-size:2.2rem; top:65%; left:28%">→</span>
+    <span class="il-sym" style="font-size:2.6rem; top:60%; left:52%">{ }</span>
+    <span class="il-sym" style="font-size:1.8rem; top:70%; left:74%">&lt;?&gt;</span>
+    <span class="il-sym" style="font-size:3rem;   top:35%; left:86%">⚙</span>
+    <span class="il-sym" style="font-size:2rem;   top:42%; left:5%">010</span>
+    <span class="il-sym" style="font-size:1.6rem; top:80%; left:12%">loop()</span>
+    <span class="il-sym" style="font-size:2.8rem; top:82%; left:62%">&lt;/&gt;</span>
+    <span class="il-sym" style="font-size:1.8rem; top:25%; left:42%">!=</span>
+    <span class="il-sym" style="font-size:2.2rem; top:45%; left:62%">++</span>
+  </div>
   <div class="container">
     <div class="progetto-grid">
       <div class="progetto-left">
@@ -182,14 +245,11 @@
         <img src="images/lab-foto.webp" alt="Ragazzi al laboratorio Bit Labs Tecnologici a Brescia" loading="lazy" class="progetto-img">
       </div>
     </div>
-
     <hr class="progetto-divider">
-
     <div class="collab-header">
       <h3>Già nelle scuole di Brescia</h3>
       <p>Portiamo il doposcuola di robotica nelle scuole primarie ogni settimana, in collaborazione con <a href="https://www.club28bs.it" target="_blank" rel="noopener">Club 28 SSD s.r.l.</a></p>
     </div>
-
     <div class="scuole-grid">
       <div class="scuola-card">
         <img src="images/Torricella.webp" alt="Primaria Torricella (BS)">
@@ -206,13 +266,7 @@
         <span>Melzi</span>
         <div class="scuola-badge">Attivo</div>
       </div>
-      <div class="scuola-card">
-        <img src="images/Quasimodo.webp" alt="Primaria Quasimodo (BS)">
-        <span>Quasimodo</span>
-        <div class="scuola-badge">⌚</div>
-      </div>
     </div>
-
     <div class="cta-scuole">
       <div class="cta-scuole-left">
         <div class="cta-scuole-tag">
@@ -223,22 +277,22 @@
         <p>Organizziamo laboratori settimanali di robotica educativa per le scuole primarie e secondarie di Brescia e provincia. Il comitato genitori può contattarci per avviare una collaborazione.</p>
         <div class="cta-scuole-points">
           <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             Doposcuola settimanale fisso
           </div>
           <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             Brescia e provincia
           </div>
           <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             Kit e materiali inclusi
           </div>
         </div>
       </div>
       <div class="cta-scuole-right">
         <a href="mailto:bitcorsi@gmail.com?subject=Collaborazione%20scuola&body=Ciao%2C%20sono%20un%20genitore%20e%20vorrei%20portare%20la%20robotica%20nella%20scuola%20di%20mio%20figlio." class="btn-cta-scuole">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           Scrivici per la tua scuola
         </a>
         <div class="cta-scuole-note">risposta entro 24 ore</div>
@@ -265,19 +319,19 @@
         <div class="tool-icon-badge roberta-color">8-13 anni</div>
         <img src="images/open-roberta.svg" alt="Laboratorio di coding con Open Roberta a Brescia" class="tool-image" loading="lazy">
         <h3 class="tool-title">Open Roberta</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Programmare robot LEGO, micro:bit, NAO e altri dispositivi direttamente online. Blocchi colorati nel browser senza installazioni.</p></div>
+        <div class="tool-details"><p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms...), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa. Blocchi colorati nel browser senza installazioni.</p></div>
       </div>
       <div class="tool-card">
         <div class="tool-icon-badge arduino-color">12-16 anni</div>
         <img src="images/arduino.svg" alt="Corso Arduino per ragazzi a Brescia" class="tool-image" loading="lazy">
         <h3 class="tool-title">Arduino</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote. Linguaggio testuale basato su C++.</p></div>
+        <div class="tool-details"><p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio testuale semplice basato su C++.</p></div>
       </div>
       <div class="tool-card">
         <div class="tool-icon-badge microbit-color">8-13 anni</div>
         <img src="images/microbit.svg" alt="Corso di programmazione con micro:bit per bambini a Brescia" class="tool-image" loading="lazy">
         <h3 class="tool-title">micro:bit BBC</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali. Tre modalità: blocchi, JavaScript o Python.</p></div>
+        <div class="tool-details"><p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori. Tre modalità: blocchi, JavaScript o Python.</p></div>
       </div>
     </div>
   </div>
@@ -290,22 +344,19 @@
       <h2>Iscrizioni aperte - Primavera 2026</h2>
       <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia</p>
     </div>
-    <div id="promo-natale-container" class="promo-natale-container"></div>
+    <div id="promo-natale-container" class="promo-natale-container" style="display:none;"></div>
     <div class="courses-grid" id="courses-container">
-      <div class="course-card course-card--loading">
-        <p class="courses-loading-text">Caricamento corsi…</p>
+      <div class="course-card loading" style="grid-column: 1 / -1;">
+        <p style="text-align:center; padding:2rem; color:var(--gray-600);">Caricamento corsi…</p>
       </div>
     </div>
   </div>
 </section>
 
-
 <!-- Contatti - Info -->
 <section id="contatti-info" class="bit-contact-slim">
   <div class="container">
     <div class="bit-bar-wrapper">
-
-      <!-- WhatsApp -->
       <a href="https://wa.me/393703069215" class="bit-bar-column" target="_blank">
         <div class="bit-icon orange-tint">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -317,8 +368,6 @@
           <span class="bit-value">+39 370 306 9215</span>
         </div>
       </a>
-
-      <!-- Sede -->
       <div class="bit-bar-column">
         <div class="bit-icon blue-tint">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -331,8 +380,6 @@
           <span class="bit-value">Piazzetta SS. Francesco e Chiara 1, BS</span>
         </div>
       </div>
-
-      <!-- Orari -->
       <div class="bit-bar-column">
         <div class="bit-icon green-tint">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -345,8 +392,6 @@
           <span class="bit-value">10:00-11:30 | 15:00-16:30</span>
         </div>
       </div>
-
-      <!-- Instagram -->
       <a href="https://instagram.com/bit_corsi" class="bit-bar-column" target="_blank">
         <div class="bit-icon purple-tint">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -360,28 +405,26 @@
           <span class="bit-value">@bit_corsi</span>
         </div>
       </a>
-
     </div>
   </div>
 </section>
-  
 
 <!-- Footer -->
-<footer id="footer" class="footer">
-  <div class="container footer-inner">
-    <p>P.IVA 04701410989 &mdash; &copy; 2026 Bit Lab Tecnologici &mdash; Privacy garantita &mdash; sito cookie free |
-      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" target="_blank" rel="noopener noreferrer" class="footer-link">Privacy Policy</a>
+<footer id="footer" class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
+  <div class="container" style="text-align:center;">
+    <p>P.IVA 04701410989 - &copy; 2026 Bit Lab Tecnologici - Privacy garantita - sito cookie free |
+      <a href="/privacy.md" target="_blank" rel="noopener noreferrer" style="color:#FF6B35; text-decoration:underline;">Privacy Policy</a>
     </p>
   </div>
 </footer>
 
 <!-- POPUP SUMMER CAMP -->
-<div id="sc-popup-overlay">
-  <div class="sc-popup" role="dialog" aria-modal="true" aria-labelledby="sc-popup-title">
+<div id="sc-popup-overlay" style="display:none;">
+  <div class="sc-popup">
     <div class="sc-popup-header">
-      <button id="sc-popup-close" aria-label="Chiudi popup">&#x2715;</button>
+      <button id="sc-popup-close" aria-label="Chiudi">&#x2715;</button>
       <span class="sc-popup-badge">Novità estate 2026</span>
-      <div class="sc-popup-title" id="sc-popup-title">🌅 ROBOGREST 2026</div>
+      <div class="sc-popup-title">🌅 ROBOGREST 2026</div>
       <div class="sc-popup-subtitle">Un'Estate di Coding e Robotica</div>
     </div>
     <div class="sc-popup-body">
@@ -390,24 +433,24 @@
         <span class="sc-chip">👦 7–13 anni</span>
         <span class="sc-chip">💶 €130/settimana - 9:00/17:00</span>
       </div>
-      <p class="sc-popup-desc">Progettazione, costruzione, programmazione di robot con LEGO Spike Prime e Micro:bit ogni mattina. Posti limitati, caparra €30 per prenotare.</p>
+      <p class="sc-popup-desc">Progettazione, costruzione, programmazione di robot con LEGO Spike Prime e micro:bit ogni mattina. Posti limitati, caparra €30 per prenotare.</p>
       <button id="sc-popup-skip" class="sc-popup-skip">Continua sul Sito</button>
     </div>
   </div>
 </div>
 
 <!-- MODAL ISCRIZIONI -->
-<div id="enrollmentModal" class="enrollment-modal" role="dialog" aria-modal="true" aria-labelledby="enrollmentModalTitle">
+<div id="enrollmentModal" class="enrollment-modal">
   <div class="enrollment-modal-overlay"></div>
   <div class="enrollment-modal-content">
     <button class="enrollment-modal-close" id="closeEnrollmentModal" aria-label="Chiudi">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
     <div class="enrollment-modal-header">
-      <h2 id="enrollmentModalTitle">🤖 Join the Adventure!</h2>
+      <h2>Inizia l'avventura!</h2>
       <p>Scegli il tuo corso di robotica preferito</p>
     </div>
     <div id="enrollmentSuccessMessage" class="enrollment-message success-message">
@@ -422,7 +465,7 @@
       <strong>⚠️ Errore</strong>
       <p id="enrollmentErrorText"></p>
     </div>
-    <div id="enrollmentForm" class="enrollment-form" role="form">
+    <form id="enrollmentForm" class="enrollment-form">
       <div class="enrollment-form-section">
         <div class="enrollment-form-section-title">👦 Dati dell'Alunno</div>
         <div class="enrollment-form-group">
@@ -455,7 +498,7 @@
         <div class="enrollment-form-section-title">📧 Dati del Genitore</div>
         <div class="enrollment-form-group">
           <label for="parentEmail">Email del Genitore *</label>
-          <input type="email" id="parentEmail" name="parentEmail" placeholder="email@example.com" required class="input-highlight">
+          <input type="email" id="parentEmail" name="parentEmail" placeholder="email@example.com" required style="border: 2px solid #FF6B35; background: #fff5f0;">
         </div>
         <div class="enrollment-form-row">
           <div class="enrollment-form-group">
@@ -496,20 +539,23 @@
           Accetto l'<a href="/privacy.md" target="_blank">informativa privacy</a> *
         </label>
       </div>
-      <button type="button" id="enrollmentSubmitBtn" class="enrollment-submit-btn" onclick="handleEnrollmentSubmit()">
+      <button type="submit" class="enrollment-submit-btn">
         <span id="enrollmentSubmitText">✨ Iscriviti Subito!</span>
       </button>
-    </div>
+    </form>
     <div class="enrollment-info-box">
       <p>📧 Riceverai email di conferma all'indirizzo del genitore</p>
-      <p class="enrollment-info-phone">📞 Domande? Contattaci: <a href="tel:+393703069215">+39 370 306 9215</a></p>
+      <p style="margin-top: 0.5rem;">📞 Domande? Contattaci: <a href="tel:+393703069215">+39 370 306 9215</a></p>
     </div>
   </div>
 </div>
 
-<!-- Firebase SDK -->
+<!-- Firebase SDK (compat) -->
 <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+
+<!-- Script principale -->
 <script src="script.js"></script>
+
 </body>
 </html>
