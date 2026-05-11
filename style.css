@@ -80,7 +80,7 @@ img { max-width: 100%; height: auto; display: block; }
    HEADER
    ======================================== */
 .header {
-  background-color: var(--white);
+  background-color: #FDF8F4;
   position: sticky;
   top: 0;
   z-index: 1000;
