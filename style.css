@@ -80,7 +80,7 @@ img { max-width: 100%; height: auto; display: block; }
    HEADER
    ======================================== */
 .header {
-  background-color: #FDF8F4;
+  background-color: var(--white);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -1259,77 +1259,21 @@ section[id] { scroll-margin-top: 75px; }
   .camp-text span { display: block; }
   .camp-close { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); }
 
-.hero {
-  display: flex;
-  flex-direction: column;
-  padding: 20px 16px 28px;
-  min-height: auto;
-  text-align: center;
-}
+  .hero {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 2.2rem 1rem 1.5rem;
+    min-height: auto;
+  }
 
-.hero::before, .hero::after { display: none; }
-
-.hero-left-image {
-  display: flex;
-  width: 110px;
-  flex-shrink: 0;
-  opacity: 1;
-  transform: none;
-  animation: none;
-  align-self: flex-end;
-  margin-bottom: -60px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-left-image img {
-  width: 110px;
-  height: auto;
-  object-fit: contain;
-}
-
-.container.hero-content-container {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-eyebrow {
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.hero h1, .hero h2 {
-  font-size: 1.6rem;
-  line-height: 1.22;
-  margin-bottom: 12px;
-  text-align: left;
-}
-
-.hero p {
-  font-size: 1rem;
-  line-height: 1.55;
-  text-align: center;
-  margin: 0 auto 1.4rem;
-  max-width: 100%;
-  opacity: 0.85;
-}
-
-.hero-actions {
-  justify-content: center;
-  gap: 0.6rem;
-  margin-bottom: 0;
-}
-
-.hero-cta-left,
-.hero-cta-right {
-  white-space: nowrap;
-  font-size: 0.85rem;
-  padding: 0.6rem 1rem;
-}
-
-.hero-features { display: none; }
-.hero-right-stepper { display: none; }
-
+  .hero::before, .hero::after { display: none; }
+  .hero h1, .hero h2 { font-size: 1.6rem; line-height: 1.3; margin-bottom: 0.8rem; }
+  .hero p { font-size: 1rem; line-height: 1.5; margin: 0 auto 1.5rem; max-width: 90%; }
+  .hero-left-image { display: none; }
+  .hero-features { display: none; }
+  .hero-right-stepper { display: none; }
 
   .section { padding: 3rem 1rem; }
   .section-header h2 { font-size: 1.6rem; margin-bottom: 1rem; }
