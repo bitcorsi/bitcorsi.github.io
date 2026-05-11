@@ -171,7 +171,7 @@ function initCourses() {
       }
 
       corsiNormali.forEach(corso => {
-        const isActive = corso.stato === 'aperto';
+        const isActive = corso.stato === '🔓​';
         const badgeClass = isActive ? 'badge-available' : 'badge-closed';
         let btn;
         if (!isActive) {
