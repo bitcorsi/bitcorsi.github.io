@@ -1503,3 +1503,32 @@ section[id] { scroll-margin-top: 75px; }
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.logo-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 32px;
+  }
+  .logo-name {
+    font-size: 13px;
+  }
+}
