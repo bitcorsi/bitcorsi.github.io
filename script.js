@@ -1,7 +1,6 @@
 // ============================================================
 // BIT LAB TECNOLOGICI - script.js
-// Versione stabile, senza errori di sintassi
-// Gestisce: Firebase, corsi da JSON, modale iscrizioni, popup
+// Fix: link dinamici corsi, id corsi sincronizzati, submit btn
 // ============================================================
 
 // ----------------------------- FIREBASE CONFIG -----------------------------
@@ -15,22 +14,22 @@ const firebaseConfig = {
   measurementId: "G-EEDZVB4FRE"
 };
 
-// Inizializza Firebase solo se non già inizializzato
 if (!firebase.apps || !firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 const db = firebase.firestore();
 
 // ----------------------------- CORSI PER MODALE -----------------------------
+// IMPORTANTE: le chiavi devono corrispondere agli id in corsi.json
 const ENROLLMENT_COURSES = {
-  'lego-spike':     { name: 'Lego Spike Prime',   age: '8-13 anni', max: 10 },
-  'arduino':        { name: 'Arduino',            age: '12-16 anni', max: 10 },
-  'open-roberta':   { name: 'Open Roberta',       age: '8-13 anni', max: 10 },
-  'microbit':       { name: 'micro:bit BBC',      age: '8-13 anni', max: 10 },
-  'mattine-coding': { name: 'Mattine di coding',  age: '8-13 anni', max: 30 }
+  'spike':           { name: 'Spike Prime Lab',    age: '8-13 anni',  max: 10 },
+  'arduino':         { name: 'Arduino base',        age: '12-16 anni', max: 10 },
+  'microbit':        { name: 'Micro:bit Lab',       age: '8-13 anni',  max: 10 },
+  'roberta':         { name: 'Open Roberta Lab',    age: '8-13 anni',  max: 10 },
+  'mattine-coding':  { name: 'Mattine di coding',   age: '8-13 anni',  max: 30 }
 };
 
-// ----------------------------- FUNZIONI DI UTILITY -----------------------------
+// ----------------------------- UTILITY -----------------------------
 function formatDate(ts) {
   if (!ts) return '—';
   let d;
@@ -42,7 +41,6 @@ function formatDate(ts) {
 }
 
 function showToast(msg, type = 'info') {
-  // Se esiste il container toast (solo nel gestionale), usalo, altrimenti console
   const container = document.getElementById('toastContainer');
   if (container) {
     const toast = document.createElement('div');
@@ -55,14 +53,24 @@ function showToast(msg, type = 'info') {
   }
 }
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
+}
+
 // ----------------------------- INIT GENERALE -----------------------------
 function init() {
   initMobileMenu();
   initFAQ();
-  initCourses();           // carica i corsi da corsi.json
+  initCourses();
   unifyWhatsAppFAB();
   initSummerCampPopup();
-  initEnrollmentModal();   // gestisce l'apertura modale e l'invio
+  initEnrollmentModal();
 }
 
 // ----------------------------- MENU MOBILE -----------------------------
@@ -119,18 +127,21 @@ function initCourses() {
       return response.json();
     })
     .then(data => {
-      // Titolo e sottotitolo
+      // Aggiorna chip iscrizioni nella navbar
+      aggiornaChipIscrizioni(data.corsi || []);
+
+      // Titolo e sottotitolo sezione
       if (sectionHeader && data.titoloCorsi) {
         sectionHeader.innerHTML = `<h2>${escapeHtml(data.titoloCorsi)}</h2>
                                    <p class="section-subtitle">${escapeHtml(data.sottotitoloCorsi || '')}</p>`;
       }
 
-      // Promo Natale (se attiva)
+      // Promo (se attiva)
       if (promoContainer && data.promoNatale && data.promoNatale.attiva) {
         const p = data.promoNatale;
         promoContainer.innerHTML = `
           <div class="promo-natale-card">
-            <div class="promo-natale-icon">🎄</div>
+            <div class="promo-natale-icon">🌅</div>
             <div class="promo-natale-content">
               <span class="promo-badge">EDIZIONE SPECIALE</span>
               <h3>${escapeHtml(p.titolo)}</h3>
@@ -142,7 +153,7 @@ function initCourses() {
                 <span><strong>Prezzo:</strong> ${escapeHtml(p.prezzo)}</span>
               </div>
               <p class="promo-note">${escapeHtml(p.posti)}</p>
-              <a href="#home" class="btn-promo">${escapeHtml(p.cta)}</a>
+              <button class="btn-promo" onclick="openEnrollmentModal()">${escapeHtml(p.cta)}</button>
             </div>
           </div>
         `;
@@ -151,7 +162,7 @@ function initCourses() {
         promoContainer.style.display = 'none';
       }
 
-      // Mostra corsi normali
+      // Corsi normali
       container.innerHTML = '';
       const corsiNormali = (data.corsi || []).filter(c => c.tipo !== 'promo');
       if (corsiNormali.length === 0) {
@@ -168,11 +179,13 @@ function initCourses() {
         } else if (corso.link) {
           btn = `<a href="${escapeHtml(corso.link)}" class="btn-course" target="_blank" rel="noopener">${escapeHtml(corso.linkTesto || 'Scopri di più')}</a>`;
         } else {
-          btn = '<a href="#contatti-info" class="btn-course">Iscriviti ora</a>';
+          // FIX: usa onclick diretto invece di href="#contatti-info"
+          // così funziona anche sui link generati dinamicamente
+          btn = `<button class="btn-course" onclick="openEnrollmentModal('${escapeHtml(corso.id)}')">Prenota il posto</button>`;
         }
-        const extraClass = corso.id === 'summercamp' ? ' course-card-summer' : '';
+
         const card = `
-          <div class="course-card${extraClass}">
+          <div class="course-card">
             <div class="course-badge ${badgeClass}">${escapeHtml(corso.badge)}</div>
             <h3>${escapeHtml(corso.nome)}</h3>
             <div class="course-meta">
@@ -200,7 +213,25 @@ function initCourses() {
     });
 }
 
-// ----------------------------- WHATSAPP FAB (riposizionamento) -----------------------------
+// Aggiorna chip "Iscrizioni aperte/chiuse" nella navbar
+function aggiornaChipIscrizioni(corsi) {
+  const hasOpen = corsi.some(c => c.stato === 'aperto');
+  document.querySelectorAll('.nav-chip').forEach(chip => {
+    if (hasOpen) {
+      chip.innerHTML = '<div class="nav-chip-dot"></div> Iscrizioni aperte';
+      chip.style.color = '#E05A2B';
+      chip.style.background = '#fff4f0';
+      chip.style.borderColor = '#ffd4c0';
+    } else {
+      chip.innerHTML = '<div class="nav-chip-dot" style="background:#9ca3af"></div> Iscrizioni chiuse';
+      chip.style.color = '#6b7280';
+      chip.style.background = '#f3f4f6';
+      chip.style.borderColor = '#e5e7eb';
+    }
+  });
+}
+
+// ----------------------------- WHATSAPP FAB -----------------------------
 function unifyWhatsAppFAB() {
   const fab = document.querySelector('.fab-whatsapp');
   const staticIcon = document.getElementById('whatsapp-static');
@@ -250,6 +281,7 @@ function initSummerCampPopup() {
     overlay.classList.remove('sc-open');
     setTimeout(() => overlay.style.display = 'none', 280);
   }
+
   const closeBtn = document.getElementById('sc-popup-close');
   const skipBtn = document.getElementById('sc-popup-skip');
   if (closeBtn) closeBtn.addEventListener('click', closePopup);
@@ -270,33 +302,20 @@ function initEnrollmentModal() {
   const closeBtn = document.getElementById('closeEnrollmentModal');
   if (!modal) return;
 
-  function openModal() {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    const grid = document.getElementById('enrollmentCoursesGrid');
-    if (grid && grid.children.length === 0) {
-      populateEnrollmentCourses();
-    }
-  }
+  // Chiusura
+  if (closeBtn) closeBtn.addEventListener('click', closeEnrollmentModal);
+  const overlay = modal.querySelector('.enrollment-modal-overlay');
+  if (overlay) overlay.addEventListener('click', closeEnrollmentModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeEnrollmentModal();
+  });
 
-  function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-
-  // Collega tutti i link #contatti-info
+  // FIX: aggancia link statici #contatti-info presenti nell'HTML originale
   document.querySelectorAll('a[href="#contatti-info"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      openModal();
+      openEnrollmentModal();
     });
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  const overlay = modal.querySelector('.enrollment-modal-overlay');
-  if (overlay) overlay.addEventListener('click', closeModal);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
   });
 
   // Submit del form
@@ -306,11 +325,35 @@ function initEnrollmentModal() {
   }
 }
 
-// Popola la griglia dei corsi nella modale, mostrando posti disponibili
-function populateEnrollmentCourses() {
+// Funzione globale per aprire il modal (usata anche dai btn dinamici)
+function openEnrollmentModal(preselectCourseId) {
+  const modal = document.getElementById('enrollmentModal');
+  if (!modal) return;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  const grid = document.getElementById('enrollmentCoursesGrid');
+  if (grid && grid.children.length === 0) {
+    populateEnrollmentCourses(preselectCourseId);
+  } else if (grid && preselectCourseId) {
+    // Preseleziona il corso se già caricato
+    const radio = document.getElementById('enrollment-course-' + preselectCourseId);
+    if (radio && !radio.disabled) radio.checked = true;
+  }
+}
+
+function closeEnrollmentModal() {
+  const modal = document.getElementById('enrollmentModal');
+  if (!modal) return;
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Popola griglia corsi nel modal con disponibilità da Firestore
+function populateEnrollmentCourses(preselectCourseId) {
   const grid = document.getElementById('enrollmentCoursesGrid');
   if (!grid) return;
-  grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999;">Caricamento corsi...</p>';
+  grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999; padding: 1rem;">Caricamento corsi...</p>';
 
   const promises = Object.keys(ENROLLMENT_COURSES).map(courseId => {
     return getCourseAvailability(courseId).catch(() => {
@@ -326,9 +369,10 @@ function populateEnrollmentCourses() {
       if (!info) return;
       const availClass = data.isFull ? 'full' : (data.available <= 2 ? 'limited' : 'available');
       const availText = data.isFull ? '❌ Corso Pieno' : `✓ ${data.available} posti liberi`;
+      const isPreselected = preselectCourseId && data.courseId === preselectCourseId && !data.isFull;
       grid.innerHTML += `
         <div class="enrollment-course-option">
-          <input type="radio" id="enrollment-course-${data.courseId}" name="courseId" value="${data.courseId}" ${data.isFull ? 'disabled' : ''}>
+          <input type="radio" id="enrollment-course-${data.courseId}" name="courseId" value="${data.courseId}" ${data.isFull ? 'disabled' : ''} ${isPreselected ? 'checked' : ''}>
           <label for="enrollment-course-${data.courseId}" class="enrollment-course-label">
             <strong>${escapeHtml(info.name)}</strong>
             <small>${escapeHtml(info.age)}</small>
@@ -340,7 +384,7 @@ function populateEnrollmentCourses() {
   });
 }
 
-// Recupera disponibilità di un corso da Firestore
+// Disponibilità corso da Firestore
 function getCourseAvailability(courseId) {
   const info = ENROLLMENT_COURSES[courseId];
   return db.collection('enrollments')
@@ -355,7 +399,7 @@ function getCourseAvailability(courseId) {
     }));
 }
 
-// Gestisce l'invio del modulo di iscrizione
+// Submit iscrizione
 async function handleEnrollmentSubmit(e) {
   e.preventDefault();
 
@@ -365,7 +409,6 @@ async function handleEnrollmentSubmit(e) {
   const submitBtn = document.getElementById('enrollmentSubmitBtn') || document.querySelector('.enrollment-submit-btn');
   const submitTextSpan = document.getElementById('enrollmentSubmitText');
 
-  // Nascondi messaggi precedenti
   if (successMsg) successMsg.classList.remove('show');
   if (errorMsg) errorMsg.classList.remove('show');
   if (waitlistMsg) waitlistMsg.classList.remove('show');
@@ -378,19 +421,17 @@ async function handleEnrollmentSubmit(e) {
 
   try {
     const courseRadio = document.querySelector('input[name="courseId"]:checked');
-    if (!courseRadio) throw new Error('Seleziona un corso');
+    if (!courseRadio) throw new Error('Seleziona un corso prima di procedere');
 
     const studentName = document.getElementById('studentName').value.trim();
     const studentAge = document.getElementById('studentAge').value;
     const parentEmail = document.getElementById('parentEmail').value.trim();
     const privacy = document.getElementById('privacy');
 
-    if (!studentName || !studentAge || !parentEmail) {
-      throw new Error('Completa tutti i campi obbligatori');
-    }
-    if (!privacy || !privacy.checked) {
-      throw new Error("Accetta l'informativa privacy per procedere");
-    }
+    if (!studentName) throw new Error('Inserisci il nome e cognome del bambino');
+    if (!studentAge) throw new Error("Seleziona l'età del bambino");
+    if (!parentEmail) throw new Error("Inserisci l'email del genitore");
+    if (!privacy || !privacy.checked) throw new Error("Accetta l'informativa privacy per procedere");
 
     const formData = {
       studentName,
@@ -401,30 +442,31 @@ async function handleEnrollmentSubmit(e) {
       schoolName: document.getElementById('schoolName').value.trim(),
       courseId: courseRadio.value,
       referral: document.getElementById('referral').value,
-      notes: document.getElementById('notes').value
+      notes: document.getElementById('notes').value.trim()
     };
 
     await saveEnrollmentToFirebase(formData);
-    // Mostra successo e resetta form
-    document.getElementById('enrollmentSuccessText').innerText = `Iscrizione confermata! Riceverai email di conferma a ${formData.parentEmail}`;
+
+    // Mostra successo
+    const successText = document.getElementById('enrollmentSuccessText');
+    if (successText) successText.innerText = `Iscrizione confermata! Riceverai una email di conferma a ${formData.parentEmail}`;
     if (successMsg) successMsg.classList.add('show');
 
-    // Resetta il form
+    // Reset
     document.getElementById('enrollmentForm').reset();
     const grid = document.getElementById('enrollmentCoursesGrid');
     if (grid) grid.innerHTML = '';
 
-    setTimeout(() => {
-      const modal = document.getElementById('enrollmentModal');
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    }, 2500);
+    // Chiudi modal dopo 3 secondi
+    setTimeout(() => closeEnrollmentModal(), 3000);
+
   } catch (err) {
-    console.error('Errore:', err);
-    document.getElementById('enrollmentErrorText').innerText = err.message || "Errore durante l'iscrizione. Riprova.";
+    console.error('Errore iscrizione:', err);
+    const errorText = document.getElementById('enrollmentErrorText');
+    if (errorText) errorText.innerText = err.message || "Errore durante l'iscrizione. Riprova.";
     if (errorMsg) errorMsg.classList.add('show');
+    // Scroll al messaggio di errore
+    if (errorMsg) errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
@@ -434,10 +476,10 @@ async function handleEnrollmentSubmit(e) {
   }
 }
 
-// Salva l'iscrizione su Firestore (gestisce confermato / lista d'attesa)
+// Salva su Firestore (confermato o lista d'attesa)
 async function saveEnrollmentToFirebase(formData) {
   const info = ENROLLMENT_COURSES[formData.courseId];
-  if (!info) throw new Error('Corso non valido');
+  if (!info) throw new Error('Corso non valido. Ricarica la pagina e riprova.');
 
   const snapshot = await db.collection('enrollments')
     .where('courseId', '==', formData.courseId)
@@ -457,33 +499,24 @@ async function saveEnrollmentToFirebase(formData) {
     schoolName: formData.schoolName,
     courseId: formData.courseId,
     courseName: info.name,
-    status: status,
-    waitlistPosition: waitlistPosition,
+    status,
+    waitlistPosition,
     paid: false,
     referral: formData.referral,
     notes: formData.notes,
     enrollmentDate: new Date()
   });
 
+  // Mostra messaggio lista d'attesa se necessario
   if (status === 'in_attesa') {
     const waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
     const waitlistText = document.getElementById('enrollmentWaitlistText');
-    if (waitlistText) waitlistText.innerText = `Sei in lista d'attesa (posizione ${waitlistPosition}). Ti contatteremo se si libera un posto!`;
+    if (waitlistText) waitlistText.innerText = `Sei in lista d'attesa (posizione ${waitlistPosition}). Ti contatteremo appena si libera un posto!`;
     if (waitlistMsg) waitlistMsg.classList.add('show');
+    // Nascondi il messaggio di successo generico
+    const successMsg = document.getElementById('enrollmentSuccessMessage');
+    if (successMsg) successMsg.classList.remove('show');
   }
-}
-
-// ----------------------------- UTILITY ESCAPE HTML -----------------------------
-function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/[&<>]/g, function(m) {
-    if (m === '&') return '&amp;';
-    if (m === '<') return '&lt;';
-    if (m === '>') return '&gt;';
-    return m;
-  }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-    return c;
-  });
 }
 
 // ----------------------------- AVVIO -----------------------------
