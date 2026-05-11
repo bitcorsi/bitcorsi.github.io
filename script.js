@@ -2,13 +2,13 @@
 // FIREBASE — INIZIALIZZAZIONE
 // ========================================
 var firebaseConfig = {
-    apiKey: "AIzaSyBmLKQwahwgfP5gfjgOWuEaHGq_wEuYQzQ",
-    authDomain: "bitcorsi-da4b1.firebaseapp.com",
-    projectId: "bitcorsi-da4b1",
-    storageBucket: "bitcorsi-da4b1.firebasestorage.app",
-    messagingSenderId: "98862947976",
-    appId: "1:98862947976:web:abde1dea6b3c8655d5893d",
-    measurementId: "G-EEDZVB4FRE"
+  apiKey: "AIzaSyBmLKQwahwgfP5gfjgOWuEaHGq_wEuYQzQ",
+  authDomain: "bitcorsi-da4b1.firebaseapp.com",
+  projectId: "bitcorsi-da4b1",
+  storageBucket: "bitcorsi-da4b1.firebasestorage.app",
+  messagingSenderId: "98862947976",
+  appId: "1:98862947976:web:abde1dea6b3c8655d5893d",
+  measurementId: "G-EEDZVB4FRE""
 };
 
 if (!firebase.apps || !firebase.apps.length) {
