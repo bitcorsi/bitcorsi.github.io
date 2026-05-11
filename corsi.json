@@ -4,13 +4,13 @@
   "sottotitoloCorsi": "Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia",
   "promoNatale": {
     "attiva": true,
-    "titolo": "Aggiornato: 🌅 ROBOGREST: Costruisci il Tuo Robot!",
+    "titolo": "🤖 ROBOGREST: Costruisci il Tuo Robot!",
     "sottotitolo": "Un'estate di Coding e Robotica",
     "descrizione": "Hai voglia di progettare, costruire e programmare un robot Lego Spike Prime e Micro:bit. Divertimento assicurato!",
     "date": "10 giugno – 31 luglio 2026 | lun–ven 9:00–17:00",
     "eta": "8–13 anni",
     "prezzo": "€ 130 / settimana",
-    "posti": "Posti limitati (max 25)",
+    "posti": "Posti limitati (max 30)",
     "cta": "Prenota il posto"
   },
   "corsi": [
@@ -22,7 +22,7 @@
       "prezzo": "€ 125",
       "quando": "ogni sabato 10:00 - 11:30 o 15:00 - 16:30",
       "descrizione": "Sviluppa la logica e la creatività costruendo e programmando robot con l'intuitiva piattaforma LEGO Education. Progetti pratici e divertenti.",
-      "stato": "chiuso",
+      "stato": "🔐​",
       "badge": "Chiuse"
     },
     {
@@ -33,7 +33,7 @@
       "prezzo": "€ 125",
       "quando": "sabato mattina ore 10:00 - 11:30",
       "descrizione": "Impara le basi dell'elettronica e del coding testuale per creare progetti interattivi con le schede Arduino.",
-      "stato": "chiuso",
+      "stato": "🔐​",
       "badge": "Chiuse"
     },
     {
@@ -44,7 +44,7 @@
       "prezzo": "€ 125",
       "quando": "sabato mattina ore 10:00 - 11:30",
       "descrizione": "Programma il piccolo computer tascabile micro:bit per creare giochi e misurare temperatura e movimenti.",
-      "stato": "chiuso",
+      "stato": "🔐​",
       "badge": "Chiuse"
     },
     {
@@ -55,7 +55,7 @@
       "prezzo": "€ 90",
       "quando": "4 online + 2 incontri in sede sabato mattina ore 10:00 - 11:30 o 15:00 - 16:30",
       "descrizione": "Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab.",
-      "stato": "aperto",
+      "stato": "🔓​",
       "badge": "Aperte"
     }
   ]
