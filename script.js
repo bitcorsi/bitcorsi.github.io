@@ -25,7 +25,7 @@ var ENROLLMENT_COURSES = {
     'arduino':        { name: 'Arduino',            age: '12-16 anni', max: 10 },
     'open-roberta':   { name: 'Open Roberta',       age: '8-13 anni', max: 10 },
     'microbit':       { name: 'micro:bit BBC',      age: '8-13 anni', max: 10 },
-    'robogrest':      { name: 'Robogrest',          age: '8-13 anni', max: 30 }
+    'mattine di coding':      { name: 'Mattine di coding',          age: '8-13 anni', max: 30 }
 };
 
 // ========================================
