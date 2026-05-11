@@ -1,622 +1,490 @@
-// ========================================
-// FIREBASE — INIZIALIZZAZIONE
-// ========================================
-var firebaseConfig = {
+// ============================================================
+// BIT LAB TECNOLOGICI - script.js
+// Versione stabile, senza errori di sintassi
+// Gestisce: Firebase, corsi da JSON, modale iscrizioni, popup
+// ============================================================
+
+// ----------------------------- FIREBASE CONFIG -----------------------------
+const firebaseConfig = {
   apiKey: "AIzaSyBmLKQwahwgfP5gfjgOWuEaHGq_wEuYQzQ",
   authDomain: "bitcorsi-da4b1.firebaseapp.com",
   projectId: "bitcorsi-da4b1",
   storageBucket: "bitcorsi-da4b1.firebasestorage.app",
   messagingSenderId: "98862947976",
   appId: "1:98862947976:web:abde1dea6b3c8655d5893d",
-  measurementId: "G-EEDZVB4FRE""
+  measurementId: "G-EEDZVB4FRE"
 };
 
+// Inizializza Firebase solo se non già inizializzato
 if (!firebase.apps || !firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 }
+const db = firebase.firestore();
 
-var db = firebase.firestore();
-
-// ========================================
-// CORSI DISPONIBILI
-// ========================================
-var ENROLLMENT_COURSES = {
-    'lego-spike':     { name: 'Lego Spike Prime',   age: '8-13 anni', max: 10 },
-    'arduino':        { name: 'Arduino',            age: '12-16 anni', max: 10 },
-    'open-roberta':   { name: 'Open Roberta',       age: '8-13 anni', max: 10 },
-    'microbit':       { name: 'micro:bit BBC',      age: '8-13 anni', max: 10 },
-'mattine di coding':  { name: 'Mattine di coding',  age: '8-13 anni', max: 30 }
+// ----------------------------- CORSI PER MODALE -----------------------------
+const ENROLLMENT_COURSES = {
+  'lego-spike':     { name: 'Lego Spike Prime',   age: '8-13 anni', max: 10 },
+  'arduino':        { name: 'Arduino',            age: '12-16 anni', max: 10 },
+  'open-roberta':   { name: 'Open Roberta',       age: '8-13 anni', max: 10 },
+  'microbit':       { name: 'micro:bit BBC',      age: '8-13 anni', max: 10 },
+  'mattine-coding': { name: 'Mattine di coding',  age: '8-13 anni', max: 30 }
 };
 
-// ========================================
-// INIT GENERALE
-// ========================================
+// ----------------------------- FUNZIONI DI UTILITY -----------------------------
+function formatDate(ts) {
+  if (!ts) return '—';
+  let d;
+  if (ts.toDate) d = ts.toDate();
+  else if (ts.seconds) d = new Date(ts.seconds * 1000);
+  else d = new Date(ts);
+  if (isNaN(d)) return '—';
+  return d.toLocaleDateString('it-IT');
+}
+
+function showToast(msg, type = 'info') {
+  // Se esiste il container toast (solo nel gestionale), usalo, altrimenti console
+  const container = document.getElementById('toastContainer');
+  if (container) {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = msg;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 3500);
+  } else {
+    console.log(`[${type}] ${msg}`);
+  }
+}
+
+// ----------------------------- INIT GENERALE -----------------------------
 function init() {
-    initMobileMenu();
-    initFAQ();
-    initContactForm();
-    initCourses();
-    unifyWhatsAppFAB();
-    initSummerCampPopup();
-    initEnrollmentModal();
+  initMobileMenu();
+  initFAQ();
+  initCourses();           // carica i corsi da corsi.json
+  unifyWhatsAppFAB();
+  initSummerCampPopup();
+  initEnrollmentModal();   // gestisce l'apertura modale e l'invio
 }
 
-// ========================================
-// MENU MOBILE
-// ========================================
+// ----------------------------- MENU MOBILE -----------------------------
 function initMobileMenu() {
-    var menuToggle = document.querySelector('.menu-toggle');
-    var navOverlay = document.querySelector('.nav-overlay');
-    var body = document.body;
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navOverlay = document.querySelector('.nav-overlay');
+  const body = document.body;
+  if (!menuToggle || !navOverlay) return;
 
-    if (!menuToggle || !navOverlay) return;
+  function closeMenu() {
+    navOverlay.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    body.style.overflow = '';
+  }
 
-    function closeMenu() {
-        navOverlay.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        body.style.overflow = '';
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navOverlay.classList.contains('active');
+    if (isOpen) closeMenu();
+    else {
+      navOverlay.classList.add('active');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      body.style.overflow = 'hidden';
     }
+  });
 
-    menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var isOpen = navOverlay.classList.contains('active');
-        if (isOpen) {
-            closeMenu();
-        } else {
-            navOverlay.classList.add('active');
-            menuToggle.setAttribute('aria-expanded', 'true');
-            body.style.overflow = 'hidden';
-        }
-    });
-
-    navOverlay.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', closeMenu);
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeMenu();
-    });
-
-    navOverlay.addEventListener('click', function(e) {
-        if (e.target === navOverlay) closeMenu();
-    });
+  navOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  navOverlay.addEventListener('click', (e) => { if (e.target === navOverlay) closeMenu(); });
 }
 
-// ========================================
-// FAQ ACCORDION
-// ========================================
+// ----------------------------- FAQ (accordion) -----------------------------
 function initFAQ() {
-    var faqItems = document.querySelectorAll('.faq-list details');
-
-    faqItems.forEach(function(item) {
-        item.addEventListener('toggle', function() {
-            if (this.open) {
-                faqItems.forEach(function(otherItem) {
-                    if (otherItem !== item && otherItem.open) {
-                        otherItem.open = false;
-                    }
-                });
-            }
-        });
+  const faqItems = document.querySelectorAll('.faq-list details');
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', function() {
+      if (this.open) {
+        faqItems.forEach(other => { if (other !== this && other.open) other.open = false; });
+      }
     });
+  });
 }
 
-// ========================================
-// FORM ISCRIZIONE (formsubmit.co)
-// ========================================
-function initContactForm() {
-    var contactForm = document.getElementById('iscrizione-form');
-    var messageEl = document.getElementById('form-message');
-
-    if (!contactForm) return;
-
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        var submitBtn = this.querySelector('.btn-submit');
-        if (!submitBtn || submitBtn.disabled) return;
-
-        var originalText = submitBtn.textContent;
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Invio...';
-
-        if (messageEl) {
-            messageEl.className = 'form-message';
-            messageEl.textContent = '';
-        }
-
-        try {
-            var response = await fetch(this.action.trim(), {
-                method: 'POST',
-                body: new FormData(this)
-            });
-
-            var success = false;
-            var contentType = response.headers.get('content-type') || '';
-
-            if (response.ok) {
-                if (contentType.includes('application/json')) {
-                    var data = await response.json();
-                    success = !!data.success;
-                } else {
-                    var text = await response.text();
-                    success = text.includes('success') || text.includes('Thank you');
-                }
-            }
-
-            if (success) {
-                this.reset();
-                if (messageEl) {
-                    messageEl.textContent = 'Iscrizione inviata con successo!';
-                    messageEl.className = 'form-message success';
-                    setTimeout(function() {
-                        messageEl.className = 'form-message';
-                        setTimeout(function() { messageEl.textContent = ''; }, 300);
-                    }, 5000);
-                }
-            } else {
-                throw new Error('FormSubmit: risposta non valida');
-            }
-
-        } catch (error) {
-            console.error('Invio fallito:', error);
-            if (messageEl) {
-                messageEl.textContent = 'Errore: controlla i dati e riprova.';
-                messageEl.className = 'form-message error';
-            }
-        } finally {
-            setTimeout(function() {
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                }
-            }, 600);
-        }
-    });
-}
-
-// ========================================
-// CORSI DINAMICI DA corsi.json
-// ========================================
+// ----------------------------- CARICAMENTO CORSI DA JSON -----------------------------
 function initCourses() {
-    var container = document.getElementById('courses-container');
-    var sectionHeader = document.querySelector('#corsi .section-header');
-    var promoContainer = document.querySelector('#promo-natale-container');
+  const container = document.getElementById('courses-container');
+  const sectionHeader = document.querySelector('#corsi .section-header');
+  const promoContainer = document.getElementById('promo-natale-container');
+  if (!container) return;
 
-    if (!container) return;
+  fetch('corsi.json?' + Date.now())
+    .then(response => {
+      if (!response.ok) throw new Error('corsi.json non trovato');
+      return response.json();
+    })
+    .then(data => {
+      // Titolo e sottotitolo
+      if (sectionHeader && data.titoloCorsi) {
+        sectionHeader.innerHTML = `<h2>${escapeHtml(data.titoloCorsi)}</h2>
+                                   <p class="section-subtitle">${escapeHtml(data.sottotitoloCorsi || '')}</p>`;
+      }
 
-    fetch('corsi.json?' + Date.now())
-        .then(function(response) {
-            if (!response.ok) throw new Error('corsi.json non trovato');
-            return response.json();
-        })
-        .then(function(data) {
+      // Promo Natale (se attiva)
+      if (promoContainer && data.promoNatale && data.promoNatale.attiva) {
+        const p = data.promoNatale;
+        promoContainer.innerHTML = `
+          <div class="promo-natale-card">
+            <div class="promo-natale-icon">🎄</div>
+            <div class="promo-natale-content">
+              <span class="promo-badge">EDIZIONE SPECIALE</span>
+              <h3>${escapeHtml(p.titolo)}</h3>
+              <p class="promo-subtitle">${escapeHtml(p.sottotitolo)}</p>
+              <p>${escapeHtml(p.descrizione)}</p>
+              <div class="promo-meta">
+                <span><strong>Date:</strong> ${escapeHtml(p.date)}</span>
+                <span><strong>Età:</strong> ${escapeHtml(p.eta)}</span>
+                <span><strong>Prezzo:</strong> ${escapeHtml(p.prezzo)}</span>
+              </div>
+              <p class="promo-note">${escapeHtml(p.posti)}</p>
+              <a href="#home" class="btn-promo">${escapeHtml(p.cta)}</a>
+            </div>
+          </div>
+        `;
+        promoContainer.style.display = 'block';
+      } else if (promoContainer) {
+        promoContainer.style.display = 'none';
+      }
 
-            if (sectionHeader && data.titoloCorsi) {
-                sectionHeader.innerHTML =
-                    '<h2>' + data.titoloCorsi + '</h2>' +
-                    '<p class="section-subtitle">' + (data.sottotitoloCorsi || '') + '</p>';
-            }
+      // Mostra corsi normali
+      container.innerHTML = '';
+      const corsiNormali = (data.corsi || []).filter(c => c.tipo !== 'promo');
+      if (corsiNormali.length === 0) {
+        container.innerHTML = '<div class="alert-box" style="grid-column:1/-1;"><p>Nessun corso attivo al momento.</p></div>';
+        return;
+      }
 
-            if (promoContainer && data.promoNatale && data.promoNatale.attiva) {
-                var p = data.promoNatale;
-                promoContainer.innerHTML =
-                    '<div class="promo-natale-card">' +
-                        '<div class="promo-natale-icon">' +
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor">' +
-                                '<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83M14 20a3 3 0 1 0-4 0M10 4a3 3 0 0 0 4 0"/>' +
-                            '</svg>' +
-                        '</div>' +
-                        '<div class="promo-natale-content">' +
-                            '<span class="promo-badge">EDIZIONE SPECIALE</span>' +
-                            '<h3>' + p.titolo + '</h3>' +
-                            '<p class="promo-subtitle">' + p.sottotitolo + '</p>' +
-                            '<p>' + p.descrizione + '</p>' +
-                            '<div class="promo-meta">' +
-                                '<span><strong>Date:</strong> ' + p.date + '</span>' +
-                                '<span><strong>Eta:</strong> ' + p.eta + '</span>' +
-                                '<span><strong>Prezzo:</strong> ' + p.prezzo + '</span>' +
-                            '</div>' +
-                            '<p class="promo-note">' + p.posti + '</p>' +
-                            '<a href="#home" class="btn-promo">' + p.cta + '</a>' +
-                        '</div>' +
-                    '</div>';
-                promoContainer.style.display = 'block';
-            } else if (promoContainer) {
-                promoContainer.style.display = 'none';
-            }
-
-            container.innerHTML = '';
-            var corsiNormali = (data.corsi || []).filter(function(c) {
-                return c.tipo !== 'promo';
-            });
-
-            if (corsiNormali.length > 0) {
-                corsiNormali.forEach(function(corso) {
-                    var isActive = corso.stato === 'aperto';
-                    var badgeClass = isActive ? 'badge-available' : 'badge-closed';
-                    var btn;
-
-                    if (!isActive) {
-                        btn = '<button class="btn-course btn-disabled" disabled>Corso in svolgimento</button>';
-                    } else if (corso.link) {
-                        btn = '<a href="' + corso.link + '" class="btn-course" target="_blank" rel="noopener">' +
-                                (corso.linkTesto || 'Scopri di piu') +
-                              '</a>';
-                    } else {
-                        btn = '<a href="#contatti-info" class="btn-course">Iscriviti ora</a>';
-                    }
-
-                    var extraClass = corso.id === 'summercamp' ? ' course-card-summer' : '';
-                    var card =
-                        '<div class="course-card' + extraClass + '">' +
-                            '<div class="course-badge ' + badgeClass + '">' + corso.badge + '</div>' +
-                            '<h3>' + corso.nome + '</h3>' +
-                            '<div class="course-meta">' +
-                                '<span class="meta-item">' + corso.eta + '</span>' +
-                                '<span class="meta-item">' + corso.incontri + '</span>' +
-                                '<span class="meta-item meta-price">' + corso.prezzo + '</span>' +
-                            '</div>' +
-                            '<div class="course-details">' +
-                                '<div class="detail-row"><strong>Quando:</strong> ' + corso.quando + '</div>' +
-                            '</div>' +
-                            '<p class="course-description">' + corso.descrizione + '</p>' +
-                            btn +
-                        '</div>';
-
-                    container.innerHTML += card;
-                });
-            } else {
-                container.innerHTML = '<div class="alert-box" style="grid-column:1/-1;"><p>Nessun corso attivo al momento.</p></div>';
-            }
-        })
-        .catch(function(err) {
-            console.error('Errore caricamento corsi:', err);
-            if (sectionHeader) {
-                sectionHeader.innerHTML =
-                    '<h2>Corsi e Laboratori</h2>' +
-                    '<p class="section-subtitle">Informazioni temporaneamente non disponibili</p>';
-            }
-            if (promoContainer) promoContainer.style.display = 'none';
-            container.innerHTML =
-                '<div class="alert-box" style="grid-column:1/-1;">' +
-                    '<strong>Impossibile caricare i corsi</strong>' +
-                    '<p>Contattaci per info aggiornate.</p>' +
-                '</div>';
-        });
+      corsiNormali.forEach(corso => {
+        const isActive = corso.stato === 'aperto';
+        const badgeClass = isActive ? 'badge-available' : 'badge-closed';
+        let btn;
+        if (!isActive) {
+          btn = '<button class="btn-course btn-disabled" disabled>Corso in svolgimento</button>';
+        } else if (corso.link) {
+          btn = `<a href="${escapeHtml(corso.link)}" class="btn-course" target="_blank" rel="noopener">${escapeHtml(corso.linkTesto || 'Scopri di più')}</a>`;
+        } else {
+          btn = '<a href="#contatti-info" class="btn-course">Iscriviti ora</a>';
+        }
+        const extraClass = corso.id === 'summercamp' ? ' course-card-summer' : '';
+        const card = `
+          <div class="course-card${extraClass}">
+            <div class="course-badge ${badgeClass}">${escapeHtml(corso.badge)}</div>
+            <h3>${escapeHtml(corso.nome)}</h3>
+            <div class="course-meta">
+              <span class="meta-item">${escapeHtml(corso.eta)}</span>
+              <span class="meta-item">${escapeHtml(corso.incontri)}</span>
+              <span class="meta-item meta-price">${escapeHtml(corso.prezzo)}</span>
+            </div>
+            <div class="course-details">
+              <div class="detail-row"><strong>Quando:</strong> ${escapeHtml(corso.quando)}</div>
+            </div>
+            <p class="course-description">${escapeHtml(corso.descrizione)}</p>
+            ${btn}
+          </div>
+        `;
+        container.innerHTML += card;
+      });
+    })
+    .catch(err => {
+      console.error('Errore caricamento corsi:', err);
+      if (sectionHeader) {
+        sectionHeader.innerHTML = '<h2>Corsi e Laboratori</h2><p class="section-subtitle">Informazioni temporaneamente non disponibili</p>';
+      }
+      if (promoContainer) promoContainer.style.display = 'none';
+      container.innerHTML = '<div class="alert-box" style="grid-column:1/-1;"><strong>Impossibile caricare i corsi</strong><p>Contattaci per info aggiornate.</p></div>';
+    });
 }
 
-// ========================================
-// POPUP SUMMER CAMP
-// — Mostrato dopo 8 secondi (non immediatamente)
-//   per ridurre il bounce rate
-// ========================================
+// ----------------------------- WHATSAPP FAB (riposizionamento) -----------------------------
+function unifyWhatsAppFAB() {
+  const fab = document.querySelector('.fab-whatsapp');
+  const staticIcon = document.getElementById('whatsapp-static');
+  if (!fab || !staticIcon) return;
+
+  const originalStyle = {
+    position: fab.style.position,
+    left: fab.style.left,
+    top: fab.style.top,
+    transform: fab.style.transform,
+    zIndex: fab.style.zIndex,
+    pointerEvents: fab.style.pointerEvents
+  };
+
+  function updatePosition() {
+    const rect = staticIcon.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isVisible) {
+      const centerX = rect.left + window.scrollX + rect.width / 2;
+      const centerY = rect.top + window.scrollY + rect.height / 2;
+      fab.style.position = 'fixed';
+      fab.style.left = (centerX - 28) + 'px';
+      fab.style.top = (centerY - 28) + 'px';
+      fab.style.transform = 'scale(0.64)';
+      fab.style.zIndex = '10000';
+      fab.style.pointerEvents = 'none';
+      fab.style.opacity = '1';
+    } else {
+      Object.assign(fab.style, originalStyle);
+      fab.style.opacity = '';
+    }
+  }
+
+  updatePosition();
+  window.addEventListener('scroll', () => requestAnimationFrame(updatePosition));
+  window.addEventListener('resize', updatePosition);
+}
+
+// ----------------------------- POPUP SUMMER CAMP -----------------------------
 function initSummerCampPopup() {
-    var SESSION_KEY = 'sc_popup_shown';
+  const SESSION_KEY = 'sc_popup_shown';
+  if (sessionStorage.getItem(SESSION_KEY)) return;
+  const overlay = document.getElementById('sc-popup-overlay');
+  if (!overlay) return;
 
-    if (sessionStorage.getItem(SESSION_KEY)) return;
+  function closePopup() {
+    overlay.classList.remove('sc-open');
+    setTimeout(() => overlay.style.display = 'none', 280);
+  }
+  const closeBtn = document.getElementById('sc-popup-close');
+  const skipBtn = document.getElementById('sc-popup-skip');
+  if (closeBtn) closeBtn.addEventListener('click', closePopup);
+  if (skipBtn) skipBtn.addEventListener('click', closePopup);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closePopup(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
 
-    var overlay = document.getElementById('sc-popup-overlay');
-    if (!overlay) return;
+  setTimeout(() => {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    overlay.style.display = 'flex';
+    requestAnimationFrame(() => overlay.classList.add('sc-open'));
+  }, 8000);
+}
 
-    function closePopup() {
-        overlay.classList.remove('sc-open');
-        setTimeout(function() {
-            overlay.style.display = 'none';
-        }, 280);
+// ----------------------------- MODALE ISCRIZIONI -----------------------------
+function initEnrollmentModal() {
+  const modal = document.getElementById('enrollmentModal');
+  const closeBtn = document.getElementById('closeEnrollmentModal');
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    const grid = document.getElementById('enrollmentCoursesGrid');
+    if (grid && grid.children.length === 0) {
+      populateEnrollmentCourses();
+    }
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Collega tutti i link #contatti-info
+  document.querySelectorAll('a[href="#contatti-info"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  const overlay = modal.querySelector('.enrollment-modal-overlay');
+  if (overlay) overlay.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+
+  // Submit del form
+  const form = document.getElementById('enrollmentForm');
+  if (form) {
+    form.addEventListener('submit', handleEnrollmentSubmit);
+  }
+}
+
+// Popola la griglia dei corsi nella modale, mostrando posti disponibili
+function populateEnrollmentCourses() {
+  const grid = document.getElementById('enrollmentCoursesGrid');
+  if (!grid) return;
+  grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999;">Caricamento corsi...</p>';
+
+  const promises = Object.keys(ENROLLMENT_COURSES).map(courseId => {
+    return getCourseAvailability(courseId).catch(() => {
+      const info = ENROLLMENT_COURSES[courseId];
+      return { courseId, confirmed: 0, available: info.max, isFull: false };
+    });
+  });
+
+  Promise.all(promises).then(results => {
+    grid.innerHTML = '';
+    results.forEach(data => {
+      const info = ENROLLMENT_COURSES[data.courseId];
+      if (!info) return;
+      const availClass = data.isFull ? 'full' : (data.available <= 2 ? 'limited' : 'available');
+      const availText = data.isFull ? '❌ Corso Pieno' : `✓ ${data.available} posti liberi`;
+      grid.innerHTML += `
+        <div class="enrollment-course-option">
+          <input type="radio" id="enrollment-course-${data.courseId}" name="courseId" value="${data.courseId}" ${data.isFull ? 'disabled' : ''}>
+          <label for="enrollment-course-${data.courseId}" class="enrollment-course-label">
+            <strong>${escapeHtml(info.name)}</strong>
+            <small>${escapeHtml(info.age)}</small>
+            <div class="enrollment-course-availability ${availClass}">${availText}</div>
+          </label>
+        </div>
+      `;
+    });
+  });
+}
+
+// Recupera disponibilità di un corso da Firestore
+function getCourseAvailability(courseId) {
+  const info = ENROLLMENT_COURSES[courseId];
+  return db.collection('enrollments')
+    .where('courseId', '==', courseId)
+    .where('status', '==', 'confermato')
+    .get()
+    .then(snapshot => ({
+      courseId,
+      confirmed: snapshot.size,
+      available: Math.max(0, info.max - snapshot.size),
+      isFull: snapshot.size >= info.max
+    }));
+}
+
+// Gestisce l'invio del modulo di iscrizione
+async function handleEnrollmentSubmit(e) {
+  e.preventDefault();
+
+  const successMsg = document.getElementById('enrollmentSuccessMessage');
+  const errorMsg = document.getElementById('enrollmentErrorMessage');
+  const waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
+  const submitBtn = document.getElementById('enrollmentSubmitBtn') || document.querySelector('.enrollment-submit-btn');
+  const submitTextSpan = document.getElementById('enrollmentSubmitText');
+
+  // Nascondi messaggi precedenti
+  if (successMsg) successMsg.classList.remove('show');
+  if (errorMsg) errorMsg.classList.remove('show');
+  if (waitlistMsg) waitlistMsg.classList.remove('show');
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    if (submitTextSpan) submitTextSpan.textContent = '⏳ Elaborazione...';
+    else submitBtn.innerHTML = '⏳ Elaborazione...';
+  }
+
+  try {
+    const courseRadio = document.querySelector('input[name="courseId"]:checked');
+    if (!courseRadio) throw new Error('Seleziona un corso');
+
+    const studentName = document.getElementById('studentName').value.trim();
+    const studentAge = document.getElementById('studentAge').value;
+    const parentEmail = document.getElementById('parentEmail').value.trim();
+    const privacy = document.getElementById('privacy');
+
+    if (!studentName || !studentAge || !parentEmail) {
+      throw new Error('Completa tutti i campi obbligatori');
+    }
+    if (!privacy || !privacy.checked) {
+      throw new Error("Accetta l'informativa privacy per procedere");
     }
 
-    var closeBtn = document.getElementById('sc-popup-close');
-    var skipBtn  = document.getElementById('sc-popup-skip');
-
-    if (closeBtn) closeBtn.addEventListener('click', closePopup);
-    if (skipBtn)  skipBtn.addEventListener('click', closePopup);
-
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closePopup();
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closePopup();
-    });
-
-    // Ritardo aumentato a 8 secondi per non interrompere
-    // l'utente che sta ancora scoprendo il sito
-    setTimeout(function() {
-        sessionStorage.setItem(SESSION_KEY, '1');
-        overlay.style.display = 'flex';
-        requestAnimationFrame(function() {
-            overlay.classList.add('sc-open');
-        });
-    }, 8000);
-}
-
-// ========================================
-// FAB WHATSAPP
-// ========================================
-function unifyWhatsAppFAB() {
-    var fab = document.querySelector('.fab-whatsapp');
-    var staticIcon = document.getElementById('whatsapp-static');
-
-    if (!fab || !staticIcon) return;
-
-    var originalStyle = {
-        position: fab.style.position,
-        left: fab.style.left,
-        top: fab.style.top,
-        transform: fab.style.transform,
-        zIndex: fab.style.zIndex,
-        pointerEvents: fab.style.pointerEvents
+    const formData = {
+      studentName,
+      studentAge: parseInt(studentAge),
+      parentName: document.getElementById('parentName').value.trim(),
+      parentEmail,
+      parentPhone: document.getElementById('parentPhone').value.trim(),
+      schoolName: document.getElementById('schoolName').value.trim(),
+      courseId: courseRadio.value,
+      referral: document.getElementById('referral').value,
+      notes: document.getElementById('notes').value
     };
 
-    function updatePosition() {
-        var rect = staticIcon.getBoundingClientRect();
-        var isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    await saveEnrollmentToFirebase(formData);
+    // Mostra successo e resetta form
+    document.getElementById('enrollmentSuccessText').innerText = `Iscrizione confermata! Riceverai email di conferma a ${formData.parentEmail}`;
+    if (successMsg) successMsg.classList.add('show');
 
-        if (isVisible) {
-            var centerX = rect.left + window.scrollX + rect.width / 2;
-            var centerY = rect.top + window.scrollY + rect.height / 2;
-            fab.style.position = 'fixed';
-            fab.style.left = (centerX - 28) + 'px';
-            fab.style.top = (centerY - 28) + 'px';
-            fab.style.transform = 'scale(0.64)';
-            fab.style.zIndex = '10000';
-            fab.style.pointerEvents = 'none';
-            fab.style.opacity = '1';
-        } else {
-            Object.assign(fab.style, originalStyle);
-            fab.style.opacity = '';
-        }
-    }
+    // Resetta il form
+    document.getElementById('enrollmentForm').reset();
+    const grid = document.getElementById('enrollmentCoursesGrid');
+    if (grid) grid.innerHTML = '';
 
-    updatePosition();
-    window.addEventListener('scroll', function() { requestAnimationFrame(updatePosition); });
-    window.addEventListener('resize', updatePosition);
-}
-
-// ========================================
-// MODAL ISCRIZIONI
-// ========================================
-function initEnrollmentModal() {
-    var enrollmentModal = document.getElementById('enrollmentModal');
-    var closeBtn = document.getElementById('closeEnrollmentModal');
-
-    if (!enrollmentModal) return;
-
-    function openModal() {
-        enrollmentModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        var grid = document.getElementById('enrollmentCoursesGrid');
-        if (grid && grid.children.length === 0) {
-            populateEnrollmentCourses();
-        }
-    }
-
-    function closeModal() {
-        enrollmentModal.classList.remove('active');
+    setTimeout(() => {
+      const modal = document.getElementById('enrollmentModal');
+      if (modal) {
+        modal.classList.remove('active');
         document.body.style.overflow = 'auto';
+      }
+    }, 2500);
+  } catch (err) {
+    console.error('Errore:', err);
+    document.getElementById('enrollmentErrorText').innerText = err.message || "Errore durante l'iscrizione. Riprova.";
+    if (errorMsg) errorMsg.classList.add('show');
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      if (submitTextSpan) submitTextSpan.textContent = '✨ Iscriviti Subito!';
+      else submitBtn.innerHTML = '✨ Iscriviti Subito!';
     }
-
-    document.querySelectorAll('[href="#contatti-info"]').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            openModal();
-        });
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-    var overlay = enrollmentModal.querySelector('.enrollment-modal-overlay');
-    if (overlay) overlay.addEventListener('click', closeModal);
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && enrollmentModal.classList.contains('active')) {
-            closeModal();
-        }
-    });
+  }
 }
 
-// ========================================
-// POPOLA CORSI NEL MODAL
-// ========================================
-function populateEnrollmentCourses() {
-    var grid = document.getElementById('enrollmentCoursesGrid');
-    if (!grid) return;
+// Salva l'iscrizione su Firestore (gestisce confermato / lista d'attesa)
+async function saveEnrollmentToFirebase(formData) {
+  const info = ENROLLMENT_COURSES[formData.courseId];
+  if (!info) throw new Error('Corso non valido');
 
-    grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999;">Caricamento corsi...</p>';
+  const snapshot = await db.collection('enrollments')
+    .where('courseId', '==', formData.courseId)
+    .where('status', '==', 'confermato')
+    .get();
 
-    var promises = Object.keys(ENROLLMENT_COURSES).map(function(courseId) {
-        return getCourseAvailability(courseId).catch(function() {
-            var info = ENROLLMENT_COURSES[courseId];
-            return { courseId: courseId, confirmed: 0, available: info.max, isFull: false };
-        });
-    });
+  const confirmed = snapshot.size;
+  const status = confirmed >= info.max ? 'in_attesa' : 'confermato';
+  const waitlistPosition = status === 'in_attesa' ? (confirmed - info.max + 1) : null;
 
-    Promise.all(promises).then(function(results) {
-        grid.innerHTML = '';
-        results.forEach(function(data) {
-            var info = ENROLLMENT_COURSES[data.courseId];
-            var availClass = data.isFull ? 'full' : data.available <= 2 ? 'limited' : 'available';
-            var availText  = data.isFull ? '❌ Corso Pieno' : '✓ ' + data.available + ' posti liberi';
+  await db.collection('enrollments').add({
+    studentName: formData.studentName,
+    studentAge: formData.studentAge,
+    parentName: formData.parentName,
+    parentEmail: formData.parentEmail,
+    parentPhone: formData.parentPhone,
+    schoolName: formData.schoolName,
+    courseId: formData.courseId,
+    courseName: info.name,
+    status: status,
+    waitlistPosition: waitlistPosition,
+    paid: false,
+    referral: formData.referral,
+    notes: formData.notes,
+    enrollmentDate: new Date()
+  });
 
-            grid.innerHTML +=
-                '<div class="enrollment-course-option">' +
-                    '<input type="radio" id="enrollment-course-' + data.courseId + '" name="courseId" value="' + data.courseId + '"' + (data.isFull ? ' disabled' : '') + '>' +
-                    '<label for="enrollment-course-' + data.courseId + '" class="enrollment-course-label">' +
-                        '<strong>' + info.name + '</strong>' +
-                        '<small>' + info.age + '</small>' +
-                        '<div class="enrollment-course-availability ' + availClass + '">' + availText + '</div>' +
-                    '</label>' +
-                '</div>';
-        });
-    });
+  if (status === 'in_attesa') {
+    const waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
+    const waitlistText = document.getElementById('enrollmentWaitlistText');
+    if (waitlistText) waitlistText.innerText = `Sei in lista d'attesa (posizione ${waitlistPosition}). Ti contatteremo se si libera un posto!`;
+    if (waitlistMsg) waitlistMsg.classList.add('show');
+  }
 }
 
-// ========================================
-// DISPONIBILITÀ DA FIREBASE
-// ========================================
-function getCourseAvailability(courseId) {
-    return new Promise(function(resolve, reject) {
-        var info = ENROLLMENT_COURSES[courseId];
-
-        db.collection('enrollments')
-            .where('courseId', '==', courseId)
-            .where('status', '==', 'confermato')
-            .get()
-            .then(function(snapshot) {
-                var confirmed = snapshot.size;
-                var available = Math.max(0, info.max - confirmed);
-                resolve({
-                    courseId: courseId,
-                    confirmed: confirmed,
-                    available: available,
-                    isFull: available === 0
-                });
-            })
-            .catch(reject);
-    });
+// ----------------------------- UTILITY ESCAPE HTML -----------------------------
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+    return c;
+  });
 }
 
-// ========================================
-// SUBMIT FORM ISCRIZIONI
-// ========================================
-function handleEnrollmentSubmit() {
-    var successMsg  = document.getElementById('enrollmentSuccessMessage');
-    var errorMsg    = document.getElementById('enrollmentErrorMessage');
-    var waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
-    var submitBtn   = document.getElementById('enrollmentSubmitBtn');
-
-    if (!submitBtn) return;
-
-    if (successMsg)  successMsg.classList.remove('show');
-    if (errorMsg)    errorMsg.classList.remove('show');
-    if (waitlistMsg) waitlistMsg.classList.remove('show');
-
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '⏳ Elaborazione...';
-
-    try {
-        var courseRadio = document.querySelector('input[name="courseId"]:checked');
-        if (!courseRadio) throw new Error('Seleziona un corso');
-
-        var studentName  = document.getElementById('studentName');
-        var studentAge   = document.getElementById('studentAge');
-        var parentEmail  = document.getElementById('parentEmail');
-        var privacy      = document.getElementById('privacy');
-
-        if (!studentName.value || !studentAge.value || !parentEmail.value) {
-            throw new Error('Completa tutti i campi obbligatori');
-        }
-
-        if (!privacy.checked) {
-            throw new Error("Accetta l'informativa privacy per procedere");
-        }
-
-        var formData = {
-            studentName:  studentName.value,
-            studentAge:   studentAge.value,
-            parentName:   document.getElementById('parentName').value,
-            parentEmail:  parentEmail.value,
-            parentPhone:  document.getElementById('parentPhone').value,
-            schoolName:   document.getElementById('schoolName').value,
-            courseId:     courseRadio.value,
-            referral:     document.getElementById('referral').value,
-            notes:        document.getElementById('notes').value
-        };
-
-        saveEnrollmentToFirebase(formData, successMsg, waitlistMsg, errorMsg, submitBtn);
-
-    } catch (error) {
-        console.error('Errore:', error);
-        if (errorMsg) {
-            document.getElementById('enrollmentErrorText').innerText = error.message || "Errore durante l'iscrizione. Riprova.";
-            errorMsg.classList.add('show');
-        }
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '✨ Iscriviti Subito!';
-    }
-}
-
-// ========================================
-// SALVA SU FIREBASE
-// ========================================
-function saveEnrollmentToFirebase(formData, successMsg, waitlistMsg, errorMsg, submitBtn) {
-    var info = ENROLLMENT_COURSES[formData.courseId];
-
-    db.collection('enrollments')
-        .where('courseId', '==', formData.courseId)
-        .where('status', '==', 'confermato')
-        .get()
-        .then(function(snapshot) {
-            var confirmed = snapshot.size;
-            var status = confirmed >= info.max ? 'in_attesa' : 'confermato';
-            var waitlistPosition = status === 'in_attesa' ? (confirmed - info.max + 1) : null;
-
-            return db.collection('enrollments').add({
-                studentName:      formData.studentName,
-                studentAge:       parseInt(formData.studentAge),
-                parentName:       formData.parentName,
-                parentEmail:      formData.parentEmail,
-                parentPhone:      formData.parentPhone,
-                schoolName:       formData.schoolName,
-                courseId:         formData.courseId,
-                courseName:       info.name,
-                status:           status,
-                waitlistPosition: waitlistPosition,
-                paid:             false,
-                referral:         formData.referral,
-                notes:            formData.notes,
-                enrollmentDate:   new Date()
-            }).then(function() {
-
-                if (status === 'in_attesa') {
-                    document.getElementById('enrollmentWaitlistText').innerText =
-                        "Sei in lista d'attesa (posizione " + waitlistPosition + "). Ti contatteremo se si libera un posto!";
-                    if (waitlistMsg) waitlistMsg.classList.add('show');
-                } else {
-                    document.getElementById('enrollmentSuccessText').innerText =
-                        'Iscrizione confermata! Riceverai email di conferma a ' + formData.parentEmail;
-                    if (successMsg) successMsg.classList.add('show');
-                }
-
-                setTimeout(function() {
-                    // Reset form fields
-                    ['studentName','studentAge','parentName','parentEmail','parentPhone','schoolName','referral','notes'].forEach(function(id) {
-                        var el = document.getElementById(id);
-                        if (el) el.value = el.tagName === 'SELECT' ? el.options[0].value : '';
-                    });
-                    var grid = document.getElementById('enrollmentCoursesGrid');
-                    if (grid) grid.innerHTML = '';
-
-                    setTimeout(function() {
-                        var modal = document.getElementById('enrollmentModal');
-                        if (modal) {
-                            modal.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
-                    }, 1000);
-                }, 2500);
-
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '✨ Iscriviti Subito!';
-            });
-        })
-        .catch(function(error) {
-            console.error('Errore Firebase:', error);
-            document.getElementById('enrollmentErrorText').innerText = 'Errore di connessione. Riprova.';
-            if (errorMsg) errorMsg.classList.add('show');
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '✨ Iscriviti Subito!';
-        });
-}
-
-// ========================================
-// INIZIALIZZAZIONE
-// ========================================
-document.addEventListener('DOMContentLoaded', function() {
-    init();
-});
-
-window.addEventListener('error', function(e) {
-    console.error('Errore JavaScript:', e.error);
-});
+// ----------------------------- AVVIO -----------------------------
+document.addEventListener('DOMContentLoaded', init);
