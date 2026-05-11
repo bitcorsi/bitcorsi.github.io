@@ -21,11 +21,11 @@ var db = firebase.firestore();
 // CORSI DISPONIBILI
 // ========================================
 var ENROLLMENT_COURSES = {
-    'lego-spike':     { name: 'Lego Spike Prime',  age: '8-13 anni', max: 10 },
+    'lego-spike':     { name: 'Lego Spike Prime',   age: '8-13 anni', max: 10 },
     'arduino':        { name: 'Arduino',            age: '12-16 anni', max: 10 },
     'open-roberta':   { name: 'Open Roberta',       age: '8-13 anni', max: 10 },
     'microbit':       { name: 'micro:bit BBC',      age: '8-13 anni', max: 10 },
-    'robogrest': { name: 'Robogrest',  age: '8-13 anni', max: 30 }
+    'robogrest':      { name: 'Robogrest',          age: '8-13 anni', max: 30 }
 };
 
 // ========================================
@@ -218,7 +218,7 @@ function initCourses() {
                                 '<span><strong>Prezzo:</strong> ' + p.prezzo + '</span>' +
                             '</div>' +
                             '<p class="promo-note">' + p.posti + '</p>' +
-                            '<a href="#footer" class="btn-promo">' + p.cta + '</a>' +
+                            '<a href="#home" class="btn-promo">' + p.cta + '</a>' +
                         '</div>' +
                     '</div>';
                 promoContainer.style.display = 'block';
