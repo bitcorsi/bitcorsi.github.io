@@ -2044,3 +2044,493 @@ section[id] { scroll-margin-top: 80px; }
 .reveal:nth-child(2) { transition-delay: 0.1s; }
 .reveal:nth-child(3) { transition-delay: 0.2s; }
 .reveal:nth-child(4) { transition-delay: 0.3s; }
+# BIT LAB — Stable Visual Cleanup Patch
+
+NON sostituire tutto il CSS.
+
+Aggiungi questo blocco ALLA FINE del tuo `style.css` attuale.
+
+Questo approccio:
+
+* non rompe il layout esistente
+* mantiene il DOM attuale
+* migliora armonia e gerarchia
+* sistema responsive fragile
+* mantiene contenuti e funzioni
+* usa solo font open source
+
+```css
+/* ==================================================
+   BIT LAB — STABLE UI REFINEMENT PATCH
+   Da aggiungere in fondo al file style.css
+   ================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  --radius: 18px;
+  --radius-lg: 26px;
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);
+  --shadow-hover: 0 18px 40px rgba(0,0,0,0.3);
+}
+
+/* TYPOGRAPHY */
+
+body {
+  font-family: 'Inter', sans-serif !important;
+  letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+.logo-text,
+.tool-title,
+.course-card h3,
+.progetto-title,
+.section-header h2,
+.collab-header h3,
+.cta-scuole-left h4 {
+  font-family: 'Space Grotesk', sans-serif !important;
+  letter-spacing: -0.04em;
+}
+
+p,
+li,
+span,
+a {
+  text-rendering: optimizeLegibility;
+}
+
+/* GLOBAL SPACING */
+
+.section {
+  padding-top: 96px !important;
+  padding-bottom: 96px !important;
+}
+
+.container {
+  width: min(92%, 1120px) !important;
+}
+
+.section-header {
+  margin-bottom: 4rem !important;
+}
+
+.section-header h2 {
+  font-size: clamp(2.2rem, 4vw, 3.6rem) !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.05 !important;
+}
+
+.section-subtitle {
+  max-width: 680px;
+  margin-inline: auto;
+  font-size: 1.02rem !important;
+  line-height: 1.7 !important;
+}
+
+/* HEADER */
+
+.header {
+  height: 74px !important;
+  background: rgba(12,12,15,0.82) !important;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.logo-img {
+  height: 76px !important;
+  margin: 0 !important;
+  filter: drop-shadow(0 6px 16px rgba(255,107,53,0.18)) !important;
+}
+
+.logo-text {
+  font-size: 1.15rem !important;
+  color: #fff !important;
+}
+
+.logo-sub {
+  font-size: 0.74rem !important;
+  color: rgba(255,255,255,0.55) !important;
+}
+
+.nav {
+  gap: 1.8rem !important;
+}
+
+.nav a {
+  font-size: 0.9rem !important;
+  color: rgba(255,255,255,0.72) !important;
+  position: relative;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: var(--primary);
+  transition: width .25s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 82vh !important;
+  padding-top: 3rem !important;
+  padding-bottom: 5rem !important;
+}
+
+.hero::before {
+  opacity: .45;
+}
+
+.hero::after {
+  opacity: .55;
+  filter: blur(20px);
+}
+
+.hero h2,
+.hero-title {
+  font-size: clamp(2.8rem, 6vw, 4.8rem) !important;
+  line-height: 0.98 !important;
+  max-width: 10ch;
+  margin-inline: auto;
+}
+
+.hero p {
+  font-size: 1.02rem !important;
+  line-height: 1.75 !important;
+  max-width: 580px !important;
+}
+
+.hero-left-image img {
+  max-width: 520px !important;
+  margin-inline: auto;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35)) !important;
+}
+
+.hero-cta-split {
+  border: 1px solid rgba(255,107,53,0.22) !important;
+  box-shadow: none !important;
+}
+
+.hero-cta-left {
+  padding: 14px 24px !important;
+}
+
+.hero-cta-right {
+  background: rgba(255,255,255,0.04) !important;
+  color: rgba(255,255,255,0.78) !important;
+}
+
+.hero-feature-pill {
+  background: rgba(255,255,255,0.035) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  padding: 10px 16px !important;
+}
+
+.hero-feature-pill:hover {
+  transform: translateY(-2px);
+}
+
+/* REMOVE EXCESSIVE EFFECTS */
+
+body::before,
+.il-progetto-symbols {
+  opacity: .18 !important;
+}
+
+/* CARDS */
+
+.tool-card,
+.course-card,
+.scuola-card,
+.progetto-hl,
+.cta-scuole,
+.bit-bar-column,
+.hero-stepper-box,
+.promo-natale-card {
+  border-radius: var(--radius) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  box-shadow: none !important;
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    border-color .25s ease !important;
+}
+
+.tool-card:hover,
+.course-card:hover,
+.scuola-card:hover,
+.progetto-hl:hover,
+.bit-bar-column:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-soft) !important;
+  border-color: rgba(255,107,53,0.16) !important;
+}
+
+/* TOOLS */
+
+.tools-grid {
+  gap: 1.4rem !important;
+}
+
+.tool-card {
+  padding: 2rem !important;
+  background: rgba(255,255,255,0.035) !important;
+}
+
+.tool-image {
+  height: 120px !important;
+  margin-bottom: 1.6rem !important;
+}
+
+.tool-title {
+  font-size: 1.35rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.tool-details {
+  background: rgba(0,0,0,0.16) !important;
+}
+
+/* PROJECT SECTION */
+
+.progetto-grid {
+  gap: 5rem !important;
+}
+
+.progetto-title {
+  font-size: clamp(2.2rem, 4vw, 3.5rem) !important;
+}
+
+.progetto-lead {
+  font-size: 1rem !important;
+  line-height: 1.8 !important;
+}
+
+.progetto-hl {
+  padding: 1.25rem !important;
+  background: rgba(255,255,255,0.03) !important;
+}
+
+.progetto-hl-num {
+  width: 34px !important;
+  height: 34px !important;
+  background: rgba(255,107,53,0.12) !important;
+  color: var(--primary) !important;
+}
+
+.progetto-img {
+  border-radius: var(--radius-lg) !important;
+}
+
+/* COURSES */
+
+.courses-grid {
+  gap: 1.5rem !important;
+}
+
+.course-card {
+  padding: 2rem !important;
+  background: rgba(255,255,255,0.03) !important;
+}
+
+.course-card h3 {
+  font-size: 1.35rem !important;
+  line-height: 1.2 !important;
+}
+
+.course-meta {
+  gap: .7rem !important;
+}
+
+.meta-item {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+.btn-course,
+.btn-cta-scuole,
+.btn-promo {
+  border-radius: 14px !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
+
+.btn-course:hover,
+.btn-cta-scuole:hover,
+.btn-promo:hover {
+  transform: translateY(-2px);
+}
+
+/* CONTACT BAR */
+
+.bit-contact-slim {
+  padding: 64px 0 !important;
+}
+
+.bit-bar-wrapper {
+  gap: 1rem !important;
+}
+
+.bit-bar-column {
+  padding: 1.2rem !important;
+  background: rgba(255,255,255,0.03) !important;
+}
+
+.bit-icon {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 14px !important;
+}
+
+.bit-value {
+  font-size: .88rem !important;
+}
+
+/* CTA SECTION */
+
+.cta-scuole {
+  padding: 2.5rem !important;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.025)
+  ) !important;
+}
+
+.cta-scuole-left h4 {
+  font-size: 1.9rem !important;
+}
+
+/* FAB */
+
+.fab {
+  width: 58px !important;
+  height: 58px !important;
+  box-shadow: 0 10px 28px rgba(37,211,102,0.24) !important;
+}
+
+/* MOBILE */
+
+@media (max-width: 1024px) {
+
+  .hero,
+  .progetto-grid,
+  .cta-scuole,
+  .tools-grid,
+  .courses-grid,
+  .bit-bar-wrapper {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero {
+    text-align: center;
+    gap: 3rem !important;
+  }
+
+  .hero-actions,
+  .hero-features {
+    justify-content: center !important;
+  }
+
+  .hero-right-stepper {
+    display: none !important;
+  }
+
+  .nav {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: flex !important;
+  }
+
+  .scuole-grid {
+    grid-template-columns: repeat(2,1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .section {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+  }
+
+  .hero {
+    min-height: auto !important;
+  }
+
+  .hero h2,
+  .hero-title {
+    font-size: clamp(2.2rem, 12vw, 3.4rem) !important;
+  }
+
+  .hero-actions {
+    flex-direction: column !important;
+  }
+
+  .hero-cta-split {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .logo-divider,
+  .logo-sub {
+    display: none !important;
+  }
+
+  .tool-card,
+  .course-card,
+  .cta-scuole,
+  .promo-natale-card {
+    padding: 1.4rem !important;
+  }
+
+  .scuole-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .bit-bar-wrapper {
+    grid-template-columns: 1fr !important;
+  }
+
+  .fab {
+    width: 54px !important;
+    height: 54px !important;
+  }
+}
+```
+
+## Modifiche HTML consigliate
+
+Nel titolo HERO sostituisci:
+
+```html
+<span style="background:linear-gradient(...)">Tech</span>
+```
+
+con:
+
+```html
+<span style="color:#FF6B35">Tech</span>
+```
+
+Rimuovi anche:
+
+```html
+<div class="hero-right-stepper">...</div>
+```
+
+per alleggerire il layout.
