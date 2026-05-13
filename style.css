@@ -656,28 +656,48 @@ h1, h2, h3, h4, .display {
   border: 1px solid rgba(34,197,94,0.2);
   padding: 2px 8px; border-radius: 999px;
 }
-/* CTA Scuole */
+/* ============================================
+   CTA SCUOLE — SEZIONE 6 (VERSIONE BILANCIATA)
+============================================ */
 .cta-scuole {
+  display: grid;
+  grid-template-columns: 1fr auto auto; /* testo | immagine | bottone */
+  align-items: center;
+  gap: 2rem;
   background: var(--bg-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 2.2rem 2.4rem;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2rem;
-  align-items: center;
-  position: relative; overflow: hidden;
+  padding: 2rem 3rem;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Effetto glow opzionale (come nell'originale) */
 .cta-scuole::before {
   content: '';
-  position: absolute; top: -80px; right: -80px;
-  width: 260px; height: 260px; border-radius: 50%;
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
   background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%);
+  pointer-events: none;
 }
+
+/* COLONNA TESTO */
+.cta-scuole-left {
+  text-align: left;
+}
+
 .cta-tag {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--orange);
   background: rgba(255,107,53,0.1);
   border: 1px solid rgba(255,107,53,0.22);
@@ -685,43 +705,124 @@ h1, h2, h3, h4, .display {
   padding: 4px 12px;
   margin-bottom: 0.85rem;
 }
-.cta-scuole h3 {
+
+.cta-scuole-left h3 {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.45rem; font-weight: 800;
+  font-size: 1.45rem;
+  font-weight: 800;
   color: var(--text);
   margin-bottom: 0.6rem;
 }
-.cta-scuole p {
-  font-size: 0.9rem; color: var(--text-dim);
-  line-height: 1.65; max-width: 440px;
+
+.cta-scuole-left p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 440px;
   margin-bottom: 0.9rem;
 }
-.cta-points {
-  display: flex; flex-direction: column; gap: 5px;
-}
-.cta-point {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 0.84rem; color: var(--text-dim);
-}
-.cta-point svg { color: var(--orange); flex-shrink: 0; }
 
+.cta-points {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cta-point {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.84rem;
+  color: var(--text-dim);
+}
+
+.cta-point svg {
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
+/* COLONNA IMMAGINE FISSA */
+.cta-scuole-img {
+  width: 200px;
+  height: 150px;
+  object-fit: contain; /* oppure cover, come preferisci */
+  border-radius: var(--radius);
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+}
+
+/* COLONNA BOTTONE */
 .cta-scuole-right {
-  display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0;
-  position: relative; z-index: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .btn-scuola {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: var(--orange);
   color: #fff;
-  font-size: 0.9rem; font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 700;
   padding: 13px 22px;
   border-radius: 999px;
   transition: var(--tr);
   white-space: nowrap;
+  text-decoration: none;
 }
-.btn-scuola:hover { background: var(--orange-dark); transform: translateY(-2px); }
-.cta-note { font-size: 0.72rem; color: var(--text-muted); }
+
+.btn-scuola:hover {
+  background: var(--orange-dark);
+  transform: translateY(-2px);
+}
+
+.cta-note {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   RESPONSIVE CTA SCUOLE
+============================================ */
+@media (max-width: 992px) {
+  .cta-scuole {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+
+  .cta-scuole-left {
+    text-align: center;
+  }
+
+  .cta-scuole-left p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-points {
+    align-items: center;
+  }
+
+  .cta-scuole-img {
+    margin: 0 auto;
+    width: 180px;
+    height: auto;
+  }
+
+  .cta-scuole-right {
+    justify-content: center;
+  }
+
+  .btn-scuola {
+    white-space: normal;
+    text-align: center;
+  }
+}
 
 /* ============================================
    CORSI — SEZIONE 7
