@@ -9,7 +9,6 @@
    VARIABILI ARMONICHE
    ======================================== */
 :root {
-  /* Colori principali — caldi e naturali */
   --primary: #D45B2B;
   --primary-light: #E07A4A;
   --primary-dark: #B84A1F;
@@ -17,50 +16,41 @@
   --accent-warm: #E6B87E;
   --accent-gold: #D4A76A;
   
-  /* Sfondo — nessun bianco, toni terra */
   --bg-main: #F2EFE9;
   --bg-1: #EDE9E2;
   --bg-2: #E8E3DA;
   --bg-3: #E2DCD2;
-  --bg-card: rgba(255, 252, 246, 0.92);
+  --bg-card: rgba(255, 252, 246, 0.95);
   --bg-card-hover: rgba(255, 252, 246, 1);
   
-  /* Bordi — naturali e discreti */
   --border: rgba(94, 67, 48, 0.12);
   --border-accent: rgba(212, 91, 43, 0.25);
   
-  /* Testo — contrasto morbido */
   --text: #2C241A;
   --text-dim: #5A4A38;
   --text-muted: #8B7A66;
   
-  /* Feedback */
   --success: #2E7D5E;
   --warning: #C97E2A;
   --error: #C44A3A;
   
-  /* Spaziatura armoniosa */
   --radius-sm: 10px;
   --radius: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
   
-  /* Ombre morbide */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
   --shadow-warm: 0 8px 24px rgba(212, 91, 43, 0.12);
   
-  /* Transizioni fluide */
   --transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
-  
-  /* Layout armonioso */
   --container-width: 1240px;
   --section-padding: 5rem 0;
 }
 
 /* ========================================
-   RESET & BASE — ARIA E LEGGIBILITÀ
+   RESET & BASE
    ======================================== */
 *, *::before, *::after {
   margin: 0;
@@ -74,7 +64,6 @@ html {
 }
 
 body {
-  /* System font stack — open source, veloce, privacy-first */
   font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 
                'Helvetica Neue', 'Noto Sans', 'Liberation Sans', 
                'Arial', sans-serif;
@@ -82,7 +71,6 @@ body {
   color: var(--text);
   background-color: var(--bg-main);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -91,7 +79,6 @@ img {
   display: block;
 }
 
-/* Contenitore principale armonioso */
 .container {
   width: 90%;
   max-width: var(--container-width);
@@ -99,7 +86,6 @@ img {
   position: relative;
 }
 
-/* Sezioni con padding armonico */
 .section {
   padding: var(--section-padding);
 }
@@ -109,7 +95,7 @@ img {
 }
 
 /* ========================================
-   TIPOGRAFIA — TUTTI I TITOLI CENTRATI
+   TIPOGRAFIA — TITOLI CENTRATI
    ======================================== */
 h1, h2, h3, h4, 
 .section-title, 
@@ -117,7 +103,7 @@ h1, h2, h3, h4,
 .hero h1,
 .progetto-title,
 .tool-title,
-.course-title {
+.course-card h3 {
   text-align: center;
 }
 
@@ -186,7 +172,7 @@ p {
 }
 
 /* ========================================
-   HEADER — CHIARO ED EQUILIBRATO
+   HEADER
    ======================================== */
 .header {
   background: rgba(242, 239, 233, 0.92);
@@ -256,9 +242,6 @@ p {
   color: var(--primary);
 }
 
-/* ========================================
-   MOBILE MENU — SEMPLICE ED EFFICACE
-   ======================================== */
 .menu-toggle {
   display: none;
   background: none;
@@ -303,7 +286,7 @@ p {
 }
 
 /* ========================================
-   HERO — EQUILIBRIO VISIVO
+   HERO
    ======================================== */
 .hero {
   background: var(--bg-1);
@@ -315,7 +298,6 @@ p {
   overflow: hidden;
 }
 
-/* Elemento decorativo caldo */
 .hero::before {
   content: '';
   position: absolute;
@@ -350,7 +332,6 @@ p {
   margin: 2rem 0 1.5rem;
 }
 
-/* Bottoni principali */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -392,7 +373,6 @@ p {
   transform: translateY(-2px);
 }
 
-/* Feature pills */
 .hero-features {
   display: flex;
   justify-content: center;
@@ -502,7 +482,7 @@ p {
 }
 
 /* ========================================
-   STRUMENTI — GRIGLIA CHIARA
+   STRUMENTI — CARD BOX COMPLETE
    ======================================== */
 .tools-grid {
   display: grid;
@@ -516,13 +496,38 @@ p {
   border-radius: var(--radius-lg);
   padding: 1.8rem;
   transition: var(--transition);
-  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary-soft) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
 
 .tool-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow);
   border-color: var(--border-accent);
+}
+
+.tool-card:hover::before {
+  opacity: 1;
+}
+
+.tool-icon-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.8rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .tool-image {
@@ -549,10 +554,16 @@ p {
   font-size: 0.85rem;
   color: var(--text-dim);
   margin: 0;
+  text-align: left;
+}
+
+.tool-details strong {
+  color: var(--primary);
+  font-weight: 600;
 }
 
 /* ========================================
-   CORSI — GRIGLIA EQUILIBRATA
+   CORSI — CARD BOX COMPLETE
    ======================================== */
 .courses-grid {
   display: grid;
@@ -566,8 +577,21 @@ p {
   padding: 1.8rem;
   border: 1px solid var(--border);
   transition: var(--transition);
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.course-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-gold));
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .course-card:hover {
@@ -576,14 +600,18 @@ p {
   border-color: var(--border-accent);
 }
 
+.course-card:hover::after {
+  opacity: 1;
+}
+
 .course-badge {
-  display: inline-block;
-  align-self: flex-start;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   padding: 0.25rem 0.8rem;
   border-radius: 100px;
   font-size: 0.7rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .badge-available {
@@ -603,6 +631,7 @@ p {
   font-weight: 650;
   margin-bottom: 0.8rem;
   text-align: left;
+  padding-right: 70px;
 }
 
 .course-meta {
@@ -646,6 +675,7 @@ p {
   transition: var(--transition);
   border: none;
   cursor: pointer;
+  display: block;
 }
 
 .btn-course:hover:not(.btn-disabled) {
@@ -661,7 +691,242 @@ p {
 }
 
 /* ========================================
-   FOOTER — SEMPLICE ED ELEGANTE
+   SCUOLE — CARD BOX COMPLETE
+   ======================================== */
+.scuole-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.scuola-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.8rem;
+  transition: var(--transition);
+}
+
+.scuola-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--border-accent);
+}
+
+.scuola-card img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.scuola-card span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.scuola-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--success);
+  background: rgba(46, 125, 94, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+}
+
+/* ========================================
+   CTA SCUOLE
+   ======================================== */
+.cta-scuole {
+  background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
+  border-radius: var(--radius-xl);
+  padding: 2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+}
+
+.cta-scuole-left h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.cta-scuole-left p {
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: left;
+}
+
+.cta-scuole-points {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.cta-scuole-point {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.btn-cta-scuole {
+  background: var(--primary);
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-cta-scuole:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   PROMO CARD
+   ======================================== */
+.promo-natale-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-2) 100%);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  border: 1px solid var(--border-accent);
+  position: relative;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.promo-natale-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-gold));
+}
+
+.promo-badge {
+  display: inline-block;
+  background: var(--primary-soft);
+  color: var(--primary);
+  padding: 0.25rem 1rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.promo-natale-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.promo-meta {
+  display: flex;
+  gap: 1rem;
+  margin: 0.8rem 0;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.btn-promo {
+  background: var(--primary);
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+}
+
+.btn-promo:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   CONTATTI — INFO BAR
+   ======================================== */
+.bit-contact-slim {
+  padding: 1.5rem 0;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.bit-bar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.bit-bar-column {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+  transition: var(--transition);
+}
+
+.bit-bar-column:hover {
+  transform: translateY(-2px);
+}
+
+.bit-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.bit-icon.orange-tint {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.bit-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.bit-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ========================================
+   FOOTER
    ======================================== */
 .footer {
   background: var(--bg-2);
@@ -691,7 +956,7 @@ p {
   z-index: 100;
 }
 
-.fab {
+.fab-whatsapp {
   width: 54px;
   height: 54px;
   border-radius: 50%;
@@ -705,13 +970,13 @@ p {
   text-decoration: none;
 }
 
-.fab:hover {
+.fab-whatsapp:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
 }
 
 /* ========================================
-   MODAL ISCRIZIONI — CHIARA ED ACCESSIBILE
+   MODAL ISCRIZIONI
    ======================================== */
 .enrollment-modal {
   display: none;
@@ -831,6 +1096,31 @@ p {
 }
 
 /* ========================================
+   ALERT BOX
+   ======================================== */
+.alert-box {
+  background: rgba(201, 126, 42, 0.08);
+  border: 1px solid rgba(201, 126, 42, 0.2);
+  border-left: 4px solid var(--warning);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.alert-box strong {
+  color: var(--text);
+  display: block;
+}
+
+.alert-box p {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* ========================================
    UTILITY E ACCESSIBILITÀ
    ======================================== */
 .text-center {
@@ -848,18 +1138,13 @@ p {
   border: 0;
 }
 
-/* Riduzione movimento */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-/* Focus visibile per accessibilità */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
@@ -867,7 +1152,6 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
-/* Scroll margin per anchor link */
 section[id] {
   scroll-margin-top: 80px;
 }
@@ -875,8 +1159,6 @@ section[id] {
 /* ========================================
    RESPONSIVE
    ======================================== */
-
-/* Tablet */
 @media (max-width: 992px) {
   .progetto-grid {
     gap: 2rem;
@@ -886,9 +1168,12 @@ section[id] {
   .courses-grid {
     grid-template-columns: 1fr;
   }
+  
+  .bit-bar-wrapper {
+    flex-direction: column;
+  }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   html {
     font-size: 15px;
@@ -963,22 +1248,46 @@ section[id] {
     padding: 1.3rem;
   }
   
+  .course-card h3 {
+    padding-right: 0;
+    margin-top: 1rem;
+  }
+  
+  .course-badge {
+    position: relative;
+    top: auto;
+    right: auto;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    align-self: flex-start;
+  }
+  
+  .scuola-card {
+    padding: 1rem 1.2rem;
+  }
+  
+  .cta-scuole {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cta-scuole-left h4,
+  .cta-scuole-left p,
+  .cta-scuole-points {
+    text-align: center;
+    justify-content: center;
+  }
+  
   .enrollment-modal-content {
     padding: 1.5rem;
   }
   
-  .fab-container {
-    bottom: 16px;
-    right: 16px;
-  }
-  
-  .fab {
+  .fab-whatsapp {
     width: 48px;
     height: 48px;
   }
 }
 
-/* Mobile small */
 @media (max-width: 480px) {
   .hero-feature-pill {
     font-size: 0.75rem;
@@ -991,5 +1300,10 @@ section[id] {
   
   .meta-item {
     font-size: 0.7rem;
+  }
+  
+  .cta-scuole-points {
+    flex-direction: column;
+    align-items: center;
   }
 }
