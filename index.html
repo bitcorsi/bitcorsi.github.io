@@ -611,23 +611,7 @@
 <script src="script.js"></script>
 
 <script>
-  /* ============ MENU TOGGLE ============ */
-  const toggle = document.getElementById('menuToggle');
-  const overlay = document.getElementById('navOverlay');
-  toggle.addEventListener('click', () => {
-    const open = overlay.classList.toggle('active');
-    toggle.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-  overlay.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      overlay.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
-  });
-
-  /* ============ SCROLL REVEAL ============ */
+    /* ============ SCROLL REVEAL ============ */
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
