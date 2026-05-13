@@ -496,7 +496,7 @@ h1, h2, h3, h4, .display {
 .activity-num {
   font-family: 'Outfit', sans-serif;
   font-size: 2.5rem; font-weight: 900;
-  color: rgba(255,107,53,0.15);
+  color: rgba(255,107,53,0.60);
   line-height: 1;
   margin-bottom: 0.75rem;
 }
