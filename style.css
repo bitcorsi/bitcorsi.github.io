@@ -1227,47 +1227,58 @@ section[id] { scroll-margin-top:80px; }
   .promo-natale-card { flex-direction:column; }
   .fab-wa { bottom:16px; right:16px; width:52px; height:52px; }
 }
-/* Layout Comitati Genitori: 3 colonne (Testo | Immagine | CTA) */
+/* Sostituisci il blocco .cta-scuole e i suoi figli con questo */
 .cta-scuole {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr 1fr; /* Definisce le tre colonne */
+  grid-template-columns: 1fr 220px auto; /* 1: Testo, 2: Immagine fissa, 3: Bottone */
   align-items: center;
   gap: 2rem;
-  padding: 2.5rem; /* Mantiene il padding interno esistente */
+  padding: 2rem 3rem;
+  min-height: 250px; /* Impedisce alla sezione di collassare o espandersi troppo */
 }
 
 .cta-scuole-left {
-  text-align: left; /* Allinea il testo a sinistra */
+  text-align: left;
 }
 
-/* Adattamento immagine centrale */
+/* Gestione Immagine: Forza le dimensioni senza rompere il contenitore */
 .cta-scuole-img {
-  width: 100%;
-  height: 200px; /* Altezza fissa per non cambiare la dimensione della sezione */
-  object-fit: cover; /* Adatta la foto senza distorcerla */
+  width: 220px; 
+  height: 160px; /* Altezza bloccata per non alzare la sezione */
+  object-fit: cover; /* Ritaglia l'immagine internamente */
   border-radius: var(--radius);
-  order: 0; /* Mantiene la posizione centrale nel grid */
+  display: block;
 }
 
 .cta-scuole-right {
   display: flex;
-  justify-content: flex-end; /* Sposta la CTA a destra */
-  align-items: center;
+  justify-content: flex-end;
 }
 
-/* Responsive: torna a colonna singola su mobile */
-@media (max-width: 768px) {
+.btn-scuola {
+  white-space: nowrap; /* Impedisce al testo del bottone di andare a capo */
+}
+
+/* Correzione per Mobile: qui torniamo a colonna singola */
+@media (max-width: 992px) {
   .cta-scuole {
     grid-template-columns: 1fr;
     text-align: center;
+    padding: 2rem;
+    min-height: auto;
   }
   
+  .cta-scuole-left {
+    text-align: center;
+  }
+
+  .cta-scuole-img {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 280px;
+  }
+
   .cta-scuole-right {
     justify-content: center;
-  }
-  
-  .cta-scuole-img {
-    height: 180px;
-    order: -1; /* Sposta l'immagine in alto su mobile */
   }
 }
