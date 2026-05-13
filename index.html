@@ -40,48 +40,1278 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#FF6B35">
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       RESET & VARIABLES
+    ============================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --orange: #FF6B35;
+      --orange-dark: #E05A27;
+      --orange-light: #FF8C5A;
+      --gold: #FFD166;
+      --bg: #0B0B0E;
+      --bg-1: #111115;
+      --bg-2: #18181F;
+      --bg-card: rgba(255,255,255,0.035);
+      --bg-card-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.07);
+      --border-orange: rgba(255,107,53,0.3);
+      --text: #F2EFE8;
+      --text-dim: rgba(242,239,232,0.55);
+      --text-muted: rgba(242,239,232,0.3);
+      --green: #22C55E;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --tr: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(90%, 1160px); margin: 0 auto; }
+    .section { padding: 88px 0; }
+    .bg-alt { background: var(--bg-1); }
+
+    /* ============================================
+       TYPOGRAPHY
+    ============================================ */
+    h1, h2, h3, h4, .display {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    /* ============================================
+       SECTION LABELS
+    ============================================ */
+    .label-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.22);
+      border-radius: 999px;
+      padding: 4px 14px;
+      margin-bottom: 1rem;
+    }
+
+    .label-pill::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--orange);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.4; transform:scale(0.6); }
+    }
+
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       FAB WHATSAPP
+    ============================================ */
+    .fab-wa {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 9999;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.38);
+      transition: var(--tr);
+    }
+    .fab-wa:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
+
+    /* ============================================
+       HEADER
+    ============================================ */
+    .header {
+      position: sticky; top: 0; z-index: 1000;
+      height: 68px;
+      background: rgba(11,11,14,0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+    }
+    .header .container { display: flex; align-items: center; justify-content: space-between; }
+
+    .logo-wrap {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .logo-img {
+      height: 112px;
+      width: auto;
+      margin-bottom: -46px;
+      margin-top: 4px;
+      filter: drop-shadow(0 4px 12px rgba(255,107,53,0.25));
+    }
+    .logo-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: -0.03em;
+    }
+    .logo-divider {
+      width: 1.5px; height: 26px;
+      background: var(--border);
+      border-radius: 2px;
+    }
+    .logo-sub-text {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .nav { display: flex; align-items: center; gap: 2rem; }
+    .nav a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--orange);
+      transition: width 0.25s ease;
+    }
+    .nav a:hover { color: var(--text); }
+    .nav a:hover::after { width: 100%; }
+
+    .menu-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      color: var(--text);
+      padding: 6px;
+    }
+    .menu-toggle svg { width: 26px; height: 26px; stroke: currentColor; }
+
+    .nav-overlay {
+      position: fixed; inset: 0;
+      background: rgba(11,11,14,0.97);
+      backdrop-filter: blur(20px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2.5rem; z-index: 999;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .nav-overlay.active { opacity: 1; pointer-events: auto; }
+    .nav-overlay a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.7rem; font-weight: 700;
+      color: var(--text-dim);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .nav-overlay a:hover { color: var(--orange); transform: translateX(8px); }
+
+    /* ============================================
+       HERO — SEZIONE 1
+    ============================================ */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-1);
+      min-height: 86vh;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Grid pattern */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,107,53,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,107,53,0.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+    }
+
+    .hero-glow-a {
+      position: absolute;
+      top: -160px; left: -160px;
+      width: 540px; height: 540px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,53,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-glow-b {
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,209,102,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      width: min(90%, 1160px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      padding: 5rem 0;
+      animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .hero-left {}
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.22);
+      border-radius: 999px;
+      padding: 4px 14px;
+      margin-bottom: 1.2rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--orange);
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      line-height: 1.04;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.95rem; font-weight: 700;
+      padding: 14px 26px;
+      border-radius: 999px;
+      transition: var(--tr);
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 22px rgba(255,107,53,0.3);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-primary:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(255,107,53,0.42);
+    }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-dim);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .btn-secondary:hover { color: var(--text); }
+    .btn-secondary svg { color: var(--orange); }
+
+    .hero-pills {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+    }
+
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 14px;
+      transition: border-color 0.2s;
+    }
+    .hero-pill:hover { border-color: var(--border-orange); }
+    .hero-pill svg { color: var(--orange); }
+    .hero-pill-label { font-size: 0.8rem; font-weight: 600; }
+    .hero-pill-sub { font-size: 0.7rem; color: var(--text-muted); }
+
+    /* Hero right — steps box */
+    .hero-right {}
+
+    .steps-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .steps-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
+
+    .step {
+      display: flex; gap: 0.85rem;
+    }
+    .step-left {
+      display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+    }
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,107,53,0.12);
+      border: 1px solid rgba(255,107,53,0.35);
+      color: var(--orange);
+      font-size: 0.78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-line {
+      width: 1px; flex: 1; min-height: 20px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+    .step:last-child .step-line { display: none; }
+    .step-body { padding: 2px 0 14px; }
+    .step-label { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .step-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.55; }
+
+    /* Social proof bar */
+    .proof-bar {
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      display: flex; gap: 1.4rem; justify-content: center; flex-wrap: wrap;
+    }
+    .proof-item {
+      text-align: center;
+    }
+    .proof-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
+      color: var(--orange); line-height: 1;
+      margin-bottom: 3px;
+    }
+    .proof-label {
+      font-size: 0.72rem; color: var(--text-muted); font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    /* ============================================
+       SOCIAL PROOF — SEZIONE 2
+    ============================================ */
+    .proof-section {
+      padding: 52px 0;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .proof-section .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .proof-stat { text-align: center; }
+    .proof-stat-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.4rem; font-weight: 900;
+      color: var(--orange); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .proof-stat-label {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+    .proof-divider {
+      width: 1px; height: 48px;
+      background: var(--border);
+    }
+
+    /* ============================================
+       COSA FANNO — SEZIONE 3
+    ============================================ */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .activity-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: var(--tr);
+      position: relative;
+      overflow: hidden;
+    }
+    .activity-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--orange);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .activity-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-orange);
+      transform: translateY(-4px);
+    }
+    .activity-card:hover::before { opacity: 1; }
+
+    .activity-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem; font-weight: 900;
+      color: rgba(255,107,53,0.15);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .activity-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .activity-card h3 {
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      font-family: 'Outfit', sans-serif;
+    }
+    .activity-card p {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       STRUMENTI — SEZIONE 4
+    ============================================ */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: var(--tr);
+      position: relative;
+      overflow: hidden;
+    }
+    .tool-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-orange);
+      transform: translateY(-5px);
+    }
+    .tool-badge {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      font-size: 0.7rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 999px;
+    }
+    .badge-lego   { background:rgba(255,203,5,0.14); color:#FFCB05; border:1px solid rgba(255,203,5,0.25); }
+    .badge-roberta{ background:rgba(30,144,255,0.14); color:#5BA4FF; border:1px solid rgba(30,144,255,0.25); }
+    .badge-arduino{ background:rgba(0,179,186,0.14); color:#00B3BA; border:1px solid rgba(0,179,186,0.25); }
+    .badge-microbit{background:rgba(218,165,32,0.14); color:#DAA520; border:1px solid rgba(218,165,32,0.25); }
+
+    .tool-img {
+      width: 100%; height: 120px;
+      object-fit: contain;
+      margin-bottom: 1.4rem;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
+    }
+    .tool-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .tool-desc {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+    }
+    .tool-desc strong { color: var(--orange-light); }
+
+    /* ============================================
+       PERCHÉ NOI — SEZIONE 5
+    ============================================ */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+    .reason-card {
+      display: flex; gap: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      transition: var(--tr);
+      align-items: flex-start;
+    }
+    .reason-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateX(4px);
+    }
+    .reason-icon {
+      font-size: 1.5rem; flex-shrink: 0; margin-top: 2px;
+    }
+    .reason-card h3 {
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      font-family: 'Outfit', sans-serif;
+    }
+    .reason-card p {
+      font-size: 0.84rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       SCUOLE — SEZIONE 6
+    ============================================ */
+    .scuole-wrapper {
+      margin-bottom: 2.5rem;
+    }
+    .scuole-sub {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 1.8rem;
+    }
+    .scuole-sub a { color: var(--orange); font-weight: 600; }
+
+    .scuole-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+    .scuola-card {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.55rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.5rem;
+      min-width: 110px;
+      transition: var(--tr);
+    }
+    .scuola-card:hover {
+      border-color: var(--border-orange);
+      transform: translateY(-4px);
+    }
+    .scuola-card img {
+      width: 50px; height: 50px;
+      object-fit: contain; filter: brightness(0.9);
+    }
+    .scuola-card span { font-size: 0.82rem; font-weight: 600; color: var(--text-dim); text-align: center; }
+    .scuola-badge {
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--green);
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.2);
+      padding: 2px 8px; border-radius: 999px;
+    }
+
+    /* CTA Scuole */
+    .cta-scuole {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 2.4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-scuole::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%);
+    }
+    .cta-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.22);
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 0.85rem;
+    }
+    .cta-scuole h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.45rem; font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .cta-scuole p {
+      font-size: 0.9rem; color: var(--text-dim);
+      line-height: 1.65; max-width: 440px;
+      margin-bottom: 0.9rem;
+    }
+    .cta-points {
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .cta-point {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.84rem; color: var(--text-dim);
+    }
+    .cta-point svg { color: var(--orange); flex-shrink: 0; }
+
+    .cta-scuole-right {
+      display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+
+    .btn-scuola {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.9rem; font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 999px;
+      transition: var(--tr);
+      white-space: nowrap;
+    }
+    .btn-scuola:hover { background: var(--orange-dark); transform: translateY(-2px); }
+    .cta-note { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ============================================
+       CORSI — SEZIONE 7
+    ============================================ */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .course-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex; flex-direction: column;
+      transition: var(--tr);
+      position: relative; overflow: hidden;
+    }
+    .course-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--gold));
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .course-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-orange);
+      transform: translateY(-4px);
+    }
+    .course-card:hover::after { opacity: 1; }
+
+    .course-badge {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      padding: 3px 10px; border-radius: 999px;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .badge-open { background:rgba(34,197,94,0.15); color:#22C55E; border:1px solid rgba(34,197,94,0.25); }
+    .badge-closed { background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid var(--border); }
+
+    .course-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.85rem;
+    }
+    .course-meta {
+      display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;
+    }
+    .meta-tag {
+      font-size: 0.76rem; color: var(--text-dim);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 3px 10px; border-radius: 999px;
+    }
+    .meta-price {
+      background: rgba(255,107,53,0.14);
+      color: var(--orange-light);
+      border-color: rgba(255,107,53,0.22);
+      font-weight: 700;
+    }
+    .course-desc {
+      font-size: 0.88rem; color: var(--text-dim);
+      line-height: 1.65; flex-grow: 1;
+      margin-bottom: 1.4rem;
+    }
+    .course-detail { font-size: 0.875rem; color: var(--text-dim); margin-bottom: 0.4rem; }
+    .course-detail strong { color: var(--text); }
+
+    .btn-course {
+      display: block; width: 100%;
+      text-align: center;
+      padding: 0.9rem;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.9rem; font-weight: 700;
+      border-radius: 12px;
+      border: none; cursor: pointer;
+      transition: var(--tr);
+    }
+    .btn-course:hover { background: var(--orange-dark); transform: translateY(-1px); }
+    .btn-disabled {
+      background: rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      cursor: not-allowed;
+    }
+    .btn-disabled:hover { background: rgba(255,255,255,0.06); transform: none; }
+
+    .course-card.loading { grid-column: 1/-1; }
+
+    /* Promo container */
+    #promo-natale-container { margin-bottom: 2rem; }
+    .promo-natale-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-orange);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .promo-natale-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--gold));
+    }
+    .promo-badge {
+      display: inline-block;
+      background: rgba(255,209,102,0.14);
+      color: var(--gold);
+      border: 1px solid rgba(255,209,102,0.28);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 3px 12px; border-radius: 999px;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .promo-natale-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.45rem; color: var(--text);
+      margin: 0 0 0.5rem; line-height: 1.2;
+    }
+    .promo-subtitle { font-weight: 600; color: var(--text-dim); margin: 0 0 1rem; }
+    .promo-meta { display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0; font-size:.9rem; color:var(--text-dim); }
+    .promo-note { font-size:.85rem; color:var(--text-muted); font-style:italic; margin:.8rem 0; }
+    .btn-promo {
+      background: var(--orange); color:#fff;
+      font-weight:700; padding:.75rem 1.6rem;
+      border-radius:999px; text-decoration:none;
+      display:inline-block; transition:var(--tr);
+      font-size:.95rem; cursor:pointer; border:none;
+    }
+    .btn-promo:hover { background:var(--orange-dark); transform:translateY(-2px); }
+
+    /* Alert box */
+    .alert-box {
+      background:rgba(245,158,11,0.08);
+      border:1px solid rgba(245,158,11,0.2);
+      border-left:4px solid #F59E0B;
+      border-radius:var(--radius);
+      padding:1.2rem; margin-bottom:2rem;
+      display:flex; align-items:flex-start; gap:1rem;
+    }
+    .bit-running { width:48px; height:48px; flex-shrink:0; animation:bounce 1.2s ease-in-out infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+    .alert-box strong { color:var(--text); display:block; margin-bottom:.3rem; }
+    .alert-box p { color:var(--text-dim); font-size:.9rem; margin:0; }
+
+    /* ============================================
+       CTA FINALE — SEZIONE 8
+    ============================================ */
+    .cta-finale {
+      background: var(--bg-1);
+      border-top: 1px solid var(--border);
+      padding: 88px 0;
+    }
+    .cta-finale-box {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-finale-box::before {
+      content: '';
+      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-finale-box h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      position: relative; z-index: 1;
+    }
+    .cta-finale-box p {
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      position: relative; z-index: 1;
+    }
+    .cta-finale-btns {
+      display: flex; gap: 1rem;
+      justify-content: center; flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+
+    /* ============================================
+       CONTATTI BAR
+    ============================================ */
+    .contacts-bar {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0;
+    }
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 1.1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: var(--tr);
+      text-decoration: none;
+    }
+    .contact-item:hover { border-color: var(--border-orange); transform: translateY(-2px); }
+    .contact-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ic-orange { background:rgba(255,107,53,0.12); color:var(--orange); }
+    .ic-blue   { background:rgba(59,130,246,0.12); color:#60A5FA; }
+    .ic-green  { background:rgba(34,197,94,0.12);  color:#4ADE80; }
+    .ic-purple { background:rgba(217,70,239,0.12); color:#E879F9; }
+
+    .contact-text { display:flex; flex-direction:column; }
+    .contact-label { font-size:.62rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:1px; }
+    .contact-value { font-size:.84rem; font-weight:600; color:var(--text); white-space:nowrap; }
+    .contact-item:hover .contact-value { color:var(--orange); }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 1.4rem 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .footer a { color: var(--orange); text-decoration: underline; }
+
+    /* ============================================
+       POPUP SUMMER CAMP
+    ============================================ */
+    #sc-popup-overlay {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.7);
+      backdrop-filter:blur(8px);
+      z-index:99999;
+      display:none;
+      align-items:center; justify-content:center;
+      padding:1rem; opacity:0;
+      transition:opacity .28s;
+    }
+    #sc-popup-overlay.sc-open { display:flex; opacity:1; }
+    .sc-popup {
+      background:var(--bg-2); border:1px solid var(--border-orange);
+      border-radius:var(--radius-lg); width:100%; max-width:400px;
+      overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.5);
+      transform:translateY(16px); transition:transform .28s cubic-bezier(.4,0,.2,1);
+    }
+    #sc-popup-overlay.sc-open .sc-popup { transform:translateY(0); }
+    .sc-popup-header {
+      background:linear-gradient(135deg,var(--orange-dark),var(--orange));
+      padding:1.4rem 1.6rem 1.2rem;
+      position:relative; text-align:center; color:#fff;
+    }
+    .sc-popup-badge {
+      display:inline-block;
+      background:rgba(255,209,102,0.2); border:1px solid rgba(255,209,102,0.3); color:var(--gold);
+      font-size:.7rem; font-weight:700; padding:3px 12px; border-radius:999px;
+      margin-bottom:8px; text-transform:uppercase; letter-spacing:.08em;
+    }
+    .sc-popup-title { font-family:'Outfit',sans-serif; font-size:1.4rem; font-weight:800; line-height:1.2; }
+    .sc-popup-subtitle { font-size:.88rem; opacity:.8; margin-top:4px; }
+    #sc-popup-close {
+      position:absolute; top:12px; right:12px;
+      background:rgba(255,255,255,0.15); border:none; border-radius:50%;
+      width:28px; height:28px; color:#fff; font-size:14px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; transition:background .2s;
+    }
+    #sc-popup-close:hover { background:rgba(255,255,255,0.3); }
+    .sc-popup-body { padding:1.4rem 1.6rem 1.6rem; }
+    .sc-popup-chips { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:14px; }
+    .sc-chip { font-size:.75rem; color:var(--text-dim); background:var(--bg-card); border:1px solid var(--border); border-radius:999px; padding:4px 10px; }
+    .sc-popup-desc { font-size:.88rem; color:var(--text-dim); line-height:1.6; margin-bottom:1rem; }
+    .sc-popup-cta {
+      display:block; width:100%; padding:.85rem;
+      background:var(--orange); color:#fff; border:none; border-radius:12px;
+      font-size:.95rem; font-weight:700; text-align:center; cursor:pointer;
+      transition:background .2s;
+    }
+    .sc-popup-cta:hover { background:var(--orange-dark); }
+    .sc-popup-skip {
+      display:block; width:100%; text-align:center;
+      font-size:.8rem; color:var(--text-muted); margin-top:10px;
+      cursor:pointer; text-decoration:underline;
+      background:none; border:none; padding:0;
+    }
+
+    /* ============================================
+       MODAL ISCRIZIONI
+    ============================================ */
+    .enrollment-modal {
+      display:none; position:fixed; inset:0; z-index:9999; overflow-y:auto; padding:1rem;
+    }
+    .enrollment-modal.active { display:flex; align-items:center; justify-content:center; }
+    .enrollment-modal-overlay {
+      position:absolute; inset:0;
+      background:rgba(0,0,0,0.7); backdrop-filter:blur(8px); z-index:-1;
+    }
+    .enrollment-modal-content {
+      background:var(--bg-2); border:1px solid var(--border);
+      border-radius:var(--radius-lg); max-width:620px; width:100%;
+      max-height:90vh; overflow-y:auto; padding:2rem;
+      position:relative;
+      animation:slideUp .3s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    .enrollment-modal-close {
+      position:absolute; top:1rem; right:1rem;
+      background:var(--bg-card); border:1px solid var(--border);
+      width:40px; height:40px; border-radius:50%;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:var(--tr); color:var(--text-dim);
+    }
+    .enrollment-modal-close:hover { transform:rotate(90deg); color:var(--text); }
+
+    .enrollment-modal-header { text-align:center; margin-bottom:1.5rem; }
+    .enrollment-modal-header h2 {
+      font-family:'Outfit',sans-serif; font-size:1.7rem; color:var(--text);
+      margin-bottom:.3rem;
+    }
+    .enrollment-modal-header p { color:var(--text-dim); font-size:.9rem; }
+
+    .enrollment-message { padding:1rem; border-left:4px solid; border-radius:var(--radius); margin-bottom:1rem; display:none; }
+    .enrollment-message.show { display:block; }
+    .enrollment-message.success-message { background:rgba(34,197,94,.1); border-color:var(--green); }
+    .enrollment-message.success-message strong { color:#4ADE80; }
+    .enrollment-message.success-message p { color:#86EFAC; margin-top:.4rem; }
+    .enrollment-message.error-message { background:rgba(239,68,68,.1); border-color:#EF4444; }
+    .enrollment-message.error-message strong { color:#F87171; }
+    .enrollment-message.error-message p { color:#FCA5A5; margin-top:.4rem; }
+    .enrollment-message.waitlist-message { background:rgba(245,158,11,.1); border-color:#F59E0B; }
+    .enrollment-message.waitlist-message strong { color:#FCD34D; }
+    .enrollment-message.waitlist-message p { color:#FDE68A; margin-top:.4rem; }
+
+    .enrollment-form { display:flex; flex-direction:column; gap:0; }
+    .enrollment-form-section { border-bottom:1px solid var(--border); padding-bottom:1.5rem; margin-bottom:1.5rem; }
+    .enrollment-form-section:last-of-type { border-bottom:none; }
+    .enrollment-form-section-title { font-size:.9rem; font-weight:700; color:var(--text); margin-bottom:1rem; }
+    .enrollment-form-group { margin-bottom:1rem; }
+    .enrollment-form-group label { display:block; margin-bottom:.4rem; font-weight:600; color:var(--text-dim); font-size:.85rem; }
+    .enrollment-form-group input,
+    .enrollment-form-group select,
+    .enrollment-form-group textarea {
+      width:100%; padding:.75rem 1rem;
+      border:1px solid var(--border); border-radius:var(--radius);
+      font-size:.95rem; font-family:inherit; transition:var(--tr);
+      background:var(--bg-card); color:var(--text);
+    }
+    .enrollment-form-group input:focus,
+    .enrollment-form-group select:focus,
+    .enrollment-form-group textarea:focus {
+      outline:none; border-color:var(--orange);
+      box-shadow:0 0 0 3px rgba(255,107,53,.15);
+      background:var(--bg-card-hover);
+    }
+    .enrollment-form-group input::placeholder,
+    .enrollment-form-group textarea::placeholder { color:var(--text-muted); }
+    .enrollment-form-group select option { background:var(--bg-2); color:var(--text); }
+    .enrollment-form-group textarea { resize:vertical; min-height:90px; }
+    .enrollment-form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+    .enrollment-courses-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-bottom:1rem; }
+    .enrollment-course-option { position:relative; }
+    .enrollment-course-option input[type="radio"] { display:none; }
+    .enrollment-course-label {
+      display:block; padding:1rem; border:1px solid var(--border);
+      border-radius:var(--radius); cursor:pointer; transition:var(--tr); background:var(--bg-card);
+    }
+    .enrollment-course-option input[type="radio"]:checked + .enrollment-course-label {
+      border-color:var(--orange); background:rgba(255,107,53,.08);
+    }
+    .enrollment-course-label strong { display:block; color:var(--text); margin-bottom:.3rem; font-size:.875rem; }
+    .enrollment-course-label small { color:var(--text-dim); font-size:.78rem; }
+    .enrollment-course-availability { margin-top:.5rem; font-size:.72rem; font-weight:700; }
+    .enrollment-course-availability.available { color:var(--green); }
+    .enrollment-course-availability.full { color:#EF4444; }
+    .enrollment-course-availability.limited { color:#F59E0B; }
+
+    .enrollment-form-checkbox {
+      display:flex; align-items:flex-start; gap:.6rem; margin:1rem 0;
+      padding:1rem; background:var(--bg-card); border-radius:var(--radius); border:1px solid var(--border);
+    }
+    .enrollment-form-checkbox input[type="checkbox"] { width:auto; margin-top:.3rem; cursor:pointer; accent-color:var(--orange); }
+    .enrollment-form-checkbox label { margin:0; font-weight:400; color:var(--text-dim); font-size:.85rem; cursor:pointer; }
+    .enrollment-form-checkbox a { color:var(--orange); font-weight:600; }
+
+    .enrollment-submit-btn {
+      width:100%; padding:1rem;
+      background:linear-gradient(135deg,var(--orange),var(--orange-light));
+      color:#fff; border:none; border-radius:var(--radius);
+      font-size:1rem; font-weight:700; cursor:pointer; transition:var(--tr);
+      margin-top:.5rem; display:flex; align-items:center; justify-content:center; gap:.5rem;
+    }
+    .enrollment-submit-btn:hover:not(:disabled) { transform:translateY(-2px); opacity:.92; }
+    .enrollment-submit-btn:disabled { opacity:.5; cursor:not-allowed; }
+
+    .enrollment-info-box {
+      background:var(--bg-card); border:1px solid var(--border);
+      padding:1rem; border-radius:var(--radius); font-size:.82rem;
+      color:var(--text-dim); margin-top:1rem; text-align:center;
+    }
+    .enrollment-info-box a { color:var(--orange); font-weight:600; }
+
+    /* ============================================
+       UTILITIES
+    ============================================ */
+    .sr-only {
+      position:absolute; width:1px; height:1px;
+      padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    .reveal {
+      opacity:0; transform:translateY(18px);
+      transition:opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal:nth-child(2) { transition-delay:.08s; }
+    .reveal:nth-child(3) { transition-delay:.16s; }
+    .reveal:nth-child(4) { transition-delay:.24s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:.01ms !important; animation-iteration-count:1 !important;
+        transition-duration:.01ms !important; scroll-behavior:auto !important;
+      }
+    }
+
+    button:focus-visible, a:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline:2px solid var(--orange); outline-offset:2px;
+    }
+
+    section[id] { scroll-margin-top:80px; }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns:1fr; gap:3rem; text-align:center; }
+      .hero h1 { max-width:none; }
+      .hero-sub { margin-inline:auto; }
+      .hero-actions { align-items:center; }
+      .hero-pills { justify-content:center; }
+      .activities-grid { grid-template-columns:repeat(2,1fr); }
+      .contacts-grid { grid-template-columns:repeat(2,1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .header { height:64px; }
+      .nav, .logo-divider, .logo-sub-text { display:none; }
+      .menu-toggle { display:flex; }
+      .logo-img { height:82px; margin-bottom:-38px; }
+
+      .hero-inner { padding:2.5rem 0; }
+      .hero h1 { font-size:2.2rem; }
+      .hero-actions { flex-direction:column; width:100%; }
+      .btn-primary { width:100%; justify-content:center; }
+
+      .proof-section .container { gap:2rem; }
+      .proof-divider { display:none; }
+
+      .activities-grid { grid-template-columns:1fr; }
+      .tools-grid { grid-template-columns:1fr; }
+      .reasons-grid { grid-template-columns:1fr; }
+      .courses-grid { grid-template-columns:1fr; }
+      .contacts-grid { grid-template-columns:1fr; }
+
+      .cta-scuole { grid-template-columns:1fr; }
+      .cta-scuole-right { align-items:stretch; }
+      .btn-scuola { justify-content:center; text-align:center; }
+
+      .cta-finale-btns { flex-direction:column; }
+      .cta-finale-btns .btn-primary { justify-content:center; }
+
+      .section { padding:64px 0; }
+      .cta-finale { padding:64px 0; }
+
+      .enrollment-modal { padding:0; }
+      .enrollment-modal-content { border-radius:var(--radius-lg) var(--radius-lg) 0 0; max-height:95vh; margin-top:auto; }
+      .enrollment-form-row { grid-template-columns:1fr; }
+      .enrollment-courses-grid { grid-template-columns:1fr; }
+
+      .promo-natale-card { flex-direction:column; }
+      .fab-wa { bottom:16px; right:16px; width:52px; height:52px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="fab-container">
-  <a href="https://wa.me/393703069215" class="fab fab-whatsapp" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
-  </a>
-</div>
+<!-- FAB WhatsApp -->
+<a href="https://wa.me/393703069215" class="fab-wa" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
 
+<!-- HEADER -->
 <header class="header">
   <div class="container">
-    <div class="logo-container">
-      <div class="logo-overlap">
-        <img src="images/Logo.webp" alt="Bit Lab Tecnologici - Logo corsi robotica educativa Brescia" class="logo-img">
-      </div>
-      <div class="logo-text-group">
-        <h1 class="logo-text">BIT</h1>
-        <div class="logo-divider"></div>
-        <span class="logo-sub">Lab<br>Tecnologici</span>
-      </div>
-    </div>
-    <div class="header-right">
-      <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#il-progetto">Progetto</a>
-        <a href="#strumenti">Strumenti</a>
-        <a href="#corsi">Corsi</a>
-        <a href="#footer">Contatti</a>      
-      </nav>
-    </div>
-    <button class="menu-toggle" aria-label="Apri menu">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+    <a href="#home" class="logo-wrap" aria-label="BIT Lab Tecnologici – Home">
+      <img src="images/Logo.webp" alt="BIT Lab Tecnologici – Logo corsi robotica Brescia" class="logo-img">
+      <span class="logo-name">BIT</span>
+      <div class="logo-divider" aria-hidden="true"></div>
+      <span class="logo-sub-text">Lab<br>Tecnologici</span>
+    </a>
+    <nav class="nav" aria-label="Navigazione principale">
+      <a href="#home">Home</a>
+      <a href="#il-progetto">Progetto</a>
+      <a href="#strumenti">Strumenti</a>
+      <a href="#corsi">Corsi</a>
+      <a href="#footer">Contatti</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Apri menu" id="menuToggle">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
   </div>
 </header>
 
-<nav class="nav-overlay" aria-label="Menu mobile">
+<!-- Nav overlay mobile -->
+<nav class="nav-overlay" id="navOverlay" aria-label="Menu mobile">
   <a href="#home">Home</a>
   <a href="#il-progetto">Il progetto</a>
   <a href="#strumenti">Strumenti</a>
@@ -89,306 +1319,401 @@
   <a href="#footer">Contatti</a>
 </nav>
 
+<!-- ===================================================
+     1. HERO
+=================================================== -->
 <section id="home" class="hero">
-  <div class="hero-left-image">
-    <img src="images/hero-left.webp" alt="Bit Lab Tecnologici: programma i robot LEGO a Brescia a blocchi o con python" loading="eager">
-  </div>
-  <div class="container hero-content-container">
-    <p class="hero-eyebrow">Robotica educativa · Brescia</p>
-    <h2 class="hero-title">
-      Il viaggio nel mondo <span style="background:linear-gradient(135deg,#FF6B35 0%,#FFD166 50%,#FF6B35 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;display:inline-block;background-size:200% auto;animation:gradientFlow 3s ease infinite;">Tech</span><br>
-      inizia qui
-    </h2>
-    <p>Lab divertenti per ragazzi e ragazze dagli 8 ai 16 anni.</p>
-    <div class="hero-actions">
-      <a href="#contatti-info" class="hero-cta-split">
-        <span class="hero-cta-left">Iscriviti ora</span>
-        <span class="hero-cta-right">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Prova gratuita
-        </span>
-      </a>
-    </div>
-    <div class="hero-features">
-      <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <div><div class="hero-pill-label">Gruppi piccoli</div><div class="hero-pill-sub">8-10 ragazzi</div></div>
+  <div class="hero-glow-a" aria-hidden="true"></div>
+  <div class="hero-glow-b" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <!-- LEFT: messaggio principale -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">Robotica educativa · Brescia</div>
+      <h1>
+        Imparano costruendo<br><em>robot veri</em>
+      </h1>
+      <p class="hero-sub">
+        Laboratori pratici con LEGO, Arduino e micro:bit per ragazzi dagli 8 ai 16 anni. Gruppi piccoli, tutor dedicati, zero teoria noiosa.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/393703069215?text=Ciao!%20Vorrei%20informazioni%20sulla%20prova%20gratuita." class="btn-primary" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Prenota una prova gratuita
+        </a>
+        <a href="#corsi" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          Vedi i corsi disponibili
+        </a>
       </div>
-      <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-        <div><div class="hero-pill-label">Kit inclusi</div><div class="hero-pill-sub">ogni lezione</div></div>
-      </div>
-      <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <div><div class="hero-pill-label">100% pratico</div><div class="hero-pill-sub">progetti reali</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-right-stepper">
-    <div class="hero-stepper-box">
-      <div class="hero-stepper-title">Come funziona un laboratorio</div>
-      <div class="hero-step">
-        <div class="hero-step-left"><div class="hero-step-num">1</div><div class="hero-step-line"></div></div>
-        <div class="hero-step-body"><div class="hero-step-label">🤖​ ​Costruzione del robot</div><div class="hero-step-desc">I ragazzi assemblano il robot con kit LEGO, Arduino o micro:bit. Si impara costruendo.</div></div>
-      </div>
-      <div class="hero-step">
-        <div class="hero-step-left"><div class="hero-step-num">2</div><div class="hero-step-line"></div></div>
-        <div class="hero-step-body"><div class="hero-step-label">​​💻​ Programmazione</div><div class="hero-step-desc">Si scrive il codice con blocchi visivi o testuale, in base all'età. Il tutor guida senza togliere autonomia.</div></div>
-      </div>
-      <div class="hero-step">
-        <div class="hero-step-left"><div class="hero-step-num">3</div><div class="hero-step-line"></div></div>
-        <div class="hero-step-body"><div class="hero-step-label">🏆​ Test e sfida finale</div><div class="hero-step-desc">Il robot viene messo alla prova. Piccole sfide tra gruppi, debug, aggiustamenti.</div></div>
+      <div class="hero-pills">
+        <div class="hero-pill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div><div class="hero-pill-label">Gruppi piccoli</div><div class="hero-pill-sub">8–10 ragazzi</div></div>
+        </div>
+        <div class="hero-pill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <div><div class="hero-pill-label">Kit inclusi</div><div class="hero-pill-sub">ogni lezione</div></div>
+        </div>
+        <div class="hero-pill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div><div class="hero-pill-label">100% pratico</div><div class="hero-pill-sub">progetti reali</div></div>
+        </div>
       </div>
     </div>
-   </div>
-</section>
 
-<!-- IL PROGETTO -->
-<section id="il-progetto" class="section section-il-progetto">
-  <div class="il-progetto-symbols" aria-hidden="true">
-    <span class="il-sym" style="font-size:3.2rem; top:5%; left:2%">&lt;/&gt;</span>
-    <span class="il-sym" style="font-size:2.4rem; top:8%; left:22%">{ }</span>
-    <span class="il-sym" style="font-size:2.8rem; top:3%; left:55%">01</span>
-    <span class="il-sym" style="font-size:2rem;   top:10%; left:78%">⚙</span>
-    <span class="il-sym" style="font-size:3rem;   top:55%; left:0%">if()</span>
-    <span class="il-sym" style="font-size:2.2rem; top:65%; left:28%">→</span>
-    <span class="il-sym" style="font-size:2.6rem; top:60%; left:52%">{ }</span>
-    <span class="il-sym" style="font-size:1.8rem; top:70%; left:74%">&lt;?&gt;</span>
-    <span class="il-sym" style="font-size:3rem;   top:35%; left:86%">⚙</span>
-    <span class="il-sym" style="font-size:2rem;   top:42%; left:5%">010</span>
-    <span class="il-sym" style="font-size:1.6rem; top:80%; left:12%">loop()</span>
-    <span class="il-sym" style="font-size:2.8rem; top:82%; left:62%">&lt;/&gt;</span>
-    <span class="il-sym" style="font-size:1.8rem; top:25%; left:42%">!=</span>
-    <span class="il-sym" style="font-size:2.2rem; top:45%; left:62%">++</span>
-  </div>
-
-  <div class="container">
-
-    <div class="progetto-grid">
-      <div class="progetto-left">
-        <h2 class="progetto-title">Bit <span>Lab Tecnologici</span></h2>
-        <p class="progetto-lead">Un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente. Chiamaci per una prova gratuita.</p>
-        <div class="progetto-highlights">
-          <div class="progetto-hl">
-            <div class="progetto-hl-num">1</div>
-            <div><strong>Apprendimento Interattivo</strong><p>Esperienze pratiche con kit LEGO, Arduino, micro:bit.</p></div>
+    <!-- RIGHT: come funziona -->
+    <div class="hero-right">
+      <div class="steps-box">
+        <div class="steps-title">Come funziona un laboratorio</div>
+        <div class="step">
+          <div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-label">🤖 Costruzione del robot</div>
+            <div class="step-desc">I ragazzi assemblano il robot con kit LEGO, Arduino o micro:bit. Si impara costruendo, con le mani.</div>
           </div>
-          <div class="progetto-hl">
-            <div class="progetto-hl-num">2</div>
-            <div><strong>Sviluppo STEM</strong><p>Scienza, Tecnologia, Ingegneria e Matematica in modo pratico.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-label">💻 Programmazione</div>
+            <div class="step-desc">Si scrive il codice con blocchi visivi o testuale in base all'età. Il tutor guida senza togliere autonomia.</div>
           </div>
-          <div class="progetto-hl">
-            <div class="progetto-hl-num">3</div>
-            <div><strong>Divertimento</strong><p>I ragazzi costruiscono nuovi robot progettandoli da zero.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-label">🏆 Test e sfida finale</div>
+            <div class="step-desc">Il robot viene messo alla prova. Piccole sfide tra gruppi, debug, aggiustamenti. Si finisce sempre soddisfatti.</div>
+          </div>
+        </div>
+        <div class="proof-bar">
+          <div class="proof-item">
+            <div class="proof-num">4</div>
+            <div class="proof-label">Scuole partner</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">8–10</div>
+            <div class="proof-label">Max per gruppo</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">8–16</div>
+            <div class="proof-label">Anni ammessi</div>
           </div>
         </div>
       </div>
-      <div class="progetto-right">
-        <img src="images/lab-foto.webp" alt="Ragazzi al laboratorio Bit Labs Tecnologici a Brescia" loading="lazy" class="progetto-img">
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     2. PROVA SOCIALE (numeri in evidenza)
+=================================================== -->
+<div class="proof-section" aria-label="Numeri BIT Lab">
+  <div class="container">
+    <div class="proof-stat">
+      <div class="proof-stat-num">4</div>
+      <div class="proof-stat-label">Scuole primarie già attive</div>
+    </div>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">100%</div>
+      <div class="proof-stat-label">Pratico, niente teoria secca</div>
+    </div>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">8–10</div>
+      <div class="proof-stat-label">Ragazzi per gruppo massimo</div>
+    </div>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">Gratis</div>
+      <div class="proof-stat-label">Prima lezione di prova</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================
+     3. COSA FANNO I RAGAZZI
+=================================================== -->
+<section class="section" aria-labelledby="attivita-title">
+  <div class="container">
+    <div class="section-header">
+      <div class="label-pill">Nei laboratori</div>
+      <h2 id="attivita-title">Cosa fanno durante le lezioni?</h2>
+      <p class="section-sub">Ogni sessione è un progetto diverso. I ragazzi non ascoltano — costruiscono, programmano, sbagliano, imparano.</p>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card reveal">
+        <div class="activity-icon" aria-hidden="true">🔧</div>
+        <div class="activity-num" aria-hidden="true">01</div>
+        <h3>Costruiscono robot</h3>
+        <p>Assemblano strutture fisiche con mattoncini LEGO Spike Prime, sensori, motori. Ogni settimana un progetto diverso: veicoli, bracci robotici, macchine interattive.</p>
+      </div>
+      <div class="activity-card reveal">
+        <div class="activity-icon" aria-hidden="true">💻</div>
+        <div class="activity-num" aria-hidden="true">02</div>
+        <h3>Programmano il codice</h3>
+        <p>Dagli 8 anni con blocchi visivi (Open Roberta), dai 12 con JavaScript, Python o C++. Il livello si adatta all'esperienza, non all'età anagrafica.</p>
+      </div>
+      <div class="activity-card reveal">
+        <div class="activity-icon" aria-hidden="true">🏆</div>
+        <div class="activity-num" aria-hidden="true">03</div>
+        <h3>Sfide e competizioni</h3>
+        <p>Ogni lezione finisce con una sfida: chi percorre il labirinto più veloce, chi risponde agli ostacoli, chi fa la presa migliore. Si impara vincendo e perdendo.</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <hr class="progetto-divider">
+<!-- ===================================================
+     4. STRUMENTI
+=================================================== -->
+<section id="strumenti" class="section bg-alt" aria-labelledby="strumenti-title">
+  <div class="container">
+    <div class="section-header">
+      <div class="label-pill">Gli strumenti</div>
+      <h2 id="strumenti-title">Con cosa lavorano i ragazzi?</h2>
+      <p class="section-sub">Kit professionali usati nelle migliori scuole d'Europa. Ogni strumento è scelto per età e obiettivo.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card reveal">
+        <div class="tool-badge badge-lego">8–13 anni</div>
+        <img src="images/lego-spike-prime.webp" alt="LEGO Spike Prime – corso robotica per ragazzi Brescia" class="tool-img" loading="lazy">
+        <h3 class="tool-name">Lego Spike Prime</h3>
+        <div class="tool-desc"><p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p></div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-badge badge-roberta">8–13 anni</div>
+        <img src="images/open-roberta.svg" alt="Open Roberta – laboratorio coding Brescia" class="tool-img" loading="lazy">
+        <h3 class="tool-name">Open Roberta</h3>
+        <div class="tool-desc"><p><strong>Ideale per:</strong> Programmare robot LEGO, micro:bit e altri dispositivi online, con blocchi colorati nel browser, senza installazioni. Perfetto per l'approccio visivo.</p></div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-badge badge-arduino">12–16 anni</div>
+        <img src="images/arduino.svg" alt="Arduino – corso per ragazzi Brescia" class="tool-img" loading="lazy">
+        <h3 class="tool-name">Arduino</h3>
+        <div class="tool-desc"><p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori, stazioni meteo, giochi, robot su ruote. Linguaggio testuale semplice basato su C++.</p></div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-badge badge-microbit">8–13 anni</div>
+        <img src="images/microbit.svg" alt="Micro:bit BBC – corso programmazione Brescia" class="tool-img" loading="lazy">
+        <h3 class="tool-name">micro:bit BBC</h3>
+        <div class="tool-desc"><p><strong>Ideale per:</strong> Progetti portatili: contapassi, giochi, telecomandi, strumenti musicali. Tre modalità: blocchi, JavaScript o Python.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="collab-header">
-      <h3>Già nelle scuole di Brescia</h3>
-      <p>Portiamo il doposcuola di robotica nelle scuole primarie ogni settimana, in collaborazione con <a href="https://www.club28bs.it" target="_blank" rel="noopener">Club 28 SSD s.r.l.</a></p>
+<!-- ===================================================
+     5. PERCHÉ SCEGLIERCI
+=================================================== -->
+<section id="il-progetto" class="section" aria-labelledby="perche-title">
+  <div class="container">
+    <div class="section-header">
+      <div class="label-pill">Il nostro approccio</div>
+      <h2 id="perche-title">Perché i genitori ci scelgono</h2>
+      <p class="section-sub">Un progetto nato per avvicinare i più giovani alla tecnologia in modo creativo, pratico e sostenibile.</p>
+    </div>
+    <div class="reasons-grid">
+      <div class="reason-card reveal">
+        <div class="reason-icon" aria-hidden="true">👥</div>
+        <div>
+          <h3>Gruppi piccoli (8–10)</h3>
+          <p>Ogni ragazzo riceve attenzione personalizzata. Nessuno rimane indietro, nessuno si annoia ad aspettare.</p>
+        </div>
+      </div>
+      <div class="reason-card reveal">
+        <div class="reason-icon" aria-hidden="true">🛠️</div>
+        <div>
+          <h3>Apprendimento pratico</h3>
+          <p>Si costruisce ogni lezione. Non si guarda il professore alla lavagna: si fanno le cose con le mani.</p>
+        </div>
+      </div>
+      <div class="reason-card reveal">
+        <div class="reason-icon" aria-hidden="true">🎓</div>
+        <div>
+          <h3>Tutor dedicati</h3>
+          <p>I nostri tutor guidano senza sostituire. L'obiettivo è che i ragazzi risolvano i problemi da soli.</p>
+        </div>
+      </div>
+      <div class="reason-card reveal">
+        <div class="reason-icon" aria-hidden="true">🔬</div>
+        <div>
+          <h3>Metodo STEM reale</h3>
+          <p>Scienza, tecnologia, ingegneria e matematica applicati a progetti concreti. Non un'etichetta, un metodo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     6. SCUOLE (prova sociale forte)
+=================================================== -->
+<section class="section bg-alt" aria-labelledby="scuole-title">
+  <div class="container">
+    <div class="section-header">
+      <div class="label-pill">Nelle scuole</div>
+      <h2 id="scuole-title">Già nelle scuole di Brescia</h2>
+      <p class="section-sub">Portiamo il doposcuola di robotica ogni settimana, in collaborazione con <a href="https://www.club28bs.it" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">Club 28 SSD s.r.l.</a></p>
     </div>
 
     <div class="scuole-grid">
-      <div class="scuola-card">
-        <img src="images/Torricella.webp" alt="Primaria Torricella (BS)">
+      <div class="scuola-card reveal">
+        <img src="images/Torricella.webp" alt="Scuola Primaria Torricella Brescia">
         <span>Torricella</span>
         <div class="scuola-badge">Attivo</div>
       </div>
-      <div class="scuola-card">
-        <img src="images/Casazza.webp" alt="Primaria Casazza (BS)">
+      <div class="scuola-card reveal">
+        <img src="images/Casazza.webp" alt="Scuola Primaria Casazza Brescia">
         <span>Casazza</span>
         <div class="scuola-badge">Attivo</div>
       </div>
-      <div class="scuola-card">
-        <img src="images/Melzi.webp" alt="Primaria Melzi (BS)">
+      <div class="scuola-card reveal">
+        <img src="images/Melzi.webp" alt="Scuola Primaria Melzi Brescia">
         <span>Melzi</span>
         <div class="scuola-badge">Attivo</div>
       </div>
-      <div class="scuola-card">
-        <img src="images/Quasimodo.webp" alt="Primaria Quasimodo (BS)">
+      <div class="scuola-card reveal">
+        <img src="images/Quasimodo.webp" alt="Scuola Primaria Quasimodo Brescia">
         <span>Quasimodo</span>
-        <div class="scuola-badge">⌛​</div>
+        <div class="scuola-badge" style="color:var(--text-muted);background:rgba(255,255,255,0.06);border-color:var(--border);">⌛</div>
       </div>
     </div>
 
+    <!-- CTA Scuole -->
     <div class="cta-scuole">
-      <div class="cta-scuole-left">
-        <div class="cta-scuole-tag">
+      <div>
+        <div class="cta-tag">
           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           Per i comitati genitori
         </div>
-        <h4>Porta il coding nella tua scuola!</h4>
+        <h3>Porta il coding nella tua scuola!</h3>
         <p>Organizziamo laboratori settimanali di robotica educativa per le scuole primarie e secondarie di Brescia e provincia. Il comitato genitori può contattarci per avviare una collaborazione.</p>
-        <div class="cta-scuole-points">
-          <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="cta-points">
+          <div class="cta-point">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Doposcuola settimanale fisso
           </div>
-          <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="cta-point">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Brescia e provincia
           </div>
-          <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="cta-point">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Kit e materiali inclusi
           </div>
         </div>
       </div>
       <div class="cta-scuole-right">
-        <a href="mailto:bitcorsi@gmail.com?subject=Collaborazione%20scuola&body=Ciao%2C%20sono%20un%20genitore%20e%20vorrei%20portare%20la%20robotica%20nella%20scuola%20di%20mio%20figlio." class="btn-cta-scuole">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <a href="mailto:bitcorsi@gmail.com?subject=Collaborazione%20scuola&body=Ciao%2C%20sono%20un%20genitore%20e%20vorrei%20portare%20la%20robotica%20nella%20scuola%20di%20mio%20figlio." class="btn-scuola">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           Scrivici per la tua scuola
         </a>
-        <div class="cta-scuole-note">risposta entro 24 ore</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Strumenti -->
-<section id="strumenti" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>I nostri strumenti per imparare costruendo</h2>
-      <p class="section-subtitle">per coltivare i MAKER del futuro o solo per divertirsi</p>
-    </div>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <div class="tool-icon-badge lego-color">8-13 anni</div>
-        <img src="images/lego-spike-prime.webp" alt="Corso robotica educativa con LEGO Spike Prime per ragazzi a Brescia" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Lego Spike Prime</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p></div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge roberta-color">8-13 anni</div>
-        <img src="images/open-roberta.svg" alt="Laboratorio di coding con Open Roberta a Brescia" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Open Roberta</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms...), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa. Blocchi colorati nel browser senza installazioni.</p></div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge arduino-color">12-16 anni</div>
-        <img src="images/arduino.svg" alt="Corso Arduino per ragazzi a Brescia" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Arduino</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio testuale semplice basato su C++.</p></div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge microbit-color">8-13 anni</div>
-        <img src="images/microbit.svg" alt="Corso di programmazione con micro:bit per bambini a Brescia" class="tool-image" loading="lazy">
-        <h3 class="tool-title">micro:bit BBC</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori. Tre modalità: blocchi, JavaScript o Python.</p></div>
+        <div class="cta-note">Risposta entro 24 ore</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Corsi -->
-<section id="corsi" class="section bg-light">
+<!-- ===================================================
+     7. CORSI
+=================================================== -->
+<section id="corsi" class="section" aria-labelledby="corsi-title">
   <div class="container">
     <div class="section-header">
-      <h2>Iscrizioni aperte - Primavera 2026</h2>
-      <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia</p>
+      <div class="label-pill">Iscrizioni aperte</div>
+      <h2 id="corsi-title">Corsi Primavera 2026</h2>
+      <p class="section-sub">Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia.</p>
     </div>
     <div id="promo-natale-container" class="promo-natale-container" style="display:none;"></div>
-    <!--<div class="alert-box">
-      <img src="images/bit-corre.webp" alt="" class="bit-running" loading="lazy">
-      <div>
-        <strong>ISCRIVITI IN ANTICIPO!</strong>
-        <p>Ogni gruppo è limitato a 8 - 10 partecipanti per garantire un'attenzione personalizzata.</p>
-      </div>
-    </div>-->
     <div class="courses-grid" id="courses-container">
-      <div class="course-card loading" style="grid-column: 1 / -1;">
-        <p style="text-align:center; padding:2rem; color:var(--gray-600);">Caricamento corsi…</p>
+      <div class="course-card loading" style="grid-column:1/-1;">
+        <p style="text-align:center;padding:2rem;color:var(--text-dim);">Caricamento corsi…</p>
       </div>
     </div>
   </div>
 </section>
 
-
-
-<!-- Contatti - Info -->
-<section id="contatti-info" class="bit-contact-slim">
+<!-- ===================================================
+     8. CTA FINALE
+=================================================== -->
+<section class="cta-finale" aria-labelledby="cta-finale-title">
   <div class="container">
-    <div class="bit-bar-wrapper">
-
-      <!-- WhatsApp -->
-      <a href="https://wa.me/393703069215" class="bit-bar-column" target="_blank">
-        <div class="bit-icon orange-tint">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-        </div>
-        <div class="bit-text">
-          <span class="bit-label">Contattaci</span>
-          <span class="bit-value">+39 370 306 9215</span>
-        </div>
-      </a>
-
-      <!-- Sede -->
-      <div class="bit-bar-column">
-        <div class="bit-icon blue-tint">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <div class="bit-text">
-          <span class="bit-label">Sede Lab</span>
-          <span class="bit-value">Piazzetta SS. Francesco e Chiara 1, BS</span>
-        </div>
+    <div class="cta-finale-box">
+      <div class="label-pill" style="margin-bottom:1.2rem;">Inizia gratis</div>
+      <h2 id="cta-finale-title">Vuoi una prova gratuita?</h2>
+      <p>Scrivi su WhatsApp o iscriviti direttamente. La prima lezione è senza impegno, per vedere se tuo figlio si diverte.</p>
+      <div class="cta-finale-btns">
+        <a href="https://wa.me/393703069215?text=Ciao!%20Vorrei%20informazioni%20sulla%20prova%20gratuita." class="btn-primary" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Scrivici su WhatsApp
+        </a>
+        <a href="#corsi" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          Vedi i corsi
+        </a>
       </div>
-
-      <!-- Orari -->
-      <div class="bit-bar-column">
-        <div class="bit-icon green-tint">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <div class="bit-text">
-          <span class="bit-label">Orari Sabato</span>
-          <span class="bit-value">10:00-11:30 | 15:00-16:30</span>
-        </div>
-      </div>
-
-      <!-- Instagram -->
-      <a href="https://instagram.com/bit_corsi" class="bit-bar-column" target="_blank">
-        <div class="bit-icon purple-tint">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
-        </div>
-        <div class="bit-text">
-          <span class="bit-label">Instagram</span>
-          <span class="bit-value">@bit_corsi</span>
-        </div>
-      </a>
-
     </div>
   </div>
 </section>
-<!-- Footer -->
-<footer id="footer" class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
-  <div class="container" style="text-align:center;">
-    <p>P.IVA 04701410989 - &copy; 2026 BIT | Lab Tecnologici - Privacy garantita - sito cookie free |
-      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" target="_blank" rel="noopener noreferrer" style="color:#FF6B35; text-decoration:underline;">Privacy Policy</a>
+
+<!-- CONTATTI BAR -->
+<section id="contatti-info" class="contacts-bar" aria-label="Contatti BIT Lab">
+  <div class="container">
+    <div class="contacts-grid">
+      <a href="https://wa.me/393703069215" class="contact-item" target="_blank" rel="noopener">
+        <div class="contact-icon ic-orange">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </div>
+        <div class="contact-text">
+          <span class="contact-label">Contattaci</span>
+          <span class="contact-value">+39 370 306 9215</span>
+        </div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-icon ic-blue">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-text">
+          <span class="contact-label">Sede Lab</span>
+          <span class="contact-value">Piazzetta SS. Francesco e Chiara 1, BS</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon ic-green">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="contact-text">
+          <span class="contact-label">Orari Sabato</span>
+          <span class="contact-value">10:00–11:30 | 15:00–16:30</span>
+        </div>
+      </div>
+      <a href="https://instagram.com/bit_corsi" class="contact-item" target="_blank" rel="noopener">
+        <div class="contact-icon ic-purple">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="contact-text">
+          <span class="contact-label">Instagram</span>
+          <span class="contact-value">@bit_corsi</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer" class="footer">
+  <div class="container">
+    <p>P.IVA 04701410989 &mdash; &copy; 2026 BIT Lab Tecnologici &mdash; Sito cookie free &mdash;
+      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
     </p>
   </div>
 </footer>
 
 <!-- POPUP SUMMER CAMP -->
-<div id="sc-popup-overlay" style="display:none;">
+<div id="sc-popup-overlay" style="display:none;" role="dialog" aria-modal="true" aria-label="ROBOGREST 2026">
   <div class="sc-popup">
     <div class="sc-popup-header">
       <button id="sc-popup-close" aria-label="Chiudi">&#x2715;</button>
@@ -400,47 +1725,40 @@
       <div class="sc-popup-chips">
         <span class="sc-chip">📅 10 giu – 31 lug 2026</span>
         <span class="sc-chip">👦 7–13 anni</span>
-        <span class="sc-chip">💶 €130/settimana - 9:00/17:00</span>
+        <span class="sc-chip">💶 €130/settimana · 9:00/17:00</span>
       </div>
-      <p class="sc-popup-desc">Progettazione, costruzione, programmazione di robot con LEGO Spike Prime e Micro:bit ogni Mattina. Posti limitati, caparra €30 per prenotare.</p>
-      <button id="sc-popup-skip" class="sc-popup-skip">Continua sul Sito</button>
+      <p class="sc-popup-desc">Progettazione, costruzione, programmazione di robot con LEGO Spike Prime e Micro:bit ogni mattina. Posti limitati, caparra €30 per prenotare.</p>
+      <button id="sc-popup-skip" class="sc-popup-skip">Continua sul sito</button>
     </div>
   </div>
 </div>
 
 <!-- MODAL ISCRIZIONI -->
-<div id="enrollmentModal" class="enrollment-modal">
+<div id="enrollmentModal" class="enrollment-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="enrollment-modal-overlay"></div>
   <div class="enrollment-modal-content">
     <button class="enrollment-modal-close" id="closeEnrollmentModal" aria-label="Chiudi">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
     </button>
-
     <div class="enrollment-modal-header">
-      <h2>🤖 Join the Adventure!</h2>
+      <h2 id="modalTitle">🤖 Join the Adventure!</h2>
       <p>Scegli il tuo corso di robotica preferito</p>
     </div>
-
     <div id="enrollmentSuccessMessage" class="enrollment-message success-message">
       <strong>✅ Iscrizione Confermata!</strong>
       <p id="enrollmentSuccessText"></p>
     </div>
-
     <div id="enrollmentWaitlistMessage" class="enrollment-message waitlist-message">
       <strong>⏳ In Lista d'Attesa</strong>
       <p id="enrollmentWaitlistText"></p>
     </div>
-
     <div id="enrollmentErrorMessage" class="enrollment-message error-message">
       <strong>⚠️ Errore</strong>
       <p id="enrollmentErrorText"></p>
     </div>
-
     <form id="enrollmentForm" class="enrollment-form">
-
       <div class="enrollment-form-section">
         <div class="enrollment-form-section-title">👦 Dati dell'Alunno</div>
         <div class="enrollment-form-group">
@@ -469,12 +1787,11 @@
           </div>
         </div>
       </div>
-
       <div class="enrollment-form-section">
         <div class="enrollment-form-section-title">📧 Dati del Genitore</div>
         <div class="enrollment-form-group">
           <label for="parentEmail">Email del Genitore *</label>
-          <input type="email" id="parentEmail" name="parentEmail" placeholder="email@example.com" required style="border: 2px solid #FF6B35; background: #fff5f0;">
+          <input type="email" id="parentEmail" name="parentEmail" placeholder="email@example.com" required>
         </div>
         <div class="enrollment-form-row">
           <div class="enrollment-form-group">
@@ -487,12 +1804,10 @@
           </div>
         </div>
       </div>
-
       <div class="enrollment-form-section">
         <div class="enrollment-form-section-title">🤖 Seleziona il Corso *</div>
         <div class="enrollment-courses-grid" id="enrollmentCoursesGrid"></div>
       </div>
-
       <div class="enrollment-form-section">
         <div class="enrollment-form-section-title">⚡ Informazioni Aggiuntive</div>
         <div class="enrollment-form-group">
@@ -508,35 +1823,76 @@
         </div>
         <div class="enrollment-form-group">
           <label for="notes">Note (es: esperienze precedenti)</label>
-          <textarea id="notes" name="notes" placeholder="Scrivi qui..."></textarea>
+          <textarea id="notes" name="notes" placeholder="Scrivi qui…"></textarea>
         </div>
       </div>
-
       <div class="enrollment-form-checkbox">
         <input type="checkbox" id="privacy" name="privacy" required>
-        <label for="privacy">
-          Accetto l'<a href="/privacy.md" target="_blank">informativa privacy</a> *
-        </label>
+        <label for="privacy">Accetto l'<a href="/privacy.md" target="_blank">informativa privacy</a> *</label>
       </div>
-
       <button type="submit" class="enrollment-submit-btn">
         <span id="enrollmentSubmitText">✨ Iscriviti Subito!</span>
       </button>
     </form>
-
     <div class="enrollment-info-box">
       <p>📧 Riceverai email di conferma all'indirizzo del genitore</p>
-      <p style="margin-top: 0.5rem;">📞 Domande? Contattaci: <a href="tel:+393703069215">+39 370 306 9215</a></p>
+      <p style="margin-top:0.5rem;">📞 Domande? <a href="tel:+393703069215">+39 370 306 9215</a></p>
     </div>
   </div>
 </div>
 
-<!-- Firebase SDK (compat) -->
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
 
 <!-- Script principale -->
 <script src="script.js"></script>
+
+<script>
+  /* ============ MENU TOGGLE ============ */
+  const toggle = document.getElementById('menuToggle');
+  const overlay = document.getElementById('navOverlay');
+  toggle.addEventListener('click', () => {
+    const open = overlay.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      overlay.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ============ SCROLL REVEAL ============ */
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => io.observe(el));
+
+  /* ============ POPUP SUMMER CAMP ============ */
+  (function() {
+    const popupOverlay = document.getElementById('sc-popup-overlay');
+    if (!popupOverlay) return;
+    const shown = sessionStorage.getItem('sc_popup_shown');
+    if (!shown) {
+      setTimeout(() => {
+        popupOverlay.style.display = 'flex';
+        requestAnimationFrame(() => popupOverlay.classList.add('sc-open'));
+        sessionStorage.setItem('sc_popup_shown', '1');
+      }, 2200);
+    }
+    function closePopup() {
+      popupOverlay.classList.remove('sc-open');
+      setTimeout(() => { popupOverlay.style.display = 'none'; }, 280);
+    }
+    document.getElementById('sc-popup-close').addEventListener('click', closePopup);
+    document.getElementById('sc-popup-skip').addEventListener('click', closePopup);
+    popupOverlay.addEventListener('click', (e) => { if (e.target === popupOverlay) closePopup(); });
+  })();
+</script>
 
 </body>
 </html>
