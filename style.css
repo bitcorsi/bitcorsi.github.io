@@ -1331,7 +1331,7 @@ section[id] { scroll-margin-top:80px; }
 /* Sostituisci il blocco .cta-scuole e i suoi figli con questo */
 .cta-scuole {
   display: grid;
-  grid-template-columns: 1fr 200px auto; /* 1: Testo, 2: Immagine fissa, 3: Bottone */
+  grid-template-columns: 1fr 280px auto; /* 1: Testo, 2: Immagine fissa, 3: Bottone */
   align-items: center;
   gap: 2rem;
   padding: 2rem 3rem;
