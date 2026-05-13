@@ -1243,7 +1243,7 @@ section[id] { scroll-margin-top:80px; }
 /* Adattamento immagine centrale */
 .cta-scuole-img {
   width: 100%;
-  height: 220px; /* Altezza fissa per non cambiare la dimensione della sezione */
+  height: 200px; /* Altezza fissa per non cambiare la dimensione della sezione */
   object-fit: cover; /* Adatta la foto senza distorcerla */
   border-radius: var(--radius);
   order: 0; /* Mantiene la posizione centrale nel grid */
