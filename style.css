@@ -475,8 +475,8 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 .corso-chiuso .btn-course {
-    background-color: #d1d5db !important; /* Grigio chiaro */
-    color: #6b7280 !important;
+    background-color: #9ca3af !important; /* Grigio */
+    color: white !important;
     cursor: not-allowed !important;
     border: none !important;
 }
