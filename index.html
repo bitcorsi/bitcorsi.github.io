@@ -669,7 +669,6 @@
   </div>
 </section>
 
-<!-- Corsi — HTML STATICO -->
 <section id="corsi" class="section bg-light" aria-label="Corsi di robotica educativa">
   <div class="container">
     <div class="section-header">
@@ -677,13 +676,10 @@
       <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia</p>
     </div>
 
-    <div id="promo-natale-container" class="promo-natale-container" style="display:none;"></div>
-
     <div class="courses-grid" id="courses-container">
 
-      <!-- ① Spike Prime Lab -->
-      <div class="course-card">
-        <div class="course-badge badge-available">Closed</div>
+      <div class="course-card corso-chiuso">
+        <div class="course-badge">Iscrizioni chiuse</div>
         <h3 class="course-title">Spike Prime Lab</h3>
         <div class="course-meta">
           <span class="meta-item">8–13 anni</span>
@@ -691,13 +687,12 @@
           <span class="meta-item meta-price">€ 125</span>
         </div>
         <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
-        <p class="course-description">Costruisci e programma robot con mattoncini LEGO Technic, motori e sensori. Veicoli autonomi, bracci robotici e macchine interattive con blocchi visivi.</p>
-        <button class="btn-course" onclick="openEnrollmentModal('spike-prime')">Prenota il posto</button>
+        <p class="course-description">Costruisci e programma robot con mattoncini LEGO Technic. Veicoli autonomi, bracci robotici e macchine interattive.</p>
+        <button class="btn-course" disabled>Corso non disponibile</button>
       </div>
 
-      <!-- ② micro:bit Lab -->
-      <div class="course-card">
-        <div class="course-badge badge-available">Closed</div>
+      <div class="course-card corso-chiuso">
+        <div class="course-badge">Iscrizioni chiuse</div>
         <h3 class="course-title">Micro:bit Lab</h3>
         <div class="course-meta">
           <span class="meta-item">8–13 anni</span>
@@ -705,28 +700,25 @@
           <span class="meta-item meta-price">€ 125</span>
         </div>
         <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
-        <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi, misurare temperatura e movimenti. Tre modalità: blocchi, JavaScript o Python.</p>
-        <button class="btn-course" onclick="openEnrollmentModal('microbit')">Prenota il posto</button>
+        <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi, misurare temperatura e movimenti.</p>
+        <button class="btn-course" disabled>Corso non disponibile</button>
       </div>
 
-      <!-- ③ Open Roberta Lab -->
-      <div class="course-card">
-        <div class="course-badge badge-available">Closed</div>
+      <div class="course-card corso-chiuso">
+        <div class="course-badge">Iscrizioni chiuse</div>
         <h3 class="course-title">Open Roberta Lab</h3>
         <div class="course-meta">
           <span class="meta-item">8–13 anni</span>
-          <span class="meta-item">6 incontri </span>
-          <span class="meta-item">computer personale</span>
+          <span class="meta-item">6 incontri</span>
           <span class="meta-item meta-price">€ 90</span>
         </div>
-        <p class="course-description"><strong>Quando:</strong> 4 online + 2 incontri in sede sabato ore 10:00 – 11:30</p>
-        <p class="course-description">Sperimenta la programmazione virtuale di diversi robot (LEGO, micro:bit) con la piattaforma cloud Open Roberta Lab. Nessuna installazione richiesta.</p>
-        <button class="btn-course" onclick="openEnrollmentModal('roberta')">Prenota il posto</button>
+        <p class="course-description"><strong>Quando:</strong> online + sede sabato ore 10:00 – 11:30</p>
+        <p class="course-description">Sperimenta la programmazione virtuale di diversi robot con la piattaforma cloud Open Roberta Lab.</p>
+        <button class="btn-course" disabled>Corso non disponibile</button>
       </div>
 
-      <!-- ④ Arduino Base -->
-      <div class="course-card">
-        <div class="course-badge badge-available">Closed</div>
+      <div class="course-card corso-chiuso">
+        <div class="course-badge">Iscrizioni chiuse</div>
         <h3 class="course-title">Arduino Base</h3>
         <div class="course-meta">
           <span class="meta-item">12–16 anni</span>
@@ -734,13 +726,12 @@
           <span class="meta-item meta-price">€ 150</span>
         </div>
         <p class="course-description"><strong>Quando:</strong> sabato ore 15:00 – 16:30</p>
-        <p class="course-description">Crea progetti elettronici interattivi: semafori intelligenti, stazioni meteo, robot su ruote, strumenti musicali. Primo approccio al linguaggio testuale C++.</p>
-        <button class="btn-course" onclick="openEnrollmentModal('arduino')">Prenota il posto</button>
+        <p class="course-description">Crea progetti elettronici interattivi: semafori intelligenti, stazioni meteo e robot su ruote.</p>
+        <button class="btn-course" disabled>Corso non disponibile</button>
       </div>
 
-      <!-- ⑤ ROBOGREST 2026 -->
-      <div class="course-card">
-        <div class="course-badge badge-available">Open</div>
+      <div class="course-card corso-aperto">
+        <div class="course-badge">Iscrizioni aperte</div>
         <h3 class="course-title">ROBOGREST 2026 — Campo Estivo</h3>
         <div class="course-meta">
           <span class="meta-item">7–13 anni</span>
@@ -748,12 +739,12 @@
           <span class="meta-item meta-price">€ 130/sett</span>
         </div>
         <p class="course-description"><strong>Quando:</strong> lunedì – venerdì ore 9:00 – 17:00</p>
-        <p class="course-description">Progettazione, costruzione e programmazione di robot con LEGO Spike Prime e micro:bit ogni mattina. Posti limitati, caparra €30 per prenotare.</p>
+        <p class="course-description">Progettazione, costruzione e programmazione di robot ogni mattina. Posti limitati, caparra €30.</p>
         <button class="btn-course" onclick="openEnrollmentModal('robogrest')">Prenota il posto</button>
       </div>
 
-    </div><!-- /courses-grid -->
-  </div><!-- /container -->
+    </div>
+  </div>
 </section>
 
 <section id="faq" aria-label="Domande frequenti">
