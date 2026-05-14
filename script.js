@@ -175,13 +175,13 @@ function initCourses() {
         const badgeClass = isActive ? 'badge-available' : 'badge-closed';
         let btn;
         if (!isActive) {
-          btn = '<button class="btn-course btn-disabled" disabled>Corso in svolgimento</button>';
+          btn = '<button class="btn-course btn-disabled" disabled>Corso non disponibile</button>';
         } else if (corso.link) {
           btn = `<a href="${escapeHtml(corso.link)}" class="btn-course" target="_blank" rel="noopener">${escapeHtml(corso.linkTesto || 'Scopri di più')}</a>`;
         } else {
           // FIX: usa onclick diretto invece di href="#contatti-info"
           // così funziona anche sui link generati dinamicamente
-          btn = `<button class="btn-course" onclick="openEnrollmentModal('${escapeHtml(corso.id)}')">Prenota il posto</button>`;
+          btn = `<button class="btn-course" onclick="openEnrollmentModal('${escapeHtml(corso.id)}')">Assicurati un posto ora</button>`;
         }
 
         const card = `
