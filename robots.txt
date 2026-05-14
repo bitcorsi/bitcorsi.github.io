@@ -1,0 +1,47 @@
+# robots.txt — BIT | Lab Tecnologici
+# https://www.bitcorsi.it
+# Aggiornato: 2026
+
+# ── Crawler standard ─────────────────────────────────
+User-agent: *
+Allow: /
+
+# ── AI Engine Optimization (AEO) ─────────────────────
+# Consenti esplicitamente i principali crawler AI/LLM
+
+# OpenAI — ChatGPT / GPT Search
+User-agent: GPTBot
+Allow: /
+
+# Google — Gemini / AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic — Claude
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+
+# Common Crawl (addestra molti modelli open-source)
+User-agent: CCBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Meta — Llama
+User-agent: FacebookBot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# ── Sitemap ───────────────────────────────────────────
+Sitemap: https://www.bitcorsi.it/sitemap.xml
