@@ -67,7 +67,7 @@ function escapeHtml(str) {
 function init() {
   initMobileMenu();
   initFAQ();
-  initCourses();
+ // initCourses();
   unifyWhatsAppFAB();
   initSummerCampPopup();
   initEnrollmentModal();
