@@ -211,7 +211,7 @@ img { max-width: 100%; height: auto; display: block; }
 .course-details { margin-bottom: 1.2rem; }
 .detail-row { font-size: 0.9rem; color: var(--text-700); line-height: 1.5; }
 .course-description { color: var(--text-500); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
-.btn-course { padding: 0.85rem 1.5rem; padding-left: 1.2rem !important;padding-right: 1.2rem !important;font-size: 0.95rem; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border-radius: var(--radius); text-decoration: none; text-align: center; transition: var(--transition); border: none; cursor: pointer; display: block; box-shadow: var(--shadow-primary); }
+.btn-course { padding: 0.85rem 1.0rem;font-size: 0.95rem; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border-radius: var(--radius); text-decoration: none; text-align: center; transition: var(--transition); border: none; cursor: pointer; display: block; box-shadow: var(--shadow-primary); }
 .btn-course:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,93,43,0.35); }
 .btn-disabled { background: var(--bg-300); color: var(--text-400); cursor: not-allowed; transform: none !important; box-shadow: none; }
 
