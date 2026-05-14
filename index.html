@@ -676,6 +676,95 @@
       <h2>Iscrizioni aperte - Primavera 2026</h2>
       <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia</p>
     </div>
+    <!-- ─────────────────────────────────────────────────────
+  PATCH 2: sezione corsi STATICA
+  Problema: i corsi sono caricati via JS ("Caricamento corsi…")
+  e i crawler AI non li vedono.
+  Sostituisci il div con id o classe che mostra
+  "Caricamento corsi…" con questo blocco HTML statico.
+──────────────────────────────────────────────────────── -->
+<section id="corsi" aria-label="Corsi di robotica educativa">
+  <h2>Iscrizioni aperte — Primavera 2026</h2>
+  <p>Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia.</p>
+ 
+  <!-- Corso 1 -->
+  <article id="corso-spike-prime">
+    <h3>Laboratorio Robotica con LEGO Spike Prime</h3>
+    <ul>
+      <li><strong>Età:</strong> 8–13 anni</li>
+      <li><strong>Strumenti:</strong> LEGO Spike Prime (Technic, motori, sensori)</li>
+      <li><strong>Programmazione:</strong> Blocchi visivi</li>
+      <li><strong>Orario:</strong> Sabato 10:00–11:30</li>
+      <li><strong>Sede:</strong> Piazzetta SS. Francesco e Chiara 1, Brescia</li>
+      <li><strong>Gruppo:</strong> Max 10 ragazzi</li>
+      <li><strong>Kit:</strong> Incluso ogni lezione</li>
+    </ul>
+    <p>I ragazzi assemblano robot con mattoncini LEGO Technic, motori e sensori, poi li programmano con blocchi visivi. Progetti: veicoli autonomi, bracci robotici, macchine interattive.</p>
+    <a href="#contatti-info">Iscriviti — prova gratuita disponibile</a>
+  </article>
+ 
+  <!-- Corso 2 -->
+  <article id="corso-microbit">
+    <h3>Laboratorio Coding con micro:bit BBC</h3>
+    <ul>
+      <li><strong>Età:</strong> 8–13 anni</li>
+      <li><strong>Strumenti:</strong> micro:bit BBC</li>
+      <li><strong>Programmazione:</strong> Blocchi, JavaScript o Python</li>
+      <li><strong>Sede:</strong> Piazzetta SS. Francesco e Chiara 1, Brescia</li>
+      <li><strong>Gruppo:</strong> Max 10 ragazzi</li>
+      <li><strong>Kit:</strong> Incluso ogni lezione</li>
+    </ul>
+    <p>Progetti portatili: contapassi, termometri, giochi, telecomandi per robot. Tre livelli di programmazione per crescere gradualmente.</p>
+    <a href="#contatti-info">Iscriviti — prova gratuita disponibile</a>
+  </article>
+ 
+  <!-- Corso 3 -->
+  <article id="corso-open-roberta">
+    <h3>Laboratorio Open Roberta — Coding Online</h3>
+    <ul>
+      <li><strong>Età:</strong> 8–13 anni</li>
+      <li><strong>Strumenti:</strong> Open Roberta (browser, no installazioni)</li>
+      <li><strong>Compatibile con:</strong> LEGO WeDo, Mindstorms, micro:bit, NAO</li>
+      <li><strong>Programmazione:</strong> Blocchi colorati online</li>
+      <li><strong>Sede:</strong> Piazzetta SS. Francesco e Chiara 1, Brescia</li>
+      <li><strong>Gruppo:</strong> Max 10 ragazzi</li>
+    </ul>
+    <p>Si programma direttamente nel browser senza nulla da installare. Ideale per i primi passi nel coding e per usare dispositivi diversi con la stessa interfaccia.</p>
+    <a href="#contatti-info">Iscriviti — prova gratuita disponibile</a>
+  </article>
+ 
+  <!-- Corso 4 -->
+  <article id="corso-arduino">
+    <h3>Laboratorio Arduino Base — Elettronica e Coding</h3>
+    <ul>
+      <li><strong>Età:</strong> 12–16 anni</li>
+      <li><strong>Strumenti:</strong> Arduino</li>
+      <li><strong>Programmazione:</strong> C++ base (linguaggio testuale)</li>
+      <li><strong>Orario:</strong> Sabato 15:00–16:30</li>
+      <li><strong>Sede:</strong> Piazzetta SS. Francesco e Chiara 1, Brescia</li>
+      <li><strong>Gruppo:</strong> Max 10 ragazzi</li>
+      <li><strong>Kit:</strong> Incluso ogni lezione</li>
+    </ul>
+    <p>Progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Primo approccio alla programmazione testuale con C++.</p>
+    <a href="#contatti-info">Iscriviti — prova gratuita disponibile</a>
+  </article>
+ 
+  <!-- Campo Estivo -->
+  <article id="corso-robogrest">
+    <h3>ROBOGREST 2026 — Campo Estivo di Robotica a Brescia</h3>
+    <ul>
+      <li><strong>Età:</strong> 7–13 anni</li>
+      <li><strong>Date:</strong> 10 giugno – 31 luglio 2026</li>
+      <li><strong>Orario:</strong> 9:00–17:00</li>
+      <li><strong>Costo:</strong> €130 a settimana</li>
+      <li><strong>Caparra:</strong> €30 per prenotare</li>
+      <li><strong>Disponibilità:</strong> Posti limitati</li>
+      <li><strong>Sede:</strong> Piazzetta SS. Francesco e Chiara 1, Brescia</li>
+    </ul>
+    <p>Ogni mattina: progettazione, costruzione e programmazione di robot con LEGO Spike Prime e micro:bit. Un'estate di coding e robotica educativa.</p>
+    <a href="#contatti-info">Prenota subito — caparra €30</a>
+  </article>
+</section>
     <div id="promo-natale-container" class="promo-natale-container" style="display:none;"></div>
     <!--<div class="alert-box">
       <img src="images/bit-corre.webp" alt="" class="bit-running" loading="lazy">
