@@ -455,3 +455,34 @@ section[id] { scroll-margin-top: 80px; }
 
 /* Loading spinner */
 @keyframes spin { to { transform: rotate(360deg); } }
+/* --- STATO APERTO --- */
+.corso-aperto .course-badge {
+    background-color: #28a745 !important; /* Verde */
+    color: white !important;
+}
+
+.corso-aperto .btn-course {
+    background-color: #E05A2B !important; /* Arancione */
+    color: white !important;
+    cursor: pointer;
+    opacity: 1;
+}
+
+/* --- STATO CHIUSO --- */
+.corso-chiuso .course-badge {
+    background-color: #9ca3af !important; /* Grigio */
+    color: white !important;
+}
+
+.corso-chiuso .btn-course {
+    background-color: #d1d5db !important; /* Grigio chiaro */
+    color: #6b7280 !important;
+    cursor: not-allowed !important;
+    border: none !important;
+}
+
+/* Evita hover sui bottoni disabilitati */
+.corso-chiuso .btn-course:hover {
+    background-color: #d1d5db !important;
+    transform: none !important;
+}
