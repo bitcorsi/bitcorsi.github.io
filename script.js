@@ -71,7 +71,6 @@ function init() {
   unifyWhatsAppFAB();
   initSummerCampPopup();
   initEnrollmentModal();
-  initScrollReveal();
 }
 
 // ----------------------------- MENU MOBILE -----------------------------
@@ -220,7 +219,7 @@ function aggiornaChipIscrizioni(corsi) {
   document.querySelectorAll('.nav-chip').forEach(chip => {
     if (hasOpen) {
       chip.innerHTML = '<div class="nav-chip-dot"></div> Iscrizioni aperte';
-      chip.style.color = '#FF6B35';
+      chip.style.color = '#E05A2B';
       chip.style.background = '#fff4f0';
       chip.style.borderColor = '#ffd4c0';
     } else {
@@ -518,56 +517,6 @@ async function saveEnrollmentToFirebase(formData) {
     const successMsg = document.getElementById('enrollmentSuccessMessage');
     if (successMsg) successMsg.classList.remove('show');
   }
-}
-
-// ----------------------------- SCROLL REVEAL -----------------------------
-function initScrollReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('sr-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
-
-  // Gruppi di elementi con stagger per indice
-  const staggerGroups = [
-    '.tool-card',
-    '.course-card',
-    '.scuola-card',
-    '.bit-bar-column',
-    '.progetto-hl',
-  ];
-
-  staggerGroups.forEach(selector => {
-    document.querySelectorAll(selector).forEach((el, i) => {
-      el.classList.add('sr-item');
-      el.style.transitionDelay = `${i * 0.08}s`;
-      observer.observe(el);
-    });
-  });
-
-  // Elementi singoli (nessun stagger)
-  const singleItems = [
-    '.section-header',
-    '.collab-header',
-    '.cta-scuole',
-    '.progetto-img',
-  ];
-
-  singleItems.forEach(selector => {
-    document.querySelectorAll(selector).forEach(el => {
-      el.classList.add('sr-item');
-      observer.observe(el);
-    });
-  });
-
-  // Progetto left/right: slide laterale
-  const progLeft = document.querySelector('.progetto-left');
-  const progRight = document.querySelector('.progetto-right');
-  if (progLeft) { progLeft.classList.add('sr-left'); observer.observe(progLeft); }
-  if (progRight) { progRight.classList.add('sr-right'); observer.observe(progRight); }
 }
 
 // ----------------------------- AVVIO -----------------------------
