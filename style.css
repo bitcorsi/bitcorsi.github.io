@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700;800;900&display=swap');
+
 /* ========================================
    BIT LAB - TEMA "WARM PROFESSIONAL"
    Per genitori: caldo, affidabile, pulito
@@ -511,7 +513,6 @@ section[id] { scroll-margin-top: 80px; }
    ============================================================ */
 
 /* Font display per headings */
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700;800;900&display=swap');
 
 /* Potenzia leggermente i colori primari mantenendo le variabili originali */
 :root {
