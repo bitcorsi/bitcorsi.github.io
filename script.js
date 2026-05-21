@@ -26,7 +26,7 @@ const ENROLLMENT_COURSES = {
   'arduino':         { name: 'Arduino base',        age: '12-16 anni', max: 10 },
   'microbit':        { name: 'Micro:bit Lab',       age: '8-13 anni',  max: 10 },
   'roberta':         { name: 'Open Roberta Lab',    age: '8-13 anni',  max: 10 },
-  'mattine-coding':  { name: 'Mattine di coding',   age: '8-13 anni',  max: 30 }
+  'mattine-coding':  { name: 'ROBOGREST',           age: '7-13 anni',  max: 30 }
 };
 
 // ----------------------------- UTILITY -----------------------------
