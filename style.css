@@ -504,3 +504,78 @@ section[id] { scroll-margin-top: 80px; }
     background-color: #d1d5db !important;
     transform: none !important;
 }
+/* ===== SUCCESS MESSAGE MIGLIORATO ===== */
+.enrollment-message {
+  display: none;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+#enrollmentSuccessMessage {
+  display: none;
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  z-index: 99999;
+  width: min(90vw, 460px);
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 0 4px #FF6B35;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  animation: successPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  border: none;
+}
+
+#enrollmentSuccessMessage.visible,
+#enrollmentSuccessMessage[style*="block"] {
+  display: block !important;
+}
+
+@keyframes successPop {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+#enrollmentSuccessMessage strong {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  color: #2ecc71;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+#enrollmentSuccessMessage p {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Backdrop scuro dietro il messaggio */
+#enrollmentSuccessMessage::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: -1;
+  backdrop-filter: blur(3px);
+}
+
+/* Bottone chiudi integrato */
+#enrollmentSuccessMessage::after {
+  content: 'Chiudi ×';
+  display: block;
+  margin-top: 1.5rem;
+  padding: 0.6rem 2rem;
+  background: #FF6B35;
+  color: white;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
