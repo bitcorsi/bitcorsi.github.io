@@ -449,7 +449,7 @@ async function handleEnrollmentSubmit(e) {
 
     // Mostra successo
     const successText = document.getElementById('enrollmentSuccessText');
-    if (successText) successText.innerText = `Iscrizione confermata! Riceverai una email di conferma a ${formData.parentEmail}`;
+    if (successText) successText.innerText = `Ci vediamo presto in laboratorio! 🤖`;
     if (successMsg) successMsg.classList.add('show');
 
     // Reset
