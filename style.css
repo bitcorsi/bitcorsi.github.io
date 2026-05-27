@@ -504,78 +504,101 @@ section[id] { scroll-margin-top: 80px; }
     background-color: #d1d5db !important;
     transform: none !important;
 }
-/* ===== SUCCESS MESSAGE MIGLIORATO ===== */
+
+/* ===== SUCCESS MESSAGE ISCRIZIONE - ALTA VISIBILITÀ ===== */
+
+/* Base per tutti i messaggi enrollment */
 .enrollment-message {
   display: none;
-  margin-bottom: 1.5rem;
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+.enrollment-message.show {
+  display: block;
 }
 
+/* Messaggio di SUCCESSO — overlay centrato a tutto schermo */
 #enrollmentSuccessMessage {
   display: none;
-  position: fixed !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.85);
-  z-index: 99999;
-  width: min(90vw, 460px);
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 0 4px #FF6B35;
-  padding: 2.5rem 2rem 2rem;
-  text-align: center;
-  animation: successPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  border: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
 }
 
-#enrollmentSuccessMessage.visible,
-#enrollmentSuccessMessage[style*="block"] {
-  display: block !important;
+#enrollmentSuccessMessage.show {
+  display: flex !important;
+}
+
+/* Card centrale */
+#enrollmentSuccessMessage::before {
+  content: none;
+}
+
+.enrollment-success-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.22), 0 0 0 4px #2ecc71;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  max-width: 440px;
+  width: 100%;
+  animation: successPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 @keyframes successPop {
-  from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
-  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  from { opacity: 0; transform: scale(0.7) translateY(30px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-#enrollmentSuccessMessage strong {
-  display: block;
-  font-size: 2rem;
+.enrollment-success-icon {
+  font-size: 4rem;
+  line-height: 1;
   margin-bottom: 0.75rem;
-  color: #2ecc71;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-
-#enrollmentSuccessMessage p {
-  color: #444;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* Backdrop scuro dietro il messaggio */
-#enrollmentSuccessMessage::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: -1;
-  backdrop-filter: blur(3px);
-}
-
-/* Bottone chiudi integrato */
-#enrollmentSuccessMessage::after {
-  content: 'Chiudi ×';
   display: block;
-  margin-top: 1.5rem;
-  padding: 0.6rem 2rem;
-  background: #FF6B35;
-  color: white;
-  border-radius: 50px;
+  animation: iconBounce 0.6s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes iconBounce {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+.enrollment-success-card strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+}
+
+#enrollmentSuccessText {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.enrollment-success-close {
+  display: inline-block;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: #fff;
   font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.7rem 2.25rem;
+  border-radius: 50px;
+  border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  box-shadow: 0 4px 16px rgba(46,204,113,0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.enrollment-success-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46,204,113,0.5);
 }
