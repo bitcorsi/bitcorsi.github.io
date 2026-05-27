@@ -909,10 +909,16 @@
       <p>Scegli il suo corso di robotica preferito</p>
     </div>
 
-    <div id="enrollmentSuccessMessage" class="enrollment-message success-message">
-      <strong>✅ Iscrizione Confermata!</strong>
-      <p id="enrollmentSuccessText"></p>
-    </div>
+<div id="enrollmentSuccessMessage" class="enrollment-message">
+  <div class="enrollment-success-card">
+    <span class="enrollment-success-icon">🎉</span>
+    <strong>Iscrizione Confermata!</strong>
+    <p id="enrollmentSuccessText"></p>
+    <button class="enrollment-success-close" onclick="
+      document.getElementById('enrollmentSuccessMessage').classList.remove('show');
+    ">Perfetto, grazie!</button>
+  </div>
+</div>
 
     <div id="enrollmentWaitlistMessage" class="enrollment-message waitlist-message">
       <strong>⏳ In Lista d'Attesa</strong>
