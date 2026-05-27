@@ -914,9 +914,11 @@
     <span class="enrollment-success-icon">🎉</span>
     <strong>Iscrizione Confermata!</strong>
     <p id="enrollmentSuccessText"></p>
-    <button class="enrollment-success-close" onclick="
-      document.getElementById('enrollmentSuccessMessage').classList.remove('show');
-    ">Perfetto, grazie!</button>
+<button class="enrollment-success-close" onclick="
+  document.getElementById('enrollmentSuccessMessage').classList.remove('show');
+  closeEnrollmentModal();
+">Perfetto, grazie!</button>
+    
   </div>
 </div>
 
