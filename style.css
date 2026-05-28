@@ -602,35 +602,3 @@ section[id] { scroll-margin-top: 80px; }
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(46,204,113,0.5);
 }
-.glitch {
-  position: relative;
-  display: inline-block;
-  color: var(--c-orange);
-}
- 
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  color: var(--c-orange);
-  font-family: inherit;
-  font-weight: inherit;
-  font-size: inherit;
-}
- 
-.glitch::before {
-  /* cyan channel — top slice */
-  color: var(--c-cyan);
-  clip-path: polygon(0 15%, 100% 15%, 100% 40%, 0 40%);
-  animation: glitch-top 4s infinite;
-  mix-blend-mode: screen;
-}
- 
-.glitch::after {
-  /* red channel — bottom slice */
-  color: #ff2d55;
-  clip-path: polygon(0 60%, 100% 60%, 100% 82%, 0 82%);
-  animation: glitch-bot 5s infinite;
-  mix-blend-mode: screen;
-}
