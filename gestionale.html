@@ -202,10 +202,30 @@ tbody td { padding: 0.75rem 1rem; color: var(--text); vertical-align: middle; }
 .export-name { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.2rem; }
 .export-desc { font-size: 0.75rem; color: var(--text-muted); }
 
+/* Desktop-only two-col dashboard grid */
+.dash-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.mob-only { display: none; }
+.desk-only { display: block; }
+
+/* Recent list (mobile card style) */
+.recent-list { padding: 0.4rem 0; }
+.recent-item { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 0.6rem; cursor: pointer; }
+.recent-item:last-child { border-bottom: none; }
+.recent-item:active { background: rgba(255,255,255,0.04); }
+.recent-item-left { flex: 1; min-width: 0; }
+.recent-item-name { font-weight: 600; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.recent-item-corso { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+.recent-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.recent-item-date { font-size: 0.72rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
 /* ══════════════════════════════
    MOBILE OVERRIDES  ≤ 768px
 ══════════════════════════════ */
 @media (max-width: 768px) {
+
+  /* Prevent ANY horizontal overflow */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+  .app, .main, .content, .panel { max-width: 100%; overflow-x: hidden; }
 
   /* Hide desktop sidebar entirely */
   .sidebar { display: none; }
@@ -270,11 +290,14 @@ tbody td { padding: 0.75rem 1rem; color: var(--text); vertical-align: middle; }
   .stat-card { padding: 0.9rem 1rem; }
 
   /* ── Dashboard two-col → single col ── */
-  div[style*="grid-template-columns:1fr 1fr"] { display: block !important; }
-  div[style*="grid-template-columns:1fr 1fr"] > * { margin-bottom: 1rem; }
+  .dash-two-col { grid-template-columns: 1fr; gap: 1rem; }
+  .mob-only { display: block; }
+  .desk-only { display: none !important; }
 
   /* ── Corso grid → 1 col ── */
   .corso-grid { grid-template-columns: 1fr; }
+  /* Prevent corso-card content from overflowing */
+  .corso-card { max-width: 100%; word-break: break-word; }
 
   /* ── Export grid: 2 cols on mobile ── */
   .export-grid { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
@@ -293,10 +316,29 @@ tbody td { padding: 0.75rem 1rem; color: var(--text); vertical-align: middle; }
   .card-header { flex-direction: column; align-items: flex-start; }
 
   /* ── Table: horizontal scroll with touch ── */
-  .table-wrap { border-radius: 0; }
+  .table-wrap { border-radius: 0; max-width: 100%; }
   table { font-size: 0.8rem; }
   thead th { padding: 0.6rem 0.7rem; font-size: 0.65rem; }
   tbody td { padding: 0.65rem 0.7rem; }
+
+  /* Hide less important columns on mobile to prevent overflow */
+  /* Iscritti table: hide Genitore, Email, Telefono, Data */
+  #iscrizioni-tbody td:nth-child(3),
+  #iscrizioni-tbody td:nth-child(4),
+  #iscrizioni-tbody td:nth-child(5),
+  #iscrizioni-tbody td:nth-child(8),
+  #panel-iscrizioni thead th:nth-child(3),
+  #panel-iscrizioni thead th:nth-child(4),
+  #panel-iscrizioni thead th:nth-child(5),
+  #panel-iscrizioni thead th:nth-child(8) { display: none; }
+
+  /* Attesa table: hide Genitore, Email, Data */
+  #attesa-tbody td:nth-child(4),
+  #attesa-tbody td:nth-child(5),
+  #attesa-tbody td:nth-child(7),
+  #panel-attesa thead th:nth-child(4),
+  #panel-attesa thead th:nth-child(5),
+  #panel-attesa thead th:nth-child(7) { display: none; }
 
   /* ── Modal: full bottom sheet on mobile ── */
   .modal-bg { align-items: flex-end; padding: 0; }
@@ -441,15 +483,18 @@ tbody td { padding: 0.75rem 1rem; color: var(--text); vertical-align: middle; }
           <div class="stat-card blue"><div class="stat-label">Liberi</div><div class="stat-value" id="stat-liberi">—</div><div class="stat-sub">su 52 totali</div></div>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+        <div class="dash-two-col">
           <div class="card">
             <div class="card-header"><div class="card-title">Ultimi iscritti</div><span class="badge badge-orange" id="badge-recent">...</span></div>
-            <div class="table-wrap">
+            <!-- desktop table -->
+            <div class="table-wrap desk-only">
               <table>
                 <thead><tr><th>Nome</th><th>Corso</th><th>Stato</th><th>Data</th></tr></thead>
                 <tbody id="recent-tbody"><tr><td colspan="4"><div class="loading-state"><div class="spinner"></div> Caricamento...</div></td></tr></tbody>
               </table>
             </div>
+            <!-- mobile card list -->
+            <div class="recent-list mob-only" id="recent-list"></div>
           </div>
           <div class="card">
             <div class="card-header"><div class="card-title">Come ci hanno trovati</div></div>
@@ -603,7 +648,8 @@ const CORSI = {
   'arduino':          { name: 'Arduino',             age: '12-16 anni', max: 10 },
   'open-roberta':     { name: 'Open Roberta',        age: '8-13 anni', max: 10 },
   'microbit':         { name: 'micro:bit BBC',       age: '8-13 anni', max: 10 },
-  'robogrest-coding': { name: 'Mattine di coding',   age: '8-13 anni', max: 12 }
+  'robogrest-coding': { name: 'Mattine di coding',   age: '8-13 anni', max: 12 },
+  'mattine-coding':    { name: 'Mattine di coding',   age: '8-13 anni', max: 12 }
 };
 
 const MAX_TOTALE = Object.values(CORSI).reduce((s,c) => s + c.max, 0);
@@ -684,16 +730,36 @@ function renderStats() {
 function renderRecent() {
   const recent = allDocs.slice(0, 8);
   document.getElementById('badge-recent').textContent = 'Ultimi ' + recent.length;
+
+  // Desktop table
   const tbody = document.getElementById('recent-tbody');
-  if (!recent.length) { tbody.innerHTML = '<tr><td colspan="4"><div class="empty-state">Nessuna iscrizione</div></td></tr>'; return; }
-  tbody.innerHTML = recent.map(d => `
-    <tr onclick="openDetail('${d.id}')">
-      <td class="td-name">${esc(d.studentName||'—')}</td>
-      <td>${corsoName(d.courseId)}</td>
-      <td>${statusBadge(d.status)}</td>
-      <td class="td-mono">${formatDate(d.enrollmentDate)}</td>
-    </tr>
-  `).join('');
+  if (!recent.length) {
+    tbody.innerHTML = '<tr><td colspan="4"><div class="empty-state">Nessuna iscrizione</div></td></tr>';
+  } else {
+    tbody.innerHTML = recent.map(d => '<tr onclick="openDetail(\'' + d.id + '\')">' +
+      '<td class="td-name">' + esc(d.studentName||'—') + '</td>' +
+      '<td>' + corsoName(d.courseId) + '</td>' +
+      '<td>' + statusBadge(d.status) + '</td>' +
+      '<td class="td-mono">' + formatDate(d.enrollmentDate) + '</td>' +
+      '</tr>').join('');
+  }
+
+  // Mobile card list
+  const list = document.getElementById('recent-list');
+  if (!list) return;
+  if (!recent.length) { list.innerHTML = '<div class="empty-state">Nessuna iscrizione</div>'; return; }
+  list.innerHTML = recent.map(d =>
+    '<div class="recent-item" onclick="openDetail(\'' + d.id + '\')">' +
+      '<div class="recent-item-left">' +
+        '<div class="recent-item-name">' + esc(d.studentName||'—') + '</div>' +
+        '<div class="recent-item-corso">' + (CORSI[d.courseId] ? CORSI[d.courseId].name : (d.courseId||'—')) + '</div>' +
+      '</div>' +
+      '<div class="recent-item-right">' +
+        statusBadge(d.status) +
+        '<span class="recent-item-date">' + formatDate(d.enrollmentDate) + '</span>' +
+      '</div>' +
+    '</div>'
+  ).join('');
 }
 
 function renderFonti() {
