@@ -1295,3 +1295,12 @@ section[id] { scroll-margin-top: 80px; }
   .enrollment-form-row { grid-template-columns: 1fr; }
   .enrollment-courses-grid { grid-template-columns: 1fr; }
 }
+.robogrest-weeks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+.week-option { display: flex; align-items: center; cursor: pointer; }
+.week-option input[type=checkbox] { display: none; }
+.week-option span { display: flex; flex-direction: column; width: 100%; padding: 0.6rem 0.8rem; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 0.84rem; font-weight: 600; color: #374151; transition: all 0.15s; line-height: 1.3; }
+.week-option span small { font-size: 0.72rem; font-weight: 400; color: #9ca3af; margin-top: 2px; }
+.week-option input:checked + span { border-color: #FF6B35; background: #fff5f0; color: #FF6B35; }
+.week-option input:checked + span small { color: #FF6B35; }
+.week-option:hover span { border-color: #FF6B35; }
+
