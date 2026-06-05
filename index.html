@@ -1,427 +1,39 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- ============================================================
-    MIGRAZIONE DOMINIO: bitcorsi.it → labtecnologici.it
-    Questo file vive su bitcorsi.github.io (vecchio dominio).
-    Fa redirect 301-equivalente JS + meta-refresh verso il nuovo.
-    Sul nuovo dominio (labtecnologici.it) usa una copia identica
-    ma SENZA il blocco redirect e con canonical su labtecnologici.it
-  ============================================================= -->
-
-  <!-- REDIRECT: se siamo ancora su bitcorsi.it, manda su labtecnologici.it -->
-  <script>
-    (function() {
-      var h = window.location.hostname;
-      if (h === 'www.bitcorsi.it' || h === 'bitcorsi.it') {
-        var path = window.location.pathname;
-        var dest = 'https://www.labtecnologici.it' + (path === '/index.html' ? '/' : path);
-        window.location.replace(dest); // replace() non aggiunge alla history
-      }
-    })();
-  </script>
-  <!-- Fallback meta-refresh per crawler/browser senza JS -->
-  <meta http-equiv="refresh" content="0; url=https://www.labtecnologici.it/">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CANONICAL: indica ai motori di ricerca quale è il dominio "vero" -->
-  <link rel="canonical" href="https://www.labtecnologici.it/">
-
   <title>BIT - Lab Tecnologici e Corsi di Robotica Educativa per Bambini e Ragazzi</title>
-  <meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta. Ora su labtecnologici.it">
+  <meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta.">
 
-  <!-- Open Graph / Social (nuovo dominio) -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.labtecnologici.it/">
-  <meta property="og:title" content="BIT - Lab Tecnologici | Corsi di Robotica Educativa Brescia">
-  <meta property="og:description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori pratici con LEGO Spike Prime, micro:bit, Arduino. Prima lezione gratuita.">
-  <meta property="og:image" content="https://www.labtecnologici.it/images/Logo.webp">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- ① ORGANIZATION — nuovo dominio -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BIT | Lab Tecnologici",
-    "alternateName": "BIT Lab Tecnologici",
-    "url": "https://www.labtecnologici.it",
-    "logo": "https://www.labtecnologici.it/images/Logo.webp",
-    "description": "Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori pratici con LEGO Spike Prime, micro:bit, Arduino e Open Roberta. Gruppi piccoli, kit inclusi, prima lezione gratuita.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-      "addressLocality": "Brescia",
-      "addressRegion": "BS",
-      "postalCode": "25121",
-      "addressCountry": "IT"
-    },
-    "telephone": "+393703069215",
-    "email": "bitcorsi@gmail.com",
-    "sameAs": [
-      "https://instagram.com/lab_tecnologici",
-      "https://wa.me/393703069215",
-      "https://www.bitcorsi.it"
-    ],
-    "vatID": "IT04701410989",
-    "areaServed": {
-      "@type": "City",
-      "name": "Brescia"
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Saturday"],
-      "opens": "10:00",
-      "closes": "16:30"
-    }
-  }
-  </script>
-
-  <!-- ② COURSE: Lego Spike Prime -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio Robotica con LEGO Spike Prime",
-    "description": "Laboratorio di robotica educativa per ragazzi dagli 8 ai 13 anni. I partecipanti costruiscono robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza) e li programmano con blocchi visivi. Progetti pratici: veicoli autonomi, bracci robotici, macchine interattive. Gruppi di max 10 ragazzi, kit incluso.",
-    "url": "https://www.labtecnologici.it/#corsi",
-    "image": "https://www.labtecnologici.it/images/lego-spike-prime.webp",
-    "provider": {
-      "@type": "Organization",
-      "name": "BIT | Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Bambini e ragazzi dagli 8 ai 13 anni"
-    },
-    "teaches": [
-      "Robotica educativa",
-      "Programmazione a blocchi visivi",
-      "Pensiero computazionale",
-      "Problem solving",
-      "Lavoro di squadra"
-    ],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      },
-      "courseSchedule": {
-        "@type": "Schedule",
-        "byDay": ["https://schema.org/Saturday"],
-        "startTime": "10:00",
-        "endTime": "11:30",
-        "repeatFrequency": "P1W"
-      },
-      "maximumAttendeeCapacity": 10,
-      "instructor": {
-        "@type": "Organization",
-        "name": "BIT | Lab Tecnologici"
-      }
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.labtecnologici.it/#corsi",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2026-01-01"
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ③ COURSE: Arduino Base -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio Arduino Base — Elettronica e Coding",
-    "description": "Laboratorio di elettronica e programmazione con Arduino per ragazzi dai 12 ai 16 anni. I partecipanti creano progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio C++ base, approccio pratico. Gruppi max 10 ragazzi, kit incluso.",
-    "url": "https://www.labtecnologici.it/#corsi",
-    "image": "https://www.labtecnologici.it/images/arduino.svg",
-    "provider": {
-      "@type": "Organization",
-      "name": "BIT | Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Secondaria di Primo e Secondo Grado",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Ragazzi dai 12 ai 16 anni"
-    },
-    "teaches": [
-      "Programmazione C++ base",
-      "Elettronica applicata",
-      "Progettazione circuiti",
-      "Pensiero computazionale",
-      "Robotica"
-    ],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      },
-      "courseSchedule": {
-        "@type": "Schedule",
-        "byDay": ["https://schema.org/Saturday"],
-        "startTime": "15:00",
-        "endTime": "16:30",
-        "repeatFrequency": "P1W"
-      },
-      "maximumAttendeeCapacity": 10
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.labtecnologici.it/#corsi",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ④ COURSE: micro:bit BBC -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio Coding con micro:bit BBC",
-    "description": "Laboratorio di coding con micro:bit per bambini dagli 8 ai 13 anni. Progetti portatili e divertenti: contapassi, termometri, giochi, telecomandi per robot. Tre modalità: blocchi visivi, JavaScript o Python. Gruppi max 10 ragazzi, kit incluso.",
-    "url": "https://www.labtecnologici.it/#corsi",
-    "image": "https://www.labtecnologici.it/images/microbit.svg",
-    "provider": {
-      "@type": "Organization",
-      "name": "BIT | Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Bambini e ragazzi dagli 8 ai 13 anni"
-    },
-    "teaches": [
-      "Coding a blocchi visivi",
-      "JavaScript base",
-      "Python base",
-      "Pensiero computazionale",
-      "Elettronica portatile"
-    ],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      },
-      "maximumAttendeeCapacity": 10
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.labtecnologici.it/#corsi",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ⑤ COURSE: Open Roberta -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio Open Roberta — Coding Online",
-    "description": "Laboratorio di programmazione con Open Roberta per bambini dagli 8 ai 13 anni. Piattaforma browser-based senza installazioni: si programmano robot LEGO, micro:bit e altri dispositivi con blocchi colorati direttamente online. Ideale per chi inizia con il coding.",
-    "url": "https://www.labtecnologici.it/#corsi",
-    "image": "https://www.labtecnologici.it/images/open-roberta.svg",
-    "provider": {
-      "@type": "Organization",
-      "name": "BIT | Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Primaria",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Bambini dagli 8 ai 13 anni"
-    },
-    "teaches": [
-      "Programmazione a blocchi visivi",
-      "Pensiero computazionale",
-      "Coding online"
-    ],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      },
-      "maximumAttendeeCapacity": 10
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ⑥ COURSE: ROBOGREST 2026 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "ROBOGREST 2026 — Campo Estivo di Coding e Robotica Brescia",
-    "description": "Campo estivo di robotica educativa a Brescia per bambini dai 7 ai 13 anni. Dal 10 giugno al 31 luglio 2026, orario 9:00–17:00. Ogni mattina: progettazione, costruzione e programmazione di robot con LEGO Spike Prime e micro:bit. Posti limitati, prenotazione con caparra di €30.",
-    "url": "https://www.labtecnologici.it/",
-    "provider": {
-      "@type": "Organization",
-      "name": "BIT | Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Primaria",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Bambini dai 7 ai 13 anni"
-    },
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "startDate": "2026-06-10",
-      "endDate": "2026-07-31",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      }
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "130",
-      "priceCurrency": "EUR",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "130",
-        "priceCurrency": "EUR",
-        "unitText": "settimana"
-      },
-      "availability": "https://schema.org/LimitedAvailability",
-      "url": "https://www.labtecnologici.it/"
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ⑦ FAQPAGE -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Dove si trovano i laboratori BIT a Brescia?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I laboratori si svolgono presso il Centro Aperto Sandro Marelli, Piazzetta SS. Francesco e Chiara 1, Brescia. Il sabato mattina 10:00–11:30 e il sabato pomeriggio 15:00–16:30."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Da quanti anni si può partecipare ai corsi di robotica?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I corsi partono dagli 8 anni fino ai 16, con percorsi su misura per ogni fascia d'età. Il campo estivo ROBOGREST 2026 è aperto dai 7 anni."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Come ci si iscrive a un corso BIT Lab Tecnologici?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Puoi iscriverti direttamente dal modulo sul sito labtecnologici.it, oppure contattarci via WhatsApp al +39 370 306 9215 o per email a bitcorsi@gmail.com. È disponibile una prima lezione di prova gratuita."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "I kit e i materiali sono inclusi nel corso?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sì, tutti i kit (LEGO Spike Prime, Arduino, micro:bit) sono inclusi nel costo del corso. Non è necessario portare nulla da casa."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quanti ragazzi ci sono in ogni gruppo?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I gruppi sono piccoli: massimo 8–10 ragazzi per garantire attenzione individuale e un apprendimento efficace."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "È possibile portare la robotica nella mia scuola primaria a Brescia?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sì. BIT organizza doposcuola settimanali di robotica educativa per le scuole primarie e secondarie di Brescia e provincia, in collaborazione con Club 28 SSD s.r.l. Il comitato genitori può scrivere a bitcorsi@gmail.com per avviare una collaborazione."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Cosa succede se mio figlio perde una lezione?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "L'incontro perso viene recuperato durante la sessione successiva di laboratori."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quanto costa il campo estivo ROBOGREST 2026?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Il costo è di €130 a settimana, orario 9:00–17:00, dal 10 giugno al 31 luglio 2026. Per prenotare è richiesta una caparra di €30. I posti sono limitati."
-        }
-      }
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Bit - Corsi di Robotica Educativa",
+  "alternateName": "Bit Lab Tecnologici",
+  "image": "https://www.bitcorsi.it/logo-600x600.png",
+  "url": "https://www.bitcorsi.it",
+  "telephone": "+393703069215",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Piazzetta S. Francesco e Chiara, 1",
+    "addressLocality": "Brescia",
+    "addressRegion": "BS",
+    "postalCode": "25121",
+    "addressCountry": "IT"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": "Saturday",
+    "opens": "10:00",
+    "closes": "16:30"
+  },
+  "sameAs": [
+    "https://www.instagram.com/bit_corsi/",
+    "https://wa.me/393703069215"
+  ]
+}
   </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -429,6 +41,404 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#FF6B35">
   <link rel="stylesheet" href="style.css">
+  <!--
+=============================================================
+  BIT | Lab Tecnologici — JSON-LD Schemas
+  File: jsonld-all-schemas.html
+  Istruzioni: copia i blocchi <script> qui sotto e incollali
+  dentro il tag <head> del tuo index.html, prima di </head>
+=============================================================
+-->
+
+
+<!-- ① ORGANIZATION — inserire in TUTTE le pagine -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BIT | Lab Tecnologici",
+  "alternateName": "BIT Lab Tecnologici",
+  "url": "https://www.bitcorsi.it",
+  "logo": "https://www.bitcorsi.it/images/Logo.webp",
+  "description": "Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori pratici con LEGO Spike Prime, micro:bit, Arduino e Open Roberta. Gruppi piccoli, kit inclusi, prima lezione gratuita.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+    "addressLocality": "Brescia",
+    "addressRegion": "BS",
+    "postalCode": "25121",
+    "addressCountry": "IT"
+  },
+  "telephone": "+393703069215",
+  "email": "bitcorsi@gmail.com",
+  "sameAs": [
+    "https://instagram.com/bit_corsi",
+    "https://wa.me/393703069215"
+  ],
+  "vatID": "IT04701410989",
+  "areaServed": {
+    "@type": "City",
+    "name": "Brescia"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Saturday"],
+    "opens": "10:00",
+    "closes": "16:30"
+  }
+}
+</script>
+
+
+<!-- ② COURSE: Lego Spike Prime -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Laboratorio Robotica con LEGO Spike Prime",
+  "description": "Laboratorio di robotica educativa per ragazzi dagli 8 ai 13 anni. I partecipanti costruiscono robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza) e li programmano con blocchi visivi. Progetti pratici: veicoli autonomi, bracci robotici, macchine interattive. Gruppi di max 10 ragazzi, kit incluso.",
+  "url": "https://www.bitcorsi.it/#corsi",
+  "image": "https://www.bitcorsi.it/images/lego-spike-prime.webp",
+  "provider": {
+    "@type": "Organization",
+    "name": "BIT | Lab Tecnologici",
+    "url": "https://www.bitcorsi.it",
+    "telephone": "+393703069215"
+  },
+  "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado",
+  "audience": {
+    "@type": "EducationalAudience",
+    "audienceType": "Bambini e ragazzi dagli 8 ai 13 anni"
+  },
+  "teaches": [
+    "Robotica educativa",
+    "Programmazione a blocchi visivi",
+    "Pensiero computazionale",
+    "Problem solving",
+    "Lavoro di squadra"
+  ],
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "Onsite",
+    "location": {
+      "@type": "Place",
+      "name": "Centro Aperto Sandro Marelli",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+        "addressLocality": "Brescia",
+        "addressCountry": "IT"
+      }
+    },
+    "courseSchedule": {
+      "@type": "Schedule",
+      "byDay": ["https://schema.org/Saturday"],
+      "startTime": "10:00",
+      "endTime": "11:30",
+      "repeatFrequency": "P1W"
+    },
+    "maximumAttendeeCapacity": 10,
+    "instructor": {
+      "@type": "Organization",
+      "name": "BIT | Lab Tecnologici"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.bitcorsi.it/#corsi",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2026-01-01"
+  },
+  "inLanguage": "it"
+}
+</script>
+
+
+<!-- ③ COURSE: Arduino Base -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Laboratorio Arduino Base — Elettronica e Coding",
+  "description": "Laboratorio di elettronica e programmazione con Arduino per ragazzi dai 12 ai 16 anni. I partecipanti creano progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio C++ base, approccio pratico. Gruppi max 10 ragazzi, kit incluso.",
+  "url": "https://www.bitcorsi.it/#corsi",
+  "image": "https://www.bitcorsi.it/images/arduino.svg",
+  "provider": {
+    "@type": "Organization",
+    "name": "BIT | Lab Tecnologici",
+    "url": "https://www.bitcorsi.it",
+    "telephone": "+393703069215"
+  },
+  "educationalLevel": "Scuola Secondaria di Primo e Secondo Grado",
+  "audience": {
+    "@type": "EducationalAudience",
+    "audienceType": "Ragazzi dai 12 ai 16 anni"
+  },
+  "teaches": [
+    "Programmazione C++ base",
+    "Elettronica applicata",
+    "Progettazione circuiti",
+    "Pensiero computazionale",
+    "Robotica"
+  ],
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "Onsite",
+    "location": {
+      "@type": "Place",
+      "name": "Centro Aperto Sandro Marelli",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+        "addressLocality": "Brescia",
+        "addressCountry": "IT"
+      }
+    },
+    "courseSchedule": {
+      "@type": "Schedule",
+      "byDay": ["https://schema.org/Saturday"],
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "repeatFrequency": "P1W"
+    },
+    "maximumAttendeeCapacity": 10
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.bitcorsi.it/#corsi",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  "inLanguage": "it"
+}
+</script>
+
+
+<!-- ④ COURSE: micro:bit BBC -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Laboratorio Coding con micro:bit BBC",
+  "description": "Laboratorio di coding con micro:bit per bambini dagli 8 ai 13 anni. Progetti portatili e divertenti: contapassi, termometri, giochi, telecomandi per robot. Tre modalità: blocchi visivi, JavaScript o Python. Gruppi max 10 ragazzi, kit incluso.",
+  "url": "https://www.bitcorsi.it/#corsi",
+  "image": "https://www.bitcorsi.it/images/microbit.svg",
+  "provider": {
+    "@type": "Organization",
+    "name": "BIT | Lab Tecnologici",
+    "url": "https://www.bitcorsi.it",
+    "telephone": "+393703069215"
+  },
+  "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado",
+  "audience": {
+    "@type": "EducationalAudience",
+    "audienceType": "Bambini e ragazzi dagli 8 ai 13 anni"
+  },
+  "teaches": [
+    "Coding a blocchi visivi",
+    "JavaScript base",
+    "Python base",
+    "Pensiero computazionale",
+    "Elettronica portatile"
+  ],
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "Onsite",
+    "location": {
+      "@type": "Place",
+      "name": "Centro Aperto Sandro Marelli",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+        "addressLocality": "Brescia",
+        "addressCountry": "IT"
+      }
+    },
+    "maximumAttendeeCapacity": 10
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.bitcorsi.it/#corsi",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  "inLanguage": "it"
+}
+</script>
+
+
+<!-- ⑤ COURSE: Open Roberta -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Laboratorio Open Roberta — Coding Online",
+  "description": "Laboratorio di programmazione con Open Roberta per bambini dagli 8 ai 13 anni. Piattaforma browser-based senza installazioni: si programmano robot LEGO, micro:bit e altri dispositivi con blocchi colorati direttamente online. Ideale per chi inizia con il coding.",
+  "url": "https://www.bitcorsi.it/#corsi",
+  "image": "https://www.bitcorsi.it/images/open-roberta.svg",
+  "provider": {
+    "@type": "Organization",
+    "name": "BIT | Lab Tecnologici",
+    "url": "https://www.bitcorsi.it",
+    "telephone": "+393703069215"
+  },
+  "educationalLevel": "Scuola Primaria",
+  "audience": {
+    "@type": "EducationalAudience",
+    "audienceType": "Bambini dagli 8 ai 13 anni"
+  },
+  "teaches": [
+    "Programmazione a blocchi visivi",
+    "Pensiero computazionale",
+    "Coding online"
+  ],
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "Onsite",
+    "location": {
+      "@type": "Place",
+      "name": "Centro Aperto Sandro Marelli",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+        "addressLocality": "Brescia",
+        "addressCountry": "IT"
+      }
+    },
+    "maximumAttendeeCapacity": 10
+  },
+  "inLanguage": "it"
+}
+</script>
+
+
+<!-- ⑥ COURSE: ROBOGREST 2026 — Campo Estivo -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "ROBOGREST 2026 — Campo Estivo di Coding e Robotica Brescia",
+  "description": "Campo estivo di robotica educativa a Brescia per bambini dai 7 ai 13 anni. Dal 10 giugno al 31 luglio 2026, orario 9:00–17:00. Ogni mattina: progettazione, costruzione e programmazione di robot con LEGO Spike Prime e micro:bit. Posti limitati, prenotazione con caparra di €30.",
+  "url": "https://www.bitcorsi.it/",
+  "provider": {
+    "@type": "Organization",
+    "name": "BIT | Lab Tecnologici",
+    "url": "https://www.bitcorsi.it",
+    "telephone": "+393703069215"
+  },
+  "educationalLevel": "Scuola Primaria",
+  "audience": {
+    "@type": "EducationalAudience",
+    "audienceType": "Bambini dai 7 ai 13 anni"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "Onsite",
+    "startDate": "2026-06-10",
+    "endDate": "2026-07-31",
+    "location": {
+      "@type": "Place",
+      "name": "Centro Aperto Sandro Marelli",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+        "addressLocality": "Brescia",
+        "addressCountry": "IT"
+      }
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "130",
+    "priceCurrency": "EUR",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "130",
+      "priceCurrency": "EUR",
+      "unitText": "settimana"
+    },
+    "availability": "https://schema.org/LimitedAvailability",
+    "url": "https://www.bitcorsi.it/"
+  },
+  "inLanguage": "it"
+}
+</script>
+
+
+<!-- ⑦ FAQPAGE — domande frequenti -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Dove si trovano i laboratori BIT a Brescia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I laboratori si svolgono presso il Centro Aperto Sandro Marelli, Piazzetta SS. Francesco e Chiara 1, Brescia. Il sabato mattina 10:00–11:30 e il sabato pomeriggio 15:00–16:30."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Da quanti anni si può partecipare ai corsi di robotica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I corsi partono dagli 8 anni fino ai 16, con percorsi su misura per ogni fascia d'età. Il campo estivo ROBOGREST 2026 è aperto dai 7 anni."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come ci si iscrive a un corso BIT Lab Tecnologici?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Puoi iscriverti direttamente dal modulo sul sito bitcorsi.it, oppure contattarci via WhatsApp al +39 370 306 9215 o per email a bitcorsi@gmail.com. È disponibile una prima lezione di prova gratuita."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I kit e i materiali sono inclusi nel corso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, tutti i kit (LEGO Spike Prime, Arduino, micro:bit) sono inclusi nel costo del corso. Non è necessario portare nulla da casa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanti ragazzi ci sono in ogni gruppo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I gruppi sono piccoli: massimo 8–10 ragazzi per garantire attenzione individuale e un apprendimento efficace."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "È possibile portare la robotica nella mia scuola primaria a Brescia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì. BIT organizza doposcuola settimanali di robotica educativa per le scuole primarie e secondarie di Brescia e provincia, in collaborazione con Club 28 SSD s.r.l. Il comitato genitori può scrivere a bitcorsi@gmail.com per avviare una collaborazione."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa succede se mio figlio perde una lezione?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'incontro perso viene recuperato durante la sessione successiva di laboratori."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa il campo estivo ROBOGREST 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il costo è di €130 a settimana, orario 9:00–17:00, dal 10 giugno al 31 luglio 2026. Per prenotare è richiesta una caparra di €30. I posti sono limitati."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -792,6 +802,7 @@
   <div class="container">
     <div class="bit-bar-wrapper">
 
+      <!-- WhatsApp -->
       <a href="https://wa.me/393703069215" class="bit-bar-column" target="_blank">
         <div class="bit-icon orange-tint">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -804,6 +815,7 @@
         </div>
       </a>
 
+      <!-- Sede -->
       <div class="bit-bar-column">
         <div class="bit-icon blue-tint">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -817,6 +829,7 @@
         </div>
       </div>
 
+      <!-- Orari -->
       <div class="bit-bar-column">
         <div class="bit-icon green-tint">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -830,6 +843,7 @@
         </div>
       </div>
 
+      <!-- Instagram -->
       <a href="https://www.instagram.com/lab_tecnologici/" class="bit-bar-column" target="_blank">
         <div class="bit-icon purple-tint">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -894,17 +908,18 @@
       <p>Scegli il suo corso di robotica preferito</p>
     </div>
 
-    <div id="enrollmentSuccessMessage" class="enrollment-message">
-      <div class="enrollment-success-card">
-        <span class="enrollment-success-icon">🎉</span>
-        <strong>Iscrizione Confermata!</strong>
-        <p id="enrollmentSuccessText"></p>
-        <button class="enrollment-success-close" onclick="
-          document.getElementById('enrollmentSuccessMessage').classList.remove('show');
-          closeEnrollmentModal();
-        ">Perfetto, grazie!</button>
-      </div>
-    </div>
+<div id="enrollmentSuccessMessage" class="enrollment-message">
+  <div class="enrollment-success-card">
+    <span class="enrollment-success-icon">🎉</span>
+    <strong>Iscrizione Confermata!</strong>
+    <p id="enrollmentSuccessText"></p>
+<button class="enrollment-success-close" onclick="
+  document.getElementById('enrollmentSuccessMessage').classList.remove('show');
+  closeEnrollmentModal();
+">Perfetto, grazie!</button>
+    
+  </div>
+</div>
 
     <div id="enrollmentWaitlistMessage" class="enrollment-message waitlist-message">
       <strong>⏳ In Lista d'Attesa</strong>
@@ -973,20 +988,21 @@
       <div class="enrollment-form-section">
         
         <div class="enrollment-form-section" id="robogrest-week-section" style="display:none;">
-          <div class="enrollment-form-section-title">📅 Scegli le settimane *</div>
-          <p style="font-size:0.82rem;color:#888;margin-bottom:0.8rem;">Seleziona una o più settimane (lun–ven, ore 9:00–17:00)</p>
-          <div class="robogrest-weeks-grid">
-            <label class="week-option"><input type="checkbox" name="robogrest_week" value="10–13 giugno (mar–ven)"><span>10–13 giu<small>mar – ven</small></span></label>
-            <label class="week-option"><input type="checkbox" name="robogrest_week" value="16–20 giugno"><span>16–20 giu<small>lun – ven</small></span></label>
-            <label class="week-option"><input type="checkbox" name="robogrest_week" value="23–27 giugno"><span>23–27 giu<small>lun – ven</small></span></label>
-            <label class="week-option"><input type="checkbox" name="robogrest_week" value="30 giu – 4 luglio"><span>30 giu – 4 lug<small>lun – ven</small></span></label>
-            <label class="week-option"><input type="checkbox" name="robogrest_week" value="7–11 luglio"><span>7–11 lug<small>lun – ven</small></span></label>
-            <label class="week-option"><input type="checkbox" name="robogrest_week" value="14–18 luglio"><span>14–18 lug<small>lun – ven</small></span></label>
-            <label class="week-option"><input type="checkbox" name="robogrest_week" value="21–25 luglio"><span>21–25 lug<small>lun – ven</small></span></label>
-            <label class="week-option"><input type="checkbox" name="robogrest_week" value="28–31 luglio (lun–gio)"><span>28–31 lug<small>lun – gio</small></span></label>
-          </div>
-        </div>
+  <div class="enrollment-form-section-title">📅 Scegli le settimane *</div>
+  <p style="font-size:0.82rem;color:#888;margin-bottom:0.8rem;">Seleziona una o più settimane (lun–ven, ore 9:00–17:00)</p>
+  <div class="robogrest-weeks-grid">
+    <label class="week-option"><input type="checkbox" name="robogrest_week" value="10–13 giugno (mar–ven)"><span>10–13 giu<small>mar – ven</small></span></label>
+    <label class="week-option"><input type="checkbox" name="robogrest_week" value="16–20 giugno"><span>16–20 giu<small>lun – ven</small></span></label>
+    <label class="week-option"><input type="checkbox" name="robogrest_week" value="23–27 giugno"><span>23–27 giu<small>lun – ven</small></span></label>
+    <label class="week-option"><input type="checkbox" name="robogrest_week" value="30 giu – 4 luglio"><span>30 giu – 4 lug<small>lun – ven</small></span></label>
+    <label class="week-option"><input type="checkbox" name="robogrest_week" value="7–11 luglio"><span>7–11 lug<small>lun – ven</small></span></label>
+    <label class="week-option"><input type="checkbox" name="robogrest_week" value="14–18 luglio"><span>14–18 lug<small>lun – ven</small></span></label>
+    <label class="week-option"><input type="checkbox" name="robogrest_week" value="21–25 luglio"><span>21–25 lug<small>lun – ven</small></span></label>
+    <label class="week-option"><input type="checkbox" name="robogrest_week" value="28–31 luglio (lun–gio)"><span>28–31 lug<small>lun – gio</small></span></label>
+  </div>
+</div>
 
+        
         <div class="enrollment-form-section-title">⚡ Informazioni Aggiuntive</div>
         <div class="enrollment-form-group">
           <label for="referral">Come hai saputo del corso?</label>
