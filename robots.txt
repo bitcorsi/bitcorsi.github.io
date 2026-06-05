@@ -1,5 +1,5 @@
-# robots.txt — BIT | Lab Tecnologici
-# https://www.bitcorsi.it
+# robots.txt — Lab Tecnologici
+# https://www.labtecnologici.it
 # Aggiornato: 2026
 
 # ── Crawler standard ─────────────────────────────────
@@ -44,4 +44,4 @@ User-agent: cohere-ai
 Allow: /
 
 # ── Sitemap ───────────────────────────────────────────
-Sitemap: https://www.bitcorsi.it/sitemap.xml
+Sitemap: https://www.labtecnologici.it/sitemap.xml
