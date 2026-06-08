@@ -1848,96 +1848,115 @@ a:focus-visible {
   }
 }
 @media (max-width: 768px) {
+  /* 1. Riportiamo l'intero Hero a un flusso verticale pulito e prevedibile */
   .hero {
-    padding: 2rem 0;
+    padding: 2rem 0 !important;
+    display: block !important;
+    min-height: auto !important;
   }
 
-  /* Forza la griglia asimmetrica per tenere Immagine e Scritta affiancate */
+  /* 2. Trasformiamo il container globale in un blocco verticale nativo */
   .hero .container {
-    display: grid !important;
-    grid-template-columns: 1.2fr 1.5fr !important;
-    gap: 1.25rem !important;
-    align-items: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
     text-align: left !important;
+    width: 92% !important;
   }
 
-  /* 1. Ingrandimento mirato dell'immagine dei robot Lego */
+  /* 3. IL BLOCCO ASIMMETRICO: Uniamo solo Immagine e Testo a inizio sezione */
+  /* Poiché nell'HTML originale sono elementi adiacenti, li facciamo convivere */
   .hero-left-image {
-    max-width: 180px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    width: 38% !important; /* Spazio esatto per l'immagine */
     margin: 0 !important;
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
+    float: left !important; /* L'unico modo pulito se l'HTML non ha un wrapper dedicato */
   }
 
   .hero-left-image img {
-    transform: scale(1.15) !important;
-    transform-origin: center left !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
   }
 
-  /* Contenitore della scritta a fianco */
+  /* Il blocco di testo si affianca perfettamente occupando lo spazio rimanente */
   .container.hero-content-container {
-    padding: 0 !important;
-    text-align: left !important;
+    display: block !important;
+    width: auto !important;
     margin: 0 !important;
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
+    padding: 0 !important;
   }
 
-  /* 2. Ingrandimento della scritta (Titolo e Sottotitolo) */
+  /* 4. INGRANDIMENTO CALIBRATO DEI TESTI SU MOBILE */
   .hero h2 {
-    font-size: 1.6rem !important;
-    line-height: 1.15 !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 1.5rem !important; /* Titolo grande ed evidente */
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.3rem !important;
   }
 
   .hero p {
-    font-size: 1.05rem !important;
-    line-height: 1.4 !important;
+    font-size: 0.95rem !important; /* Sottotitolo leggibile a fianco */
+    line-height: 1.35 !important;
     margin-bottom: 0 !important;
   }
 
-  /* Forziamo i pulsanti e le pillole scendere sotto a tutta larghezza */
+  /* 5. RIPRISTINO STRUTTURALE DELLE CARD INFERIORI (Pulsanti e Feature) */
+  /* Interrompiamo l'affiancamento per far tornare i pulsanti a tutta larghezza */
   .hero-actions,
   .hero-features {
-    grid-column: 1 / -1 !important;
+    clear: both !important; /* Cruciale: spinge le azioni sotto l'asse immagine/testo */
+    display: flex !important;
+    width: 100% !important;
+  }
+
+  .hero-actions {
+    margin-top: 1.25rem !important;
+    margin-bottom: 1rem !important;
     justify-content: center !important;
   }
 
+  /* Pulsante Split ovale adattivo e centrato */
+  .hero-cta-split {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 54px !important;
+    border-radius: var(--r-full) !important;
+  }
+
+  /* I tre contatori ritornano ad essere precisi, geometrici e allineati alle altre sezioni */
   .hero-features {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 0.5rem !important;
-    width: 100% !important;
-    margin-top: 1rem !important;
+    margin-top: 0.5rem !important;
   }
 
-  /* Struttura dei contatori stile screenshot */
   .hero-feature-pill {
     flex-direction: column !important;
     text-align: center !important;
-    border-radius: var(--r-xl) !important;
-    padding: 0.75rem 0.25rem !important;
-    background: var(--surface-2) !important;
+    padding: 0.8rem 0.2rem !important;
+    background: var(--surface-2) !important; /* Sfondo grigio azzurrato coerente */
     border: none !important;
+    border-radius: var(--r-xl) !important;
   }
 
   .hero-feature-pill svg {
-    display: none !important; /* Rimuove le icone per pulire lo spazio */
+    display: none !important; /* Pulizia visiva da mock-up */
   }
 
   .hero-pill-label {
     font-size: 1.25rem !important;
     color: var(--orange) !important;
+    font-weight: 800 !important;
   }
 
   .hero-pill-sub {
     font-size: 0.72rem !important;
-    max-width: 90% !important;
-  }
-
-  .hero-cta-split {
-    max-width: 100% !important;
+    color: var(--text-muted) !important;
   }
 }
