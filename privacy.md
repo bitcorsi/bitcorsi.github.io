@@ -1,7 +1,7 @@
 Privacy Policy
 
 Titolare del Trattamento
-Bit - Lab Tecnologici
+Lab Tecnologici
 
 Email: bitcorsi@gmail.com
 
