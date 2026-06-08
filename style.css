@@ -1648,12 +1648,21 @@ h1, h2, h3, h4 {
     justify-content: flex-start;
     align-items: center;
     text-align: center;
-    padding: 1rem 1.5rem 1.25rem;
+    padding: 1rem 1.25rem 1.25rem;
     min-height: auto;
     gap: 0;
   }
 
-  .hero::before, .hero::after { width: 240px; height: 240px; }
+  .hero .hero-actions {
+    width: 100%;
+  }
+
+  .hero .hero-actions .btn-split {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero::before, .hero::after { display: none; }
   .hero-left-image { display: none; }
   .hero-right-stepper { display: none; }
   .hero-features { display: none; }
