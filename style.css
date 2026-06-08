@@ -1,5 +1,5 @@
 /* ============================================================
-   BIT LAB TECNOLOGICI — style.css
+   AB TECNOLOGICI — style.css
    Redesign: Educational Premium Light
    Designer: Senior Staff — giugno 2026
    ============================================================ */
@@ -1188,7 +1188,7 @@ h1, h2, h3, h4 {
 
 @keyframes pulseSuccess { 0% { transform: scale(0.98); } 50% { transform: scale(1.01); } 100% { transform: scale(1); } }
 
-/* ── BIT CONTACT SLIM ── */
+/* ──  CONTACT SLIM ── */
 .bit-contact-slim {
   background: var(--surface);
   padding: 2rem 0;
@@ -1654,7 +1654,22 @@ h1, h2, h3, h4 {
   .hero-left-image { display: none; }
   .hero-features { display: none; }
   .hero-right-stepper { display: none; }
+.hero-mobile-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
 
+.hero-mobile-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
   .section { padding: 3.5rem 0; }
   .section-header h2 { font-size: 1.75rem; }
   .section-subtitle { font-size: 0.95rem; }
@@ -1745,3 +1760,5 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+.hero-mobile-top { display: contents; }
+.hero-mobile-thumb { display: none; }
