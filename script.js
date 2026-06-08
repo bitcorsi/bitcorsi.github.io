@@ -1,5 +1,5 @@
 // ============================================================
-// BIT LAB TECNOLOGICI - script.js
+// LAB TECNOLOGICI - script.js
 // ============================================================
 
 const firebaseConfig = {
