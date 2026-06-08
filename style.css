@@ -1693,8 +1693,8 @@ h1, h2, h3, h4 {
   }
 
   .hero-mobile-thumb {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border-radius: 16px;
     flex-shrink: 0;
     overflow: hidden;
@@ -1706,7 +1706,7 @@ h1, h2, h3, h4 {
   .hero-mobile-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .hero-mobile-text h2 {
