@@ -1696,7 +1696,6 @@ h1, h2, h3, h4 {
     width: 120px;
     height: 120px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #ff8c5a 0%, #e05525 100%);
     flex-shrink: 0;
     overflow: hidden;
     display: flex;
