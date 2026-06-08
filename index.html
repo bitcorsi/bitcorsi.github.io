@@ -1,1031 +1,1108 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- ============================================================
-    MIGRAZIONE DOMINIO: bitcorsi.it → labtecnologici.it
-    Questo file vive su bitcorsi.github.io (vecchio dominio).
-    Fa redirect 301-equivalente JS + meta-refresh verso il nuovo.
-    Sul nuovo dominio (labtecnologici.it) usa una copia identica
-    ma SENZA il blocco redirect e con canonical su labtecnologici.it
-  ============================================================= -->
-
-  <!-- REDIRECT: se siamo ancora su bitcorsi.it, manda su labtecnologici.it -->
-  <script>
-    (function() {
-      var h = window.location.hostname;
-      if (h === 'www.bitcorsi.it' || h === 'bitcorsi.it') {
-        var path = window.location.pathname;
-        var dest = 'https://www.labtecnologici.it' + (path === '/index.html' ? '/' : path);
-        window.location.replace(dest); // replace() non aggiunge alla history
-      }
-    })();
-  </script>
-  <!-- Fallback meta-refresh per crawler/browser senza JS -->
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CANONICAL: indica ai motori di ricerca quale è il dominio "vero" -->
-  <link rel="canonical" href="https://www.labtecnologici.it/">
-
-  <title>Lab Tecnologici e Corsi di Robotica Educativa per Bambini e Ragazzi</title>
-  <meta name="description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori con Lego Spike Prime, micro:bit, Arduino e Open Roberta. Ora su labtecnologici.it">
-
-  <!-- Open Graph / Social (nuovo dominio) -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.labtecnologici.it/">
-  <meta property="og:title" content="BIT - Lab Tecnologici | Corsi di Robotica Educativa Brescia">
-  <meta property="og:description" content="Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori pratici con LEGO Spike Prime, micro:bit, Arduino. Prima lezione gratuita.">
-  <meta property="og:image" content="https://www.labtecnologici.it/images/Logo.webp">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- ① ORGANIZATION — nuovo dominio -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Lab Tecnologici",
-    "alternateName": "Bitcorsi",
-    "url": "https://www.labtecnologici.it",
-    "logo": "https://www.labtecnologici.it/images/Logo.webp",
-    "description": "Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori pratici con LEGO Spike Prime, micro:bit, Arduino e Open Roberta. Gruppi piccoli, kit inclusi, prima lezione gratuita.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-      "addressLocality": "Brescia",
-      "addressRegion": "BS",
-      "postalCode": "25121",
-      "addressCountry": "IT"
-    },
-    "telephone": "+393703069215",
-    "email": "bitcorsi@gmail.com",
-    "sameAs": [
-      "https://instagram.com/lab_tecnologici",
-      "https://wa.me/393703069215",
-      "https://www.bitcorsi.it"
-    ],
-    "vatID": "IT04701410989",
-    "areaServed": {
-      "@type": "City",
-      "name": "Brescia"
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Saturday"],
-      "opens": "10:00",
-      "closes": "16:30"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO META TAG OTTIMIZZATI -->
+    <title>Lab Tecnologici | Corsi Robotica Educativa Brescia per Bambini 8-16 Anni | LEGO Spike, Arduino, micro:bit</title>
+    <meta name="description" content="Laboratori di robotica educativa a Brescia per bambini e ragazzi 8-16 anni. Corsi pratici con LEGO Spike Prime, Arduino, micro:bit, Open Roberta. Gruppi piccoli (8-10), kit inclusi, prima lezione gratuita. Iscriviti ora!">
+    <meta name="keywords" content="corsi robotica brescia, robotica educativa bambini, laboratori coding brescia, lego spike prime brescia, corsi arduino ragazzi, micro:bit brescia, programmazione bambini brescia, stem brescia, campo estivo robotica brescia, robogrest 2026, laboratori tecnologici brescia, corsi coding bambini, robotica scuole brescia">
+    <meta name="author" content="Lab Tecnologici">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://www.labtecnologici.it/">
+    
+    <!-- HREFLANG -->
+    <link rel="alternate" hreflang="it" href="https://www.labtecnologici.it/">
+    <link rel="alternate" hreflang="x-default" href="https://www.labtecnologici.it/">
+    
+    <!-- GEO META -->
+    <meta name="geo.region" content="IT-25">
+    <meta name="geo.placename" content="Brescia">
+    <meta name="geo.position" content="45.5416;10.2118">
+    <meta name="ICBM" content="45.5416, 10.2118">
+    
+    <!-- OPEN GRAPH / FACEBOOK -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.labtecnologici.it/">
+    <meta property="og:title" content="Lab Tecnologici | Corsi Robotica Educativa Brescia per Bambini 8-16 Anni">
+    <meta property="og:description" content="Laboratori pratici di robotica educativa a Brescia con LEGO Spike Prime, Arduino, micro:bit. Gruppi piccoli, kit inclusi, prima lezione gratuita. Iscriviti ora!">
+    <meta property="og:image" content="https://www.labtecnologici.it/images/Logo.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Lab Tecnologici - Corsi di Robotica Educativa a Brescia">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:site_name" content="Lab Tecnologici">
+    
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.labtecnologici.it/">
+    <meta name="twitter:title" content="Lab Tecnologici | Corsi Robotica Educativa Brescia">
+    <meta name="twitter:description" content="Laboratori pratici di robotica educativa a Brescia con LEGO Spike Prime, Arduino, micro:bit. Prima lezione gratuita!">
+    <meta name="twitter:image" content="https://www.labtecnologici.it/images/Logo.webp">
+    <meta name="twitter:image:alt" content="Lab Tecnologici - Robotica Educativa Brescia">
+    
+    <!-- THEME COLOR -->
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="msapplication-TileColor" content="#FF6B35">
+    
+    <!-- FAVICONS -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- PRECONNECT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- SCHEMA.ORG: LOCALBUSINESS + EDUCATIONALORGANIZATION -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": ["EducationalOrganization", "LocalBusiness"],
+        "name": "Lab Tecnologici",
+        "alternateName": "Laboratori Tecnologici per Ragazzi",
+        "url": "https://www.labtecnologici.it",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.labtecnologici.it/images/Logo.webp",
+            "width": 600,
+            "height": 600
+        },
+        "description": "Lab Tecnologici offre corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni. Laboratori pratici con LEGO Spike Prime, Arduino, micro:bit e Open Roberta. Gruppi piccoli (8-10 ragazzi), kit inclusi, prima lezione gratuita.",
+        "foundingDate": "2024",
+        "slogan": "Il viaggio nel mondo Tech inizia qui",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+            "addressLocality": "Brescia",
+            "addressRegion": "BS",
+            "postalCode": "25121",
+            "addressCountry": "IT"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 45.5416,
+            "longitude": 10.2118
+        },
+        "telephone": "+393703069215",
+        "email": "info@labtecnologici.it",
+        "priceRange": "€90-€150",
+        "paymentAccepted": "Cash, Credit Card, Bancomat",
+        "currenciesAccepted": "EUR",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Saturday"],
+                "opens": "10:00",
+                "closes": "11:30"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Saturday"],
+                "opens": "15:00",
+                "closes": "16:30"
+            }
+        ],
+        "areaServed": {
+            "@type": "City",
+            "name": "Brescia",
+            "containedInPlace": {
+                "@type": "AdministrativeArea",
+                "name": "Provincia di Brescia"
+            }
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Corsi di Robotica Educativa",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Course",
+                        "name": "Laboratorio LEGO Spike Prime"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Course",
+                        "name": "Laboratorio Arduino Base"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Course",
+                        "name": "Laboratorio micro:bit BBC"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Course",
+                        "name": "Laboratorio Open Roberta"
+                    }
+                }
+            ]
+        },
+        "sameAs": [
+            "https://www.instagram.com/lab_tecnologici",
+            "https://wa.me/393703069215"
+        ],
+        "vatID": "IT04701410989",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "47",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
     }
-  }
-  </script>
-
-  <!-- ② COURSE: Lego Spike Prime -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio Robotica con LEGO Spike Prime",
-    "description": "Laboratorio di robotica educativa per ragazzi dagli 8 ai 13 anni. I partecipanti costruiscono robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza) e li programmano con blocchi visivi. Progetti pratici: veicoli autonomi, bracci robotici, macchine interattive. Gruppi di max 10 ragazzi, kit incluso.",
-    "url": "https://www.labtecnologici.it/#corsi",
-    "image": "https://www.labtecnologici.it/images/lego-spike-prime.webp",
-    "provider": {
-      "@type": "Organization",
-      "name": "Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Bambini e ragazzi dagli 8 ai 13 anni"
-    },
-    "teaches": [
-      "Robotica educativa",
-      "Programmazione a blocchi visivi",
-      "Pensiero computazionale",
-      "Problem solving",
-      "Lavoro di squadra"
-    ],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
+    </script>
+    
+    <!-- SCHEMA.ORG: WEBSITE -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Lab Tecnologici",
+        "alternateName": "Laboratori di Robotica Educativa Brescia",
+        "url": "https://www.labtecnologici.it",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.labtecnologici.it/?s={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
         }
-      },
-      "courseSchedule": {
-        "@type": "Schedule",
-        "byDay": ["https://schema.org/Saturday"],
-        "startTime": "10:00",
-        "endTime": "11:30",
-        "repeatFrequency": "P1W"
-      },
-      "maximumAttendeeCapacity": 10,
-      "instructor": {
-        "@type": "Organization",
-        "name": "Lab Tecnologici"
-      }
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.labtecnologici.it/#corsi",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2026-01-01"
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ③ COURSE: Arduino Base -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio Arduino Base — Elettronica e Coding",
-    "description": "Laboratorio di elettronica e programmazione con Arduino per ragazzi dai 12 ai 16 anni. I partecipanti creano progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio C++ base, approccio pratico. Gruppi max 10 ragazzi, kit incluso.",
-    "url": "https://www.labtecnologici.it/#corsi",
-    "image": "https://www.labtecnologici.it/images/arduino.svg",
-    "provider": {
-      "@type": "Organization",
-      "name": "Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Secondaria di Primo e Secondo Grado",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Ragazzi dai 12 ai 16 anni"
-    },
-    "teaches": [
-      "Programmazione C++ base",
-      "Elettronica applicata",
-      "Progettazione circuiti",
-      "Pensiero computazionale",
-      "Robotica"
-    ],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      },
-      "courseSchedule": {
-        "@type": "Schedule",
-        "byDay": ["https://schema.org/Saturday"],
-        "startTime": "15:00",
-        "endTime": "16:30",
-        "repeatFrequency": "P1W"
-      },
-      "maximumAttendeeCapacity": 10
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.labtecnologici.it/#corsi",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ④ COURSE: micro:bit BBC -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio Coding con micro:bit BBC",
-    "description": "Laboratorio di coding con micro:bit per bambini dagli 8 ai 13 anni. Progetti portatili e divertenti: contapassi, termometri, giochi, telecomandi per robot. Tre modalità: blocchi visivi, JavaScript o Python. Gruppi max 10 ragazzi, kit incluso.",
-    "url": "https://www.labtecnologici.it/#corsi",
-    "image": "https://www.labtecnologici.it/images/microbit.svg",
-    "provider": {
-      "@type": "Organization",
-      "name": "Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Bambini e ragazzi dagli 8 ai 13 anni"
-    },
-    "teaches": [
-      "Coding a blocchi visivi",
-      "JavaScript base",
-      "Python base",
-      "Pensiero computazionale",
-      "Elettronica portatile"
-    ],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      },
-      "maximumAttendeeCapacity": 10
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.labtecnologici.it/#corsi",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ⑤ COURSE: Open Roberta -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Laboratorio Open Roberta — Coding Online",
-    "description": "Laboratorio di programmazione con Open Roberta per bambini dagli 8 ai 13 anni. Piattaforma browser-based senza installazioni: si programmano robot LEGO, micro:bit e altri dispositivi con blocchi colorati direttamente online. Ideale per chi inizia con il coding.",
-    "url": "https://www.labtecnologici.it/#corsi",
-    "image": "https://www.labtecnologici.it/images/open-roberta.svg",
-    "provider": {
-      "@type": "Organization",
-      "name": "BIT | Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Primaria",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Bambini dagli 8 ai 13 anni"
-    },
-    "teaches": [
-      "Programmazione a blocchi visivi",
-      "Pensiero computazionale",
-      "Coding online"
-    ],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      },
-      "maximumAttendeeCapacity": 10
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ⑥ COURSE: ROBOGREST 2026 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "ROBOGREST 2026 — Campo Estivo di Coding e Robotica Brescia",
-    "description": "Campo estivo di robotica educativa a Brescia per bambini dai 7 ai 13 anni. Dal 10 giugno al 31 luglio 2026, orario 9:00–17:00. Ogni mattina: progettazione, costruzione e programmazione di robot con LEGO Spike Prime e micro:bit. Posti limitati, prenotazione con caparra di €30.",
-    "url": "https://www.labtecnologici.it/",
-    "provider": {
-      "@type": "Organization",
-      "name": "Lab Tecnologici",
-      "url": "https://www.labtecnologici.it",
-      "telephone": "+393703069215"
-    },
-    "educationalLevel": "Scuola Primaria",
-    "audience": {
-      "@type": "EducationalAudience",
-      "audienceType": "Bambini dai 7 ai 13 anni"
-    },
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "startDate": "2026-06-10",
-      "endDate": "2026-07-31",
-      "location": {
-        "@type": "Place",
-        "name": "Centro Aperto Sandro Marelli",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
-          "addressLocality": "Brescia",
-          "addressCountry": "IT"
-        }
-      }
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "130",
-      "priceCurrency": "EUR",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "130",
-        "priceCurrency": "EUR",
-        "unitText": "settimana"
-      },
-      "availability": "https://schema.org/LimitedAvailability",
-      "url": "https://www.labtecnologici.it/"
-    },
-    "inLanguage": "it"
-  }
-  </script>
-
-  <!-- ⑦ FAQPAGE -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Dove si trovano i laboratori BIT a Brescia?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I laboratori si svolgono presso il Centro Aperto Sandro Marelli, Piazzetta SS. Francesco e Chiara 1, Brescia. Il sabato mattina 10:00–11:30 e il sabato pomeriggio 15:00–16:30."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Da quanti anni si può partecipare ai corsi di robotica?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I corsi partono dagli 8 anni fino ai 16, con percorsi su misura per ogni fascia d'età. Il campo estivo ROBOGREST 2026 è aperto dai 7 anni."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Come ci si iscrive a un corso BIT Lab Tecnologici?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Puoi iscriverti direttamente dal modulo sul sito labtecnologici.it, oppure contattarci via WhatsApp al +39 370 306 9215 o per email a bitcorsi@gmail.com. È disponibile una prima lezione di prova gratuita."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "I kit e i materiali sono inclusi nel corso?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sì, tutti i kit (LEGO Spike Prime, Arduino, micro:bit) sono inclusi nel costo del corso. Non è necessario portare nulla da casa."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quanti ragazzi ci sono in ogni gruppo?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "I gruppi sono piccoli: massimo 8–10 ragazzi per garantire attenzione individuale e un apprendimento efficace."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "È possibile portare la robotica nella mia scuola primaria a Brescia?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sì. BIT organizza doposcuola settimanali di robotica educativa per le scuole primarie e secondarie di Brescia e provincia, in collaborazione con Club 28 SSD s.r.l. Il comitato genitori può scrivere a bitcorsi@gmail.com per avviare una collaborazione."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Cosa succede se mio figlio perde una lezione?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "L'incontro perso viene recuperato durante la sessione successiva di laboratori."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quanto costa il campo estivo ROBOGREST 2026?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Il costo è di €130 a settimana, orario 9:00–17:00, dal 10 giugno al 31 luglio 2026. Per prenotare è richiesta una caparra di €30. I posti sono limitati."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#FF6B35">
-  <link rel="stylesheet" href="style.css">
+    }
+    </script>
+    
+    <!-- SCHEMA.ORG: BREADCRUMB -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.labtecnologici.it/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Corsi di Robotica",
+                "item": "https://www.labtecnologici.it/#corsi"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- SCHEMA.ORG: LEGO SPIKE PRIME COURSE -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Laboratorio Robotica con LEGO Spike Prime",
+        "description": "Laboratorio di robotica educativa per ragazzi dagli 8 ai 13 anni. I partecipanti costruiscono robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza) e li programmano con blocchi visivi. Progetti pratici: veicoli autonomi, bracci robotici, macchine interattive. Gruppi di max 10 ragazzi, kit incluso.",
+        "url": "https://www.labtecnologici.it/#corsi",
+        "image": "https://www.labtecnologici.it/images/lego-spike-prime.webp",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Lab Tecnologici",
+            "url": "https://www.labtecnologici.it",
+            "telephone": "+393703069215"
+        },
+        "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado",
+        "audience": {
+            "@type": "EducationalAudience",
+            "audienceType": "Bambini e ragazzi dagli 8 ai 13 anni"
+        },
+        "teaches": [
+            "Robotica educativa",
+            "Programmazione a blocchi visivi",
+            "Pensiero computazionale",
+            "Problem solving",
+            "Lavoro di squadra"
+        ],
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+                "@type": "Place",
+                "name": "Centro Aperto Sandro Marelli",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+                    "addressLocality": "Brescia",
+                    "addressCountry": "IT"
+                }
+            },
+            "courseSchedule": {
+                "@type": "Schedule",
+                "byDay": ["https://schema.org/Saturday"],
+                "startTime": "10:00",
+                "endTime": "11:30",
+                "repeatFrequency": "P1W"
+            },
+            "maximumAttendeeCapacity": 10,
+            "instructor": {
+                "@type": "EducationalOrganization",
+                "name": "Lab Tecnologici"
+            }
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.labtecnologici.it/#corsi",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "validFrom": "2026-01-01"
+        },
+        "inLanguage": "it"
+    }
+    </script>
+    
+    <!-- SCHEMA.ORG: ARDUINO COURSE -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Laboratorio Arduino Base — Elettronica e Coding",
+        "description": "Laboratorio di elettronica e programmazione con Arduino per ragazzi dai 12 ai 16 anni. I partecipanti creano progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio C++ base, approccio pratico. Gruppi max 10 ragazzi, kit incluso.",
+        "url": "https://www.labtecnologici.it/#corsi",
+        "image": "https://www.labtecnologici.it/images/arduino.svg",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Lab Tecnologici",
+            "url": "https://www.labtecnologici.it",
+            "telephone": "+393703069215"
+        },
+        "educationalLevel": "Scuola Secondaria di Primo e Secondo Grado",
+        "audience": {
+            "@type": "EducationalAudience",
+            "audienceType": "Ragazzi dai 12 ai 16 anni"
+        },
+        "teaches": [
+            "Programmazione C++ base",
+            "Elettronica applicata",
+            "Progettazione circuiti",
+            "Pensiero computazionale",
+            "Robotica"
+        ],
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+                "@type": "Place",
+                "name": "Centro Aperto Sandro Marelli",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+                    "addressLocality": "Brescia",
+                    "addressCountry": "IT"
+                }
+            },
+            "courseSchedule": {
+                "@type": "Schedule",
+                "byDay": ["https://schema.org/Saturday"],
+                "startTime": "15:00",
+                "endTime": "16:30",
+                "repeatFrequency": "P1W"
+            },
+            "maximumAttendeeCapacity": 10
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.labtecnologici.it/#corsi",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "inLanguage": "it"
+    }
+    </script>
+    
+    <!-- SCHEMA.ORG: MICRO:BIT COURSE -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Laboratorio Coding con micro:bit BBC",
+        "description": "Laboratorio di coding con micro:bit per bambini dagli 8 ai 13 anni. Progetti portatili e divertenti: contapassi, termometri, giochi, telecomandi per robot. Tre modalità: blocchi visivi, JavaScript o Python. Gruppi max 10 ragazzi, kit incluso.",
+        "url": "https://www.labtecnologici.it/#corsi",
+        "image": "https://www.labtecnologici.it/images/microbit.svg",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Lab Tecnologici",
+            "url": "https://www.labtecnologici.it",
+            "telephone": "+393703069215"
+        },
+        "educationalLevel": "Scuola Primaria e Secondaria di Primo Grado",
+        "audience": {
+            "@type": "EducationalAudience",
+            "audienceType": "Bambini e ragazzi dagli 8 ai 13 anni"
+        },
+        "teaches": [
+            "Coding a blocchi visivi",
+            "JavaScript base",
+            "Python base",
+            "Pensiero computazionale",
+            "Elettronica portatile"
+        ],
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+                "@type": "Place",
+                "name": "Centro Aperto Sandro Marelli",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+                    "addressLocality": "Brescia",
+                    "addressCountry": "IT"
+                }
+            },
+            "maximumAttendeeCapacity": 10
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.labtecnologici.it/#corsi",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "inLanguage": "it"
+    }
+    </script>
+    
+    <!-- SCHEMA.ORG: OPEN ROBERTA COURSE -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Laboratorio Open Roberta — Coding Online",
+        "description": "Laboratorio di programmazione con Open Roberta per bambini dagli 8 ai 13 anni. Piattaforma browser-based senza installazioni: si programmano robot LEGO, micro:bit e altri dispositivi con blocchi colorati direttamente online. Ideale per chi inizia con il coding.",
+        "url": "https://www.labtecnologici.it/#corsi",
+        "image": "https://www.labtecnologici.it/images/open-roberta.svg",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Lab Tecnologici",
+            "url": "https://www.labtecnologici.it",
+            "telephone": "+393703069215"
+        },
+        "educationalLevel": "Scuola Primaria",
+        "audience": {
+            "@type": "EducationalAudience",
+            "audienceType": "Bambini dagli 8 ai 13 anni"
+        },
+        "teaches": [
+            "Programmazione a blocchi visivi",
+            "Pensiero computazionale",
+            "Coding online"
+        ],
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+                "@type": "Place",
+                "name": "Centro Aperto Sandro Marelli",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+                    "addressLocality": "Brescia",
+                    "addressCountry": "IT"
+                }
+            },
+            "maximumAttendeeCapacity": 10
+        },
+        "inLanguage": "it"
+    }
+    </script>
+    
+    <!-- SCHEMA.ORG: ROBOGREST 2026 EVENT -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "ROBOGREST 2026 — Campo Estivo di Coding e Robotica Brescia",
+        "description": "Campo estivo di robotica educativa a Brescia per bambini dai 7 ai 13 anni. Dal 10 giugno al 31 luglio 2026, orario 9:00–17:00. Ogni mattina: progettazione, costruzione e programmazione di robot con LEGO Spike Prime e micro:bit. Posti limitati, prenotazione con caparra di €30.",
+        "url": "https://www.labtecnologici.it/",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Lab Tecnologici",
+            "url": "https://www.labtecnologici.it",
+            "telephone": "+393703069215"
+        },
+        "educationalLevel": "Scuola Primaria",
+        "audience": {
+            "@type": "EducationalAudience",
+            "audienceType": "Bambini dai 7 ai 13 anni"
+        },
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "startDate": "2026-06-10",
+            "endDate": "2026-07-31",
+            "location": {
+                "@type": "Place",
+                "name": "Centro Aperto Sandro Marelli",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Piazzetta SS. Francesco e Chiara, 1",
+                    "addressLocality": "Brescia",
+                    "addressCountry": "IT"
+                }
+            }
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "130",
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "130",
+                "priceCurrency": "EUR",
+                "unitText": "settimana"
+            },
+            "availability": "https://schema.org/LimitedAvailability",
+            "url": "https://www.labtecnologici.it/"
+        },
+        "inLanguage": "it"
+    }
+    </script>
+    
+    <!-- SCHEMA.ORG: FAQPAGE -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Dove si trovano i laboratori di robotica Lab Tecnologici a Brescia?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "I laboratori di Lab Tecnologici si svolgono presso il Centro Aperto Sandro Marelli, Piazzetta SS. Francesco e Chiara 1, Brescia. Il sabato mattina 10:00–11:30 e il sabato pomeriggio 15:00–16:30."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Da quanti anni si può partecipare ai corsi di robotica?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "I corsi di Lab Tecnologici partono dagli 8 anni fino ai 16, con percorsi su misura per ogni fascia d'età. Il campo estivo ROBOGREST 2026 è aperto dai 7 anni."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Come ci si iscrive ai corsi Lab Tecnologici?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Puoi iscriverti direttamente dal modulo sul sito labtecnologici.it, oppure contattarci via WhatsApp al +39 370 306 9215 o per email a info@labtecnologici.it. È disponibile una prima lezione di prova gratuita."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "I kit e i materiali sono inclusi nel corso?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì, tutti i kit (LEGO Spike Prime, Arduino, micro:bit) sono inclusi nel costo del corso. Non è necessario portare nulla da casa, solo un tablet o computer."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quanti ragazzi ci sono in ogni gruppo?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "I gruppi sono piccoli: massimo 8–10 ragazzi per garantire attenzione individuale e un apprendimento efficace."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "È possibile portare la robotica nella mia scuola primaria a Brescia?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì. Lab Tecnologici organizza doposcuola settimanali di robotica educativa per le scuole primarie e secondarie di Brescia e provincia, in collaborazione con Club 28 SSD s.r.l. Il comitato genitori può scrivere a info@labtecnologici.it per avviare una collaborazione."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Cosa succede se mio figlio perde una lezione?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "L'incontro perso viene recuperato durante la sessione successiva di laboratori."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quanto costa il campo estivo ROBOGREST 2026?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Il costo è di €130 a settimana, orario 9:00–17:00, dal 10 giugno al 31 luglio 2026. Per prenotare è richiesta una caparra di €30. I posti sono limitati."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quali tecnologie si usano nei laboratori Lab Tecnologici?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Utilizziamo LEGO Spike Prime per la robotica con mattoncini, Arduino per elettronica e programmazione C++, micro:bit BBC per progetti portatili, e Open Roberta per programmazione online. Tutti i kit sono inclusi nel corso."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Lab Tecnologici offre una lezione di prova gratuita?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì, Lab Tecnologici offre una prima lezione di prova gratuita per tutti i nuovi iscritti. Puoi prenotarla tramite il modulo sul sito, WhatsApp al +39 370 306 9215 o email."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="fab-container">
-  <a href="https://wa.me/393703069215" class="fab fab-whatsapp" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
-  </a>
-</div>
-
-<header class="header">
-  <div class="container">
-    <div class="logo-container">
-      <div class="logo-overlap">
-        <img src="images/Logo.webp" alt="Bit Lab Tecnologici - Logo corsi robotica educativa Brescia" class="logo-img">
-      </div>
-        <div class="logo-divider"></div>
-        <div class="logo-text-group">
-        <h1 class="logo-text">Lab Tecnologici</h1>
-      </div>
-    </div>
-    <div class="header-right">
-      <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#il-progetto">Progetto</a>
-        <a href="#strumenti">Strumenti</a>
-        <a href="#corsi">Corsi</a>
-        <a href="#footer">Contatti</a>      
-      </nav>
-    </div>
-    <button class="menu-toggle" aria-label="Apri menu">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-  </div>
-</header>
-
-<nav class="nav-overlay" aria-label="Menu mobile">
-  <a href="#home">Home</a>
-  <a href="#il-progetto">Il progetto</a>
-  <a href="#strumenti">Strumenti</a>
-  <a href="#corsi">Corsi</a>
-  <a href="#footer">Contatti</a>
-</nav>
-
-<section id="home" class="hero">
-  <div class="hero-left-image">
-    <img src="images/hero-left.webp" alt="Bit Lab Tecnologici: programma i robot LEGO a Brescia a blocchi o con python" loading="eager">
-  </div>
-  <div class="container hero-content-container">
-    <p class="hero-eyebrow">Robotica educativa · Brescia</p>
-    <h2 class="hero-title">
-      Il viaggio nel mondo <span style="background:linear-gradient(135deg,#FF6B35 0%,#FFD166 50%,#FF6B35 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;display:inline-block;background-size:200% auto;animation:gradientFlow 3s ease infinite;">Tech</span><br>
-      inizia qui
-    </h2>
-    <p>Lab divertenti per ragazzi e ragazze dagli 8 ai 16 anni.</p>
-    <div class="hero-actions">
-      <a href="#contatti-info" class="hero-cta-split">
-        <span class="hero-cta-left">Iscriviti ora</span>
-        <span class="hero-cta-right">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Prova gratuita
-        </span>
-      </a>
-    </div>
-    <div class="hero-features">
-      <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <div><div class="hero-pill-label">Gruppi piccoli</div><div class="hero-pill-sub">8-10 ragazzi</div></div>
-      </div>
-      <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-        <div><div class="hero-pill-label">Kit inclusi</div><div class="hero-pill-sub">ogni lezione</div></div>
-      </div>
-      <div class="hero-feature-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <div><div class="hero-pill-label">100% pratico</div><div class="hero-pill-sub">progetti reali</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-right-stepper">
-    <div class="hero-stepper-box">
-      <div class="hero-stepper-title">Come funziona un laboratorio</div>
-      <div class="hero-step">
-        <div class="hero-step-left"><div class="hero-step-num">1</div><div class="hero-step-line"></div></div>
-        <div class="hero-step-body"><div class="hero-step-label">🤖​ ​Costruzione del robot</div><div class="hero-step-desc">I ragazzi assemblano il robot con kit LEGO, Arduino o micro:bit. Si impara costruendo.</div></div>
-      </div>
-      <div class="hero-step">
-        <div class="hero-step-left"><div class="hero-step-num">2</div><div class="hero-step-line"></div></div>
-        <div class="hero-step-body"><div class="hero-step-label">​​💻​ Programmazione</div><div class="hero-step-desc">Si scrive il codice con blocchi visivi o testuale, in base all'età. Il tutor guida senza togliere autonomia.</div></div>
-      </div>
-      <div class="hero-step">
-        <div class="hero-step-left"><div class="hero-step-num">3</div><div class="hero-step-line"></div></div>
-        <div class="hero-step-body"><div class="hero-step-label">🏆​ Test e sfida finale</div><div class="hero-step-desc">Il robot viene messo alla prova. Piccole sfide tra gruppi, debug, aggiustamenti.</div></div>
-      </div>
-    </div>
-   </div>
-</section>
-
-<!-- IL PROGETTO -->
-<section id="il-progetto" class="section section-il-progetto">
-  <div class="container">
-    <div class="progetto-grid">
-      <div class="progetto-left">
-        <h2 class="progetto-title"> <span>Il progetto</span></h2>
-        <p class="progetto-lead">la nostra più grande sfida è avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente.</p>
-        <div class="progetto-highlights">
-          <div class="progetto-hl">
-            <div class="progetto-hl-num">1</div>
-            <div><strong>Apprendimento Interattivo</strong><p>Esperienze pratiche con kit LEGO, Arduino, micro:bit.</p></div>
-          </div>
-          <div class="progetto-hl">
-            <div class="progetto-hl-num">2</div>
-            <div><strong>Sviluppo STEM</strong><p>Scienza, Tecnologia, Ingegneria e Matematica in modo pratico.</p></div>
-          </div>
-          <div class="progetto-hl">
-            <div class="progetto-hl-num">3</div>
-            <div><strong>Divertimento</strong><p>I ragazzi costruiscono nuovi robot progettandoli da zero.</p></div>
-          </div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo-link">
+                    <img src="images/Logo.webp" alt="Lab Tecnologici - Logo" class="logo">
+                </a>
+                <nav class="nav-menu">
+                    <a href="#hero" class="nav-link">Home</a>
+                    <a href="#il-progetto" class="nav-link">Il Progetto</a>
+                    <a href="#strumenti" class="nav-link">Strumenti</a>
+                    <a href="#corsi" class="nav-link">Corsi</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="#contatti-info" class="nav-link">Contatti</a>
+                </nav>
+            </div>
         </div>
-      </div>
-      <div class="progetto-right">
-        <img src="images/lab-foto.webp" alt="Ragazzi al laboratorio Bit Labs Tecnologici a Brescia" loading="lazy" class="progetto-img">
-      </div>
-    </div>
+    </header>
 
-    <hr class="progetto-divider">
-
-    <div class="collab-header">
-      <h3 class="progetto-title"> <span>Già nelle scuole di Brescia</span></h3>
-      <p>Portiamo il doposcuola di robotica nelle scuole primarie ogni settimana, in collaborazione con <a href="https://www.club28bs.it" target="_blank" rel="noopener">Club 28 SSD s.r.l.</a></p>
-    </div>
-
-    <div class="scuole-grid">
-      <div class="scuola-card">
-        <img src="images/Torricella.webp" alt="Primaria Torricella (BS)">
-        <span>Torricella</span>
-        <div class="scuola-badge">Attivo</div>
-      </div>
-      <div class="scuola-card">
-        <img src="images/Casazza.webp" alt="Primaria Casazza (BS)">
-        <span>Casazza</span>
-        <div class="scuola-badge">Attivo</div>
-      </div>
-      <div class="scuola-card">
-        <img src="images/Melzi.webp" alt="Primaria Melzi (BS)">
-        <span>Melzi</span>
-        <div class="scuola-badge">Attivo</div>
-      </div>
-      <div class="scuola-card">
-        <img src="images/Quasimodo.webp" alt="Primaria Quasimodo (BS)">
-        <span>Quasimodo</span>
-        <div class="scuola-badge">⌛​</div>
-      </div>
-    </div>
-
-    <div class="cta-scuole">
-      <div class="cta-scuole-left">
-        <div class="cta-scuole-tag">
-          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Per i comitati genitori
+    <!-- HERO -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <a href="https://wa.me/393703069215" class="hero-whatsapp-btn" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        Contattaci su WhatsApp
+                    </a>
+                    <div class="hero-tagline">Robotica educativa · Brescia</div>
+                    <h1 class="hero-title">
+                        <span>Il viaggio nel mondo Tech</span>
+                        <span>inizia qui</span>
+                    </h1>
+                    <p class="hero-subtitle">Lab divertenti per ragazzi e ragazze dagli 8 ai 16 anni.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary" onclick="openEnrollmentModal('robogrest')">Iscriviti ora</button>
+                        <button class="btn-secondary" onclick="openEnrollmentModal('robogrest')">Prova gratuita</button>
+                    </div>
+                    <div class="hero-features">
+                        <div class="hero-feature-pill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <div><div class="hero-pill-label">Gruppi piccoli</div><div class="hero-pill-sub">8-10 ragazzi</div></div>
+                        </div>
+                        <div class="hero-feature-pill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <div><div class="hero-pill-label">Kit inclusi</div><div class="hero-pill-sub">ogni lezione</div></div>
+                        </div>
+                        <div class="hero-feature-pill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <div><div class="hero-pill-label">100% pratico</div><div class="hero-pill-sub">progetti reali</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-right-stepper">
+                    <div class="hero-stepper-box">
+                        <div class="hero-stepper-title">Come funziona un laboratorio</div>
+                        <div class="hero-step">
+                            <div class="hero-step-left"><div class="hero-step-num">1</div><div class="hero-step-line"></div></div>
+                            <div class="hero-step-body"><div class="hero-step-label">🤖 Costruzione del robot</div><div class="hero-step-desc">I ragazzi assemblano il robot con kit LEGO, Arduino o micro:bit. Si impara costruendo.</div></div>
+                        </div>
+                        <div class="hero-step">
+                            <div class="hero-step-left"><div class="hero-step-num">2</div><div class="hero-step-line"></div></div>
+                            <div class="hero-step-body"><div class="hero-step-label">💻 Programmazione</div><div class="hero-step-desc">Si scrive il codice con blocchi visivi o testuale, in base all'età. Il tutor guida senza togliere autonomia.</div></div>
+                        </div>
+                        <div class="hero-step">
+                            <div class="hero-step-left"><div class="hero-step-num">3</div><div class="hero-step-line"></div></div>
+                            <div class="hero-step-body"><div class="hero-step-label">🏆 Test e sfida finale</div><div class="hero-step-desc">Il robot viene messo alla prova. Piccole sfide tra gruppi, debug, aggiustamenti.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h4>Porta il coding nella tua scuola!</h4>
-        <p>Organizziamo laboratori settimanali di robotica educativa per le scuole primarie e secondarie di Brescia e provincia. Il comitato genitori può contattarci per avviare una collaborazione.</p>
-        <div class="cta-scuole-points">
-          <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Doposcuola settimanale fisso
-          </div>
-          <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Brescia e provincia
-          </div>
-          <div class="cta-scuole-point">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Kit e materiali inclusi
-          </div>
+    </section>
+
+    <!-- IL PROGETTO -->
+    <section id="il-progetto" class="section section-il-progetto">
+        <div class="container">
+            <div class="progetto-grid">
+                <div class="progetto-left">
+                    <h2 class="progetto-title"><span>Il progetto</span></h2>
+                    <p class="progetto-lead">la nostra più grande sfida è avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente.</p>
+                    <div class="progetto-highlights">
+                        <div class="progetto-hl">
+                            <div class="progetto-hl-num">1</div>
+                            <div><strong>Apprendimento Interattivo</strong><p>Esperienze pratiche con kit LEGO, Arduino, micro:bit.</p></div>
+                        </div>
+                        <div class="progetto-hl">
+                            <div class="progetto-hl-num">2</div>
+                            <div><strong>Sviluppo STEM</strong><p>Scienza, Tecnologia, Ingegneria e Matematica in modo pratico.</p></div>
+                        </div>
+                        <div class="progetto-hl">
+                            <div class="progetto-hl-num">3</div>
+                            <div><strong>Divertimento</strong><p>I ragazzi costruiscono nuovi robot progettandoli da zero.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="progetto-right">
+                    <img src="images/lab-foto.webp" alt="Ragazzi al laboratorio Lab Tecnologici a Brescia" loading="lazy" class="progetto-img">
+                </div>
+            </div>
+            <hr class="progetto-divider">
+            <div class="collab-header">
+                <h3 class="progetto-title"><span>Già nelle scuole di Brescia</span></h3>
+                <p>Portiamo il doposcuola di robotica nelle scuole primarie ogni settimana, in collaborazione con <a href="https://www.club28bs.it" target="_blank" rel="noopener">Club 28 SSD s.r.l.</a></p>
+            </div>
+            <div class="scuole-grid">
+                <div class="scuola-card">
+                    <img src="images/Torricella.webp" alt="Primaria Torricella (BS)">
+                    <span>Torricella</span>
+                    <div class="scuola-badge">Attivo</div>
+                </div>
+                <div class="scuola-card">
+                    <img src="images/Casazza.webp" alt="Primaria Casazza (BS)">
+                    <span>Casazza</span>
+                    <div class="scuola-badge">Attivo</div>
+                </div>
+                <div class="scuola-card">
+                    <img src="images/Melzi.webp" alt="Primaria Melzi (BS)">
+                    <span>Melzi</span>
+                    <div class="scuola-badge">Attivo</div>
+                </div>
+                <div class="scuola-card">
+                    <img src="images/Quasimodo.webp" alt="Primaria Quasimodo (BS)">
+                    <span>Quasimodo</span>
+                    <div class="scuola-badge">⌛</div>
+                </div>
+            </div>
+            <div class="cta-scuole">
+                <div class="cta-scuole-left">
+                    <div class="cta-scuole-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        Per i comitati genitori
+                    </div>
+                    <h4>Porta il coding nella tua scuola!</h4>
+                    <p>Organizziamo laboratori settimanali di robotica educativa per le scuole primarie e secondarie di Brescia e provincia. Il comitato genitori può contattarci per avviare una collaborazione.</p>
+                    <div class="cta-scuole-points">
+                        <div class="cta-scuole-point">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Doposcuola settimanale fisso
+                        </div>
+                        <div class="cta-scuole-point">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Brescia e provincia
+                        </div>
+                        <div class="cta-scuole-point">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Kit e materiali inclusi
+                        </div>
+                    </div>
+                </div>
+                <div class="cta-scuole-right">
+                    <a href="mailto:info@labtecnologici.it?subject=Collaborazione%20scuola&body=Ciao%2C%20sono%20un%20genitore%20e%20vorrei%20portare%20la%20robotica%20nella%20scuola%20di%20mio%20figlio." class="btn-cta-scuole">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        Scrivici per la tua scuola
+                    </a>
+                    <div class="cta-scuole-note">risposta entro 24 ore</div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="cta-scuole-right">
-        <a href="mailto:bitcorsi@gmail.com?subject=Collaborazione%20scuola&body=Ciao%2C%20sono%20un%20genitore%20e%20vorrei%20portare%20la%20robotica%20nella%20scuola%20di%20mio%20figlio." class="btn-cta-scuole">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          Scrivici per la tua scuola
-        </a>
-        <div class="cta-scuole-note">risposta entro 24 ore</div>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-
-<!-- Strumenti -->
-<section id="strumenti" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>I nostri strumenti per imparare costruendo</h2>
-      <p class="section-subtitle">per coltivare i MAKER del futuro o solo per divertirsi</p>
-    </div>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <div class="tool-icon-badge lego-color">8-13 anni</div>
-        <img src="images/lego-spike-prime.webp" alt="Corso robotica educativa con LEGO Spike Prime per ragazzi a Brescia" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Lego Spike Prime</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p></div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge roberta-color">8-13 anni</div>
-        <img src="images/open-roberta.svg" alt="Laboratorio di coding con Open Roberta a Brescia" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Open Roberta</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms...), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa. Blocchi colorati nel browser senza installazioni.</p></div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge arduino-color">12-16 anni</div>
-        <img src="images/arduino.svg" alt="Corso Arduino per ragazzi a Brescia" class="tool-image" loading="lazy">
-        <h3 class="tool-title">Arduino</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio testuale semplice basato su C++.</p></div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon-badge microbit-color">8-13 anni</div>
-        <img src="images/microbit.svg" alt="Corso di programmazione con micro:bit per bambini a Brescia" class="tool-image" loading="lazy">
-        <h3 class="tool-title">micro:bit BBC</h3>
-        <div class="tool-details"><p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori. Tre modalità: blocchi, JavaScript o Python.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="corsi" class="section bg-light" aria-label="Corsi di robotica educativa">
-  <div class="container">
-    <div class="section-header">
-      <h2>Iscrizioni aperte - 🌞​ estate 2026</h2>
-      <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia</p>
-    </div>
-
-    <div class="courses-grid" id="courses-container">
-     
-      <div class="course-card corso-aperto">
-        <div class="course-badge">Open</div>
-        <h3 class="course-title">🌄​ ROBOGREST 2026</h3>
-        <div class="course-meta">
-          <span class="meta-item">7–13 anni</span>
-          <span class="meta-item">10 giu – 31 lug</span>
-          <span class="meta-item meta-price">€ 130/sett</span>
+    <!-- Strumenti -->
+    <section id="strumenti" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>I nostri strumenti per imparare costruendo</h2>
+                <p class="section-subtitle">per coltivare i MAKER del futuro o solo per divertirsi</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-badge lego-color">8-13 anni</div>
+                    <img src="images/lego-spike-prime.webp" alt="Corso robotica educativa con LEGO Spike Prime per ragazzi a Brescia" class="tool-image" loading="lazy">
+                    <h3 class="tool-title">Lego Spike Prime</h3>
+                    <div class="tool-details"><p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p></div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-badge roberta-color">8-13 anni</div>
+                    <img src="images/open-roberta.svg" alt="Laboratorio di coding con Open Roberta a Brescia" class="tool-image" loading="lazy">
+                    <h3 class="tool-title">Open Roberta</h3>
+                    <div class="tool-details"><p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms...), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa. Blocchi colorati nel browser senza installazioni.</p></div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-badge arduino-color">12-16 anni</div>
+                    <img src="images/arduino.svg" alt="Corso Arduino per ragazzi a Brescia" class="tool-image" loading="lazy">
+                    <h3 class="tool-title">Arduino</h3>
+                    <div class="tool-details"><p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio testuale semplice basato su C++.</p></div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-badge microbit-color">8-13 anni</div>
+                    <img src="images/microbit.svg" alt="Corso di programmazione con micro:bit per bambini a Brescia" class="tool-image" loading="lazy">
+                    <h3 class="tool-title">micro:bit BBC</h3>
+                    <div class="tool-details"><p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori. Tre modalità: blocchi, JavaScript o Python.</p></div>
+                </div>
+            </div>
         </div>
-        <p class="course-description"><strong>Quando:</strong> lunedì – venerdì ore 9:00 – 17:00</p>
-        <p class="course-description">Progettazione, costruzione e programmazione di robot ogni mattina. Posti limitati, caparra €30.</p>
-        <button class="btn-course" onclick="openEnrollmentModal('robogrest')">Pre-iscrizione disponibile</button>
-      </div>
-      
-      <div class="course-card corso-chiuso">
-        <div class="course-badge">Closed</div>
-        <h3 class="course-title">Spike Prime Lab</h3>
-        <div class="course-meta">
-          <span class="meta-item">8–13 anni</span>
-          <span class="meta-item">6 incontri</span>
-          <span class="meta-item meta-price">€ 125</span>
+    </section>
+
+    <!-- Corsi -->
+    <section id="corsi" class="section bg-light" aria-label="Corsi di robotica educativa">
+        <div class="container">
+            <div class="section-header">
+                <h2>Iscrizioni aperte - 🌞 estate 2026</h2>
+                <p class="section-subtitle">Scegli il percorso più adatto all'età e agli interessi di tuo figlio o tua figlia</p>
+            </div>
+            <div class="courses-grid" id="courses-container">
+                <div class="course-card corso-aperto">
+                    <div class="course-badge">Open</div>
+                    <h3 class="course-title">🌄 ROBOGREST 2026</h3>
+                    <div class="course-meta">
+                        <span class="meta-item">7–13 anni</span>
+                        <span class="meta-item">10 giu – 31 lug</span>
+                        <span class="meta-item meta-price">€ 130/sett</span>
+                    </div>
+                    <p class="course-description"><strong>Quando:</strong> lunedì – venerdì ore 9:00 – 17:00</p>
+                    <p class="course-description">Progettazione, costruzione e programmazione di robot ogni mattina. Posti limitati, caparra €30.</p>
+                    <button class="btn-course" onclick="openEnrollmentModal('robogrest')">Pre-iscrizione disponibile</button>
+                </div>
+                <div class="course-card corso-chiuso">
+                    <div class="course-badge">Closed</div>
+                    <h3 class="course-title">Spike Prime Lab</h3>
+                    <div class="course-meta">
+                        <span class="meta-item">8–13 anni</span>
+                        <span class="meta-item">6 incontri</span>
+                        <span class="meta-item meta-price">€ 125</span>
+                    </div>
+                    <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
+                    <p class="course-description">Costruisci e programma robot con mattoncini LEGO Technic. Veicoli autonomi, bracci robotici e macchine interattive.</p>
+                    <button class="btn-course" disabled>Corso non disponibile</button>
+                </div>
+                <div class="course-card corso-chiuso">
+                    <div class="course-badge">Closed</div>
+                    <h3 class="course-title">Micro:bit Lab</h3>
+                    <div class="course-meta">
+                        <span class="meta-item">8–13 anni</span>
+                        <span class="meta-item">6 incontri</span>
+                        <span class="meta-item meta-price">€ 125</span>
+                    </div>
+                    <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
+                    <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi, misurare temperatura e movimenti.</p>
+                    <button class="btn-course" disabled>Corso non disponibile</button>
+                </div>
+                <div class="course-card corso-chiuso">
+                    <div class="course-badge">Closed</div>
+                    <h3 class="course-title">Open Roberta Lab</h3>
+                    <div class="course-meta">
+                        <span class="meta-item">8–13 anni</span>
+                        <span class="meta-item">6 incontri</span>
+                        <span class="meta-item meta-price">€ 90</span>
+                    </div>
+                    <p class="course-description"><strong>Quando:</strong> online + sede sabato ore 10:00 – 11:30</p>
+                    <p class="course-description">Sperimenta la programmazione virtuale di diversi robot con la piattaforma cloud Open Roberta Lab.</p>
+                    <button class="btn-course" disabled>Corso non disponibile</button>
+                </div>
+                <div class="course-card corso-chiuso">
+                    <div class="course-badge">Closed</div>
+                    <h3 class="course-title">Arduino Base</h3>
+                    <div class="course-meta">
+                        <span class="meta-item">12–16 anni</span>
+                        <span class="meta-item">5 incontri</span>
+                        <span class="meta-item meta-price">€ 150</span>
+                    </div>
+                    <p class="course-description"><strong>Quando:</strong> sabato ore 15:00 – 16:30</p>
+                    <p class="course-description">Crea progetti elettronici interattivi: semafori intelligenti, stazioni meteo e robot su ruote.</p>
+                    <button class="btn-course" disabled>Corso non disponibile</button>
+                </div>
+            </div>
         </div>
-        <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
-        <p class="course-description">Costruisci e programma robot con mattoncini LEGO Technic. Veicoli autonomi, bracci robotici e macchine interattive.</p>
-        <button class="btn-course" disabled>Corso non disponibile</button>
-      </div>
+    </section>
 
-      <div class="course-card corso-chiuso">
-        <div class="course-badge">Closed</div>
-        <h3 class="course-title">Micro:bit Lab</h3>
-        <div class="course-meta">
-          <span class="meta-item">8–13 anni</span>
-          <span class="meta-item">6 incontri</span>
-          <span class="meta-item meta-price">€ 125</span>
+    <!-- FAQ -->
+    <section id="faq" class="section bg-light" aria-label="Domande frequenti">
+        <div class="container">
+            <div class="section-header">
+                <h2>Domande frequenti</h2>
+                <p class="section-subtitle">Tutto quello che c'è da sapere sui nostri laboratori di robotica</p>
+            </div>
+            <div class="faq-list">
+                <details>
+                    <summary><h3>Dove si trovano i laboratori Lab Tecnologici a Brescia?</h3></summary>
+                    <p>I laboratori si svolgono presso il <strong>Centro Aperto Sandro Marelli</strong>, Piazzetta SS. Francesco e Chiara 1, Brescia. Orari: sabato 10:00–11:30 e 15:00–16:30.</p>
+                </details>
+                <details>
+                    <summary><h3>Da quanti anni si può partecipare?</h3></summary>
+                    <p>I corsi partono dagli <strong>8 anni fino ai 16</strong>, con percorsi su misura per ogni fascia d'età. Il campo estivo ROBOGREST 2026 è aperto dai 7 anni.</p>
+                </details>
+                <details>
+                    <summary><h3>Come ci si iscrive?</h3></summary>
+                    <p>Puoi iscriverti dal modulo sul sito, oppure contattarci via <a href="https://wa.me/393703069215">WhatsApp al +39 370 306 9215</a> o per email a <a href="mailto:info@labtecnologici.it">info@labtecnologici.it</a>. È disponibile una <strong>prima lezione di prova gratuita</strong>.</p>
+                </details>
+                <details>
+                    <summary><h3>I kit sono inclusi nel corso?</h3></summary>
+                    <p>Sì, tutti i kit (LEGO Spike Prime, Arduino, micro:bit) sono inclusi nel costo del corso. <strong>Serve portare un tablet o un computer.</strong></p>
+                </details>
+                <details>
+                    <summary><h3>Quanti ragazzi ci sono in ogni gruppo?</h3></summary>
+                    <p>I gruppi sono piccoli: <strong>massimo 8–10 ragazzi</strong> per garantire attenzione individuale e un apprendimento efficace.</p>
+                </details>
+                <details>
+                    <summary><h3>È possibile portare la robotica nella mia scuola?</h3></summary>
+                    <p>Sì. Lab Tecnologici organizza doposcuola settimanali per scuole primarie e secondarie di Brescia e provincia. Scrivi a <a href="mailto:info@labtecnologici.it?subject=Collaborazione scuola">info@labtecnologici.it</a> per avviare una collaborazione.</p>
+                </details>
+                <details>
+                    <summary><h3>Cosa succede se mio figlio perde una lezione?</h3></summary>
+                    <p>L'incontro perso viene <strong>recuperato durante la sessione successiva</strong> di laboratori.</p>
+                </details>
+                <details>
+                    <summary><h3>Quanto costa il campo estivo ROBOGREST 2026?</h3></summary>
+                    <p><strong>€130 a settimana</strong>, orario 9:00–17:00, dal 10 giugno al 31 luglio 2026. Per prenotare è richiesta una caparra di <strong>€30</strong>. Posti limitati.</p>
+                </details>
+            </div>
         </div>
-        <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
-        <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi, misurare temperatura e movimenti.</p>
-        <button class="btn-course" disabled>Corso non disponibile</button>
-      </div>
+    </section>
 
-      <div class="course-card corso-chiuso">
-        <div class="course-badge">Closed</div>
-        <h3 class="course-title">Open Roberta Lab</h3>
-        <div class="course-meta">
-          <span class="meta-item">8–13 anni</span>
-          <span class="meta-item">6 incontri</span>
-          <span class="meta-item meta-price">€ 90</span>
+    <!-- Contatti - Info -->
+    <section id="contatti-info" class="bit-contact-slim">
+        <div class="container">
+            <div class="bit-bar-wrapper">
+                <a href="https://wa.me/393703069215" class="bit-bar-column" target="_blank">
+                    <div class="bit-icon orange-tint">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                    </div>
+                    <div class="bit-text">
+                        <span class="bit-label">Contattaci</span>
+                        <span class="bit-value">+39 370 306 9215</span>
+                    </div>
+                </a>
+                <div class="bit-bar-column">
+                    <div class="bit-icon blue-tint">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <div class="bit-text">
+                        <span class="bit-label">Sede Lab</span>
+                        <span class="bit-value">Piazzetta SS. Francesco e Chiara 1, BS</span>
+                    </div>
+                </div>
+                <div class="bit-bar-column">
+                    <div class="bit-icon green-tint">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="bit-text">
+                        <span class="bit-label">Orari Sabato</span>
+                        <span class="bit-value">10:00-11:30 | 15:00-16:30</span>
+                    </div>
+                </div>
+                <a href="https://www.instagram.com/lab_tecnologici/" class="bit-bar-column" target="_blank">
+                    <div class="bit-icon purple-tint">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </div>
+                    <div class="bit-text">
+                        <span class="bit-label">Instagram</span>
+                        <span class="bit-value">@lab_tecnologici</span>
+                    </div>
+                </a>
+            </div>
         </div>
-        <p class="course-description"><strong>Quando:</strong> online + sede sabato ore 10:00 – 11:30</p>
-        <p class="course-description">Sperimenta la programmazione virtuale di diversi robot con la piattaforma cloud Open Roberta Lab.</p>
-        <button class="btn-course" disabled>Corso non disponibile</button>
-      </div>
+    </section>
 
-      <div class="course-card corso-chiuso">
-        <div class="course-badge">Closed</div>
-        <h3 class="course-title">Arduino Base</h3>
-        <div class="course-meta">
-          <span class="meta-item">12–16 anni</span>
-          <span class="meta-item">5 incontri</span>
-          <span class="meta-item meta-price">€ 150</span>
+    <!-- Footer -->
+    <footer id="footer" class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
+        <div class="container" style="text-align:center;">
+            <p>P.IVA 04701410989 - &copy; 2026 | Lab Tecnologici - Privacy garantita - sito cookie free |
+            <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" target="_blank" rel="noopener noreferrer" style="color:#FF6B35; text-decoration:underline;">Privacy Policy</a>
+            </p>
         </div>
-        <p class="course-description"><strong>Quando:</strong> sabato ore 15:00 – 16:30</p>
-        <p class="course-description">Crea progetti elettronici interattivi: semafori intelligenti, stazioni meteo e robot su ruote.</p>
-        <button class="btn-course" disabled>Corso non disponibile</button>
-      </div>
+    </footer>
 
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="section bg-light" aria-label="Domande frequenti">
-  <div class="container">
-    <div class="section-header">
-      <h2>Domande frequenti</h2>
-      <p class="section-subtitle">Tutto quello che c'è da sapere sui nostri laboratori di robotica</p>
-    </div>
-
-    <div class="faq-list">
-      <details>
-        <summary><h3>Dove si trovano i laboratori BIT a Brescia?</h3></summary>
-        <p>I laboratori si svolgono presso il <strong>Centro Aperto Sandro Marelli</strong>, Piazzetta SS. Francesco e Chiara 1, Brescia. Orari: sabato 10:00–11:30 e 15:00–16:30.</p>
-      </details>
-      
-      <details>
-        <summary><h3>Da quanti anni si può partecipare?</h3></summary>
-        <p>I corsi partono dagli <strong>8 anni fino ai 16</strong>, con percorsi su misura per ogni fascia d'età. Il campo estivo ROBOGREST 2026 è aperto dai 7 anni.</p>
-      </details>
-      
-      <details>
-        <summary><h3>Come ci si iscrive?</h3></summary>
-        <p>Puoi iscriverti dal modulo sul sito, oppure contattarci via <a href="https://wa.me/393703069215">WhatsApp al +39 370 306 9215</a> o per email a <a href="mailto:bitcorsi@gmail.com">bitcorsi@gmail.com</a>. È disponibile una <strong>prima lezione di prova gratuita</strong>.</p>
-      </details>
-      
-      <details>
-        <summary><h3>I kit sono inclusi nel corso?</h3></summary>
-        <p>Sì, tutti i kit (LEGO Spike Prime, Arduino, micro:bit) sono inclusi nel costo del corso. <strong>Serve portare un tablet o un computer.</strong></p>
-      </details>
-      
-      <details>
-        <summary><h3>Quanti ragazzi ci sono in ogni gruppo?</h3></summary>
-        <p>I gruppi sono piccoli: <strong>massimo 8–10 ragazzi</strong> per garantire attenzione individuale e un apprendimento efficace.</p>
-      </details>
-      
-      <details>
-        <summary><h3>È possibile portare la robotica nella mia scuola?</h3></summary>
-        <p>Sì. BIT organizza doposcuola settimanali per scuole primarie e secondarie di Brescia e provincia. Scrivi a <a href="mailto:bitcorsi@gmail.com?subject=Collaborazione scuola">bitcorsi@gmail.com</a> per avviare una collaborazione.</p>
-      </details>
-      
-      <details>
-        <summary><h3>Cosa succede se mio figlio perde una lezione?</h3></summary>
-        <p>L'incontro perso viene <strong>recuperato durante la sessione successiva</strong> di laboratori.</p>
-      </details>
-      
-      <details>
-        <summary><h3>Quanto costa il campo estivo ROBOGREST 2026?</h3></summary>
-        <p><strong>€130 a settimana</strong>, orario 9:00–17:00, dal 10 giugno al 31 luglio 2026. Per prenotare è richiesta una caparra di <strong>€30</strong>. Posti limitati.</p>
-      </details>
-    </div>
-  </div>
-</section>
-  
-<!-- Contatti - Info -->
-<section id="contatti-info" class="bit-contact-slim">
-  <div class="container">
-    <div class="bit-bar-wrapper">
-
-      <a href="https://wa.me/393703069215" class="bit-bar-column" target="_blank">
-        <div class="bit-icon orange-tint">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
+    <!-- POPUP SUMMER CAMP -->
+    <div id="sc-popup-overlay" style="display:none;">
+        <div class="sc-popup">
+            <div class="sc-popup-header">
+                <button id="sc-popup-close" aria-label="Chiudi">&#x2715;</button>
+                <span class="sc-popup-badge">Novità estate 2026</span>
+                <div class="sc-popup-title">🌅 ROBOGREST 2026</div>
+                <div class="sc-popup-subtitle">Un'estate di Coding e Robotica</div>
+            </div>
+            <div class="sc-popup-body">
+                <div class="sc-popup-chips">
+                    <span class="sc-chip">📅 10 giu – 31 lug 2026</span>
+                    <span class="sc-chip">👦 7–13 anni</span>
+                    <span class="sc-chip">💶 €130/settimana - 9:00/17:00</span>
+                </div>
+                <p class="sc-popup-desc">Progettazione, costruzione, programmazione di robot con LEGO Spike Prime e Micro:bit ogni Mattina. Posti limitati, caparra €30 per prenotare.</p>
+                <button id="sc-popup-skip" class="sc-popup-skip">Continua sul Sito</button>
+            </div>
         </div>
-        <div class="bit-text">
-          <span class="bit-label">Contattaci</span>
-          <span class="bit-value">+39 370 306 9215</span>
-        </div>
-      </a>
-
-      <div class="bit-bar-column">
-        <div class="bit-icon blue-tint">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <div class="bit-text">
-          <span class="bit-label">Sede Lab</span>
-          <span class="bit-value">Piazzetta SS. Francesco e Chiara 1, BS</span>
-        </div>
-      </div>
-
-      <div class="bit-bar-column">
-        <div class="bit-icon green-tint">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <div class="bit-text">
-          <span class="bit-label">Orari Sabato</span>
-          <span class="bit-value">10:00-11:30 | 15:00-16:30</span>
-        </div>
-      </div>
-
-      <a href="https://www.instagram.com/lab_tecnologici/" class="bit-bar-column" target="_blank">
-        <div class="bit-icon purple-tint">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
-        </div>
-        <div class="bit-text">
-          <span class="bit-label">Instagram</span>
-          <span class="bit-value">@lab_tecnologici</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer id="footer" class="footer" style="padding:1.25rem 0; font-size:0.9rem;">
-  <div class="container" style="text-align:center;">
-    <p>P.IVA 04701410989 - &copy; 2026 | Lab Tecnologici - Privacy garantita - sito cookie free |
-      <a href="https://github.com/bitcorsi/bitcorsi.github.io/blob/main/privacy.md" target="_blank" rel="noopener noreferrer" style="color:#FF6B35; text-decoration:underline;">Privacy Policy</a>
-    </p>
-  </div>
-</footer>
-
-<!-- POPUP SUMMER CAMP -->
-<div id="sc-popup-overlay" style="display:none;">
-  <div class="sc-popup">
-    <div class="sc-popup-header">
-      <button id="sc-popup-close" aria-label="Chiudi">&#x2715;</button>
-      <span class="sc-popup-badge">Novità estate 2026</span>
-      <div class="sc-popup-title">🌅 ROBOGREST 2026</div>
-      <div class="sc-popup-subtitle">Un'estate di Coding e Robotica</div>
-    </div>
-    <div class="sc-popup-body">
-      <div class="sc-popup-chips">
-        <span class="sc-chip">📅 10 giu – 31 lug 2026</span>
-        <span class="sc-chip">👦 7–13 anni</span>
-        <span class="sc-chip">💶 €130/settimana - 9:00/17:00</span>
-      </div>
-      <p class="sc-popup-desc">Progettazione, costruzione, programmazione di robot con LEGO Spike Prime e Micro:bit ogni Mattina. Posti limitati, caparra €30 per prenotare.</p>
-      <button id="sc-popup-skip" class="sc-popup-skip">Continua sul Sito</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL ISCRIZIONI -->
-<div id="enrollmentModal" class="enrollment-modal">
-  <div class="enrollment-modal-overlay"></div>
-  <div class="enrollment-modal-content">
-    <button class="enrollment-modal-close" id="closeEnrollmentModal" aria-label="Chiudi">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
-
-    <div class="enrollment-modal-header">
-      <h2>🤖 Unisciti all'avventura!</h2>
-      <p>Scegli il suo corso di robotica preferito</p>
     </div>
 
-    <div id="enrollmentSuccessMessage" class="enrollment-message">
-      <div class="enrollment-success-card">
-        <span class="enrollment-success-icon">🎉</span>
-        <strong>Iscrizione Confermata!</strong>
-        <p id="enrollmentSuccessText"></p>
-        <button class="enrollment-success-close" onclick="
-          document.getElementById('enrollmentSuccessMessage').classList.remove('show');
-          closeEnrollmentModal();
-        ">Perfetto, grazie!</button>
-      </div>
+    <!-- MODAL ISCRIZIONI -->
+    <div id="enrollmentModal" class="enrollment-modal">
+        <div class="enrollment-modal-overlay"></div>
+        <div class="enrollment-modal-content">
+            <button class="enrollment-modal-close" id="closeEnrollmentModal" aria-label="Chiudi">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="enrollment-modal-header">
+                <h2>🤖 Unisciti all'avventura!</h2>
+                <p>Scegli il suo corso di robotica preferito</p>
+            </div>
+            <div id="enrollmentSuccessMessage" class="enrollment-message">
+                <div class="enrollment-success-card">
+                    <span class="enrollment-success-icon">🎉</span>
+                    <strong>Iscrizione Confermata!</strong>
+                    <p id="enrollmentSuccessText"></p>
+                    <button class="enrollment-success-close" onclick="
+                        document.getElementById('enrollmentSuccessMessage').classList.remove('show');
+                        closeEnrollmentModal();
+                    ">Perfetto, grazie!</button>
+                </div>
+            </div>
+            <div id="enrollmentWaitlistMessage" class="enrollment-message waitlist-message">
+                <strong>⏳ In Lista d'Attesa</strong>
+                <p id="enrollmentWaitlistText"></p>
+            </div>
+            <div id="enrollmentErrorMessage" class="enrollment-message error-message">
+                <strong>⚠️ Errore</strong>
+                <p id="enrollmentErrorText"></p>
+            </div>
+            <form id="enrollmentForm" class="enrollment-form">
+                <div class="enrollment-form-section">
+                    <div class="enrollment-form-section-title">👦 Dati dell'Alunno</div>
+                    <div class="enrollment-form-group">
+                        <label for="studentName">Nome e Cognome *</label>
+                        <input type="text" id="studentName" name="studentName" placeholder="Es. Marco Rossi" required>
+                    </div>
+                    <div class="enrollment-form-row">
+                        <div class="enrollment-form-group">
+                            <label for="studentAge">Età *</label>
+                            <select id="studentAge" name="studentAge" required>
+                                <option value="">Seleziona età</option>
+                                <option value="8">8 anni</option>
+                                <option value="9">9 anni</option>
+                                <option value="10">10 anni</option>
+                                <option value="11">11 anni</option>
+                                <option value="12">12 anni</option>
+                                <option value="13">13 anni</option>
+                                <option value="14">14 anni</option>
+                                <option value="15">15 anni</option>
+                                <option value="16">16 anni</option>
+                            </select>
+                        </div>
+                        <div class="enrollment-form-group">
+                            <label for="schoolName">Scuola</label>
+                            <input type="text" id="schoolName" name="schoolName" placeholder="Es. IC Dante Alighieri">
+                        </div>
+                    </div>
+                </div>
+                <div class="enrollment-form-section">
+                    <div class="enrollment-form-section-title">📧 Dati del Genitore</div>
+                    <div class="enrollment-form-group">
+                        <label for="parentEmail">Email del Genitore *</label>
+                        <input type="email" id="parentEmail" name="parentEmail" placeholder="email@example.com" required style="border: 2px solid #FF6B35; background: #fff5f0;">
+                    </div>
+                    <div class="enrollment-form-row">
+                        <div class="enrollment-form-group">
+                            <label for="parentName">Nome Genitore</label>
+                            <input type="text" id="parentName" name="parentName" placeholder="Es. Anna Rossi">
+                        </div>
+                        <div class="enrollment-form-group">
+                            <label for="parentPhone">Telefono Genitore</label>
+                            <input type="tel" id="parentPhone" name="parentPhone" placeholder="+39 335 1234567">
+                        </div>
+                    </div>
+                </div>
+                <div class="enrollment-form-section">
+                    <div class="enrollment-form-section-title">🤖 Seleziona il Corso *</div>
+                    <div class="enrollment-courses-grid" id="enrollmentCoursesGrid"></div>
+                </div>
+                <div class="enrollment-form-section">
+                    <div class="enrollment-form-section" id="robogrest-week-section" style="display:none;">
+                        <div class="enrollment-form-section-title">📅 Scegli le settimane *</div>
+                        <p style="font-size:0.82rem;color:#888;margin-bottom:0.8rem;">Seleziona una o più settimane (lun–ven, ore 9:00–17:00)</p>
+                        <div class="robogrest-weeks-grid">
+                            <label class="week-option"><input type="checkbox" name="robogrest_week" value="22–26 giugno"><span>22–26 giu<small>lun – ven</small></span></label>
+                            <label class="week-option"><input type="checkbox" name="robogrest_week" value="29 giu – 3 luglio"><span>29 giu – 3 lug<small>lun – ven</small></span></label>
+                            <label class="week-option"><input type="checkbox" name="robogrest_week" value="6–10 luglio"><span>6–10 lug<small>lun – ven</small></span></label>
+                            <label class="week-option"><input type="checkbox" name="robogrest_week" value="13–17 luglio"><span>13–17 lug<small>lun – ven</small></span></label>
+                            <label class="week-option"><input type="checkbox" name="robogrest_week" value="20–24 luglio"><span>20–24 lug<small>lun – ven</small></span></label>
+                            <label class="week-option"><input type="checkbox" name="robogrest_week" value="27–31 luglio"><span>27–31 lug<small>lun – ven</small></span></label>
+                        </div>
+                    </div>
+                    <div class="enrollment-form-section-title">⚡ Informazioni Aggiuntive</div>
+                    <div class="enrollment-form-group">
+                        <label for="referral">Come hai saputo del corso?</label>
+                        <select id="referral" name="referral">
+                            <option value="Passaparola">Passaparola</option>
+                            <option value="Volantino">Volantino</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Scuola">Scuola</option>
+                            <option value="Ricerca online">Ricerca online</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </div>
+                    <div class="enrollment-form-group">
+                        <label for="notes">Note (es: Note ...)</label>
+                        <textarea id="notes" name="notes" placeholder="Scrivi qui..."></textarea>
+                    </div>
+                </div>
+                <div class="enrollment-form-checkbox">
+                    <input type="checkbox" id="privacy" name="privacy" required>
+                    <label for="privacy">
+                        Accetto l'<a href="/privacy.md" target="_blank">informativa privacy</a> *
+                    </label>
+                </div>
+                <button type="submit" class="enrollment-submit-btn">
+                    <span id="enrollmentSubmitText">✨ Iscriviti Subito!</span>
+                </button>
+            </form>
+            <div class="enrollment-info-box">
+                <p style="margin-top: 0.5rem;">📞 Domande? Contattaci: <a href="tel:+393703069215">+39 370 306 9215</a></p>
+            </div>
+        </div>
     </div>
 
-    <div id="enrollmentWaitlistMessage" class="enrollment-message waitlist-message">
-      <strong>⏳ In Lista d'Attesa</strong>
-      <p id="enrollmentWaitlistText"></p>
-    </div>
-
-    <div id="enrollmentErrorMessage" class="enrollment-message error-message">
-      <strong>⚠️ Errore</strong>
-      <p id="enrollmentErrorText"></p>
-    </div>
-
-    <form id="enrollmentForm" class="enrollment-form">
-
-      <div class="enrollment-form-section">
-        <div class="enrollment-form-section-title">👦 Dati dell'Alunno</div>
-        <div class="enrollment-form-group">
-          <label for="studentName">Nome e Cognome *</label>
-          <input type="text" id="studentName" name="studentName" placeholder="Es. Marco Rossi" required>
-        </div>
-        <div class="enrollment-form-row">
-          <div class="enrollment-form-group">
-            <label for="studentAge">Età *</label>
-            <select id="studentAge" name="studentAge" required>
-              <option value="">Seleziona età</option>
-              <option value="8">8 anni</option>
-              <option value="9">9 anni</option>
-              <option value="10">10 anni</option>
-              <option value="11">11 anni</option>
-              <option value="12">12 anni</option>
-              <option value="13">13 anni</option>
-              <option value="14">14 anni</option>
-              <option value="15">15 anni</option>
-              <option value="16">16 anni</option>
-            </select>
-          </div>
-          <div class="enrollment-form-group">
-            <label for="schoolName">Scuola</label>
-            <input type="text" id="schoolName" name="schoolName" placeholder="Es. IC Dante Alighieri">
-          </div>
-        </div>
-      </div>
-
-      <div class="enrollment-form-section">
-        <div class="enrollment-form-section-title">📧 Dati del Genitore</div>
-        <div class="enrollment-form-group">
-          <label for="parentEmail">Email del Genitore *</label>
-          <input type="email" id="parentEmail" name="parentEmail" placeholder="email@example.com" required style="border: 2px solid #FF6B35; background: #fff5f0;">
-        </div>
-        <div class="enrollment-form-row">
-          <div class="enrollment-form-group">
-            <label for="parentName">Nome Genitore</label>
-            <input type="text" id="parentName" name="parentName" placeholder="Es. Anna Rossi">
-          </div>
-          <div class="enrollment-form-group">
-            <label for="parentPhone">Telefono Genitore</label>
-            <input type="tel" id="parentPhone" name="parentPhone" placeholder="+39 335 1234567">
-          </div>
-        </div>
-      </div>
-
-      <div class="enrollment-form-section">
-        <div class="enrollment-form-section-title">🤖 Seleziona il Corso *</div>
-        <div class="enrollment-courses-grid" id="enrollmentCoursesGrid"></div>
-      </div>
-
-      <div class="enrollment-form-section">
-        
-        <div class="enrollment-form-section" id="robogrest-week-section" style="display:none;">
-          <div class="enrollment-form-section-title">📅 Scegli le settimane *</div>
-          <p style="font-size:0.82rem;color:#888;margin-bottom:0.8rem;">Seleziona una o più settimane (lun–ven, ore 9:00–17:00)</p>
-          <div class="robogrest-weeks-grid">
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="22–26 giugno"><span>22–26 giu<small>lun – ven</small></span></label>
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="29 giu – 3 luglio"><span>29 giu – 3 lug<small>lun – ven</small></span></label>
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="6–10 luglio"><span>6–10 lug<small>lun – ven</small></span></label>
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="13–17 luglio"><span>13–17 lug<small>lun – ven</small></span></label>
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="20–24 luglio"><span>20–24 lug<small>lun – ven</small></span></label>
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="27–31 luglio"><span>27–31 lug<small>lun – ven</small></span></label>
-          </div>
-        </div>
-
-        <div class="enrollment-form-section-title">⚡ Informazioni Aggiuntive</div>
-        <div class="enrollment-form-group">
-          <label for="referral">Come hai saputo del corso?</label>
-          <select id="referral" name="referral">
-            <option value="Passaparola">Passaparola</option>
-            <option value="Volantino">Volantino</option>
-            <option value="Social Media">Social Media</option>
-            <option value="Scuola">Scuola</option>
-            <option value="Ricerca online">Ricerca online</option>
-            <option value="Altro">Altro</option>
-          </select>
-        </div>
-        <div class="enrollment-form-group">
-          <label for="notes">Note (es: Note ...)</label>
-          <textarea id="notes" name="notes" placeholder="Scrivi qui..."></textarea>
-        </div>
-      </div>
-
-      <div class="enrollment-form-checkbox">
-        <input type="checkbox" id="privacy" name="privacy" required>
-        <label for="privacy">
-          Accetto l'<a href="/privacy.md" target="_blank">informativa privacy</a> *
-        </label>
-      </div>
-
-      <button type="submit" class="enrollment-submit-btn">
-        <span id="enrollmentSubmitText">✨ Iscriviti Subito!</span>
-      </button>
-    </form>
-
-    <div class="enrollment-info-box">
-      <p style="margin-top: 0.5rem;">📞 Domande? Contattaci: <a href="tel:+393703069215">+39 370 306 9215</a></p>
-    </div>
-  </div>
-</div>
-
-<!-- Firebase SDK (compat) -->
-<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
-
-<!-- Script principale -->
-<script src="script.js"></script>
-
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Script principale -->
+    <script src="script.js"></script>
 </body>
 </html>
