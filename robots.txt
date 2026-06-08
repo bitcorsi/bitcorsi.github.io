@@ -1,10 +1,13 @@
 # robots.txt — Lab Tecnologici
 # https://www.labtecnologici.it
-# Aggiornato: 2026
+# Aggiornato: 2026-06-08
 
 # ── Crawler standard ─────────────────────────────────
 User-agent: *
 Allow: /
+Disallow: /login.html
+Disallow: /gestionale.html
+Disallow: /privacy.md
 
 # ── AI Engine Optimization (AEO) ─────────────────────
 # Consenti esplicitamente i principali crawler AI/LLM
@@ -13,8 +16,16 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+# OpenAI — ChatGPT Browse
+User-agent: ChatGPT-User
+Allow: /
+
 # Google — Gemini / AI Overviews
 User-agent: Google-Extended
+Allow: /
+
+# Google Bard
+User-agent: Googlebot
 Allow: /
 
 # Anthropic — Claude
@@ -34,14 +45,33 @@ Allow: /
 # Meta — Llama
 User-agent: FacebookBot
 Allow: /
+User-agent: meta-externalagent
+Allow: /
 
 # Apple Intelligence
 User-agent: Applebot-Extended
+Allow: /
+User-agent: Applebot
 Allow: /
 
 # Cohere AI
 User-agent: cohere-ai
 Allow: /
 
+# Bytespider (TikTok/ByteDance)
+User-agent: Bytespider
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
 # ── Sitemap ───────────────────────────────────────────
 Sitemap: https://www.labtecnologici.it/sitemap.xml
+
+# ── Host ──────────────────────────────────────────────
+Host: www.labtecnologici.it
