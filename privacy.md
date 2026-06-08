@@ -54,7 +54,7 @@ Opposizione al trattamento.
 
 Portabilità dei dati.
 
-Per esercitare i tuoi diritti, scrivi a: bitcorsi@gmail.com
+Per esercitare i tuoi diritti, scrivi a: info@labtecnologici.it
 
 Conservazione dati:
 I dati sono conservati per il tempo strettamente necessario al completamento delle finalità indicate o fino alla richiesta di cancellazione da parte dell'utente.
