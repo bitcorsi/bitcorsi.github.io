@@ -1847,35 +1847,97 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
-/* ── INGRANDIMENTO ESCLUSIVO DI IMMAGINE E SCRITTA SU MOBILE ── */
 @media (max-width: 768px) {
-
-  /* Allarghiamo la griglia per dare più spazio a entrambi gli elementi */
-  .hero .container {
-    display: grid !important;
-    grid-template-columns: 1.2fr 1.5fr !important; /* Spazio aumentato per far crescere immagine e testo a fianco */
-    gap: 1.25rem !important;
-    align-items: center !important;
+  .hero {
+    padding: 2rem 0;
   }
 
-  /* 1. Ingrandimento dell'immagine robot Lego */
+  /* Forza la griglia asimmetrica per tenere Immagine e Scritta affiancate */
+  .hero .container {
+    display: grid !important;
+    grid-template-columns: 1.2fr 1.5fr !important;
+    gap: 1.25rem !important;
+    align-items: center !important;
+    text-align: left !important;
+  }
+
+  /* 1. Ingrandimento mirato dell'immagine dei robot Lego */
   .hero-left-image {
-    max-width: 180px !important; /* Aumentato il limite di larghezza sul telefono */
+    max-width: 180px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 
   .hero-left-image img {
-    transform: scale(1.15) !important; /* Zoom controllato per renderla visivamente più grande */
+    transform: scale(1.15) !important;
     transform-origin: center left !important;
   }
 
-  /* 2. Ingrandimento della scritta a fianco */
+  /* Contenitore della scritta a fianco */
+  .container.hero-content-container {
+    padding: 0 !important;
+    text-align: left !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* 2. Ingrandimento della scritta (Titolo e Sottotitolo) */
   .hero h2 {
-    font-size: 1.6rem !important; /* Titolo decisamente più grande e visibile */
+    font-size: 1.6rem !important;
     line-height: 1.15 !important;
+    margin-bottom: 0.5rem !important;
   }
 
   .hero p {
-    font-size: 1.05rem !important; /* Testo descrittivo più grande per bilanciare il titolo */
+    font-size: 1.05rem !important;
     line-height: 1.4 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Forziamo i pulsanti e le pillole scendere sotto a tutta larghezza */
+  .hero-actions,
+  .hero-features {
+    grid-column: 1 / -1 !important;
+    justify-content: center !important;
+  }
+
+  .hero-features {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Struttura dei contatori stile screenshot */
+  .hero-feature-pill {
+    flex-direction: column !important;
+    text-align: center !important;
+    border-radius: var(--r-xl) !important;
+    padding: 0.75rem 0.25rem !important;
+    background: var(--surface-2) !important;
+    border: none !important;
+  }
+
+  .hero-feature-pill svg {
+    display: none !important; /* Rimuove le icone per pulire lo spazio */
+  }
+
+  .hero-pill-label {
+    font-size: 1.25rem !important;
+    color: var(--orange) !important;
+  }
+
+  .hero-pill-sub {
+    font-size: 0.72rem !important;
+    max-width: 90% !important;
+  }
+
+  .hero-cta-split {
+    max-width: 100% !important;
   }
 }
