@@ -1649,7 +1649,7 @@ h1, h2, h3, h4 {
   }
 
   .hero::before, .hero::after { width: 240px; height: 240px; }
-  .hero h1, .hero h2 { font-size: 2rem; line-height: 1.18; }
+  .hero h1, .hero h2 { font-size: 1.5rem; line-height: 1.18; }
   .hero p { font-size: 1rem; }
   .hero-left-image { display: none; }
   .hero-features { display: none; }
