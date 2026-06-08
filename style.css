@@ -1711,15 +1711,20 @@ h1, h2, h3, h4 {
   }
 
   .hero-mobile-text h2 {
-    font-size: 2rem;
+    font-size: 1.2rem;
     line-height: 1.25;
     margin-bottom: 0.3rem;
   }
 
-  .hero-mobile-text p {
-    font-size: 1rem;
-    margin-bottom: 0;
+  .hero-mobile-text p { display: none; }
+
+  .hero-mobile-sub {
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
     color: var(--text-soft);
+    margin: 0.6rem 0 1rem;
+    line-height: 1.5;
   }
 
   /* Stat cards */
@@ -1790,6 +1795,37 @@ h1, h2, h3, h4 {
 
   .bit-bar-wrapper { grid-template-columns: 1fr 1fr; gap: 12px; }
   .bit-bar-column { padding: 8px; }
+}
+
+/* ── RESPONSIVE 550px ── */
+@media (max-width: 550px) {
+  .hero h1, .hero h2 { font-size: 1.75rem; }
+  .hero p { font-size: 0.95rem; }
+  .hero { padding: 0.75rem 1.25rem 1rem; }
+  .hero-mobile-thumb { width: 70px; height: 70px; }
+  .hero-mobile-text h2 { font-size: 1.1rem; }
+
+  .section-header h2 { font-size: 1.5rem; }
+  .progetto-title { font-size: 1.4rem; }
+
+  .scuole-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
+  .scuola-card { min-width: unset; width: 100%; padding: 0.85rem; }
+  .scuola-card img { width: 40px; height: 40px; }
+  .scuola-card span { font-size: 0.78rem; }
+
+  .bit-bar-wrapper { grid-template-columns: 1fr; gap: 10px; }
+  .bit-contact-slim { padding: 20px 16px; }
+  .bit-icon { width: 34px; height: 34px; }
+  .bit-value { font-size: 0.8rem; }
+
+  .enrollment-modal { padding: 0; }
+  .enrollment-modal-content { border-radius: var(--r-2xl) var(--r-2xl) 0 0; max-height: 95vh; padding: 1.5rem 1.2rem; margin-top: auto; }
+  .enrollment-modal-header h2 { font-size: 1.4rem; }
+  .enrollment-form-section-title { font-size: 0.88rem; }
+  .enrollment-form-group label { font-size: 0.82rem; }
+  .enrollment-submit-btn { font-size: 0.92rem; padding: 0.85rem; }
+  .enrollment-form-row { grid-template-columns: 1fr; }
+  .enrollment-courses-grid { grid-template-columns: 1fr; }
 }
 
 /* ── ACCESSIBILITY ── */
