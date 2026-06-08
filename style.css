@@ -1847,3 +1847,35 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+/* ── INGRANDIMENTO ESCLUSIVO DI IMMAGINE E SCRITTA SU MOBILE ── */
+@media (max-width: 768px) {
+
+  /* Allarghiamo la griglia per dare più spazio a entrambi gli elementi */
+  .hero .container {
+    display: grid !important;
+    grid-template-columns: 1.2fr 1.5fr !important; /* Spazio aumentato per far crescere immagine e testo a fianco */
+    gap: 1.25rem !important;
+    align-items: center !important;
+  }
+
+  /* 1. Ingrandimento dell'immagine robot Lego */
+  .hero-left-image {
+    max-width: 180px !important; /* Aumentato il limite di larghezza sul telefono */
+  }
+
+  .hero-left-image img {
+    transform: scale(1.15) !important; /* Zoom controllato per renderla visivamente più grande */
+    transform-origin: center left !important;
+  }
+
+  /* 2. Ingrandimento della scritta a fianco */
+  .hero h2 {
+    font-size: 1.6rem !important; /* Titolo decisamente più grande e visibile */
+    line-height: 1.15 !important;
+  }
+
+  .hero p {
+    font-size: 1.05rem !important; /* Testo descrittivo più grande per bilanciare il titolo */
+    line-height: 1.4 !important;
+  }
+}
