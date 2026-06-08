@@ -3,7 +3,7 @@ Privacy Policy
 Titolare del Trattamento
 Lab Tecnologici
 
-Email: bitcorsi@gmail.com
+Email: info@labtecnologici.it
 
 Dati raccolti:
 
