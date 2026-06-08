@@ -1693,8 +1693,8 @@ h1, h2, h3, h4 {
   }
 
   .hero-mobile-thumb {
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 160px;
     border-radius: 16px;
     flex-shrink: 0;
     overflow: hidden;
@@ -1710,7 +1710,7 @@ h1, h2, h3, h4 {
   }
 
   .hero-mobile-text h2 {
-    font-size: 1.2rem;
+    font-size: 2.4rem;
     line-height: 1.25;
     margin-bottom: 0.3rem;
   }
