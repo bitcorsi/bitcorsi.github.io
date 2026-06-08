@@ -1711,13 +1711,13 @@ h1, h2, h3, h4 {
   }
 
   .hero-mobile-text h2 {
-    font-size: 1.2rem;
+    font-size: 2rem;
     line-height: 1.25;
     margin-bottom: 0.3rem;
   }
 
   .hero-mobile-text p {
-    font-size: 0.82rem;
+    font-size: 1rem;
     margin-bottom: 0;
     color: var(--text-soft);
   }
