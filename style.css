@@ -1669,14 +1669,19 @@ h1, h2, h3, h4 {
 
   .hero-content-container { padding: 0; width: 100%; }
 
-  /* Header arancio */
+   .hero .container.hero-content-container {
+    width: 100%;        /* sovrascrive il 92% globale */
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+ }
   .hero-mobile-header {
-    display: block;
-    background: var(--orange);
-    padding: 22px 20px 22px;
-    text-align: center;
-  }
-
+    padding: 22px 20px 22px;  /* mantieni il padding interno del TESTO */
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0;
+ }
   .hero-mobile-eyebrow {
     display: inline-block;
     background: rgba(255,255,255,.2);
