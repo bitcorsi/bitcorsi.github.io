@@ -1745,7 +1745,8 @@ h1, h2, h3, h4 {
     justify-content: center;
   }
   .hero .container.hero-content-container {
-    width: 100%;        /* sovrascrive il 92% globale */
+    width: 100%;
+    high: 100%;       /* sovrascrive il 92% globale */
     max-width: 100%;
     padding-left: 0;
     padding-right: 0;
