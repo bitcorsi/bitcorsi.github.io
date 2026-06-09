@@ -1667,8 +1667,7 @@ h1, h2, h3, h4 {
   .hero h1, .hero h2 { font-size: 1.75rem; }
   .hero p { margin-bottom: 0; }
 
-  .hero-content-container { padding: 0; width: 100%; }
-
+  .hero-content-container { padding: 0; max-width: 100%; margin: 0;}
   /* Header arancio */
   .hero-mobile-header {
     display: block;
