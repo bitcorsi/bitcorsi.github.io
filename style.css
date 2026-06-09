@@ -1347,8 +1347,11 @@ h1, h2, h3, h4 {
   .logo-img { height: 80px; margin-bottom: -30px; }
   .logo-text { font-size: 1.1rem; }
 
-  /* Hero — fullwidth edge-to-edge */
+  /* ── HERO MOBILE — layout a due fasce edge-to-edge ── */
+
+  /* 1. La section diventa colonna, sfondo arancio di default */
   .hero {
+    display: flex;
     flex-direction: column;
     min-height: auto;
     gap: 0;
@@ -1358,7 +1361,11 @@ h1, h2, h3, h4 {
   .hero::before,
   .hero::after { display: none; }
 
-  /* Il container dentro l'hero perde il 92% e va a 100% */
+  /* 2. Elementi desktop nascosti */
+  .hero-left-image,
+  .hero-right-stepper { display: none; }
+
+  /* 3. Il container occupa tutto — sovrascrive il width:92% globale */
   .hero .container.hero-content-container {
     width: 100%;
     max-width: 100%;
@@ -1367,94 +1374,77 @@ h1, h2, h3, h4 {
     animation: none;
     opacity: 1;
     transform: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Blocchi desktop: nascosti */
-  .hero-left-image,
-  .hero-right-stepper,
-  .hero-features,
-  .hero-eyebrow { display: none; }
-
-  /* Header arancio — occupa tutto lo schermo */
-  .hero-mobile-header {
-    display: block;
-    background: var(--orange);
-    padding: 28px 20px 24px;
-    text-align: center;
-    width: 100%;
-  }
-
-  .hero-mobile-eyebrow {
-    display: inline-block;
+  /* 4. FASCIA ARANCIO: eyebrow + h2 + p
+        sfondo ereditato dal .hero (var(--orange)) */
+  .hero-eyebrow {
+    display: inline-flex;
     background: rgba(255,255,255,.2);
     color: white;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-    padding: 4px 14px;
-    border-radius: var(--r-full);
-    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,.25);
+    font-size: 0.7rem;
+    margin: 28px 20px 14px;
+    align-self: flex-start;
   }
 
-  .hero-mobile-header h2 {
+  .hero h2 {
     font-size: 1.65rem;
     font-weight: 800;
     color: white;
     line-height: 1.15;
-    margin-bottom: 8px;
     letter-spacing: -0.03em;
+    margin: 0 20px 10px;
   }
 
-  .hero-mobile-header h2 span { color: #FFD166; }
+  /* il <span> con gradiente inline diventa giallo fisso su mobile */
+  .hero h2 span {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    color: #FFD166 !important;
+    animation: none !important;
+  }
 
-  .hero-mobile-header p {
+  .hero p {
     font-size: 0.875rem;
-    color: rgba(255,255,255,.85);
-    line-height: 1.5;
-    margin-bottom: 0;
+    color: rgba(255,255,255,.88);
+    line-height: 1.55;
+    margin: 0 20px 28px;
+    max-width: 100%;
   }
 
-  /* Body bianco — occupa tutto lo schermo */
-  .hero-mobile-body {
-    display: block;
-    background: var(--surface);
-    padding: 20px 20px 24px;
-    width: 100%;
-  }
-
-  .hero-mobile-pills {
+  /* 5. FASCIA BIANCA: pillole + CTA
+        sfondo bianco applicato al blocco .hero-features + .hero-actions */
+  .hero-features {
     display: flex;
-    gap: 6px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    gap: 8px;
+    background: var(--surface);
+    padding: 20px 20px 0;
+    margin: 0;
+    justify-content: flex-start;
   }
 
-  .hero-mobile-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+  .hero-feature-pill {
     background: var(--surface-2);
-    border-radius: var(--r-full);
-    padding: 5px 11px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text);
+    border-color: var(--border);
   }
 
-  .hero-mobile-body .hero-actions {
-    margin-bottom: 0;
-    width: 100%;
+  .hero-actions {
+    background: var(--surface);
+    padding: 16px 20px 24px;
+    margin: 0;
+    justify-content: stretch;
   }
 
-  .hero-mobile-body .hero-cta-split {
+  .hero-cta-split {
     width: 100%;
     justify-content: center;
   }
-
-  /* h2/p desktop nel container: nascosti (la versione mobile li sostituisce) */
-  .hero h2,
-  .hero > .container.hero-content-container > p { display: none; }
 
   /* Sezioni */
   .section { padding: 2.5rem 0; }
