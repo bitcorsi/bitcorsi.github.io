@@ -402,7 +402,7 @@ h1, h2, h3, h4 {
   gap: 0.75rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 1.25rem;
+  margin-bottom: 2.5rem;
 }
 
 .hero-cta-split {
@@ -1643,120 +1643,7 @@ h1, h2, h3, h4 {
   .logo-img { height: 80px; margin-bottom: -30px; }
   .logo-text { font-size: 1.1rem; }
 
-  .hero {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    padding: 1rem 1.25rem 1.25rem;
-    min-height: auto;
-    gap: 0;
-  }
-
-  .hero .hero-actions {
-    width: 100%;
-  }
-
-  .hero .hero-actions .btn-split {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .hero::before, .hero::after { display: none; }
-  .hero-left-image { display: none; }
-  .hero-right-stepper { display: none; }
-  .hero-features { display: none; }
-
-  /* Titolo e testo */
-  .hero h1, .hero h2 { font-size: 2rem; line-height: 1.18; }
-  .hero p { font-size: 1rem; margin-bottom: 1.5rem; }
-
-  /* Mostra elementi mobile, nascondi titolo/testo desktop */
-  .hero-mobile-top { display: flex; }
-  .hero-mobile-stats { display: grid; }
-  .hero-title-desktop,
-  .hero-desc-desktop { display: none; }
-  .hero-eyebrow { display: none; }
-
-  /* Thumbnail affiancata al testo */
-  .hero-content-container {
-    padding: 0;
-  }
-
-  /* Riga thumbnail + testo */
-  .hero-mobile-top {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 1rem;
-    text-align: left;
-  }
-
-  .hero-mobile-thumb {
-    width: 160px;
-    height: 160px;
-    border-radius: 16px;
-    flex-shrink: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-mobile-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .hero-mobile-text h2 {
-    font-size: 2.4rem;
-    line-height: 1.25;
-    margin-bottom: 0.3rem;
-  }
-
-  .hero-mobile-text p { display: none; }
-
-  .hero-mobile-sub {
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-soft);
-    margin: 0.6rem 0 1rem;
-    line-height: 1.5;
-  }
-
-  /* Stat cards */
-  .hero-mobile-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 1.25rem;
-    width: 100%;
-  }
-
-  .hero-mobile-stat {
-    background: var(--surface-2);
-    border-radius: var(--r-lg);
-    padding: 10px 6px;
-    text-align: center;
-  }
-
-  .hero-mobile-stat-num {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--orange);
-    line-height: 1;
-    margin-bottom: 3px;
-  }
-
-  .hero-mobile-stat-lbl {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    line-height: 1.3;
-  }
-
-  .section { padding: 3.5rem 0; }
+  .hero {\n    flex-direction: column;\n    justify-content: flex-start;\n    align-items: center;\n    text-align: center;\n    padding: 1rem 1.25rem 1.25rem;\n    min-height: auto;\n    gap: 0;\n  }\n\n  .hero .hero-actions {\n    width: 100%;\n  }\n\n  .hero .hero-actions .btn-split {\n    width: 100%;\n    justify-content: center;\n  }\n\n  .hero::before, .hero::after { display: none; }\n  .hero-left-image { display: none; }\n  .hero-right-stepper { display: none; }\n  .hero-features { display: none; }\n\n  /* Titolo e testo */\n  .hero h1, .hero h2 { font-size: 2rem; line-height: 1.18; }\n  .hero p { font-size: 1rem; margin-bottom: 0; }\n\n  /* Mostra elementi mobile, nascondi titolo/testo desktop */\n  .hero-mobile-top { display: flex; }\n  .hero-mobile-stats { display: grid; }\n  .hero-title-desktop,\n  .hero-desc-desktop { display: none; }\n  .hero-eyebrow { display: none; }\n\n  /* Thumbnail affiancata al testo */\n  .hero-content-container {\n    padding: 0;\n  }\n\n  /* Riga thumbnail + testo */\n  .hero-mobile-top {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    margin-bottom: 0.75rem;\n    text-align: left;\n  }\n\n  .hero-mobile-thumb {\n    width: 160px;\n    height: 160px;\n    border-radius: 16px;\n    background: transparent;\n    flex-shrink: 0;\n    overflow: hidden;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n\n  .hero-mobile-thumb img {\n    width: 100%;\n    height: 100%;\n    object-fit: contain;\n  }\n\n  .hero-mobile-text h2 {\n    font-size: 1.55rem;\n    line-height: 1.2;\n    margin-bottom: 0;\n  }\n\n  .hero-mobile-text p { display: none; }\n\n  .hero-mobile-sub {\n    display: block !important;\n    width: 100%;\n    text-align: center;\n    font-size: 0.95rem;\n    color: var(--text-soft);\n    margin: 0.5rem 0 0.75rem;\n    line-height: 1.5;\n  }\n\n  /* Stat cards */\n  .hero-mobile-stats {\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n    gap: 8px;\n    margin-bottom: 1rem;\n    width: 100%;\n  }\n\n  .hero-mobile-stat {\n    background: var(--surface-2);\n    border-radius: var(--r-lg);\n    padding: 10px 6px;\n    text-align: center;\n  }\n\n  .hero-mobile-stat-num {\n    font-size: 1.1rem;\n    font-weight: 800;\n    color: var(--orange);\n    line-height: 1;\n    margin-bottom: 3px;\n  }\n\n  .hero-mobile-stat-lbl {\n    font-size: 0.68rem;\n    color: var(--text-muted);\n    line-height: 1.3;\n  }\n\n  .section { padding: 2rem 0; }
   .section-header h2 { font-size: 1.75rem; }
   .section-subtitle { font-size: 0.95rem; }
 
@@ -1801,8 +1688,8 @@ h1, h2, h3, h4 {
   .hero h1, .hero h2 { font-size: 1.75rem; }
   .hero p { font-size: 0.95rem; }
   .hero { padding: 0.75rem 1.25rem 1rem; }
-  .hero-mobile-thumb { width: 70px; height: 70px; }
-  .hero-mobile-text h2 { font-size: 1.1rem; }
+  .hero-mobile-thumb { width: 140px; height: 140px; }
+  .hero-mobile-text h2 { font-size: 2rem; }
 
   .section-header h2 { font-size: 1.5rem; }
   .progetto-title { font-size: 1.4rem; }
@@ -1847,4 +1734,3 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
-
