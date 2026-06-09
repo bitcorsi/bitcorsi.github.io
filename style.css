@@ -1697,7 +1697,7 @@ h1, h2, h3, h4 {
   }
 
   .hero-mobile-text h2 {
-    font-size: 1.55rem;
+    font-size: 1.15rem;
     line-height: 1.2;
     margin-bottom: 0;
   }
@@ -1789,7 +1789,7 @@ h1, h2, h3, h4 {
   .hero p { font-size: 0.95rem; }
   .hero { padding: 0.75rem 1.25rem 1rem; }
   .hero-mobile-thumb { width: 140px; height: 140px; }
-  .hero-mobile-text h2 { font-size: 2rem; }
+  .hero-mobile-text h2 { font-size: 1rem; }
 
   .section-header h2 { font-size: 1.5rem; }
   .progetto-title { font-size: 1.4rem; }
