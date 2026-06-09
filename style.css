@@ -1653,17 +1653,7 @@ h1, h2, h3, h4 {
     min-height: auto;
     gap: 0;
     background: transparent;
-
-    /* COPIA E INCOLLA QUESTE RIGHE DA QUI: */
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    /* A QUI */
   }
-
 
   .hero::before, .hero::after { display: none; }
   .hero-left-image { display: none; }
