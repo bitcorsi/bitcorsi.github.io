@@ -1746,7 +1746,7 @@ h1, h2, h3, h4 {
   }
   .hero .container.hero-content-container {
     width: 100%;
-    high: 100%;       /* sovrascrive il 92% globale */
+      /* sovrascrive il 92% globale */
     max-width: 100%;
     padding-left: 0;
     padding-right: 0;
