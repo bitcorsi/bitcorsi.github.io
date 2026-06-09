@@ -1520,7 +1520,6 @@ h1, h2, h3, h4 {
   .enrollment-form-row { grid-template-columns: 1fr; }
   .enrollment-courses-grid { grid-template-columns: 1fr; }
 }
-
 /* ── ACCESSIBILITY ── */
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 2px; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
