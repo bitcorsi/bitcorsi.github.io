@@ -1749,7 +1749,7 @@ h1, h2, h3, h4 {
     background: var(--orange);
     color: white;
     border: none;
-    border-radius: var(--r);
+    border-radius: var(--r-full);
     font-size: 0.95rem;
     font-weight: 700;
     text-align: center;
