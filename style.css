@@ -399,6 +399,9 @@ h1, h2, h3, h4 {
 .hero-mobile-header,
 .hero-mobile-body { display: none; }
 
+.hero-m-header,
+.hero-m-body { display: none; }
+
 /* CTA split button */
 .hero-actions {
   display: flex;
@@ -1646,111 +1649,134 @@ h1, h2, h3, h4 {
   .logo-img { height: 80px; margin-bottom: -30px; }
   .logo-text { font-size: 1.1rem; }
 
-  /* Hero mobile — Proposta A: header arancio pieno */
+  /* ── HERO MOBILE: replica popup Robogrest ── */
   .hero {
     flex-direction: column;
     padding: 0;
     min-height: auto;
     gap: 0;
-    background: transparent;
+    background: var(--surface);
+    display: flex;
   }
 
   .hero::before, .hero::after { display: none; }
   .hero-left-image { display: none; }
   .hero-right-stepper { display: none; }
   .hero-features { display: none; }
-  .hero-title-desktop, .hero-desc-desktop { display: none; }
   .hero-eyebrow { display: none; }
-  .hero-mobile-top { display: none; }
-  .hero-mobile-stats { display: none; }
-  .hero-mobile-sub { display: none; }
-  .hero h1, .hero h2 { font-size: 1.75rem; }
-  .hero p { margin-bottom: 0; }
+  .hero-title { display: none; }
+  .hero p:not(.hero-m-subtitle) { display: none; }
+  .hero-actions { display: none; }
+  .hero-content-container { padding: 0 !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; }
 
-  .hero-content-container { padding: 0; width: 100%;}
-
-   .hero .container.hero-content-container {
-    width: 100%;        /* sovrascrive il 92% globale */
-    max-width: 100%;
-    
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0;
- }
-  .hero-mobile-header {
-    padding: 22px 20px 22px;  /* mantieni il padding interno del TESTO */
+  /* Header arancio — come .sc-popup-header */
+  .hero-m-header {
+    display: block;
+    background: var(--orange);
+    padding: 2rem 1.75rem 1.75rem;
+    text-align: center;
+    color: white;
     width: 100%;
-    box-sizing: border-box;
-    border-radius: 0;
- }
-  .hero-mobile-eyebrow {
+  }
+
+  /* Badge — come .sc-popup-badge */
+  .hero-m-badge {
     display: inline-block;
     background: rgba(255,255,255,.2);
     color: white;
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: .09em;
-    text-transform: uppercase;
     padding: 4px 14px;
-    border-radius: 99px;
+    border-radius: var(--r-full);
     margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,.3);
+    letter-spacing: .04em;
   }
 
-  .hero-mobile-header h2 {
-    font-size: 1.6rem;
+  /* Titolo — come .sc-popup-title ma più grande */
+  .hero-m-title {
+    font-size: 1.65rem;
     font-weight: 800;
+    line-height: 1.18;
     color: white;
-    line-height: 1.15;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
-  .hero-mobile-header h2 span {
+  .hero-m-title em {
+    font-style: normal;
     color: #FFD166;
   }
 
-  .hero-mobile-header p {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,.85);
-    line-height: 1.4;
-    margin-bottom: 0;
+  /* Sottotitolo — come .sc-popup-subtitle */
+  .hero-m-subtitle {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,.88);
+    margin-top: 4px;
+    line-height: 1.5;
   }
 
-  /* Corpo bianco */
-.hero-mobile-body {
-    padding: 18px 20px 20px;
+  /* Body bianco — come .sc-popup-body */
+  .hero-m-body {
+    display: block;
+    background: var(--surface);
+    padding: 1.5rem 1.75rem;
     width: 100%;
-    box-sizing: border-box;
   }
-  .hero-mobile-pills {
+
+  /* Chips — come .sc-popup-chips + .sc-chip */
+  .hero-m-chips {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
-    margin-bottom: 14px;
+    margin-bottom: 1.1rem;
   }
 
-  .hero-mobile-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+  .hero-m-chip {
+    font-size: 12px;
+    color: var(--text-soft);
     background: var(--surface-2);
-    border-radius: 99px;
-    padding: 5px 11px;
-    font-size: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r-full);
+    padding: 5px 12px;
     font-weight: 600;
-    color: var(--text);
   }
 
-  .hero-mobile-body .hero-actions {
+  /* CTA principale — come .sc-popup-cta */
+  .hero-m-cta {
+    display: block;
     width: 100%;
+    padding: 0.9rem;
+    background: var(--orange);
+    color: white;
+    border: none;
+    border-radius: var(--r);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--t-fast);
+    box-shadow: 0 2px 8px rgba(255,107,53,.3);
     margin-bottom: 0;
   }
 
-  .hero-mobile-body .hero-cta-split {
+  .hero-m-cta:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+  /* Skip link — come .sc-popup-skip */
+  .hero-m-skip {
+    display: block;
     width: 100%;
-    justify-content: center;
+    text-align: center;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color var(--t-fast);
   }
- .hero-mobile-header { display: block; background: var(--orange); text-align: center; }
-.hero-mobile-body { display: block; background: var(--surface); }
+
+  .hero-m-skip:hover { color: var(--text-soft); }
+
   .hero-actions-desktop { display: none; }
   .section { padding: 1.5rem 0; }
   .section-header h2 { font-size: 1.75rem; }
