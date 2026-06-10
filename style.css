@@ -178,7 +178,7 @@ h1, h2, h3, h4 {
 
 .logo-text {
   margin: 0;
-  font-size: clamp(1.25rem, 5vw, 3.8rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.9rem);
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.03em;
