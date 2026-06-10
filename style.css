@@ -177,13 +177,13 @@ h1, h2, h3, h4 {
 .logo-text-group { display: flex; flex-direction: row; align-items: center; gap: 8px; }
 
 .logo-text {
-     font-size: clamp(2.4rem, 5vw, 3.8rem);
-  font-weight: 900;
+  margin: 0;
+  font-size: clamp(1.25rem, 5vw, 3.8rem);
+  font-weight: 800;
   color: var(--text);
-  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
   line-height: 1.1;
   letter-spacing: -0.04em;
-  
 }
 
 /* Nav */
