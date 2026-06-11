@@ -76,6 +76,7 @@ body {
   color: var(--text);
   background: var(--bg);
   overflow-x: hidden;
+  padding-top: 68px;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -130,8 +131,10 @@ h1, h2, h3, h4 {
 
 /* ── HEADER ── */
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   height: 68px;
   display: flex;
@@ -140,10 +143,11 @@ h1, h2, h3, h4 {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid var(--border);
-  transition: box-shadow var(--t);
+  transition: transform 0.3s ease, box-shadow var(--t);
 }
 
 .header.scrolled { box-shadow: var(--shadow-sm); }
+.header.hidden { transform: translateY(-100%); }
 .header .container { display: flex; justify-content: space-between; align-items: center; }
 
 /* Logo */
