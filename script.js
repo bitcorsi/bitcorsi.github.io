@@ -399,6 +399,43 @@ async function saveEnrollmentToFirebase(formData) {
 
 document.addEventListener('DOMContentLoaded', init);
 
+// ─── SMART HIDE-ON-SCROLL HEADER ─────────────────────────────────────────────
+(function () {
+  const header = document.querySelector('.header');
+  if (!header) return;
+
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        const diff = currentY - lastY;
+
+        // Aggiunge .scrolled quando si è scrollato oltre l'altezza dell'header
+        if (currentY > header.offsetHeight) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        // Nasconde scorrendo verso il basso (oltre 80px dalla cima),
+        // mostra scorrendo verso l'alto o tornando in cima
+        if (diff > 6 && currentY > 80) {
+          header.classList.add('hidden');
+        } else if (diff < -6 || currentY <= 80) {
+          header.classList.remove('hidden');
+        }
+
+        lastY = currentY;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
 // ─── CARICAMENTO CORSI DA JSON ────────────────────────────────────────────────
 
 function initCourses() {
