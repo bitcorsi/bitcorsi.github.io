@@ -1724,7 +1724,7 @@ h1, h2, h3, h4 {
   /* Chips — come .sc-popup-chips + .sc-chip */
   .hero-m-chips {
     display: flex;
-    gap: 6px;
+    gap: 4px;
     flex-wrap: wrap;
     margin-bottom: 1.1rem;
   }
