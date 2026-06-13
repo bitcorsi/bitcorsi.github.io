@@ -169,21 +169,26 @@ h1, h2, h3, h4 {
   filter: none;
   transition: var(--t);
 }
+
+.logo-divider {
+  width: 1.5px;
+  height: 22px;
+  background: var(--border-mid);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.logo-text-group { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+
 .logo-text {
   margin: 0;
   font-size: clamp(1.25rem, 2.5vw, 1.9rem);
   font-weight: 800;
   color: var(--text);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   line-height: 1.1;
+  letter-spacing: -0.04em;
 }
-
-.logo-orange {
-  color: #FF6B35;
-}
-.logo-text-group { display: flex; flex-direction: row; align-items: center; gap: 8px; }
-
-
 
 /* Nav */
 .header-right { display: flex; align-items: center; gap: 1.5rem; }
@@ -282,8 +287,8 @@ h1, h2, h3, h4 {
 
 /* ── HERO ── */
 .hero {
-  background: var(--surface);
-  color: var(--text);
+  background: var(--orange);
+  color: white;
   padding: 0;
   position: relative;
   overflow: hidden;
@@ -349,20 +354,20 @@ h1, h2, h3, h4 {
   gap: 6px;
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--orange);
+  color: white;
   text-transform: uppercase;
   letter-spacing: 0.10em;
   margin-bottom: 1.25rem;
-  background: var(--orange-light);
+  background: rgba(255,255,255,.2);
   padding: 6px 16px;
   border-radius: var(--r-full);
-  border: 1px solid rgba(255,107,53,.2);
+  border: 1px solid rgba(255,255,255,.3);
 }
 
 .hero h2 {
   font-size: clamp(2.4rem, 5vw, 3.8rem);
   font-weight: 900;
-  color: var(--text);
+  color: white;
   margin-bottom: 1.25rem;
   line-height: 1.1;
   letter-spacing: -0.04em;
@@ -371,10 +376,10 @@ h1, h2, h3, h4 {
 /* Accento arancio inline — mantiene il token originale nell'HTML */
 .hero h2 span[style*="gradientFlow"],
 .hero h2 span[style*="gradient"] {
-  background: var(--orange) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: #FFD166 !important;
   animation: none !important;
   background-size: unset !important;
 }
@@ -385,7 +390,7 @@ h1, h2, h3, h4 {
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
-  color: var(--text-soft);
+  color: rgba(255,255,255,.88);
   line-height: 1.7;
   font-weight: 400;
 }
@@ -414,10 +419,10 @@ h1, h2, h3, h4 {
   align-items: center;
   border-radius: var(--r-full);
   overflow: hidden;
-  border: 1.5px solid var(--orange);
+  border: 1.5px solid white;
   text-decoration: none;
   transition: var(--t);
-  background: var(--surface);
+  background: white;
   box-shadow: var(--shadow-sm);
 }
 
@@ -461,18 +466,18 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.3);
   border-radius: var(--r-full);
   padding: 7px 14px;
-  color: var(--text);
+  color: white;
   transition: var(--t-fast);
 }
 
-.hero-feature-pill:hover { background: var(--orange-light); border-color: rgba(255,107,53,.3); }
-.hero-feature-pill svg { flex-shrink: 0; color: var(--orange); }
-.hero-pill-label { font-size: 0.8rem; font-weight: 700; line-height: 1.2; }
-.hero-pill-sub { font-size: 0.7rem; color: var(--text-muted); line-height: 1.2; }
+.hero-feature-pill:hover { background: rgba(255,255,255,.28); border-color: rgba(255,255,255,.5); }
+.hero-feature-pill svg { flex-shrink: 0; color: white; }
+.hero-pill-label { font-size: 0.8rem; font-weight: 700; line-height: 1.2; color: white; }
+.hero-pill-sub { font-size: 0.7rem; color: rgba(255,255,255,.75); line-height: 1.2; }
 
 /* Hero right stepper */
 .hero-right-stepper {
@@ -1671,7 +1676,8 @@ h1, h2, h3, h4 {
   .hero-m-header {
     display: block;
     background: var(--orange);
-    padding: 2rem 1.75rem 1.75rem;
+    margin-top: -2rem;
+    padding: calc(2rem + 64px) 1.75rem 1.75rem;
     text-align: center;
     color: white;
     width: 100%;
@@ -1724,7 +1730,7 @@ h1, h2, h3, h4 {
   /* Chips — come .sc-popup-chips + .sc-chip */
   .hero-m-chips {
     display: flex;
-    gap: 4px;
+    gap: 6px;
     flex-wrap: wrap;
     margin-bottom: 1.1rem;
   }
@@ -1864,4 +1870,3 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
-<h1 class="logo-text"><span style="color:var(--orange);">Lab</span> Tecnologici</h1>
