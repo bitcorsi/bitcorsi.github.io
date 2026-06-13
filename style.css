@@ -478,7 +478,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-stepper-title {
-  font-size: 0.72rem;
+  font-size: 1rem;
   font-weight: 800;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -496,7 +496,7 @@ h1, h2, h3, h4 {
   border-radius: 50%;
   background: var(--orange);
   color: white;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 800;
   display: flex;
   align-items: center;
