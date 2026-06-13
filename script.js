@@ -66,9 +66,9 @@ function escapeHtml(str) {
 function init() {
   initMobileMenu();
   initFAQ();
-  unifyWhatsAppFAB();
   initSummerCampPopup();
   initEnrollmentModal();
+  // initCourses() disabilitato — corsi gestiti via HTML statico
 }
 
 function initMobileMenu() {
@@ -110,40 +110,6 @@ function initFAQ() {
   });
 }
 
-function unifyWhatsAppFAB() {
-  const fab = document.querySelector('.fab-whatsapp');
-  const staticIcon = document.getElementById('whatsapp-static');
-  if (!fab || !staticIcon) return;
-
-  const originalStyle = {
-    position: fab.style.position, left: fab.style.left,
-    top: fab.style.top, transform: fab.style.transform,
-    zIndex: fab.style.zIndex, pointerEvents: fab.style.pointerEvents
-  };
-
-  function updatePosition() {
-    const rect = staticIcon.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-    if (isVisible) {
-      const centerX = rect.left + window.scrollX + rect.width / 2;
-      const centerY = rect.top + window.scrollY + rect.height / 2;
-      fab.style.position = 'fixed';
-      fab.style.left = (centerX - 28) + 'px';
-      fab.style.top = (centerY - 28) + 'px';
-      fab.style.transform = 'scale(0.64)';
-      fab.style.zIndex = '10000';
-      fab.style.pointerEvents = 'none';
-      fab.style.opacity = '1';
-    } else {
-      Object.assign(fab.style, originalStyle);
-      fab.style.opacity = '';
-    }
-  }
-
-  updatePosition();
-  window.addEventListener('scroll', () => requestAnimationFrame(updatePosition));
-  window.addEventListener('resize', updatePosition);
-}
 
 function initSummerCampPopup() {
   const SESSION_KEY = 'sc_popup_shown';
@@ -280,121 +246,6 @@ function getCourseAvailability(courseId) {
       available: Math.max(0, info.max - snapshot.size),
       isFull: snapshot.size >= info.max
     }));
-}
-
-async function handleEnrollmentSubmit(e) {
-  e.preventDefault();
-
-  const successMsg  = document.getElementById('enrollmentSuccessMessage');
-  const errorMsg    = document.getElementById('enrollmentErrorMessage');
-  const waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
-  const submitBtn   = document.querySelector('.enrollment-submit-btn');
-  const submitText  = document.getElementById('enrollmentSubmitText');
-
-  [successMsg, errorMsg, waitlistMsg].forEach(el => el && el.classList.remove('show'));
-
-  if (submitBtn) { submitBtn.disabled = true; }
-  if (submitText) submitText.textContent = '⏳ Elaborazione...';
-
-  try {
-    const courseRadio = document.querySelector('input[name="courseId"]:checked');
-    if (!courseRadio) throw new Error('Seleziona un corso prima di procedere');
-
-    const studentName  = document.getElementById('studentName').value.trim();
-    const studentAge   = document.getElementById('studentAge').value;
-    const parentEmail  = document.getElementById('parentEmail').value.trim();
-    const privacy      = document.getElementById('privacy');
-
-    if (!studentName)           throw new Error('Inserisci il nome e cognome del bambino');
-    if (!studentAge)            throw new Error("Seleziona l'età del bambino");
-    if (!parentEmail)           throw new Error("Inserisci l'email del genitore");
-    if (!privacy?.checked)      throw new Error("Accetta l'informativa privacy per procedere");
-
-    // Settimane Robogrest
-    const isRobogrest = courseRadio.value === 'robogrest';
-    let selectedWeeks = [];
-    if (isRobogrest) {
-      selectedWeeks = Array.from(document.querySelectorAll('input[name="robogrest_week"]:checked'))
-                           .map(cb => cb.value);
-      if (selectedWeeks.length === 0) throw new Error('Seleziona almeno una settimana per Robogrest');
-    }
-
-    const formData = {
-      studentName,
-      studentAge: parseInt(studentAge),
-      parentName:  document.getElementById('parentName').value.trim(),
-      parentEmail,
-      parentPhone: document.getElementById('parentPhone').value.trim(),
-      schoolName:  document.getElementById('schoolName').value.trim(),
-      courseId:    courseRadio.value,
-      referral:    document.getElementById('referral').value,
-      notes:       document.getElementById('notes').value.trim(),
-      robogrestWeeks: selectedWeeks
-    };
-
-    await saveEnrollmentToFirebase(formData);
-
-    const successText = document.getElementById('enrollmentSuccessText');
-    if (successText) successText.innerText = 'Ci vediamo presto in laboratorio! 🤖';
-    if (successMsg) successMsg.classList.add('show');
-
-    document.getElementById('enrollmentForm').reset();
-    document.getElementById('enrollmentCoursesGrid').innerHTML = '';
-    const weekSection = document.getElementById('robogrest-week-section');
-    if (weekSection) weekSection.style.display = 'none';
-
-    setTimeout(() => closeEnrollmentModal(), 3000);
-
-  } catch (err) {
-    console.error('Errore iscrizione:', err);
-    const errorText = document.getElementById('enrollmentErrorText');
-    if (errorText) errorText.innerText = err.message || "Errore durante l'iscrizione. Riprova.";
-    if (errorMsg) { errorMsg.classList.add('show'); errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
-  } finally {
-    if (submitBtn) submitBtn.disabled = false;
-    if (submitText) submitText.textContent = '✨ Iscriviti Subito!';
-  }
-}
-
-async function saveEnrollmentToFirebase(formData) {
-  const info = ENROLLMENT_COURSES[formData.courseId];
-  if (!info) throw new Error('Corso non valido. Ricarica la pagina e riprova.');
-
-  const snapshot = await db.collection('enrollments')
-    .where('courseId', '==', formData.courseId)
-    .where('status', '==', 'confermato')
-    .get();
-
-  const confirmed = snapshot.size;
-  const status = confirmed >= info.max ? 'in_attesa' : 'confermato';
-  const waitlistPosition = status === 'in_attesa' ? (confirmed - info.max + 1) : null;
-
-  await db.collection('enrollments').add({
-    studentName:     formData.studentName,
-    studentAge:      formData.studentAge,
-    parentName:      formData.parentName,
-    parentEmail:     formData.parentEmail,
-    parentPhone:     formData.parentPhone,
-    schoolName:      formData.schoolName,
-    courseId:        formData.courseId,
-    courseName:      info.name,
-    status,
-    waitlistPosition,
-    paid:            false,
-    referral:        formData.referral,
-    notes:           formData.notes,
-    robogrestWeeks:  formData.robogrestWeeks || [],
-    enrollmentDate:  new Date()
-  });
-
-  if (status === 'in_attesa') {
-    const waitlistText = document.getElementById('enrollmentWaitlistText');
-    if (waitlistText) waitlistText.innerText = `Sei in lista d'attesa (posizione ${waitlistPosition}). Ti contatteremo appena si libera un posto!`;
-    const waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
-    if (waitlistMsg) waitlistMsg.classList.add('show');
-    const successMsg = document.getElementById('enrollmentSuccessMessage');
-    if (successMsg) successMsg.classList.remove('show');
-  }
 }
 
 document.addEventListener('DOMContentLoaded', init);
