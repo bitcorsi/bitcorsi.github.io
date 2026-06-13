@@ -1731,9 +1731,14 @@ h1, h2, h3, h4 {
   .hero-m-chips {
     display: flex;
     gap: 6px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: center;
     margin-bottom: 1.1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
+
+  .hero-m-chips::-webkit-scrollbar { display: none; }
 
   .hero-m-chip {
     font-size: 12px;
@@ -1743,6 +1748,8 @@ h1, h2, h3, h4 {
     border-radius: var(--r-full);
     padding: 5px 12px;
     font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   /* CTA principale — come .sc-popup-cta */
