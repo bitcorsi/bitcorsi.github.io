@@ -169,21 +169,26 @@ h1, h2, h3, h4 {
   filter: none;
   transition: var(--t);
 }
+
+.logo-divider {
+  width: 1.5px;
+  height: 22px;
+  background: var(--border-mid);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.logo-text-group { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+
 .logo-text {
   margin: 0;
   font-size: clamp(1.25rem, 2.5vw, 1.9rem);
   font-weight: 800;
   color: var(--text);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   line-height: 1.1;
+  letter-spacing: -0.04em;
 }
-
-.logo-orange {
-  color: #FF6B35;
-}
-.logo-text-group { display: flex; flex-direction: row; align-items: center; gap: 8px; }
-
-
 
 /* Nav */
 .header-right { display: flex; align-items: center; gap: 1.5rem; }
@@ -1671,7 +1676,8 @@ h1, h2, h3, h4 {
   .hero-m-header {
     display: block;
     background: var(--orange);
-    padding: 2rem 1.75rem 1.75rem;
+    margin-top: -2rem;
+    padding: calc(2rem + 64px) 1.75rem 1.75rem;
     text-align: center;
     color: white;
     width: 100%;
@@ -1864,4 +1870,3 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
-<h1 class="logo-text"><span style="color:var(--orange);">Lab</span> Tecnologici</h1>
