@@ -1645,7 +1645,18 @@ h1, h2, h3, h4 {
 
   .hero::before, .hero::after { display: none; }
   .hero-left-image { display: none; }
-  .hero-right-stepper { display: none; }
+  /* Stepper — sotto il body bianco, sfondo bianco continuo */
+  .hero-right-stepper {
+    display: flex;
+    width: 100%;
+    padding: 0 16px 24px;
+    background: var(--surface);
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-stepper-box { width: 100%; border-radius: var(--r-lg); }
   .hero-features { display: none; }
   .hero-eyebrow { display: none; }
   .hero-title { display: none; }
