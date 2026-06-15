@@ -1781,12 +1781,16 @@ h1, h2, h3, h4 {
 
   .hero-m-skip:hover { color: var(--text-soft); }
 /* mobile: bordo-a-bordo, 110px di altezza */
+/* Foto lab — stesso stile di .progetto-img */
 .hero-m-foto {
   display: block;
-  width: 100%;
-  height: 110px;
+  width: calc(100% - 32px);
+  margin: 0 16px;
+  height: 160px;
   object-fit: cover;
-  object-position: center 30%; /* inquadra la parte alta della foto */
+  object-position: center 30%;
+  border-radius: var(--r-2xl);
+  box-shadow: var(--shadow-lg);
 }
   .hero-actions-desktop { display: none; }
   .section { padding: 1.5rem 0; }
