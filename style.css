@@ -377,8 +377,7 @@ h1, h2, h3, h4 {
 }
 
 /* Hero mobile elements hidden by default */
-.hero-m-header, .hero-m-body { display: none; }
-
+.hero-m-header, .hero-m-body, .hero-m-foto { display: none; }
 /* CTA split button */
 .hero-actions {
   display: flex;
@@ -1781,7 +1780,14 @@ h1, h2, h3, h4 {
   }
 
   .hero-m-skip:hover { color: var(--text-soft); }
-
+/* mobile: bordo-a-bordo, 110px di altezza */
+.hero-m-foto {
+  display: block;
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  object-position: center 30%; /* inquadra la parte alta della foto */
+}
   .hero-actions-desktop { display: none; }
   .section { padding: 1.5rem 0; }
   .section-header h2 { font-size: 1.75rem; }
