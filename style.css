@@ -1785,7 +1785,7 @@ h1, h2, h3, h4 {
 .hero-m-foto {
   display: block;
   width: calc(100% - 32px);
-  margin: 0 16px;
+  margin: 0 16px 16px;
   height: 160px;
   object-fit: cover;
   object-position: center 30%;
