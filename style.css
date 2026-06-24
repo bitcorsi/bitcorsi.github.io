@@ -178,7 +178,20 @@ h1, h2, h3, h4 {
   flex-shrink: 0;
 }
 
-.logo-text-group { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+.logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+
+.logo-badges { display: flex; gap: 5px; align-items: center; }
+
+.logo-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+.logo-badge--robotica { background: #FAECE7; color: #993C1D; }
+.logo-badge--coding   { background: #E6F1FB; color: #185FA5; }
 
 .logo-orange { color: var(--orange); }
 
