@@ -287,110 +287,12 @@ document.addEventListener('DOMContentLoaded', init);
   }, { passive: true });
 })();
 
-// ─── CARICAMENTO CORSI DA JSON ────────────────────────────────────────────────
-
-function initCourses() {
-  const container = document.getElementById('courses-container');
-  const sectionHeader = document.querySelector('#corsi .section-header');
-  const promoContainer = document.getElementById('promo-natale-container');
-  if (!container) return;
-
-  fetch('corsi.json?' + Date.now())
-    .then(response => {
-      if (!response.ok) throw new Error('corsi.json non trovato');
-      return response.json();
-    })
-    .then(data => {
-      aggiornaChipIscrizioni(data.corsi || []);
-
-      if (sectionHeader && data.titoloCorsi) {
-        sectionHeader.innerHTML = `<h2>${escapeHtml(data.titoloCorsi)}</h2>
-                                   <p class="section-subtitle">${escapeHtml(data.sottotitoloCorsi || '')}</p>`;
-      }
-
-      if (promoContainer && data.promoNatale && data.promoNatale.attiva) {
-        const p = data.promoNatale;
-        promoContainer.innerHTML = `
-          <div class="promo-natale-card">
-            <div class="promo-natale-icon">🌅</div>
-            <div class="promo-natale-content">
-              <span class="promo-badge">EDIZIONE SPECIALE</span>
-              <h3>${escapeHtml(p.titolo)}</h3>
-              <p class="promo-subtitle">${escapeHtml(p.sottotitolo)}</p>
-              <p>${escapeHtml(p.descrizione)}</p>
-              <div class="promo-meta">
-                <span><strong>Date:</strong> ${escapeHtml(p.date)}</span>
-                <span><strong>Età:</strong> ${escapeHtml(p.eta)}</span>
-                <span><strong>Prezzo:</strong> ${escapeHtml(p.prezzo)}</span>
-              </div>
-              <p class="promo-note">${escapeHtml(p.posti)}</p>
-              <button class="btn-promo" onclick="openEnrollmentModal()">${escapeHtml(p.cta)}</button>
-            </div>
-          </div>`;
-        promoContainer.style.display = 'block';
-      } else if (promoContainer) {
-        promoContainer.style.display = 'none';
-      }
-
-      container.innerHTML = '';
-      const corsiNormali = (data.corsi || []).filter(c => c.tipo !== 'promo');
-      if (corsiNormali.length === 0) {
-        container.innerHTML = '<div class="alert-box" style="grid-column:1/-1;"><p>Nessun corso attivo al momento.</p></div>';
-        return;
-      }
-
-      corsiNormali.forEach(corso => {
-        const isActive = corso.stato === 'aperto';
-        let btn;
-        if (!isActive) {
-          btn = '<button class="btn-course btn-disabled" disabled>Corso non disponibile</button>';
-        } else if (corso.link) {
-          btn = `<a href="${escapeHtml(corso.link)}" class="btn-course" target="_blank" rel="noopener">${escapeHtml(corso.linkTesto || 'Scopri di più')}</a>`;
-        } else {
-          btn = `<button class="btn-course" onclick="openEnrollmentModal('${escapeHtml(corso.id)}')">Assicurati un posto ora</button>`;
-        }
-
-        container.innerHTML += `
-          <div class="course-card">
-            <div class="course-badge">${escapeHtml(corso.badge)}</div>
-            <h3>${escapeHtml(corso.nome)}</h3>
-            <div class="course-meta">
-              <span class="meta-item">${escapeHtml(corso.eta)}</span>
-              <span class="meta-item">${escapeHtml(corso.incontri)}</span>
-              <span class="meta-item meta-price">${escapeHtml(corso.prezzo)}</span>
-            </div>
-            <div class="course-details">
-              <div class="detail-row"><strong>Quando:</strong> ${escapeHtml(corso.quando)}</div>
-            </div>
-            <p class="course-description">${escapeHtml(corso.descrizione)}</p>
-            ${btn}
-          </div>`;
-      });
-    })
-    .catch(err => {
-      console.error('Errore caricamento corsi:', err);
-      if (sectionHeader) sectionHeader.innerHTML = '<h2>Corsi e Laboratori</h2><p class="section-subtitle">Informazioni temporaneamente non disponibili</p>';
-      if (promoContainer) promoContainer.style.display = 'none';
-      container.innerHTML = '<div class="alert-box" style="grid-column:1/-1;"><strong>Impossibile caricare i corsi</strong><p>Contattaci per info aggiornate.</p></div>';
-    });
-}
-
-function aggiornaChipIscrizioni(corsi) {
-  const hasOpen = corsi.some(c => c.stato === 'aperto');
-  document.querySelectorAll('.nav-chip').forEach(chip => {
-    if (hasOpen) {
-      chip.innerHTML = '<div class="nav-chip-dot"></div> Iscrizioni aperte';
-      chip.style.color = '#E05A2B';
-      chip.style.background = '#fff4f0';
-      chip.style.borderColor = '#ffd4c0';
-    } else {
-      chip.innerHTML = '<div class="nav-chip-dot" style="background:#9ca3af"></div> Iscrizioni chiuse';
-      chip.style.color = '#6b7280';
-      chip.style.background = '#f3f4f6';
-      chip.style.borderColor = '#e5e7eb';
-    }
-  });
-}
+// ─── CORSI ────────────────────────────────────────────────────────────────────
+// I corsi mostrati in #courses-container sono scritti a mano nell'HTML (index.html).
+// Il modal di iscrizione usa invece l'oggetto ENROLLMENT_COURSES qui sotto.
+// PROMEMORIA: quando aggiungi/modifichi/chiudi un corso, aggiorna ENTRAMBI i punti
+// (card in HTML + ENROLLMENT_COURSES), altrimenti sito e form di iscrizione
+// mostreranno informazioni diverse.
 
 // ─── SUBMIT FORM ─────────────────────────────────────────────────────────────
 
