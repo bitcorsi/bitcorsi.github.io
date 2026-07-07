@@ -7,7 +7,6 @@ User-agent: *
 Allow: /
 Disallow: /login.html
 Disallow: /gestionale.html
-Disallow: /privacy.md
 
 # ── AI Engine Optimization (AEO) ─────────────────────
 # Consenti esplicitamente i principali crawler AI/LLM
