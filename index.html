@@ -427,10 +427,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#FF6B35">
-  <!-- Font: Manrope (educational premium) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -484,7 +480,7 @@
 
 <section id="home" class="hero">
   <div class="hero-left-image">
-    <img src="images/hero-left.webp" alt="Lab Tecnologici: programma i robot LEGO a Brescia a blocchi o con python" loading="eager">
+    <img src="images/hero-left.webp" alt="Lab Tecnologici: programma i robot LEGO a Brescia a blocchi o con python" width="640" height="640" fetchpriority="high" loading="eager">
   </div>
   <div class="container hero-content-container">
 
@@ -506,6 +502,8 @@
      <img src="images/lab-foto1.webp"
      alt="Ragazzi al lavoro nel laboratorio di robotica"
      class="hero-m-foto"
+     width="700" height="280"
+     fetchpriority="high"
      loading="eager">
     <!-- DESKTOP HERO -->
     <p class="hero-eyebrow">Robotica educativa &middot; Brescia</p>
@@ -580,7 +578,7 @@
         </div>
       </div>
       <div class="progetto-right">
-        <img src="images/lab-foto.webp" alt="Ragazzi al laboratorio Bit Labs Tecnologici a Brescia" loading="lazy" class="progetto-img">
+        <img src="images/lab-foto.webp" alt="Ragazzi al laboratorio Bit Labs Tecnologici a Brescia" width="1200" height="931" loading="lazy" class="progetto-img">
       </div>
     </div>
 
@@ -659,25 +657,25 @@
     <div class="tools-grid">
       <div class="tool-card">
         <div class="tool-icon-badge lego-color">8-13 anni</div>
-        <img src="images/lego-spike-prime.webp" alt="Corso robotica educativa con LEGO Spike Prime per ragazzi a Brescia" class="tool-image" loading="lazy">
+        <img src="images/lego-spike-prime.webp" alt="Corso robotica educativa con LEGO Spike Prime per ragazzi a Brescia" width="480" height="270" class="tool-image" loading="lazy">
         <h3 class="tool-title">Lego Spike Prime</h3>
         <div class="tool-details"><p><strong>Ideale per:</strong> Costruire robot con mattoncini LEGO Technic, motori e sensori (movimento, colore, forza). Progetti come veicoli autonomi, bracci robotici o macchine interattive.</p></div>
       </div>
       <div class="tool-card">
         <div class="tool-icon-badge roberta-color">8-13 anni</div>
-        <img src="images/open-roberta-robots.webp" alt="Laboratorio di coding con Open Roberta a Brescia" class="tool-image" loading="lazy">
+        <img src="images/open-roberta-robots.webp" alt="Laboratorio di coding con Open Roberta a Brescia" width="519" height="371" class="tool-image" loading="lazy">
         <h3 class="tool-title">Open Roberta</h3>
         <div class="tool-details"><p><strong>Ideale per:</strong> Programmare robot LEGO (WeDo, Mindstorms...), micro:bit, NAO e altri dispositivi direttamente online, in classe o a casa. Blocchi colorati nel browser senza installazioni.</p></div>
       </div>
       <div class="tool-card">
         <div class="tool-icon-badge arduino-color">12-16 anni</div>
-        <img src="images/arduino-uno.webp" alt="Corso Arduino per ragazzi a Brescia" class="tool-image" loading="lazy">
+        <img src="images/arduino-uno.webp" alt="Corso Arduino per ragazzi a Brescia" width="380" height="288" class="tool-image" loading="lazy">
         <h3 class="tool-title">Arduino</h3>
         <div class="tool-details"><p><strong>Ideale per:</strong> Creare progetti elettronici interattivi: semafori intelligenti, stazioni meteo, giochi, robot su ruote, strumenti musicali. Linguaggio testuale semplice basato su C++.</p></div>
       </div>
       <div class="tool-card">
         <div class="tool-icon-badge microbit-color">8-13 anni</div>
-        <img src="images/microbit-v2.webp" alt="Corso di programmazione con micro:bit per bambini a Brescia" class="tool-image" loading="lazy">
+        <img src="images/microbit-v2.webp" alt="Corso di programmazione con micro:bit per bambini a Brescia" width="320" height="289" class="tool-image" loading="lazy">
         <h3 class="tool-title">micro:bit BBC</h3>
         <div class="tool-details"><p><strong>Ideale per:</strong> Progetti portatili e divertenti: contapassi, termometri, giochi, strumenti musicali, telecomandi per robot, esperimenti con sensori. Tre modalità: blocchi, JavaScript o Python.</p></div>
       </div>
@@ -707,8 +705,8 @@
         <button class="btn-course" onclick="openEnrollmentModal('robogrest')">Pre-iscrizione disponibile</button>
       </div>
       
-      <div class="course-card corso-aperto">
-        <div class="course-badge">Open</div>
+      <div class="course-card corso-chiuso">
+        <div class="course-badge">Closed</div>
         <h3 class="course-title">Spike Prime Lab</h3>
         <div class="course-meta">
           <span class="meta-item">8–13 anni</span>
@@ -717,7 +715,7 @@
         </div>
         <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
         <p class="course-description">Costruisci e programma robot con mattoncini LEGO Technic. Veicoli autonomi, bracci robotici e macchine interattive.</p>
-        <button class="btn-course" onclick="openEnrollmentModal('Lego Spike Prime')">Iscrizione disponibile</button>
+        <button class="btn-course" disabled>Corso non disponibile</button>
       </div>
 
       <div class="course-card corso-chiuso">
@@ -783,7 +781,7 @@
       
       <details>
         <summary><h3>Come ci si iscrive?</h3></summary>
-        <p>Puoi iscriverti dal modulo sul sito, oppure contattarci via <a href="https://wa.me/393703069215">WhatsApp al +39 370 306 9215</a> o per email a <a href="mailto:info@labtecnologici.it">bitcorsi@gmail.com</a>. È disponibile una <strong>prima lezione di prova gratuita</strong>.</p>
+        <p>Puoi iscriverti dal modulo sul sito, oppure contattarci via <a href="https://wa.me/393703069215">WhatsApp al +39 370 306 9215</a> o per email a <a href="mailto:bitcorsi@gmail.com">bitcorsi@gmail.com</a>. È disponibile una <strong>prima lezione di prova gratuita</strong>.</p>
       </details>
       
       <details>
@@ -982,9 +980,9 @@
           <div class="enrollment-form-section-title">📅 Scegli le settimane *</div>
           <p style="font-size:0.82rem;color:#888;margin-bottom:0.8rem;">Seleziona una o più settimane (lun–ven, ore 9:00–17:00)</p>
           <div class="robogrest-weeks-grid">
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="13–17 luglio"><span>13–17 lug<small>lun – ven</small></span></label>
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="20–24 luglio"><span>20–24 lug<small>lun – ven</small></span></label>
-           <label class="week-option"><input type="checkbox" name="robogrest_week" value="27–31 luglio"><span>27–31 lug<small>lun – ven</small></span></label>
+           <label class="week-option"><input type="checkbox" name="robogrest_week" value="22–26 giugno"><span>22–26 giu<small>lun – ven</small></span></label>
+           <label class="week-option"><input type="checkbox" name="robogrest_week" value="29 giu – 3 luglio"><span>29 giu – 3 lug<small>lun – ven</small></span></label>
+           <label class="week-option"><input type="checkbox" name="robogrest_week" value="6–10 luglio"><span>6–10 lug<small>lun – ven</small></span></label>
           </div>
         </div>
 
