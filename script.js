@@ -1,76 +1,23 @@
 // ============================================================
-// LAB TECNOLOGICI - script.js
+// LAB TECNOLOGICI - script.js (Versione Web3Forms - No Firebase)
 // ============================================================
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBmLKQwahwgfP5gfjgOWuEaHGq_wEuYQzQ",
-  authDomain: "bitcorsi-da4b1.firebaseapp.com",
-  projectId: "bitcorsi-da4b1",
-  storageBucket: "bitcorsi-da4b1.firebasestorage.app",
-  messagingSenderId: "98862947976",
-  appId: "1:98862947976:web:abde1dea6b3c8655d5893d",
-  measurementId: "G-EEDZVB4FRE"
-};
-
-if (!firebase.apps || !firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
-const db = firebase.firestore();
-
 const ENROLLMENT_COURSES = {
-  'spike':           { name: 'Spike Prime Lab',  age: '8-13 anni',  max: 10 },
-  'arduino':         { name: 'Arduino base',      age: '12-16 anni', max: 10 },
-  'microbit':        { name: 'Micro:bit Lab',     age: '8-13 anni',  max: 10 },
-  'roberta':         { name: 'Open Roberta Lab',  age: '8-13 anni',  max: 10 },
-  'robogrest': { name: 'ROBOGREST',         age: '7-13 anni',  max: 30 }
+  'spike':    { name: 'Spike Prime Lab',  age: '8-13 anni' },
+  'arduino':  { name: 'Arduino base',      age: '12-16 anni' },
+  'microbit': { name: 'Micro:bit Lab',     age: '8-13 anni' },
+  'roberta':  { name: 'Open Roberta Lab',  age: '8-13 anni' },
+  'robogrest':{ name: 'ROBOGREST 2026',    age: '7-13 anni' }
 };
-
-// Settimane Robogrest (10 giu – 31 lug, solo lun-ven)
-const ROBOGREST_WEEKS = [
-  { id: 'sett-1', label: '10–13 giugno (mar–ven)' },
-  { id: 'sett-2', label: '16–20 giugno' },
-  { id: 'sett-3', label: '23–27 giugno' },
-  { id: 'sett-4', label: '30 giu – 4 luglio' },
-  { id: 'sett-5', label: '7–11 luglio' },
-  { id: 'sett-6', label: '14–18 luglio' },
-  { id: 'sett-7', label: '21–25 luglio' },
-  { id: 'sett-8', label: '28–31 luglio (lun–gio)' }
-];
-
-function formatDate(ts) {
-  if (!ts) return '—';
-  let d;
-  if (ts.toDate) d = ts.toDate();
-  else if (ts.seconds) d = new Date(ts.seconds * 1000);
-  else d = new Date(ts);
-  if (isNaN(d)) return '—';
-  return d.toLocaleDateString('it-IT');
-}
-
-function showToast(msg, type = 'info') {
-  const container = document.getElementById('toastContainer');
-  if (container) {
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    toast.textContent = msg;
-    container.appendChild(toast);
-    setTimeout(() => toast.remove(), 3500);
-  }
-}
-
-function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
-}
 
 function init() {
   initMobileMenu();
   initFAQ();
-  initSummerCampPopup();
   initEnrollmentModal();
-  // initCourses() disabilitato — corsi gestiti via HTML statico
+  initScrollHeader();
 }
 
+// ─── MENU MOBILE ─────────────────────────────────────────────────────────────
 function initMobileMenu() {
   const menuToggle = document.querySelector('.menu-toggle');
   const navOverlay = document.querySelector('.nav-overlay');
@@ -99,6 +46,7 @@ function initMobileMenu() {
   navOverlay.addEventListener('click', (e) => { if (e.target === navOverlay) closeMenu(); });
 }
 
+// ─── FAQ ACCORDION ───────────────────────────────────────────────────────────
 function initFAQ() {
   const faqItems = document.querySelectorAll('.faq-list details');
   faqItems.forEach(item => {
@@ -110,48 +58,39 @@ function initFAQ() {
   });
 }
 
-
-function initSummerCampPopup() {
-  const SESSION_KEY = 'sc_popup_shown';
-  if (sessionStorage.getItem(SESSION_KEY)) return;
-  const overlay = document.getElementById('sc-popup-overlay');
-  if (!overlay) return;
-
-  function closePopup() {
-    overlay.classList.remove('sc-open');
-    setTimeout(() => overlay.style.display = 'none', 280);
-  }
-
-  const closeBtn = document.getElementById('sc-popup-close');
-  const skipBtn = document.getElementById('sc-popup-skip');
-  if (closeBtn) closeBtn.addEventListener('click', closePopup);
-  if (skipBtn) skipBtn.addEventListener('click', closePopup);
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) closePopup(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
-
-  setTimeout(() => {
-    sessionStorage.setItem(SESSION_KEY, '1');
-    overlay.style.display = 'flex';
-    requestAnimationFrame(() => overlay.classList.add('sc-open'));
-  }, 8000);
-}
-
 // ─── MODALE ISCRIZIONI ───────────────────────────────────────────────────────
-
 function initEnrollmentModal() {
   const modal = document.getElementById('enrollmentModal');
   const closeBtn = document.getElementById('closeEnrollmentModal');
   if (!modal) return;
 
   if (closeBtn) closeBtn.addEventListener('click', closeEnrollmentModal);
+  
   const overlay = modal.querySelector('.enrollment-modal-overlay');
   if (overlay) overlay.addEventListener('click', closeEnrollmentModal);
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) closeEnrollmentModal();
+    if (e.key === 'Escape' && modal.style.display === 'flex') closeEnrollmentModal();
   });
 
-  document.querySelectorAll('a[href="#contatti-info"]').forEach(link => {
-    link.addEventListener('click', (e) => { e.preventDefault(); openEnrollmentModal(); });
+  // Apri modal dai link "Unisciti a Noi" o pulsanti corso attivi
+  document.querySelectorAll('a[href="#contatti-info"], .btn-course:not([disabled])').forEach(link => {
+    link.addEventListener('click', (e) => {
+      let courseId = null;
+      if (link.classList.contains('btn-course')) {
+        const card = link.closest('.course-card');
+        if (card) {
+          const title = card.querySelector('.course-title')?.textContent.toLowerCase() || '';
+          if (title.includes('robogrest')) courseId = 'robogrest';
+          else if (title.includes('spike')) courseId = 'spike';
+          else if (title.includes('micro:bit')) courseId = 'microbit';
+          else if (title.includes('roberta')) courseId = 'roberta';
+          else if (title.includes('arduino')) courseId = 'arduino';
+        }
+      }
+      e.preventDefault();
+      openEnrollmentModal(courseId);
+    });
   });
 
   const form = document.getElementById('enrollmentForm');
@@ -161,17 +100,33 @@ function initEnrollmentModal() {
 function openEnrollmentModal(preselectCourseId) {
   const modal = document.getElementById('enrollmentModal');
   if (!modal) return;
-  modal.classList.add('active');
+  
+  modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 
-  const grid = document.getElementById('enrollmentCoursesGrid');
-  if (grid && grid.children.length === 0) {
-    populateEnrollmentCourses(preselectCourseId);
-  } else if (grid && preselectCourseId) {
-    const radio = document.getElementById('enrollment-course-' + preselectCourseId);
-    if (radio && !radio.disabled) {
-      radio.checked = true;
-      toggleWeekSelector(preselectCourseId);
+  // Reset messaggi e form
+  const successMsg = document.getElementById('enrollmentSuccessMessage');
+  const errorMsg = document.getElementById('enrollmentErrorMessage');
+  const form = document.getElementById('enrollmentForm');
+  
+  if (successMsg) successMsg.style.display = 'none';
+  if (errorMsg) errorMsg.style.display = 'none';
+  if (form) {
+    form.style.display = 'block';
+    form.reset();
+  }
+
+  // Preselezione corso e logica settimane Robogrest
+  if (preselectCourseId) {
+    const corsoInput = document.getElementById('corsoSceltoInput');
+    if (corsoInput) {
+      const courseInfo = ENROLLMENT_COURSES[preselectCourseId];
+      corsoInput.value = courseInfo ? courseInfo.name : preselectCourseId;
+    }
+    
+    const weekSection = document.getElementById('robogrest-week-section');
+    if (weekSection) {
+      weekSection.style.display = preselectCourseId === 'robogrest' ? 'block' : 'none';
     }
   }
 }
@@ -179,234 +134,127 @@ function openEnrollmentModal(preselectCourseId) {
 function closeEnrollmentModal() {
   const modal = document.getElementById('enrollmentModal');
   if (!modal) return;
-  modal.classList.remove('active');
+  modal.style.display = 'none';
   document.body.style.overflow = 'auto';
 }
 
-// Mostra/nasconde il selettore settimane in base al corso selezionato
-function toggleWeekSelector(courseId) {
-  const weekSection = document.getElementById('robogrest-week-section');
-  if (!weekSection) return;
-  const isRobogrest = courseId === 'robogrest';
-  weekSection.style.display = isRobogrest ? 'block' : 'none';
-  // Rendi obbligatorio il campo solo se Robogrest
-  weekSection.querySelectorAll('input[type=checkbox]').forEach(cb => {
-    cb.required = false; // gestiamo manualmente nella validazione
-  });
-}
+// ─── SUBMIT FORM (Web3Forms AJAX) ────────────────────────────────────────────
+async function handleEnrollmentSubmit(e) {
+  e.preventDefault();
+  
+  const form = e.target;
+  const submitBtn = form.querySelector('.enrollment-submit-btn');
+  const submitText = document.getElementById('enrollmentSubmitText');
+  const successMsg = document.getElementById('enrollmentSuccessMessage');
+  const errorMsg = document.getElementById('enrollmentErrorMessage');
 
-function populateEnrollmentCourses(preselectCourseId) {
-  const grid = document.getElementById('enrollmentCoursesGrid');
-  if (!grid) return;
-  grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999; padding:1rem;">Caricamento corsi...</p>';
+  // Reset messaggi
+  if (successMsg) successMsg.style.display = 'none';
+  if (errorMsg) errorMsg.style.display = 'none';
 
-  const promises = Object.keys(ENROLLMENT_COURSES).map(courseId =>
-    getCourseAvailability(courseId).catch(() => {
-      const info = ENROLLMENT_COURSES[courseId];
-      return { courseId, confirmed: 0, available: info.max, isFull: false };
-    })
-  );
+  // Validazione base
+  const studentName = document.getElementById('studentName').value.trim();
+  const studentAge = document.getElementById('studentAge').value;
+  const parentEmail = document.getElementById('parentEmail').value.trim();
+  const privacy = document.getElementById('privacy');
 
-  Promise.all(promises).then(results => {
-    grid.innerHTML = '';
-    results.forEach(data => {
-      const info = ENROLLMENT_COURSES[data.courseId];
-      if (!info) return;
-      const availClass = data.isFull ? 'full' : (data.available <= 2 ? 'limited' : 'available');
-      const availText = data.isFull ? '❌ Corso Pieno' : `✓ ${data.available} posti liberi`;
-      const isPreselected = preselectCourseId && data.courseId === preselectCourseId && !data.isFull;
-      grid.innerHTML += `
-        <div class="enrollment-course-option">
-          <input type="radio" id="enrollment-course-${data.courseId}" name="courseId" value="${data.courseId}"
-            ${data.isFull ? 'disabled' : ''}
-            ${isPreselected ? 'checked' : ''}
-            onchange="toggleWeekSelector(this.value)">
-          <label for="enrollment-course-${data.courseId}" class="enrollment-course-label">
-            <strong>${escapeHtml(info.name)}</strong>
-            <small>${escapeHtml(info.age)}</small>
-            <div class="enrollment-course-availability ${availClass}">${availText}</div>
-          </label>
-        </div>
-      `;
+  if (!studentName) return showFormError('Inserisci il nome e cognome del bambino');
+  if (!studentAge) return showFormError("Seleziona l'età del bambino");
+  if (!parentEmail) return showFormError("Inserisci l'email del genitore");
+  if (!privacy?.checked) return showFormError("Accetta l'informativa privacy per procedere");
+
+  const isRobogrest = document.getElementById('corsoSceltoInput')?.value.includes('ROBOGREST');
+  if (isRobogrest) {
+    const weeks = document.querySelectorAll('input[name="Settimane_Robogrest[]"]:checked');
+    if (weeks.length === 0) return showFormError('Seleziona almeno una settimana per Robogrest');
+  }
+
+  // Stato di caricamento
+  if (submitBtn) submitBtn.disabled = true;
+  if (submitText) submitText.textContent = '⏳ Invio in corso...';
+
+  try {
+    // Sincronizza il campo email nascosto per Web3Forms (per abilitare "Rispondi" diretto)
+    const emailCopy = document.getElementById('parentEmailCopy');
+    if (emailCopy) emailCopy.value = parentEmail;
+
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: json
     });
-    // Se robogrest è preselezionato mostra subito le settimane
-    if (preselectCourseId) toggleWeekSelector(preselectCourseId);
-  });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      if (form) form.style.display = 'none';
+      if (successMsg) {
+        successMsg.style.display = 'block';
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      form.reset();
+    } else {
+      throw new Error(result.message || 'Errore sconosciuto durante l\'invio');
+    }
+  } catch (err) {
+    console.error('Errore invio form:', err);
+    showFormError(err.message || "Si è verificato un errore. Per favore, riprova o contattaci via WhatsApp.");
+  } finally {
+    if (submitBtn) submitBtn.disabled = false;
+    if (submitText) submitText.textContent = '✨ Invia Iscrizione';
+  }
 }
 
-function getCourseAvailability(courseId) {
-  const info = ENROLLMENT_COURSES[courseId];
-  return db.collection('enrollments')
-    .where('courseId', '==', courseId)
-    .where('status', '==', 'confermato')
-    .get()
-    .then(snapshot => ({
-      courseId,
-      confirmed: snapshot.size,
-      available: Math.max(0, info.max - snapshot.size),
-      isFull: snapshot.size >= info.max
-    }));
+function showFormError(message) {
+  const errorMsg = document.getElementById('enrollmentErrorMessage');
+  const errorText = document.getElementById('enrollmentErrorText');
+  if (errorText) errorText.innerText = message;
+  if (errorMsg) {
+    errorMsg.style.display = 'block';
+    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 }
-
-document.addEventListener('DOMContentLoaded', init);
 
 // ─── SMART HIDE-ON-SCROLL HEADER ─────────────────────────────────────────────
-(function () {
+function initScrollHeader() {
   const header = document.querySelector('.header');
   if (!header) return;
-
+  
   let lastY = window.scrollY;
   let ticking = false;
-
+  
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
         const currentY = window.scrollY;
         const diff = currentY - lastY;
-
-        // Aggiunge .scrolled quando si è scrollato oltre l'altezza dell'header
+        
         if (currentY > header.offsetHeight) {
           header.classList.add('scrolled');
         } else {
           header.classList.remove('scrolled');
         }
-
-        // Nasconde scorrendo verso il basso (oltre 80px dalla cima),
-        // mostra scorrendo verso l'alto o tornando in cima
+        
         if (diff > 6 && currentY > 80) {
           header.classList.add('hidden');
         } else if (diff < -6 || currentY <= 80) {
           header.classList.remove('hidden');
         }
-
+        
         lastY = currentY;
         ticking = false;
       });
       ticking = true;
     }
   }, { passive: true });
-})();
-
-// ─── CORSI ────────────────────────────────────────────────────────────────────
-// I corsi mostrati in #courses-container sono scritti a mano nell'HTML (index.html).
-// Il modal di iscrizione usa invece l'oggetto ENROLLMENT_COURSES qui sotto.
-// PROMEMORIA: quando aggiungi/modifichi/chiudi un corso, aggiorna ENTRAMBI i punti
-// (card in HTML + ENROLLMENT_COURSES), altrimenti sito e form di iscrizione
-// mostreranno informazioni diverse.
-
-// ─── SUBMIT FORM ─────────────────────────────────────────────────────────────
-
-async function handleEnrollmentSubmit(e) {
-  e.preventDefault();
-
-  const successMsg  = document.getElementById('enrollmentSuccessMessage');
-  const errorMsg    = document.getElementById('enrollmentErrorMessage');
-  const waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
-  const submitBtn   = document.querySelector('.enrollment-submit-btn');
-  const submitText  = document.getElementById('enrollmentSubmitText');
-
-  [successMsg, errorMsg, waitlistMsg].forEach(el => el && el.classList.remove('show'));
-
-  if (submitBtn) submitBtn.disabled = true;
-  if (submitText) submitText.textContent = '⏳ Elaborazione...';
-
-  try {
-    const courseRadio = document.querySelector('input[name="courseId"]:checked');
-    if (!courseRadio) throw new Error('Seleziona un corso prima di procedere');
-
-    const studentName = document.getElementById('studentName').value.trim();
-    const studentAge  = document.getElementById('studentAge').value;
-    const parentEmail = document.getElementById('parentEmail').value.trim();
-    const privacy     = document.getElementById('privacy');
-
-    if (!studentName)      throw new Error('Inserisci il nome e cognome del bambino');
-    if (!studentAge)       throw new Error("Seleziona l'età del bambino");
-    if (!parentEmail)      throw new Error("Inserisci l'email del genitore");
-    if (!privacy?.checked) throw new Error("Accetta l'informativa privacy per procedere");
-
-    // Settimane Robogrest
-    const isRobogrest = courseRadio.value === 'robogrest';
-    let selectedWeeks = [];
-    if (isRobogrest) {
-      selectedWeeks = Array.from(document.querySelectorAll('input[name="robogrest_week"]:checked'))
-                           .map(cb => cb.value);
-      if (selectedWeeks.length === 0) throw new Error('Seleziona almeno una settimana per Robogrest');
-    }
-
-    const formData = {
-      studentName,
-      studentAge:  parseInt(studentAge),
-      parentName:  document.getElementById('parentName').value.trim(),
-      parentEmail,
-      parentPhone: document.getElementById('parentPhone').value.trim(),
-      schoolName:  document.getElementById('schoolName').value.trim(),
-      courseId:    courseRadio.value,
-      referral:    document.getElementById('referral').value,
-      notes:       document.getElementById('notes').value.trim(),
-      robogrestWeeks: selectedWeeks
-    };
-
-    await saveEnrollmentToFirebase(formData);
-
-    const successText = document.getElementById('enrollmentSuccessText');
-    if (successText) successText.innerText = 'Ci vediamo presto in laboratorio! 🤖';
-    if (successMsg) successMsg.classList.add('show');
-
-    document.getElementById('enrollmentForm').reset();
-    document.getElementById('enrollmentCoursesGrid').innerHTML = '';
-    const weekSection = document.getElementById('robogrest-week-section');
-    if (weekSection) weekSection.style.display = 'none';
-
-    setTimeout(() => closeEnrollmentModal(), 3000);
-
-  } catch (err) {
-    console.error('Errore iscrizione:', err);
-    const errorText = document.getElementById('enrollmentErrorText');
-    if (errorText) errorText.innerText = err.message || "Errore durante l'iscrizione. Riprova.";
-    if (errorMsg) { errorMsg.classList.add('show'); errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
-  } finally {
-    if (submitBtn) submitBtn.disabled = false;
-    if (submitText) submitText.textContent = '✨ Iscriviti Subito!';
-  }
 }
 
-async function saveEnrollmentToFirebase(formData) {
-  const info = ENROLLMENT_COURSES[formData.courseId];
-  if (!info) throw new Error('Corso non valido. Ricarica la pagina e riprova.');
-
-  const snapshot = await db.collection('enrollments')
-    .where('courseId', '==', formData.courseId)
-    .where('status', '==', 'confermato')
-    .get();
-
-  const confirmed = snapshot.size;
-  const status = confirmed >= info.max ? 'in_attesa' : 'confermato';
-  const waitlistPosition = status === 'in_attesa' ? (confirmed - info.max + 1) : null;
-
-  await db.collection('enrollments').add({
-    studentName:    formData.studentName,
-    studentAge:     formData.studentAge,
-    parentName:     formData.parentName,
-    parentEmail:    formData.parentEmail,
-    parentPhone:    formData.parentPhone,
-    schoolName:     formData.schoolName,
-    courseId:       formData.courseId,
-    courseName:     info.name,
-    status,
-    waitlistPosition,
-    paid:           false,
-    referral:       formData.referral,
-    notes:          formData.notes,
-    robogrestWeeks: formData.robogrestWeeks || [],
-    enrollmentDate: new Date()
-  });
-
-  if (status === 'in_attesa') {
-    const waitlistText = document.getElementById('enrollmentWaitlistText');
-    if (waitlistText) waitlistText.innerText = `Sei in lista d'attesa (posizione ${waitlistPosition}). Ti contatteremo appena si libera un posto!`;
-    const waitlistMsg = document.getElementById('enrollmentWaitlistMessage');
-    if (waitlistMsg) waitlistMsg.classList.add('show');
-    const successMsg = document.getElementById('enrollmentSuccessMessage');
-    if (successMsg) successMsg.classList.remove('show');
-  }
-}
+// Avvia tutto al caricamento del DOM
+document.addEventListener('DOMContentLoaded', init);
