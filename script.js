@@ -15,6 +15,22 @@ function init() {
   initFAQ();
   initEnrollmentModal();
   initScrollHeader();
+  initRevealAnimations();
+}
+
+// ─── ANIMAZIONI REVEAL ───────────────────────────────────────────────────────
+function initRevealAnimations() {
+  const els = document.querySelectorAll('.section-header, .tool-card, .course-card, .scuola-card, .progetto-hl, .faq-list details, .hero-stepper-box');
+  els.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => io.observe(el));
 }
 
 // ─── MENU MOBILE ─────────────────────────────────────────────────────────────
