@@ -106,7 +106,7 @@
         <a href="#footer">Contatti</a>      
       </nav>
     </div>
-    <button class="menu-toggle" aria-label="Apri menu">
+    <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="navOverlay">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
@@ -114,7 +114,7 @@
   </div>
 </header>
 
-<nav class="nav-overlay" aria-label="Menu mobile">
+<nav id="navOverlay" class="nav-overlay" aria-label="Menu mobile">
   <a href="#home">Home</a>
   <a href="#il-progetto">Il progetto</a>
   <a href="#strumenti">Strumenti</a>
@@ -336,7 +336,7 @@
         </div>
         <p class="course-description"><strong>Quando:</strong> lunedì – venerdì ore 9:00 – 17:00</p>
         <p class="course-description">Progettazione, costruzione e programmazione di robot ogni mattina. Posti limitati, caparra €30.</p>
-        <button class="btn-course" onclick="openEnrollmentModal('robogrest')">Iscrizione disponibile</button>
+        <button class="btn-course" type="button">Iscrizione disponibile</button>
       </div>
       
       <div class="course-card corso-aperto">
@@ -349,7 +349,7 @@
         </div>
         <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
         <p class="course-description">Costruisci e programma robot con mattoncini LEGO Technic. Veicoli autonomi, bracci robotici e macchine interattive.</p>
-        <button class="btn-course" onclick="openEnrollmentModal('spike')">Iscrizione disponibile</button>
+        <button class="btn-course" type="button">Iscrizione disponibile</button>
       </div>
 
       <div class="course-card corso-chiuso">
@@ -362,7 +362,7 @@
         </div>
         <p class="course-description"><strong>Quando:</strong> sabato ore 10:00 – 11:30</p>
         <p class="course-description">Programma il piccolo computer tascabile micro:bit per creare giochi, misurare temperatura e movimenti.</p>
-        <button class="btn-course" disabled>Corso non disponibile</button>
+        <button class="btn-course" type="button" disabled>Corso non disponibile</button>
       </div>
 
       <div class="course-card corso-chiuso">
@@ -375,7 +375,7 @@
         </div>
         <p class="course-description"><strong>Quando:</strong> online + sede sabato ore 10:00 – 11:30</p>
         <p class="course-description">Sperimenta la programmazione virtuale di diversi robot con la piattaforma cloud Open Roberta Lab.</p>
-        <button class="btn-course" disabled>Corso non disponibile</button>
+        <button class="btn-course" type="button" disabled>Corso non disponibile</button>
       </div>
 
       <div class="course-card corso-chiuso">
@@ -388,7 +388,7 @@
         </div>
         <p class="course-description"><strong>Quando:</strong> sabato ore 15:00 – 16:30</p>
         <p class="course-description">Crea progetti elettronici interattivi: semafori intelligenti, stazioni meteo e robot su ruote.</p>
-        <button class="btn-course" disabled>Corso non disponibile</button>
+        <button class="btn-course" type="button" disabled>Corso non disponibile</button>
       </div>
     </div>
   </div>
@@ -499,10 +499,10 @@
 </footer>
 
 <!-- MODAL ISCRIZIONI -->
-<div id="enrollmentModal" class="enrollment-modal">
-  <div class="enrollment-modal-overlay" onclick="closeEnrollmentModal()"></div>
+<div id="enrollmentModal" class="enrollment-modal" role="dialog" aria-modal="true" aria-labelledby="enrollmentModalTitle" aria-hidden="true">
+  <div class="enrollment-modal-overlay"></div>
   <div class="enrollment-modal-content">
-    <button class="enrollment-modal-close" id="closeEnrollmentModal" aria-label="Chiudi">
+    <button class="enrollment-modal-close" id="closeEnrollmentModal" type="button" aria-label="Chiudi">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -510,7 +510,7 @@
     </button>
 
     <div class="enrollment-modal-header">
-      <h2>ISCRIZIONE!</h2>
+      <h2 id="enrollmentModalTitle">ISCRIZIONE!</h2>
       <p>Scegli il suo corso di robotica preferito</p>
     </div>
 
@@ -642,12 +642,12 @@
 <!-- RICHIAMO UNICO AL FILE JAVASCRIPT ESTERNO -->
 <script src="script.js"></script>
 <!-- Overlay successo iscrizione (UNICO) -->
-<div id="enrollmentSuccessMessage" style="display:none;">
+<div id="enrollmentSuccessMessage" role="dialog" aria-modal="true" aria-labelledby="enrollmentSuccessTitle" style="display:none;">
   <div class="enrollment-success-card">
-    <span class="enrollment-success-icon">🎉</span>  <!-- ← rimetti questa riga -->
-    <strong>Iscrizione Confermata!</strong>
-    <p id="enrollmentSuccessText">Grazie per la pre-iscrizione. Ti contatteremo presto via email.</p>
-    <button class="enrollment-success-close" onclick="closeEnrollmentModal()">Perfetto, grazie!</button>
+    <span class="enrollment-success-icon" aria-hidden="true">🎉</span>
+    <strong id="enrollmentSuccessTitle">Iscrizione Confermata!</strong>
+    <p id="enrollmentSuccessText">Ti contatteremo presto via email.</p>
+    <button class="enrollment-success-close" id="enrollmentSuccessClose" type="button">Perfetto!</button>
   </div>
 </div>
 </body>
