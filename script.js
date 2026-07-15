@@ -76,6 +76,16 @@ function initFAQ() {
 
 // ─── MODALE ISCRIZIONI ───────────────────────────────────────────────────────
 function initEnrollmentModal() {
+  // Aggiungi dentro la funzione init(), dopo initEnrollmentModal():
+document.getElementById('corsoSelect')?.addEventListener('change', function() {
+  const corsoInput = document.getElementById('corsoSceltoInput');
+  if (corsoInput) corsoInput.value = this.value;
+  
+  const weekSection = document.getElementById('robogrest-week-section');
+  if (weekSection) {
+    weekSection.style.display = this.value.includes('ROBOGREST') ? 'block' : 'none';
+  }
+});
   const modal = document.getElementById('enrollmentModal');
   const closeBtn = document.getElementById('closeEnrollmentModal');
   if (!modal) return;
@@ -120,7 +130,7 @@ function openEnrollmentModal(preselectCourseId) {
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 
-  // Reset messaggi e form
+  // Reset messaggi
   const successMsg = document.getElementById('enrollmentSuccessMessage');
   const errorMsg = document.getElementById('enrollmentErrorMessage');
   const form = document.getElementById('enrollmentForm');
@@ -132,18 +142,25 @@ function openEnrollmentModal(preselectCourseId) {
     form.reset();
   }
 
-  // Preselezione corso e logica settimane Robogrest
-  if (preselectCourseId) {
-    const corsoInput = document.getElementById('corsoSceltoInput');
-    if (corsoInput) {
-      const courseInfo = ENROLLMENT_COURSES[preselectCourseId];
-      corsoInput.value = courseInfo ? courseInfo.name : preselectCourseId;
+  // Preselezione corso nel dropdown
+  const corsoSelect = document.getElementById('corsoSelect');
+  const corsoInput = document.getElementById('corsoSceltoInput');
+  
+  if (preselectCourseId && corsoSelect) {
+    const courseInfo = ENROLLMENT_COURSES[preselectCourseId];
+    if (courseInfo) {
+      corsoSelect.value = courseInfo.name;
+    } else {
+      corsoSelect.value = preselectCourseId;
     }
-    
-    const weekSection = document.getElementById('robogrest-week-section');
-    if (weekSection) {
-      weekSection.style.display = preselectCourseId === 'robogrest' ? 'block' : 'none';
-    }
+    // Sincronizza il campo nascosto per Web3Forms
+    if (corsoInput) corsoInput.value = corsoSelect.value;
+  }
+  
+  // Mostra/nascondi settimane Robogrest
+  const weekSection = document.getElementById('robogrest-week-section');
+  if (weekSection) {
+    weekSection.style.display = preselectCourseId === 'robogrest' ? 'block' : 'none';
   }
 }
 
