@@ -237,7 +237,10 @@ h1, h2, h3, h4 {
 
 /* ── HERO ── */
 .hero {
-  background: var(--orange);
+  background-color: var(--orange);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.14)' stroke-width='2'%3E%3Cpath d='M0 30 H40 V70 H80'/%3E%3Cpath d='M120 90 H80 V50 H40'/%3E%3Cpath d='M20 120 V100 H60 V80'/%3E%3C/g%3E%3Cg fill='rgba(255,255,255,0.14)'%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3Ccircle cx='80' cy='70' r='3'/%3E%3Ccircle cx='80' cy='90' r='3'/%3E%3Ccircle cx='40' cy='50' r='3'/%3E%3Ccircle cx='60' cy='100' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 120px 120px;
   color: white;
   padding: 0;
   position: relative;
@@ -873,7 +876,6 @@ h1, h2, h3, h4 {
   justify-content: center;
   padding: 1.5rem;
 }
-#enrollmentSuccessMessage.show { display: flex !important; }
 .enrollment-success-card {
   background: var(--surface);
   border-radius: var(--r-2xl);
