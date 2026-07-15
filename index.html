@@ -585,16 +585,21 @@
       </div>
 
       <div class="enrollment-form-section">
-        <div class="enrollment-form-section-title">🤖 Seleziona il Corso *</div>
-        <input type="hidden" name="Corso_Scelto" id="corsoSceltoInput" required>
-        <div class="enrollment-courses-grid" id="enrollmentCoursesGrid">
-            <div class="course-placeholder-box">
-          <div style="grid-column: 1 / -1; padding: 1rem; background: #f9f9f9; border-radius: 8px; text-align: center; color: #666;">
-            Seleziona un corso dalla pagina principale per pre-compilare questo campo, oppure specificalo nelle note qui sotto.
-          </div>
-         </div>
-        </div>
-      </div>
+  <div class="enrollment-form-section-title">🤖 Seleziona il Corso *</div>
+  <div class="enrollment-form-group">
+    <label for="corsoSelect">Corso *</label>
+    <select id="corsoSelect" name="Corso_Scelto" required>
+      <option value="">-- Scegli un corso --</option>
+      <option value="ROBOGREST 2026">🌄 ROBOGREST 2026 (7-13 anni, estate)</option>
+      <option value="Spike Prime Lab">Spike Prime Lab (8-13 anni)</option>
+      <option value="Micro:bit Lab">Micro:bit Lab (8-13 anni)</option>
+      <option value="Open Roberta Lab">Open Roberta Lab (8-13 anni)</option>
+      <option value="Arduino Base">Arduino Base (12-16 anni)</option>
+    </select>
+  </div>
+  <!-- Campo nascosto duplicato per Web3Forms (sinonimo) -->
+  <input type="hidden" name="Corso_Scelto_Copia" id="corsoSceltoInput">
+</div>
 
       <div class="enrollment-form-section" id="robogrest-week-section" style="display:none;">
         <div class="enrollment-form-section-title">📅 Scegli le settimane *</div>
