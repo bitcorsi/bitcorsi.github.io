@@ -514,15 +514,7 @@
       <p>Scegli il suo corso di robotica preferito</p>
     </div>
 
-    <div id="enrollmentSuccessMessage" class="enrollment-message" style="display:none;">
-      <div class="enrollment-success-card">
-        <span class="enrollment-success-icon">🎉</span>
-        <strong>Iscrizione Confermata!</strong>
-        <p id="enrollmentSuccessText">Grazie per la pre-iscrizione. Ti contatteremo presto via email per confermare i dettagli e il pagamento della caparra.</p>
-        <button class="enrollment-success-close" onclick="closeEnrollmentModal()">Perfetto, grazie!</button>
-      </div>
-    </div>
-    
+       
     <div id="enrollmentErrorMessage" class="enrollment-message error-message" style="display:none;">
       <strong>⚠️ Errore</strong>
       <p id="enrollmentErrorText">Si è verificato un errore durante l'invio. Per favore, riprova o contattaci direttamente via WhatsApp.</p>
@@ -649,6 +641,14 @@
 
 <!-- RICHIAMO UNICO AL FILE JAVASCRIPT ESTERNO -->
 <script src="script.js"></script>
-
+<!-- Overlay successo iscrizione (UNICO) -->
+<div id="enrollmentSuccessMessage" style="display:none;">
+  <div class="enrollment-success-card">
+    <span class="enrollment-success-icon">🎉</span>  <!-- ← rimetti questa riga -->
+    <strong>Iscrizione Confermata!</strong>
+    <p id="enrollmentSuccessText">Grazie per la pre-iscrizione. Ti contatteremo presto via email.</p>
+    <button class="enrollment-success-close" onclick="closeEnrollmentModal()">Perfetto, grazie!</button>
+  </div>
+</div>
 </body>
 </html>
