@@ -230,6 +230,8 @@ async function handleEnrollmentSubmit(e) {
     const result = await response.json();
     
     if (result.success) {
+      const modal = document.getElementById('enrollmentModal');
+      if (modal) modal.style.display = 'none'; // chiude il modale sottostante per evitare il doppio overlay
       if (form) form.style.display = 'none';
       if (successMsg) {
   successMsg.style.display = 'flex';  // flex per centrare la card
