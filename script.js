@@ -166,8 +166,11 @@ function openEnrollmentModal(preselectCourseId) {
 
 function closeEnrollmentModal() {
   const modal = document.getElementById('enrollmentModal');
-  if (!modal) return;
-  modal.style.display = 'none';
+  const successMsg = document.getElementById('enrollmentSuccessMessage');
+  
+  if (modal) modal.style.display = 'none';
+  if (successMsg) successMsg.style.display = 'none';  // ← aggiungi questa riga
+  
   document.body.style.overflow = 'auto';
 }
 
@@ -229,9 +232,8 @@ async function handleEnrollmentSubmit(e) {
     if (result.success) {
       if (form) form.style.display = 'none';
       if (successMsg) {
-        successMsg.style.display = 'block';
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
+  successMsg.style.display = 'flex';  // flex per centrare la card
+}
       form.reset();
     } else {
       throw new Error(result.message || 'Errore sconosciuto durante l\'invio');
