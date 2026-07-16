@@ -238,9 +238,10 @@ h1, h2, h3, h4 {
 /* ── HERO ── */
 .hero {
   background-color: var(--orange);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.14)' stroke-width='2'%3E%3Cpath d='M0 30 H40 V70 H80'/%3E%3Cpath d='M120 90 H80 V50 H40'/%3E%3Cpath d='M20 120 V100 H60 V80'/%3E%3C/g%3E%3Cg fill='rgba(255,255,255,0.14)'%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3Ccircle cx='80' cy='70' r='3'/%3E%3Ccircle cx='80' cy='90' r='3'/%3E%3Ccircle cx='40' cy='50' r='3'/%3E%3Ccircle cx='60' cy='100' r='3'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 120px 120px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='700' viewBox='0 0 1600 700'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.16)' stroke-width='2.4'%3E%3Cg transform='translate(60,50) rotate(-8)'%3E%3Cpath d='M6,0 H20 l4,-5 h16 l4,5 H74 Q80,0 80,6 V24 Q80,30 74,30 H50 l-4,5 h-16 l-4,-5 H6 Q0,30 0,24 V6 Q0,0 6,0 Z'/%3E%3C/g%3E%3Cg transform='translate(40,580) rotate(5) scale(0.9)'%3E%3Cpath d='M6,0 H20 l4,-5 h16 l4,5 H74 Q80,0 80,6 V24 Q80,30 74,30 H50 l-4,5 h-16 l-4,-5 H6 Q0,30 0,24 V6 Q0,0 6,0 Z'/%3E%3C/g%3E%3Cg transform='translate(-20,320) rotate(90) scale(0.6)'%3E%3Cpath d='M6,0 H20 l4,-5 h16 l4,5 H74 Q80,0 80,6 V24 Q80,30 74,30 H50 l-4,5 h-16 l-4,-5 H6 Q0,30 0,24 V6 Q0,0 6,0 Z'/%3E%3C/g%3E%3Cg transform='translate(1480,70) rotate(10) scale(0.85)'%3E%3Cpath d='M6,0 H20 l4,-5 h16 l4,5 H74 Q80,0 80,6 V24 Q80,30 74,30 H50 l-4,5 h-16 l-4,-5 H6 Q0,30 0,24 V6 Q0,0 6,0 Z'/%3E%3C/g%3E%3Cg transform='translate(1500,560) rotate(-6)'%3E%3Cpath d='M6,0 H20 l4,-5 h16 l4,5 H74 Q80,0 80,6 V24 Q80,30 74,30 H50 l-4,5 h-16 l-4,-5 H6 Q0,30 0,24 V6 Q0,0 6,0 Z'/%3E%3C/g%3E%3Cg transform='translate(1620,350) rotate(90) scale(0.5)'%3E%3Cpath d='M6,0 H20 l4,-5 h16 l4,5 H74 Q80,0 80,6 V24 Q80,30 74,30 H50 l-4,5 h-16 l-4,-5 H6 Q0,30 0,24 V6 Q0,0 6,0 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   color: white;
   padding: 0;
   position: relative;
