@@ -1,9 +1,9 @@
 Privacy Policy
 
 Titolare del Trattamento
-Lab Tecnologici
+BITCODE - Lab Tecnologici
 
-Email: info@labtecnologici.it
+Email: info@bitcode.it
 
 Dati raccolti:
 
