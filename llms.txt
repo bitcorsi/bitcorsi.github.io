@@ -1,62 +1,46 @@
 # Lab Tecnologici
-
 > Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni.
-
-Lab Tecnologici è un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente. I laboratori si svolgono in piccoli gruppi (8–10 ragazzi), con kit inclusi a ogni lezione e un approccio 100% pratico.
-
+Bitcode è un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente. I laboratori si svolgono in piccoli gruppi (8–10 ragazzi), con kit inclusi a ogni lezione e un approccio 100% pratico.
 ## Sede
-
 Centro Aperto Sandro Marelli  
 Piazzetta SS. Francesco e Chiara, 1 — Brescia (BS)  
 Orari laboratori: Sabato 10:00–11:30 e 15:00–16:30
-
 ## Contatti
-
 - Telefono / WhatsApp: +39 370 306 9215
 - Email: info@labtecnologici.it
 - Instagram: @lab_tecnologici
-- Sito: https://www.labtecnologici.it
+- Sito: https://www.bitcode.it
 - P.IVA: 04701410989
-
 ## Corsi disponibili
-
 ### Laboratorio LEGO Spike Prime
 - Età: 8–13 anni
 - Strumenti: LEGO Technic, motori e sensori
 - Programmazione: blocchi visivi
 - Progetti: veicoli autonomi, bracci robotici, macchine interattive
-
 ### Laboratorio micro:bit BBC
 - Età: 8–13 anni
 - Strumenti: micro:bit BBC
 - Programmazione: blocchi, JavaScript, Python
 - Progetti: contapassi, termometri, giochi, robot
-
 ### Laboratorio Open Roberta
 - Età: 8–13 anni
 - Strumenti: browser-based, no installazioni
 - Compatibile con: LEGO WeDo, Mindstorms, micro:bit, NAO
-
 ### Laboratorio Arduino Base
 - Età: 12–16 anni
 - Strumenti: schede Arduino
 - Programmazione: C++ base (testo)
 - Progetti: semafori, stazioni meteo, robot su ruote, strumenti musicali
-
 ### ROBOGREST 2026 — Campo Estivo
 - Età: 7–13 anni
 - Date: 10 giugno – 31 luglio 2026
 - Orario: 9:00–17:00
 - Costo: €130/settimana (caparra €30)
 - Disponibilità: posti limitati
-
 ## Presenza nelle scuole
-
-Lab Tecnologici porta il doposcuola di robotica nelle scuole primarie di Brescia ogni settimana, in collaborazione con Club 28 SSD s.r.l. Scuole attualmente attive: Torricella, Casazza, Melzi.  
+Bitcode porta il doposcuola di robotica nelle scuole primarie di Brescia ogni settimana, in collaborazione con Club 28 SSD s.r.l. Scuole attualmente attive: Torricella, Casazza, Melzi.  
 I comitati genitori possono contattare info@labtecnologici.it per nuove collaborazioni.
-
 ## FAQ rapide
-
 - **Prima lezione gratuita**: sì, è disponibile una lezione di prova gratuita
 - **Kit inclusi**: sì, nessun materiale da portare
 - **Dimensione gruppi**: massimo 8–10 ragazzi
