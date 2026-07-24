@@ -1,7 +1,7 @@
 Privacy Policy
 
 Titolare del Trattamento
-BITCODE - Lab Tecnologici
+BITCODE
 
 Email: info@bitcode.it
 
