@@ -37,9 +37,6 @@ Miglioramento dell'esperienza formativa.
 
 Analisi delle fonti di acquisizione.
 
-Luogo del trattamento e Tecnologie (Firebase):
-I dati raccolti tramite il modulo di iscrizione sono archiviati ed elaborati in modo sicuro attraverso la piattaforma Google Firebase, che funge da fornitore dell'infrastruttura di database. I dati sono conservati su server protetti conformi ai protocolli di sicurezza previsti per il trattamento dei dati personali in ambito UE.
-
 Base giuridica:
 Il trattamento è basato sul consenso espresso dall'interessato tramite la compilazione e l'invio del modulo. Ai sensi dell'Articolo 6, paragrafo 1, lettera a) del GDPR (Regolamento UE 2016/679): "l'interessato ha espresso il consenso al trattamento dei propri dati personali per una o più specifiche finalità."
 
