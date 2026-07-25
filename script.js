@@ -1,5 +1,5 @@
 // ============================================================
-// LAB TECNOLOGICI - script.js (Versione Web3Forms - No Firebase)
+// BITCODE - script.js (Versione Web3Forms - No Firebase)
 // Refactor: best practice, stessa struttura HTML/CSS, stesso comportamento
 // ============================================================
 
