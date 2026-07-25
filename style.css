@@ -1268,3 +1268,12 @@ h1, h2, h3, h4 {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+.hero h2 .titolo-robotica {
+  font-family: 'Alfa Slab One', 'Manrope', system-ui, sans-serif;
+  font-weight: 400;
+  -webkit-text-stroke: 1px var(--orange-dark);
+  text-shadow:
+    2px 2px 0 var(--orange-dark),
+    3px 3px 0 var(--orange-dark),
+    4px 4px 6px rgba(0,0,0,.2);
+}
