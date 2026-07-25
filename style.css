@@ -185,7 +185,7 @@ h1, h2, h3, h4 {
   line-height: 1;
 }
 .logo-text.title-slab {
-  color: #4C7DF0;
+  color: var(--orange);
   text-shadow:
     1px 1px 0 var(--orange-dark),
     2px 2px 3px rgba(0,0,0,.25);
