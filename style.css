@@ -196,10 +196,6 @@ h1, h2, h3, h4 {
 .logo-text.title-slab .logo-white {
   color: #FFFFFF;
 }
-.titolo-robotica-bianco {
-  font-family: 'Alfa Slab One', 'Manrope', system-ui, sans-serif;
-  color: #FFFFFF;
-}
 .logo-tagline.subtitle-slab {
   font-size: 0.62rem;
   line-height: 1;
@@ -1279,4 +1275,8 @@ h1, h2, h3, h4 {
     2px 2px 0 var(--orange-dark),
     3px 3px 0 var(--orange-dark),
     4px 4px 6px rgba(0,0,0,.2);
+}
+.titolo-robotica-bianco {
+  font-family: 'Alfa Slab One', 'Manrope', system-ui, sans-serif;
+  color: #FFFFFF;
 }
