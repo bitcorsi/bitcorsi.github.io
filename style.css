@@ -172,7 +172,7 @@ h1, h2, h3, h4 {
   filter: none;
   transition: var(--t);
 }
-.logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+.logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
 .logo-text-group--brand {
   background: var(--brand-blue);
   padding: 6px 14px 6px 10px;
