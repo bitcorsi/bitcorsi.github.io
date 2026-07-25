@@ -207,7 +207,7 @@ h1, h2, h3, h4 {
 .nav { display: flex; align-items: center; gap: 1.75rem; }
 .nav a {
   text-decoration: none;
-  color: var(--text-soft);
+  color: #FFD166;
   font-weight: 600;
   font-size: 0.875rem;
   transition: color var(--t-fast);
@@ -353,7 +353,7 @@ h1, h2, h3, h4 {
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
-  color: #FFD166;
+  color: rgba(255,255,255,.88);
   line-height: 1.7;
   font-weight: 400;
 }
