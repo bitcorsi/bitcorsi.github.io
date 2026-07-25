@@ -194,9 +194,17 @@
       weekSection.style.display = preselectCourseId === 'robogrest' ? 'block' : 'none';
     }
 
-    // Sposta il focus dentro il modale per l'accessibilità da tastiera
+    // Sposta il focus dentro il modale per l'accessibilità da tastiera.
+    // Su mobile evitiamo l'autofocus immediato: farebbe comparire subito la
+    // tastiera durante l'animazione di apertura (percepito come "poco fluido"
+    // e, su iOS, causa uno zoom automatico della pagina se il font-size
+    // dell'input è < 16px, dando l'impressione che il popup sia "troppo largo").
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const firstField = document.getElementById('studentName');
-    if (firstField) firstField.focus();
+    if (firstField && !isMobile) {
+      // Aspettiamo la fine dell'animazione CSS prima di dare focus
+      setTimeout(() => firstField.focus(), 350);
+    }
   }
 
   function closeEnrollmentModal() {
