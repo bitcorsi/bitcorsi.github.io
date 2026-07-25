@@ -1276,7 +1276,3 @@ h1, h2, h3, h4 {
     3px 3px 0 var(--orange-dark),
     4px 4px 6px rgba(0,0,0,.2);
 }
-.titolo-robotica-bianco {
-  font-family: 'Alfa Slab One', 'Manrope', system-ui, sans-serif;
-  color: #FFFFFF;
-}
