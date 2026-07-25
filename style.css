@@ -127,10 +127,27 @@ h1, h2, h3, h4 {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid var(--border);
-  transition: transform 0.3s ease, box-shadow var(--t);
+  transition: transform 0.3s ease, box-shadow var(--t), background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 .header.scrolled { box-shadow: var(--shadow-sm); }
-.header.hidden { transform: translateY(-100%); }
+.header.hidden {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  pointer-events: none; /* il resto della barra non blocca i click sul contenuto sotto */
+}
+/* Il robottino resta sempre visibile e cliccabile anche quando l'header "sparisce" */
+.header.hidden .logo-overlap { pointer-events: auto; }
+/* Tutto il resto (testo del brand, nav, hamburger) sfuma invece di restare visibile */
+.header.hidden .logo-text-group--brand,
+.header.hidden .header-right,
+.header.hidden .menu-toggle {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
 .header .container { display: flex; justify-content: space-between; align-items: center; }
 
 /* Logo */
@@ -143,9 +160,9 @@ h1, h2, h3, h4 {
 }
 .logo-container:hover { opacity: 0.8; }
 .logo-container--brand {
-  background: var(--brand-blue);
-  padding: 6px 16px 6px 8px;
-  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .logo-img {
   height: 96px;
@@ -156,16 +173,26 @@ h1, h2, h3, h4 {
   transition: var(--t);
 }
 .logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+.logo-text-group--brand {
+  background: var(--brand-blue);
+  padding: 6px 14px 6px 10px;
+  border-radius: var(--r-full);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
 .logo-text {
   margin: 0;
   font-size: clamp(1rem, 2.2vw, 1.35rem);
   line-height: 1;
 }
 .logo-text.title-slab {
+  color: #FFFFFF;
   text-shadow:
     1px 1px 0 var(--orange-dark),
     2px 2px 3px rgba(0,0,0,.25);
   -webkit-text-stroke: 0.5px var(--orange-dark);
+}
+.logo-text.title-slab .logo-orange {
+  color: var(--orange);
 }
 .logo-tagline.subtitle-slab {
   font-size: 0.62rem;
@@ -176,7 +203,7 @@ h1, h2, h3, h4 {
 .logo-tagline .dot { margin: 0 0.35em; }
 
 /* Nav */
-.header-right { display: flex; align-items: center; gap: 1.5rem; }
+.header-right { display: flex; align-items: center; gap: 1.5rem; transition: opacity 0.25s ease, transform 0.25s ease; }
 .nav { display: flex; align-items: center; gap: 1.75rem; }
 .nav a {
   text-decoration: none;
