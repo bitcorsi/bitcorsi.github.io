@@ -122,7 +122,7 @@ h1, h2, h3, h4 {
   height: 68px;
   display: flex;
   align-items: center;
-  background: rgba(255,255,255,0.92);
+  background: #4C7DF0;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid var(--border);
