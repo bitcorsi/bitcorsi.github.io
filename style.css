@@ -11,6 +11,7 @@ Designer: Senior Staff — giugno 2026
   --orange-dark:   #E05525;
   --orange-light:  #FFF3EE;
   --orange-mid:    #FFE8DC;
+  --brand-blue:    #4C7DF0;
   
   /* UI neutrals */
   --bg:            #F8FAFC;
@@ -74,7 +75,7 @@ body {
   color: var(--text);
   background: var(--bg);
   overflow-x: hidden;
-  padding-top: 68px; /* header fisso desktop */
+  padding-top: 80px; /* header fisso desktop */
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
@@ -119,7 +120,7 @@ h1, h2, h3, h4 {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  height: 68px;
+  height: 80px;
   display: flex;
   align-items: center;
   background: rgba(255,255,255,0.92);
@@ -141,6 +142,11 @@ h1, h2, h3, h4 {
   transition: opacity var(--t-fast);
 }
 .logo-container:hover { opacity: 0.8; }
+.logo-container--brand {
+  background: var(--brand-blue);
+  padding: 6px 16px 6px 8px;
+  border-radius: var(--r-full);
+}
 .logo-img {
   height: 96px;
   width: auto;
@@ -149,26 +155,25 @@ h1, h2, h3, h4 {
   filter: none;
   transition: var(--t);
 }
-.logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
-.logo-badges { display: flex; gap: 5px; align-items: center; }
-.logo-badge {
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 20px;
-  letter-spacing: 0.03em;
-}
-.logo-badge--robotica { background: #FAECE7; color: #993C1D; }
-.logo-badge--coding   { background: #E6F1FB; color: #185FA5; }
-.logo-orange { color: var(--orange); }
+.logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
 .logo-text {
   margin: 0;
-  font-size: clamp(1.25rem, 2.5vw, 1.9rem);
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  line-height: 1;
 }
+.logo-text.title-slab {
+  text-shadow:
+    1px 1px 0 var(--orange-dark),
+    2px 2px 3px rgba(0,0,0,.25);
+  -webkit-text-stroke: 0.5px var(--orange-dark);
+}
+.logo-tagline.subtitle-slab {
+  font-size: 0.62rem;
+  line-height: 1;
+  text-shadow: 0.5px 0.5px 0 var(--orange-dark);
+  -webkit-text-stroke: 0.3px var(--orange-dark);
+}
+.logo-tagline .dot { margin: 0 0.35em; }
 
 /* Nav */
 .header-right { display: flex; align-items: center; gap: 1.5rem; }
@@ -1155,13 +1160,14 @@ h1, h2, h3, h4 {
 
 /* ── RESPONSIVE 768px ── */
 @media (max-width: 768px) {
-  body { padding-top: 64px; }
+  body { padding-top: 74px; }
   .menu-toggle { display: flex; }
-  .header { height: 64px; }
+  .header { height: 74px; }
   .header .container { flex-direction: row; justify-content: space-between; align-items: center; }
   .header-right, .nav { display: none; }
-  .logo-img { height: 80px; margin-bottom: -30px; }
-  .logo-text { font-size: 1.1rem; }
+  .logo-img { height: 68px; margin-bottom: -24px; }
+  .logo-text { font-size: 1rem; }
+  .logo-tagline.subtitle-slab { font-size: 0.55rem; }
   
   .hero { flex-direction: column; padding: 0; min-height: auto; gap: 0; background: var(--surface); display: flex; }
   .hero::before, .hero::after { display: none; }
