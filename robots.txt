@@ -4,8 +4,6 @@
 # ── Crawler standard ─────────────────────────────────
 User-agent: *
 Allow: /
-Disallow: /login.html
-Disallow: /gestionale.html
 # ── AI Engine Optimization (AEO) ─────────────────────
 # Consenti esplicitamente i principali crawler AI/LLM
 # OpenAI — ChatGPT / GPT Search
