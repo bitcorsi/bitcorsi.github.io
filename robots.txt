@@ -1,4 +1,4 @@
-# robots.txt — Lab Tecnologici
+# robots.txt — Bitcode
 # https://www.bitcode.it
 # Aggiornato: 2026-07-23
 # ── Crawler standard ─────────────────────────────────
