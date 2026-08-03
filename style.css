@@ -182,6 +182,7 @@ h1, h2, h3, h4 {
   margin: 0;
   font-size: clamp(1rem, 2.2vw, 1.35rem);
   line-height: 1;
+  text-transform: lowercase;
 }
 .logo-text.title-slab {
   color: #FFD166;
