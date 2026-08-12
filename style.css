@@ -91,30 +91,6 @@ h1, h2, h3, h4 {
   line-height: 1.2;
   color: var(--text);
 }
-
-/* ── FAB WHATSAPP ── */
-.fab-container {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 9999;
-}
-.fab {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-md);
-  transition: var(--t);
-  text-decoration: none;
-  cursor: pointer;
-}
-.fab-whatsapp { background: #25D366; color: white; }
-.fab:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.fab::after { display: none; }
-
 /* ── HEADER ── */
 .header {
   position: fixed;
