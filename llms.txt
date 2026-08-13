@@ -1,6 +1,6 @@
-# BITCODE
-> Corsi di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni.
-Bitcode è un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente. I laboratori si svolgono in piccoli gruppi (8–10 ragazzi), con kit inclusi a ogni lezione e un approccio 100% pratico.
+# bitcode
+> Coding e laboratori di robotica educativa a Brescia per bambini e ragazzi dagli 8 ai 16 anni.
+bitcode è un progetto nato per avvicinare i più giovani al mondo della tecnologia, della programmazione e della robotica in modo creativo e divertente. I laboratori si svolgono in piccoli gruppi (8–10 ragazzi), con kit inclusi a ogni lezione e un approccio 100% pratico.
 ## Sede
 Centro Aperto Sandro Marelli  
 Piazzetta SS. Francesco e Chiara, 1 — Brescia (BS)  
@@ -8,7 +8,7 @@ Orari laboratori: Sabato 10:00–11:30 e 15:00–16:30
 ## Contatti
 - Telefono / WhatsApp: +39 370 306 9215
 - Email: info@bitcode.it
-- Instagram: @bitcode_lab_tecnologici
+- Instagram: @bitcode_laboratori_tech
 - Sito: https://www.bitcode.it
 - P.IVA: 04701410989
 ## Corsi disponibili
@@ -39,10 +39,10 @@ Orari laboratori: Sabato 10:00–11:30 e 15:00–16:30
 - Disponibilità: posti limitati
 ## Presenza nelle scuole
 Bitcode porta il doposcuola di robotica nelle scuole primarie di Brescia ogni settimana, in collaborazione con Club 28 SSD s.r.l. Scuole attualmente attive: Torricella, Casazza, Melzi.  
-I comitati genitori possono contattare info@labtecnologici.it per nuove collaborazioni.
+I comitati genitori possono contattare info@bitcode.it per nuove collaborazioni.
 ## FAQ rapide
 - **Prima lezione gratuita**: sì, è disponibile una lezione di prova gratuita
 - **Kit inclusi**: sì, nessun materiale da portare
 - **Dimensione gruppi**: massimo 8–10 ragazzi
 - **Recupero lezioni**: le lezioni perse vengono recuperate nella sessione successiva
-- **Iscrizione**: tramite sito, WhatsApp (+39 370 306 9215) o email:info@bitcode.it
+- **Iscrizione**: tramite sito, chiamata (+39 370 306 9215) o email:info@bitcode.it
