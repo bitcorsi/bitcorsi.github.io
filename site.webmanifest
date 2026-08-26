@@ -1,6 +1,6 @@
 {
-  "name": "BITCODE - Corsi di Robotica Educativa",
-  "short_name": "BITCODE",
+  "name": "bitcode - Corsi di Robotica Educativa",
+  "short_name": "bitcode",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
