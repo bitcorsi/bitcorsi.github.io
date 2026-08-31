@@ -53,5 +53,3 @@ User-agent: YouBot
 Allow: /
 # ── Sitemap ───────────────────────────────────────────
 Sitemap: https://www.bitcode.it/sitemap.xml
-# ── Host ──────────────────────────────────────────────
-Host: https://www.bitcode.it
