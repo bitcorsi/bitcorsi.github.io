@@ -71,7 +71,7 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); 
 
 .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .logo-container--brand { display: flex; align-items: center; gap: 10px; }
-.logo-img { height: 86px; width: auto; }
+.logo-img { height: 76px; width: auto; }
 .logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
 .logo-text-group--brand { padding: 4px 10px; }
 .logo-text {
@@ -82,7 +82,7 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); 
 .logo-text.title-slab .logo-orange { color: var(--red); }
 .logo-text.title-slab .logo-white { color: var(--ink); }
 .logo-tagline.subtitle-slab {
-  font-family: var(--font-body); font-size: 1.2rem; font-weight: 800; letter-spacing: 0.01em;
+  font-family: var(--font-body); font-size: 1.0rem; font-weight: 600; letter-spacing: 0.01em;
   color: var(--blue); text-shadow: none; -webkit-text-stroke: 0; text-transform: none;
 }
 .logo-tagline .dot { margin: 0 0.4em; color: var(--ink); }
