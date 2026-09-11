@@ -115,7 +115,7 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); 
 
 /* ── HERO ── */
 .hero {
-  background-color: var(--red);
+  background-color: var(--blue-dark);
   background-image:
     radial-gradient(circle, rgba(255,255,255,.22) 34%, transparent 36%);
   background-size: 46px 46px;
