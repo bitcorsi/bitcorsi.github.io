@@ -79,7 +79,7 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); 
   text-transform: lowercase; font-family: var(--font-head); font-weight: 800;
 }
 .logo-text.title-slab { color: var(--ink); text-shadow: none; -webkit-text-stroke: 0; }
-.logo-text.title-slab .logo-orange { color: var(--red); }
+.logo-text.title-slab .logo-orange { color: #ff751f; }
 .logo-text.title-slab .logo-white { color: var(--ink); }
 .logo-tagline.subtitle-slab {
   font-family: var(--font-body); font-size: 1.0rem; font-weight: 600; letter-spacing: 0.01em;
