@@ -75,7 +75,7 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); 
 .logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
 .logo-text-group--brand { padding: 4px 10px; }
 .logo-text {
-  margin: 0; font-size: clamp(1.2rem, 2.2vw, 1.55rem); line-height: 1;
+  margin: 0; font-size: clamp(1.5rem, 2.5vw, 1.58rem); line-height: 1;
   text-transform: lowercase; font-family: var(--font-head); font-weight: 800;
 }
 .logo-text.title-slab { color: var(--ink); text-shadow: none; -webkit-text-stroke: 0; }
