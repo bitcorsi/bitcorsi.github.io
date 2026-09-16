@@ -71,7 +71,7 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); 
 
 .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .logo-container--brand { display: flex; align-items: center; gap: 10px; }
-.logo-img { height: 76px; width: auto; }
+.logo-img { height: 100px; width: auto; }
 .logo-text-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
 .logo-text-group--brand { padding: 4px 10px; }
 .logo-text {
