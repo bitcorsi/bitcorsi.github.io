@@ -6,16 +6,6 @@
 (function () {
   'use strict';
 
-  const ENROLLMENT_COURSES = {
-    spike:     { name: 'Spike Prime Lab', age: '8-13 anni' },
-    arduino:   { name: 'Arduino base',    age: '12-16 anni' },
-    microbit:  { name: 'Micro:bit Lab',   age: '8-13 anni' },
-    roberta:   { name: 'Open Roberta Lab',age: '8-13 anni' },
-    robogrest: { name: 'ROBOGREST 2026',  age: '7-13 anni' }
-  };
-
-  // Riferimento all'elemento che aveva il focus prima di aprire il modale,
-  // per poterlo ripristinare alla chiusura (accessibilità tastiera/screen reader).
   let lastFocusedElement = null;
 
   document.addEventListener('DOMContentLoaded', init);
@@ -31,7 +21,7 @@
   // ─── ANIMAZIONI REVEAL ─────────────────────────────────────────────────
   function initRevealAnimations() {
     const els = document.querySelectorAll(
-      '.section-header, .tool-card, .course-card, .scuola-card, .progetto-hl, .faq-list details, .hero-stepper-box'
+      '.section-intro, .step, .course, .festa, .scuola, .review, .faq details'
     );
     els.forEach((el) => el.classList.add('reveal'));
 
@@ -53,40 +43,37 @@
   // ─── MENU MOBILE ───────────────────────────────────────────────────────
   function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
-    const navOverlay = document.querySelector('.nav-overlay');
+    const navMobile = document.querySelector('.nav-mobile');
     const body = document.body;
-    if (!menuToggle || !navOverlay) return;
+    if (!menuToggle || !navMobile) return;
 
     function closeMenu() {
-      navOverlay.classList.remove('active');
+      navMobile.classList.remove('active');
       menuToggle.setAttribute('aria-expanded', 'false');
       body.style.overflow = '';
     }
 
     function openMenu() {
-      navOverlay.classList.add('active');
+      navMobile.classList.add('active');
       menuToggle.setAttribute('aria-expanded', 'true');
       body.style.overflow = 'hidden';
     }
 
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = navOverlay.classList.contains('active');
+      const isOpen = navMobile.classList.contains('active');
       isOpen ? closeMenu() : openMenu();
     });
 
-    navOverlay.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    navMobile.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMenu();
-    });
-    navOverlay.addEventListener('click', (e) => {
-      if (e.target === navOverlay) closeMenu();
     });
   }
 
   // ─── FAQ ACCORDION ─────────────────────────────────────────────────────
   function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-list details');
+    const faqItems = document.querySelectorAll('.faq details');
     faqItems.forEach((item) => {
       item.addEventListener('toggle', function () {
         if (this.open) {
@@ -117,7 +104,6 @@
       if (e.key === 'Escape' && modal.style.display === 'flex') closeEnrollmentModal();
     });
 
-    // Aggiorna il campo nascosto e la sezione settimane quando cambia il corso scelto manualmente
     if (corsoSelect) {
       corsoSelect.addEventListener('change', function () {
         if (corsoInput) corsoInput.value = this.value;
@@ -127,36 +113,26 @@
       });
     }
 
-    // Apri il modale dai link "Unisciti a Noi" o dai pulsanti corso attivi
-    document.querySelectorAll('a[href="#contatti-info"], .btn-course:not([disabled])').forEach((link) => {
+    // CTA generiche ("Prenota una prova", pulsante nel form contatti) — aprono il modale senza corso preselezionato
+    document.querySelectorAll('.js-open-modal').forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        openEnrollmentModal(resolveCourseIdFromLink(link));
+        openEnrollmentModal(null);
+      });
+    });
+
+    // Pulsanti "Iscriviti / Avvisami" nelle card corso — aprono il modale con il corso già selezionato
+    document.querySelectorAll('.course-link[data-course]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        openEnrollmentModal(link.dataset.course);
       });
     });
 
     if (form) form.addEventListener('submit', handleEnrollmentSubmit);
   }
 
-  /**
-   * Determina l'id del corso (chiave di ENROLLMENT_COURSES) a partire
-   * dal titolo mostrato nella card del corso, se il link cliccato è un bottone corso.
-   */
-  function resolveCourseIdFromLink(link) {
-    if (!link.classList.contains('btn-course')) return null;
-
-    const card = link.closest('.course-card');
-    const title = card ? card.querySelector('.course-title')?.textContent.toLowerCase() || '' : '';
-
-    if (title.includes('robogrest')) return 'robogrest';
-    if (title.includes('spike')) return 'spike';
-    if (title.includes('micro:bit')) return 'microbit';
-    if (title.includes('roberta')) return 'roberta';
-    if (title.includes('arduino')) return 'arduino';
-    return null;
-  }
-
-  function openEnrollmentModal(preselectCourseId) {
+  function openEnrollmentModal(preselectCourseName) {
     const modal = document.getElementById('enrollmentModal');
     if (!modal) return;
 
@@ -166,7 +142,6 @@
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    // Reset messaggi
     const successMsg = document.getElementById('enrollmentSuccessMessage');
     const errorMsg = document.getElementById('enrollmentErrorMessage');
     const form = document.getElementById('enrollmentForm');
@@ -178,31 +153,22 @@
       form.reset();
     }
 
-    // Preselezione corso nel dropdown
     const corsoSelect = document.getElementById('corsoSelect');
     const corsoInput = document.getElementById('corsoSceltoInput');
 
-    if (preselectCourseId && corsoSelect) {
-      const courseInfo = ENROLLMENT_COURSES[preselectCourseId];
-      corsoSelect.value = courseInfo ? courseInfo.name : preselectCourseId;
+    if (preselectCourseName && corsoSelect) {
+      corsoSelect.value = preselectCourseName;
       if (corsoInput) corsoInput.value = corsoSelect.value;
     }
 
-    // Mostra/nascondi settimane Robogrest
     const weekSection = document.getElementById('robogrest-week-section');
     if (weekSection) {
-      weekSection.style.display = preselectCourseId === 'robogrest' ? 'block' : 'none';
+      weekSection.style.display = (preselectCourseName || '').includes('ROBOGREST') ? 'block' : 'none';
     }
 
-    // Sposta il focus dentro il modale per l'accessibilità da tastiera.
-    // Su mobile evitiamo l'autofocus immediato: farebbe comparire subito la
-    // tastiera durante l'animazione di apertura (percepito come "poco fluido"
-    // e, su iOS, causa uno zoom automatico della pagina se il font-size
-    // dell'input è < 16px, dando l'impressione che il popup sia "troppo largo").
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const firstField = document.getElementById('studentName');
     if (firstField && !isMobile) {
-      // Aspettiamo la fine dell'animazione CSS prima di dare focus
       setTimeout(() => firstField.focus(), 350);
     }
   }
@@ -219,7 +185,6 @@
 
     document.body.style.overflow = 'auto';
 
-    // Ripristina il focus sull'elemento che aveva aperto il modale
     if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
       lastFocusedElement.focus();
     }
@@ -240,7 +205,6 @@
     if (successMsg) successMsg.style.display = 'none';
     if (errorMsg) errorMsg.style.display = 'none';
 
-    // Validazione base
     const studentName = document.getElementById('studentName').value.trim();
     const studentAge = document.getElementById('studentAge').value;
     const parentEmail = document.getElementById('parentEmail').value.trim();
@@ -257,12 +221,10 @@
       if (weeks.length === 0) return showFormError('Seleziona almeno una settimana per Robogrest');
     }
 
-    // Stato di caricamento
     if (submitBtn) submitBtn.disabled = true;
     if (submitText) submitText.textContent = '⏳ Invio in corso...';
 
     try {
-      // Sincronizza il campo email nascosto per Web3Forms (per abilitare "Rispondi" diretto)
       const emailCopy = document.getElementById('parentEmailCopy');
       if (emailCopy) emailCopy.value = parentEmail;
 
@@ -281,8 +243,6 @@
       const result = await response.json();
 
       if (result.success) {
-        // Chiude il modale sottostante per evitare il doppio overlay,
-        // e mostra solo la card di conferma a schermo intero.
         if (modal) modal.style.display = 'none';
         if (form) form.style.display = 'none';
         if (successMsg) successMsg.style.display = 'flex';
@@ -343,8 +303,5 @@
     );
   }
 
-  // L'HTML richiama closeEnrollmentModal() tramite onclick inline
-  // (overlay del modale e bottone "Perfetto, grazie!"): la esponiamo
-  // volutamente in globale per restare compatibili senza toccare l'HTML.
   window.closeEnrollmentModal = closeEnrollmentModal;
 })();
