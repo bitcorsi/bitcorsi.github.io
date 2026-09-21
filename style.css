@@ -336,6 +336,11 @@ h3 { font-size: 1.15rem; }
   color: var(--ink);
   font-weight: 600;
 }
+@media (max-width: 768px) {
+  .hero-facts {
+    display: none;
+  }
+}
 
 .hero-visual { position: relative; }
 .hero-image-wrap {
