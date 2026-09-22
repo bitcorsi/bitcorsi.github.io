@@ -1,40 +1,40 @@
 /* ============================================================
-   BITCODE — Design system v2 (struttura editoriale, palette calda)
+   BITCODE — Design system v2 (Sunset Code Palette)
    ============================================================ */
 
 :root {
   /* Sfondi */
-  --bg:        #FFF9F2;
-  --bg-alt:    #FFF1E0;
+  --bg:        #F4EBE1; /* Sabbia calda */
+  --bg-alt:    #EFE3D5; /* Sabbia calda più scura / alternativa */
   --surface:   #FFFFFF;
 
   /* Testi */
-  --ink:       #1B2A4E;
-  --ink-2:     #2F3E5C;
-  --ink-3:     #6B7590;
-  --ink-4:     #A8AFC2;
+  --ink:       #2B2220; /* Carbone caldo */
+  --ink-2:     #3A2E2B;
+  --ink-3:     #6B5E59;
+  --ink-4:     #A89B95;
 
   /* Linee */
-  --line:      #F0E2D0;
-  --line-dark: #13203D;
+  --line:      #E2D3C4;
+  --line-dark: #2B2220;
 
-  /* Primario = arancione del logo */
-  --primary:      #FF751F;
-  --primary-hover:#E85F0A;
-  --primary-soft: #FFE8D6;
+  /* Primario = arancione originale mantenuto (#FF7A00) */
+  --primary:      #FF7A00;
+  --primary-hover:#D96800;
+  --primary-soft: #FFEAD9;
 
-  /* Secondario = navy del robottino (blocchi scuri) */
-  --navy:      #1B2A4E;
-  --navy-2:    #253761;
-  --navy-3:    #33477A;
+  /* Secondario = carbone/scuro caldo (blocchi scuri) */
+  --navy:      #2B2220;
+  --navy-2:    #3A2E2B;
+  --navy-3:    #4D3E3A;
 
   /* Accento = verde del cerchio logo */
   --accent:     #00A651;
   --accent-soft:#DEF5E6;
 
-  /* Terzo colore per badge/attenzione */
-  --warm:       #F4A524;
-  --warm-soft:  #FFF1CF;
+  /* Terzo colore per badge/attenzione (Mattone) */
+  --warm:       #D94E34;
+  --warm-soft:  #FCE8E5;
 
   --font-serif: 'Fraunces', Georgia, serif;
   --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
@@ -43,9 +43,9 @@
   --r:    12px;
   --r-lg: 20px;
 
-  --shadow-sm: 0 1px 2px rgba(27,42,78,.05), 0 2px 6px rgba(27,42,78,.05);
-  --shadow:    0 4px 12px rgba(27,42,78,.08), 0 12px 32px rgba(27,42,78,.06);
-  --shadow-warm: 0 8px 24px rgba(255,117,31,.18);
+  --shadow-sm: 0 1px 2px rgba(43,34,32,.05), 0 2px 6px rgba(43,34,32,.05);
+  --shadow:    0 4px 12px rgba(43,34,32,.08), 0 12px 32px rgba(43,34,32,.06);
+  --shadow-warm: 0 8px 24px rgba(255,122,0,.18);
 
   --t: 0.2s ease;
 }
@@ -95,7 +95,7 @@ h3 { font-size: 1.15rem; }
 /* ── HEADER ── */
 .header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(255, 249, 242, 0.88);
+  background: rgba(244, 235, 225, 0.88);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid transparent;
@@ -103,7 +103,7 @@ h3 { font-size: 1.15rem; }
 }
 .header.scrolled {
   border-bottom-color: var(--line);
-  background: rgba(255, 249, 242, 0.96);
+  background: rgba(244, 235, 225, 0.96);
 }
 
 .header-inner {
@@ -132,7 +132,6 @@ h3 { font-size: 1.15rem; }
 }
 .brand-mark-light { background: var(--bg); color: var(--primary); }
 
-/* Logo immagine (se usi il robottino) */
 .brand-logo {
   height: 44px;
   width: auto;
@@ -210,12 +209,12 @@ h3 { font-size: 1.15rem; }
 .btn-primary {
   background: var(--primary);
   color: #fff;
-  box-shadow: 0 2px 0 rgba(232,95,10,.4);
+  box-shadow: 0 2px 0 rgba(217,104,0,.4);
 }
 .btn-primary:hover {
   background: var(--primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255,117,31,.35);
+  box-shadow: 0 4px 12px rgba(255,122,0,.35);
 }
 
 .btn-outline {
@@ -234,11 +233,11 @@ h3 { font-size: 1.15rem; }
 
 .btn-ghost-light {
   background: transparent;
-  border-color: rgba(255, 249, 242, 0.25);
+  border-color: rgba(244, 235, 225, 0.25);
   color: var(--bg);
 }
 .btn-ghost-light:hover {
-  background: rgba(255, 249, 242, 0.1);
+  background: rgba(244, 235, 225, 0.1);
   border-color: var(--bg);
 }
 
@@ -337,9 +336,7 @@ h3 { font-size: 1.15rem; }
   font-weight: 600;
 }
 @media (max-width: 768px) {
-  .hero-facts {
-    display: none;
-  }
+  .hero-facts { display: none; }
 }
 
 .hero-visual { position: relative; }
@@ -539,7 +536,7 @@ h3 { font-size: 1.15rem; }
   text-transform: uppercase;
   padding: 5px 12px;
   border-radius: 100px;
-  box-shadow: 0 4px 10px rgba(255,117,31,.3);
+  box-shadow: 0 4px 10px rgba(255,122,0,.3);
 }
 .festa h3 { margin-bottom: 0.4rem; }
 .festa-meta {
@@ -753,7 +750,7 @@ h3 { font-size: 1.15rem; }
 .contatti-intro > p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(255, 249, 242, 0.72);
+  color: rgba(244, 235, 225, 0.72);
   margin-bottom: 2rem;
   max-width: 46ch;
 }
@@ -774,7 +771,7 @@ h3 { font-size: 1.15rem; }
 .info-item {
   display: flex; flex-direction: column; gap: 0.3rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 249, 242, 0.12);
+  border-bottom: 1px solid rgba(244, 235, 225, 0.12);
 }
 .info-item:last-child { border-bottom: none; padding-bottom: 0; }
 .info-label {
@@ -782,7 +779,7 @@ h3 { font-size: 1.15rem; }
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 249, 242, 0.5);
+  color: rgba(244, 235, 225, 0.5);
 }
 .info-value {
   font-size: 1rem;
@@ -796,7 +793,7 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
 .footer {
   background: var(--navy-2);
   padding: 2.5rem 0;
-  color: rgba(255, 249, 242, 0.5);
+  color: rgba(244, 235, 225, 0.5);
   font-size: 0.85rem;
 }
 .footer-inner {
@@ -809,8 +806,8 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
 }
 .brand-name-light { color: #fff; }
 .footer-legal a {
-  color: rgba(255, 249, 242, 0.8);
-  border-bottom: 1px solid rgba(255, 249, 242, 0.3);
+  color: rgba(244, 235, 225, 0.8);
+  border-bottom: 1px solid rgba(244, 235, 225, 0.3);
 }
 .footer-legal a:hover { color: var(--primary); border-bottom-color: var(--primary); }
 
@@ -831,7 +828,7 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
   position: fixed; inset: 0; z-index: 9999;
   overflow-y: auto;
   padding: 1.5rem;
-  background: rgba(19, 32, 61, .6);
+  background: rgba(43, 34, 32, .6);
   backdrop-filter: blur(4px);
   align-items: center; justify-content: center;
 }
@@ -944,7 +941,7 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
   position: fixed; inset: 0; z-index: 10000;
   display: flex; align-items: center; justify-content: center;
   padding: 1.5rem;
-  background: rgba(19, 32, 61, .6);
+  background: rgba(43, 34, 32, .6);
   backdrop-filter: blur(4px);
 }
 .enrollment-success-card {
