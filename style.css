@@ -1,40 +1,40 @@
 /* ============================================================
-   BITCODE — Design system v2 (Sunset Code Palette)
+   BITCODE — Design system v2 (struttura editoriale, palette calda)
    ============================================================ */
 
 :root {
-  /* Sfondi */
-  --bg:        #F4EBE1; /* Sabbia calda */
-  --bg-alt:    #EFE3D5; /* Sabbia calda più scura / alternativa */
+  /* Sfondi (Sunset Code: sabbia calda) */
+  --bg:        #FFFBF6;
+  --bg-alt:    #F4EBE1;
   --surface:   #FFFFFF;
 
-  /* Testi */
-  --ink:       #2B2220; /* Carbone caldo */
-  --ink-2:     #3A2E2B;
-  --ink-3:     #6B5E59;
-  --ink-4:     #A89B95;
+  /* Testi (Sunset Code: carbone caldo) */
+  --ink:       #2B2220;
+  --ink-2:     #4A3B36;
+  --ink-3:     #7C6B63;
+  --ink-4:     #B7A99F;
 
   /* Linee */
-  --line:      #E2D3C4;
-  --line-dark: #2B2220;
+  --line:      #EADCCB;
+  --line-dark: #3D312E;
 
-  /* Primario = arancione originale mantenuto (#FF7A00) */
+  /* Primario = arancione vibrante Sunset Code */
   --primary:      #FF7A00;
-  --primary-hover:#D96800;
-  --primary-soft: #FFEAD9;
+  --primary-hover:#E56D00;
+  --primary-soft: #FFE3C4;
 
-  /* Secondario = carbone/scuro caldo (blocchi scuri) */
+  /* Secondario = carbone caldo (blocchi scuri, ex navy) */
   --navy:      #2B2220;
-  --navy-2:    #3A2E2B;
-  --navy-3:    #4D3E3A;
+  --navy-2:    #221B19;
+  --navy-3:    #3D312E;
 
-  /* Accento = verde del cerchio logo */
-  --accent:     #00A651;
-  --accent-soft:#DEF5E6;
+  /* Accento = rosso mattone Sunset Code (ex verde) */
+  --accent:     #D94E34;
+  --accent-soft:#FBE2DC;
 
-  /* Terzo colore per badge/attenzione (Mattone) */
-  --warm:       #D94E34;
-  --warm-soft:  #FCE8E5;
+  /* Terzo colore per badge/attenzione: ambra derivata, per restare distinto dal primario */
+  --warm:       #C9832A;
+  --warm-soft:  #F6E6CE;
 
   --font-serif: 'Fraunces', Georgia, serif;
   --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
@@ -95,7 +95,7 @@ h3 { font-size: 1.15rem; }
 /* ── HEADER ── */
 .header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(244, 235, 225, 0.88);
+  background: rgba(255, 251, 246, 0.88);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid transparent;
@@ -103,7 +103,7 @@ h3 { font-size: 1.15rem; }
 }
 .header.scrolled {
   border-bottom-color: var(--line);
-  background: rgba(244, 235, 225, 0.96);
+  background: rgba(255, 251, 246, 0.96);
 }
 
 .header-inner {
@@ -132,6 +132,7 @@ h3 { font-size: 1.15rem; }
 }
 .brand-mark-light { background: var(--bg); color: var(--primary); }
 
+/* Logo immagine (se usi il robottino) */
 .brand-logo {
   height: 44px;
   width: auto;
@@ -209,7 +210,7 @@ h3 { font-size: 1.15rem; }
 .btn-primary {
   background: var(--primary);
   color: #fff;
-  box-shadow: 0 2px 0 rgba(217,104,0,.4);
+  box-shadow: 0 2px 0 rgba(229,109,0,.4);
 }
 .btn-primary:hover {
   background: var(--primary-hover);
@@ -233,11 +234,11 @@ h3 { font-size: 1.15rem; }
 
 .btn-ghost-light {
   background: transparent;
-  border-color: rgba(244, 235, 225, 0.25);
+  border-color: rgba(255, 251, 246, 0.25);
   color: var(--bg);
 }
 .btn-ghost-light:hover {
-  background: rgba(244, 235, 225, 0.1);
+  background: rgba(255, 251, 246, 0.1);
   border-color: var(--bg);
 }
 
@@ -272,7 +273,7 @@ h3 { font-size: 1.15rem; }
   color: var(--primary);
   margin-bottom: 1rem;
 }
-.eyebrow-light { color: #FFB98A; }
+.eyebrow-light { color: #FFB27D; }
 .eyebrow-accent { color: var(--accent); }
 
 .section-intro {
@@ -336,7 +337,9 @@ h3 { font-size: 1.15rem; }
   font-weight: 600;
 }
 @media (max-width: 768px) {
-  .hero-facts { display: none; }
+  .hero-facts {
+    display: none;
+  }
 }
 
 .hero-visual { position: relative; }
@@ -613,7 +616,7 @@ h3 { font-size: 1.15rem; }
   border-radius: 100px;
 }
 .scuola-status-soon {
-  color: #B8801A;
+  color: var(--warm);
   background: var(--warm-soft);
 }
 
@@ -750,7 +753,7 @@ h3 { font-size: 1.15rem; }
 .contatti-intro > p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(244, 235, 225, 0.72);
+  color: rgba(255, 251, 246, 0.72);
   margin-bottom: 2rem;
   max-width: 46ch;
 }
@@ -771,7 +774,7 @@ h3 { font-size: 1.15rem; }
 .info-item {
   display: flex; flex-direction: column; gap: 0.3rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(244, 235, 225, 0.12);
+  border-bottom: 1px solid rgba(255, 251, 246, 0.12);
 }
 .info-item:last-child { border-bottom: none; padding-bottom: 0; }
 .info-label {
@@ -779,7 +782,7 @@ h3 { font-size: 1.15rem; }
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(244, 235, 225, 0.5);
+  color: rgba(255, 251, 246, 0.5);
 }
 .info-value {
   font-size: 1rem;
@@ -793,7 +796,7 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
 .footer {
   background: var(--navy-2);
   padding: 2.5rem 0;
-  color: rgba(244, 235, 225, 0.5);
+  color: rgba(255, 251, 246, 0.5);
   font-size: 0.85rem;
 }
 .footer-inner {
@@ -806,8 +809,8 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
 }
 .brand-name-light { color: #fff; }
 .footer-legal a {
-  color: rgba(244, 235, 225, 0.8);
-  border-bottom: 1px solid rgba(244, 235, 225, 0.3);
+  color: rgba(255, 251, 246, 0.8);
+  border-bottom: 1px solid rgba(255, 251, 246, 0.3);
 }
 .footer-legal a:hover { color: var(--primary); border-bottom-color: var(--primary); }
 
@@ -828,7 +831,7 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
   position: fixed; inset: 0; z-index: 9999;
   overflow-y: auto;
   padding: 1.5rem;
-  background: rgba(43, 34, 32, .6);
+  background: rgba(61, 49, 46, .6);
   backdrop-filter: blur(4px);
   align-items: center; justify-content: center;
 }
@@ -913,7 +916,7 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
   cursor: pointer; transition: var(--t); line-height: 1.3;
 }
 .week-option span small { display: block; font-size: .72rem; font-weight: 500; color: var(--ink-3); margin-top: 3px; }
-.week-option input:checked + span { border-color: var(--accent); background: var(--accent-soft); color: #1B7A45; }
+.week-option input:checked + span { border-color: var(--accent); background: var(--accent-soft); color: #8A3323; }
 .week-option:hover span { border-color: var(--primary); }
 
 .enrollment-form-checkbox {
@@ -941,7 +944,7 @@ a.info-value:hover { opacity: 0.7; color: var(--primary); }
   position: fixed; inset: 0; z-index: 10000;
   display: flex; align-items: center; justify-content: center;
   padding: 1.5rem;
-  background: rgba(43, 34, 32, .6);
+  background: rgba(61, 49, 46, .6);
   backdrop-filter: blur(4px);
 }
 .enrollment-success-card {
