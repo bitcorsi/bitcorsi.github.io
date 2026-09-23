@@ -424,17 +424,20 @@ h3 { font-size: 1.12rem; }
 }
 
 /* ── STEPS ── */
+/* ── STEPS ── */
 .steps {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
+
 .step {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line-soft);
   border-radius: var(--r);
-  padding: 1.6rem 1.5rem;
+  padding: 2rem 1.6rem 1.8rem;
+  text-align: center;
   box-shadow: var(--shadow-1);
   transition: transform var(--t-3d), box-shadow var(--t-3d);
 }
@@ -442,23 +445,50 @@ h3 { font-size: 1.12rem; }
   transform: translateY(-6px);
   box-shadow: var(--shadow-2);
 }
-.step-num {
-  display: inline-block;
-  font-family: var(--font-serif);
-  font-size: 0.9rem;
-  font-weight: 600;
+
+/* Icona in cerchio */
+.step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-soft), #FFF5E6);
   color: var(--primary);
-  letter-spacing: 0.06em;
-  padding: 3px 10px;
-  background: var(--primary-soft);
-  border-radius: 100px;
-  margin-bottom: 1rem;
+  margin: 0 auto 0.9rem;
+  transition: transform var(--t-3d), background 0.3s, color 0.3s;
 }
-.step h3 { margin-bottom: 0.6rem; }
+.step-icon svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+.step:hover .step-icon {
+  background: var(--primary);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Numero piccolo */
+.step-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+  margin-bottom: 0.3rem;
+}
+
+.step h3 {
+  margin-bottom: 0.5rem;
+}
 .step p {
   font-size: 0.92rem;
   line-height: 1.65;
   color: var(--ink-3);
+  margin-top: 0.5rem;
 }
 
 /* ── CORSI ── */
