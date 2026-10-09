@@ -1288,3 +1288,208 @@ a.info-value:hover { opacity: 0.7; color: var(--primary-soft); }
   .step:hover, .course:hover, .festa:hover, .scuola:hover,
   .review:hover, .hero-image-wrap:hover { transform: none !important; }
 }
+
+/* ============================================================
+   v4 — UI/UX pass per genitori di ragazzi 7–12 anni
+   Arancione brand #FF7A00 invariato. Nessun contenuto modificato.
+   ============================================================ */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url('fonts/Nunito-latin-variable.woff2') format('woff2');
+}
+
+/* 1 ── Tipografia: fix del doppio :root (Fraunces/Inter mai caricati) */
+:root {
+  --font-serif: 'Alfa Slab One', Georgia, serif;           /* solo titoli grandi */
+  --font-sans:  'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ink-3: #6B5D54;                 /* 5.6:1 su avorio (prima 4.2:1) */
+  --primary-text: #B04F00;          /* arancione leggibile per testo piccolo (5:1) */
+  --on-primary: #2A211C;            /* testo scuro su arancione: 6:1 (bianco era 2.8:1) */
+}
+body { font-size: 1.0625rem; line-height: 1.65; }
+h1, h2 { font-weight: 400; letter-spacing: 0; line-height: 1.12; }
+h3, .faq summary, .scuola-name, .enrollment-form-section-title,
+.nav-mobile a, .hero-quote p, .review p, .brand, .footer-brand {
+  font-family: var(--font-sans); font-style: normal;
+}
+h3 { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; }
+.hero-lead, .section-lead { font-size: 1.15rem; }
+
+/* 2 ── Contrasto: testi arancioni piccoli → variante scura */
+.eyebrow, .tool-for, .step-num, .link-arrow, .course-link, .section-lead a,
+.festa-price, .course-price, .enrollment-form-checkbox a, .enrollment-info-box a,
+.nav-desktop a:hover { color: var(--primary-text); }
+.link-arrow, .section-lead a { border-bottom-color: var(--primary-text); }
+.eyebrow { font-weight: 800; letter-spacing: .1em; font-size: .8rem; }
+.eyebrow-light { color: #FFC59A; }
+
+/* 3 ── Bottoni: più grandi (tap ≥48px), testo scuro su arancione */
+.btn { min-height: 48px; font-weight: 800; font-size: 1rem; border-radius: 999px; padding: .8rem 1.6rem; }
+.btn-sm { min-height: 44px; }
+.btn-primary { color: var(--on-primary); }
+.btn-primary:hover { color: var(--on-primary); }
+.btn-ghost-light { border-width: 2px; }
+
+/* 4 ── Hero: più calore, gerarchia più chiara */
+.hero { padding-top: 9rem; }
+.hero-content h1 { max-width: 15ch; }
+.hero-content h1 em {
+  font-style: normal; color: var(--ink);
+  background: linear-gradient(transparent 60%, var(--primary) 60% 92%, transparent 92%);
+  padding: 0 .1em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.hero-visual::before {                         /* blocco arancione dietro la foto */
+  content: ''; position: absolute; z-index: 0;
+  inset: 1.4rem -1.2rem -1.4rem 1.4rem;
+  background: var(--primary); border-radius: var(--r-lg);
+}
+.hero-visual::after {                          /* pattern a puntini */
+  content: ''; position: absolute; z-index: 0; width: 110px; height: 110px;
+  top: -1.4rem; left: -1.4rem;
+  background: radial-gradient(var(--primary) 2.5px, transparent 3px) 0 0 / 18px 18px;
+  opacity: .55;
+}
+.hero-image-wrap { position: relative; z-index: 1; border: 4px solid #fff; }
+.hero-quote { z-index: 2; border-left: 0; border-top: 4px solid var(--primary); transform: rotate(-2deg); }
+.hero-quote p { font-weight: 700; font-size: 1rem; }
+.hero-quote span { color: var(--ink-3); }
+
+/* Fatti chiave: chip sempre visibili (prima nascosti su mobile) */
+.hero-facts { display: flex !important; border-top: 0; padding-top: 0; gap: .6rem; }
+.hero-facts li {
+  background: var(--surface); border: 2px solid var(--primary-soft);
+  border-radius: 999px; padding: .4rem 1rem; font-size: .92rem; color: var(--ink-2);
+}
+.hero-facts strong { color: var(--primary-text); font-weight: 800; }
+
+/* 5 ── Approccio: percorso collegato in 4 tappe */
+.steps { position: relative; }
+.step { position: relative; z-index: 1; border-width: 2px; border-radius: var(--r-lg); }
+.step-num {
+  position: absolute; top: 1rem; right: 1rem; margin: 0;
+  background: var(--primary-soft); border-radius: 999px; padding: .15rem .6rem;
+  font-family: var(--font-sans); font-weight: 900; font-size: .8rem;
+}
+.step-icon { width: 76px; height: 76px; box-shadow: inset 0 0 0 3px #fff, 0 0 0 3px var(--primary-soft); }
+.step-icon svg { width: 34px; height: 34px; stroke-width: 2; }
+@media (min-width: 961px) {
+  .steps::before {
+    content: ''; position: absolute; z-index: 0; top: 4.1rem; left: 12%; right: 12%;
+    border-top: 3px dashed var(--primary); opacity: .5;
+  }
+}
+
+/* 6 ── Strumenti: età come pill */
+.tool { border-width: 2px; border-radius: var(--r-lg); }
+.tool-for {
+  display: inline-block; align-self: flex-start; background: var(--primary-soft);
+  padding: .2rem .7rem; border-radius: 999px; letter-spacing: .04em; font-weight: 800; margin-bottom: .3rem;
+}
+
+/* 7 ── Corsi: card scansionabili, età in evidenza, un solo corso "aperto" che spicca */
+.course-list { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.course-open { grid-column: 1 / -1; }
+.course {
+  display: flex; flex-direction: column; gap: 1rem; padding: 1.75rem;
+  border: 2px solid var(--line); border-radius: var(--r-lg); background: var(--surface);
+}
+.course::before { display: none; }
+.course-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.course-header > div { grid-column: auto; }
+.course-header h3 { font-size: 1.35rem; margin-bottom: .5rem; }
+.course-for {
+  display: inline-block; background: var(--bg-alt); color: var(--ink);
+  font-weight: 800; font-size: .85rem; padding: .25rem .8rem; border-radius: 999px;
+}
+.course-price {
+  grid-column: auto; grid-row: auto; align-self: flex-start; font-size: 1.9rem; white-space: nowrap;
+}
+.course-body, .course-meta, .course-footer { grid-column: auto; grid-row: auto; margin: 0; }
+.course-body { color: var(--ink-2); font-size: 1rem; flex-grow: 1; }
+.course-meta { flex-direction: column; gap: .3rem; font-size: .95rem; color: var(--ink-2); font-weight: 600; }
+.course-meta span::before { content: none; margin: 0; }
+.course-meta span { display: flex; align-items: center; gap: .55rem; }
+.course-meta span::after { display: none; }
+.course-meta span:first-child::before, .course-meta span::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex: none; margin: 0;
+}
+.course-footer { border-top: 2px dashed var(--line); padding-top: 1.1rem; flex-wrap: wrap; }
+.status { font-weight: 800; font-size: .78rem; display: inline-flex; align-items: center; gap: .5rem; }
+.status-open::before {
+  content: ''; width: 9px; height: 9px; border-radius: 50%; background: #1E9E6A;
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(30,158,106,.5); } 100% { box-shadow: 0 0 0 9px rgba(30,158,106,0); } }
+.status-closed { color: var(--ink-2); background: #F1EADF; }
+/* link → veri pulsanti */
+.course-link {
+  display: inline-flex; align-items: center; min-height: 44px; padding: .5rem 1.2rem;
+  border-radius: 999px; border: 2px solid var(--primary); font-weight: 800; transition: all var(--t-3d);
+}
+.course-link:hover { opacity: 1; background: var(--primary-soft); transform: translateY(-2px); }
+.course-open .course-link {
+  background: var(--primary); color: var(--on-primary);
+  box-shadow: 0 3px 0 var(--primary-dark), 0 8px 18px rgba(255,122,0,.25);
+}
+.course-open .course-link:hover { background: var(--primary-hover); }
+.course-open {
+  border-color: var(--primary); background: linear-gradient(135deg, #FFF3E4, var(--surface) 60%);
+  box-shadow: var(--shadow-warm); padding: 2rem 2.25rem;
+}
+.course-open .course-header h3 { font-size: 1.7rem; }
+.course-special { background: var(--warm-soft); border-color: #EBCB99; }
+
+/* 8 ── Feste, scuole, recensioni, FAQ: forme più morbide e leggibili */
+.festa, .scuola, .review, .scuole-cta { border-width: 2px; border-radius: var(--r-lg); }
+.festa-featured { box-shadow: var(--shadow-warm); }
+.festa-badge { color: var(--on-primary); font-weight: 800; transform: rotate(-3deg); }
+.festa-price small, .course-price small { color: var(--ink-3); }
+.scuola-status { font-weight: 800; }
+.review p { font-weight: 600; font-size: 1.05rem; line-height: 1.6; }
+.review::before { font-family: var(--font-serif); color: var(--primary); opacity: .35; }
+.faq summary { font-weight: 800; font-size: 1.1rem; padding: 1.4rem 3rem 1.4rem 0; }
+.faq summary::after {
+  content: '+'; width: 34px; height: 34px; border-radius: 50%; background: var(--primary-soft);
+  display: flex; align-items: center; justify-content: center; color: var(--primary-text); font-weight: 800;
+}
+.faq details[open] summary::after { background: var(--primary); color: var(--on-primary); }
+.faq details > p { color: var(--ink-2); font-size: 1rem; }
+
+/* 9 ── Barra CTA fissa su mobile (l'header si nasconde allo scroll) */
+.mobile-cta { display: none; }
+@media (max-width: 768px) {
+  body { padding-bottom: 84px; }
+  .mobile-cta {
+    display: flex; gap: .6rem; position: fixed; z-index: 90; left: 0; right: 0; bottom: 0;
+    padding: .7rem 4% calc(.7rem + env(safe-area-inset-bottom));
+    background: rgba(253,246,238,.96); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line); box-shadow: 0 -8px 24px -12px rgba(42,33,28,.25);
+    transition: transform .3s ease;
+  }
+  .mobile-cta.hidden { transform: translateY(110%); }
+  .mobile-cta .btn-primary { flex: 1; }
+  .mobile-cta .btn-wa {
+    width: 52px; padding: 0; background: #fff; border: 2px solid var(--line); color: #1E9E6A;
+  }
+  .mobile-cta .btn-wa svg { width: 26px; height: 26px; }
+  .course-open { padding: 1.5rem; }
+}
+@media (max-width: 960px) {
+  .course-list { grid-template-columns: 1fr; }
+  .course-header { flex-direction: column; gap: .6rem; }
+  .course-footer { flex-direction: row; align-items: center; }
+}
+
+/* 10 ── Modale/form: campi più comodi da compilare con il pollice */
+.enrollment-form-group input, .enrollment-form-group select, .enrollment-form-group textarea {
+  min-height: 52px; font-size: 1rem; border: 2px solid var(--line); border-radius: 12px;
+}
+.enrollment-form-group label { font-size: .92rem; }
+.enrollment-form-group input[name="email"] { background: #fff; border-color: var(--line); }
+.enrollment-form-group input[name="email"]:focus { border-color: var(--primary); }
+.enrollment-modal-close { width: 44px; height: 44px; }
+.week-option span { min-height: 52px; border-width: 2px; }
+.enrollment-form-checkbox input[type="checkbox"] { width: 22px; height: 22px; }

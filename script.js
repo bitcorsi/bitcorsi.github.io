@@ -16,6 +16,8 @@
     initEnrollmentModal();
     initScrollHeader();
     initRevealAnimations();
+    initMobileCta();
+    initFocusTrap();
   }
 
   // ─── ANIMAZIONI REVEAL ─────────────────────────────────────────────────
@@ -255,7 +257,7 @@
       showFormError(err.message || 'Si è verificato un errore. Per favore, riprova o contattaci via WhatsApp.');
     } finally {
       if (submitBtn) submitBtn.disabled = false;
-      if (submitText) submitText.textContent = '✨ Invia Iscrizione';
+      if (submitText) submitText.textContent = 'Invia iscrizione';
     }
   }
 
@@ -301,6 +303,29 @@
       },
       { passive: true }
     );
+  }
+
+  // ─── BARRA CTA MOBILE: sparisce quando sei già nei contatti ───────────
+  function initMobileCta() {
+    const bar = document.getElementById('mobileCta');
+    const target = document.getElementById('contatti');
+    if (!bar || !target || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(([e]) => bar.classList.toggle('hidden', e.isIntersecting), { threshold: 0.15 }).observe(target);
+  }
+
+  // ─── FOCUS TRAP nel modale (aria-modal da solo non basta) ─────────────
+  function initFocusTrap() {
+    const modal = document.getElementById('enrollmentModal');
+    if (!modal) return;
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || modal.style.display !== 'flex') return;
+      const f = [...modal.querySelectorAll('a[href], button, input, select, textarea')]
+        .filter((el) => el.offsetParent !== null && !el.disabled && el.type !== 'hidden');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
   }
 
   window.closeEnrollmentModal = closeEnrollmentModal;
