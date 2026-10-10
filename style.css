@@ -1594,3 +1594,36 @@ html .section-dark {
     var(--secondary);
 }
 .eyebrow { display: inline-flex; align-items: center; gap: .5rem; }
+
+
+/* ============================================================
+   v5.2 — Mobile più leggero ed essenziale
+   ============================================================ */
+@media (max-width: 768px) {
+  /* niente barra fissa in basso */
+  .mobile-cta { display: none !important; }
+  body { padding-bottom: 0; }
+
+  /* niente chip (Max 8 / Kit inclusi / Prima lezione) */
+  html .hero-facts { display: none !important; }
+
+  /* hero: meno spazio, titolo e testo più piccoli, decorazioni discrete */
+  html .hero {
+    padding: 6.25rem 0 5rem;
+    background: radial-gradient(circle at 100% 100%, var(--sun) 0 38px, transparent 39px), var(--hero);
+  }
+  html .hero-inner { gap: 2rem; }
+  .hero-content h1 { font-size: 1.7rem; line-height: 1.18; margin-bottom: 1rem; }
+  .hero .eyebrow { margin-bottom: .6rem; font-size: .74rem; }
+  .hero-lead { font-size: 1rem; line-height: 1.55; margin-bottom: 1.4rem; }
+  .hero-actions { gap: .6rem; margin-bottom: 0; }
+  .hero-actions .btn { min-height: 50px; font-size: .98rem; }
+  .hero-visual::after { display: none; }
+  .hero-visual::before { inset: .9rem -.5rem -.9rem .9rem; }
+  .hero-quote { bottom: -1rem; left: .5rem; max-width: 230px; padding: .9rem 1.1rem; }
+
+  /* sezioni più compatte */
+  html .section { padding-top: 4.5rem; padding-bottom: 3.25rem; margin-top: -2rem; border-radius: 2rem 2rem 0 0; }
+  .section-intro { margin-bottom: 2rem; }
+  .section-lead { font-size: 1rem; }
+}
