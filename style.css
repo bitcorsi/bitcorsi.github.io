@@ -1493,3 +1493,104 @@ h3 { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; }
 .enrollment-modal-close { width: 44px; height: 44px; }
 .week-option span { min-height: 52px; border-width: 2px; }
 .enrollment-form-checkbox input[type="checkbox"] { width: 22px; height: 22px; }
+
+
+/* ============================================================
+   v5 — Palette "Cielo": bianco/azzurro, accenti multicolore, arancione brand
+   ============================================================ */
+:root{--tint:#FFF4E8;}
+:root{--bg:#FFFFFF; --bg-alt:#EAF3FB; --ink:#12213B; --ink-2:#33445F; --ink-3:#54647E; --ink-4:#8FA0B8;
+  --line:#D5E3F1; --line-soft:#E4EEF8; --secondary:#17325C; --secondary-2:#11264A; --secondary-soft:#DCE9F7;
+  --warm-soft:#FFF0D6; --status:#EEF2F8;
+  --shadow-1:0 1px 2px rgba(18,33,59,.05),0 4px 12px rgba(18,33,59,.07);
+  --shadow-2:0 8px 20px rgba(18,33,59,.10),0 20px 40px -12px rgba(18,33,59,.16);}
+html .header{background:rgba(255,255,255,.9);}
+html .header.scrolled{background:rgba(255,255,255,.97);}
+html .mobile-cta{background:rgba(255,255,255,.97);}
+html .course-open{background:linear-gradient(135deg,var(--tint),#fff 60%);}
+html .festa-featured{background:linear-gradient(180deg,#fff,var(--tint));}
+html .step-icon{background:linear-gradient(135deg,var(--primary-soft),var(--tint));}
+html .status-closed{background:var(--status);}
+html .course-special{border-color:var(--primary-soft);}
+html .hero{border-bottom:0;}
+:root{--blue:#2F7BF5;--blue-s:#DCE9FF;--pink:#F2478B;--pink-s:#FFDCEA;--teal:#0FAF9A;--teal-s:#D3F5EE;--purple:#7A5AF8;--purple-s:#E6DFFF;--sun:#FFC21A;--sun-s:#FFF0BF}
+:root{--b1:#E3F0FF;--b2:#FFF1C7;--b3:#FFFFFF;--b4:#FFDDEA;--b5:#D6F4EC;--b6:#E3F0FF;--b7:#FFF1C7;--hero:linear-gradient(160deg,#CBE3FF,#EAF4FF)}
+html #approccio{background:var(--b1)}
+html #strumenti{background:var(--b2)}
+html #corsi{background:var(--b3)}
+html #feste{background:var(--b4)}
+html #scuole{background:var(--b5)}
+html #recensioni{background:var(--b6)}
+html #faq{background:var(--b7)}
+html .hero{padding-bottom:8.5rem;position:relative}
+html .section{border-radius:2.5rem 2.5rem 0 0;margin-top:-2.5rem;padding-top:7rem;position:relative}
+@media(max-width:768px){html .section{padding-top:5.5rem}
+}
+html .hero{background:radial-gradient(circle at 5% 90%,var(--sun) 0 64px,transparent 65px),
+ radial-gradient(circle at 97% 6%,var(--pink) 0 44px,transparent 45px),
+ radial-gradient(circle at 52% 98%,var(--teal) 0 26px,transparent 27px),var(--hero)}
+html .hero-lead,html .section:not(.section-dark) .section-lead{color:var(--ink-2)}
+html .section:not(.section-dark) .eyebrow,html .hero .eyebrow{color:var(--ink);display:inline-flex;align-items:center;gap:.5rem}
+html .eyebrow::before{content:'';width:22px;height:8px;border-radius:9px;background:var(--primary)}
+html .section-dark .eyebrow::before{background:var(--primary)}
+html :is(.step,.tool,.scuola,.review,.festa,.course):nth-child(4n+1){--a:var(--blue);--s:var(--blue-s)}
+html :is(.step,.tool,.scuola,.review,.festa,.course):nth-child(4n+2){--a:var(--pink);--s:var(--pink-s)}
+html :is(.step,.tool,.scuola,.review,.festa,.course):nth-child(4n+3){--a:var(--teal);--s:var(--teal-s)}
+html :is(.step,.tool,.scuola,.review,.festa,.course):nth-child(4n+4){--a:var(--purple);--s:var(--purple-s)}
+html :is(.step,.tool,.scuola,.review,.festa:not(.festa-featured),.course:not(.course-open)){border:2px solid var(--s);border-top:7px solid var(--a);background:#fff}
+html .step-icon{background:var(--a);color:#fff;box-shadow:0 0 0 5px var(--s)}
+html .step:hover .step-icon{background:var(--primary);color:var(--ink)}
+html .step-num{background:var(--s);color:var(--ink)}
+html .tool-for{background:var(--s);color:var(--ink)}
+html .tool-img{background:var(--s)}
+html .review{background:linear-gradient(var(--s),#fff 70%)}
+html .review::before{color:var(--a);opacity:.5}
+html .festa:not(.festa-featured){background:linear-gradient(var(--s),#fff 50%)}
+html .course:not(.course-open) .course-for{background:var(--s)}
+html .course:not(.course-open) .course-meta span::before{background:var(--a)}
+html .course-special{--a:var(--sun);--s:var(--sun-s);background:var(--sun-s)}
+html .scuola-name{color:var(--ink)}
+html .scuole-cta,html .faq details[open]{background:#fff}
+html .faq details{border-bottom:2px solid rgba(23,21,31,.12)}
+html .hero-facts li:nth-child(1){background:var(--sun-s);border-color:var(--sun)}
+html .hero-facts li:nth-child(2){background:var(--teal-s);border-color:var(--teal)}
+html .hero-facts li:nth-child(3){background:var(--pink-s);border-color:var(--pink)}
+html .hero-facts strong{color:var(--ink)}
+html .section-dark{background:radial-gradient(500px 260px at 92% 12%,rgba(47,123,245,.55),transparent 70%),var(--secondary)}
+
+
+/* ============================================================
+   v5.1 — FAQ a card, fondi più netti (via la "panna"), contatti con forme nitide
+   ============================================================ */
+:root { --b2:#FFE28F; --b6:#E9E2FF; --b7:#DCEBFF; }
+
+/* FAQ: ogni domanda è una card arrotondata, non più righe + rettangolo */
+html .faq { gap: .85rem; }
+html .faq details, html .faq details:first-child {
+  background: #fff; border: 2px solid var(--s, var(--line)); border-radius: 20px;
+  padding: 0 1.5rem; box-shadow: var(--shadow-1);
+  transition: border-color var(--t), box-shadow var(--t-3d), transform var(--t-3d);
+}
+html .faq details:nth-child(4n+1) { --s: var(--blue-s);   --a: var(--blue); }
+html .faq details:nth-child(4n+2) { --s: var(--pink-s);   --a: var(--pink); }
+html .faq details:nth-child(4n+3) { --s: var(--teal-s);   --a: var(--teal); }
+html .faq details:nth-child(4n+4) { --s: var(--purple-s); --a: var(--purple); }
+html .faq details:hover { transform: translateY(-2px); border-color: var(--a); }
+html .faq details[open] {
+  background: #fff; border-color: var(--primary);
+  box-shadow: 0 4px 0 var(--primary), var(--shadow-2); transform: none;
+}
+html .faq summary { padding: 1.25rem 3rem 1.25rem 0; }
+html .faq summary::after { right: 0; background: var(--s); color: var(--ink); }
+html .faq details > p { padding: 0 3rem 1.4rem 0; }
+
+/* Contatti: cerchi colorati nitidi invece del bagliore sfocato */
+html .section-dark {
+  background:
+    radial-gradient(circle at 95% 12%, var(--blue) 0 64px, transparent 65px),
+    radial-gradient(circle at 89% 31%, var(--sun) 0 20px, transparent 21px),
+    radial-gradient(circle at 3% 97%, var(--pink) 0 44px, transparent 45px),
+    radial-gradient(circle at 12% 8%, var(--teal) 0 16px, transparent 17px),
+    var(--secondary);
+}
+.eyebrow { display: inline-flex; align-items: center; gap: .5rem; }
