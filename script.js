@@ -18,6 +18,7 @@
     initRevealAnimations();
     initMobileCta();
     initFocusTrap();
+    initToolSelector();
   }
 
   // ─── ANIMAZIONI REVEAL ─────────────────────────────────────────────────
@@ -326,6 +327,27 @@
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
+  }
+
+  // ─── SELETTORE STRUMENTI (tab accessibili, frecce da tastiera) ────────
+  function initToolSelector() {
+    const tabs = [...document.querySelectorAll('.tl-list [role="tab"]')];
+    const panels = [...document.querySelectorAll('.tl-panel')];
+    if (!tabs.length) return;
+    const pick = (i, focus) => {
+      tabs.forEach((t, k) => { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
+      panels.forEach((p, k) => { p.hidden = k !== i; });
+      if (focus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => pick(i));
+      t.addEventListener('keydown', (e) => {
+        const n = tabs.length;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); pick((i + 1) % n, true); }
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); pick((i + n - 1) % n, true); }
+      });
+    });
+    pick(0);
   }
 
   window.closeEnrollmentModal = closeEnrollmentModal;

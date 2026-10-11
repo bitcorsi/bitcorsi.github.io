@@ -1716,3 +1716,66 @@ html .tool:nth-child(1) { --a: var(--primary); --s: var(--primary-soft); }   /* 
 html .tool:nth-child(2) { --a: var(--teal);    --s: var(--teal-s); }         /* micro:bit */
 html .tool:nth-child(3) { --a: var(--blue);    --s: var(--blue-s); }         /* Arduino */
 html .tool:nth-child(4) { --a: var(--purple);  --s: var(--purple-s); }       /* Open Roberta */
+
+
+/* ============================================================
+   v7 — Strumenti: selettore interattivo (stessi colori per strumento delle schede corsi)
+   ============================================================ */
+.tl-orange { --c: var(--primary); --fg: #2A211C; --sh: var(--primary-dark); --pbg: rgba(0,0,0,.12); }
+.tl-teal   { --c: #0B8577; --fg: #fff; --sh: #08665B; --pbg: rgba(255,255,255,.2); }
+.tl-blue   { --c: #1F5FD6; --fg: #fff; --sh: #1748A6; --pbg: rgba(255,255,255,.2); }
+.tl-purple { --c: #5B3FD9; --fg: #fff; --sh: #4430A8; --pbg: rgba(255,255,255,.2); }
+
+.tl { display: grid; grid-template-columns: 300px 1fr; gap: 1.8rem; align-items: start; }
+.tl-list { display: grid; gap: .8rem; }
+.tl-list button {
+  display: flex; align-items: center; gap: 1rem; text-align: left; width: 100%;
+  padding: 1rem 1.2rem; border: 0; border-radius: 22px; background: #fff; color: var(--ink);
+  font: inherit; cursor: pointer; box-shadow: 0 4px 0 rgba(18,33,59,.14);
+  transition: transform var(--t-3d), background var(--t), box-shadow var(--t-3d);
+}
+.tl-list button:hover { transform: translateX(5px); }
+.tl-list button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.tl-list b { font-family: var(--font-serif); font-weight: 400; font-size: 1.5rem; color: var(--c); }
+.tl-list span { font-weight: 900; font-size: 1.1rem; line-height: 1.2; }
+.tl-list small { display: block; font-weight: 700; font-size: .82rem; opacity: .75; }
+.tl-list button[aria-selected="true"] { background: var(--c); color: var(--fg); box-shadow: 0 5px 0 var(--sh); transform: translateX(10px); }
+.tl-list button[aria-selected="true"] b { color: inherit; }
+
+.tl-panel {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem;
+  background: var(--c); color: var(--fg); border-radius: 36px; min-height: 440px; overflow: hidden;
+  padding: 2.4rem 2.4rem 2.4rem 3rem; box-shadow: 0 7px 0 var(--sh), var(--shadow-2);
+  animation: tlPop .35s ease;
+}
+.tl-panel[hidden] { display: none; }
+@keyframes tlPop { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+.tl-vis { position: relative; width: min(340px, 100%); aspect-ratio: 1; justify-self: center; }
+.tl-disc { position: absolute; inset: 0; border-radius: 50%; background: rgba(255,255,255,.28); box-shadow: 0 0 0 10px rgba(255,255,255,.2); }
+.tl-orange .tl-disc { background: rgba(255,255,255,.4); }
+.tl-vis > img {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 120%; max-width: none; height: auto; filter: drop-shadow(0 14px 16px rgba(0,0,0,.28));
+}
+.tl-teal .tl-vis > img { width: 70%; }
+.tl-vis > img.tl-shot { width: 98%; transform: translate(-50%, -50%) rotate(-3deg); border: 5px solid #fff; border-radius: 16px; filter: none; box-shadow: 0 14px 24px rgba(0,0,0,.3); }
+.tl-pill { display: inline-block; background: var(--pbg); padding: .25rem .85rem; border-radius: 999px; font-weight: 900; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: .8rem; }
+.tl-txt h3 { font-size: 2.6rem; line-height: 1.1; margin-bottom: .9rem; color: inherit; }
+.tl-txt p { font-size: 1.15rem; line-height: 1.6; color: inherit; }
+
+@media (max-width: 899px) {
+  .tl { grid-template-columns: 1fr; gap: 1rem; }
+  .tl-list { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .tl-list button { padding: .7rem .85rem; gap: .55rem; border-radius: 18px; min-height: 58px; transform: none !important; }
+  .tl-list b { font-size: 1.15rem; }
+  .tl-list span { font-size: .95rem; line-height: 1.15; }
+  .tl-list small { font-size: .74rem; }
+  .tl-panel { grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem 1.35rem 1.8rem; min-height: 0; border-radius: 28px; }
+  .tl-vis { width: min(220px, 68%); margin: .3rem auto .6rem; }
+  .tl-vis > img { width: 112%; }
+  .tl-teal .tl-vis > img { width: 64%; }
+  .tl-vis > img.tl-shot { width: 100%; }
+  .tl-disc { box-shadow: 0 0 0 7px rgba(255,255,255,.2); }
+  .tl-txt h3 { font-size: 1.8rem; margin-bottom: .6rem; }
+  .tl-txt p { font-size: 1.02rem; }
+}
