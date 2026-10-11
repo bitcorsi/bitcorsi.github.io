@@ -23,7 +23,7 @@
   // ─── ANIMAZIONI REVEAL ─────────────────────────────────────────────────
   function initRevealAnimations() {
     const els = document.querySelectorAll(
-      '.section-intro, .step, .course, .festa, .scuola, .review, .faq details'
+      '.section-intro, .step, .pcard, .scuola, .review, .faq details'
     );
     els.forEach((el) => el.classList.add('reveal'));
 

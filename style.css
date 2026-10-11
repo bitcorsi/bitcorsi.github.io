@@ -1627,3 +1627,92 @@ html .section-dark {
   .section-intro { margin-bottom: 2rem; }
   .section-lead { font-size: 1rem; }
 }
+
+
+/* ============================================================
+   v6 — Card corsi e feste "a scheda" (stile store), integrate nel sistema del sito
+   Stessi raggi, stessa ombra "a pulsante", stessi colori per gli stessi strumenti
+   ============================================================ */
+.pc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+.pc-grid.pc-three { grid-template-columns: repeat(3, 1fr); }
+.pcard {
+  --bg: var(--primary); --fg: var(--ink); --bb: var(--ink); --bf: #fff; --sh: var(--primary-dark);
+  position: relative; display: flex; flex-direction: column; overflow: hidden;
+  background: var(--bg); color: var(--fg); padding: 7px 7px 0;
+  border-radius: calc(var(--r-lg) + 6px);
+  box-shadow: 0 6px 0 var(--sh), var(--shadow-2);              /* stessa logica dei pulsanti 3D */
+  transition: transform var(--t-3d), box-shadow var(--t-3d);
+}
+.pcard:hover { transform: translateY(-4px); box-shadow: 0 10px 0 var(--sh), var(--shadow-2); }
+.pc-orange { --bg: var(--primary); --fg: #2A211C; --bb: #2A211C; --bf: #fff; --sh: var(--primary-dark); }
+.pc-blue   { --bg: #1F5FD6; --fg: #fff; --bb: #fff; --bf: #1F5FD6; --sh: #1748A6; }
+.pc-teal   { --bg: #0B8577; --fg: #fff; --bb: #fff; --bf: #0B8577; --sh: #08665B; }
+.pc-purple { --bg: #5B3FD9; --fg: #fff; --bb: #fff; --bf: #5B3FD9; --sh: #4430A8; }
+.pc-pink   { --bg: #C81F68; --fg: #fff; --bb: #fff; --bf: #C81F68; --sh: #9C1650; }
+
+.pc-badge {
+  position: absolute; z-index: 3; top: 0; left: 0; background: var(--bg);
+  padding: .65rem 1.2rem .75rem 1.4rem; border-radius: 0 0 20px 0;
+  font-weight: 900; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em;
+}
+.pc-visual {
+  position: relative; height: 240px; border-radius: var(--r-lg); overflow: hidden;
+  background: radial-gradient(circle at 50% 38%, rgba(255,255,255,.4), rgba(255,255,255,.08) 70%), var(--bg);
+}
+.pc-visual img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+  padding: 2.2rem 2rem 4rem; filter: drop-shadow(0 14px 18px rgba(0,0,0,.28));
+}
+.pc-visual.cover img { padding: 0; object-fit: cover; filter: none; }
+.pc-visual::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 60%;
+  background: linear-gradient(transparent, var(--bg) 92%);
+}
+.pc-main { display: flex; flex-direction: column; flex: 1; }
+.pc-body { position: relative; z-index: 2; flex: 1; padding: 0 1.6rem; margin-top: -3.2rem; }
+.pc-tag { font-weight: 900; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .3rem; }
+.pcard h3 { font-size: 1.7rem; line-height: 1.12; margin-bottom: .6rem; color: inherit; }
+.pc-desc { font-size: .98rem; line-height: 1.55; }
+.pc-meta { list-style: none; padding: 0; margin: .9rem 0 0; display: grid; gap: .2rem; font-weight: 700; font-size: .92rem; }
+.pc-meta li::before {
+  content: ''; display: inline-block; width: 8px; height: 8px; margin-right: .55rem;
+  border-radius: 50%; background: currentColor; opacity: .7;
+}
+.pc-strip {
+  margin: 1.4rem -7px 0; padding: 1.05rem 1.6rem 1.25rem; background: rgba(0,0,0,.17);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.pc-price { font-family: var(--font-serif); font-size: 1.9rem; line-height: 1; color: inherit; }
+.pc-price small { font-family: var(--font-sans); font-weight: 800; font-size: .82rem; margin-left: .25rem; color: inherit; }
+.pc-small { font-weight: 800; font-size: .92rem; }
+.pc-btn {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 1.4rem; white-space: nowrap;
+  border-radius: 999px; border: 0; background: var(--bb); color: var(--bf); font-weight: 900;
+  transition: transform var(--t-3d); box-shadow: 0 3px 0 rgba(0,0,0,.28);
+}
+.pc-btn:hover { opacity: 1; transform: translateY(-2px); background: var(--bb); }
+
+/* corso aperto: scheda orizzontale a tutta larghezza */
+.pc-feat { grid-column: 1 / -1; }
+@media (min-width: 900px) {
+  .pc-feat { flex-direction: row; }
+  .pc-feat .pc-visual { flex: 0 0 44%; height: auto; min-height: 380px; }
+  .pc-feat .pc-visual::after { inset: 0 0 0 auto; width: 45%; height: auto; background: linear-gradient(90deg, transparent, var(--bg) 95%); }
+  .pc-feat .pc-visual img { padding: 3rem 3rem 3rem 2rem; }
+  .pc-feat .pc-main { justify-content: center; }
+  .pc-feat .pc-body { margin-top: 0; padding-top: 3.2rem; }
+  .pc-feat h3 { font-size: 2.2rem; }
+  .pc-feat .pc-desc { font-size: 1.05rem; }
+}
+@media (max-width: 899px) { .pc-grid, .pc-grid.pc-three { grid-template-columns: 1fr; } }
+@media (max-width: 480px) {
+  .pc-visual { height: 210px; }
+  .pc-strip { padding: 1rem 1.25rem 1.15rem; }
+  .pc-body { padding: 0 1.25rem; }
+}
+
+/* coerenza: nella sezione Strumenti gli stessi strumenti hanno gli stessi colori delle schede */
+html .tool:nth-child(1) { --a: var(--primary); --s: var(--primary-soft); }   /* Spike Prime */
+html .tool:nth-child(2) { --a: var(--teal);    --s: var(--teal-s); }         /* micro:bit */
+html .tool:nth-child(3) { --a: var(--blue);    --s: var(--blue-s); }         /* Arduino */
+html .tool:nth-child(4) { --a: var(--purple);  --s: var(--purple-s); }       /* Open Roberta */
