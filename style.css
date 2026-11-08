@@ -1698,3 +1698,7 @@ html .tool:nth-child(4) { --a: var(--purple);  --s: var(--purple-s); }       /* 
   .tl-txt h3 { font-size: 1.8rem; margin-bottom: .6rem; }
   .tl-txt p { font-size: 1.02rem; }
 }
+.brand-name { font-family: var(--font-sans); font-weight: 900; font-size: 1.45rem; letter-spacing: -0.035em; line-height: 1; color: var(--primary); }
+.brand-name b { color: #17151F; font-weight: inherit; }
+.footer-brand .brand-name { font-size: 1.3rem; }
+.footer-brand .brand-name b { color: #fff; }
