@@ -1702,3 +1702,9 @@ html .tool:nth-child(4) { --a: var(--purple);  --s: var(--purple-s); }       /* 
 .brand-name b { color: #17151F; font-weight: inherit; }
 .footer-brand .brand-name { font-size: 1.3rem; }
 .footer-brand .brand-name b { color: #fff; }
+
+.sede-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.week-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.week-option input:focus-visible + span { outline: 3px solid var(--ink); outline-offset: 2px; }
+.sede-grid + .enrollment-form-hint { margin: .8rem 0 0; }
+.enrollment-form-group option:disabled { color: #999; }
