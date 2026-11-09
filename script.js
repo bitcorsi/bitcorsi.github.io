@@ -352,3 +352,43 @@
 
   window.closeEnrollmentModal = closeEnrollmentModal;
 })();
+// ─── MODULO: scelta sede. A Cellatica solo "Spike Prime Lab" ───
+(function () {
+  const SPIKE = 'Spike Prime Lab';
+
+  function applySede() {
+    const select = document.getElementById('corsoSelect');
+    if (!select) return;
+    const sede = document.querySelector('input[name="Sede"]:checked');
+    const onlyCellatica = !!sede && sede.value === 'Cellatica';
+
+    [...select.options].forEach((o) => {
+      o.disabled = onlyCellatica && o.value !== '' && o.value !== SPIKE;
+    });
+
+    if (onlyCellatica) {
+      select.value = SPIKE;
+      const copy = document.getElementById('corsoSceltoInput');
+      if (copy) copy.value = SPIKE;
+      const weeks = document.getElementById('robogrest-week-section');
+      if (weeks) weeks.style.display = 'none';
+    }
+    const hint = document.getElementById('sedeHint');
+    if (hint) hint.hidden = !onlyCellatica;
+  }
+
+  document.addEventListener('change', (e) => {
+    if (e.target && e.target.name === 'Sede') applySede();
+  });
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('.js-open-modal, .course-link[data-course]');
+    if (!link) return;
+    const course = link.dataset.course;
+    if (course && course !== SPIKE) {
+      const brescia = document.querySelector('input[name="Sede"][value="Brescia"]');
+      if (brescia) brescia.checked = true;
+    }
+    applySede();
+  });
+})();
