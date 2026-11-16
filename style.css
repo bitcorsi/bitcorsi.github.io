@@ -374,20 +374,20 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
 }
 
 .menu-toggle span {
   width: 22px;
-  height: 1.5px;
+  height: 2px;
   border-radius: 2px;
   background: var(--ink);
   transition: transform var(--t), opacity var(--t);
 }
 
-.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(3.25px) rotate(45deg); }
-.menu-toggle[aria-expanded="true"] span:nth-child(2) { transform: translateY(-3.25px) rotate(-45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
 
 .nav-mobile {
   position: fixed;
@@ -426,18 +426,14 @@ h3 {
   border-bottom: none;
 }
 
+/* Mobile: header pulito — solo logo + hamburger */
 @media (max-width: 768px) {
   .header-inner { gap: .75rem; }
   .nav-desktop { display: none; }
-  .header-cta {
-    margin-left: auto;
-    min-height: 44px;
-    padding: .5rem .95rem;
-    font-size: .8rem;
-  }
+  .header-cta { display: none; }
   .menu-toggle {
     display: flex;
-    margin-left: 0;
+    margin-left: auto;
   }
 }
 
@@ -546,6 +542,11 @@ h3 {
 }
 
 .link-arrow:hover { opacity: .7; }
+
+/* Link secondario hero: nascosto di base, visibile solo su mobile */
+.hero-secondary-link {
+  display: none;
+}
 
 /* 07 · HERO ---------------------------------------------------------------- */
 
@@ -760,7 +761,7 @@ h3 {
   }
   .hero-actions .btn {
     justify-content: center;
-    min-height: 50px;
+    min-height: 52px;
     font-size: .98rem;
   }
   .hero-facts { display: none; }
@@ -772,6 +773,20 @@ h3 {
     max-width: 230px;
     padding: .9rem 1.1rem;
   }
+
+  /* Opzione A: secondo bottone diventa link testuale sotto il primario */
+  .hero-secondary-link {
+    display: inline-block;
+    margin-top: .5rem;
+    padding: .5rem 0;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--primary-text);
+    border-bottom: 1px solid var(--primary-text);
+    text-align: center;
+  }
+
+  .hero-secondary-link:hover { opacity: .7; }
 }
 
 /* 08 · APPROCCIO ----------------------------------------------------------- */
