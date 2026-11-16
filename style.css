@@ -1,37 +1,10 @@
 /* ==========================================================================
-   BITCODE — style.css
-   Design system consolidato (v3–v7 → v8) · Resa visiva identica all'originale
-   --------------------------------------------------------------------------
-   Indice
-   01. Font locali
-   02. Design token (variabili)
-   03. Reset e base
-   04. Layout: container, sezioni, eyebrow, intro
-   05. Header e navigazione
-   06. Bottoni e link
-   07. Hero
-   08. Approccio (steps)
-   09. Strumenti (selettore a tab)
-   10. Corsi (card "pcard")
-   11. Scuole
-   12. Recensioni
-   13. FAQ
-   14. Contatti
-   15. Footer
-   16. Modale iscrizione e form
-   17. Overlay di successo
-   18. Animazioni reveal
-   19. Accessibilità: focus e reduced motion
-   20. Residui markup (mobile CTA)
-   --------------------------------------------------------------------------
-   Breakpoint: 960px (layout), 900/899px (card e tab), 768px (mobile),
-   480px (telefoni piccoli). Valori mantenuti dall'originale.
+   BITCODE — style.css · Design system consolidato
+   Palette: bianco/azzurro + arancione brand #ff7a00 + accenti multicolore
+   Breakpoint: 960 (layout) · 900/899 (card/tab) · 768 (mobile) · 480 / 370
    ========================================================================== */
 
-
-/* ==========================================================================
-   01. FONT LOCALI
-   ========================================================================== */
+/* 01 · FONT ---------------------------------------------------------------- */
 
 @font-face {
   font-family: 'Alfa Slab One';
@@ -49,49 +22,38 @@
   src: url('fonts/Nunito-latin-variable.woff2') format('woff2');
 }
 
-
-/* ==========================================================================
-   02. DESIGN TOKEN
-   ========================================================================== */
+/* 02 · TOKEN --------------------------------------------------------------- */
 
 :root {
-  /* Tipografia */
   --font-serif: 'Alfa Slab One', Georgia, serif;
   --font-sans: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  /* Superfici */
   --bg: #ffffff;
   --bg-alt: #eaf3fb;
   --surface: #ffffff;
 
-  /* Testi */
   --ink: #12213b;
   --ink-2: #33445f;
   --ink-3: #54647e;
   --ink-4: #8fa0b8;
 
-  /* Linee */
   --line: #d5e3f1;
   --line-soft: #e4eef8;
 
-  /* Brand arancione */
   --primary: #ff7a00;
   --primary-hover: #e56d00;
   --primary-soft: #ffe5c9;
   --primary-dark: #c25a00;
-  --primary-text: #b04f00;   /* arancione accessibile per testo su bianco */
-  --on-primary: #2a211c;     /* testo su fondo arancione */
+  --primary-text: #b04f00;
+  --on-primary: #2a211c;
 
-  /* Secondario (blu notte) */
   --secondary: #17325c;
   --secondary-2: #11264a;
   --secondary-soft: #dce9f7;
 
-  /* Accento caldo (badge, stelle) */
   --warm: #c9832a;
   --warm-soft: #fff0d6;
 
-  /* Accenti multicolore */
   --blue: #2f7bf5;
   --blue-s: #dce9ff;
   --pink: #f2478b;
@@ -103,34 +65,27 @@
   --sun: #ffc21a;
   --sun-s: #fff0bf;
 
-  /* Fondi delle sezioni */
-  --b1: #e3f0ff;             /* approccio */
-  --b2: #ffe28f;             /* strumenti */
-  --b3: #ffffff;             /* corsi */
-  --b5: #d6f4ec;             /* scuole */
-  --b6: #e9e2ff;             /* recensioni */
-  --b7: #dcebff;             /* faq */
+  --b1: #e3f0ff;
+  --b2: #ffe28f;
+  --b3: #ffffff;
+  --b5: #d6f4ec;
+  --b6: #e9e2ff;
+  --b7: #dcebff;
   --hero: linear-gradient(160deg, #cbe3ff, #eaf4ff);
 
-  /* Raggi */
   --r-sm: 8px;
   --r: 14px;
   --r-lg: 22px;
 
-  /* Ombre */
   --shadow-1: 0 1px 2px rgba(18, 33, 59, .05), 0 4px 12px rgba(18, 33, 59, .07);
   --shadow-2: 0 8px 20px rgba(18, 33, 59, .10), 0 20px 40px -12px rgba(18, 33, 59, .16);
   --shadow-3: 0 14px 30px rgba(42, 33, 28, .12), 0 34px 60px -18px rgba(255, 122, 0, .22);
 
-  /* Transizioni */
   --t: 0.22s ease;
   --t-3d: 0.32s cubic-bezier(.2, .7, .3, 1);
 }
 
-
-/* ==========================================================================
-   03. RESET E BASE
-   ========================================================================== */
+/* 03 · RESET / BASE -------------------------------------------------------- */
 
 *,
 *::before,
@@ -144,6 +99,8 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--bg-alt);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -199,15 +156,21 @@ h3 {
   letter-spacing: -0.01em;
 }
 
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border: 2px solid var(--bg-alt);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--primary-hover); }
+
 @media (max-width: 480px) {
   h1 { font-size: 1.85rem; }
   h2 { font-size: 1.5rem; }
 }
 
-
-/* ==========================================================================
-   04. LAYOUT: CONTAINER, SEZIONI, EYEBROW, INTRO
-   ========================================================================== */
+/* 04 · LAYOUT -------------------------------------------------------------- */
 
 .container {
   width: 90%;
@@ -217,11 +180,6 @@ h3 {
 
 .container-narrow { max-width: 780px; }
 
-@media (max-width: 480px) {
-  .container { width: 92%; }
-}
-
-/* Sezioni: cards sovrapposte con angolo arrotondato superiore */
 .section {
   position: relative;
   margin-top: -2.5rem;
@@ -252,15 +210,6 @@ h3 {
 .section-dark h2,
 .section-dark h3 { color: #fff; }
 
-@media (max-width: 768px) {
-  .section {
-    margin-top: -2rem;
-    padding: 4.5rem 0 3.25rem;
-    border-radius: 2rem 2rem 0 0;
-  }
-}
-
-/* Eyebrow: etichetta di sezione con trattino arancione */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -287,7 +236,6 @@ h3 {
 
 .eyebrow-light { color: #ffc59a; }
 
-/* Intro di sezione */
 .section-intro {
   max-width: 640px;
   margin: 0 auto 3.5rem;
@@ -313,14 +261,20 @@ h3 {
 }
 
 @media (max-width: 768px) {
+  .section {
+    margin-top: -2rem;
+    padding: 4.5rem 0 3.25rem;
+    border-radius: 2rem 2rem 0 0;
+  }
   .section-intro { margin-bottom: 2rem; }
   .section-lead { font-size: 1rem; }
 }
 
+@media (max-width: 480px) {
+  .container { width: 92%; }
+}
 
-/* ==========================================================================
-   05. HEADER E NAVIGAZIONE
-   ========================================================================== */
+/* 05 · HEADER -------------------------------------------------------------- */
 
 .header {
   position: fixed;
@@ -332,11 +286,7 @@ h3 {
   border-bottom: 1px solid transparent;
   backdrop-filter: saturate(180%) blur(14px);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
-  transition:
-    border-color var(--t),
-    box-shadow var(--t),
-    background var(--t),
-    transform .3s ease;
+  transition: border-color var(--t), box-shadow var(--t), background var(--t);
 }
 
 .header.scrolled {
@@ -344,10 +294,6 @@ h3 {
   border-bottom-color: var(--line);
   box-shadow: 0 6px 20px -10px rgba(42, 33, 28, .15);
 }
-
-/* Usata da script.js (hide-on-scroll).
-   Elimina questa regola per avere l'header sempre visibile. */
-.header.hidden { transform: translateY(-100%); }
 
 .header-inner {
   display: flex;
@@ -368,8 +314,8 @@ h3 {
 }
 
 .brand-logo {
-  height: 44px;
   width: auto;
+  height: 44px;
 }
 
 .brand-name {
@@ -413,12 +359,14 @@ h3 {
   transition: width var(--t);
 }
 
-.nav-desktop a:hover { color: var(--primary-text); }
-.nav-desktop a:hover::after { width: 100%; }
+.nav-desktop a:hover,
+.nav-desktop a[aria-current="location"] { color: var(--primary-text); }
+
+.nav-desktop a:hover::after,
+.nav-desktop a[aria-current="location"]::after { width: 100%; }
 
 .header-cta { margin-left: 1rem; }
 
-/* Hamburger */
 .menu-toggle {
   display: none;
   position: relative;
@@ -438,15 +386,9 @@ h3 {
   transition: transform var(--t), opacity var(--t);
 }
 
-.menu-toggle[aria-expanded="true"] span:nth-child(1) {
-  transform: translateY(3.25px) rotate(45deg);
-}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(3.25px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { transform: translateY(-3.25px) rotate(-45deg); }
 
-.menu-toggle[aria-expanded="true"] span:nth-child(2) {
-  transform: translateY(-3.25px) rotate(-45deg);
-}
-
-/* Menu mobile a schermo intero */
 .nav-mobile {
   position: fixed;
   inset: 72px 0 0 0;
@@ -476,6 +418,8 @@ h3 {
   border-bottom: 1px solid var(--line);
 }
 
+.nav-mobile a[aria-current="location"] { color: var(--primary-text); }
+
 .nav-mobile .btn {
   justify-content: center;
   margin-top: 1rem;
@@ -483,19 +427,25 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  .header-inner { gap: 1rem; }
-  .nav-desktop,
-  .header-cta { display: none; }
+  .header-inner { gap: .75rem; }
+  .nav-desktop { display: none; }
+  .header-cta {
+    margin-left: auto;
+    min-height: 44px;
+    padding: .5rem .95rem;
+    font-size: .8rem;
+  }
   .menu-toggle {
     display: flex;
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 
+@media (max-width: 370px) {
+  .brand-name { display: none; }
+}
 
-/* ==========================================================================
-   06. BOTTONI E LINK
-   ========================================================================== */
+/* 06 · BOTTONI ------------------------------------------------------------- */
 
 .btn {
   display: inline-flex;
@@ -597,10 +547,7 @@ h3 {
 
 .link-arrow:hover { opacity: .7; }
 
-
-/* ==========================================================================
-   07. HERO
-   ========================================================================== */
+/* 07 · HERO ---------------------------------------------------------------- */
 
 .hero {
   position: relative;
@@ -618,6 +565,16 @@ h3 {
   align-items: center;
   gap: 5rem;
 }
+
+.hero-content > * {
+  animation: riseIn .55s cubic-bezier(.2, .7, .3, 1) both;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: .05s; }
+.hero-content > *:nth-child(2) { animation-delay: .12s; }
+.hero-content > *:nth-child(3) { animation-delay: .20s; }
+.hero-content > *:nth-child(4) { animation-delay: .28s; }
+.hero-content > *:nth-child(5) { animation-delay: .36s; }
 
 .hero-content h1 {
   max-width: 15ch;
@@ -648,7 +605,6 @@ h3 {
   margin-bottom: 2.5rem;
 }
 
-/* Chip informativi (nascosti su mobile) */
 .hero-facts {
   display: flex;
   flex-wrap: wrap;
@@ -674,8 +630,11 @@ h3 {
   color: var(--ink);
 }
 
-/* Foto con blocco arancione e pattern a puntini */
-.hero-visual { position: relative; }
+.hero-visual {
+  position: relative;
+  transform: translate3d(0, var(--parallax, 0px), 0);
+  animation: fadeIn .7s .25s both;
+}
 
 .hero-visual::before {
   content: '';
@@ -748,19 +707,26 @@ h3 {
   color: var(--ink-3);
 }
 
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 @media (max-width: 960px) {
   .hero-inner {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-
   .hero-content h1 { max-width: 100%; }
-
   .hero-visual {
     max-width: 480px;
     margin: 0 auto;
   }
-
   .hero-quote { left: 1rem; }
 }
 
@@ -771,44 +737,35 @@ h3 {
       radial-gradient(circle at 100% 100%, var(--sun) 0 38px, transparent 39px),
       var(--hero);
   }
-
   .hero-inner { gap: 2rem; }
-
   .hero .eyebrow {
     margin-bottom: .6rem;
     font-size: .74rem;
   }
-
   .hero-content h1 {
     margin-bottom: 1rem;
     font-size: 1.7rem;
     line-height: 1.18;
   }
-
   .hero-lead {
     margin-bottom: 1.4rem;
     font-size: 1rem;
     line-height: 1.55;
   }
-
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
     gap: .6rem;
     margin-bottom: 0;
   }
-
   .hero-actions .btn {
     justify-content: center;
     min-height: 50px;
     font-size: .98rem;
   }
-
   .hero-facts { display: none; }
-
   .hero-visual::before { inset: .9rem -.5rem -.9rem .9rem; }
   .hero-visual::after { display: none; }
-
   .hero-quote {
     bottom: -1rem;
     left: .5rem;
@@ -817,10 +774,7 @@ h3 {
   }
 }
 
-
-/* ==========================================================================
-   08. APPROCCIO (STEPS)
-   ========================================================================== */
+/* 08 · APPROCCIO ----------------------------------------------------------- */
 
 .steps {
   position: relative;
@@ -830,7 +784,6 @@ h3 {
   list-style: none;
 }
 
-/* Linea tratteggiata che collega le tappe (solo desktop) */
 @media (min-width: 961px) {
   .steps::before {
     content: '';
@@ -862,7 +815,6 @@ h3 {
   box-shadow: var(--shadow-2);
 }
 
-/* Ciclo colori per card (steps, scuole, recensioni) */
 .step:nth-child(4n+1),
 .scuola:nth-child(4n+1),
 .review:nth-child(4n+1) { --a: var(--blue);   --s: var(--blue-s); }
@@ -940,17 +892,12 @@ h3 {
   }
 }
 
-
-/* ==========================================================================
-   09. STRUMENTI (SELETTORE A TAB)
-   Nota: le classi .tl-orange/.tl-teal/.tl-blue/.tl-purple definiscono
-   il colore di ogni strumento, condiviso tra tab e pannello.
-   ========================================================================== */
+/* 09 · STRUMENTI ----------------------------------------------------------- */
 
 .tl-orange { --c: var(--primary); --fg: #2a211c; --sh: var(--primary-dark); --pbg: rgba(0, 0, 0, .12); }
-.tl-teal   { --c: #0b8577;        --fg: #fff;    --sh: #08665b;             --pbg: rgba(255, 255, 255, .2); }
-.tl-blue   { --c: #1f5fd6;        --fg: #fff;    --sh: #1748a6;             --pbg: rgba(255, 255, 255, .2); }
-.tl-purple { --c: #5b3fd9;        --fg: #fff;    --sh: #4430a8;             --pbg: rgba(255, 255, 255, .2); }
+.tl-teal   { --c: #0b8577; --fg: #fff; --sh: #08665b; --pbg: rgba(255, 255, 255, .2); }
+.tl-blue   { --c: #1f5fd6; --fg: #fff; --sh: #1748a6; --pbg: rgba(255, 255, 255, .2); }
+.tl-purple { --c: #5b3fd9; --fg: #fff; --sh: #4430a8; --pbg: rgba(255, 255, 255, .2); }
 
 .tl {
   display: grid;
@@ -959,7 +906,6 @@ h3 {
   gap: 1.8rem;
 }
 
-/* Lista tab */
 .tl-list {
   display: grid;
   gap: .8rem;
@@ -1018,7 +964,6 @@ h3 {
   opacity: .75;
 }
 
-/* Pannello */
 .tl-panel {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1037,10 +982,7 @@ h3 {
 .tl-panel[hidden] { display: none; }
 
 @keyframes tlPop {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(.98);
-  }
+  from { opacity: 0; transform: translateY(14px) scale(.98); }
 }
 
 .tl-vis {
@@ -1112,12 +1054,10 @@ h3 {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-
   .tl-list {
     grid-template-columns: 1fr 1fr;
     gap: .6rem;
   }
-
   .tl-list button {
     gap: .55rem;
     min-height: 58px;
@@ -1125,16 +1065,12 @@ h3 {
     border-radius: 18px;
     transform: none !important;
   }
-
   .tl-list b { font-size: 1.15rem; }
-
   .tl-list span {
     font-size: .95rem;
     line-height: 1.15;
   }
-
   .tl-list small { font-size: .74rem; }
-
   .tl-panel {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -1142,32 +1078,22 @@ h3 {
     padding: 1.5rem 1.35rem 1.8rem;
     border-radius: 28px;
   }
-
   .tl-vis {
     width: min(220px, 68%);
     margin: .3rem auto .6rem;
   }
-
   .tl-vis > img { width: 112%; }
   .tl-teal .tl-vis > img { width: 64%; }
   .tl-vis > img.tl-shot { width: 100%; }
-
   .tl-disc { box-shadow: 0 0 0 7px rgba(255, 255, 255, .2); }
-
   .tl-txt h3 {
     margin-bottom: .6rem;
     font-size: 1.8rem;
   }
-
   .tl-txt p { font-size: 1.02rem; }
 }
 
-
-/* ==========================================================================
-   10. CORSI (CARD "PCARD")
-   Nota: la classe .course-link sui bottoni è solo un aggancio per script.js,
-   non ha stili propri.
-   ========================================================================== */
+/* 10 · CORSI --------------------------------------------------------------- */
 
 .pc-grid {
   display: grid;
@@ -1199,12 +1125,11 @@ h3 {
   box-shadow: 0 10px 0 var(--sh), var(--shadow-2);
 }
 
-/* Un colore per corso, coerente con il tab strumenti corrispondente */
-.pc-orange { --bg: var(--primary); --fg: #2a211c; --bb: #2a211c; --bf: #fff;      --sh: var(--primary-dark); }
-.pc-blue   { --bg: #1f5fd6;        --fg: #fff;    --bb: #fff;    --bf: #1f5fd6;  --sh: #1748a6; }
-.pc-teal   { --bg: #0b8577;        --fg: #fff;    --bb: #fff;    --bf: #0b8577;  --sh: #08665b; }
-.pc-purple { --bg: #5b3fd9;        --fg: #fff;    --bb: #fff;    --bf: #5b3fd9;  --sh: #4430a8; }
-.pc-pink   { --bg: #c81f68;        --fg: #fff;    --bb: #fff;    --bf: #c81f68;  --sh: #9c1650; }
+.pc-orange { --bg: var(--primary); --fg: #2a211c; --bb: #2a211c; --bf: #fff;     --sh: var(--primary-dark); }
+.pc-blue   { --bg: #1f5fd6; --fg: #fff; --bb: #fff; --bf: #1f5fd6; --sh: #1748a6; }
+.pc-teal   { --bg: #0b8577; --fg: #fff; --bb: #fff; --bf: #0b8577; --sh: #08665b; }
+.pc-purple { --bg: #5b3fd9; --fg: #fff; --bb: #fff; --bf: #5b3fd9; --sh: #4430a8; }
+.pc-pink   { --bg: #c81f68; --fg: #fff; --bb: #fff; --bf: #c81f68; --sh: #9c1650; }
 
 .pc-badge {
   position: absolute;
@@ -1357,34 +1282,27 @@ h3 {
   transform: translateY(-2px);
 }
 
-/* Corso in evidenza: scheda orizzontale a tutta larghezza */
 .pc-feat { grid-column: 1 / -1; }
 
 @media (min-width: 900px) {
   .pc-feat { flex-direction: row; }
-
   .pc-feat .pc-visual {
     flex: 0 0 44%;
     height: auto;
     min-height: 380px;
   }
-
   .pc-feat .pc-visual::after {
     inset: 0 0 0 auto;
     width: 45%;
     height: auto;
     background: linear-gradient(90deg, transparent, var(--bg) 95%);
   }
-
   .pc-feat .pc-visual img { padding: 3rem 3rem 3rem 2rem; }
-
   .pc-feat .pc-main { justify-content: center; }
-
   .pc-feat .pc-body {
     margin-top: 0;
     padding-top: 3.2rem;
   }
-
   .pc-feat h3 { font-size: 2.2rem; }
   .pc-feat .pc-desc { font-size: 1.05rem; }
 }
@@ -1395,14 +1313,15 @@ h3 {
 
 @media (max-width: 480px) {
   .pc-visual { height: 210px; }
-  .pc-strip { padding: 1rem 1.25rem 1.15rem; }
+  .pc-strip {
+    flex-wrap: wrap;
+    padding: 1rem 1.25rem 1.15rem;
+  }
   .pc-body { padding: 0 1.25rem; }
+  .pc-price { font-size: 1.6rem; }
 }
 
-
-/* ==========================================================================
-   11. SCUOLE
-   ========================================================================== */
+/* 11 · SCUOLE -------------------------------------------------------------- */
 
 .scuole-row {
   display: grid;
@@ -1479,17 +1398,13 @@ h3 {
 
 @media (max-width: 768px) {
   .scuole-row { grid-template-columns: 1fr; }
-
   .scuole-cta {
     flex-direction: column;
     align-items: stretch;
   }
 }
 
-
-/* ==========================================================================
-   12. RECENSIONI
-   ========================================================================== */
+/* 12 · RECENSIONI ---------------------------------------------------------- */
 
 .reviews {
   display: grid;
@@ -1574,10 +1489,7 @@ h3 {
   .review { padding: 1.5rem 1.25rem; }
 }
 
-
-/* ==========================================================================
-   13. FAQ
-   ========================================================================== */
+/* 13 · FAQ ----------------------------------------------------------------- */
 
 .faq {
   display: flex;
@@ -1660,10 +1572,7 @@ h3 {
   color: var(--ink-2);
 }
 
-
-/* ==========================================================================
-   14. CONTATTI
-   ========================================================================== */
+/* 14 · CONTATTI ------------------------------------------------------------ */
 
 .contatti-grid {
   display: grid;
@@ -1740,14 +1649,10 @@ a.info-value:hover {
     flex-direction: column;
     align-items: stretch;
   }
-
   .contatti-actions .btn { justify-content: center; }
 }
 
-
-/* ==========================================================================
-   15. FOOTER
-   ========================================================================== */
+/* 15 · FOOTER -------------------------------------------------------------- */
 
 .footer {
   padding: 2.5rem 0;
@@ -1795,16 +1700,13 @@ a.info-value:hover {
   }
 }
 
-
-/* ==========================================================================
-   16. MODALE ISCRIZIONE E FORM
-   ========================================================================== */
+/* 16 · MODALE / FORM ------------------------------------------------------- */
 
 .enrollment-modal {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: none;              /* aperto via JS con display: flex */
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
@@ -1835,14 +1737,8 @@ a.info-value:hover {
 }
 
 @keyframes enrollPopIn {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  from { opacity: 0; transform: translateY(14px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .enrollment-modal-close {
@@ -1882,7 +1778,6 @@ a.info-value:hover {
   color: var(--ink-3);
 }
 
-/* Messaggi di errore */
 .enrollment-message {
   margin-bottom: 1.5rem;
   padding: 1rem 1.25rem;
@@ -1909,7 +1804,6 @@ a.info-value:hover {
   color: #b8382c;
 }
 
-/* Struttura del form */
 .enrollment-form {
   display: flex;
   flex-direction: column;
@@ -1977,8 +1871,8 @@ a.info-value:hover {
 }
 
 .enrollment-form-group textarea {
-  resize: vertical;
   min-height: 52px;
+  resize: vertical;
 }
 
 .enrollment-form-group option:disabled { color: #999; }
@@ -1989,7 +1883,6 @@ a.info-value:hover {
   gap: 1rem;
 }
 
-/* Opzioni a card: settimane ROBOGREST e scelta sede */
 .sede-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2053,7 +1946,6 @@ a.info-value:hover {
   outline-offset: 2px;
 }
 
-/* Consenso privacy */
 .enrollment-form-checkbox {
   display: flex;
   align-items: flex-start;
@@ -2088,7 +1980,6 @@ a.info-value:hover {
 
 .enrollment-form-checkbox a:hover { text-decoration: underline; }
 
-/* Invio */
 .enrollment-submit-btn {
   width: 100%;
   margin-top: 1.5rem;
@@ -2116,40 +2007,31 @@ a.info-value:hover {
 }
 
 @media (max-width: 768px) {
-  /* Modale come bottom-sheet */
   .enrollment-modal {
     align-items: flex-end;
     padding: 0;
   }
-
   .enrollment-modal-content {
     max-height: 95vh;
     margin-top: auto;
     padding: 1.75rem 1.25rem;
     border-radius: var(--r-lg) var(--r-lg) 0 0;
   }
-
   .enrollment-modal-header h2 { font-size: 1.4rem; }
-
   .enrollment-form-row { grid-template-columns: 1fr; }
   .robogrest-weeks-grid { grid-template-columns: 1fr; }
-
-  /* 16px: evita lo zoom automatico di iOS sui campi */
   .enrollment-form-group input,
   .enrollment-form-group select,
   .enrollment-form-group textarea { font-size: 16px; }
 }
 
-
-/* ==========================================================================
-   17. OVERLAY DI SUCCESSO
-   ========================================================================== */
+/* 17 · SUCCESSO ------------------------------------------------------------ */
 
 #enrollmentSuccessMessage {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  display: flex;              /* nascosto via JS con display: none */
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
@@ -2192,12 +2074,7 @@ a.info-value:hover {
   color: var(--ink-3);
 }
 
-
-/* ==========================================================================
-   18. ANIMAZIONI REVEAL
-   Le classi sono aggiunte da script.js (IntersectionObserver).
-   Senza JS il contenuto resta visibile.
-   ========================================================================== */
+/* 18 · REVEAL -------------------------------------------------------------- */
 
 .reveal {
   opacity: 0;
@@ -2210,10 +2087,7 @@ a.info-value:hover {
   transform: translateY(0);
 }
 
-
-/* ==========================================================================
-   19. ACCESSIBILITÀ: FOCUS E REDUCED MOTION
-   ========================================================================== */
+/* 19 · ACCESSIBILITÀ ------------------------------------------------------- */
 
 :focus-visible {
   outline: 2px solid var(--primary);
@@ -2230,28 +2104,19 @@ a.info-value:hover {
     transition-duration: 0s !important;
     scroll-behavior: auto !important;
   }
-
   .reveal {
     opacity: 1;
     transform: none;
   }
-
+  .hero-visual {
+    transform: none;
+    animation: none;
+  }
   .hero-image-wrap:hover,
   .step:hover,
   .scuola:hover,
   .review:hover,
   .pcard:hover,
   .faq details:hover,
-  .tl-list button:hover {
-    transform: none !important;
-  }
+  .tl-list button:hover { transform: none !important; }
 }
-
-
-/* ==========================================================================
-   20. RESIDUI MARKUP
-   La barra CTA mobile è ancora presente in index.html ma disattivata.
-   Quando la rimuovi da HTML e JS, elimina questa regola.
-   ========================================================================== */
-
-.mobile-cta { display: none; }
