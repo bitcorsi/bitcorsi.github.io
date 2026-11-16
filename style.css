@@ -430,7 +430,7 @@ h3 {
 @media (max-width: 768px) {
   .header-inner { gap: .75rem; }
   .nav-desktop { display: none; }
-  .header-cta { display: none; }
+  .header-cta.btn.btn-primary { display: none; }
   .menu-toggle {
     display: flex;
     margin-left: auto;
