@@ -1,133 +1,278 @@
-// ============================================================
-// BITCODE - script.js (Versione Web3Forms - No Firebase)
-// Refactor: best practice, stessa struttura HTML/CSS, stesso comportamento
-// ============================================================
+/* ==========================================================================
+   BITCODE — script.js
+   Vanilla JS · nessuna dipendenza · un solo IIFE, un solo listener per evento
+   ========================================================================== */
 
 (function () {
   'use strict';
 
+  const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+  const SUBMIT_TIMEOUT_MS = 15000;
+  const SPIKE_COURSE = 'Spike Prime Lab';
+  const FOCUSABLE = 'a[href], button, input, select, textarea, [tabindex]';
+
   let lastFocusedElement = null;
+  let focusTimer = null;
+
+  const $ = (selector, scope = document) => scope.querySelector(selector);
+  const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+  const isVisible = (el) => Boolean(el) && getComputedStyle(el).display !== 'none';
 
   document.addEventListener('DOMContentLoaded', init);
 
   function init() {
     initMobileMenu();
-    initFAQ();
-    initEnrollmentModal();
-    initScrollHeader();
+    initHeader();
+    initScrollSpy();
+    initParallax();
     initRevealAnimations();
-    initMobileCta();
-    initFocusTrap();
+    initFAQ();
     initToolSelector();
+    initEnrollmentModal();
+    initSedeLogic();
   }
 
-  // ─── ANIMAZIONI REVEAL ─────────────────────────────────────────────────
-  function initRevealAnimations() {
-    const els = document.querySelectorAll(
-      '.section-intro, .step, .pcard, .scuola, .review, .faq details'
-    );
-    els.forEach((el) => el.classList.add('reveal'));
+  /* 01 · MENU MOBILE ------------------------------------------------------- */
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    els.forEach((el) => io.observe(el));
-  }
-
-  // ─── MENU MOBILE ───────────────────────────────────────────────────────
   function initMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMobile = document.querySelector('.nav-mobile');
-    const body = document.body;
-    if (!menuToggle || !navMobile) return;
+    const toggle = $('.menu-toggle');
+    const menu = $('#navMobile');
+    if (!toggle || !menu) return;
 
-    function closeMenu() {
-      navMobile.classList.remove('active');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      body.style.overflow = '';
-    }
+    const setOpen = (open) => {
+      menu.classList.toggle('active', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
 
-    function openMenu() {
-      navMobile.classList.add('active');
-      menuToggle.setAttribute('aria-expanded', 'true');
-      body.style.overflow = 'hidden';
-    }
-
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = navMobile.classList.contains('active');
-      isOpen ? closeMenu() : openMenu();
+    toggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      setOpen(!menu.classList.contains('active'));
     });
 
-    navMobile.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
+    $$('a', menu).forEach((link) => link.addEventListener('click', () => setOpen(false)));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.classList.contains('active')) setOpen(false);
     });
   }
 
-  // ─── FAQ ACCORDION ─────────────────────────────────────────────────────
+  /* 02 · HEADER (sempre visibile, solo stile allo scroll) ------------------- */
+
+  function initHeader() {
+    const header = $('.header');
+    if (!header) return;
+
+    let headerHeight = header.offsetHeight;
+    let ticking = false;
+
+    const update = () => {
+      header.classList.toggle('scrolled', window.scrollY > headerHeight);
+      ticking = false;
+    };
+
+    window.addEventListener('resize', () => { headerHeight = header.offsetHeight; }, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+
+    update();
+  }
+
+  /* 03 · SCROLLSPY --------------------------------------------------------- */
+
+  function initScrollSpy() {
+    const links = $$('.nav-desktop a[href^="#"], .nav-mobile a[href^="#"]')
+      .filter((link) => !link.classList.contains('js-open-modal'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+
+    const byId = new Map();
+    links.forEach((link) => {
+      const id = link.getAttribute('href').slice(1);
+      if (!byId.has(id)) byId.set(id, []);
+      byId.get(id).push(link);
+    });
+
+    const sections = [...byId.keys()]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const setCurrent = (id) => {
+      links.forEach((link) => {
+        const active = Boolean(id) && link.getAttribute('href') === `#${id}`;
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      if (window.scrollY < 100) { setCurrent(null); return; }
+      const visible = entries.filter((entry) => entry.isIntersecting);
+      if (visible.length) setCurrent(visible[visible.length - 1].target.id);
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+    sections.forEach((section) => observer.observe(section));
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < 100) setCurrent(null);
+    }, { passive: true });
+  }
+
+  /* 04 · PARALLAX HERO (disattivato con reduced motion) --------------------- */
+
+  function initParallax() {
+    const visual = $('.hero-visual');
+    if (!visual) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const wide = window.matchMedia('(min-width: 961px)');
+    let ticking = false;
+
+    const update = () => {
+      const enabled = !reduceMotion.matches && wide.matches;
+      const offset = enabled ? Math.min(window.scrollY * 0.08, 48) : 0;
+      visual.style.setProperty('--parallax', `${offset}px`);
+      ticking = false;
+    };
+
+    const request = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request, { passive: true });
+    reduceMotion.addEventListener('change', request);
+    wide.addEventListener('change', request);
+    update();
+  }
+
+  /* 05 · REVEAL ------------------------------------------------------------ */
+
+  function initRevealAnimations() {
+    const elements = $$('.section-intro, .step, .pcard, .scuola, .review, .faq details');
+    if (!elements.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => el.classList.add('visible'));
+      return;
+    }
+
+    elements.forEach((el) => el.classList.add('reveal'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach((el) => observer.observe(el));
+  }
+
+  /* 06 · FAQ (accordion esclusivo) ------------------------------------------ */
+
   function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq details');
-    faqItems.forEach((item) => {
-      item.addEventListener('toggle', function () {
-        if (this.open) {
-          faqItems.forEach((other) => {
-            if (other !== this && other.open) other.open = false;
-          });
-        }
+    const items = $$('.faq details');
+    items.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (!item.open) return;
+        items.forEach((other) => {
+          if (other !== item && other.open) other.open = false;
+        });
       });
     });
   }
 
-  // ─── MODALE ISCRIZIONI ─────────────────────────────────────────────────
+  /* 07 · TAB STRUMENTI ------------------------------------------------------ */
+
+  function initToolSelector() {
+    const tabs = $$('.tl-list [role="tab"]');
+    const panels = $$('.tl-panel');
+    if (!tabs.length) return;
+
+    const select = (index, moveFocus = false) => {
+      tabs.forEach((tab, i) => {
+        const active = i === index;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      panels.forEach((panel, i) => { panel.hidden = i !== index; });
+      if (moveFocus) tabs[index].focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(index));
+      tab.addEventListener('keydown', (event) => {
+        const count = tabs.length;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+          event.preventDefault();
+          select((index + 1) % count, true);
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          select((index + count - 1) % count, true);
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          select(0, true);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          select(count - 1, true);
+        }
+      });
+    });
+
+    select(0);
+  }
+
+  /* 08 · MODALE ISCRIZIONE -------------------------------------------------- */
+
   function initEnrollmentModal() {
-    const modal = document.getElementById('enrollmentModal');
+    const modal = $('#enrollmentModal');
     if (!modal) return;
 
-    const closeBtn = document.getElementById('closeEnrollmentModal');
-    const overlay = modal.querySelector('.enrollment-modal-overlay');
-    const form = document.getElementById('enrollmentForm');
-    const corsoSelect = document.getElementById('corsoSelect');
-    const corsoInput = document.getElementById('corsoSceltoInput');
-    const weekSection = document.getElementById('robogrest-week-section');
+    const closeButton = $('#closeEnrollmentModal');
+    const overlay = $('.enrollment-modal-overlay', modal);
+    const form = $('#enrollmentForm');
+    const success = $('#enrollmentSuccessMessage');
+    const successClose = $('#enrollmentSuccessClose');
+    const courseSelect = $('#corsoSelect');
+    const courseCopy = $('#corsoSceltoInput');
+    const weekSection = $('#robogrest-week-section');
 
-    if (closeBtn) closeBtn.addEventListener('click', closeEnrollmentModal);
+    if (closeButton) closeButton.addEventListener('click', closeEnrollmentModal);
     if (overlay) overlay.addEventListener('click', closeEnrollmentModal);
+    if (successClose) successClose.addEventListener('click', closeEnrollmentModal);
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.style.display === 'flex') closeEnrollmentModal();
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && (isVisible(success) || isVisible(modal))) {
+        closeEnrollmentModal();
+      }
+      if (event.key === 'Tab') trapFocus(event, modal, success);
     });
 
-    if (corsoSelect) {
-      corsoSelect.addEventListener('change', function () {
-        if (corsoInput) corsoInput.value = this.value;
+    if (courseSelect) {
+      courseSelect.addEventListener('change', () => {
+        if (courseCopy) courseCopy.value = courseSelect.value;
         if (weekSection) {
-          weekSection.style.display = this.value.includes('ROBOGREST') ? 'block' : 'none';
+          weekSection.style.display = courseSelect.value.includes('ROBOGREST') ? 'block' : 'none';
         }
       });
     }
 
-    // CTA generiche ("Prenota una prova", pulsante nel form contatti) — aprono il modale senza corso preselezionato
-    document.querySelectorAll('.js-open-modal').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
+    $$('.js-open-modal').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
         openEnrollmentModal(null);
       });
     });
 
-    // Pulsanti "Iscriviti / Avvisami" nelle card corso — aprono il modale con il corso già selezionato
-    document.querySelectorAll('.course-link[data-course]').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
+    $$('.course-link[data-course]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
         openEnrollmentModal(link.dataset.course);
       });
     });
@@ -135,58 +280,69 @@
     if (form) form.addEventListener('submit', handleEnrollmentSubmit);
   }
 
-  function openEnrollmentModal(preselectCourseName) {
-    const modal = document.getElementById('enrollmentModal');
+  function openEnrollmentModal(preselectedCourse) {
+    const modal = $('#enrollmentModal');
     if (!modal) return;
 
+    const form = $('#enrollmentForm');
+    const success = $('#enrollmentSuccessMessage');
+    const error = $('#enrollmentErrorMessage');
+    const courseSelect = $('#corsoSelect');
+    const courseCopy = $('#corsoSceltoInput');
+    const weekSection = $('#robogrest-week-section');
+
     lastFocusedElement = document.activeElement;
+
+    if (success) {
+      success.style.display = 'none';
+      success.setAttribute('aria-hidden', 'true');
+    }
+    if (error) error.style.display = 'none';
+
+    if (form) {
+      form.style.display = '';
+      form.reset();
+    }
+
+    if (preselectedCourse && courseSelect) {
+      courseSelect.value = preselectedCourse;
+      if (courseCopy) courseCopy.value = courseSelect.value;
+    } else if (courseCopy) {
+      courseCopy.value = '';
+    }
+
+    if (weekSection) {
+      weekSection.style.display = (preselectedCourse || '').includes('ROBOGREST') ? 'block' : 'none';
+    }
 
     modal.style.display = 'flex';
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    const successMsg = document.getElementById('enrollmentSuccessMessage');
-    const errorMsg = document.getElementById('enrollmentErrorMessage');
-    const form = document.getElementById('enrollmentForm');
-
-    if (successMsg) successMsg.style.display = 'none';
-    if (errorMsg) errorMsg.style.display = 'none';
-    if (form) {
-      form.style.display = 'block';
-      form.reset();
-    }
-
-    const corsoSelect = document.getElementById('corsoSelect');
-    const corsoInput = document.getElementById('corsoSceltoInput');
-
-    if (preselectCourseName && corsoSelect) {
-      corsoSelect.value = preselectCourseName;
-      if (corsoInput) corsoInput.value = corsoSelect.value;
-    }
-
-    const weekSection = document.getElementById('robogrest-week-section');
-    if (weekSection) {
-      weekSection.style.display = (preselectCourseName || '').includes('ROBOGREST') ? 'block' : 'none';
-    }
-
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const firstField = document.getElementById('studentName');
-    if (firstField && !isMobile) {
-      setTimeout(() => firstField.focus(), 350);
-    }
+    window.clearTimeout(focusTimer);
+    focusTimer = window.setTimeout(() => {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const target = isMobile ? $('#closeEnrollmentModal') : $('#studentName');
+      if (target) target.focus();
+    }, 320);
   }
 
   function closeEnrollmentModal() {
-    const modal = document.getElementById('enrollmentModal');
-    const successMsg = document.getElementById('enrollmentSuccessMessage');
+    const modal = $('#enrollmentModal');
+    const success = $('#enrollmentSuccessMessage');
+
+    window.clearTimeout(focusTimer);
 
     if (modal) {
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
     }
-    if (successMsg) successMsg.style.display = 'none';
+    if (success) {
+      success.style.display = 'none';
+      success.setAttribute('aria-hidden', 'true');
+    }
 
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
 
     if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
       lastFocusedElement.focus();
@@ -194,201 +350,160 @@
     lastFocusedElement = null;
   }
 
-  // ─── SUBMIT FORM (Web3Forms AJAX) ──────────────────────────────────────
-  async function handleEnrollmentSubmit(e) {
-    e.preventDefault();
+  function trapFocus(event, modal, success) {
+    const dialog = isVisible(success) ? success : (isVisible(modal) ? modal : null);
+    if (!dialog) return;
 
-    const form = e.target;
-    const submitBtn = form.querySelector('.enrollment-submit-btn');
-    const submitText = document.getElementById('enrollmentSubmitText');
-    const successMsg = document.getElementById('enrollmentSuccessMessage');
-    const errorMsg = document.getElementById('enrollmentErrorMessage');
-    const modal = document.getElementById('enrollmentModal');
+    const focusable = $$(FOCUSABLE, dialog).filter((el) => (
+      el.offsetParent !== null && !el.disabled && el.type !== 'hidden' && el.tabIndex !== -1
+    ));
+    if (!focusable.length) return;
 
-    if (successMsg) successMsg.style.display = 'none';
-    if (errorMsg) errorMsg.style.display = 'none';
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
 
-    const studentName = document.getElementById('studentName').value.trim();
-    const studentAge = document.getElementById('studentAge').value;
-    const parentEmail = document.getElementById('parentEmail').value.trim();
-    const privacy = document.getElementById('privacy');
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    } else if (!dialog.contains(document.activeElement)) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  /* 09 · INVIO FORM --------------------------------------------------------- */
+
+  async function handleEnrollmentSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const submitButton = $('.enrollment-submit-btn', form);
+    const submitText = $('#enrollmentSubmitText');
+    const success = $('#enrollmentSuccessMessage');
+    const successClose = $('#enrollmentSuccessClose');
+    const modal = $('#enrollmentModal');
+
+    const studentName = $('#studentName').value.trim();
+    const studentAge = $('#studentAge').value;
+    const parentEmail = $('#parentEmail').value.trim();
+    const privacy = $('#privacy');
 
     if (!studentName) return showFormError('Inserisci il nome e cognome del bambino');
     if (!studentAge) return showFormError("Seleziona l'età del bambino");
     if (!parentEmail) return showFormError("Inserisci l'email del genitore");
-    if (!privacy?.checked) return showFormError("Accetta l'informativa privacy per procedere");
+    if (!privacy || !privacy.checked) return showFormError("Accetta l'informativa privacy per procedere");
 
-    const isRobogrest = document.getElementById('corsoSceltoInput')?.value.includes('ROBOGREST');
-    if (isRobogrest) {
-      const weeks = document.querySelectorAll('input[name="Settimane_Robogrest[]"]:checked');
-      if (weeks.length === 0) return showFormError('Seleziona almeno una settimana per Robogrest');
+    const courseValue = $('#corsoSceltoInput') ? $('#corsoSceltoInput').value : '';
+    if (courseValue.includes('ROBOGREST')) {
+      const weeks = $$('input[name="Settimane_Robogrest[]"]:checked');
+      if (!weeks.length) return showFormError('Seleziona almeno una settimana per ROBOGREST');
     }
 
-    if (submitBtn) submitBtn.disabled = true;
+    const emailCopy = $('#parentEmailCopy');
+    if (emailCopy) emailCopy.value = parentEmail;
+
+    const formData = new FormData(form);
+    const payload = {};
+    for (const [key, value] of formData.entries()) {
+      if (Object.prototype.hasOwnProperty.call(payload, key)) {
+        payload[key] = [].concat(payload[key], value);
+      } else {
+        payload[key] = value;
+      }
+    }
+
+    if (submitButton) submitButton.disabled = true;
     if (submitText) submitText.textContent = '⏳ Invio in corso...';
 
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
+
     try {
-      const emailCopy = document.getElementById('parentEmailCopy');
-      if (emailCopy) emailCopy.value = parentEmail;
-
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData);
-
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal
       });
 
       const result = await response.json();
+      if (!result.success) throw new Error(result.message || "Errore durante l'invio");
 
-      if (result.success) {
-        if (modal) modal.style.display = 'none';
-        if (form) form.style.display = 'none';
-        if (successMsg) successMsg.style.display = 'flex';
-        form.reset();
-      } else {
-        throw new Error(result.message || "Errore sconosciuto durante l'invio");
+      if (modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
       }
-    } catch (err) {
-      console.error('Errore invio form:', err);
-      showFormError(err.message || 'Si è verificato un errore. Per favore, riprova o contattaci via WhatsApp.');
+      form.style.display = 'none';
+      if (success) {
+        success.style.display = 'flex';
+        success.setAttribute('aria-hidden', 'false');
+      }
+      if (successClose) successClose.focus();
+      form.reset();
+    } catch (error) {
+      const message = error.name === 'AbortError'
+        ? 'La connessione è lenta o assente. Riprova o scrivici su WhatsApp.'
+        : (error.message || 'Si è verificato un errore. Riprova o contattaci via WhatsApp.');
+      showFormError(message);
     } finally {
-      if (submitBtn) submitBtn.disabled = false;
+      window.clearTimeout(timeout);
+      if (submitButton) submitButton.disabled = false;
       if (submitText) submitText.textContent = 'Invia iscrizione';
     }
   }
 
   function showFormError(message) {
-    const errorMsg = document.getElementById('enrollmentErrorMessage');
-    const errorText = document.getElementById('enrollmentErrorText');
-    if (errorText) errorText.textContent = message;
-    if (errorMsg) {
-      errorMsg.style.display = 'block';
-      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const box = $('#enrollmentErrorMessage');
+    const text = $('#enrollmentErrorText');
+    if (text) text.textContent = message;
+    if (box) {
+      box.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
 
-  // ─── SMART HIDE-ON-SCROLL HEADER ───────────────────────────────────────
-  function initScrollHeader() {
-    const header = document.querySelector('.header');
-    if (!header) return;
+  /* 10 · SEDE / CORSO ------------------------------------------------------- */
 
-    let lastY = window.scrollY;
-    let ticking = false;
+  function initSedeLogic() {
+    const applySede = () => {
+      const select = $('#corsoSelect');
+      if (!select) return;
 
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (ticking) return;
-        ticking = true;
+      const sede = $('input[name="Sede"]:checked');
+      const onlyCellatica = Boolean(sede) && sede.value === 'Cellatica';
 
-        requestAnimationFrame(() => {
-          const currentY = window.scrollY;
-          const diff = currentY - lastY;
-
-          header.classList.toggle('scrolled', currentY > header.offsetHeight);
-
-          if (diff > 6 && currentY > 80) {
-            header.classList.add('hidden');
-          } else if (diff < -6 || currentY <= 80) {
-            header.classList.remove('hidden');
-          }
-
-          lastY = currentY;
-          ticking = false;
-        });
-      },
-      { passive: true }
-    );
-  }
-
-  // ─── BARRA CTA MOBILE: sparisce quando sei già nei contatti ───────────
-  function initMobileCta() {
-    const bar = document.getElementById('mobileCta');
-    const target = document.getElementById('contatti');
-    if (!bar || !target || !('IntersectionObserver' in window)) return;
-    new IntersectionObserver(([e]) => bar.classList.toggle('hidden', e.isIntersecting), { threshold: 0.15 }).observe(target);
-  }
-
-  // ─── FOCUS TRAP nel modale (aria-modal da solo non basta) ─────────────
-  function initFocusTrap() {
-    const modal = document.getElementById('enrollmentModal');
-    if (!modal) return;
-    document.addEventListener('keydown', (e) => {
-      if (e.key !== 'Tab' || modal.style.display !== 'flex') return;
-      const f = [...modal.querySelectorAll('a[href], button, input, select, textarea')]
-        .filter((el) => el.offsetParent !== null && !el.disabled && el.type !== 'hidden');
-      if (!f.length) return;
-      const first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    });
-  }
-
-  // ─── SELETTORE STRUMENTI (tab accessibili, frecce da tastiera) ────────
-  function initToolSelector() {
-    const tabs = [...document.querySelectorAll('.tl-list [role="tab"]')];
-    const panels = [...document.querySelectorAll('.tl-panel')];
-    if (!tabs.length) return;
-    const pick = (i, focus) => {
-      tabs.forEach((t, k) => { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
-      panels.forEach((p, k) => { p.hidden = k !== i; });
-      if (focus) tabs[i].focus();
-    };
-    tabs.forEach((t, i) => {
-      t.addEventListener('click', () => pick(i));
-      t.addEventListener('keydown', (e) => {
-        const n = tabs.length;
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); pick((i + 1) % n, true); }
-        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); pick((i + n - 1) % n, true); }
+      [...select.options].forEach((option) => {
+        option.disabled = onlyCellatica && option.value !== '' && option.value !== SPIKE_COURSE;
       });
-    });
-    pick(0);
-  }
 
-  window.closeEnrollmentModal = closeEnrollmentModal;
-})();
-// ─── MODULO: scelta sede. A Cellatica solo "Spike Prime Lab" ───
-(function () {
-  const SPIKE = 'Spike Prime Lab';
+      if (onlyCellatica) {
+        select.value = SPIKE_COURSE;
+        const copy = $('#corsoSceltoInput');
+        if (copy) copy.value = SPIKE_COURSE;
+        const weeks = $('#robogrest-week-section');
+        if (weeks) weeks.style.display = 'none';
+      }
 
-  function applySede() {
-    const select = document.getElementById('corsoSelect');
-    if (!select) return;
-    const sede = document.querySelector('input[name="Sede"]:checked');
-    const onlyCellatica = !!sede && sede.value === 'Cellatica';
+      const hint = $('#sedeHint');
+      if (hint) hint.hidden = !onlyCellatica;
+    };
 
-    [...select.options].forEach((o) => {
-      o.disabled = onlyCellatica && o.value !== '' && o.value !== SPIKE;
+    document.addEventListener('change', (event) => {
+      if (event.target && event.target.name === 'Sede') applySede();
     });
 
-    if (onlyCellatica) {
-      select.value = SPIKE;
-      const copy = document.getElementById('corsoSceltoInput');
-      if (copy) copy.value = SPIKE;
-      const weeks = document.getElementById('robogrest-week-section');
-      if (weeks) weeks.style.display = 'none';
-    }
-    const hint = document.getElementById('sedeHint');
-    if (hint) hint.hidden = !onlyCellatica;
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('.js-open-modal, .course-link[data-course]');
+      if (!link) return;
+      const course = link.dataset.course;
+      if (course && course !== SPIKE_COURSE) {
+        const brescia = $('input[name="Sede"][value="Brescia"]');
+        if (brescia) brescia.checked = true;
+      }
+      applySede();
+    });
   }
-
-  document.addEventListener('change', (e) => {
-    if (e.target && e.target.name === 'Sede') applySede();
-  });
-
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('.js-open-modal, .course-link[data-course]');
-    if (!link) return;
-    const course = link.dataset.course;
-    if (course && course !== SPIKE) {
-      const brescia = document.querySelector('input[name="Sede"][value="Brescia"]');
-      if (brescia) brescia.checked = true;
-    }
-    applySede();
-  });
 })();
