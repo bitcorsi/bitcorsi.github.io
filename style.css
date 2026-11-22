@@ -315,12 +315,12 @@ h3 {
 
 .brand-logo {
   width: auto;
-  height: 44px;
+  height: 88px;
 }
 
 .brand-name {
   font-family: var(--font-sans);
-  font-size: 1.45rem;
+  font-size: 2.00rem;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.035em;
